@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//ED"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.MusicMapper">
+    <select id="selectListMusic" parameterType="Music" resultMap="music">
+        select * from tb_music
+        <where>
+            <if test='id!=0'>
+                music_id=#{id}
+            </if>
+            <if test='name!=null and name !=""'>
+                and music_name like "%"#{name}"%"
+            </if>
+            <if test='level!=0'>
+                and music_level=#{level}
+            </if>
+             <if test='singerId!=0'>
+                and music_singer_id=#{singerId}
+            </if>
+             <if test='albumId!=0'>
+                and music_album_id=#{albumId}
+            </if>
+             <if test='classificationId!=0'>
+                and music_classification_id=#{classificationId}
+            </if>
+             <if test='activity!=0'>
+                and music_activity=#{activity}
+            </if>
+             <if test='available!=0'>
+                and music_available=#{available}
+            </if>
+        </where>
+    </select>
+    <select id="listIdSelectListMusic" parameterType="Integer" resultMap="music">
+        select * from tb_music
+        <where>
+            <foreach collection="list" item="value" separator="," open="music_id in(" close=")">
+                #{value}
+            </foreach>
+        </where>
+    </select>
+
+    <insert id="insertMusic" parameterType="Music">
+         insert into tb_music (music_name,music_level,music_price,music_singer_id,music_album_id,music_classification_id,
+         music_date,music_path,music_lyric_path,music_music_video_id,music_activity,music_available)values(#{name},#{level},
+         #{price},#{singerId},#{albumId},#{classificationId},#{date},#{path},#{lyricPath},#{musicVideoId},#{activity},#{available})
+    </insert>
+    <update id="updateMusic" parameterType="Music" >
+        update tb_music set music_name=#{name},music_level=#{level},music_price=#{price},music_singer_id=#{singerId},
+        music_album_id=#{albumId},music_classification_id=#{classificationId},music_date=#{date},music_path=#{path},
+        music_lyric_path=#{lyricPath},music_music_video_id=#{musicVideoId},music_activity=#{activity},music_available=#{available}
+        where music_id=#{id}
+    </update>
+
+
+    <resultMap id="music" type="Music">
+        <id column="music_id" property="id"/>
+        <result column="music_name" property="name"/>
+        <result column="music_level" property="level"/>
+        <result column="music_price" property="price"/>
+        <result column="music_singer_id" property="singerId"/>
+        <result column="music_album_id" property="albumId"/>
+        <result column="music_classification_id" property="classificationId"/>
+        <result column="music_date" property="date"/>
+        <result column="music_path" property="path"/>
+        <result column="music_lyric_path" property="lyricPath"/>
+        <result column="music_music_video_id" property="musicVideoId"/>
+        <result column="music_activity" property="activity"/>
+        <result column="music_available" property="available"/>
+    </resultMap>
+</mapper>

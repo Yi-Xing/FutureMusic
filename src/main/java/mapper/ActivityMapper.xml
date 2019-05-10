@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//ED"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.ActivityMapper">
+    <select id="selectListActivity" parameterType="Activity" resultMap="activity">
+        select * from tb_activity
+        <where>
+            <if test='id!=0'>
+                activity_id=#{id}
+            </if>
+            <if test='name!=null and name!=""'>
+                and activity_name like "%"#{name}"%"
+            </if>
+            <if test='type!=0'>
+                and activity_type=#{type}
+            </if>
+            <if test='endDate!=null'>
+                and activity_end_date>=#{endDate}
+            </if>
+        </where>
+    </select>
+
+    <insert id="insertActivity" parameterType="Activity">
+        insert into tb_activity (activity_name,activity_picture,activity_discount,activity_type,activity_content,activity_website,
+         activity_start_date,activity_end_date)
+         values(#{name},#{picture},#{discount},#{type},#{content},#{website},#{startDate},#{endDate})
+    </insert>
+    <update id="updateActivity" parameterType="Activity">
+        update tb_activity set activity_name=#{name},activity_picture=#{picture},activity_discount=#{discount},activity_type=#{type},
+        activity_content=#{content},activity_website=#{website},activity_start_date=#{startDate},activity_end_date=#{endDate}
+        where activity_id=#{id}
+    </update>
+    <delete id="deleteActivity" parameterType="Integer">
+        delete from tb_activity where activity_id=#{value}
+    </delete>
+    <resultMap id="activity" type="Activity">
+        <id column="activity_id" property="id"/>
+        <result column="activity_name" property="name"/>
+        <result column="activity_picture" property="picture"/>
+        <result column="activity_discount" property="discount"/>
+        <result column="activity_type" property="type"/>
+        <result column="activity_content" property="content"/>
+        <result column="activity_website" property="website"/>
+        <result column="activity_start_date" property="startDate"/>
+        <result column="activity_end_date" property="endDate"/>
+    </resultMap>
+</mapper>

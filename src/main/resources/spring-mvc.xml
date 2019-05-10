@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context.xsd
+       http://www.springframework.org/schema/aop
+       http://www.springframework.org/schema/aop/spring-aop.xsd
+        http://www.springframework.org/schema/tx
+       http://www.springframework.org/schema/tx/spring-tx.xsd
+        http://www.springframework.org/schema/mvc
+        http://www.springframework.org/schema/mvc/spring-mvc.xsd"
+>
+
+    <!--处理器映射和处理器适配器，注解驱动-->
+    <mvc:annotation-driven/>
+
+    <!--引入数据库连接的配置文件-->
+    <context:property-placeholder location="classpath:jdbc.properties"/>
+
+<!--    &lt;!&ndash;数据库连接池&ndash;&gt;
+    <bean id="source" class = "com.alibaba.druid.pool.DruidDataSource">
+        &lt;!&ndash; 数据库基本信息配置 &ndash;&gt;
+        <property name = "url" value = "${url}" />
+        <property name = "username" value = "${username}" />
+        <property name = "password" value = "${password}" />
+        <property name = "driverClassName" value = "${driverClassName}" />
+&lt;!&ndash;        <property name = "filters" value = "${filters}" />&ndash;&gt;
+&lt;!&ndash;        &lt;!&ndash; 最大并发连接数 &ndash;&gt;&ndash;&gt;
+&lt;!&ndash;        <property name = "maxActive" value = "${maxActive}" />&ndash;&gt;
+&lt;!&ndash;        &lt;!&ndash; 初始化连接数量 &ndash;&gt;&ndash;&gt;
+&lt;!&ndash;        <property name = "initialSize" value = "${initialSize}" />&ndash;&gt;
+&lt;!&ndash;        &lt;!&ndash; 配置获取连接等待超时的时间 &ndash;&gt;&ndash;&gt;
+&lt;!&ndash;        <property name = "maxWait" value = "${maxWait}" />&ndash;&gt;
+&lt;!&ndash;        &lt;!&ndash; 最小空闲连接数 &ndash;&gt;&ndash;&gt;
+&lt;!&ndash;        <property name = "minIdle" value = "${minIdle}" />&ndash;&gt;
+&lt;!&ndash;        &lt;!&ndash; 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒 &ndash;&gt;&ndash;&gt;
+&lt;!&ndash;        <property name = "timeBetweenEvictionRunsMillis" value ="${timeBetweenEvictionRunsMillis}" />&ndash;&gt;
+&lt;!&ndash;        &lt;!&ndash; 配置一个连接在池中最小生存的时间，单位是毫秒 &ndash;&gt;&ndash;&gt;
+&lt;!&ndash;        <property name = "minEvictableIdleTimeMillis" value ="${minEvictableIdleTimeMillis}" />&ndash;&gt;
+&lt;!&ndash;        <property name = "validationQuery" value = "${validationQuery}" />&ndash;&gt;
+&lt;!&ndash;        <property name = "testWhileIdle" value = "${testWhileIdle}" />&ndash;&gt;
+&lt;!&ndash;        <property name = "testOnBorrow" value = "${testOnBorrow}" />&ndash;&gt;
+&lt;!&ndash;        <property name = "testOnReturn" value = "${testOnReturn}" />&ndash;&gt;
+&lt;!&ndash;        <property name = "maxOpenPreparedStatements" value ="${maxOpenPreparedStatements}" />&ndash;&gt;
+&lt;!&ndash;        &lt;!&ndash; 打开 removeAbandoned 功能 &ndash;&gt;&ndash;&gt;
+&lt;!&ndash;        <property name = "removeAbandoned" value = "${removeAbandoned}" />&ndash;&gt;
+&lt;!&ndash;        &lt;!&ndash; 1800 秒，也就是 30 分钟 &ndash;&gt;&ndash;&gt;
+&lt;!&ndash;        <property name = "removeAbandonedTimeout" value ="${removeAbandonedTimeout}" />&ndash;&gt;
+&lt;!&ndash;        &lt;!&ndash; 关闭 abanded 连接时输出错误日志 &ndash;&gt;&ndash;&gt;
+&lt;!&ndash;        <property name = "logAbandoned" value = "${logAbandoned}" />&ndash;&gt;
+    </bean>-->
+    <!--数据库连接池-->
+    <bean id="source" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+        <property name="driverClass" value="${driverClass}"/>
+        <property name="jdbcUrl" value="${jdbcUrl}"/>
+        <property name="user" value="${user}"/>
+        <property name="password" value="${password}"/>
+    </bean>
+    <!--Mybatis的工厂-->
+    <bean class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="source"/>
+        <property name="configLocation" value="classpath:sqlMapConfig.xml"/>
+    </bean>
+    <!--Mybatis的Mapper动态代理扫描-->
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="basePackage" value="mapper"/>
+    </bean>
+
+    <!--引入spring的配置文件-->
+    <import resource="spring/spring-config.xml"/>
+    <import resource="spring/spring-zyx.xml"/>
+    <import resource="spring/spring-jjy.xml"/>
+
+</beans>

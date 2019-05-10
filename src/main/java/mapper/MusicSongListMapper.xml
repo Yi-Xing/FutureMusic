@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//ED"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.MusicSongListMapper">
+    <select id="selectListMusicSongList" parameterType="MusicSongList" resultMap="musicSongList">
+        select * from tb_music_song_list where
+        <where>
+            <if test='belongId!=0'>
+                music_song_list_belong_id=#{belongId}
+            </if>
+            <if test='type!=0'>
+                and music_song_list_type=#{type}
+            </if>
+            <if test='musicId!=0'>
+                and music_song_list_music_id=#{musicId}
+            </if>
+        </where>
+    </select>
+
+    <insert id="insertMusicSongList" parameterType="MusicSongList">
+         insert into tb_music_song_list (music_song_list_belong_id,music_song_list_type,music_song_list_music_id,
+         music_song_list_classification_id,music_song_list_singer_id,music_song_list_music_date)
+         values(#{belongId},#{type},#{musicId},#{classificationId},#{singerId},#{date})
+    </insert>
+    <update id="updateMusicSongList" parameterType="MusicSongList">
+        update tb_music_song_list set music_song_list_belong_id=#{belongId},music_song_list_type=#{type},
+        music_song_list_music_id=#{musicId}, music_song_list_classification_id=#{classificationId},
+        music_song_list_singer_id=#{singerId},music_song_list_music_date=#{date} where music_song_list_id=#{id}
+    </update>
+    <delete id="deleteMusicSongList" parameterType="MusicSongList">
+        delete from tb_music_song_list
+         <where>
+             <if test='id!=0'>
+                 music_song_list_id=#{id}
+             </if>
+             <if test='type!=0'>
+                 and music_song_list_type=#{type}
+             </if>
+             <if test='belongId!=0'>
+                 and  music_song_list_belong_id=#{belongId}
+             </if>
+         </where>
+    </delete>
+
+
+    <resultMap id="musicSongList" type="MusicSongList">
+        <id column="music_song_list_id" property="id"/>
+        <result column="music_song_list_belong_id" property="belongId"/>
+        <result column="music_song_list_type" property="type"/>
+        <result column="music_song_list_music_id" property="musicId"/>
+        <result column="music_song_list_classification_id" property="classificationId"/>
+        <result column="music_song_list_singer_id" property="singerId"/>
+        <result column="music_song_list_music_date" property="date"/>
+    </resultMap>
+</mapper>

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//ED"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.UserMapper">
+    <select id="selectUser" parameterType="User" resultMap="user">
+        select * from tb_user
+        <where>
+            <if test='id!=0'>
+                user_id=#{id}
+            </if>
+            <if test='name!=null and name!=""'>
+                and user_name like "%"#{name}"%"
+            </if>
+            <if test='mailbox!=null and email!=""'>
+                and user_mailbox like "%"#{mailbox}"%"
+            </if>
+            <if test='level!=0'>
+                and user_level=#{level}
+            </if>
+            <if test='report!=0'>
+                and user_report>=200
+            </if>
+        </where>
+    </select>
+    <insert id="insertUser" parameterType="User">
+         insert into tb_user(user_mailbox,user_password,user_name,user_gender,user_age,user_birthday,
+         user_address,user_level,user_balance,user_date,user_head_portrait,user_vip_date,
+         user_secret,user_fabulous,user_report)
+         values(#{mailbox},#{password},#{name},#{gender},#{age},#{birthday},#{address},
+         #{level},#{balance},#{date},#{headPortrait},#{vipDate},#{secret},#{fabulous},#{report})
+    </insert>
+    <update id="updateUser" parameterType="User">
+         update tb_user set user_mailbox=#{mailbox},user_password=#{name},
+         user_name=#{name},user_gender=#{gender},user_age=#{age},user_birthday=#{birthday},
+         user_address=#{address},user_level=#{level},user_balance=#{balance},user_date=#{date},
+         user_head_portrait=#{headPortrait},user_vip_date=#{vipDate},
+         user_secret=#{secret},user_fabulous=#{fabulous},user_report=#{report}) where user_id=#{id}
+    </update>
+
+
+    <resultMap id="user" type="User">
+        <id column="user_id" property="id"/>
+        <result column="user_mailbox" property="mailbox"/>
+        <result column="user_password" property="password"/>
+        <result column="user_name" property="name"/>
+        <result column="user_gender" property="gender"/>
+        <result column="user_age" property="age"/>
+        <result column="user_birthday" property="birthday"/>
+        <result column="user_address" property="address"/>
+        <result column="user_level" property="level"/>
+        <result column="user_balance" property="balance"/>
+        <result column="user_date" property="date"/>
+        <result column="user_vip_date" property="vipDate"/>
+        <result column="user_secret" property="secret"/>
+        <result column="user_fabulous" property="fabulous"/>
+        <result column="user_report" property="report"/>
+    </resultMap>
+</mapper>

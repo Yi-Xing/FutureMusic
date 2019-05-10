@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//ED"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.MailMapper">
+    <select id="selectListMail" parameterType="Mail" resultMap="mail">
+        select * from mail_id
+        <where>
+            <if test='senderId!=0'>
+                mail_sender_id=#{senderId}
+            </if>
+            <if test='recipientId!=0'>
+                and mail_recipient_id=#{recipientId}
+            </if>
+            <if test='state!=0'>
+                and mail_state=#{state}
+            </if>
+        </where>
+    </select>
+    <insert id="insertMail" parameterType="Mail">
+         insert into mail_id(mail_sender_id,mail_recipient_id,mail_content,mail_date,mail_reply, mail_state)
+          values(#{senderId},#{recipientId},#{content},#{date},#{reply},#{state})
+    </insert>
+    <delete id="deleteMail" parameterType="Integer" >
+        delete from mail_id where mail_id=#{value}
+    </delete>
+    <resultMap id="mail" type="Mail">
+        <id column="mail_id" property="id"/>
+        <result column="mail_sender_id" property="senderId"/>
+        <result column="mail_recipient_id" property="recipientId"/>
+        <result column="mail_content" property="content"/>
+        <result column="mail_date" property="date"/>
+        <result column="mail_reply" property="reply"/>
+        <result column="mail_state" property="state"/>
+    </resultMap>
+</mapper>
