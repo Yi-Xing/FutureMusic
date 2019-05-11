@@ -19,7 +19,6 @@
     <!--ioc注解开发，那些包使用ioc扫描哪个包-->
     <context:component-scan base-package="service"/>
     <context:component-scan base-package="controller"/>
-    <context:component-scan base-package="demo"/>
     <context:component-scan base-package="mapper"/>
     <!--开启ioc注解-->
     <context:annotation-config/>

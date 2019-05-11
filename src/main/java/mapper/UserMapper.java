@@ -38,7 +38,7 @@ public interface UserMapper {
     /**
      * 更新指定用户的信息
      *
-     * @param user 活动对象 封装所有信息
+     * @param user 用户对象 封装所有信息
      * @return int 返回更新的条数
      */
     public int updateUser(User user);
