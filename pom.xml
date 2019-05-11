@@ -240,6 +240,20 @@
       <scope>compile</scope>
     </dependency>
 
+    <!--蒋靓峣加的thymeleaf-->
+    <!-- Provided dependencies -->
+    <dependency>
+      <groupId>javax</groupId>
+      <artifactId>javaee-web-api</artifactId>
+      <version>7.0</version>
+      <scope>provided</scope>
+    </dependency>
+    <!-- Compile dependencies -->
+    <dependency>
+      <groupId>org.thymeleaf</groupId>
+      <artifactId>thymeleaf</artifactId>
+      <version>3.0.11.RELEASE</version>
+    </dependency>
   </dependencies>
 
   <build>

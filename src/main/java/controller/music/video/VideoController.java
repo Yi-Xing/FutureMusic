@@ -5,9 +5,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
+ * MV的controller层
  *
- * 处理
- *
+ * @author 5.11 蒋靓峣创建
  * */
 @Controller
 public class VideoController {
