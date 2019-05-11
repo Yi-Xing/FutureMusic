@@ -4,7 +4,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="mapper.MailMapper">
     <select id="selectListMail" parameterType="Mail" resultMap="mail">
-        select * from mail_id
+        select * from tb_mail
         <where>
             <if test='senderId!=0'>
                 mail_sender_id=#{senderId}
@@ -18,11 +18,11 @@
         </where>
     </select>
     <insert id="insertMail" parameterType="Mail">
-         insert into mail_id(mail_sender_id,mail_recipient_id,mail_content,mail_date,mail_reply, mail_state)
+         insert into tb_mail(mail_sender_id,mail_recipient_id,mail_content,mail_date,mail_reply,mail_state)
           values(#{senderId},#{recipientId},#{content},#{date},#{reply},#{state})
     </insert>
     <delete id="deleteMail" parameterType="Integer" >
-        delete from mail_id where mail_id=#{value}
+        delete from tb_mail where mail_id=#{value}
     </delete>
     <resultMap id="mail" type="Mail">
         <id column="mail_id" property="id"/>

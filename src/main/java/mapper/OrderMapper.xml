@@ -4,7 +4,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="mapper.OrderMapper">
     <select id="selectListOrder" parameterType="Order" resultMap="order">
-        select * from tb_order where
+        select * from tb_order
         <where>
             <if test='userId!=0'>
                 order_user_id=#{userId}

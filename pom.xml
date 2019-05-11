@@ -150,8 +150,9 @@
     <dependency>
       <groupId>com.mchange</groupId>
       <artifactId>c3p0</artifactId>
-      <version>0.9.5.2</version>
+      <version>0.9.5.4</version>
     </dependency>
+
     <!--    &lt;!&ndash; druid 连接池&ndash;&gt;-->
     <!--    <dependency>-->
     <!--      <groupId>com.alibaba</groupId>-->

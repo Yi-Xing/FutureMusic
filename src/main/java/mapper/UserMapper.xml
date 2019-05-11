@@ -35,7 +35,7 @@
          user_name=#{name},user_gender=#{gender},user_age=#{age},user_birthday=#{birthday},
          user_address=#{address},user_level=#{level},user_balance=#{balance},user_date=#{date},
          user_head_portrait=#{headPortrait},user_vip_date=#{vipDate},
-         user_secret=#{secret},user_fabulous=#{fabulous},user_report=#{report}) where user_id=#{id}
+         user_secret=#{secret},user_fabulous=#{fabulous},user_report=#{report}where user_id=#{id}
     </update>
 
 

@@ -18,7 +18,7 @@
             <if test='gender!=null and gender!=""'>
                 and classification_gender=#{gender}
             </if>
-            <if test='classification_type!=null and classification_type!=""'>
+            <if test='type!=null and type!=""'>
                 and classification_type=#{type}
             </if>
         </where>
@@ -30,16 +30,16 @@
     <delete id="deleteClassification" parameterType="Classification" >
         delete from tb_classification
         <where>
-            <if test='classification_languages!=null and classification_languages!=""'>
+            <if test='languages!=null and languages!=""'>
                 classification_languages=#{languages}
             </if>
-            <if test='classification_region!=null and classification_region!=""'>
+            <if test='region!=null and region!=""'>
                 or classification_region=#{region}
             </if>
-            <if test='classification_gender!=null and classification_gender!=""'>
+            <if test='gender!=null and gender!=""'>
                 or classification_gender=#{gender}
             </if>
-            <if test='classification_type!=null and classification_type!=""'>
+            <if test='type!=null and type!=""'>
                 or classification_type=#{type}
             </if>
         </where>

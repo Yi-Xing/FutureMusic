@@ -49,7 +49,7 @@
         update tb_music_video set music_video_name=#{name},music_video_path=#{path},music_video_introduction=#{introduction},
         music_video_date=#{date},music_video_level=#{level},music_video_price=#{price},music_video_music_id=#{musicId},
         music_video_singer_id=#{singerId},music_video_classification_id=#{classificationId},music_video_activity=#{activity},
-        music_video_available=#{available}where music_video_id=#{id}
+        music_video_available=#{available} where music_video_id=#{id}
     </update>
 
 
