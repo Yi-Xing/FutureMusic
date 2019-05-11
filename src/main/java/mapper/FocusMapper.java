@@ -2,6 +2,7 @@ package mapper;
 
 
 import entity.Focus;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
@@ -10,6 +11,7 @@ import java.util.List;
  *
  * @author 5月9日 蒋靓峣创建
  */
+@Repository(value = "FocusMapper")
 public interface FocusMapper {
 
     /**

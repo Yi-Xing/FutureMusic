@@ -3,6 +3,7 @@ package mapper;
 
 
 import entity.SongList;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
@@ -11,6 +12,7 @@ import java.util.List;
  *
  * @author 5月9日 张易兴创建
  */
+@Repository(value = "SongListMapper")
 public interface SongListMapper {
 
     /**

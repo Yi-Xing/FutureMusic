@@ -2,6 +2,7 @@ package mapper;
 
 
 import entity.SongListCollect;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
@@ -10,6 +11,7 @@ import java.util.List;
  *
  * @author 5月9日 张易兴创建
  */
+@Repository(value = "SongListCollectMapper")
 public interface SongListCollectMapper {
     /**
      * 查找符合指定规则的收藏的歌单或专辑信息

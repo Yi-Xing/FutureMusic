@@ -17,9 +17,12 @@
        http://www.springframework.org/schema/mvc/spring-mvc.xsd"
 >
     <!--ioc注解开发，那些包使用ioc扫描哪个包-->
-    <context:component-scan base-package="service"/>
+    <context:component-scan base-package="app"/>
     <context:component-scan base-package="controller"/>
+    <context:component-scan base-package="exception"/>
     <context:component-scan base-package="mapper"/>
+    <context:component-scan base-package="service"/>
+    <context:component-scan base-package="text"/>
     <!--开启ioc注解-->
     <context:annotation-config/>
 </beans>

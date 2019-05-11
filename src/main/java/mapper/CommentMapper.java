@@ -1,6 +1,7 @@
 package mapper;
 
 import entity.Comment;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
@@ -9,6 +10,7 @@ import java.util.List;
  *
  * @author 5月9日 张易兴创建
  */
+@Repository(value = "CommentMapper")
 public interface CommentMapper {
     /**
      * 查找符合指定规则的评论信息
