@@ -1,18 +1,8 @@
 package controller.music.song;
 
-import entity.State;
-import exception.DataBaseException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import service.music.song.SongService;
-import service.user.consumer.account.VerificationService;
-
-import javax.annotation.Resource;
-import javax.servlet.http.HttpSession;
 
 /**
  * 歌曲的controller层
