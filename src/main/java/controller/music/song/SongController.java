@@ -1,6 +1,5 @@
 package controller.music.song;
 
-import controller.user.consumer.account.Register;
 import entity.State;
 import exception.DataBaseException;
 import org.slf4j.Logger;
@@ -10,7 +9,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import service.music.song.SongService;
-import service.user.consumer.account.RegisterService;
 import service.user.consumer.account.VerificationService;
 
 import javax.annotation.Resource;
@@ -25,8 +23,8 @@ import javax.servlet.http.HttpSession;
 @Controller
 public class SongController {
     private static final Logger logger = LoggerFactory.getLogger(SongController.class);
-    @Autowired
-    private SongService songService;
+//    @Autowired
+//    private SongService songService;
 
 /**
      * keyup执行此方法，ajax

@@ -16,19 +16,19 @@
        http://www.springframework.org/schema/mvc
        http://www.springframework.org/schema/mvc/spring-mvc.xsd"
 >
-    <!-- 1. 配置处理器映射，springmvc默认的处理器映射器
-         BeanNameUrlHandlerMapping:根据bean的name属性的url去找handlerController -->
-    <bean class="org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping"/>
-    <!-- 2. 配置处理器适配置器执行Controller -->
-    <bean class="org.springframework.web.servlet.mvc.SimpleControllerHandlerAdapter"/>
-    <!-- 3.配置一个控制器 -->
-    <bean name="/song.do" class="controller.music.song.SongController"/>
-    <!-- 4.配置springmvc视图解析器
-        视图解析器解析的视频路径为：前缀 + 后缀 -->
-    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-        <property name="prefix" value="/WEB-INF/views"/>
-        <property name="suffix" value=".jsp"/>
-    </bean>
+<!-- xsd   &lt;!&ndash; 1. 配置处理器映射，springmvc默认的处理器映射器-->
+<!--         BeanNameUrlHandlerMapping:根据bean的name属性的url去找handlerController &ndash;&gt;-->
+<!--    <bean class="org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping"/>-->
+<!--    &lt;!&ndash; 2. 配置处理器适配置器执行Controller &ndash;&gt;-->
+<!--    <bean class="org.springframework.web.servlet.mvc.SimpleControllerHandlerAdapter"/>-->
+<!--    &lt;!&ndash; 3.配置一个控制器 &ndash;&gt;-->
+<!--    <bean name="/song.do" class="controller.music.song.SongController"/>-->
+<!--    &lt;!&ndash; 4.配置springmvc视图解析器-->
+<!--        视图解析器解析的视频路径为：前缀 + 后缀 &ndash;&gt;-->
+<!--    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">-->
+<!--        <property name="prefix" value="/WEB-INF/views"/>-->
+<!--        <property name="suffix" value=".jsp"/>-->
+<!--    </bean>-->
 
 
 </beans>
