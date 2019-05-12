@@ -233,27 +233,28 @@
       <artifactId>jackson-databind</artifactId>
       <version>2.9.8</version>
     </dependency>
-    <dependency>
-      <groupId>org.jetbrains</groupId>
-      <artifactId>annotations-java5</artifactId>
-      <version>RELEASE</version>
-      <scope>compile</scope>
-    </dependency>
 
-    <!--蒋靓峣加的thymeleaf-->
-    <!-- Provided dependencies -->
-    <dependency>
-      <groupId>javax</groupId>
-      <artifactId>javaee-web-api</artifactId>
-      <version>7.0</version>
-      <scope>provided</scope>
-    </dependency>
-    <!-- Compile dependencies -->
-    <dependency>
-      <groupId>org.thymeleaf</groupId>
-      <artifactId>thymeleaf</artifactId>
-      <version>3.0.11.RELEASE</version>
-    </dependency>
+<!--    <dependency>-->
+<!--      <groupId>org.jetbrains</groupId>-->
+<!--      <artifactId>annotations-java5</artifactId>-->
+<!--      <version>RELEASE</version>-->
+<!--      <scope>compile</scope>-->
+<!--    </dependency>-->
+
+<!--    &lt;!&ndash;蒋靓峣加的thymeleaf&ndash;&gt;-->
+<!--    &lt;!&ndash; Provided dependencies &ndash;&gt;-->
+<!--    <dependency>-->
+<!--      <groupId>javax</groupId>-->
+<!--      <artifactId>javaee-web-api</artifactId>-->
+<!--      <version>7.0</version>-->
+<!--      <scope>provided</scope>-->
+<!--    </dependency>-->
+<!--    &lt;!&ndash; Compile dependencies &ndash;&gt;-->
+<!--    <dependency>-->
+<!--      <groupId>org.thymeleaf</groupId>-->
+<!--      <artifactId>thymeleaf</artifactId>-->
+<!--      <version>3.0.11.RELEASE</version>-->
+<!--    </dependency>-->
   </dependencies>
 
   <build>
