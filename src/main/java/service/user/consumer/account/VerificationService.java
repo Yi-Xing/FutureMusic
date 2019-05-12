@@ -32,6 +32,7 @@ public class VerificationService {
     public boolean isMailbox(String mailbox) {
         return false;
     }
+
     /**
      * 用于验证邮箱是否存在
      *
@@ -41,6 +42,7 @@ public class VerificationService {
     public boolean isMailboxExistence(String mailbox) {
         return false;
     }
+
     /**
      * 用于验证密码是否合法
      *
@@ -51,5 +53,25 @@ public class VerificationService {
         return false;
     }
 
+    /**
+     * 用于验证邮箱密码是否正确,用于登录
+     *
+     * @param mailbox  需要验证的密码
+     * @param password 需要验证的密码
+     * @return boolean 返回是否登录成功
+     */
+    public boolean isLogin(String mailbox, String password) {
+        return false;
+    }
+
+    /**
+     * 用于验证用户名是否合法
+     *
+     * @param userName 需要验证的用户名
+     * @return boolean 返回用户名是否合法
+     */
+    public boolean isUserName(String userName) {
+        return false;
+    }
 
 }
