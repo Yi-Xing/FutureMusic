@@ -13,6 +13,14 @@ import java.util.List;
 @Service(value = "SongService")
 public class SongService {
 
+    /**点击搜索框显示历史浏览记录，如果输入关键字，则不执行
+     *                          ajax实现
+     * @return List<Music>  返回查找到的歌曲
+     *                       设置显示条数，也可用于智搜索框能提示，只显示名字
+     */
+    public List<String> searchRecord(){
+        return null;
+    }
     /**
      * @param songName 按照指定规则查找指定歌曲
      *                封装信息：歌曲名字

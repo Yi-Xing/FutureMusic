@@ -1,8 +1,8 @@
 package controller.music.song;
 
-import entity.Comment;
 import entity.Music;
 import entity.MusicSongList;
+import entity.State;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -11,11 +11,15 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import service.music.song.SongService;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 /**
  * 歌曲的controller层
- *
+ *  1.搜索框智能提示歌曲、歌手、专辑、MV
+ *  2.点击显示歌曲排行榜
+ *      歌曲详细信息（包括歌词）
+ *      歌曲的评论
  * @author 5.12 蒋靓峣创建
  * */
 
@@ -24,17 +28,41 @@ public class Song {
     private static final Logger logger = LoggerFactory.getLogger(Song.class);
     @Resource(name = "SongService")
     private SongService songService;
+    public static State state;
     /**
-     * 点击排行榜执行此方法
-     *
-     * @return List<Music> 返回匹配到的歌曲信息
+     * 点击搜索框且在输入关键字之前执行
+     *                      使用cookie存到本地
+     *                      ajax
+     * @return List<String> 返回历史搜索记录
      */
-    @RequestMapping(value = "/rankingList")
+    @RequestMapping(value = "/searchRecord")
     @ResponseBody
-    public List<String> searchSongName(){
+    public List<String> searchRecord(){
+        return songService.searchRecord();
+    }
+    /**
+     * 点击搜索框且在输入关键字之前执行
+     *                     向歌手推荐音乐，一般情况下是新歌
+     *                      ajax
+     * @return List<String> 返回歌曲名字
+     */
+    @RequestMapping(value = "/searchRecord")
+    @ResponseBody
+    public List<String> recommendSong(){
+
         return null;
     }
+    /**
+     * 点击删除之后执行
+     *                   删除cookie
+     * @return State
+     */
+    @RequestMapping(value = "/searchRecord")
+    @ResponseBody
+    public State deleteSearchRecord(){
 
+        return null;
+    }
     /**
      * keyup执行此方法，ajax
      *
@@ -44,7 +72,17 @@ public class Song {
      */
     @RequestMapping(value = "/searchListSongName")
     @ResponseBody
-    public List<String> searchListSongName(String keyWord){
+    public List<String> searchListSongName(String keyWord, HttpSession httpSession){
+        return null;
+    }
+    /**
+     * 点击排行榜执行此方法
+     *
+     * @return List<Music> 返回匹配到的歌名
+     */
+    @RequestMapping(value = "/rankingList")
+    @ResponseBody
+    public List<String> rankingList(){
         return null;
     }
     /**
@@ -100,17 +138,17 @@ public class Song {
         return 0;
     }
 
-    /**
-     *
-     * @param musicId        传参：歌曲的各种信息封装成Music
-     *
-     * @return int 返回歌曲是否修改成功的状态
-     */
-    @RequestMapping(value = "/updateSong")
-    @ResponseBody
-    public List<Comment> selectSongComment(Music musicId){
-        return null;
-    }
+//    /**
+//     *
+//     * @param musicId        传参：歌曲的各种信息封装成Music
+//     *
+//     * @return int 返回歌曲是否修改成功的状态
+//     */
+//    @RequestMapping(value = "/updateSong")
+//    @ResponseBody
+//    public List<Comment> selectSongComment(Music musicId){
+//        return null;
+//    }
     /**
      * 点击添加按钮执行此方法，ajax
      *
@@ -123,16 +161,16 @@ public class Song {
     public int addSong(Music music){
         return 0;
     }
-    /**
-     * 点击修改执行此方法，ajax
-     *
-     * @param music        传参：歌曲的各种信息封装成Music
-     *
-     * @return int 返回歌曲是否修改成功的状态
-     */
-    @RequestMapping(value = "/updateSong")
-    @ResponseBody
-    public int updateSong(Music music){
-        return 0;
-    }
+//    /**
+//     * 点击修改执行此方法，ajax
+//     *
+//     * @param music        传参：歌曲的各种信息封装成Music
+//     *
+//     * @return int 返回歌曲是否修改成功的状态
+//     */
+//    @RequestMapping(value = "/updateSong")
+//    @ResponseBody
+//    public int updateSong(Music music){
+//        return 0;
+//    }
 }
