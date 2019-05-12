@@ -11,7 +11,7 @@ import java.util.List;
         *
         * @author 蒋靓峣 5.11创建
         * */
-@Service
+@Service(value = "VideoService")
 public class VideoService {
             /**
              * @param videoName 按照指定规则查找指定MV

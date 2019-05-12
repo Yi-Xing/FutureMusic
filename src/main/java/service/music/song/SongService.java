@@ -10,7 +10,7 @@ import java.util.List;
  *
  * @author 蒋靓峣 5.11创建
  * */
-@Service
+@Service(value = "SongService")
 public class SongService {
 
     /**
