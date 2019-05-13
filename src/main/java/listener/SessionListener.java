@@ -1,4 +1,4 @@
-package Listener;
+package listener;
 
 import entity.User;
 
@@ -42,21 +42,6 @@ public class SessionListener implements HttpSessionListener {
                 // 删除集合中的存储的该用户的会话
                 SessionListener.sessionMap.remove(user.getMailbox());
             }
-        }
-    }
-
-    /**
-     * 关掉指定会话
-     *
-     * @param mailbox 需要删除会话的键
-     */
-    public static void forceUserLogout(String mailbox) {
-        // 根据用户的邮箱号获得该邮箱号所在的会话
-        HttpSession session = SessionListener.sessionMap.get(mailbox);
-        // 再次验证session中是否有该用户
-        if (session != null) {
-            // 强制关掉会话，并删除会话上所有的绑定对象,会话被销毁后，执行监听器的销毁方法
-            session.invalidate();
         }
     }
 }

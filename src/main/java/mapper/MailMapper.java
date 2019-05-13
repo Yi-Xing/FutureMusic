@@ -26,7 +26,7 @@ public interface MailMapper {
      */
     public List<Mail> selectListMail(Mail mail);
     /**
-     * 添加评论
+     * 添加邮箱
      *
      * @param mail 邮箱的对象
      *             封装信息：除id以外的所有信息
@@ -34,7 +34,7 @@ public interface MailMapper {
      */
     public int insertMail(Mail mail);
     /**
-     * 删除指定评论
+     * 删除指定邮箱
      *
      * @param id 邮箱的id
      * @return int 返回删除的条数

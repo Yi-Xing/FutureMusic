@@ -1,14 +1,17 @@
 package service.user.consumer.account;
 
-import Listener.SessionListener;
+import listener.SessionListener;
 import entity.User;
+import mapper.UserMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.util.List;
 
 /**
  * 登录账号的业务逻辑
@@ -18,6 +21,8 @@ import javax.servlet.http.HttpSession;
 @Service(value = "LoginService")
 public class LoginService {
     private static final Logger logger = LoggerFactory.getLogger(LoginService.class);
+    @Resource(name = "UserMapper")
+    UserMapper userMapper;
 
     /**
      * 用于验证邮箱密码是否正确,用于登录
@@ -27,6 +32,21 @@ public class LoginService {
      * @return boolean 返回是否登录成功
      */
     public User isLogin(String mailbox, String password) {
+        User user = null;
+        List<User> list = userMapper.selectUser(new User());
+        for (User listUser : list) {
+            // 找到指定账号
+            if (listUser.getMailbox().equals(mailbox)) {
+                user = listUser;
+            }
+        }
+        // 先判断该用户存不存在
+        if (user != null) {
+            // 再判断密码是否相同
+            if (user.getPassword().equals(password)) {
+                return user;
+            }
+        }
         return null;
     }
 
@@ -53,10 +73,11 @@ public class LoginService {
     public void isUserLogin(HttpSession session) {
         // 将会话中的用户信息取出来
         User user = (User) session.getAttribute("userInformation");
+        HttpSession originalSession1 = SessionListener.sessionMap.get(user.getMailbox());
         // 判断该用户是否已经登录
-        if (SessionListener.sessionMap.get(user.getMailbox()) != null) {
-            // 该用户已登录，删除原会话
-            SessionListener.forceUserLogout(user.getMailbox());
+        if (originalSession1 != null) {
+            // 强制关掉会话，并删除会话上所有的绑定对象,会话被销毁后，执行监听器的销毁方法
+            originalSession1.invalidate();
         }
         // 将用户的信息存储的session过滤器中
         SessionListener.sessionMap.put(user.getMailbox(), session);

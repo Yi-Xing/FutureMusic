@@ -23,8 +23,6 @@ public class Register {
     private static final Logger logger = LoggerFactory.getLogger(Register.class);
     @Resource(name = "RegisterService")
     private RegisterService registerService;
-
-
     /**
      * 点击注册按钮执行此方法，ajax
      *
@@ -33,7 +31,7 @@ public class Register {
      * @param password         接收输入的密码
      * @param passwordAgain    接收再次输入的密码
      * @param verificationCode 接收输入的邮箱验证码
-     * @param session      获取当前会话的对象
+     * @param session          获取当前会话的对象
      */
     @RequestMapping(value = "/register")
     @ResponseBody
@@ -55,7 +53,7 @@ public class Register {
                             // 验证邮箱的验证码是否正确
                             if (registerService.isMailboxVerificationCode(session, verificationCode)) {
                                 // 判断是否注册成功
-                                if (registerService.registerAccount(userName,sendMail,password)) {
+                                if (registerService.registerAccount(userName, sendMail, password)) {
                                     state.setState(1);
                                     logger.debug("邮箱：" + sendMail + "注册成功");
                                 } else {
@@ -93,7 +91,7 @@ public class Register {
     /**
      * 点击发送验证码执行此方法，ajax
      *
-     * @param mailbox     给该邮箱号发送验证码
+     * @param mailbox 给该邮箱号发送验证码
      * @param session 获取当前会话的对象
      */
     @RequestMapping(value = "/sendMail")
