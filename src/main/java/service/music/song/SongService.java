@@ -2,6 +2,8 @@ package service.music.song;
 
 import entity.Comment;
 import entity.Music;
+import entity.SongList;
+import entity.User;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -12,30 +14,26 @@ import java.util.List;
  * */
 @Service(value = "SongService")
 public class SongService {
-
-    /**点击搜索框显示历史浏览记录，如果输入关键字，则不执行
-     *                          ajax实现
+    /**
      * @return List<Music>  返回查找到的歌曲
      *                       设置显示条数，也可用于智搜索框能提示，只显示名字
      */
-    public List<String> searchRecord(){
+    public List<Music> selectListMusicRecommend(){
         return null;
     }
     /**
-     * @param songName 按照指定规则查找指定歌曲
-     *                封装信息：歌曲名字
-     * @return List<Music>  返回查找到的歌曲
+     * @return List<SongList>  返回查找到的歌曲
      *                       设置显示条数，也可用于智搜索框能提示，只显示名字
      */
-    public List<Music> selectListMusicBySongName(String songName){
+    public List<SongList> selectListSongListByName(String keyWord){
         return null;
     }
     /**
-     * @param songName 按照指定规则查找指定歌曲
+     * @param keyWord 按照指定规则查找指定歌曲
      *                封装信息：歌曲名字
      * @return List<String>  设置显示条数，用于智搜索框能提示，只显示名字
      */
-    public List<String> selectListMusicNameBySongName(String songName){
+    public List<Music> selectListMusicByName(String keyWord){
         return null;
     }
     /**
@@ -48,11 +46,37 @@ public class SongService {
         return null;
     }
     /**
+     *
+     * @param singerName 按照指定规则查找指定歌曲
+     *                封装信息：歌手名字
+     * @return List<Music>  返回查找到的歌曲
+     */
+    public List<User> selectSingerByName(String singerName){
+        return null;
+    }
+    /**
+     *
+     * @param classification 按照指定规则查找指定歌曲
+     *                封装信息：歌手名字
+     * @return List<Music>  返回查找到的歌曲
+     */
+    public List<Music> selectListMusicByClassification(String classification){
+        return null;
+    }
+    /**
      * @param userId 查看用户歌单
      *                封装信息：用户id
      * @return List<Music>  返回查找到的歌曲
      */
     public List<Music> selectListMusicByUserId(String userId){
+        return null;
+    }
+    /**
+     * @param userId 查看歌曲详细信息
+     *                封装信息：音乐d
+     * @return Music  返回查找到的歌曲
+     */
+    public Music selectMusicById(String userId){
         return null;
     }
     /**
