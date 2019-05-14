@@ -25,4 +25,6 @@
     <context:component-scan base-package="text"/>
     <!--开启ioc注解-->
     <context:annotation-config/>
+    <!--配置异常处理器-->
+    <bean class="exception.ExceptionResolver"/>
 </beans>

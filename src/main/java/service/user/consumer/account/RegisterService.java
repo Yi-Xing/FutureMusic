@@ -6,15 +6,14 @@ import mapper.UserMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
+import util.EncryptionUtil;
 
 import javax.annotation.Resource;
 import javax.mail.*;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpSession;
-import java.util.List;
-import java.util.Properties;
-import java.util.Random;
+import java.util.*;
 
 /**
  * 注册账号的业务逻辑
@@ -53,12 +52,12 @@ public class RegisterService {
         //开启debug调试
         props.setProperty("mail.debug", "true");
         //QQ邮箱的SSL加密。
-        MailSSLSocketFactory sf = null;
+        MailSSLSocketFactory mailSSLSocketFactory;
         try {
-            sf = new MailSSLSocketFactory();
-            sf.setTrustAllHosts(true);
+            mailSSLSocketFactory = new MailSSLSocketFactory();
+            mailSSLSocketFactory.setTrustAllHosts(true);
             props.put("mail.smtp.ssl.enable", "true");
-            props.put("mail.smtp.ssl.socketFactory", sf);
+            props.put("mail.smtp.ssl.socketFactory", mailSSLSocketFactory);
             //authenticator参数，登录自己的邮箱帐号密码，
             Authenticator authenticator = new Authenticator() {
                 @Override
@@ -99,8 +98,8 @@ public class RegisterService {
             message.setSubject("未来音乐");
             // 2.4 正文
             String str = "【未来音乐】您的验证码：" + verificationCode + "（30分钟内有效）验证码提供给他人对账号安全有影响，" +
-                    "请勿泄露，谨防被骗。如非本人操作请忽略或咨询150*****655）";
-            message.setContent(str, "text/html;charset=UTF-8");
+                    "请勿泄露，谨防被骗。如非本人操作请忽略或咨询15*******55）";
+            message.setContent(str, "test/zyx/html;charset=UTF-8");
             //3、发送
             Transport.send(message);
             logger.debug("邮箱发送成功，给"+mailbox+"发送的验证码为："+ verificationCode);
@@ -123,7 +122,9 @@ public class RegisterService {
         User user = new User();
         user.setName(userName);
         user.setMailbox(mailbox);
-        user.setPassword(password);
+        user.setDate(new Date());
+        // 对密码进行加密
+        user.setPassword(EncryptionUtil.encryptionMD5(password));
         return userMapper.insertUser(user) > 0;
     }
 
@@ -145,8 +146,30 @@ public class RegisterService {
      * @return boolean 返回验证码是否正确
      */
     public boolean isMailboxVerificationCode(HttpSession session, String verificationCode) {
-        return session.getAttribute("verificationCode").equals(verificationCode);
+        return verificationCode.equals(session.getAttribute("verificationCode"));
     }
+    /**
+     * 用于验证邮箱验证码是否超时
+     *
+     * @param session          获取当前会话
+     * @return boolean 返回验证码是否超时
+     */
+    public boolean isMailboxVerificationCodeTime(HttpSession session) {
+        Date verificationCodeTime=(Date)session.getAttribute("verificationCodeTime");
+        Calendar calendar=Calendar.getInstance();
+        // 将日期封装
+        calendar.setTime(verificationCodeTime);
+        // 向后推移30分钟
+        calendar.add(Calendar.MINUTE,30);
+        // 得到推移后的时间
+        verificationCodeTime=calendar.getTime();
+        // 转换成毫秒进行比较
+        Long verificationCodeTimeLong=verificationCodeTime.getTime();
+        // 获取当前系统的时间毫秒
+        Long dateLong=System.currentTimeMillis();
+        return verificationCodeTimeLong>=dateLong;
+    }
+
 
     /**
      * 用于验证邮箱是否合法
@@ -155,7 +178,7 @@ public class RegisterService {
      * @return boolean 返回邮箱是否合法
      */
     public boolean isMailbox(String mailbox) {
-        return false;
+        return mailbox.matches("[a-zA-z_0-9]+@[a-zA-z_0-9]{2,6}(\\.[a-zA-z_0-9]{2,3})+");
     }
 
     /**

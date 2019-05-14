@@ -25,26 +25,24 @@ public class LoginService {
     UserMapper userMapper;
 
     /**
-     * 用于验证邮箱密码是否正确,用于登录
+     * 用于验证密码是否正确,用于登录和修改密码
      *
      * @param mailbox  需要验证的密码
      * @param password 需要验证的密码
      * @return boolean 返回是否登录成功
      */
-    public User isLogin(String mailbox, String password) {
-        User user = null;
-        List<User> list = userMapper.selectUser(new User());
+    public User isMailboxAndPassword(String mailbox, String password) {
+        User user = new User();
+        user.setMailbox(mailbox);
+        // 从数据库中查找指定用户
+        List<User> list = userMapper.selectUser(user);
+        // 因为邮箱号是模糊查询，先判断该用户存不存在
         for (User listUser : list) {
-            // 找到指定账号
             if (listUser.getMailbox().equals(mailbox)) {
-                user = listUser;
-            }
-        }
-        // 先判断该用户存不存在
-        if (user != null) {
-            // 再判断密码是否相同
-            if (user.getPassword().equals(password)) {
-                return user;
+                // 再判断密码是否相同，密码再前面加过密了
+                if (listUser.getPassword().equals(password)) {
+                    return user;
+                }
             }
         }
         return null;
@@ -79,7 +77,7 @@ public class LoginService {
             // 强制关掉会话，并删除会话上所有的绑定对象,会话被销毁后，执行监听器的销毁方法
             originalSession1.invalidate();
         }
-        // 将用户的信息存储的session过滤器中
+        // 将用户的信息存储的session监听器中
         SessionListener.sessionMap.put(user.getMailbox(), session);
     }
 }

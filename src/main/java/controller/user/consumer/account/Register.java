@@ -11,9 +11,10 @@ import service.user.consumer.account.RegisterService;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
+import java.util.Date;
 
 /**
- * 注册和登录账号
+ * 注册账号和添加密保
  *
  * @author 5月11日 张易兴创建
  */
@@ -23,6 +24,7 @@ public class Register {
     private static final Logger logger = LoggerFactory.getLogger(Register.class);
     @Resource(name = "RegisterService")
     private RegisterService registerService;
+
     /**
      * 点击注册按钮执行此方法，ajax
      *
@@ -49,21 +51,27 @@ public class Register {
                         // 用于从Session中取出发邮件的邮箱号
                         String mailbox = "mailbox";
                         // 对比邮箱是否相同，判断用户发完邮箱验证后是否又更改了邮箱
-                        if (session.getAttribute(mailbox).equals(sendMail)) {
-                            // 验证邮箱的验证码是否正确
-                            if (registerService.isMailboxVerificationCode(session, verificationCode)) {
-                                // 判断是否注册成功
-                                if (registerService.registerAccount(userName, sendMail, password)) {
-                                    state.setState(1);
-                                    logger.debug("邮箱：" + sendMail + "注册成功");
+                        if (sendMail.equals(session.getAttribute(mailbox))) {
+                            // 验证邮箱验证码是否超时
+                            if (registerService.isMailboxVerificationCodeTime(session)) {
+                                // 验证邮箱的验证码是否正确
+                                if (registerService.isMailboxVerificationCode(session, verificationCode)) {
+                                    // 判断是否注册成功
+                                    if (registerService.registerAccount(userName, sendMail, password)) {
+                                        state.setState(1);
+                                        logger.debug("邮箱：" + sendMail + "注册成功");
+                                    } else {
+                                        // 如果失败是数据库错误
+                                        logger.debug("邮箱：" + sendMail + "注册时，数据库出错");
+                                        throw new DataBaseException("邮箱：" + sendMail + "注册时，数据库出错");
+                                    }
                                 } else {
-                                    // 如果失败是数据库错误
-                                    logger.debug("邮箱：" + sendMail + "注册时，数据库出错");
-                                    throw new DataBaseException("邮箱：" + sendMail + "注册时，数据库出错");
+                                    logger.debug("邮箱：" + sendMail + "邮箱验证码出错");
+                                    state.setInformation("邮箱验证码出错");
                                 }
                             } else {
-                                logger.debug("邮箱：" + sendMail + "邮箱验证码出错");
-                                state.setInformation("邮箱验证码出错");
+                                logger.debug("邮箱：" + sendMail + "的验证码超时");
+                                state.setInformation("邮箱的验证码超时，请重新获得");
                             }
                         } else {
                             logger.debug("邮箱：" + sendMail + "请先获取验证码");
@@ -90,6 +98,7 @@ public class Register {
 
     /**
      * 点击发送验证码执行此方法，ajax
+     * 用于注册账号，设置密保，更改密保
      *
      * @param mailbox 给该邮箱号发送验证码
      * @param session 获取当前会话的对象
@@ -107,6 +116,8 @@ public class Register {
             } else {
                 //调用发送邮箱的方法，将返回的验证码存到session中
                 session.setAttribute("verificationCode", registerService.sendMail(mailbox));
+                // 存储验证码发送的时间
+                session.setAttribute("verificationCodeTime", new Date());
                 session.setAttribute("mailbox", mailbox);
                 // 邮箱发送成功
                 state.setState(1);

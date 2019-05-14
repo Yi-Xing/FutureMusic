@@ -24,19 +24,19 @@ public class User {
      */
     private String name=null;
     /**
-     * 性别 0为男 1为女
+     * 性别 需要加密
      */
-    private int gender=0;
+    private String gender=null;
     /**
-     * 年龄
+     * 年龄 需要加密
      */
-    private int age=0;
+    private String age=null;
     /**
-     * 生日 年月日
+     * 生日 年月日 需要加密
      */
-    private Date birthday=null;
+    private String birthday=null;
     /**
-     * 地址
+     * 地址 需要加密
      */
     private String address=null;
     /**
@@ -64,7 +64,7 @@ public class User {
      */
     private int secret=0;
     /**
-     * 用户为那些评论点过赞的评论id
+     * 用户为那些评论点过赞的评论id用#分隔
      */
     private String fabulous=null;
     /**
@@ -97,7 +97,7 @@ public class User {
     public User() {
     }
 
-    public User(int id, String mailbox, String password, String name, int gender, int age, Date birthday, String address, int level, float balance, Date date, String headPortrait, Date vipDate, int secret, String fabulous, int report) {
+    public User(int id, String mailbox, String password, String name, String gender, String age, String birthday, String address, int level, float balance, Date date, String headPortrait, Date vipDate, int secret, String fabulous, int report) {
         this.id = id;
         this.mailbox = mailbox;
         this.password = password;
@@ -148,27 +148,27 @@ public class User {
         this.name = name;
     }
 
-    public int getGender() {
+    public String getGender() {
         return gender;
     }
 
-    public void setGender(int gender) {
+    public void setGender(String gender) {
         this.gender = gender;
     }
 
-    public int getAge() {
+    public String getAge() {
         return age;
     }
 
-    public void setAge(int age) {
+    public void setAge(String age) {
         this.age = age;
     }
 
-    public Date getBirthday() {
+    public String getBirthday() {
         return birthday;
     }
 
-    public void setBirthday(Date birthday) {
+    public void setBirthday(String birthday) {
         this.birthday = birthday;
     }
 

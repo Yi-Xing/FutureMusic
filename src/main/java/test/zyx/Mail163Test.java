@@ -1,4 +1,4 @@
-package controller.user.consumer.account;
+package test.zyx;
 
 import java.security.GeneralSecurityException;
 import java.util.Properties;
@@ -77,12 +77,10 @@ public class Mail163Test {
          */
         message.setRecipient(RecipientType.TO, new InternetAddress("1160589090@qq.com"));
         // 2.3 主题（标题）
-        message.setSubject("小可爱~早上好\\(^o^)/~");
+        message.setSubject("标题");
         // 2.4 正文
-        String str = "<h3>别玩手机了</h3> <br/>" +
-                "好好听课<br/>" +
-                "猜猜我是谁(*^__^*)";
-        message.setContent(str, "text/html;charset=UTF-8");
+        String str = "=、=";
+        message.setContent(str, "test/zyx/html;charset=UTF-8");
         //3、发送
         Transport.send(message);
     }

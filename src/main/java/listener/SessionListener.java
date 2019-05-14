@@ -29,16 +29,18 @@ public class SessionListener implements HttpSessionListener {
         HttpSession session = httpSessionEvent.getSession();
         delSession(session);
     }
+
     /**
      * 删除监听器中存储的指定用户的会话
+     *
      * @param session 获得当前会话
      */
-    private synchronized void delSession(HttpSession session) {
+    public static synchronized void delSession(HttpSession session) {
         if (session != null) {
             // 删除单一登录中记录的变量
             String userInformation = "userInformation";
-            if (session.getAttribute(userInformation) != null) {
-                User user = (User) session.getAttribute(userInformation);
+            User user = (User) session.getAttribute(userInformation);
+            if (user != null) {
                 // 删除集合中的存储的该用户的会话
                 SessionListener.sessionMap.remove(user.getMailbox());
             }

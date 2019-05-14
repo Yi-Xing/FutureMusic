@@ -9,7 +9,7 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
 /**
- * 用于对字符串加密
+ * 用于对字符串加密,用于密码，密保
  *
  * @author 5月12号 张易兴创建
  */

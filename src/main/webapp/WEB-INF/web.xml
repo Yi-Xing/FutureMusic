@@ -4,7 +4,7 @@
 
 <web-app>
   <display-name>Archetype Created Web Application</display-name>
-  <!--spring配置文件的位置-->
+  <!-- 读取spring配置文件(与监听器配合使用) start -->
   <context-param>
     <param-name>contextConfigLocation</param-name>
     <param-value>classpath:spring-mvc.xml</param-value>
@@ -43,4 +43,10 @@
     <servlet-name>springMVC</servlet-name>
     <url-pattern>/</url-pattern>
   </servlet-mapping>
+
+<!--  &lt;!&ndash; 替换404页面 start &ndash;&gt;-->
+<!--  <error-page>-->
+<!--    <error-code>404</error-code>-->
+<!--    <location>/views/404.html</location>-->
+<!--  </error-page>-->
 </web-app>
