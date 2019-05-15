@@ -33,9 +33,9 @@ public class Login {
     /**
      * 点击登录执行此方法，ajax
      *
-     * @param mailbox   给该邮箱号发送验证码
-     * @param password  获取当前会话的对象
-     * @param automatic 获取用户是否选择了7天自动登陆的复选框
+     *      * @param mailbox   给该邮箱号发送验证码
+     *      * @param password  获取当前会话的对象
+     *      * @param automatic 获取用户是否选择了7天自动登陆的复选框
      * @param session   获取当前会话
      */
     @RequestMapping(value = "/loginAccount")

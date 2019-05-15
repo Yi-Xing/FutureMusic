@@ -13,7 +13,7 @@ import java.util.List;
  * @author 蒋靓峣 5.11创建
  * */
 @Service(value = "SongService")
-public class SongService {
+public class SearchService {
     /**
      * @return List<Music>  返回查找到的歌曲
      *                       设置显示条数，也可用于智搜索框能提示，只显示名字
