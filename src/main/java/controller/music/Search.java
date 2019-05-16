@@ -1,4 +1,4 @@
-package controller.music.song;
+package controller.music;
 import entity.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import service.music.ExhibitionService;
 import service.music.SearchService;
-import service.music.video.VideoService;
 import util.CookieUtil;
 
 import javax.annotation.Resource;

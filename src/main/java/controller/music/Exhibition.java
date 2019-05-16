@@ -1,12 +1,12 @@
-package controller.music.song;
+package controller.music;
 
 import entity.Music;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import service.music.ExhibitionService;
 import service.music.SearchService;
-import service.music.video.VideoService;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -20,10 +20,10 @@ import java.util.List;
  * */
 public class Exhibition {
     private static final Logger logger = LoggerFactory.getLogger(Song.class);
-    @Resource(name = "SongService")
+    @Resource(name = "SearchService")
     private SearchService songService;
-    @Resource(name = "VideoService")
-    private VideoService videoService;
+    @Resource(name = "ExhibitionService")
+    private ExhibitionService exhibitionService;
     /**
      * @param request 根据指定分类查找歌曲或专辑
      *          ajax请求，只更新下面的结果

@@ -1,4 +1,4 @@
-package controller.music.song;
+package controller.music;
 
 import entity.*;
 import org.slf4j.Logger;
@@ -6,8 +6,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import service.music.ExhibitionService;
 import service.music.SearchService;
-import service.music.video.VideoService;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -25,10 +25,10 @@ import java.util.List;
 @Controller
 public class Song {
     private static final Logger logger = LoggerFactory.getLogger(Song.class);
-    @Resource(name = "SongService")
+    @Resource(name = "SearchService")
     private SearchService songService;
-    @Resource(name = "VideoService")
-    private VideoService videoService;
+    @Resource(name = "ExhibitionService")
+    private ExhibitionService exhibitionService;
     public static State state;
 
     /**
@@ -65,7 +65,7 @@ public class Song {
     @ResponseBody
     public List<MusicVideo> searchListMusicVideo(HttpServletRequest request){
         String keyWord = request.getParameter("keyWord");
-        List<MusicVideo> musicVideos = videoService.selectListMusicVideoByVideoName(keyWord);
+        List<MusicVideo> musicVideos = exhibitionService.selectListMusicVideoByVideoName(keyWord);
         return musicVideos;
     }
 
