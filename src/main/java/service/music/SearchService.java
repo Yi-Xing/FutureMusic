@@ -1,18 +1,15 @@
-package service.music.song;
+package service.music;
 
-import entity.Comment;
-import entity.Music;
-import entity.SongList;
-import entity.User;
+import entity.*;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 /**
- * 对歌曲的操作的Service
+ * 对搜索的操作的Service
  *
  * @author 蒋靓峣 5.11创建
  * */
-@Service(value = "SongService")
+@Service(value = "ServiceService")
 public class SearchService {
     /**
      * @return List<Music>  返回查找到的歌曲
@@ -166,5 +163,8 @@ public class SearchService {
      */
     public int deleteCommentByCommentId(String commentId){
         return 0;
+    }
+    public List<MusicVideo> selectListMusicVideoByVideoName(String keyWord){
+        return null;
     }
 }

@@ -6,7 +6,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import service.music.song.SearchService;
+import service.music.SearchService;
 import service.music.video.VideoService;
 
 import javax.annotation.Resource;
@@ -69,18 +69,7 @@ public class Song {
         return musicVideos;
     }
 
-    /**
-     * @param request 根据指定分类查找歌曲或专辑
-             *          ajax请求，只更新下面的结果
-     * @return List<MusicVideo> 返回符合条件的MV集合
-     * */
-    @RequestMapping(value = "/searchListMusicByClassification")
-    @ResponseBody
-    public List<Music> searchListMusicByClassification(HttpServletRequest request){
-        String classification = request.getParameter("classification");
-        List<Music> musicList = songService.selectListMusicByClassification(classification);
-        return musicList;
-    }
+
 
 //    /**
 //     * @param request 点击执行根据关键字模糊搜索MV
@@ -111,16 +100,16 @@ public class Song {
      *
      * @param   request      接收搜索的musicId
      *
-     * @return List<Music> 返回匹配到的歌单或专辑的具体信息
-     */
-    @RequestMapping(value = "/lookMusicInfo")
-    @ResponseBody
-    public Music lookMusicInfo(HttpServletRequest request){
-        String musicId = request.getParameter("musicId");
-        Music music = songService.selectMusicById(musicId);
-        return music;
-    }
-//    下面的我也不知道是不是在这个模块，音乐和MV我先写好些
+//     * @return List<Music> 返回匹配到的歌单或专辑的具体信息
+//     */
+//    @RequestMapping(value = "/lookMusicInfo")
+//    @ResponseBody
+//    public Music lookMusicInfo(HttpServletRequest request){
+//        String musicId = request.getParameter("musicId");
+//        Music music = songService.selectMusicById(musicId);
+//        return music;
+//    }
+////    下面的我也不知道是不是在这个模块，音乐和MV我先写好些
 //    /**
 //     * 点击播放执行此方法
 //     *
