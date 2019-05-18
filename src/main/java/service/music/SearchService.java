@@ -1,19 +1,17 @@
-package service.music.song;
+package service.music;
 
-import entity.Comment;
-import entity.Music;
-import entity.SongList;
-import entity.User;
+import entity.*;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 /**
- * 对歌曲的操作的Service
+ * 对搜索的操作的Service
  *
  * @author 蒋靓峣 5.11创建
  * */
-@Service(value = "SongService")
-public class SongService {
+@Service(value = "SearchService")
+public class SearchService {
     /**
      * @return List<Music>  返回查找到的歌曲
      *                       设置显示条数，也可用于智搜索框能提示，只显示名字
@@ -61,7 +59,12 @@ public class SongService {
      * @return List<Music>  返回查找到的歌曲
      */
     public List<Music> selectListMusicByClassification(String classification){
-        return null;
+        List<Music> musicList = new ArrayList<>();
+        //首先从分类表里获得对应字段的分类id
+        //根据其中的音乐id获取具体信息
+        //连表查询
+//        classification
+        return musicList;
     }
     /**
      * @param userId 查看用户歌单
@@ -166,5 +169,8 @@ public class SongService {
      */
     public int deleteCommentByCommentId(String commentId){
         return 0;
+    }
+    public List<MusicVideo> selectListMusicVideoByVideoName(String keyWord){
+        return null;
     }
 }
