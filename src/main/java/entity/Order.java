@@ -1,12 +1,15 @@
 package entity;
 
+import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.Date;
 
 /**
  * 已购买的MV或音乐
  * @author 5月10日 张易兴创建
+ *          5月18日 张易兴修改 将价钱的类型转为BigDecimal
  */
-public class Order {
+public class Order implements Serializable {
     /**
      * 主键
      */
@@ -38,11 +41,11 @@ public class Order {
     /**
      * 购买前的原价
      */
-    private float originalPrice=0;
+    private BigDecimal originalPrice=null;
     /**
      * 购买时候的价格
      */
-    private float price=0;
+    private BigDecimal price=null;
     /**
      * 支付方式
      */
@@ -72,7 +75,7 @@ public class Order {
     public Order() {
     }
 
-    public Order(int id, int userId, int musicId, int type, int singerId, int albumId, int classificationId, float originalPrice, float price, String mode, Date date) {
+    public Order(int id, int userId, int musicId, int type, int singerId, int albumId, int classificationId, BigDecimal originalPrice, BigDecimal price, String mode, Date date) {
         this.id = id;
         this.userId = userId;
         this.musicId = musicId;
@@ -142,19 +145,19 @@ public class Order {
         this.classificationId = classificationId;
     }
 
-    public float getOriginalPrice() {
+    public BigDecimal getOriginalPrice() {
         return originalPrice;
     }
 
-    public void setOriginalPrice(float originalPrice) {
+    public void setOriginalPrice(BigDecimal originalPrice) {
         this.originalPrice = originalPrice;
     }
 
-    public float getPrice() {
+    public BigDecimal getPrice() {
         return price;
     }
 
-    public void setPrice(float price) {
+    public void setPrice(BigDecimal price) {
         this.price = price;
     }
 

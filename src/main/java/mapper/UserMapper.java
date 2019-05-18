@@ -10,6 +10,7 @@ import java.util.List;
  * 对用户表操作的Mapper
  *
  * @author 5月9日 蒋靓峣创建
+ *         5月14日 张易兴修改 添加selectUserMailbox方法（方便按邮箱查询）
  */
 @Repository(value = "UserMapper")
 public interface UserMapper {
@@ -27,7 +28,16 @@ public interface UserMapper {
      *                report查找已被封号的账号
      * @return List<User>  返回查找到的用户
      */
-    public List<User> selectUser(User user);//查找用户
+    public List<User> selectUser(User user);
+
+    /**
+     * 查找符合指定规则的用户信息
+     *
+     * @param mailbox 按照mailbox查询用户
+     *
+     * @return User  返回查找到的用户
+     */
+    public User selectUserMailbox(String mailbox);
 
     /**
      * 添加指定用户的信息

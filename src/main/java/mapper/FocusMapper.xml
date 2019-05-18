@@ -21,8 +21,19 @@
         insert into tb_focus(focus_user_id,focus_user_focus_id,focus_user_type,focus_date)
         value(#{userId},#{userFocusId},#{userType},#{date})
     </insert>
-    <delete id="deleteFocus" parameterType="Integer">
-        delete from tb_focus where focus_id=#{value}
+    <delete id="deleteFocus" parameterType="Focus">
+        delete from tb_focus
+        <where>
+            <if test='userId!=0'>
+                focus_user_id=#{userId}
+            </if>
+            <if test='userFocusId!=0'>
+                and focus_user_focus_id=#{userFocusId}
+            </if>
+            <if test='userType!=0'>
+                and focus_user_type=#{userType}
+            </if>
+        </where>
     </delete>
     <resultMap id="focus" type="Focus">
         <id column="focus_id" property="id"/>

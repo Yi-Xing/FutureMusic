@@ -23,6 +23,9 @@
             </if>
         </where>
     </select>
+    <select id="selectUserMailbox" parameterType="String" resultMap="user">
+        select * from tb_user where user_mailbox=#{value}
+    </select>
     <insert id="insertUser" parameterType="User">
          insert into tb_user(user_mailbox,user_password,user_name,user_gender,user_age,user_birthday,
          user_address,user_level,user_balance,user_date,user_head_portrait,user_vip_date,

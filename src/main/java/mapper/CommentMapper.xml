@@ -6,7 +6,10 @@
     <select id="selectListComment" parameterType="Comment" resultMap="comment">
         select * from tb_comment
         <where>
-            <if test='musicId!=0'>
+            <if test='id!=0'>
+                comment_id=#{id}
+            </if>
+             <if test='musicId!=0'>
                 comment_music_id=#{musicId}
             </if>
             <if test='type!=0'>
@@ -22,6 +25,10 @@
          comment_reply,comment_fabulous)
           values(#{musicId},#{type},#{userId},#{content},#{date},#{reply},#{fabulous})
     </insert>
+    <update id="updateComment" parameterType="Comment">
+        update tb_comment set comment_fabulous=#{fabulous}
+        where comment_id=#{id}
+    </update>
     <delete id="deleteComment" parameterType="Integer" >
         delete from tb_comment where comment_id=#{value}
     </delete>

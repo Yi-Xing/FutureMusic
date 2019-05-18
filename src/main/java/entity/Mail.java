@@ -1,12 +1,13 @@
 package entity;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
  * 邮件表 存储用户之间的邮件信息
  * @author 5月9日 张易兴创建
  */
-public class Mail {
+public class Mail implements Serializable {
     /**
      * 主键
      */
@@ -28,7 +29,7 @@ public class Mail {
      */
     private Date date=null;
     /**
-     * 回复那个邮件的id 0表示开头
+     * 0为普通邮件，1为管理员和客服看的邮件（为1时不用填接收方的id）
      */
     private int reply=0;
     /**

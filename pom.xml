@@ -26,13 +26,20 @@
       <version>4.11</version>
       <scope>test</scope>
     </dependency>
-    <!-- 使用Servlet servlet-api -->
+<!--    &lt;!&ndash; 使用Servlet servlet-api &ndash;&gt;-->
+<!--    <dependency>-->
+<!--      <groupId>javax.servlet</groupId>-->
+<!--      <artifactId>javax.servlet-api</artifactId>-->
+<!--      <version>3.1.0</version>-->
+<!--      <scope>provided</scope>-->
+<!--    </dependency>-->
+    <!-- tomcat的jar含servlet和jsp 等-->
     <dependency>
-      <groupId>javax.servlet</groupId>
-      <artifactId>javax.servlet-api</artifactId>
-      <version>3.1.0</version>
-      <scope>provided</scope>
+      <groupId>org.apache.tomcat</groupId>
+      <artifactId>tomcat-catalina</artifactId>
+      <version>8.5.38</version>
     </dependency>
+
 
 
     <!--log4j2整合slf4j日志-->
@@ -260,6 +267,19 @@
 <!--    </dependency>-->
 
 
+    <!--支付宝支付所需的jar-->
+    <!--alipay-sdk-java -->
+    <dependency>
+      <groupId>com.alipay.sdk</groupId>
+      <artifactId>alipay-sdk-java</artifactId>
+      <version>3.7.26.ALL</version>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/commons-logging/commons-logging -->
+    <dependency>
+      <groupId>commons-logging</groupId>
+      <artifactId>commons-logging</artifactId>
+      <version>1.1.1</version>
+    </dependency>
 <!--    <dependency>-->
 <!--      <groupId>org.jetbrains</groupId>-->
 <!--      <artifactId>annotations-java5</artifactId>-->

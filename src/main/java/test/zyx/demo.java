@@ -5,9 +5,8 @@ import mapper.ActivityMapper;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Controller;
-import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.RequestMapping;
-import util.EncryptionUtil;
+import util.ConstantUtil;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -35,7 +34,9 @@ public class demo {
         System.out.println(sdFormat.format(calendar.getTime()));
         System.out.println("2860482971@qq.com".matches("[a-zA-z_0-9]+@[a-zA-z_0-9]{2,6}(\\.[a-zA-z_0-9]{2,3})+"));
         // 对密码进行加密
-        System.out.println( EncryptionUtil.encryptionMD5("12346578"));
-        System.out.println( EncryptionUtil.encryptionMD5("12346578"));
+        System.out.println(ConstantUtil.Two_Hundred.getIntValue());
+//        System.out.println( EncryptionUtil.encryptionMD5("12346578"));
+//        System.out.println( EncryptionUtil.encryptionMD5("12346578"));
+
     }
 }

@@ -1,12 +1,13 @@
 package entity;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
  * 关注访客表 用于存储用户关注的其他用户和被那些用户关注
  * @author 5月10日 张易兴创建
  */
-public class Focus {
+public class Focus implements Serializable {
     /**
      * 主键
      */

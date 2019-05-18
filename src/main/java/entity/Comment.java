@@ -1,12 +1,13 @@
 package entity;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
  * 用来存储音乐或mv或专辑的评论
  * @author 5月9日 张易兴创建
  */
-public class Comment {
+public class Comment implements Serializable {
     /**
      * 主键
      */

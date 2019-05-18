@@ -17,6 +17,13 @@
        http://www.springframework.org/schema/mvc/spring-mvc.xsd"
 >
 
+    <!--配置事务拦截器-->
+    <tx:advice id="transactionInterceptor"/>
 
+    <!--配置切面-->
+    <aop:config>
+        <aop:pointcut id="MusicSection" expression="execution(* service.user.consumer.AboutMusicService.commentFabulous(..))"/>
+        <aop:advisor advice-ref="transactionInterceptor" pointcut-ref="MusicSection"/>
+    </aop:config>
 
 </beans>

@@ -1,12 +1,13 @@
 package entity;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
  * 活动表
  * @author 5月9日 张易兴创建
  */
-public class Activity {
+public class Activity implements Serializable {
     /**
      * 主键
      */

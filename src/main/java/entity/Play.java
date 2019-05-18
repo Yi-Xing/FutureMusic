@@ -1,12 +1,13 @@
 package entity;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
  * 播放过的MV或音乐
  * @author 5月10号 张易兴创建
  */
-public class Play {
+public class Play implements Serializable {
     /**
      * 主键
      */

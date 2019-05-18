@@ -1,12 +1,13 @@
 package entity;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
  * 歌单和专辑的基本信息
  * @author 5月10日 张易兴创建
  */
-public class SongList {
+public class SongList implements Serializable {
     /**
      * 主键
      */

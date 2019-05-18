@@ -1,12 +1,17 @@
 package entity;
 
+import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.Date;
 
 /**
  * 用户表用于存储用户的个人信息
  * @author 5月10日 张易兴创建
+ *         5月14日 张易兴修改 将name，gender，age，birthday，address全部改成字符串类型
+ *                              当成密保需要加密
+ *        5月18日 张易兴修改 将余额类型改为BigDecimal
  */
-public class User {
+public class User implements Serializable {
     /**
      * 用户id(主键)
      */
@@ -46,7 +51,7 @@ public class User {
     /**
      * 余额
      */
-    private float balance=0;
+    private BigDecimal balance=null;
     /**
      * 创号的时间 年月日
      */
@@ -60,7 +65,7 @@ public class User {
      */
     private Date vipDate=null;
     /**
-     * 个人空间的信息是否公开
+     * 个人空间的信息是否公开，0为公开，1为封闭
      */
     private int secret=0;
     /**
@@ -97,7 +102,7 @@ public class User {
     public User() {
     }
 
-    public User(int id, String mailbox, String password, String name, String gender, String age, String birthday, String address, int level, float balance, Date date, String headPortrait, Date vipDate, int secret, String fabulous, int report) {
+    public User(int id, String mailbox, String password, String name, String gender, String age, String birthday, String address, int level, BigDecimal balance, Date date, String headPortrait, Date vipDate, int secret, String fabulous, int report) {
         this.id = id;
         this.mailbox = mailbox;
         this.password = password;
@@ -188,11 +193,11 @@ public class User {
         this.level = level;
     }
 
-    public float getBalance() {
+    public BigDecimal getBalance() {
         return balance;
     }
 
-    public void setBalance(float balance) {
+    public void setBalance(BigDecimal balance) {
         this.balance = balance;
     }
 

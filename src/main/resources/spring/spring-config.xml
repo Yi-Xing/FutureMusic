@@ -22,9 +22,28 @@
     <context:component-scan base-package="exception"/>
     <context:component-scan base-package="mapper"/>
     <context:component-scan base-package="service"/>
-    <context:component-scan base-package="text"/>
+    <context:component-scan base-package="test"/>
+    <context:component-scan base-package="interceptor"/>
     <!--开启ioc注解-->
     <context:annotation-config/>
+
+
     <!--配置异常处理器-->
     <bean class="exception.ExceptionResolver"/>
+
+
+    <!--配置平台事务管理器-->
+    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="source"/>
+    </bean>
+
+    <!--拦截器-->
+    <mvc:interceptors>
+        <mvc:interceptor>
+            <mvc:mapping path="/**"/>
+            <bean class="interceptor.LoginInterceptor"/>
+        </mvc:interceptor>
+    </mvc:interceptors>
+
+
 </beans>

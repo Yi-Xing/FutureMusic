@@ -1,10 +1,12 @@
 package entity;
 
+import java.io.Serializable;
+
 /**
  * 分类表 用于存储音乐专辑mv的分类信息
  * @author 5月9日 张易兴创建
  */
-public class Classification {
+public class Classification implements Serializable {
     /**
      * 分类的id
      */

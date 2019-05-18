@@ -1,12 +1,15 @@
 package entity;
 
+import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.Date;
 
 /**
  * 音乐表用于存储音乐的信息
  * @author 5月10日 张易兴创建
+ *         5月18日 张易兴修改 将价钱的类型转为BigDecimal
  */
-public class Music {
+public class Music implements Serializable {
     /**
      * 主键
      */
@@ -23,7 +26,7 @@ public class Music {
     /**
      * 音乐的价格只有等级为3和4的才可以设置
      */
-    private float price=0;
+    private BigDecimal price=null;
     /**
      * 歌手的id
      */
@@ -84,7 +87,7 @@ public class Music {
     public Music() {
     }
 
-    public Music(int id, String name, int level, float price, int singerId, int albumId, int classificationId, Date date, String path, String lyricPath, int musicVideoId, int activity, int available) {
+    public Music(int id, String name, int level, BigDecimal price, int singerId, int albumId, int classificationId, Date date, String path, String lyricPath, int musicVideoId, int activity, int available) {
         this.id = id;
         this.name = name;
         this.level = level;
@@ -132,11 +135,11 @@ public class Music {
         this.level = level;
     }
 
-    public float getPrice() {
+    public BigDecimal getPrice() {
         return price;
     }
 
-    public void setPrice(float price) {
+    public void setPrice(BigDecimal price) {
         this.price = price;
     }
 

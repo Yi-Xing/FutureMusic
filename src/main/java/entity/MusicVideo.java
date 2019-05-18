@@ -1,12 +1,15 @@
 package entity;
 
+import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.Date;
 
 /**
  * MV表 存储MV的信息
  * @author 5月10号 张易兴创建
+ *         5月18日 张易兴修改 将价钱的类型转为BigDecimal
  */
-public class MusicVideo {
+public class MusicVideo implements Serializable {
     /**
      * 主键
      */
@@ -35,7 +38,7 @@ public class MusicVideo {
     /**
      * 价格等级为3和4的可设置
      */
-    private float price=0;
+    private BigDecimal price=null;
     /**
      * 该MV的音乐id
      */
@@ -78,7 +81,7 @@ public class MusicVideo {
     public MusicVideo() {
     }
 
-    public MusicVideo(int id, String name, String path, String introduction, Date date, int level, float price, int musicId, int singerId, int classificationId, int activity, int available) {
+    public MusicVideo(int id, String name, String path, String introduction, Date date, int level, BigDecimal price, int musicId, int singerId, int classificationId, int activity, int available) {
         this.id = id;
         this.name = name;
         this.path = path;
@@ -141,11 +144,11 @@ public class MusicVideo {
         this.level = level;
     }
 
-    public float getPrice() {
+    public BigDecimal getPrice() {
         return price;
     }
 
-    public void setPrice(float price) {
+    public void setPrice(BigDecimal price) {
         this.price = price;
     }
 

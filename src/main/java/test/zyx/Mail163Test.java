@@ -77,10 +77,10 @@ public class Mail163Test {
          */
         message.setRecipient(RecipientType.TO, new InternetAddress("1160589090@qq.com"));
         // 2.3 主题（标题）
-        message.setSubject("标题");
+        message.setSubject("智障王志豪");
         // 2.4 正文
-        String str = "=、=";
-        message.setContent(str, "test/zyx/html;charset=UTF-8");
+        String str = "啦啦啦啦啦";
+        message.setContent(str, "text/html;charset=UTF-8");
         //3、发送
         Transport.send(message);
     }

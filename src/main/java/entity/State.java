@@ -1,10 +1,12 @@
 package entity;
 
+import java.io.Serializable;
+
 /**
  * 存储各种状态
  * @author 5月11日 张易兴创建
  */
-public class State {
+public class State implements Serializable {
     /**
      * 执行结果的状态 1表示成功，0表示失败
      */
