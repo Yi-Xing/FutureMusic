@@ -23,8 +23,8 @@ import java.util.List;
  * */
 
 @Controller
-public class Song {
-    private static final Logger logger = LoggerFactory.getLogger(Song.class);
+public class Details {
+    private static final Logger logger = LoggerFactory.getLogger(Details.class);
     @Resource(name = "SearchService")
     private SearchService songService;
     @Resource(name = "ExhibitionService")
@@ -36,9 +36,9 @@ public class Song {
      *          ajax请求，只更新下面的结果
      * @return List<Music> 返回符合条件的音乐集合
      * */
-    @RequestMapping(value = "/searchListSongList")
+    @RequestMapping(value = "/searchListSongLista")
     @ResponseBody
-    public List<SongList> searchListSongList(HttpServletRequest request){
+    public List<SongList> searchListSongLista(HttpServletRequest request){
         String keyWord = request.getParameter("keyWord");
         List<SongList> songLists = songService.selectListSongListByName(keyWord);
         return songLists;
@@ -61,9 +61,9 @@ public class Song {
      *          ajax请求，只更新下面的结果
      * @return List<MusicVideo> 返回符合条件的MV集合
      * */
-    @RequestMapping(value = "/searchListMusicVideo")
+    @RequestMapping(value = "/searchListMusicVideoa")
     @ResponseBody
-    public List<MusicVideo> searchListMusicVideo(HttpServletRequest request){
+    public List<MusicVideo> searchListMusicVideoa(HttpServletRequest request){
         String keyWord = request.getParameter("keyWord");
         List<MusicVideo> musicVideos = exhibitionService.selectListMusicVideoByVideoName(keyWord);
         return musicVideos;
@@ -90,9 +90,9 @@ public class Song {
      *
      * @return List<Music> 返回匹配到的歌单或专辑的具体信息
      */
-    @RequestMapping(value = "/searchSongList")
+    @RequestMapping(value = "/searchSongListb")
     @ResponseBody
-    public MusicSongList searchSongList(String musicSongListId){
+    public MusicSongList searchSongListb(String musicSongListId){
         return null;
     }
     /**

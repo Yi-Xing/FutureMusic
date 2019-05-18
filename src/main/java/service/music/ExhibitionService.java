@@ -1,9 +1,11 @@
 package service.music;
 
 import entity.Comment;
+import entity.Music;
 import entity.MusicVideo;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -13,6 +15,20 @@ import java.util.List;
  * */
 @Service(value = "ExhibitionService")
 public class ExhibitionService {
+    /**
+     *
+     * @param classification 按照指定规则查找指定歌曲
+     *                封装信息：分类
+     * @return List<Music>  返回查找到的歌曲
+     */
+    public List<Music> selectListMusicByClassification(String classification){
+        List<Music> musicList = new ArrayList<>();
+        //首先从分类表里获得对应字段的分类id
+        //根据其中的音乐id获取具体信息
+        //联表查询
+//        classification
+        return musicList;
+    }
     /**
      * @param videoName 按照指定规则查找指定MV
      *                  封装信息搜索的关键字
