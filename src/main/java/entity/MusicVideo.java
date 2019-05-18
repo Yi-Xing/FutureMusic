@@ -60,6 +60,11 @@ public class MusicVideo implements Serializable {
      */
     private int available=0;
 
+    /**
+     * MV的播放次数
+     */
+    private int playCount=0;
+
     @Override
     public String toString() {
         return "MusicVideo{" +
@@ -75,13 +80,14 @@ public class MusicVideo implements Serializable {
                 ", classificationId=" + classificationId +
                 ", activity=" + activity +
                 ", available=" + available +
+                ", playCount=" + playCount +
                 '}';
     }
 
     public MusicVideo() {
     }
 
-    public MusicVideo(int id, String name, String path, String introduction, Date date, int level, BigDecimal price, int musicId, int singerId, int classificationId, int activity, int available) {
+    public MusicVideo(int id, String name, String path, String introduction, Date date, int level, BigDecimal price, int musicId, int singerId, int classificationId, int activity, int available, int playCount) {
         this.id = id;
         this.name = name;
         this.path = path;
@@ -94,6 +100,7 @@ public class MusicVideo implements Serializable {
         this.classificationId = classificationId;
         this.activity = activity;
         this.available = available;
+        this.playCount = playCount;
     }
 
     public int getId() {
@@ -190,5 +197,13 @@ public class MusicVideo implements Serializable {
 
     public void setAvailable(int available) {
         this.available = available;
+    }
+
+    public int getPlayCount() {
+        return playCount;
+    }
+
+    public void setPlayCount(int playCount) {
+        this.playCount = playCount;
     }
 }

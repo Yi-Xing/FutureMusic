@@ -26,6 +26,7 @@ public interface MusicVideoMapper {
      *                   classificationId查询指定分类的MV
      *                   activity查询参加指定活动的MV
      *                   available查询可听和不可听的MV
+     *                   playCount播放次数，非0按次数查找排序升序
      * @return List<MusicVideo> 返回查找到的音乐
      */
     public List<MusicVideo> selectListMusicVideo(MusicVideo musicVideo);

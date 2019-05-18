@@ -28,6 +28,7 @@ public interface MusicMapper {
      *              classificationId查询指定分类的音乐
      *              activity查询参加指定活动的音乐
      *              available查询可听和不可听的音乐
+     *              playCount播放次数，非0按次数查找排序升序
      * @return List<Music> 返回查找到的音乐
      */
     public List<Music> selectListMusic(Music music);

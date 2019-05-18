@@ -63,6 +63,10 @@ public class Music implements Serializable {
      * 该音乐是否可听
      */
     private int available=0;
+    /**
+     * 音乐的播放次数
+     */
+    private int playCount=0;
 
 
     @Override
@@ -81,13 +85,14 @@ public class Music implements Serializable {
                 ", musicVideoId=" + musicVideoId +
                 ", activity=" + activity +
                 ", available=" + available +
+                ", playCount=" + playCount +
                 '}';
     }
 
     public Music() {
     }
 
-    public Music(int id, String name, int level, BigDecimal price, int singerId, int albumId, int classificationId, Date date, String path, String lyricPath, int musicVideoId, int activity, int available) {
+    public Music(int id, String name, int level, BigDecimal price, int singerId, int albumId, int classificationId, Date date, String path, String lyricPath, int musicVideoId, int activity, int available, int playCount) {
         this.id = id;
         this.name = name;
         this.level = level;
@@ -101,6 +106,7 @@ public class Music implements Serializable {
         this.musicVideoId = musicVideoId;
         this.activity = activity;
         this.available = available;
+        this.playCount = playCount;
     }
 
     public String getLyricPath() {
@@ -205,5 +211,13 @@ public class Music implements Serializable {
 
     public void setAvailable(int available) {
         this.available = available;
+    }
+
+    public int getPlayCount() {
+        return playCount;
+    }
+
+    public void setPlayCount(int playCount) {
+        this.playCount = playCount;
     }
 }

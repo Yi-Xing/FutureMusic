@@ -30,6 +30,9 @@
              <if test='available!=0'>
                 and music_available=#{available}
             </if>
+            <if test='playCount!=0'>
+                and music_play_count=#{playCount} order by music_play_count
+            </if>
         </where>
     </select>
     <select id="listIdSelectListMusic" parameterType="Integer" resultMap="music">
@@ -43,13 +46,15 @@
 
     <insert id="insertMusic" parameterType="Music">
          insert into tb_music (music_name,music_level,music_price,music_singer_id,music_album_id,music_classification_id,
-         music_date,music_path,music_lyric_path,music_music_video_id,music_activity,music_available)values(#{name},#{level},
-         #{price},#{singerId},#{albumId},#{classificationId},#{date},#{path},#{lyricPath},#{musicVideoId},#{activity},#{available})
+         music_date,music_path,music_lyric_path,music_music_video_id,music_activity,music_available,music_play_count)values(#{name},#{level},
+         #{price},#{singerId},#{albumId},#{classificationId},#{date},#{path},#{lyricPath},#{musicVideoId},#{activity},#{available}
+         ,#{playCount})
     </insert>
     <update id="updateMusic" parameterType="Music" >
         update tb_music set music_name=#{name},music_level=#{level},music_price=#{price},music_singer_id=#{singerId},
         music_album_id=#{albumId},music_classification_id=#{classificationId},music_date=#{date},music_path=#{path},
-        music_lyric_path=#{lyricPath},music_music_video_id=#{musicVideoId},music_activity=#{activity},music_available=#{available}
+        music_lyric_path=#{lyricPath},music_music_video_id=#{musicVideoId},music_activity=#{activity},music_available=#{available},
+        music_play_count=#{playCount}
         where music_id=#{id}
     </update>
 
@@ -68,5 +73,6 @@
         <result column="music_music_video_id" property="musicVideoId"/>
         <result column="music_activity" property="activity"/>
         <result column="music_available" property="available"/>
+        <result column="music_play_count" property="playCount"/>
     </resultMap>
 </mapper>

@@ -23,7 +23,6 @@ public class Test {
         return "jjy";
     }
     public static void main(String[] args) {
-        test();
-        System.out.println("测试成功");
+        System.out.println(test());
     }
 }
