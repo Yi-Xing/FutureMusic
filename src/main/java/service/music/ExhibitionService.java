@@ -73,6 +73,12 @@ public class ExhibitionService {
         }
         return musicSingerMap;
     }
+
+    /**
+     * 地区榜
+     * @param type
+     * @return Map<Music,User> 音乐和对应的歌手集合
+     */
     public Map<Music,User> selectListMusicByRegion(String type){
         Map<Music,User> musicSingerMap = new HashMap<>();
         return musicSingerMap;

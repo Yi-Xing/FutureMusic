@@ -4,6 +4,7 @@ import entity.Music;
 import entity.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import service.music.ExhibitionService;
@@ -18,6 +19,7 @@ import java.util.Map;
  *  3.页面展示各种分类的显示
  * @author 5.16 蒋靓峣创建
  * */
+@Controller
 public class Exhibition {
     private static final Logger logger = LoggerFactory.getLogger(Exhibition.class);
     @Resource(name = "ExhibitionService")
