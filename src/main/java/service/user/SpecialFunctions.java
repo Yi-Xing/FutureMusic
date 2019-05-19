@@ -1,6 +1,7 @@
 package service.user;
 
 import com.sun.mail.util.MailSSLSocketFactory;
+import entity.State;
 import entity.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -20,9 +21,10 @@ import java.util.Properties;
 import java.util.Random;
 
 /**
- * 发送邮箱，注册，找回密保
- * 加密字符串，用于密码，密保
  * 返回会话上的用户信息
+ * 发送邮箱，用于注册，找回密保
+ * 加密字符串，用于密码，密保
+
  *
  * @author 5月17日 张易兴创建
  */
@@ -38,7 +40,7 @@ public class SpecialFunctions {
     }
 
     /**
-     * 返回会话上的用户邮箱，用于安全中心
+     * 返回会话上邮箱号
      */
     public String getUserMailbox(HttpSession session) {
         return (String) session.getAttribute("userMailbox");
@@ -51,13 +53,16 @@ public class SpecialFunctions {
      * @param mailbox 给该邮箱号发送验证码
      * @param session 获取当前会话的对象
      */
-    public void sendVerificationCode(String mailbox, HttpSession session) {
+    public State sendVerificationCode(String mailbox, HttpSession session) {
         //调用发送邮箱的方法，将返回的验证码存到session中
         session.setAttribute("verificationCode", sendMail(mailbox));
         // 存储验证码发送的时间
         session.setAttribute("verificationCodeTime", new Date());
         // 邮箱发送成功
         logger.info("邮箱：" + mailbox + "验证码发送成功");
+        State state=new State();
+        state.setState(1);
+        return state;
     }
 
     /**

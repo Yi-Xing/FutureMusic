@@ -1,7 +1,8 @@
 package service.user.consumer;
 
 import entity.*;
-import exception.DataBaseException;
+import service.user.SpecialFunctions;
+import util.exception.DataBaseException;
 import mapper.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -30,7 +31,8 @@ public class AboutMusicService {
     PlayMapper playMapper;
     @Resource(name = "UserMapper")
     UserMapper userMapper;
-
+    @Resource(name = "SpecialFunctions")
+    SpecialFunctions specialFunctions;
     /**
      * 收藏歌单或专辑
      *
@@ -42,7 +44,7 @@ public class AboutMusicService {
      */
     public State collectionSongList(Integer id, Integer type, Integer classificationId, Integer userCollectId, HttpSession session) throws DataBaseException {
         //得到会话上的用户
-        User user = (User) session.getAttribute("userInformation");
+        User user = specialFunctions.getUser(session);
         SongListCollect songListCollect = new SongListCollect();
         songListCollect.setMusicId(id);
         songListCollect.setUserId(user.getId());
@@ -73,7 +75,7 @@ public class AboutMusicService {
      */
     public State collectionMusic(Integer id, Integer type, Integer have, Integer singerId, Integer albumId, Integer classificationId, HttpSession session) throws DataBaseException {
         //得到会话上的用户
-        User user = (User) session.getAttribute("userInformation");
+        User user = specialFunctions.getUser(session);
         MusicCollect musicCollect = new MusicCollect();
         musicCollect.setUserId(user.getId());
         musicCollect.setMusicId(id);
@@ -105,7 +107,7 @@ public class AboutMusicService {
      */
     public State musicPlay(Integer id, Integer type, Integer singerId, Integer albumId, Integer classificationId, HttpSession session) throws DataBaseException {
         //得到会话上的用户
-        User user = (User) session.getAttribute("userInformation");
+        User user = specialFunctions.getUser(session);
         Play play = new Play();
         play.setUserId(user.getId());
         play.setMusicId(id);
@@ -114,6 +116,8 @@ public class AboutMusicService {
         play.setAlbumId(albumId);
         play.setClassificationId(classificationId);
         play.setDate(new Date());
+        // 添加该音乐或MV的播放次数
+        // 先判断该用户是否听过该音乐或MV，如果听过只需要更新时间
         if (playMapper.insertPlay(play) < 1) {
             // 如果失败是数据库错误
             logger.debug("邮箱：" + user.getMailbox() + "收藏音乐或MV时，数据库出错");
@@ -139,7 +143,7 @@ public class AboutMusicService {
         if (content.length() != 0) {
             if (content.length() <= 200) {
                 //得到会话上的用户
-                User user = (User) session.getAttribute("userInformation");
+                User user = specialFunctions.getUser(session);
                 Comment comment = new Comment();
                 comment.setMusicId(id);
                 comment.setType(type);
@@ -170,7 +174,7 @@ public class AboutMusicService {
      */
     public State commentFabulous(String id, HttpSession session) throws DataBaseException {
         //得到会话上的用户
-        User user = (User) session.getAttribute("userInformation");
+        User user = specialFunctions.getUser(session);
         // 得到用户给哪些评论点过赞
         StringBuilder fabulousString = new StringBuilder(user.getFabulous());
         String[] fabulous = fabulousString.toString().split("#");

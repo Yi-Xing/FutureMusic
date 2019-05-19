@@ -7,7 +7,7 @@ import java.util.Date;
 /**
  * MV表 存储MV的信息
  * @author 5月10号 张易兴创建
- *         5月18日 张易兴修改 将价钱的类型转为BigDecimal
+ *         5月18日 张易兴修改 将价钱的类型转为BigDecimal，添加字段playCount MV的播放次数
  */
 public class MusicVideo implements Serializable {
     /**

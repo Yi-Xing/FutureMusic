@@ -2,7 +2,7 @@ package service.user;
 
 import entity.State;
 import entity.User;
-import exception.DataBaseException;
+import util.exception.DataBaseException;
 import mapper.UserMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -13,7 +13,7 @@ import javax.servlet.http.HttpSession;
 import java.util.Date;
 
 /**
- * 注册账号的业务逻辑（完）
+ * 注册账号的业务逻辑
  *
  * @author 5月17日 张易兴创建
  */
@@ -108,9 +108,8 @@ public class RegisterService {
                 state.setInformation("邮箱已存在");
             } else {
                 // 发送邮箱
-                specialFunctions.sendVerificationCode(mailbox,session);
+                state=specialFunctions.sendVerificationCode(mailbox,session);
                 // 发送成功吗，将邮箱存入会话中
-                state.setState(1);
                 session.setAttribute("mailbox", mailbox);
             }
         } else {

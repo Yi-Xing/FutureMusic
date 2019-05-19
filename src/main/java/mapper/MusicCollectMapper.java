@@ -10,6 +10,7 @@ import java.util.List;
  * 对音乐或MV的收藏表操作的Mapper
  *
  * @author 5月9日 张易兴创建
+ *         5月18日 张易兴添加selectUserMusicCollectCount用于查找用户收藏的音乐或MV的个数
  */
 @Repository(value = "MusicCollectMapper")
 public interface MusicCollectMapper {
@@ -23,6 +24,15 @@ public interface MusicCollectMapper {
      * @return List<MusicCollect> 返回查找到的收藏
      */
     public List<MusicCollect> selectListMusicCollect(MusicCollect musicCollect);
+    /**
+     * 查找指定用户收藏的音乐或MV的个数
+     *
+     * @param musicCollect 按照指定规则查找指定收藏
+     *                     封装信息：
+     *                     userId和type查找指定用户收藏的音乐或MV的个数
+     * @return int 返回查找到的个数
+     */
+    public int selectUserMusicCollectCount(MusicCollect musicCollect);
     /**
      * 添加收藏的音乐或MV
      *

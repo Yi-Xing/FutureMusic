@@ -2,7 +2,7 @@ package controller.user;
 
 
 import entity.State;
-import exception.DataBaseException;
+import util.exception.DataBaseException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -17,7 +17,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 /**
- * 登录界面的功能（完）
+ * 登录界面的功能
  * 登录，注册，退出登录，发送邮件
  *
  * @author 5月17日 张易兴创建
@@ -90,8 +90,9 @@ public class LoginAndRegister {
      * @param session  获取当前会话的对象
      */
     @RequestMapping(value = "/signOutLogin")
-    public void signOutLogin(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
+    @ResponseBody
+    public State signOutLogin(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
         logger.trace("signOutLogin方法开始执行");
-        loginService.signOutLogin(request,response,session);
+        return loginService.signOutLogin(request,response,session);
     }
 }

@@ -1,9 +1,9 @@
 package service.user;
 
 import entity.State;
-import listener.SessionListener;
 import entity.User;
 import mapper.UserMapper;
+import util.listener.SessionListener;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -85,7 +85,7 @@ public class LoginService {
      * @param response 获取服务器端对象
      * @param session  获取当前会话的对象
      */
-    public void signOutLogin(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
+    public State signOutLogin(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
         User user = (User) session.getAttribute("userInformation");
         // 退出登录将信息从域对象中删除
         session.removeAttribute("userInformation");
@@ -100,6 +100,9 @@ public class LoginService {
             logger.debug("邮箱：" + user.getMailbox() + "的7天自动登录撒好删除成功");
         }
         logger.info("邮箱：" + user.getMailbox() + "退出成功");
+        State state=new State();
+        state.setState(1);
+        return state;
     }
 
     /**

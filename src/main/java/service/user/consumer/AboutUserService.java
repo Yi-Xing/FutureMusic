@@ -4,7 +4,8 @@ import entity.Focus;
 import entity.Mail;
 import entity.State;
 import entity.User;
-import exception.DataBaseException;
+import service.user.SpecialFunctions;
+import util.exception.DataBaseException;
 import mapper.FocusMapper;
 import mapper.MailMapper;
 import mapper.UserMapper;
@@ -17,6 +18,7 @@ import util.ConstantUtil;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 import java.util.Date;
+import java.util.List;
 
 /**
  * 开关个人空间，关注用户，访问其他用户，用户之间发邮件，举报，发邮件给客服，更改邮件状态的业务逻辑
@@ -36,7 +38,10 @@ public class AboutUserService {
     FocusMapper focusMapper;
     @Resource(name = "MailMapper")
     MailMapper mailMapper;
-
+    @Resource(name = "SpecialFunctions")
+    SpecialFunctions specialFunctions;
+    @Resource(name = "Existence")
+    Existence existence;
 
     /**
      * 点击关注其他用户
@@ -46,16 +51,31 @@ public class AboutUserService {
      * @param session 获取当前会话
      */
     public State followUser(int id, int type, HttpSession session) throws DataBaseException {
-        User user = (User) session.getAttribute("userInformation");
+        State state = new State();
+        state.setState(1);
+        User user = specialFunctions.getUser(session);
         Focus focus = new Focus();
         focus.setUserId(user.getId());
         focus.setUserFocusId(id);
-        if (type == 1) {
-            // 1表示关注
-            focus.setUserType(1);
-        } else {
-            // 2表示访客
-            focus.setUserType(2);
+        // 1表示关注 2表示访客
+        focus.setUserType(type);
+        // 为访客时，需要进行是否存在判断
+        if (focus.getUserType() == 2) {
+            // 判断用户是否访问过该用户，如果访问过不需要添加只需要更新，没有访问则需要添加
+            Focus newFocus=existence.isUserFollow(user.getId(),id,type);
+            // 判断有没有访问
+            if (newFocus != null) {
+                //更新时间
+                newFocus.setDate(new Date());
+                //更新数据库
+                if (focusMapper.updateFocus(newFocus) > 0) {
+                    return state;
+                } else {
+                    // 如果失败是数据库错误
+                    logger.debug("邮箱：" + user.getMailbox() + "更新关注用户信息时，数据库出错");
+                    throw new DataBaseException("邮箱：" + user.getMailbox() + "更新关注用户信息时，数据库出错");
+                }
+            }
         }
         focus.setDate(new Date());
         if (focusMapper.insertFocus(focus) < 1) {
@@ -63,10 +83,10 @@ public class AboutUserService {
             logger.debug("邮箱：" + user.getMailbox() + "添加关注用户信息时，数据库出错");
             throw new DataBaseException("邮箱：" + user.getMailbox() + "添加关注用户信息时，数据库出错");
         }
-        State state = new State();
-        state.setState(1);
         return state;
     }
+
+
 
     /**
      * 点击取消关注其他用户
@@ -75,7 +95,7 @@ public class AboutUserService {
      * @param session 获取当前会话
      */
     public State cancelFollowUser(Integer id, HttpSession session) throws DataBaseException {
-        User user = (User) session.getAttribute("userInformation");
+        User user = specialFunctions.getUser(session);
         Focus focus = new Focus();
         focus.setUserId(user.getId());
         focus.setUserFocusId(id);
@@ -119,13 +139,14 @@ public class AboutUserService {
      */
     public State sendMailUser(String mailbox, String content, HttpSession session) throws DataBaseException {
         State state = new State();
+        // 判断接收者是否存在
         if (validationInformation.isMailboxExistence(mailbox)) {
             // 判断内容是否合法
             state = aboutUserService.isContent(content);
             if (state.getState() == 1) {
                 Mail mail = new Mail();
                 // 发送邮件的用户信息
-                User sendUser = (User) session.getAttribute("userInformation");
+                User sendUser = specialFunctions.getUser(session);
                 mail.setSenderId(sendUser.getId());
                 // 接收邮件的用户信息
                 User receiveUser = userMapper.selectUserMailbox(mailbox);
@@ -139,7 +160,7 @@ public class AboutUserService {
                 }
             }
         } else {
-            logger.debug("邮箱：" + mailbox+ "邮箱不存在");
+            logger.debug("邮箱：" + mailbox + "邮箱不存在");
             state.setInformation("邮箱不存在");
         }
         return state;
@@ -166,7 +187,7 @@ public class AboutUserService {
                 throw new DataBaseException("邮箱：" + userReport.getMailbox() + "修改信息时，数据库出错");
             }
             // 获取举报者的用户信息
-            User user = (User) session.getAttribute("userInformation");
+            User user = specialFunctions.getUser(session);
             // 将举报信息交给客服，进行核对
             feedback(user.getId(), content);
         }

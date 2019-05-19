@@ -7,7 +7,7 @@ import java.util.Date;
 /**
  * 音乐表用于存储音乐的信息
  * @author 5月10日 张易兴创建
- *         5月18日 张易兴修改 将价钱的类型转为BigDecimal
+ *         5月18日 张易兴修改 将价钱的类型转为BigDecimal，添加字段playCount音乐的播放次数
  */
 public class Music implements Serializable {
     /**

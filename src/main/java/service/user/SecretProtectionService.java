@@ -1,13 +1,12 @@
-package service.user.consumer;
+package service.user;
 
 import entity.State;
 import entity.User;
-import exception.DataBaseException;
+import util.exception.DataBaseException;
 import mapper.UserMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import service.user.SpecialFunctions;
-import service.user.ValidationInformation;
+import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
@@ -16,9 +15,8 @@ import javax.servlet.http.HttpSession;
  * 关于密保的所有操作
  * @author 5月18日 张易兴创建
  */
+@Service(value = "SecretProtectionService")
 public class SecretProtectionService {
-
-
     @Resource(name = "UserMapper")
     UserMapper userMapper;
     @Resource(name = "ValidationInformation")
@@ -27,16 +25,7 @@ public class SecretProtectionService {
     SpecialFunctions specialFunctions;
     private static final Logger logger = LoggerFactory.getLogger(SecretProtectionService.class);
 
-    /**
-     * 确定安全中心应该进入的界面
-     */
-    public String  safetyCenter(HttpSession session){
-        if(specialFunctions.getUserMailbox(session)!=null){
-            // 设置需要跳转的页面
-            return null;
-        }
-        return null;
-    }
+
     /**
      * 用于判断用户是否设置密保
      *
@@ -104,7 +93,7 @@ public class SecretProtectionService {
      */
     public State addSecretProtection(String verificationCode, String gender, String age, String birthday, String address, HttpSession session) throws DataBaseException {
         // 获得设置或修改密保的邮箱
-        String mailbox = ((User) session.getAttribute("userInformation")).getMailbox();
+        String mailbox = specialFunctions.getUserMailbox(session);
         State state = new State();
         // 验证邮箱验证码是否超时
         if (validationInformation.isMailboxVerificationCodeTime(session)) {
@@ -141,25 +130,20 @@ public class SecretProtectionService {
      */
     public State verificationAccount(String mailbox) {
         State state = new State();
-        if (validationInformation.isMailboxExistence(mailbox)) {
             if(isSetUpSecretProtection(mailbox)){
-                logger.info("邮箱：" + mailbox + "开始找回密码");
+                logger.info("邮箱：" + mailbox + "找回密码第一步完成");
                 state.setState(1);
             }else{
                 logger.debug("邮箱：" + mailbox + "邮箱没有设置密保");
                 state.setInformation(mailbox + "邮箱没有设置密保");
             }
-        } else {
-            logger.debug("邮箱：" + mailbox + "邮箱不存在");
-            state.setInformation(mailbox + "邮箱不存在");
-        }
         return state;
     }
 
     /**
      * 找回密码
      * 第二步，验证账号的密保是否正确
-     * 密保正确，填出输入密码框（未实现）
+     * 第三步，调用设置密保
      *
      * @param mailbox  需要验证的邮箱
      * @param gender   密保——性别

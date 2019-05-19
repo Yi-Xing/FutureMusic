@@ -1,7 +1,7 @@
 package controller.user.consumer;
 
 import entity.State;
-import exception.DataBaseException;
+import util.exception.DataBaseException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -53,6 +53,7 @@ public class AboutMusic {
      */
     @RequestMapping(value = "/collectionSongList")
     @ResponseBody
+    // 判断是否已经收藏过了或用更新
     public State collectionSongList(Integer id, Integer type, Integer classificationId, Integer userCollectId, HttpSession session) throws DataBaseException {
         logger.trace("collectionSongList方法开始执行");
         return aboutMusicService.collectionSongList(id, type, classificationId, userCollectId, session);
@@ -72,6 +73,7 @@ public class AboutMusic {
      */
     @RequestMapping(value = "/collectionMusic")
     @ResponseBody
+    // 判断是否已经收藏过了或用更新
     public State collectionMusic(Integer id, Integer type, Integer have, Integer singerId, Integer albumId, Integer classificationId, HttpSession session) throws DataBaseException {
         logger.trace("collectionMusic方法开始执行");
         return aboutMusicService.collectionMusic(id, type, have, singerId, albumId, classificationId, session);
@@ -89,6 +91,7 @@ public class AboutMusic {
      */
     @RequestMapping(value = "/musicPlay")
     @ResponseBody
+    // 更该音乐的播放次数
     public State musicPlay(Integer id, Integer type, Integer singerId, Integer albumId, Integer classificationId, HttpSession session) throws DataBaseException {
         logger.trace("musicPlay方法开始执行");
         return aboutMusicService.musicPlay(id, type, singerId, albumId, classificationId, session);

@@ -17,6 +17,17 @@
             </if>
         </where>
     </select>
+    <select id="selectUserSongListCollectCount" parameterType="SongListCollect" resultType="Integer">
+        select count(*) from tb_song_list_collect
+        <where>
+            <if test='userId!=0'>
+                song_list_collect_user_id=#{userId}
+            </if>
+            <if test='type!=0'>
+                and song_list_collect_type=#{type}
+            </if>
+        </where>
+    </select>
     <insert id="insertSongListCollect" parameterType="SongListCollect">
          insert into tb_song_list_collect(song_list_collect_music_id,song_list_collect_user_id,song_list_collect_classification_id,
          song_list_collect_user_collect_id,song_list_collect_type,song_list_collect_date)

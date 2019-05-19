@@ -1,7 +1,7 @@
 package controller.user.consumer;
 
 import entity.State;
-import exception.DataBaseException;
+import util.exception.DataBaseException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -22,7 +22,6 @@ public class AboutUser {
     @Resource(name = "AboutUserService")
     private AboutUserService aboutUserService;
     private static final Logger logger = LoggerFactory.getLogger(AboutUser.class);
-
 
     /**
      * 点击关注指定用户或访问指定用户空间时执行该方法,ajax
