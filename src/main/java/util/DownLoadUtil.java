@@ -12,9 +12,8 @@ import java.net.URLEncoder;
 import javax.servlet.ServletOutputStream;
 
 /**
- * @params request  response fileName  fileSourcePath
- *
- * @return
+ * @author 蒋靓峣 5.18日创建
+ * 下载文件的工具类
  */
     public class DownLoadUtil {
     /**

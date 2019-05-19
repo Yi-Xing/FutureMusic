@@ -40,6 +40,14 @@ public interface MusicMapper {
      * @return List<Music> 返回查找到的音乐
      */
     public List<Music> listIdSelectListMusic(List<Integer> id);
+    /**
+     * 查找符合指定规则的音乐信息
+     *
+     * @param classificationId 查找指定分类id的音乐
+     *
+     * @return List<Music> 返回查找到的音乐
+     */
+    public List<Music> listClassificationIdSelectListMusic(List<Integer> classificationId);
 
     /**
      * 添加音乐
