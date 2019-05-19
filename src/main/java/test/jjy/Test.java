@@ -14,11 +14,11 @@ public class Test {
         ApplicationContext applicationContext = new ClassPathXmlApplicationContext("spring-mvc.xml");
         MusicMapper musicMapper = applicationContext.getBean(MusicMapper.class);
         List<Integer> integerList = new ArrayList<>();
-        integerList.add(2);
-        integerList.add(3);
+//        integerList.add(2);
+//        integerList.add(3);
         List<Music> musicList =  musicMapper.listIdSelectListMusic(integerList);
         for (Music music : musicList) {
-            System.out.print(music.getPrice()+""+music.getClassificationId()+"\t");
+            System.out.print(music.getPrice()+""+music.getClassificationId()+"\t"+music.getClassificationId()+"\t"+music.getAvailable());
         }
         return "jjy";
     }
