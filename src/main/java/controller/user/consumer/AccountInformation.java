@@ -34,7 +34,7 @@ public class AccountInformation {
      * userFollowCount用户关注的个数
      * followUserCount关注用户的个数
      */
-    @RequestMapping(value = "/changeUserName")
+    @RequestMapping(value = "/userPage")
     public String userPage(HttpSession session, Model model){
         return accountInformationService.userPage(session,model);
     }

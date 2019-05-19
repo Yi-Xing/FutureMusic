@@ -13,7 +13,7 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 
 /**
- * 创建编辑歌单，创建编辑专辑，收藏音乐，收藏MV，收藏歌单，收藏专辑，添加历史播放记录，评论，点赞
+ * 收藏音乐，收藏MV，收藏歌单，收藏专辑，添加历史播放记录，评论，点赞
  *
  *
  * @author 5月15日 张易兴创建

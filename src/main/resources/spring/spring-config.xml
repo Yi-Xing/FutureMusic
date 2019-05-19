@@ -26,9 +26,9 @@
     <!--开启ioc注解-->
     <context:annotation-config/>
 
-    <!--配置平台事务管理器-->
-    <bean class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
-        <property name="dataSource" ref="source"/>
-    </bean>
+<!--    &lt;!&ndash;配置平台事务管理器&ndash;&gt;-->
+<!--    <bean class="org.springframework.jdbc.datasource.DataSourceTransactionManager">-->
+<!--        <property name="dataSource" ref="source"/>-->
+<!--    </bean>-->
 
 </beans>
