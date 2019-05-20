@@ -297,8 +297,13 @@
       <artifactId>thymeleaf-spring5</artifactId>
       <version>3.0.9.RELEASE</version>
     </dependency>
+    <!--pageHelper分页帮助插件-->
+    <dependency>
+      <groupId>com.github.pagehelper</groupId>
+      <artifactId>pagehelper</artifactId>
+      <version>5.0.0</version>
+    </dependency>
   </dependencies>
-
   <build>
 
     <!-- 为了让java文件下的xml文件也能被读取-->
