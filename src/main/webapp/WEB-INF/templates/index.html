@@ -10,130 +10,113 @@
     <link rel="stylesheet" href="css/index.css" th:href="@{/static/css/index.css}" >
 </head>
 <body>
-<!--光影-->
-<div class="container-fluid color_1 LB" style="position: relative">
-    <div class="row inner music_video">
-        <div class="text-center">
-            <h2>MV</h2>
-        </div>
-        <div class="carousel-wrap">
-            <ul class="carousel">
-                <li>
-                    3
-                </li>
-                <li>
-                    <div class="mv_container">
-                        <div class="thumbnail">
-                            <div class="img_container">
-                                <a href="javascript:;">
-                                    <img src="img/mv1.jpg" alt="...">
-                                </a>
-                            </div>
-                            <div class="caption">
-                                <h3>name</h3>
-                                <p>播放量</p>
-                                <p>
-                                    <a href="#" class="btn btn-success" role="button">歌手专区</a>
-                                    <a href="javascript:;">
-                                        <i class="iconfont icon-like"></i>
-                                    </a>
-                                </p>
-                            </div>
-                        </div>
-                        <div class="thumbnail">
-                            <div class="img_container">
-                                <a href="javascript:;">
-                                    <img src="img/mv2.jpg" alt="...">
-                                </a>
-                            </div>
-                            <div class="caption">
-                                <h3>name</h3>
-                                <p>播放量</p>
-                                <p>
-                                    <a href="#" class="btn btn-success" role="button">歌手专区</a>
-                                    <a href="javascript:;">
-                                        <i class="iconfont icon-like"></i>
-                                    </a>
-                                </p>
-                            </div>
-                        </div>
-                        <div class="thumbnail">
-                            <div class="img_container">
-                                <a href="javascript:;">
-                                    <img src="img/mv3.jpg" alt="...">
-                                </a>
-                            </div>
-                            <div class="caption">
-                                <h3>name</h3>
-                                <p>播放量</p>
-                                <p>
-                                    <a href="#" class="btn btn-success" role="button">歌手专区</a>
-                                    <a href="javascript:;">
-                                        <i class="iconfont icon-like"></i>
-                                    </a>
-                                </p>
-                            </div>
-                        </div>
-                        <div class="thumbnail">
-                            <div class="img_container">
-                                <a href="javascript:;">
-                                    <img src="img/mv4.jpg" alt="...">
-                                </a>
-                            </div>
-                            <div class="caption">
-                                <h3>name</h3>
-                                <p>播放量</p>
-                                <p>
-                                    <a href="#" class="btn btn-success" role="button">歌手专区</a>
-                                    <a href="javascript:;">
-                                        <i class="iconfont icon-like"></i>
-                                    </a>
-                                </p>
-                            </div>
-                        </div>
-                        <div class="thumbnail">
-                            <div class="img_container">
-                                <a href="javascript:;">
-                                    <img src="img/mv5.jpg" alt="...">
-                                </a>
-                            </div>
-                            <div class="caption">
-                                <h3>name</h3>
-                                <p>播放量</p>
-                                <p>
-                                    <a href="#" class="btn btn-success" role="button">歌手专区</a>
-                                    <a href="javascript:;">
-                                        <i class="iconfont icon-like"></i>
-                                    </a>
-                                </p>
+<!--头部-->
+<div class="div">
+    <div class="header">
+        <div class="inner">
+            <div class="header_left">
+                <img src="img/logo.png" th:src="@{/static/img/logo.png}" alt="">
+            </div>
+            <div class="header_main">
+                <ul>
+                    <li style="background:lightgreen;"><a href="#">音乐馆</a></li>
+                    <li><a href="#">我的音乐</a></li>
+                    <li><a href="#">音乐号</a></li>
+                    <li><a href="#">VIP</a></li>
+                </ul>
+            </div>
+            <div class="header_right">
+                <div class="hed_rig_left">
+                    <input type="text">
+                    <button><img src="img/搜索 (1).png" th:src="@{/static/img/搜索 (1).png}" alt=""></button>
+                </div>
+                <div class="hed_rig_right">
+                    <div class="hed_rig_rig_left">
+                        <!-- Button trigger modal -->
+                        <button type="button" id="button1" class="btn  btn-lg" data-toggle="modal"
+                                data-target="#myModal">
+                            登录
+                        </button>
+                        <!-- Modal -->
+                        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal_header">
+                                        <a href="#">登录</a>
+                                        <a href="#">注册</a>
+                                    </div>
+                                    <div class="modal_main">
+                                        <div class="login">
+
+
+                                            <form action="" method="post">
+                                                <table>
+                                                    <tr>
+                                                        <td><input name="email" type="text" placeholder="请输入您的email">
+                                                        </td>
+                                                    </tr>
+
+                                                    <tr>
+                                                        <td><input name="pw" type="password" placeholder="请输入您的密码"></td>
+                                                    </tr>
+
+                                                    <div class="tip2">请填写邮箱账号</div>
+                                                    <tr>
+                                                        <td><input type="checkbox" id="check">七天内自动登录</td>
+                                                        <td><a href="#">找回密码</a>|<a href="#">无法登录</a></td>
+
+                                                    </tr>
+                                                    <tr>
+                                                        <td><input type="submit" value="登录" onclick="return last()">
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                            </form>
+                                        </div>
+
+
+                                        <div class="registered">
+
+                                            <label ></label>
+                                            <input type="text" value="请输入您的邮箱账号" class="account" style="color:#999"
+                                                   onBlur="textBlur(this)" onFocus="textFocus(this)"/>
+                                            <span class="error error5"></span>
+                                            </li>
+                                            <li>
+                                                <label ></label>
+                                                <input type="password" class="admin_pwd" value="请输入密码"
+                                                       style="color:#999;" onBlur="textBlur(this)"
+                                                       onFocus="textFocus(this)"/>
+                                                <span class="error error6"></span>
+                                            </li>
+                                            <li>
+                                                <label >验证码</label>
+                                                <input type="text" class="sradd photokey" value="请输入验证码"
+                                                       style="color:#999;ime-mode:disabled;-webkit-ime-mode:inactive;"
+                                                       onBlur="textBlur(this)" onFocus=" textFocus(this) "/>
+                                                <span class="add phoKey"></span><span class="error error7"></span>
+                                            </li>
+                                            </ul>
+                                            <div class="sub">
+                                                <input type="submit" value="立即登录"/>
+                                            </div>
+                                            </form>
+                                        </div>
+                                    </div>
+
+
+                                </div>
                             </div>
                         </div>
                     </div>
-                </li>
-                <li>
-                    2
-                </li>
-                <li>
-                    3
-                </li>
-                <li>
-                    1
-                </li> 
-            </ul>
-             
+                </div>
+            </div>
         </div>
-        <a class="arrow arrow-left" href="">
-            <i class="iconfont icon-icon-bold-arrow-left1"></i>
-        </a>
-        <a class="arrow arrow-right" href="">
-            <i class="iconfont icon-icon-bold-arrow-left"></i>
-        </a>
     </div>
 </div>
 
-
 <!--精彩推荐-->
-<div class="container-fluid color_2 LB" style="position: relative">
+<div class="container-fluid color_1 LB" style="position: relative">
     <div class="row inner Recommend">
         <div class="text-center">
             <h2>精彩推荐</h2>
@@ -142,29 +125,30 @@
             <ul class="carousel">
                 <li>
                     <a href="javascript:;">
-                        <img src="img/精彩推荐3.jpg" alt="">
+                        <img src="img/精彩推荐3.jpg" th:src="@{/static/img/精彩推荐3.jpg}" alt="">
                     </a>
                 </li>
                 <li>
                     <a href="javascript:;">
-                        <img src="img/精彩推荐1.jpg" alt="">
+                        <img src="img/精彩推荐1.jpg" th:src="@{/static/img/精彩推荐1.jpg}" alt="">
                     </a>
                 </li>
                 <li>
                     <a href="javascript:;">
-                        <img src="img/精彩推荐2.jpg" alt="">
+                        <img src="img/精彩推荐2.jpg" th:src="@{/static/img/精彩推荐2.jpg}" alt="">
                     </a>
                 </li>
                 <li>
                     <a href="javascript:;">
-                        <img src="img/精彩推荐3.jpg" alt="">
+                        <img src="img/精彩推荐3.jpg" th:src="@{/static/img/精彩推荐3.jpg}" alt="">
                     </a>
                 </li>
                 <li>
                     <a href="javascript:;">
-                        <img src="img/精彩推荐1.jpg" alt="">
+                        <img src="img/精彩推荐1.jpg" th:src="@{/static/img/精彩推荐1.jpg}" alt="">
                     </a>
-                </li> 
+                </li>
+                 
             </ul>
                
             <ul class="indicators">
@@ -187,8 +171,1115 @@
     </div>
 </div>
 
+<!--音乐人-->
+<div class="container-fluid color_2" style="position: relative">
+    <div class="row inner Artist">
+        <div class="text-center">
+            <h2>音乐人</h2>
+        </div>
+        <!--检索：华语、欧美、日韩-->
+        <div class="container artist_tab">
+            <ul>
+                <li>
+                    <a href="javascript:;" id="CN_tab">
+                        <b>华语</b>
+                    </a>
+                </li>
+                <li>
+                    <a href="javascript:;" id="EM_tab">
+                        <b>欧美</b>
+                    </a>
+                </li>
+                <li>
+                    <a href="javascript:;" id="RH_tab">
+                        <b>日韩</b>
+                    </a>
+                </li>
+                <li>
+                    <a href="javascript:;">
+                        <b>了解更多</b>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div class="container artist_container" id="CN">
+            <div class="artists">
+                <img src="img/陈奕迅.jpg" th:src="@{/static/img/陈奕迅.jpg}" alt="">
+                <div class="artist_introduce">
+                    <h4>name</h4>
+                    <h5>代表作：XXX</h5>
+                    <p>
+                        <i class="iconfont icon-like">number</i>
+                    </p>
+                </div>
+                <div class="artist_works">
+                    <h3>热门单曲</h3>
+                    <ol>
+                        <li>
+                            <a href="javascript:;">
+                                music1
+                            </a>
+                        </li>
+                        <li>
+                            <a href="javascript:;">
+                                music2
+                            </a>
+                        </li>
+                        <li>
+                            <a href="javascript:;">
+                                music3
+                            </a>
+                        </li>
+                        <li>
+                            <a href="javascript:;">
+                                music4
+                            </a>
+                        </li>
+                        <li>
+                            <a href="javascript:;">
+                                music5
+                            </a>
+                        </li>
+                    </ol>
+                </div>
+            </div>
+            <div class="artists">
+                <img src="img/鹿晗.jpg" th:src="@{/static/img/鹿晗.jpg}" alt="">
+                <div class="artist_introduce">
+                    <h4>name</h4>
+                    <h5>代表作：XXX</h5>
+                    <p>
+                        <i class="iconfont icon-like">number</i>
+                    </p>
+                </div>
+                <div class="artist_works">
+                    <h3>热门单曲</h3>
+                    <ol>
+                        <li>
+                            <a href="javascript:;">
+                                music1
+                            </a>
+                        </li>
+                        <li>
+                            <a href="javascript:;">
+                                music2
+                            </a>
+                        </li>
+                        <li>
+                            <a href="javascript:;">
+                                music3
+                            </a>
+                        </li>
+                        <li>
+                            <a href="javascript:;">
+                                music4
+                            </a>
+                        </li>
+                        <li>
+                            <a href="javascript:;">
+                                music5
+                            </a>
+                        </li>
+                    </ol>
+                </div>
+            </div>
+            <div class="artists">
+                <img src="img/田馥甄.jpg" th:src="@{/static/img/田馥甄.jpg}" alt="">
+                <div class="artist_introduce">
+                    <h4>name</h4>
+                    <h5>代表作：XXX</h5>
+                    <p>
+                        <i class="iconfont icon-like">number</i>
+                    </p>
+                </div>
+                <div class="artist_works">
+                    <h3>热门单曲</h3>
+                    <ol>
+                        <li>
+                            <a href="javascript:;">
+                                music1
+                            </a>
+                        </li>
+                        <li>
+                            <a href="javascript:;">
+                                music2
+                            </a>
+                        </li>
+                        <li>
+                            <a href="javascript:;">
+                                music3
+                            </a>
+                        </li>
+                        <li>
+                            <a href="javascript:;">
+                                music4
+                            </a>
+                        </li>
+                        <li>
+                            <a href="javascript:;">
+                                music5
+                            </a>
+                        </li>
+                    </ol>
+                </div>
+            </div>
+            <div class="artists">
+                <img src="img/张艺兴.jpg" th:src="@{/static/img/张艺兴.jpg}" alt="">
+                <div class="artist_introduce">
+                    <h4>name</h4>
+                    <h5>代表作：XXX</h5>
+                    <p>
+                        <i class="iconfont icon-like">number</i>
+                    </p>
+                </div>
+                <div class="artist_works">
+                    <h3>热门单曲</h3>
+                    <ol>
+                        <li>
+                            <a href="javascript:;">
+                                music1
+                            </a>
+                        </li>
+                        <li>
+                            <a href="javascript:;">
+                                music2
+                            </a>
+                        </li>
+                        <li>
+                            <a href="javascript:;">
+                                music3
+                            </a>
+                        </li>
+                        <li>
+                            <a href="javascript:;">
+                                music4
+                            </a>
+                        </li>
+                        <li>
+                            <a href="javascript:;">
+                                music5
+                            </a>
+                        </li>
+                    </ol>
+                </div>
+            </div>
+            <div class="artists">
+                <img src="img/吴亦凡.jpg" th:src="@{/static/img/吴亦凡.jpg}" alt="">
+                <div class="artist_introduce">
+                    <h4>name</h4>
+                    <h5>代表作：XXX</h5>
+                    <p>
+                        <i class="iconfont icon-like">number</i>
+                    </p>
+                </div>
+                <div class="artist_works">
+                    <h3>热门单曲</h3>
+                    <ol>
+                        <li>
+                            <a href="javascript:;">
+                                music1
+                            </a>
+                        </li>
+                        <li>
+                            <a href="javascript:;">
+                                music2
+                            </a>
+                        </li>
+                        <li>
+                            <a href="javascript:;">
+                                music3
+                            </a>
+                        </li>
+                        <li>
+                            <a href="javascript:;">
+                                music4
+                            </a>
+                        </li>
+                        <li>
+                            <a href="javascript:;">
+                                music5
+                            </a>
+                        </li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+        <div class="container artist_container" id="EM">
+            <div class="artists">
+                <img src="img/CamilaCabello.jpg" th:src="@{/static/img/CamilaCabello.jpg}" alt="">
+                <div class="artist_introduce">
+                    <h4>name</h4>
+                    <h5>代表作：XXX</h5>
+                    <p>
+                        <i class="iconfont icon-like">number</i>
+                    </p>
+                </div>
+                <div class="artist_works">
+                    <h3>热门单曲</h3>
+                    <ol>
+                        <li>
+                            <a href="javascript:;">
+                                music1
+                            </a>
+                        </li>
+                        <li>
+                            <a href="javascript:;">
+                                music2
+                            </a>
+                        </li>
+                        <li>
+                            <a href="javascript:;">
+                                music3
+                            </a>
+                        </li>
+                        <li>
+                            <a href="javascript:;">
+                                music4
+                            </a>
+                        </li>
+                        <li>
+                            <a href="javascript:;">
+                                music5
+                            </a>
+                        </li>
+                    </ol>
+                </div>
+            </div>
+            <div class="artists">
+                <img src="img/鹿晗.jpg" th:src="@{/static/img/鹿晗.jpg}" alt="">
+                <div class="artist_introduce">
+                    <h4>name</h4>
+                    <h5>代表作：XXX</h5>
+                    <p>
+                        <i class="iconfont icon-like">number</i>
+                    </p>
+                </div>
+                <div class="artist_works">
+                    <h3>热门单曲</h3>
+                    <ol>
+                        <li>
+                            <a href="javascript:;">
+                                music1
+                            </a>
+                        </li>
+                        <li>
+                            <a href="javascript:;">
+                                music2
+                            </a>
+                        </li>
+                        <li>
+                            <a href="javascript:;">
+                                music3
+                            </a>
+                        </li>
+                        <li>
+                            <a href="javascript:;">
+                                music4
+                            </a>
+                        </li>
+                        <li>
+                            <a href="javascript:;">
+                                music5
+                            </a>
+                        </li>
+                    </ol>
+                </div>
+            </div>
+            <div class="artists">
+                <img src="img/田馥甄.jpg" th:src="@{/static/img/田馥甄.jpg}" alt="">
+                <div class="artist_introduce">
+                    <h4>name</h4>
+                    <h5>代表作：XXX</h5>
+                    <p>
+                        <i class="iconfont icon-like">number</i>
+                    </p>
+                </div>
+                <div class="artist_works">
+                    <h3>热门单曲</h3>
+                    <ol>
+                        <li>
+                            <a href="javascript:;">
+                                music1
+                            </a>
+                        </li>
+                        <li>
+                            <a href="javascript:;">
+                                music2
+                            </a>
+                        </li>
+                        <li>
+                            <a href="javascript:;">
+                                music3
+                            </a>
+                        </li>
+                        <li>
+                            <a href="javascript:;">
+                                music4
+                            </a>
+                        </li>
+                        <li>
+                            <a href="javascript:;">
+                                music5
+                            </a>
+                        </li>
+                    </ol>
+                </div>
+            </div>
+            <div class="artists">
+                <img src="img/张艺兴.jpg" th:src="@{/static/img/张艺兴.jpg}" alt="">
+                <div class="artist_introduce">
+                    <h4>name</h4>
+                    <h5>代表作：XXX</h5>
+                    <p>
+                        <i class="iconfont icon-like">number</i>
+                    </p>
+                </div>
+                <div class="artist_works">
+                    <h3>热门单曲</h3>
+                    <ol>
+                        <li>
+                            <a href="javascript:;">
+                                music1
+                            </a>
+                        </li>
+                        <li>
+                            <a href="javascript:;">
+                                music2
+                            </a>
+                        </li>
+                        <li>
+                            <a href="javascript:;">
+                                music3
+                            </a>
+                        </li>
+                        <li>
+                            <a href="javascript:;">
+                                music4
+                            </a>
+                        </li>
+                        <li>
+                            <a href="javascript:;">
+                                music5
+                            </a>
+                        </li>
+                    </ol>
+                </div>
+            </div>
+            <div class="artists">
+                <img src="img/JustinTimberlake.jpg" th:src="@{/static/img/JustinTimberlake.jpg}" alt="">
+                <div class="artist_introduce">
+                    <h4>name</h4>
+                    <h5>代表作：XXX</h5>
+                    <p>
+                        <i class="iconfont icon-like">number</i>
+                    </p>
+                </div>
+                <div class="artist_works">
+                    <h3>热门单曲</h3>
+                    <ol>
+                        <li>
+                            <a href="javascript:;">
+                                music1
+                            </a>
+                        </li>
+                        <li>
+                            <a href="javascript:;">
+                                music2
+                            </a>
+                        </li>
+                        <li>
+                            <a href="javascript:;">
+                                music3
+                            </a>
+                        </li>
+                        <li>
+                            <a href="javascript:;">
+                                music4
+                            </a>
+                        </li>
+                        <li>
+                            <a href="javascript:;">
+                                music5
+                            </a>
+                        </li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+        <div class="container artist_container" id="RH">
+            <div class="artists">
+                <img src="img/陈奕迅.jpg" th:src="@{/static/img/陈奕迅.jpg}" alt="">
+                <div class="artist_introduce">
+                    <h4>name</h4>
+                    <h5>代表作：XXX</h5>
+                    <p>
+                        <i class="iconfont icon-like">number</i>
+                    </p>
+                </div>
+                <div class="artist_works">
+                    <h3>热门单曲</h3>
+                    <ol>
+                        <li>
+                            <a href="javascript:;">
+                                music1
+                            </a>
+                        </li>
+                        <li>
+                            <a href="javascript:;">
+                                music2
+                            </a>
+                        </li>
+                        <li>
+                            <a href="javascript:;">
+                                music3
+                            </a>
+                        </li>
+                        <li>
+                            <a href="javascript:;">
+                                music4
+                            </a>
+                        </li>
+                        <li>
+                            <a href="javascript:;">
+                                music5
+                            </a>
+                        </li>
+                    </ol>
+                </div>
+            </div>
+            <div class="artists">
+                <img src="img/鹿晗.jpg" th:src="@{/static/img/鹿晗.jpg}" alt="">
+                <div class="artist_introduce">
+                    <h4>name</h4>
+                    <h5>代表作：XXX</h5>
+                    <p>
+                        <i class="iconfont icon-like">number</i>
+                    </p>
+                </div>
+                <div class="artist_works">
+                    <h3>热门单曲</h3>
+                    <ol>
+                        <li>
+                            <a href="javascript:;">
+                                music1
+                            </a>
+                        </li>
+                        <li>
+                            <a href="javascript:;">
+                                music2
+                            </a>
+                        </li>
+                        <li>
+                            <a href="javascript:;">
+                                music3
+                            </a>
+                        </li>
+                        <li>
+                            <a href="javascript:;">
+                                music4
+                            </a>
+                        </li>
+                        <li>
+                            <a href="javascript:;">
+                                music5
+                            </a>
+                        </li>
+                    </ol>
+                </div>
+            </div>
+            <div class="artists">
+                <img src="img/田馥甄.jpg" th:src="@{/static/img/田馥甄.jpg}" alt="">
+                <div class="artist_introduce">
+                    <h4>name</h4>
+                    <h5>代表作：XXX</h5>
+                    <p>
+                        <i class="iconfont icon-like">number</i>
+                    </p>
+                </div>
+                <div class="artist_works">
+                    <h3>热门单曲</h3>
+                    <ol>
+                        <li>
+                            <a href="javascript:;">
+                                music1
+                            </a>
+                        </li>
+                        <li>
+                            <a href="javascript:;">
+                                music2
+                            </a>
+                        </li>
+                        <li>
+                            <a href="javascript:;">
+                                music3
+                            </a>
+                        </li>
+                        <li>
+                            <a href="javascript:;">
+                                music4
+                            </a>
+                        </li>
+                        <li>
+                            <a href="javascript:;">
+                                music5
+                            </a>
+                        </li>
+                    </ol>
+                </div>
+            </div>
+            <div class="artists">
+                <img src="img/张艺兴.jpg" th:src="@{/static/img/张艺兴.jpg}" alt="">
+                <div class="artist_introduce">
+                    <h4>name</h4>
+                    <h5>代表作：XXX</h5>
+                    <p>
+                        <i class="iconfont icon-like">number</i>
+                    </p>
+                </div>
+                <div class="artist_works">
+                    <h3>热门单曲</h3>
+                    <ol>
+                        <li>
+                            <a href="javascript:;">
+                                music1
+                            </a>
+                        </li>
+                        <li>
+                            <a href="javascript:;">
+                                music2
+                            </a>
+                        </li>
+                        <li>
+                            <a href="javascript:;">
+                                music3
+                            </a>
+                        </li>
+                        <li>
+                            <a href="javascript:;">
+                                music4
+                            </a>
+                        </li>
+                        <li>
+                            <a href="javascript:;">
+                                music5
+                            </a>
+                        </li>
+                    </ol>
+                </div>
+            </div>
+            <div class="artists">
+                <img src="img/吴亦凡.jpg" th:src="@{/static/img/吴亦凡.jpg}" alt="">
+                <div class="artist_introduce">
+                    <h4>name</h4>
+                    <h5>代表作：XXX</h5>
+                    <p>
+                        <i class="iconfont icon-like">number</i>
+                    </p>
+                </div>
+                <div class="artist_works">
+                    <h3>热门单曲</h3>
+                    <ol>
+                        <li>
+                            <a href="javascript:;">
+                                music1
+                            </a>
+                        </li>
+                        <li>
+                            <a href="javascript:;">
+                                music2
+                            </a>
+                        </li>
+                        <li>
+                            <a href="javascript:;">
+                                music3
+                            </a>
+                        </li>
+                        <li>
+                            <a href="javascript:;">
+                                music4
+                            </a>
+                        </li>
+                        <li>
+                            <a href="javascript:;">
+                                music5
+                            </a>
+                        </li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!--光影-->
+<div class="container-fluid color_1 LB" style="position: relative">
+    <div class="row inner music_video">
+        <div class="text-center">
+            <h2>MV</h2>
+        </div>
+        <div class="carousel-wrap">
+            <ul class="carousel">
+                <li>
+                    <div class="mv_container">
+                        <div class="thumbnail">
+                            <div class="img_container">
+                                <a href="javascript:;">
+                                    <img src="img/mv1.jpg" th:src="@{/static/img/mv1.jpg}" alt="...">
+                                </a>
+                            </div>
+                            <div class="caption">
+                                <h3>name</h3>
+                                <p>播放量</p>
+                                <p>
+                                    <a href="#" class="btn btn-success" role="button">歌手专区</a>
+                                    <a href="javascript:;">
+                                        <i class="iconfont icon-like"></i>
+                                    </a>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="thumbnail">
+                            <div class="img_container">
+                                <a href="javascript:;">
+                                    <img src="img/mv4.jpg" th:src="@{/static/img/mv4.jpg}" alt="...">
+                                </a>
+                            </div>
+                            <div class="caption">
+                                <h3>name</h3>
+                                <p>播放量</p>
+                                <p>
+                                    <a href="#" class="btn btn-success" role="button">歌手专区</a>
+                                    <a href="javascript:;">
+                                        <i class="iconfont icon-like"></i>
+                                    </a>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="thumbnail">
+                            <div class="img_container">
+                                <a href="javascript:;">
+                                    <img src="img/mv2.jpg" th:src="@{/static/img/mv2.jpg}" alt="...">
+                                </a>
+                            </div>
+                            <div class="caption">
+                                <h3>name</h3>
+                                <p>播放量</p>
+                                <p>
+                                    <a href="#" class="btn btn-success" role="button">歌手专区</a>
+                                    <a href="javascript:;">
+                                        <i class="iconfont icon-like"></i>
+                                    </a>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="thumbnail">
+                            <div class="img_container">
+                                <a href="javascript:;">
+                                    <img src="img/mv5.jpg" th:src="@{/static/img/mv5.jpg}" alt="...">
+                                </a>
+                            </div>
+                            <div class="caption">
+                                <h3>name</h3>
+                                <p>播放量</p>
+                                <p>
+                                    <a href="#" class="btn btn-success" role="button">歌手专区</a>
+                                    <a href="javascript:;">
+                                        <i class="iconfont icon-like"></i>
+                                    </a>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="thumbnail">
+                            <div class="img_container">
+                                <a href="javascript:;">
+                                    <img src="img/mv2.jpg" th:src="@{/static/img/mv2.jpg}" alt="...">
+                                </a>
+                            </div>
+                            <div class="caption">
+                                <h3>name</h3>
+                                <p>播放量</p>
+                                <p>
+                                    <a href="#" class="btn btn-success" role="button">歌手专区</a>
+                                    <a href="javascript:;">
+                                        <i class="iconfont icon-like"></i>
+                                    </a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="mv_container">
+                        <div class="thumbnail">
+                            <div class="img_container">
+                                <a href="javascript:;">
+                                    <img src="img/mv1.jpg" th:src="@{/static/img/mv1.jpg}" alt="...">
+                                </a>
+                            </div>
+                            <div class="caption">
+                                <h3>name</h3>
+                                <p>播放量</p>
+                                <p>
+                                    <a href="#" class="btn btn-success" role="button">歌手专区</a>
+                                    <a href="javascript:;">
+                                        <i class="iconfont icon-like"></i>
+                                    </a>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="thumbnail">
+                            <div class="img_container">
+                                <a href="javascript:;">
+                                    <img src="img/mv2.jpg" th:src="@{/static/img/mv2.jpg}" alt="...">
+                                </a>
+                            </div>
+                            <div class="caption">
+                                <h3>name</h3>
+                                <p>播放量</p>
+                                <p>
+                                    <a href="#" class="btn btn-success" role="button">歌手专区</a>
+                                    <a href="javascript:;">
+                                        <i class="iconfont icon-like"></i>
+                                    </a>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="thumbnail">
+                            <div class="img_container">
+                                <a href="javascript:;">
+                                    <img src="img/mv3.jpg" th:src="@{/static/img/mv3.jpg}" alt="...">
+                                </a>
+                            </div>
+                            <div class="caption">
+                                <h3>name</h3>
+                                <p>播放量</p>
+                                <p>
+                                    <a href="#" class="btn btn-success" role="button">歌手专区</a>
+                                    <a href="javascript:;">
+                                        <i class="iconfont icon-like"></i>
+                                    </a>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="thumbnail">
+                            <div class="img_container">
+                                <a href="javascript:;">
+                                    <img src="img/mv4.jpg" th:src="@{/static/img/mv4.jpg}" alt="...">
+                                </a>
+                            </div>
+                            <div class="caption">
+                                <h3>name</h3>
+                                <p>播放量</p>
+                                <p>
+                                    <a href="#" class="btn btn-success" role="button">歌手专区</a>
+                                    <a href="javascript:;">
+                                        <i class="iconfont icon-like"></i>
+                                    </a>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="thumbnail">
+                            <div class="img_container">
+                                <a href="javascript:;">
+                                    <img src="img/mv5.jpg" th:src="@{/static/img/mv5.jpg}" alt="...">
+                                </a>
+                            </div>
+                            <div class="caption">
+                                <h3>name</h3>
+                                <p>播放量</p>
+                                <p>
+                                    <a href="#" class="btn btn-success" role="button">歌手专区</a>
+                                    <a href="javascript:;">
+                                        <i class="iconfont icon-like"></i>
+                                    </a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="mv_container">
+                        <div class="thumbnail">
+                            <div class="img_container">
+                                <a href="javascript:;">
+                                    <img src="img/mv5.jpg" th:src="@{/static/img/mv5.jpg}" alt="...">
+                                </a>
+                            </div>
+                            <div class="caption">
+                                <h3>name</h3>
+                                <p>播放量</p>
+                                <p>
+                                    <a href="#" class="btn btn-success" role="button">歌手专区</a>
+                                    <a href="javascript:;">
+                                        <i class="iconfont icon-like"></i>
+                                    </a>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="thumbnail">
+                            <div class="img_container">
+                                <a href="javascript:;">
+                                    <img src="img/mv2.jpg" th:src="@{/static/img/mv2.jpg}" alt="...">
+                                </a>
+                            </div>
+                            <div class="caption">
+                                <h3>name</h3>
+                                <p>播放量</p>
+                                <p>
+                                    <a href="#" class="btn btn-success" role="button">歌手专区</a>
+                                    <a href="javascript:;">
+                                        <i class="iconfont icon-like"></i>
+                                    </a>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="thumbnail">
+                            <div class="img_container">
+                                <a href="javascript:;">
+                                    <img src="img/mv1.jpg" th:src="@{/static/img/mv1.jpg}" alt="...">
+                                </a>
+                            </div>
+                            <div class="caption">
+                                <h3>name</h3>
+                                <p>播放量</p>
+                                <p>
+                                    <a href="#" class="btn btn-success" role="button">歌手专区</a>
+                                    <a href="javascript:;">
+                                        <i class="iconfont icon-like"></i>
+                                    </a>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="thumbnail">
+                            <div class="img_container">
+                                <a href="javascript:;">
+                                    <img src="img/mv4.jpg" th:src="@{/static/img/mv4.jpg}" alt="...">
+                                </a>
+                            </div>
+                            <div class="caption">
+                                <h3>name</h3>
+                                <p>播放量</p>
+                                <p>
+                                    <a href="#" class="btn btn-success" role="button">歌手专区</a>
+                                    <a href="javascript:;">
+                                        <i class="iconfont icon-like"></i>
+                                    </a>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="thumbnail">
+                            <div class="img_container">
+                                <a href="javascript:;">
+                                    <img src="img/mv3.jpg" th:src="@{/static/img/mv3.jpg}" alt="...">
+                                </a>
+                            </div>
+                            <div class="caption">
+                                <h3>name</h3>
+                                <p>播放量</p>
+                                <p>
+                                    <a href="#" class="btn btn-success" role="button">歌手专区</a>
+                                    <a href="javascript:;">
+                                        <i class="iconfont icon-like"></i>
+                                    </a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="mv_container">
+                        <div class="thumbnail">
+                            <div class="img_container">
+                                <a href="javascript:;">
+                                    <img src="img/mv1.jpg" th:src="@{/static/img/mv1.jpg}" alt="...">
+                                </a>
+                            </div>
+                            <div class="caption">
+                                <h3>name</h3>
+                                <p>播放量</p>
+                                <p>
+                                    <a href="#" class="btn btn-success" role="button">歌手专区</a>
+                                    <a href="javascript:;">
+                                        <i class="iconfont icon-like"></i>
+                                    </a>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="thumbnail">
+                            <div class="img_container">
+                                <a href="javascript:;">
+                                    <img src="img/mv4.jpg" th:src="@{/static/img/mv4.jpg}" alt="...">
+                                </a>
+                            </div>
+                            <div class="caption">
+                                <h3>name</h3>
+                                <p>播放量</p>
+                                <p>
+                                    <a href="#" class="btn btn-success" role="button">歌手专区</a>
+                                    <a href="javascript:;">
+                                        <i class="iconfont icon-like"></i>
+                                    </a>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="thumbnail">
+                            <div class="img_container">
+                                <a href="javascript:;">
+                                    <img src="img/mv2.jpg" th:src="@{/static/img/mv2.jpg}" alt="...">
+                                </a>
+                            </div>
+                            <div class="caption">
+                                <h3>name</h3>
+                                <p>播放量</p>
+                                <p>
+                                    <a href="#" class="btn btn-success" role="button">歌手专区</a>
+                                    <a href="javascript:;">
+                                        <i class="iconfont icon-like"></i>
+                                    </a>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="thumbnail">
+                            <div class="img_container">
+                                <a href="javascript:;">
+                                    <img src="img/mv5.jpg" th:src="@{/static/img/mv5.jpg}" alt="...">
+                                </a>
+                            </div>
+                            <div class="caption">
+                                <h3>name</h3>
+                                <p>播放量</p>
+                                <p>
+                                    <a href="#" class="btn btn-success" role="button">歌手专区</a>
+                                    <a href="javascript:;">
+                                        <i class="iconfont icon-like"></i>
+                                    </a>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="thumbnail">
+                            <div class="img_container">
+                                <a href="javascript:;">
+                                    <img src="img/mv2.jpg" th:src="@{/static/img/mv2.jpg}" alt="...">
+                                </a>
+                            </div>
+                            <div class="caption">
+                                <h3>name</h3>
+                                <p>播放量</p>
+                                <p>
+                                    <a href="#" class="btn btn-success" role="button">歌手专区</a>
+                                    <a href="javascript:;">
+                                        <i class="iconfont icon-like"></i>
+                                    </a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="mv_container">
+                        <div class="thumbnail">
+                            <div class="img_container">
+                                <a href="javascript:;">
+                                    <img src="img/mv1.jpg" th:src="@{/static/img/mv1.jpg}" alt="...">
+                                </a>
+                            </div>
+                            <div class="caption">
+                                <h3>name</h3>
+                                <p>播放量</p>
+                                <p>
+                                    <a href="#" class="btn btn-success" role="button">歌手专区</a>
+                                    <a href="javascript:;">
+                                        <i class="iconfont icon-like"></i>
+                                    </a>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="thumbnail">
+                            <div class="img_container">
+                                <a href="javascript:;">
+                                    <img src="img/mv2.jpg" th:src="@{/static/img/mv2.jpg}" alt="...">
+                                </a>
+                            </div>
+                            <div class="caption">
+                                <h3>name</h3>
+                                <p>播放量</p>
+                                <p>
+                                    <a href="#" class="btn btn-success" role="button">歌手专区</a>
+                                    <a href="javascript:;">
+                                        <i class="iconfont icon-like"></i>
+                                    </a>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="thumbnail">
+                            <div class="img_container">
+                                <a href="javascript:;">
+                                    <img src="img/mv3.jpg" th:src="@{/static/img/mv3.jpg}" alt="...">
+                                </a>
+                            </div>
+                            <div class="caption">
+                                <h3>name</h3>
+                                <p>播放量</p>
+                                <p>
+                                    <a href="#" class="btn btn-success" role="button">歌手专区</a>
+                                    <a href="javascript:;">
+                                        <i class="iconfont icon-like"></i>
+                                    </a>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="thumbnail">
+                            <div class="img_container">
+                                <a href="javascript:;">
+                                    <img src="img/mv4.jpg" th:src="@{/static/img/mv4.jpg}" alt="...">
+                                </a>
+                            </div>
+                            <div class="caption">
+                                <h3>name</h3>
+                                <p>播放量</p>
+                                <p>
+                                    <a href="#" class="btn btn-success" role="button">歌手专区</a>
+                                    <a href="javascript:;">
+                                        <i class="iconfont icon-like"></i>
+                                    </a>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="thumbnail">
+                            <div class="img_container">
+                                <a href="javascript:;">
+                                    <img src="img/mv5.jpg" th:src="@{/static/img/mv5.jpg}" alt="...">
+                                </a>
+                            </div>
+                            <div class="caption">
+                                <h3>name</h3>
+                                <p>播放量</p>
+                                <p>
+                                    <a href="#" class="btn btn-success" role="button">歌手专区</a>
+                                    <a href="javascript:;">
+                                        <i class="iconfont icon-like"></i>
+                                    </a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+             
+        </div>
+        <a class="arrow arrow-left" href="">
+            <i class="iconfont icon-icon-bold-arrow-left1"></i>
+        </a>
+        <a class="arrow arrow-right" href="">
+            <i class="iconfont icon-icon-bold-arrow-left"></i>
+        </a>
+    </div>
+</div>
+
+
 <!--排行榜-->
-<div class="container-fluid color_1 LB">
+<div class="container-fluid color_2 LB">
     <div class="row inner Ranking">
         <div class="text-center">
             <h2>排行榜</h2>
@@ -338,7 +1429,8 @@
     </div>
     <div class="inner statement row">
         <div class="text-center">
-            <small class="small"><a href="javascript:;">Copyright © 2012 - 2019 未来软件工作室</a></small><br>
+            <small class="small"><a href="javascript:;">Copyright © 2012 - 2019 未来软件工作室</a></small>
+            <br>
             <small class="small">未来软件工作室 版权所有</small>
         </div>
     </div>
@@ -346,6 +1438,7 @@
 
 </body>
 <script src="js/jquery.js" th:src="@{/static/js/jquery.js}"></script>
+<script src="js/bootstrap.min.js" th:src="@{/static/js/bootstrap.min.js}"></script>
 <script src="js/index.js" th:src="@{/static/js/index.js}"></script>
 <script>
 
