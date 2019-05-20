@@ -7,12 +7,10 @@ import mapper.UserMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
+import util.JudgeIsOverdueUtil;
 
 import javax.annotation.Resource;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * 对MV的操作的Service
@@ -28,60 +26,57 @@ public class ExhibitionService {
     ClassificationMapper classificationMapper;
     @Resource(name = "UserMapper")
     UserMapper userMapper;
+
     /**
-     *
-     * @param classification 按照指定规则查找指定歌曲
-     *                封装信息：分类
-     * @return List<Music>  返回查找到的歌曲
+     * 查找7天内播放量最高的歌曲
+     * 按播放量排列
+     * @return
      */
-    public  Map<Music,User> selectListMusicByClassification(String classification){
-        Map<Music,User> musicSingerMap = new HashMap<>();
-//        classificationMapper.selectListClassification();
-        //首先从分类表里获得对应字段的分类id
-        //根据其中的音乐id获取具体信息
-        //联表查询
-        //classification
-        return musicSingerMap;
-    }
     public Map<Music,User> selectListMusicByNewSong(){
         Map<Music,User> musicSingerMap = new HashMap<>();
+        Music music = new Music();
+        List<Music> musicList = musicMapper.selectListMusic(music);
+        Date musicDate;
+        User user = new User();
+        for(int i=0;i<musicList.size();i++){
+            music = musicList.get(i);
+            musicDate = music.getDate();
+            if( JudgeIsOverdueUtil.reduceDay(JudgeIsOverdueUtil.toDateSting(musicDate))>0){
+                musicList.remove(i);
+                i=i-1;
+            }
+        }
+        for(int i=0;i<musicList.size()-2;i++){
+            music = musicList.get(i);
+            user.setId(music.getSingerId());
+            musicSingerMap.put(music,userMapper.selectUser(user).get(0));
+            System.out.println(music.toString());
+            System.out.println(musicList.size());
+        }
+        //获取符合条件得分类对象
+        System.out.println("service");
         return musicSingerMap;
     }
-
     /**
      *
      * @param type 根据音乐的流派分类查找信息
      * @return  Map<Music,User>
      */
     public Map<Music,User> selectListMusicByMusicType(String type){
-        List<Music> musicList = new ArrayList<>();
         Classification classification = new Classification();
         classification.setType(type);
-        //获取符合条件得分类对象
-        List<Classification> classificationList = classificationMapper.selectListClassification(classification);
-        List<Integer> classificationIds = new ArrayList<>();
-        Map<Music,User> musicSingerMap = new HashMap<>();
-        User user = new User();
-        for(Classification clf:classificationList){
-            //List获取对应得分类id
-            classificationIds.add(clf.getId());
-        }
-        musicList = musicMapper.listClassificationIdSelectListMusic(classificationIds);
-        for(Music music:musicList){
-            user.setId(music.getSingerId());
-            musicSingerMap.put(music,userMapper.selectUser(user).get(0));
-        }
-        return musicSingerMap;
+        return this.selectListMusicByClassification(classification);
     }
 
     /**
      * 地区榜
-     * @param type
+     * @param region
      * @return Map<Music,User> 音乐和对应的歌手集合
      */
-    public Map<Music,User> selectListMusicByRegion(String type){
-        Map<Music,User> musicSingerMap = new HashMap<>();
-        return musicSingerMap;
+    public Map<Music,User> selectListMusicByRegion(String region){
+        Classification classification = new Classification();
+        classification.setRegion(region);
+        return this.selectListMusicByClassification(classification);
     }
     /**
      * @param videoName 按照指定规则查找指定MV
@@ -169,4 +164,30 @@ public class ExhibitionService {
     public int deleteCommentByCommentId(String commentId) {
         return 0;
     }
+
+    /**
+     * 提取的公共代码
+     * 因为用静态变量会报错，没有写道公共类里
+     * @param classification 按照指定规则查找指定歌曲
+     *                封装信息：分类
+     * @return  Map<Music,User>  返回查找到的歌曲
+     */
+    public  Map<Music,User> selectListMusicByClassification(Classification classification){
+        //获取符合条件得分类对象
+        List<Integer> classificationIds = new ArrayList<>();
+        Map<Music, User> musicSingerMap = new HashMap<>();
+        User user = new User();
+        List<Classification> classificationList = classificationMapper.selectListClassification(classification);
+        for (Classification clf : classificationList) {
+            //List获取对应得分类id
+            classificationIds.add(clf.getId());
+        }
+        List<Music> musicList = musicMapper.listClassificationIdSelectListMusic(classificationIds);
+        for (Music music : musicList) {
+            user.setId(music.getSingerId());
+            musicSingerMap.put(music, userMapper.selectUser(user).get(0));
+        }
+        return musicSingerMap;
+    }
+
 }

@@ -37,42 +37,48 @@ public class Search {
      * ajax
      * @retutn String[] 返回搜索历史字符串
      */
-    @RequestMapping(value = "/searchRecord")
+    @RequestMapping(value = "/searchMyRecord")
     @ResponseBody
-    private String[] searchRecord(HttpServletRequest request, HttpServletResponse response) {
+    private String[] searchMyRecord(HttpServletRequest request) {
         Cookie[] cookies = request.getCookies();
-        String record = "";
         Cookie cookie = CookieUtil.obtainCookie(cookies,"searchRecordCookie");
-        record = cookie.getValue();
-        String[] records = record.split("#");
+        String searchRecord = cookie.getValue();
+        String[] records = searchRecord.split("#");
         return records;
     }
 
     /**
      * 点击搜索框且在输入关键字之前执行
+     * 如果存在历史记录，则修改相应的值
+     * 不存在则增加一个"searchRecordCookie"名字的cookie
      * 获取本地cookie
      * ajax
      */
     @RequestMapping(value = "/addSearchRecord")
     @ResponseBody
-    private void addSearchRecord(HttpServletRequest request, HttpServletResponse response) {
+    private String addSearchRecord(HttpServletRequest request, HttpServletResponse response) {
         Cookie[] cookies = request.getCookies();
-        if (cookies != null && cookies.length > 0) {
-            for (int i = 0; i < cookies.length; i++) {
-                Cookie cookie = cookies[i];
-                if ("searchRecordCookie".equals(cookie.getName())) {
-                    String searchRecord = cookie.getName();
-                    searchRecord = request.getParameter("keyWord") + "#"+searchRecord;
-                    //修改的话直接覆盖
+        String searchRecord = request.getParameter("keyWord");
+        String cookieName = "searchRecordCookie";
+        if(CookieUtil.CookiegetCookieByName(cookies,cookieName)!=null){
+                Cookie cookie = CookieUtil.CookiegetCookieByName(cookies,"searchRecordCookie");
+                searchRecord = searchRecord + "#" + cookie.getValue();
+                //修改的话直接覆盖
+                Cookie newCookie = new Cookie("searchRecordCookie", searchRecord);
+                newCookie.setMaxAge(60 * 60 * 24 * 7);
+                newCookie.setComment("/*");
+                response.addCookie(newCookie);
+                logger.info("搜索记录已添加" + searchRecord);
+          } else {
                     Cookie newCookie = new Cookie("searchRecordCookie", searchRecord);
                     newCookie.setMaxAge(60 * 60 * 24 * 7);
                     newCookie.setComment("/*");
                     response.addCookie(newCookie);
-                    logger.debug("搜索记录已添加" + searchRecord);
-                }
+             logger.info("搜索记录已添加" + searchRecord);
             }
-        }
+        return searchRecord ;
     }
+
 
     /**
      * 点击搜索框、搜索记录的删除执行
@@ -183,4 +189,19 @@ public class Search {
     /**
      * 点击ajax推荐的结果，直接跳到歌曲的详细信息
      */
+
+    @RequestMapping(value = "/testCookie")
+    @ResponseBody
+    public String[] testCookie(HttpServletRequest request) {
+        String keyWord = request.getParameter("keyWord");
+        Cookie[] cookies = request.getCookies();
+        String[] str = new String[cookies.length*2];
+        int i=0;
+        for(Cookie cookie:cookies){
+            str[i] = cookie.getValue();
+            str[i+1] = cookie.getName();
+            i=i+2;
+        }
+        return str;
+    }
 }

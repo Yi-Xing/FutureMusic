@@ -78,7 +78,7 @@
     <import resource="spring/spring-jjy.xml"/>
 
 
-    <!--配置前端控制器-->
+<!--    &lt;!&ndash;配置前端控制器&ndash;&gt;
     <bean id="templateResolver"
           class="org.thymeleaf.spring5.templateresolver.SpringResourceTemplateResolver">
         <property name="prefix" value="/WEB-INF/templates/"/>
@@ -96,5 +96,5 @@
     <bean id="viewResolver" class="org.thymeleaf.spring5.view.ThymeleafViewResolver">
         <property name="templateEngine" ref="templateEngine"/>
         <property name="characterEncoding" value="UTF-8"/>
-    </bean>
+    </bean>-->
 </beans>

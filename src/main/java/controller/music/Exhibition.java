@@ -40,15 +40,18 @@ public class Exhibition {
     }
     /**
      *      功能：首页的新歌排行榜
+     *      根据七天内上传的新歌曲的播放量算
      *      只显示3条数据
      * @return List<Music> 返回符合条件的歌曲集合
      */
     @RequestMapping(value = "/rankingListByNewSong")
     @ResponseBody
     public Map<Music,User> rankingListByNewSong(){
-        Map<Music,User> musicList = exhibitionService.selectListMusicByNewSong();
-        return musicList;
+        Map<Music,User> musicSingeMap = exhibitionService.selectListMusicByNewSong();
+        System.out.println("controller");
+        return musicSingeMap;
     }
+
     /**
      *      功能：首页的地区排行榜
      *      只显示3条数据

@@ -9,6 +9,8 @@ import service.music.TestService;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -17,18 +19,15 @@ import java.util.List;
  */
 @Controller
 public class Test {
-    @Resource(name = "TestService")
-    private TestService testService;
-    /**
-     * @param map 展示指定的歌曲（巅峰榜）
-     *              分类：新歌、电音、华语、欧美、日韩
-     *                只显示3条数据
-     * @return List<Music> 返回符合条件的歌曲集合
-     * */
-    @RequestMapping(value = "/exhibitionTest")
-    @ResponseBody
-    public String exhibitionTest(ModelMap map){
-        map.put("testText","测试成功");
-        return "test";
+    public static void main(String[] args)throws Exception {
+        Date date = new Date();
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String newdate = simpleDateFormat.format(date);
+        System.out.println(newdate);
     }
+
 }
+/**
+ *      5.20
+ *      1.遇到了bug遍历时只能遍历两条数据
+ */

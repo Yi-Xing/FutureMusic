@@ -16,14 +16,20 @@ public class JudgeIsOverdueUtil {
      * 返回false则是
      */
     public static boolean judgeIsOverdue(String date) {
-        boolean result = false;
-        //设置日期格式
-        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        // new Date()为获取当前系统时间
-        if (df.format(new Date()).compareTo(date)>= 0) {
-            result = true;
-        }
-        return result;
+        try{
+            boolean result = false;
+            //设置日期格式
+            SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            // new Date()为获取当前系统时间
+            if (df.format(new Date()).compareTo(date)>= 0) {
+                result = true;
+            }
+            return result;
+
+            }catch (Exception e){
+                e.printStackTrace();
+                return false;
+            }
     }
 
     /**
@@ -32,13 +38,18 @@ public class JudgeIsOverdueUtil {
      * @return String 返回多的时间的为秒数
      *
      */
-    public static long reduceSecond(String date)throws Exception{
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        long time = simpleDateFormat.parse(date).getTime();
-        String date1 = simpleDateFormat.format(new Date());
-        long time1 = simpleDateFormat.parse(date1).getTime();
-        long reduceSecond = (time-time1)/1000;
-        return reduceSecond;
+    public static long reduceSecond(String date){
+        try{
+            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            long time = simpleDateFormat.parse(date).getTime();
+            String date1 = simpleDateFormat.format(new Date());
+            long time1 = simpleDateFormat.parse(date1).getTime();
+            long reduceSecond = (time-time1)/1000;
+            return reduceSecond;
+        }catch (Exception e){
+            e.printStackTrace();
+            return 0;
+        }
     }
 
     /**
@@ -48,7 +59,7 @@ public class JudgeIsOverdueUtil {
      *                  传入的时间-系统时间
      * @throws Exception
      */
-    public static long reduceDay(String date)throws Exception{
+    public static long reduceDay(String date){
 //        long time = reduceSecond(date);
 //        long days = time/(60*60*24);
         return reduceSecond(date)/(60*60*24);
@@ -60,12 +71,17 @@ public class JudgeIsOverdueUtil {
      *                  传入的时间-系统时间
      * @throws Exception
      */
-    public static String reduceHours(String date)throws Exception{
+    public static String reduceHours(String date){
         long time = reduceSecond(date);
         int second = (int)time%60;
         int minute = (int)(time/60)%60;
         int hours = (int)(time/3600)%60;
         String reduce = hours+":"+minute+":"+second;
         return reduce;
+    }
+    public static String toDateSting(Date theDate){
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String date  = simpleDateFormat.format(theDate);
+        return date;
     }
 }
