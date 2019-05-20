@@ -15,23 +15,3 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-.icon-hengxian:before {
-  content: "\e637";
-}
-
-.icon-icon-bold-arrow-left:before {
-  content: "\e658";
-}
-
-.icon-startx:before {
-  content: "\e620";
-}
-
-.icon-icon-bold-arrow-left1:before {
-  content: "\e600";
-}
-
-.icon-shengbo:before {
-  content: "\e61b";
-}
-
