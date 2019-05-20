@@ -12,7 +12,7 @@ import java.io.IOException;
  * 以下代码只是为了方便商户测试而提供的样例代码，商户可以根据自己网站的需要，按照技术文档编写,并非一定要使用该代码。
  * 该代码仅供学习和研究支付宝接口使用，只是提供一个参考。
  */
-public class AlipayConfig {
+public class sAlipayConfig {
 
 //↓↓↓↓↓↓↓↓↓↓请在这里配置您的基本信息↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
 
