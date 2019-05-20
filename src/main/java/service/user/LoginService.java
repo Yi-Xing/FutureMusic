@@ -17,7 +17,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 /**
- * 登录账号的业务逻辑（完）
+ * 登录账号的业务逻辑
  *
  * @author 5月17日 张易兴创建
  */
