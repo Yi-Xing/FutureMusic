@@ -1,7 +1,6 @@
 package controller.music;
 
-import entity.Music;
-import entity.User;
+import entity.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -11,6 +10,8 @@ import service.music.ExhibitionService;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -48,7 +49,6 @@ public class Exhibition {
     @ResponseBody
     public Map<Music,User> rankingListByNewSong(){
         Map<Music,User> musicSingeMap = exhibitionService.selectListMusicByNewSong();
-        System.out.println("controller");
         return musicSingeMap;
     }
 
@@ -63,5 +63,28 @@ public class Exhibition {
         String region = request.getParameter("classification");
         Map<Music,User> musicList = exhibitionService.selectListMusicByRegion(region);
         return musicList;
+    }
+    /**
+     *      功能：首页的地区排行榜
+     *      只显示3条数据
+     * @return List<Music> 返回符合条件的歌曲集合
+     */
+    @RequestMapping(value = "/rankingListByLanguage")
+    @ResponseBody
+    public Map<Music,User> rankingListByLanguage(HttpServletRequest request){
+        String region = request.getParameter("classification");
+        Map<Music,User> musicList = exhibitionService.selectListMusicByLanguage(region);
+        return musicList;
+    }
+
+    /**
+     * 首页推荐专辑的显示
+     * @return List<SongList> 返回专辑的集合
+     */
+    @RequestMapping(value = "/activity")
+    @ResponseBody
+    public List<Activity> activity(){
+        List<Activity> activityList = exhibitionService.selectActivity();
+        return activityList;
     }
 }

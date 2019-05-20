@@ -1,0 +1,135 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+a{
+    color: black;
+}
+a:hover{
+    color: black;
+    text-decoration: none;
+}
+ul li{
+    list-style: none;
+}
+.inner{
+     max-width: 1200px;
+     margin: 0 auto;
+}
+.color_1{
+    background-color: #FDFDFD;
+    margin: 50px 0;
+}
+.color_2{
+    background-color: #F6F6F6;
+    margin: 50px 0;
+}
+
+/*MV*/
+.mv_container{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+.mv_container .thumbnail{
+    margin: 0 8px;
+}
+.mv_container .thumbnail i{
+    font-size: 30px;
+    color: #999999;
+}
+.mv_container .thumbnail .img_container{
+    overflow: hidden;
+}
+.mv_container .thumbnail .img_container img{
+    transition: 0.2s;
+}
+.mv_container .thumbnail .img_container img:hover{
+    transform: scale(1.2,1.2);
+    opacity: 0.6;
+    transition: 0.2s;
+}
+
+/*轮播图*/
+.Recommend .arrow,.music_video .arrow{
+    width: 100px;
+    height: 100px;
+    display: none;
+    background-color: rgba(0, 0, 0, .1);
+}
+.Recommend .arrow:hover{
+    background-color: rgba(0, 0, 0, .2);
+}
+.music_video .arrow:hover{
+    background-color: rgba(0, 0, 0, .2);
+}
+.Recommend .arrow i , .music_video .arrow i{
+    line-height: 100px;
+    font-size: 50px;
+}
+
+/*排行榜*/
+.Ranking h2,.Recommend h2,.music_video h2{
+    letter-spacing: 15px;
+    margin-bottom: 50px;
+    font-weight: 900;
+}
+.Ranking .Ranking_container{
+    display: flex;
+    justify-content: space-between;
+}
+@media screen and (max-width: 650px){
+    .Ranking .Ranking_container{
+        flex-direction: column;
+    }
+    .Ranking_container .container{
+        margin: 20px 0;
+    }
+}
+.Ranking_container .container{
+    margin: 0 20px;
+    color: #fff;
+}
+.Ranking_container h4{
+    margin-top: 50px;
+    font-weight: 300;
+}
+.Ranking_container a{
+    color: #fff;
+}
+.Ranking_container ol{
+    font-size: 15px;
+    margin: 20px 30px 100px 30px;
+}
+.Ranking_container ol li{
+    margin: 20px 0;
+    text-align: left;
+}
+.Ranking_container i{
+    font-size: 30px;
+}
+.icon-shengbo{
+    display: none;
+}
+
+/*尾部*/
+.last_color{
+    color: #999999;
+    background-color: #333;
+}
+.last_color h3{
+    margin: 30px auto;
+}
+.last_color ul li{
+    margin: 10px auto;
+}
+.last_color a{
+    color: #999999;
+}
+.last_color a:hover{
+    text-decoration: underline;
+}
+.statement{
+    text-align: center;
+    margin: 30px auto;
+}

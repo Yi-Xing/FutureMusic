@@ -18,6 +18,9 @@
             <if test='userId!=null and userId!=""'>
                 and comment_user_id=#{userId}
             </if>
+             <if test='reply!=0'>
+                and comment_reply=#{reply}
+            </if>
         </where>
     </select>
     <insert id="insertComment" parameterType="Comment">

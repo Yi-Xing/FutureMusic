@@ -1,8 +1,15 @@
 package service.music;
 
 import entity.*;
+import mapper.ActivityMapper;
+import mapper.ClassificationMapper;
+import mapper.MusicMapper;
+import mapper.UserMapper;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
 import java.util.ArrayList;
 import java.util.List;
 /**
@@ -12,12 +19,48 @@ import java.util.List;
  * */
 @Service(value = "SearchService")
 public class SearchService {
+        private static final Logger logger = LoggerFactory.getLogger(SearchService.class);
+        @Resource(name="MusicMapper")
+        MusicMapper musicMapper;
+        @Resource(name="ClassificationMapper")
+        ClassificationMapper classificationMapper;
+        @Resource(name = "UserMapper")
+        UserMapper userMapper;
+        @Resource(name = "ActivityMapper")
+        ActivityMapper activityMapper;
+//    /**
+//     * @return List<Music>  返回查找到的歌曲
+//     *                       设置显示条数，也可用于智搜索框能提示，只显示名字
+//     */
+//    public List<Music> selectListMusicRecommend(){
+//        return null;
+//    }
+//    /**
+//     *
+//     * @param singerName 按照指定规则查找指定歌曲
+//     *                封装信息：歌手名字
+//     * @return List<Music>  返回查找到的歌曲
+//     */
+//    public List<Music> selectListMusicBySingerName(String singerName){
+//        return null;
+//    }
+
     /**
-     * @return List<Music>  返回查找到的歌曲
-     *                       设置显示条数，也可用于智搜索框能提示，只显示名字
+     * 搜索框中鞥提示音乐\专辑\歌单\mv
+     * @param keyWord
+     * @return List[] 返回搜索到的集合
      */
-    public List<Music> selectListMusicRecommend(){
-        return null;
+    public List[] searchListAll(String keyWord){
+        List<SongList> songLists = selectListSongListByName(keyWord);
+        List<Music> musicList = selectListMusicByName(keyWord);
+        List<User> singerList = selectSingerByName(keyWord);
+        List<MusicVideo> musicVideos = selectListMusicVideoByVideoName(keyWord);
+        List[] lists = new List[4];
+        lists[0] = songLists;
+        lists[1] = musicList;
+        lists[2] = singerList;
+        lists[3] = musicVideos;
+        return lists;
     }
     /**
      * @return List<SongList>  返回查找到的歌曲
@@ -27,22 +70,23 @@ public class SearchService {
         return null;
     }
     /**
+     * @return List<MusicVideo>  返回查找到的MV
+     *                       设置显示条数，也可用于智搜索框能提示，只显示名字
+     */
+    public List<MusicVideo> selectListMusicVideoByVideoName(String keyWord){
+        return null;
+    }
+    /**
      * @param keyWord 按照指定规则查找指定歌曲
      *                封装信息：歌曲名字
      * @return List<String>  设置显示条数，用于智搜索框能提示，只显示名字
      */
     public List<Music> selectListMusicByName(String keyWord){
-        return null;
+        Music music =new Music();
+        music.setName(keyWord);
+        return  musicMapper.selectListMusic(music);
     }
-    /**
-     *
-     * @param singerName 按照指定规则查找指定歌曲
-     *                封装信息：歌手名字
-     * @return List<Music>  返回查找到的歌曲
-     */
-    public List<Music> selectListMusicBySingerName(String singerName){
-        return null;
-    }
+
     /**
      *
      * @param singerName 按照指定规则查找指定歌曲
@@ -52,7 +96,6 @@ public class SearchService {
     public List<User> selectSingerByName(String singerName){
         return null;
     }
-
     /**
      * @param userId 查看用户歌单
      *                封装信息：用户id
@@ -157,7 +200,5 @@ public class SearchService {
     public int deleteCommentByCommentId(String commentId){
         return 0;
     }
-    public List<MusicVideo> selectListMusicVideoByVideoName(String keyWord){
-        return null;
-    }
+
 }

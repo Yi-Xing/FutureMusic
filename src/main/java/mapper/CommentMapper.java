@@ -11,6 +11,7 @@ import java.util.List;
  * @author 5月9日 张易兴创建
  * 5月15日 张易兴 修改selectListComment方法，添加按id查找评论
  *                添加updateComment方法，用于更新评论的点赞次数
+ *                修改selectListComment方法，按reply查找指定评论的子评论
  */
 @Repository(value = "CommentMapper")
 public interface CommentMapper {
@@ -23,6 +24,7 @@ public interface CommentMapper {
      *                musicId和type查找指定音乐或MV或专辑的所有评论
      *                userId查找该用户的所有评论
      *                userId和type查找指定用户的音乐或MV或专辑的所有评论
+     *                reply查找指定评论的子评论
      * @return List<Comment> 返回查找到的评论
      */
     public List<Comment> selectListComment(Comment comment);
