@@ -22,7 +22,7 @@
 
 <!--    &lt;!&ndash;配置切面&ndash;&gt;-->
 <!--    <aop:config>-->
-<!--        <aop:pointcut id="MusicSection" expression="execution(* service.user.consumer.AboutMusicService.commentFabulous(..))"/>-->
+<!--        <aop:pointcut id="MusicSection" expression="execution(* service.User.consumer.AboutMusicService.commentFabulous(..))"/>-->
 <!--        <aop:advisor advice-ref="transactionInterceptor" pointcut-ref="MusicSection"/>-->
 <!--    </aop:config>-->
 
