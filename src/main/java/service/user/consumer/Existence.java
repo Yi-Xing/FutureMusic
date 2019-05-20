@@ -1,13 +1,7 @@
 package service.user.consumer;
 
-import entity.Focus;
-import entity.MusicCollect;
-import entity.Play;
-import entity.SongListCollect;
-import mapper.FocusMapper;
-import mapper.MusicCollectMapper;
-import mapper.PlayMapper;
-import mapper.SongListCollectMapper;
+import entity.*;
+import mapper.*;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -33,7 +27,10 @@ public class Existence {
     PlayMapper playMapper;
     @Resource(name = "SongListCollectMapper")
     SongListCollectMapper songListCollectMapper;
-
+    @Resource(name = "SongListMapper")
+    SongListMapper songListMapper;
+    @Resource(name = "CommentMapper")
+    CommentMapper commentMapper;
     /**
      * 判断用户是否已经关注或访问过该用户，如果有返回信息，没有返回null
      */
@@ -96,5 +93,31 @@ public class Existence {
             return list.get(0);
         }
         return null;
+    }
+
+    /**
+     * 判断指定指定歌单或专辑是否存在,如果存在返回信息，不存在返回null
+     */
+    public SongList isSongListExistence(int id) {
+        SongList songList = new SongList();
+        songList.setId(id);
+        List<SongList> list = songListMapper.selectListSongList(songList);
+        if (list.size() > 0) {
+            return list.get(0);
+        }
+        return null;
+    }
+    /**
+     * 判断指定是否有子评论，有返回子评论的id，没有返回0
+     */
+    public int isComment(int id) {
+        Comment comment=new Comment();
+        comment.setReply(id);
+        // 查找指定评论的子评论
+        List<Comment> list=commentMapper.selectListComment(comment);
+        if(list.size()!=0){
+            return list.get(0).getId();
+        }
+        return 0;
     }
 }

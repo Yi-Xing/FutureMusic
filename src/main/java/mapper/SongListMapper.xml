@@ -6,6 +6,9 @@
     <select id="selectListSongList" parameterType="SongList" resultMap="songList">
         select * from tb_song_list
          <where>
+             <if test='id!=0'>
+                 song_list_id=#{id}
+             </if>
              <if test='userId!=0'>
                  song_list_user_id=#{userId}
              </if>

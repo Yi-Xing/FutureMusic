@@ -11,6 +11,7 @@ import java.util.List;
  * 对歌单或专辑表操作的Mapper
  *
  * @author 5月9日 张易兴创建
+ *         5月19日 张易兴修改selectListSongList，添加id查找指定歌单或专辑
  */
 @Repository(value = "SongListMapper")
 public interface SongListMapper {
@@ -20,6 +21,7 @@ public interface SongListMapper {
      *
      * @param songList 按照指定规则查找指定歌单或专辑
      *                 封装信息：
+     *                 id查找指定歌单或专辑
      *                 name按照名字模糊查歌单或专辑
      *                 activity查找参加指定活动的专辑
      *                 userId和type查找指定用户的所有歌单或专辑
