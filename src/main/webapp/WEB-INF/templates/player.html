@@ -5,10 +5,10 @@
     <title>music</title>
     <link rel="stylesheet" href="css/bootstrap.css" th:href="@{/static/css/bootstrap.css}">
     <link rel="stylesheet" href="font/iconfont.css" th:href="@{/static/font/iconfont.css}">
-    <link rel="stylesheet" href="//at.alicdn.com/t/font_1195775_x0jasqh5bl.css">
+    <link rel="stylesheet" href="//at.alicdn.com/t/font_1195775_svsqklyk79a.css">
     <link rel="stylesheet" href="css/RotationChart.css" th:href="@{/static/css/RotationChart.css}">
-    <link rel="stylesheet" href="css/index.css" th:href="@{/static/css/index.css}" >
-    <link rel="stylesheet" href="css/player.css" th:href="@{/static/css/player.css}" >
+    <link rel="stylesheet" href="css/index.css" th:href="@{/static/css/index.css}">
+    <link rel="stylesheet" href="css/player.css" th:href="@{/static/css/player.css}">
 </head>
 <body>
 
@@ -16,6 +16,7 @@
 
     <!--//左侧-->
     <div class="menu" id="menu">
+        <!--用户信息-->
         <div class="user">
             <div class="user_img">
                 <a href="javascript:;">
@@ -29,6 +30,431 @@
                 </a>
             </div>
         </div>
+        <!--搜索框-->
+        <div class="search">
+            <form action="http://localhost:8080/FutureMusic_war_exploded/" method="get">
+                <div class="form-group">
+                    <label class="sr-only" for="exampleInputAmount"></label>
+                    <div class="input-group">
+                        <div class="input-group-addon iconfont icon-search"></div>
+                        <input type="text" class="form-control" id="exampleInputAmount" placeholder="What do you like?">
+                        <div class="input-group-addon">
+                            <button type="submit">搜索</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <!--歌曲目录-->
+        <div class="Catalog">
+            <table class="table table-hover table-striped">
+                <thead>
+                <tr>
+                    <th>#</th>
+                    <th>歌名</th>
+                    <th>歌手</th>
+                </tr>
+                </thead>
+                <tbody>
+                    <tr class="music_list">
+                        <th scope="row">
+                            <span class="iconfont icon-music"></span>
+                        </th>
+                        <td>NAME</td>
+                        <td>name</td>
+                        <th class="dropdown">
+                            <span class="iconfont icon-like"></span>
+                            <span type="button" class="iconfont icon-more dropdown-toggle" data-toggle="dropdown"
+                                  aria-haspopup="true" aria-expanded="false"></span>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a href="#">
+                                        <span class="iconfont icon-laji"></span>
+                                        删除
+                                    </a>
+                                </li>
+                                <li role="separator" class="divider"></li>
+                                <li>
+                                    <a href="#">
+                                        <span class="iconfont icon-tianjia"></span>
+                                        添加到...
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <span class="iconfont icon-tianjia"></span>
+                                        添加到...
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <span class="iconfont icon-tianjia"></span>
+                                        添加到...
+                                    </a>
+                                </li>
+                            </ul>
+                        </th>
+                    </tr>
+                    <tr class="music_list">
+                        <th scope="row">
+                            <span class="iconfont icon-music"></span>
+                        </th>
+                        <td>NAME</td>
+                        <td>name</td>
+                        <th class="dropdown">
+                            <span class="iconfont icon-like"></span>
+                            <span type="button" class="iconfont icon-more dropdown-toggle" data-toggle="dropdown"
+                                  aria-haspopup="true" aria-expanded="false"></span>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a href="#">
+                                        <span class="iconfont icon-laji"></span>
+                                        删除
+                                    </a>
+                                </li>
+                                <li role="separator" class="divider"></li>
+                                <li>
+                                    <a href="#">
+                                        <span class="iconfont icon-tianjia"></span>
+                                        添加到...
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <span class="iconfont icon-tianjia"></span>
+                                        添加到...
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <span class="iconfont icon-tianjia"></span>
+                                        添加到...
+                                    </a>
+                                </li>
+                            </ul>
+                        </th>
+                    </tr>
+                    <tr class="music_list">
+                        <th scope="row">
+                            <span class="iconfont icon-music"></span>
+                        </th>
+                        <td>NAME</td>
+                        <td>name</td>
+                        <th class="dropdown">
+                            <span class="iconfont icon-like"></span>
+                            <span type="button" class="iconfont icon-more dropdown-toggle" data-toggle="dropdown"
+                                  aria-haspopup="true" aria-expanded="false"></span>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a href="#">
+                                        <span class="iconfont icon-laji"></span>
+                                        删除
+                                    </a>
+                                </li>
+                                <li role="separator" class="divider"></li>
+                                <li>
+                                    <a href="#">
+                                        <span class="iconfont icon-tianjia"></span>
+                                        添加到...
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <span class="iconfont icon-tianjia"></span>
+                                        添加到...
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <span class="iconfont icon-tianjia"></span>
+                                        添加到...
+                                    </a>
+                                </li>
+                            </ul>
+                        </th>
+                    </tr>
+                    <tr class="music_list">
+                        <th scope="row">
+                            <span class="iconfont icon-music"></span>
+                        </th>
+                        <td>NAME</td>
+                        <td>name</td>
+                        <th class="dropdown">
+                            <span class="iconfont icon-like"></span>
+                            <span type="button" class="iconfont icon-more dropdown-toggle" data-toggle="dropdown"
+                                  aria-haspopup="true" aria-expanded="false"></span>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a href="#">
+                                        <span class="iconfont icon-laji"></span>
+                                        删除
+                                    </a>
+                                </li>
+                                <li role="separator" class="divider"></li>
+                                <li>
+                                    <a href="#">
+                                        <span class="iconfont icon-tianjia"></span>
+                                        添加到...
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <span class="iconfont icon-tianjia"></span>
+                                        添加到...
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <span class="iconfont icon-tianjia"></span>
+                                        添加到...
+                                    </a>
+                                </li>
+                            </ul>
+                        </th>
+                    </tr>
+                    <tr class="music_list">
+                        <th scope="row">
+                            <span class="iconfont icon-music"></span>
+                        </th>
+                        <td>NAME</td>
+                        <td>name</td>
+                        <th class="dropdown">
+                            <span class="iconfont icon-like"></span>
+                            <span type="button" class="iconfont icon-more dropdown-toggle" data-toggle="dropdown"
+                                  aria-haspopup="true" aria-expanded="false"></span>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a href="#">
+                                        <span class="iconfont icon-laji"></span>
+                                        删除
+                                    </a>
+                                </li>
+                                <li role="separator" class="divider"></li>
+                                <li>
+                                    <a href="#">
+                                        <span class="iconfont icon-tianjia"></span>
+                                        添加到...
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <span class="iconfont icon-tianjia"></span>
+                                        添加到...
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <span class="iconfont icon-tianjia"></span>
+                                        添加到...
+                                    </a>
+                                </li>
+                            </ul>
+                        </th>
+                    </tr>
+                    <tr class="music_list">
+                        <th scope="row">
+                            <span class="iconfont icon-music"></span>
+                        </th>
+                        <td>NAME</td>
+                        <td>name</td>
+                        <th class="dropdown">
+                            <span class="iconfont icon-like"></span>
+                            <span type="button" class="iconfont icon-more dropdown-toggle" data-toggle="dropdown"
+                                  aria-haspopup="true" aria-expanded="false"></span>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a href="#">
+                                        <span class="iconfont icon-laji"></span>
+                                        删除
+                                    </a>
+                                </li>
+                                <li role="separator" class="divider"></li>
+                                <li>
+                                    <a href="#">
+                                        <span class="iconfont icon-tianjia"></span>
+                                        添加到...
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <span class="iconfont icon-tianjia"></span>
+                                        添加到...
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <span class="iconfont icon-tianjia"></span>
+                                        添加到...
+                                    </a>
+                                </li>
+                            </ul>
+                        </th>
+                    </tr>
+                    <tr class="music_list">
+                        <th scope="row">
+                            <span class="iconfont icon-music"></span>
+                        </th>
+                        <td>NAME</td>
+                        <td>name</td>
+                        <th class="dropdown">
+                            <span class="iconfont icon-like"></span>
+                            <span type="button" class="iconfont icon-more dropdown-toggle" data-toggle="dropdown"
+                                  aria-haspopup="true" aria-expanded="false"></span>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a href="#">
+                                        <span class="iconfont icon-laji"></span>
+                                        删除
+                                    </a>
+                                </li>
+                                <li role="separator" class="divider"></li>
+                                <li>
+                                    <a href="#">
+                                        <span class="iconfont icon-tianjia"></span>
+                                        添加到...
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <span class="iconfont icon-tianjia"></span>
+                                        添加到...
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <span class="iconfont icon-tianjia"></span>
+                                        添加到...
+                                    </a>
+                                </li>
+                            </ul>
+                        </th>
+                    </tr>
+                    <tr class="music_list">
+                        <th scope="row">
+                            <span class="iconfont icon-music"></span>
+                        </th>
+                        <td>NAME</td>
+                        <td>name</td>
+                        <th class="dropdown">
+                            <span class="iconfont icon-like"></span>
+                            <span type="button" class="iconfont icon-more dropdown-toggle" data-toggle="dropdown"
+                                  aria-haspopup="true" aria-expanded="false"></span>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a href="#">
+                                        <span class="iconfont icon-laji"></span>
+                                        删除
+                                    </a>
+                                </li>
+                                <li role="separator" class="divider"></li>
+                                <li>
+                                    <a href="#">
+                                        <span class="iconfont icon-tianjia"></span>
+                                        添加到...
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <span class="iconfont icon-tianjia"></span>
+                                        添加到...
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <span class="iconfont icon-tianjia"></span>
+                                        添加到...
+                                    </a>
+                                </li>
+                            </ul>
+                        </th>
+                    </tr>
+                    <tr class="music_list">
+                        <th scope="row">
+                            <span class="iconfont icon-music"></span>
+                        </th>
+                        <td>NAME</td>
+                        <td>name</td>
+                        <th class="dropdown">
+                            <span class="iconfont icon-like"></span>
+                            <span type="button" class="iconfont icon-more dropdown-toggle" data-toggle="dropdown"
+                                  aria-haspopup="true" aria-expanded="false"></span>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a href="#">
+                                        <span class="iconfont icon-laji"></span>
+                                        删除
+                                    </a>
+                                </li>
+                                <li role="separator" class="divider"></li>
+                                <li>
+                                    <a href="#">
+                                        <span class="iconfont icon-tianjia"></span>
+                                        添加到...
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <span class="iconfont icon-tianjia"></span>
+                                        添加到...
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <span class="iconfont icon-tianjia"></span>
+                                        添加到...
+                                    </a>
+                                </li>
+                            </ul>
+                        </th>
+                    </tr>
+                    <tr class="music_list">
+                        <th scope="row">
+                            <span class="iconfont icon-music"></span>
+                        </th>
+                        <td>NAME</td>
+                        <td>name</td>
+                        <th class="dropdown">
+                            <span class="iconfont icon-like"></span>
+                            <span type="button" class="iconfont icon-more dropdown-toggle" data-toggle="dropdown"
+                                  aria-haspopup="true" aria-expanded="false"></span>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a href="#">
+                                        <span class="iconfont icon-laji"></span>
+                                        删除
+                                    </a>
+                                </li>
+                                <li role="separator" class="divider"></li>
+                                <li>
+                                    <a href="#">
+                                        <span class="iconfont icon-tianjia"></span>
+                                        添加到...
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <span class="iconfont icon-tianjia"></span>
+                                        添加到...
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <span class="iconfont icon-tianjia"></span>
+                                        添加到...
+                                    </a>
+                                </li>
+                            </ul>
+                        </th>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <nav aria-label="...">
+            <ul class="pager">
+                <li class="previous"><a href="#"><span aria-hidden="true">&larr;</span> 上一页</a></li>
+                <li class="next"><a href="#">下一页 <span aria-hidden="true">&rarr;</span></a></li>
+            </ul>
+        </nav>
     </div>
 
     <!--//右侧-->
@@ -38,4 +464,7 @@
 </div>
 
 </body>
+<script src="js/jquery.js" th:src="@{/static/js/jquery.js}"></script>
+<script src="js/bootstrap.min.js" th:src="@{/static/js/bootstrap.min.js}"></script>
+<script src="js/player.js" th:src="@{/static/js/player.js}"></script>
 </html>
