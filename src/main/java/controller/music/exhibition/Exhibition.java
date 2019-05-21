@@ -1,4 +1,4 @@
-package controller.music;
+package controller.music.exhibition;
 
 import entity.*;
 import org.slf4j.Logger;
@@ -10,7 +10,6 @@ import service.music.ExhibitionService;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 

@@ -1,16 +1,15 @@
 package service.music;
 
 import entity.*;
-import mapper.ActivityMapper;
-import mapper.ClassificationMapper;
-import mapper.MusicMapper;
-import mapper.UserMapper;
+import mapper.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
+import util.CookieUtil;
 
 import javax.annotation.Resource;
-import java.util.ArrayList;
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 /**
  * 对搜索的操作的Service
@@ -22,12 +21,16 @@ public class SearchService {
         private static final Logger logger = LoggerFactory.getLogger(SearchService.class);
         @Resource(name="MusicMapper")
         MusicMapper musicMapper;
+        @Resource(name="MusicVideoMapper")
+        MusicVideoMapper musicVideoMapper;
         @Resource(name="ClassificationMapper")
         ClassificationMapper classificationMapper;
         @Resource(name = "UserMapper")
         UserMapper userMapper;
         @Resource(name = "ActivityMapper")
         ActivityMapper activityMapper;
+        @Resource(name = "SongListMapper")
+        SongListMapper songListMapper;
 //    /**
 //     * @return List<Music>  返回查找到的歌曲
 //     *                       设置显示条数，也可用于智搜索框能提示，只显示名字
@@ -44,9 +47,29 @@ public class SearchService {
 //    public List<Music> selectListMusicBySingerName(String singerName){
 //        return null;
 //    }
-
+    public String addSearchRecord(String keyWord, Cookie[] cookies, HttpServletResponse response){
+        String searchRecord = keyWord;
+        String cookieName = "searchRecordCookie";
+        if(CookieUtil.getCookieByName(cookies,cookieName)!=null){
+            Cookie cookie = CookieUtil.getCookieByName(cookies,"searchRecordCookie");
+            searchRecord = searchRecord + "#" + cookie.getValue();
+            //修改的话直接覆盖
+            Cookie newCookie = new Cookie("searchRecordCookie", searchRecord);
+            newCookie.setMaxAge(60 * 60 * 24 * 7);
+            newCookie.setComment("/*");
+            response.addCookie(newCookie);
+            logger.info("搜索记录已添加" + searchRecord);
+        } else {
+            Cookie newCookie = new Cookie("searchRecordCookie", searchRecord);
+            newCookie.setMaxAge(60 * 60 * 24 * 7);
+            newCookie.setComment("/*");
+            response.addCookie(newCookie);
+            logger.info("搜索记录已添加" + searchRecord);
+        }
+        return searchRecord;
+    }
     /**
-     * 搜索框中鞥提示音乐\专辑\歌单\mv
+     * 搜索框中鞥提示音乐、专辑、歌单、MV
      * @param keyWord
      * @return List[] 返回搜索到的集合
      */
@@ -67,14 +90,18 @@ public class SearchService {
      *                       设置显示条数，也可用于智搜索框能提示，只显示名字
      */
     public List<SongList> selectListSongListByName(String keyWord){
-        return null;
+        SongList songList =new SongList();
+        songList.setName(keyWord);
+        return songListMapper.selectListSongList(songList);
     }
     /**
      * @return List<MusicVideo>  返回查找到的MV
      *                       设置显示条数，也可用于智搜索框能提示，只显示名字
      */
     public List<MusicVideo> selectListMusicVideoByVideoName(String keyWord){
-        return null;
+        MusicVideo musicVideo = new MusicVideo();
+        musicVideo.setName(keyWord);
+        return musicVideoMapper.selectListMusicVideo(musicVideo);
     }
     /**
      * @param keyWord 按照指定规则查找指定歌曲
@@ -94,7 +121,10 @@ public class SearchService {
      * @return List<Music>  返回查找到的歌曲
      */
     public List<User> selectSingerByName(String singerName){
-        return null;
+        User user = new User();
+        user.setName(singerName);
+        user.setLevel(2);
+        return userMapper.selectUser(user);
     }
     /**
      * @param userId 查看用户歌单

@@ -23,6 +23,14 @@
             </if>
         </where>
     </select>
+    <select id="listIdSelectListSongList" parameterType="Integer" resultMap="songList">
+        select * from tb_song_list
+        <where>
+            <foreach collection="list" item="value" separator="," open="song_list_id in(" close=")">
+                #{value}
+            </foreach>
+        </where>
+    </select>
     <insert id="insertSongList" parameterType="SongList">
          insert into tb_song_list(song_list_user_id,song_list_name,song_list_picture,song_list_introduction,song_list_date,
          song_list_classification_id,song_list_type,song_list_activity)

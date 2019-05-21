@@ -1,4 +1,4 @@
-package controller.music;
+package controller.music.exhibition;
 
 import entity.*;
 import org.slf4j.Logger;
@@ -15,9 +15,7 @@ import java.util.List;
 
 /**
  * 歌曲的controller层
- *  1.搜索框智能提示歌曲、歌手、专辑、MV
- *  2.点击显示歌曲排行榜
- *      歌曲详细信息（包括歌词）
+ *      歌曲详细信息
  *      歌曲的评论
  * @author 5.12 蒋靓峣创建
  * */
