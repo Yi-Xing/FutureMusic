@@ -13,7 +13,7 @@ public class Main {
     @RequestMapping(value = "/main")
     public String searchListSongLista(){
         System.out.println(2);
-        return "index";
+        return "player";
     }
 
 }
