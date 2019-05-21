@@ -32,7 +32,13 @@
         </where>
     </select>
     <update id="updateFocus" parameterType="Focus">
-        update tb_focus set focus_date=#{date} where focus_user_id=#{id}
+        update tb_focus
+        <set>
+            <if test='date!=null and date!=""'>
+                focus_date=#{date}
+            </if>
+        </set>
+        where focus_user_id=#{id}
     </update>
     <insert id="insertFocus" parameterType="Focus">
         insert into tb_focus(focus_user_id,focus_user_focus_id,focus_user_type,focus_date)

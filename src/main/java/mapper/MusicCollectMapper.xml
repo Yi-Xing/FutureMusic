@@ -34,11 +34,36 @@
           values(#{userId},#{musicId},#{type},#{have},#{singerId},#{albumId},#{classificationId},#{date})
     </insert>
     <update id="updateMusicCollect" parameterType="MusicCollect">
-        update tb_music_collect set music_collect_user_id=#{userId},music_collect_music_id=#{musicId},music_collect_type=#{type},
-         music_collect_have=#{have},music_collect_singer_id=#{singerId},music_collect_album_id=#{albumId},
-         music_collect_classification_id=#{classificationId},music_collect_date=#{date} where music_collect_id=#{id}
+        update tb_music_collect
+        <set>
+            <if test='userId!=0'>
+                music_collect_user_id=#{userId}
+            </if>
+            <if test='musicId!=0'>
+                ,music_collect_music_id=#{musicId}
+            </if>
+            <if test='type!=0'>
+                ,music_collect_type=#{type}
+            </if>
+            <if test='have!=0'>
+                ,music_collect_have=#{have}
+            </if>
+            <if test='singerId!=0'>
+                ,music_collect_singer_id=#{singerId}
+            </if>
+            <if test='albumId!=0'>
+                ,music_collect_album_id=#{albumId}
+            </if>
+            <if test='classificationId!=0'>
+                ,music_collect_classification_id=#{classificationId}
+            </if>
+            <if test='date!=null and date!=""'>
+                ,music_collect_date=#{date}
+            </if>
+        </set>
+      where music_collect_id=#{id}
     </update>
-    <delete id="deleteMusicCollect" parameterType="Integer" >
+    <delete id="deleteMusicCollect" parameterType="Integer">
         delete from tb_music_collect where music_collect_id=#{value}
     </delete>
     <resultMap id="musicCollect" type="MusicCollect">

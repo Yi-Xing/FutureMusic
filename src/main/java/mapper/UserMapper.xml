@@ -19,7 +19,7 @@
                 and user_level=#{level}
             </if>
             <if test='report!=0'>
-                and user_report>=200
+                and user_report>=#{report}
             </if>
         </where>
     </select>
@@ -34,11 +34,55 @@
          #{level},#{balance},#{date},#{headPortrait},#{vipDate},#{secret},#{fabulous},#{report})
     </insert>
     <update id="updateUser" parameterType="User">
-         update tb_user set user_mailbox=#{mailbox},user_password=#{name},
-         user_name=#{name},user_gender=#{gender},user_age=#{age},user_birthday=#{birthday},
-         user_address=#{address},user_level=#{level},user_balance=#{balance},user_date=#{date},
-         user_head_portrait=#{headPortrait},user_vip_date=#{vipDate},
-         user_secret=#{secret},user_fabulous=#{fabulous},user_report=#{report}where user_id=#{id}
+        update tb_user
+        <set>
+            <if test='mailbox!=null and mailbox!=""'>
+                user_mailbox=#{mailbox}
+            </if>
+            <if test='password!=null and password!=""'>
+                ,user_password=#{password}
+            </if>
+            <if test='name!=null and name!=""'>
+                , user_name=#{name}
+            </if>
+            <if test='gender!=null and gender!=""'>
+                ,user_gender=#{gender}
+            </if>
+            <if test='age!=null and age!=""'>
+                ,user_age=#{age}
+            </if>
+            <if test='birthday!=null and birthday!=""'>
+                ,user_birthday=#{birthday}
+            </if>
+            <if test='address!=null and address!=""'>
+                ,user_address=#{address}
+            </if>
+            <if test='level!=0'>
+                ,user_level=#{level}
+            </if>
+            <if test='balance!=null and balance!=""'>
+                ,user_balance=#{balance}
+            </if>
+            <if test='date!=null and date!=""'>
+                ,user_date=#{date}
+            </if>
+            <if test='headPortrait!=null and headPortrait!=""'>
+                ,user_head_portrait=#{headPortrait}
+            </if>
+            <if test='vipDate!=null and vipDate!=""'>
+                ,user_vip_date=#{vipDate}
+            </if>
+            <if test='secret!=0'>
+                ,user_secret=#{secret}
+            </if>
+            <if test='fabulous!=null and fabulous!=""'>
+                ,user_fabulous=#{fabulous}
+            </if>
+            <if test='report!=0'>
+                ,user_report=#{report}
+            </if>
+        </set>
+        where user_id=#{id}
     </update>
 
 

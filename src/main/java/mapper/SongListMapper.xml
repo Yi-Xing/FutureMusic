@@ -5,23 +5,23 @@
 <mapper namespace="mapper.SongListMapper">
     <select id="selectListSongList" parameterType="SongList" resultMap="songList">
         select * from tb_song_list
-         <where>
-             <if test='id!=0'>
-                 song_list_id=#{id}
-             </if>
-             <if test='userId!=0'>
-                 song_list_user_id=#{userId}
-             </if>
-             <if test='name!=null and name!=""'>
-                 and song_list_name like "%"#{name}"%"
-             </if>
-             <if test='type!=0'>
-                 and song_list_type=#{type}
-             </if>
-             <if test='activity!=0'>
-                 and song_list_activity=#{activity}
-             </if>
-         </where>
+        <where>
+            <if test='id!=0'>
+                song_list_id=#{id}
+            </if>
+            <if test='userId!=0'>
+                song_list_user_id=#{userId}
+            </if>
+            <if test='name!=null and name!=""'>
+                and song_list_name like "%"#{name}"%"
+            </if>
+            <if test='type!=0'>
+                and song_list_type=#{type}
+            </if>
+            <if test='activity!=0'>
+                and song_list_activity=#{activity}
+            </if>
+        </where>
     </select>
     <insert id="insertSongList" parameterType="SongList">
          insert into tb_song_list(song_list_user_id,song_list_name,song_list_picture,song_list_introduction,song_list_date,
@@ -29,9 +29,34 @@
          values(#{userId},#{name},#{picture},#{introduction},#{date},#{classificationId},#{type},#{activity})
     </insert>
     <update id="updateSongList" parameterType="SongList">
-        update tb_song_list set song_list_user_id=#{userId},song_list_name=#{name},song_list_picture=#{picture},
-        song_list_introduction=#{introduction}, song_list_date=#{date},song_list_classification_id=#{classificationId},
-        song_list_type=#{type},song_list_activity=#{activity} where song_list_id=#{id}
+        update tb_song_list
+        <set>
+            <if test='userId!=0'>
+                song_list_user_id=#{userId}
+            </if>
+            <if test='name!=null and name!=""'>
+                ,song_list_name=#{name}
+            </if>
+            <if test='picture!=null and picture!=""'>
+                ,song_list_picture=#{picture}
+            </if>
+            <if test='introduction!=null and introduction!=""'>
+                ,song_list_introduction=#{introduction}
+            </if>
+            <if test='date!=null and date!=""'>
+                , song_list_date=#{date}
+            </if>
+            <if test='classificationId!=0'>
+                ,song_list_classification_id=#{classificationId}
+            </if>
+            <if test='type!=0'>
+                ,song_list_type=#{type}
+            </if>
+            <if test='activity!=0'>
+                ,song_list_activity=#{activity}
+            </if>
+        </set>
+        where song_list_id=#{id}
     </update>
     <delete id="deleteSongList" parameterType="Integer">
         delete from tb_song_list where song_list_id=#{value}
