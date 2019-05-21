@@ -21,8 +21,8 @@ import java.util.List;
  */
 
 @Service(value = "UserInformationService")
-public class UserInformationServiceService {
-    private static final Logger logger = LoggerFactory.getLogger(UserInformationServiceService.class);
+public class UserInformationService {
+    private static final Logger logger = LoggerFactory.getLogger(UserInformationService.class);
     @Resource(name = "UserMapper")
     UserMapper userMapper;
 

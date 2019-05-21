@@ -9,7 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import service.user.administrators.UserInformationServiceService;
+import service.user.administrators.UserInformationService;
 import util.exception.DataBaseException;
 
 import javax.annotation.Resource;
@@ -30,7 +30,7 @@ import javax.annotation.Resource;
 public class UserInformation {
     private static final Logger logger = LoggerFactory.getLogger(UserInformation.class);
     @Resource(name = "UserInformationService")
-    UserInformationServiceService userInformationService;
+    UserInformationService userInformationService;
 
     /**
      * 显示和按条件查询用户信息
