@@ -7,6 +7,7 @@ import javax.servlet.http.Cookie;
  * Cookie的工具类
  *
  * @author 5月12号 张易兴创建
+ *          5.20 蒋靓峣加了个方法
  */
 public class CookieUtil {
     /**
@@ -33,7 +34,7 @@ public class CookieUtil {
      * @param cookieName
      * @return Cookie
      */
-        public static Cookie CookiegetCookieByName(Cookie[] cookies,String cookieName) {
+        public static Cookie getCookieByName(Cookie[] cookies,String cookieName) {
             if(cookies==null) {
                 return null;
             }else {

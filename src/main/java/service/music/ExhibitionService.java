@@ -36,7 +36,7 @@ public class ExhibitionService {
      * @return
      */
     public Map<Music,User> selectListMusicByNewSong(){
-        Map<Music,User> musicSingerMap = new HashMap<>();
+        Map<Music,User> musicSingerMap = new HashMap<>(16);
         Music music = new Music();
         List<Music> musicList = musicMapper.selectListMusic(music);
         Date musicDate;
@@ -49,15 +49,11 @@ public class ExhibitionService {
                 i=i-1;
             }
         }
-        for(int i=0;i<musicList.size()-2;i++){
-            music = musicList.get(i);
-            user.setId(music.getSingerId());
-            musicSingerMap.put(music,userMapper.selectUser(user).get(0));
-            System.out.println(music.toString());
-            System.out.println(musicList.size());
+        for (Music m:musicList) {
+            user.setId(m.getSingerId());
+            musicSingerMap.put(m,userMapper.selectUser(user).get(0));
         }
         //获取符合条件得分类对象
-        System.out.println("service");
         return musicSingerMap;
     }
     /**
