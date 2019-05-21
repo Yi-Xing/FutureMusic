@@ -23,6 +23,7 @@ public class ExceptionResolver implements HandlerExceptionResolver {
             // 设置跳转的路径
             modelAndView.setViewName("/js/www");
         } else {
+            logger.debug(""+o);
             modelAndView.addObject("a", "出异常了");
             // 设置跳转的路径
             modelAndView.setViewName("/js/www");

@@ -27,6 +27,14 @@ public class State implements Serializable {
     public State() {
     }
 
+    public State(String information) {
+        this.information = information;
+    }
+
+    public State(int state) {
+        this.state = state;
+    }
+
     public State(int state, String information) {
         this.state = state;
         this.information = information;
