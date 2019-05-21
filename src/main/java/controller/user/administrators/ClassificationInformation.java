@@ -15,7 +15,10 @@ import util.exception.DataBaseException;
 import javax.annotation.Resource;
 
 /**
- * 管理员对分类信息的操作
+ * 分类：
+ * 可添加：添加的时候选择需要添加的分类类型（如：语种，地区等）然后输入分类的具体名称
+ * 显示：显示方式分类类型，再显示分类的具体内容
+ * 可删除：先选择需要删除的分类类型，然后选择名称（删除前要判断有没有音乐或MV或专辑或歌单使用该分类）
  *
  * @author 5月20日 张易兴创建
  */
@@ -24,6 +27,7 @@ public class ClassificationInformation {
     private static final Logger logger = LoggerFactory.getLogger(ClassificationInformation.class);
     @Resource(name = "ClassificationInformationService")
     ClassificationInformationService classificationInformationService;
+
     /**
      * 显示现在所有的分类
      */
@@ -40,6 +44,7 @@ public class ClassificationInformation {
     public State addClassification(@RequestBody Classification classification) throws DataBaseException {
         return null;
     }
+
     /**
      * 删除分类
      */

@@ -15,19 +15,19 @@
             <if test='level!=0'>
                 and music_level=#{level}
             </if>
-             <if test='singerId!=0'>
+            <if test='singerId!=0'>
                 and music_singer_id=#{singerId}
             </if>
-             <if test='albumId!=0'>
+            <if test='albumId!=0'>
                 and music_album_id=#{albumId}
             </if>
-             <if test='classificationId!=0'>
+            <if test='classificationId!=0'>
                 and music_classification_id=#{classificationId}
             </if>
-             <if test='activity!=0'>
+            <if test='activity!=0'>
                 and music_activity=#{activity}
             </if>
-             <if test='available!=0'>
+            <if test='available!=0'>
                 and music_available=#{available}
             </if>
             <if test='playCount!=0'>
@@ -44,13 +44,13 @@
         </where>
     </select>
     <select id="listClassificationIdSelectListMusic" parameterType="Integer" resultMap="music">
-        select  music_id,music_name,music_singer_id from tb_music
+        select music_id,music_name,music_singer_id from tb_music
         <where>
             <foreach collection="list" item="value" separator="," open="music_classification_id in(" close=")">
                 #{value}
             </foreach>
         </where>
-       order by music_play_count
+        order by music_play_count
     </select>
     <insert id="insertMusic" parameterType="Music">
          insert into tb_music (music_name,music_level,music_price,music_singer_id,music_album_id,music_classification_id,
@@ -58,11 +58,49 @@
          #{price},#{singerId},#{albumId},#{classificationId},#{date},#{path},#{lyricPath},#{musicVideoId},#{activity},#{available}
          ,#{playCount})
     </insert>
-    <update id="updateMusic" parameterType="Music" >
-        update tb_music set music_name=#{name},music_level=#{level},music_price=#{price},music_singer_id=#{singerId},
-        music_album_id=#{albumId},music_classification_id=#{classificationId},music_date=#{date},music_path=#{path},
-        music_lyric_path=#{lyricPath},music_music_video_id=#{musicVideoId},music_activity=#{activity},music_available=#{available},
-        music_play_count=#{playCount}
+    <update id="updateMusic" parameterType="Music">
+        update tb_music
+        <set>
+            <if test='name!=null and name!=""'>
+                music_name=#{name}
+            </if>
+            <if test='level!=0'>
+                ,music_level=#{level}
+            </if>
+            <if test='price!=null and price!=""'>
+                ,music_price=#{price}
+            </if>
+            <if test='singerId!=0'>
+                ,music_singer_id=#{singerId}
+            </if>
+            <if test='albumId!=0'>
+                ,music_album_id=#{albumId}
+            </if>
+            <if test='classificationId!=0'>
+                ,music_classification_id=#{classificationId}
+            </if>
+            <if test='date!=null and date!=""'>
+                ,music_date=#{date}
+            </if>
+            <if test='path!=null and path!=""'>
+                ,music_path=#{path}
+            </if>
+            <if test='lyricPath!=null and lyricPath!=""'>
+                , music_lyric_path=#{lyricPath}
+            </if>
+            <if test='musicVideoId!=0'>
+                ,music_music_video_id=#{musicVideoId}
+            </if>
+            <if test='activity!=0'>
+                ,music_activity=#{activity}
+            </if>
+            <if test='available!=0'>
+                ,music_available=#{available}
+            </if>
+            <if test='playCount!=0'>
+                ,music_play_count=#{playCount}
+            </if>
+        </set>
         where music_id=#{id}
     </update>
 

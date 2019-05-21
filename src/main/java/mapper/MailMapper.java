@@ -10,6 +10,7 @@ import java.util.List;
  * 对邮件表操作的Mapper
  *
  * @author 5月9日 张易兴创建
+ *         5月21日 张易兴添加方法updateMail 用于更新邮箱的状态
  */
 @Repository(value = "MailMapper")
 public interface MailMapper {
@@ -30,9 +31,18 @@ public interface MailMapper {
      *
      * @param mail 邮箱的对象
      *             封装信息：除id以外的所有信息
-     * @return int 返回添加的条数
+     * @return int 返回的条数
      */
     public int insertMail(Mail mail);
+    /**
+     * 更新邮箱
+     *
+     * @param mail 邮箱的对象
+     *             封装信息：
+     *             state和id用于更新邮箱的状态
+     * @return int 返回更新的条数
+     */
+    public int updateMail(Mail mail);
     /**
      * 删除指定邮箱
      *

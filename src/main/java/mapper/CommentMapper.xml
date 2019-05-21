@@ -29,7 +29,12 @@
           values(#{musicId},#{type},#{userId},#{content},#{date},#{reply},#{fabulous})
     </insert>
     <update id="updateComment" parameterType="Comment">
-        update tb_comment set comment_fabulous=#{fabulous}
+        update tb_comment
+        <set>
+            <if test='fabulous!=0'>
+                comment_fabulous=#{fabulous}
+            </if>
+        </set>
         where comment_id=#{id}
     </update>
     <delete id="deleteComment" parameterType="Integer" >
