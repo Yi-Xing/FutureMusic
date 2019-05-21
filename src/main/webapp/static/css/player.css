@@ -1,0 +1,98 @@
+body{
+    background-image: url("../img/background.jpeg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    min-width: 400px;
+    /*min-height: 500px;*/
+}
+body::-webkit-scrollbar{
+    display: none;
+}
+
+
+.player_container{
+    width: 70%;
+    height: 100vh;
+    margin: 0 auto;
+    max-width: 1200px;
+    overflow: hidden;
+}
+.player_container .menu{
+    width: 35%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.8);
+    float: left;
+    color: #fff;
+}
+.player_container .menu a{
+    color: #fff;
+}
+.player_container .play{
+    width: 65%;
+    height: 100%;
+    background-color: #eee;
+    float: left;
+}
+
+/*个人信息部分*/
+.player_container .user{
+    width: 100%;
+    padding: 10px;
+    position: relative;
+    overflow: hidden;
+    border-bottom: 2px solid lightgray;
+}
+.player_container .user .user_img{
+    width: 80px;
+    height: 80px;
+    border: 2px solid #fff;
+    border-radius: 50%;
+    display: inline-block;
+    float: left;
+}
+.player_container .user .user_img img{
+    width: 100%;
+    height: 100%;
+}
+.player_container .user .user_information{
+    display: inline-block;
+    float: left;
+}
+.user_information h3,p{
+    margin: 0 20px 20px;
+}
+
+/*搜索框部分*/
+.player_container .search{
+    width: 100%;
+    padding: 10px 20px;
+    border-bottom: 2px solid lightgray;
+}
+.player_container .search *{
+    background-color: rgba(0,0,0,0.8);
+}
+.player_container .search .form-group{
+    margin: 0;
+}
+.player_container .search .form-group .input-group-addon button{
+    border: none;
+    outline: none;
+}
+
+/*歌曲目录*/
+/*boot修改*/
+.table-striped > tbody > tr:nth-of-type(odd) {
+    background-color: gray;
+}
+.table-hover > tbody > tr:hover {
+    background-color: gray;
+}
+.player_container .Catalog .dropdown-menu a{
+    color: #333333;
+}
+.player_container .pager li a{
+    background-color: lightgreen;
+    border-radius: 5px;
+    margin: 0 20px;
+}
+

@@ -24,23 +24,45 @@
          values(#{belongId},#{type},#{musicId},#{classificationId},#{singerId},#{date})
     </insert>
     <update id="updateMusicSongList" parameterType="MusicSongList">
-        update tb_music_song_list set music_song_list_belong_id=#{belongId},music_song_list_type=#{type},
-        music_song_list_music_id=#{musicId}, music_song_list_classification_id=#{classificationId},
-        music_song_list_singer_id=#{singerId},music_song_list_music_date=#{date} where music_song_list_id=#{id}
+        update tb_music_song_list
+        <set>
+            <if test='belongId!=0'>
+                music_song_list_belong_id=#{belongId}
+            </if>
+            <if test='type!=0'>
+                ,music_song_list_type=#{type}
+            </if>
+            <if test='musicId!=0'>
+                ,music_song_list_music_id=#{musicId}
+            </if>
+            <if test='classificationId!=0'>
+                , music_song_list_classification_id=#{classificationId}
+            </if>
+            <if test='singerId!=0'>
+                , music_song_list_singer_id=#{singerId}
+            </if>
+            <if test='classificationId!=0'>
+                ,music_classification_id=#{classificationId}
+            </if>
+            <if test='date!=null and date!=""'>
+                ,music_song_list_music_date=#{date}
+            </if>
+        </set>
+        where music_song_list_id=#{id}
     </update>
     <delete id="deleteMusicSongList" parameterType="MusicSongList">
         delete from tb_music_song_list
-         <where>
-             <if test='id!=0'>
-                 music_song_list_id=#{id}
-             </if>
-             <if test='type!=0'>
-                 and music_song_list_type=#{type}
-             </if>
-             <if test='belongId!=0'>
-                 and  music_song_list_belong_id=#{belongId}
-             </if>
-         </where>
+        <where>
+            <if test='id!=0'>
+                music_song_list_id=#{id}
+            </if>
+            <if test='type!=0'>
+                and music_song_list_type=#{type}
+            </if>
+            <if test='belongId!=0'>
+                and music_song_list_belong_id=#{belongId}
+            </if>
+        </where>
     </delete>
 
 

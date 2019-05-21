@@ -27,8 +27,33 @@
          values(#{name},#{picture},#{discount},#{type},#{content},#{website},#{startDate},#{endDate})
     </insert>
     <update id="updateActivity" parameterType="Activity">
-        update tb_activity set activity_name=#{name},activity_picture=#{picture},activity_discount=#{discount},activity_type=#{type},
-        activity_content=#{content},activity_website=#{website},activity_start_date=#{startDate},activity_end_date=#{endDate}
+        update tb_activity
+        <set>
+            <if test='name!=null and name!=""'>
+                activity_name=#{name}
+            </if>
+            <if test='picture!=null and picture!=""'>
+                ,activity_picture=#{picture}
+            </if>
+            <if test='discount!=0'>
+                ,activity_discount=#{discount}
+            </if>
+            <if test='type!=0'>
+                ,activity_type=#{type}
+            </if>
+            <if test='content!=null and content!=""'>
+                ,activity_content=#{content}
+            </if>
+            <if test='website!=null and website!=""'>
+                ,activity_website=#{website}
+            </if>
+            <if test='startDate!=null and startDate!=""'>
+                ,activity_start_date=#{startDate}
+            </if>
+            <if test='endDate!=null and endDate!=""'>
+                ,activity_end_date=#{endDate}
+            </if>
+        </set>
         where activity_id=#{id}
     </update>
     <delete id="deleteActivity" parameterType="Integer">

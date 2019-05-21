@@ -24,8 +24,12 @@
          values(#{userId},#{musicId},#{type},#{singerId},#{albumId},#{classificationId},#{date})
     </insert>
     <update id="updatePlay" parameterType="Play">
-        update tb_play set play_user_id=#{userId},play_music_id=#{musicId},play_type=#{type},play_singer_id=#{singerId},
-        play_album_id=#{albumId},play_classification_id=#{classificationId},play_date=#{date}
+        update tb_play
+        <set>
+            <if test='date!=null and date!=""'>
+                play_date=#{date}
+            </if>
+        </set>
         where play_id=#{id}
     </update>
     <delete id="deletePlay" parameterType="Integer">
