@@ -43,7 +43,7 @@ $(document).ready(function () {
 });
 
 $('.icon-like').on('click',function () {
-    $(this).css('color','#F06868');
+    $(this).css('color','#e52222');
 });
 
 
