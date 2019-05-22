@@ -22,9 +22,27 @@ window.onload = function () {
     var oVolumeIcon=document.getElementsByClassName("volume")[0];
     var oVolume=document.getElementsByClassName("range")[1];
 
-    //获取进度条的宽
+    //获取进度条和音量条的宽
     var ProgressWid = document.getElementsByClassName("progress_range")[0].clientWidth;
     var voiceWid = document.getElementsByClassName("volume_range")[0].clientWidth;
+    //获取进度条和音量条的位置
+    var Progressleft = document.getElementsByClassName("progress_range")[0];
+    var ProgressLeft = getOffsetWidthByBody(Progressleft);
+    var voiceleft = document.getElementsByClassName("volume_range")[0];
+    var voiceLeft = getOffsetWidthByBody(voiceleft);
+    // console.log(ProgressLeft);
+
+
+
+    // 元素相对于body的offsetTop
+    function getOffsetWidthByBody (el) {
+        let offsetWidth = 0;
+        while (el && el.tagName !== 'BODY') {
+            offsetWidth += el.offsetLeft;
+            el = el.offsetParent;
+        }
+        return offsetWidth;
+    }
 
 
     function playSong(index) {
@@ -104,7 +122,7 @@ window.onload = function () {
 
     function changeProgress(ev) {
         ev = ev || event;
-        var l = ev.clientX - 788;          //获取圆距左端的距离
+        var l = ev.clientX - ProgressLeft;          //获取圆距左端的距离
         if (l < 0) {
             l = 0;
         } else if (l > ProgressWid) {
@@ -136,7 +154,7 @@ window.onload = function () {
 
     function changeVolume(ev) {
         var ev = ev || event;
-        var l = ev.clientX - 1172;          //获取圆距foot左端的距离
+        var l = ev.clientX - voiceLeft;          //获取圆距foot左端的距离
         if (l < 0) {
             l = 0;
         } else if (l > voiceWid) {
@@ -147,10 +165,10 @@ window.onload = function () {
         oAudio.volume = l / voiceWid;
         localStorage.setItem("volume", l);
         if (l == 0) {
-            oVolumeIcon.innerHTML = "<span class='iconfont icon-yinliangdayinliangda' title='恢复音量'></span>";
+            oVolumeIcon.innerHTML = "<span class='iconfont icon-yinliangxiaoyinliangxiao' title='恢复音量'></span>";
             clickNum1 = 1;
         } else {
-            oVolumeIcon.innerHTML = "<span class='iconfont icon-yinliangxiaoyinliangxiao' title='静音'></span>";
+            oVolumeIcon.innerHTML = "<span class='iconfont icon-yinliangdayinliangda' title='静音'></span>";
             clickNum1 = 0;
         }
     }
@@ -158,19 +176,19 @@ window.onload = function () {
 //静音与恢复音量的设置
     oVolumeIcon.onclick = function () {
         if (clickNum1 == 0) {
-            oVolumeIcon.innerHTML = "<span class='iconfont icon-yinliangdayinliangda' title='恢复音量'></span>";
+            oVolumeIcon.innerHTML = "<span class='iconfont icon-yinliangxiaoyinliangxiao' title='恢复音量'></span>";
             oVolume_circle.style.left = "0px";
             oVolume.style.width = "0px";
             oAudio.volume = 0;
             clickNum1 = 1;
         } else {
-            oVolumeIcon.innerHTML = "<span class='iconfont icon-yinliangxiaoyinliangxiao' title='静音'></span>";
+            oVolumeIcon.innerHTML = "<span class='iconfont icon-yinliangdayinliangda' title='静音'></span>";
             var l = localStorage.getItem("volume");
             if (l == 0)
                 l += 1;
             oVolume_circle.style.left = l + "px";
             oVolume.style.width = l + "px";
-            oAudio.volume = l / 100;
+            oAudio.volume = l / voiceWid;
             clickNum1 = 0;
         }
     };

@@ -162,8 +162,8 @@ body::-webkit-scrollbar {
 }
 
 .player_container .pager li a {
-    background-color: lightgreen;
-    border-radius: 5px;
+    background-color: lightgray;
+    border-radius: 20px;
     padding: 5px 10px;
     margin: 0 10px;
     color: #000;
@@ -241,7 +241,7 @@ body::-webkit-scrollbar {
 .foot .progress_range {
     height: 5px;
     width: 78%;
-    margin-top: 20px;
+    margin-top: 21px;
     background-color: gainsboro;
     position: relative;
     border-radius: 5px;
@@ -260,7 +260,7 @@ body::-webkit-scrollbar {
 .foot .volume_range {
     width: 100px;
     height: 5px;
-    margin-top: 20px;
+    margin-top: 21px;
     background-color: gainsboro;
     position: relative;
     border-radius: 5px;
