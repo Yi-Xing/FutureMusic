@@ -61,8 +61,8 @@ public class Search {
         Cookie[] cookies = request.getCookies();
         String searchRecord = request.getParameter("keyWord");
         String cookieName = "searchRecordCookie";
-        if(CookieUtil.CookiegetCookieByName(cookies,cookieName)!=null){
-                Cookie cookie = CookieUtil.CookiegetCookieByName(cookies,"searchRecordCookie");
+        if(CookieUtil.getCookieByName(cookies,cookieName)!=null){
+                Cookie cookie = CookieUtil.getCookieByName(cookies,"searchRecordCookie");
                 searchRecord = searchRecord + "#" + cookie.getValue();
                 //修改的话直接覆盖
                 Cookie newCookie = new Cookie("searchRecordCookie", searchRecord);

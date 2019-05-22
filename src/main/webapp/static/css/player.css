@@ -1,48 +1,89 @@
-body{
+body {
     background-image: url("../img/background.jpeg");
     background-repeat: no-repeat;
     background-size: cover;
     min-width: 400px;
     /*min-height: 500px;*/
 }
-body::-webkit-scrollbar{
+
+body::-webkit-scrollbar {
     display: none;
 }
 
 
-.player_container{
+.player_container {
     width: 70%;
     height: 100vh;
     margin: 0 auto;
     max-width: 1200px;
     overflow: hidden;
 }
-.player_container .menu{
-    width: 35%;
+
+.player_container .menu {
+    width: 30%;
     height: 100%;
-    background-color: rgba(0,0,0,0.8);
+    background-color: rgba(0, 0, 0, 0.8);
     float: left;
     color: #fff;
+    overflow-x: hidden;
+    overflow-y: auto;
 }
-.player_container .menu a{
+
+.player_container .menu::-webkit-scrollbar {
+    width: 8px;
+}
+
+.player_container .menu::-webkit-scrollbar-thumb {
+    background-color: lightgray;
+    border-radius: 4px;
+}
+
+.player_container .menu a {
     color: #fff;
 }
-.player_container .play{
-    width: 65%;
+
+.player_container .Play {
+    width: 70%;
     height: 100%;
-    background-color: #eee;
     float: left;
+    position: relative;
+    background: url("https://images.unsplash.com/photo-1558369178-6556d97855d0?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&q=80") no-repeat fixed;
+    background-size: 100% 100%;
+    padding: 1px;
+    box-sizing: border-box;
+    z-index: 1;
+}
+/*伪类背景模糊*/
+.player_container .Play:after {
+    content: "";
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    background: inherit;
+    filter: blur(5px);
+    z-index: 2;
+}
+/*真正的内容div*/
+.player_container .Play .drag{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    text-align: center;
+    z-index:10;
 }
 
 /*个人信息部分*/
-.player_container .user{
+.player_container .user {
     width: 100%;
     padding: 10px;
     position: relative;
     overflow: hidden;
     border-bottom: 2px solid lightgray;
 }
-.player_container .user .user_img{
+
+.player_container .user .user_img {
     width: 80px;
     height: 80px;
     border: 2px solid #fff;
@@ -50,33 +91,56 @@ body::-webkit-scrollbar{
     display: inline-block;
     float: left;
 }
-.player_container .user .user_img img{
+
+.player_container .user .user_img img {
     width: 100%;
     height: 100%;
 }
-.player_container .user .user_information{
+
+.player_container .user .user_information {
     display: inline-block;
     float: left;
 }
-.user_information h3,p{
+
+.user_information h3, p {
     margin: 0 20px 20px;
 }
 
 /*搜索框部分*/
-.player_container .search{
+.player_container .search {
     width: 100%;
     padding: 10px 20px;
     border-bottom: 2px solid lightgray;
 }
-.player_container .search *{
-    background-color: rgba(0,0,0,0.8);
+
+.player_container .search * {
+    background-color: rgba(0, 0, 0, 0.8);
 }
-.player_container .search .form-group{
+
+.player_container .search .form-group {
     margin: 0;
 }
-.player_container .search .form-group .input-group-addon button{
+
+.player_container .search .form-group .input-group-addon button {
     border: none;
     outline: none;
+}
+
+/*歌单切换*/
+.musicList {
+    width: 100%;
+    padding: 10px 20px;
+    border-bottom: 2px solid lightgray;
+}
+
+.musicList ul li {
+    margin: 5px 0;
+    font-weight: 600;
+    font-size: 15px;
+}
+
+.musicList .active a {
+    color: #4cae4c;
 }
 
 /*歌曲目录*/
@@ -84,15 +148,139 @@ body::-webkit-scrollbar{
 .table-striped > tbody > tr:nth-of-type(odd) {
     background-color: gray;
 }
+
 .table-hover > tbody > tr:hover {
     background-color: gray;
 }
-.player_container .Catalog .dropdown-menu a{
-    color: #333333;
-}
-.player_container .pager li a{
-    background-color: lightgreen;
-    border-radius: 5px;
-    margin: 0 20px;
+
+.player_container .dropdown-menu {
+    left: -80px;
 }
 
+.player_container .Catalog .dropdown-menu a {
+    color: #333333;
+}
+
+.player_container .pager li a {
+    background-color: lightgreen;
+    border-radius: 5px;
+    padding: 5px 10px;
+    margin: 0 10px;
+    color: #000;
+    font-weight: 800;
+}
+
+/*右侧*/
+/*歌曲名字*/
+.Play .drag .music_name {
+    width: 100%;
+    height: 8%;
+    margin: 10px auto;
+    font-size: 18px;
+    border-bottom: 2px solid lightgrey;
+    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.2);
+    z-index: 20;
+}
+.Play .drag .music_name h2{
+    color: #fff;
+}
+/*歌词*/
+.Play .drag .Lyric{
+    width: 100%;
+    height: 80%;
+    overflow: auto;
+    text-align: center;
+    padding: 20px 30px;
+    color: #fff;
+    font-size: 18px;
+    line-height: 25px;
+    z-index: 19;
+}
+.Play .drag .Lyric::-webkit-scrollbar {
+    width: 8px;
+}
+
+.Play .drag .Lyric::-webkit-scrollbar-thumb {
+    background-color: lightgray;
+    border-radius: 4px;
+}
+/*播放控制器*/
+.Play .drag .Play_control{
+    width: 100%;
+    /*height: 12%;*/
+
+    overflow: hidden;
+}
+.Play .drag .play_control audio{
+    width: 100%;
+    color: #333333;
+}
+.foot {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    border-top: 1px solid #E1E1E2;
+    background-color: rgba(0,0,0,1);
+    color: #fff;
+    display: flex;
+    justify-content: space-around;
+    z-index: 20;
+}
+.foot i {
+    display: inline-block;
+    margin-right: 10px;
+    font-size: 35px;
+    cursor: pointer;
+}
+.foot .Progress {
+    line-height: 50px;
+    width: 50%;
+    display: flex;
+    justify-content: space-around;
+}
+.foot .progress_range {
+    height: 5px;
+    width: 78%;
+    margin-top: 20px;
+    background-color: gainsboro;
+    position: relative;
+    border-radius: 5px;
+}
+.foot .progress span:nth-of-type(2) {
+
+}
+.foot .model {
+    line-height: 50px;
+    display: flex;
+    justify-content: space-around;
+}
+.foot .model span {
+    cursor: pointer;
+}
+.foot .volume_range {
+    width: 100px;
+    height: 5px;
+    margin-top: 20px;
+    background-color: gainsboro;
+    position: relative;
+    border-radius: 5px;
+}
+.foot .range {
+    position: absolute;
+    width: 0;
+    height: 5px;
+    background-color: #fff;
+}
+.foot .circle {
+    position: absolute;
+    top: -2px;
+    width: 10px;
+    height: 10px;
+    border-radius: 100%;
+    background-color: red;
+    border: 2px solid #fff;
+    cursor: pointer;
+}
+.foot .bofangModel {
+
+}

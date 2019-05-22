@@ -11,11 +11,15 @@ import java.util.List;
 @Controller
 public class Main {
     @RequestMapping(value = "/main")
-    public String searchListSongLista(){
-        System.out.println(2);
+    public String searchListSongLista() {
+        return "index";
+    }
+
+
+    @RequestMapping(value = "/player")
+    public String a() {
         return "player";
     }
 
 }
-
 

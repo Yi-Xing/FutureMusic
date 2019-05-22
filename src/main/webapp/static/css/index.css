@@ -1,5 +1,5 @@
 *{
-    margin: 0;
+    margin: 0 auto;
     padding: 0;
 }
 a{
@@ -164,12 +164,192 @@ ul li{
     width:400px;
     height: 300px;
     margin:0 auto;
-    /*background: #000;*/
 }
+/*第二次提交*/
 #button3{
     position: relative;
     top:-74px;
 }
+.login{
+    width:400px;
+    height: 300px;
+    margin:0 auto;
+
+}
+.registered{
+    width:400px;
+    height: 300px;
+    margin:0 auto;
+    display: none;
+}
+.login input{
+    width:350px;
+    height: 40px;
+    border-radius: 7px;
+    border:none;
+    outline: none;
+    background: lightgray;
+    padding-left: 5px;
+}
+.login_bottom{
+    width:400px;
+    height: 40px;
+    line-height: 40px;
+}
+.login_header{
+    width:400px;
+    height: 190px;
+}
+.log_bom_flo input{
+    width:13px;
+    height:13px;
+}
+.tip1{
+    width: 400px;
+    height: 30px;
+    position: relative;
+    top:83px;
+    line-height: 30px;
+    background: #000;
+}
+.tip2{
+    width: 400px;
+    height: 30px;
+    /*background: #000;*/
+    position: relative;
+    top: 128px;
+    line-height: 30px;
+    background: #000;
+}
+.log_bom_flo{
+    width:200px;
+    height: 30px;
+    float: left;
+}
+.log_bom_flo a{
+    color:gray;
+    text-decoration: none;
+}
+.one_log{
+    width:350px;
+    height: 45px;
+    border-radius: 9px;
+    background: red;
+    text-align: center;
+    font-size:20px;
+    line-height: 45px;
+    margin-left: 0px;
+}
+.one_log a{
+    text-decoration: none;
+    color:#000;
+}
+.one_log:hover{
+    background: orangered;
+    transition: 1s;
+}
+.reg_header{
+    width:420px;
+    height: 200px;
+}
+.reg_hed_left{
+    width:350px;
+    height: 250px;
+    float: left;
+}
+#button4{
+    width: 90px;
+    position: relative;
+    top: -29px;
+}
+.reg_hed_left input{
+    width:350px;
+    height: 40px;
+    margin-top:18px;
+    background: lightgray;
+    border-radius: 7px;
+    outline: none;
+    border:none;
+    font-size: 15px;
+    padding-left: 5px;
+}
+.reg_hed_right{
+    width:70px;
+    height: 250px;
+    float: left;
+    background: #000;
+}
+.reg_main{
+    width:400px;
+    height: 96px;
+}
+.reg_main_left{
+    width:200px;
+    height: 40px;
+    float: left;
+}
+.reg_main_left input{
+    width:180px;
+    height: 40px;
+    border-radius: 3px;
+    margin-top: 5px;
+}
+.reg_main_right{
+    width:200px;
+    height: 40px;
+    float: left;
+}
+.kuang{
+    width:200px;
+    height: 40px;
+    border:1px solid #000;
+}
+.reg_checkbox {
+    width:400px;
+    height: 30px;
+}
+.reg_checkbox input{
+    display: block;
+    width:13px;
+    height: 13px;
+}
+.reg_bom{
+    width:300px;
+    height:30px;
+    background: red;
+    margin-left:0px;
+    text-align: center;
+    font-size:18px;
+    outline: none;
+    line-height: 30px;
+    border-radius: 5px;
+    position: relative;
+    top: -40px;
+}
+.reg_bom a{
+    color:#000;
+}
+.reg_hed_right p{
+    width:70px;
+    height: 40px;
+    margin-top:17px;
+    background: red;
+}
+.modal_main input{
+    width:330px;
+    height: 40px;
+    border-radius: 7px;
+    border:none;
+    outline: none;
+    background: lightgray;
+    padding-left: 5px;
+}
+#check{
+    width:13px;
+    hieght:13px;
+}
+
+
 
 /*轮播图*/
 .Recommend .arrow,.music_video .arrow{
