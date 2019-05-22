@@ -94,4 +94,12 @@ public class ValidationInformation {
     public boolean isPassword(String password) {
         return password.length() >= 8 && password.length() <= 12;
     }
+
+    /**
+     * 验证或名字标题是否是1-15个字符
+     * 用于活动标题，音乐MV歌单专辑的名字
+     */
+    public boolean isName(String name){
+        return name.length()>0 && name.length()<=15;
+    }
 }

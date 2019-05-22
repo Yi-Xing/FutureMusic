@@ -37,20 +37,27 @@ public class ClassificationInformation {
     }
 
     /**
+     * 显示指定id的分类信息
+     * @param id 分类的id
+     */
+    @RequestMapping(value = "/selectClassification")
+    public String selectClassification(Integer id,Model model){
+        return classificationInformationService.selectClassification(id,model);
+    }
+    /**
      * 添加分类
      */
     @RequestMapping(value = "/addClassification")
     @ResponseBody
     public State addClassification(@RequestBody Classification classification) throws DataBaseException {
-        return null;
+        return classificationInformationService.addClassification(classification);
     }
 
     /**
      * 删除分类
      */
     @RequestMapping(value = "/deleteClassification")
-    @ResponseBody
-    public State deleteClassification(@RequestBody Classification classification) throws DataBaseException {
-        return null;
+    public String deleteClassification(@RequestBody Classification classification,Model model) throws DataBaseException {
+        return classificationInformationService.deleteClassification(classification,model);
     }
 }

@@ -30,6 +30,9 @@
             <if test='available!=0'>
                 and music_available=#{available}
             </if>
+            <if test='date!=null and date !=""'>
+                and music_date >=#{date}
+            </if>
             <if test='playCount!=0'>
                 and music_play_count=#{playCount} order by music_play_count
             </if>

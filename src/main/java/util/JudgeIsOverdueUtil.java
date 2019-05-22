@@ -1,5 +1,9 @@
 package util;
 
+import java.util.Date;
+import java.text.SimpleDateFormat;
+import java.util.GregorianCalendar;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -83,5 +87,13 @@ public class JudgeIsOverdueUtil {
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         String date  = simpleDateFormat.format(theDate);
         return date;
+    }
+
+    /**
+     * 用于将字符串转换为日期类型
+     */
+    public static Date toDate(String date) throws ParseException {
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        return  simpleDateFormat.parse(date);
     }
 }
