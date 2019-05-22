@@ -236,8 +236,22 @@
       <artifactId>commons-io</artifactId>
       <version>2.6</version>
     </dependency>
+    <!--Spring提供的文件上传组件-->
+    <!-- fileupload -->
+    <dependency>
+      <groupId>org.apache.commons</groupId>
+      <artifactId>com.springsource.org.apache.commons.fileupload</artifactId>
+      <version>1.2.1</version>
+    </dependency>
+    <!-- commons.io -->
+    <dependency>
+      <groupId>org.apache.commons</groupId>
+      <artifactId>com.springsource.org.apache.commons.io</artifactId>
+      <version>1.4.0</version>
+    </dependency>
 
-      <!--邮件发送-->
+
+    <!--邮件发送-->
 
     <!--spring支持-->
 <!--    <dependency>-->

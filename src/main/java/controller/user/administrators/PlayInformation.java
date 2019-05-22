@@ -9,7 +9,7 @@ import javax.annotation.Resource;
 import java.text.ParseException;
 
 /**
- * 查询：指定歌手的所有音乐被播放的次数
+ * 查询：指定音乐或MV被播放的次数
  *       指定专辑中的所有音乐被播放的次数
  *
  */
@@ -21,10 +21,11 @@ public class PlayInformation {
     /**
      * 指定歌手的所有音乐被播放的次数
      * 指定专辑中的所有音乐被播放的次数
-     * @param id 用户的id
+     * @param id 音乐或MV或专辑的id
+     * @param type 1、音乐  2、MV  3、专辑
      */
-    @RequestMapping(value = "/showActivity")
-    public String showFocus(Integer id, Model model) throws ParseException {
-        return focusInformationService.showFocus(id,model);
+    @RequestMapping(value = "/showPlay")
+    public String showPlay(Integer id,Integer type, Model model) throws ParseException {
+        return playInformationService.showPlay(id,type,model);
     }
 }
