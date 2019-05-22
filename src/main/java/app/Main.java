@@ -21,5 +21,10 @@ public class Main {
         return "player";
     }
 
+    @RequestMapping(value = "/artist")
+    public String b() {
+        return "artist";
+    }
+
 }
 
