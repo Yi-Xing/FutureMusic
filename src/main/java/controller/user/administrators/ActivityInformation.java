@@ -1,9 +1,13 @@
 package controller.user.administrators;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import entity.Activity;
 import entity.State;
+import mapper.ActivityMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,6 +16,8 @@ import service.user.administrators.ActivityInformationService;
 import util.exception.DataBaseException;
 
 import javax.annotation.Resource;
+import java.text.ParseException;
+import java.util.List;
 
 /**
  * 活动：
@@ -27,6 +33,7 @@ import javax.annotation.Resource;
  * 可修改：活动标题，折扣百分比，针对对象，开始时间，结束时间，活动图片 ，活动详细，活动跳转的网页
  * 可删除：根据id删除
  */
+@Controller
 public class ActivityInformation {
     private static final Logger logger = LoggerFactory.getLogger(UserInformation.class);
     @Resource(name = "ActivityInformationService")
@@ -37,7 +44,7 @@ public class ActivityInformation {
     @RequestMapping(value = "/addActivity")
     @ResponseBody
     public State addActivity(@RequestBody Activity activity) throws DataBaseException {
-        return null;
+        return activityInformationService.addActivity(activity);
     }
     /**
      * 显示活动信息
@@ -45,8 +52,8 @@ public class ActivityInformation {
      * @param pageNum 表示当前第几页
      */
     @RequestMapping(value = "/showActivity")
-    public String showActivity(String[] condition,Integer pageNum, Model model) {
-        return null;
+    public String showActivity(String[] condition,Integer pageNum, Model model) throws ParseException {
+        return activityInformationService.showActivity(condition,pageNum,model);
     }
     /**
      * 修改活动信息，ajax
@@ -54,13 +61,13 @@ public class ActivityInformation {
     @RequestMapping(value = "/modifyActivity")
     @ResponseBody
     public State modifyActivity(@RequestBody Activity activity) throws DataBaseException {
-        return null;
+        return activityInformationService.modifyActivity(activity);
     }
     /**
      * 删除活动信息
      */
     @RequestMapping(value = "/deleteActivity")
     public String deleteActivity(Integer id) throws DataBaseException {
-        return null;
+        return activityInformationService.deleteActivity(id);
     }
 }

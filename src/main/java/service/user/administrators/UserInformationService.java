@@ -69,9 +69,7 @@ public class UserInformationService {
             logger.error("邮箱：" + user.getMailbox() + "修改用户信息时，数据库出错");
             throw new DataBaseException("邮箱：" + user.getMailbox() + "修改用户信息时，数据库出错");
         }
-        State state = new State();
-        state.setState(1);
-        return state;
+        return new State(1);
     }
 
 }

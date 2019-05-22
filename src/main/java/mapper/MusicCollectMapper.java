@@ -30,6 +30,7 @@ public interface MusicCollectMapper {
      * @param musicCollect 按照指定规则查找指定收藏
      *                     封装信息：
      *                     userId和type查找指定用户收藏的音乐或MV的个数
+     *                     musicId和type查找指定音乐或MV被收藏的次数
      * @return int 返回查找到的个数
      */
     public int selectUserMusicCollectCount(MusicCollect musicCollect);
