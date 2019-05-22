@@ -2,6 +2,8 @@ package service.user.administrators;
 
 import entity.MusicCollect;
 import mapper.MusicCollectMapper;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -9,13 +11,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 /**
  * 音乐或MV的收藏
  * 查询：指定音乐或MV被收藏的次数
- *
+ * @author 5月22日 张易兴创建
  */
 import javax.annotation.Resource;
 import java.text.ParseException;
 
 @Service(value = "MusicCollectInformationService")
 public class MusicCollectInformationService {
+    private static final Logger logger = LoggerFactory.getLogger(ActivityInformationService.class);
     @Resource(name = "MusicCollectMapper")
     MusicCollectMapper musicCollectMapper;
     /**

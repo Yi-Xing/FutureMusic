@@ -32,10 +32,11 @@ import java.util.List;
  *        关联查询，参加活动的（音乐或MV或专辑或）
  * 可修改：活动标题，折扣百分比，针对对象，开始时间，结束时间，活动图片 ，活动详细，活动跳转的网页
  * 可删除：根据id删除
+ * @author 5月20日 张易兴创建
  */
 @Controller
 public class ActivityInformation {
-    private static final Logger logger = LoggerFactory.getLogger(UserInformation.class);
+    private static final Logger logger = LoggerFactory.getLogger(ActivityInformation.class);
     @Resource(name = "ActivityInformationService")
     ActivityInformationService activityInformationService;
     /**
@@ -44,6 +45,7 @@ public class ActivityInformation {
     @RequestMapping(value = "/addActivity")
     @ResponseBody
     public State addActivity(@RequestBody Activity activity) throws DataBaseException {
+        logger.trace("addActivity方法开始执行");
         return activityInformationService.addActivity(activity);
     }
     /**
@@ -53,6 +55,7 @@ public class ActivityInformation {
      */
     @RequestMapping(value = "/showActivity")
     public String showActivity(String[] condition,Integer pageNum, Model model) throws ParseException {
+        logger.trace("showActivity方法开始执行");
         return activityInformationService.showActivity(condition,pageNum,model);
     }
     /**
@@ -61,6 +64,7 @@ public class ActivityInformation {
     @RequestMapping(value = "/modifyActivity")
     @ResponseBody
     public State modifyActivity(@RequestBody Activity activity) throws DataBaseException {
+        logger.trace("modifyActivity方法开始执行");
         return activityInformationService.modifyActivity(activity);
     }
     /**
@@ -68,6 +72,7 @@ public class ActivityInformation {
      */
     @RequestMapping(value = "/deleteActivity")
     public String deleteActivity(Integer id) throws DataBaseException {
+        logger.trace("deleteActivity方法开始执行");
         return activityInformationService.deleteActivity(id);
     }
 }

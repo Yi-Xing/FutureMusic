@@ -26,13 +26,18 @@
     <!--开启ioc注解-->
     <context:annotation-config/>
 
-<!--    &lt;!&ndash;配置平台事务管理器&ndash;&gt;-->
-<!--    <bean class="org.springframework.jdbc.datasource.DataSourceTransactionManager">-->
-<!--        <property name="dataSource" ref="source"/>-->
-<!--    </bean>-->
+    <!--    &lt;!&ndash;配置平台事务管理器&ndash;&gt;-->
+    <!--    <bean class="org.springframework.jdbc.datasource.DataSourceTransactionManager">-->
+    <!--        <property name="dataSource" ref="source"/>-->
+    <!--    </bean>-->
+
+    <!-- 定义文件上传解析器 -->
     <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <!-- 设定默认编码 -->
         <property name="defaultEncoding" value="utf-8"/>
+        <!-- 设定文件上传的最大值为5MB，5*1024*1024 -->
         <property name="maxUploadSize" value="10485760000"/>
+        <!-- 设定文件上传时写入内存的最大值，如果小于这个参数不会生成临时文件，默认为10240 -->
         <property name="maxInMemorySize" value="40960"/>
     </bean>
 

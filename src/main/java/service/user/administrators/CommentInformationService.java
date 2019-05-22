@@ -5,6 +5,8 @@ import com.github.pagehelper.PageInfo;
 import entity.Comment;
 import entity.State;
 import mapper.CommentMapper;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,12 +18,15 @@ import java.util.List;
 
 /**
  * 评论
+ * @author 5月22日 张易兴创建
  */
 @Service(value = "CommentInformationService")
 public class CommentInformationService {
+    private static final Logger logger = LoggerFactory.getLogger(ActivityInformationService.class);
     @Resource(name = "CommentMapper")
     CommentMapper commentMapper;
-
+    @Resource(name = "IdExistence")
+    IdExistence idExistence;
     /**
      * 显示评论信息
      *
@@ -48,19 +53,17 @@ public class CommentInformationService {
     }
 
     /**
-     * 显示指定id的分类信息
-     * @param id 分类的id
+     * 显示指定id的评论信息
+     *
+     * @param id 评论的id
      */
     public String selectComment(Integer id,Model model){
-        Comment comment = new Comment();
-        comment.setId(id);
-        List<Comment> list = commentMapper.selectListComment(comment);
-        if (list.size() != 0) {
-            model.addAttribute("classification", list.get(0));
+        Comment comment=idExistence.isCommentId(id);
+        if (comment != null) {
+            model.addAttribute("Comment", comment);
         } else {
             model.addAttribute("state", "没有指定id的评论");
         }
         return null;
     }
-
 }

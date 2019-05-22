@@ -19,6 +19,10 @@ import javax.annotation.Resource;
 import java.text.ParseException;
 import java.util.List;
 
+/**
+ * MV
+ * @author 5月22日 张易兴创建
+ */
 @Service(value = "MusicVideoInformationService")
 public class MusicVideoInformationService {
     private static final Logger logger = LoggerFactory.getLogger(MusicVideoInformationService.class);

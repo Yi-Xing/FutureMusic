@@ -33,6 +33,8 @@ public class ClassificationInformationService {
     MusicVideoMapper musicVideoMapper;
     @Resource(name = "SongListMapper")
     SongListMapper songListMapper;
+    @Resource(name = "IdExistence")
+    IdExistence idExistence;
     /**
      * 用于存储语种
      */
@@ -75,11 +77,9 @@ public class ClassificationInformationService {
      * @param id 分类的id
      */
     public String selectClassification(Integer id, Model model) {
-        Classification classification = new Classification();
-        classification.setId(id);
-        List<Classification> list = classificationMapper.selectListClassification(classification);
-        if (list.size() != 0) {
-            model.addAttribute("classification", list.get(0));
+        Classification classification=idExistence.isClassificationId(id);
+        if (classification != null) {
+            model.addAttribute("classification", classification);
         } else {
             model.addAttribute("state", "没有指定id的分类");
         }
@@ -90,6 +90,7 @@ public class ClassificationInformationService {
      * 添加分类
      */
     public State addClassification(@RequestBody Classification classification) throws DataBaseException {
+        State state = new State();
         String gender = classification.getGender();
         String languages = classification.getLanguages();
         String region = classification.getRegion();
@@ -98,28 +99,37 @@ public class ClassificationInformationService {
             if (languages == null || "".equals(languages)) {
                 if (region == null || "".equals(region)) {
                     if (type != null && !"".equals(type)) {
-                        classification.setType(type);
-                        List<Classification> list = classificationMapper.selectListClassification(new Classification());
-                        for (Classification c : list) {
-                            setLanguages.add(c.getLanguages());
-                            setRegion.add(c.getRegion());
-                            setGender.add(c.getGender());
-                        }
-                        for (String languagesValue : setLanguages) {
-                            for (String regionValue : setRegion) {
-                                for (String genderValue : setGender) {
-                                    classification.setLanguages(languagesValue);
-                                    classification.setGender(regionValue);
-                                    classification.setGender(genderValue);
-                                    if (classificationMapper.insertClassification(classification) < 1) {
-                                        // 如果失败是数据库错误
-                                        logger.error("分类：" + classification + "添加时，数据库出错");
-                                        throw new DataBaseException("分类：" + classification + "添加时，数据库出错");
+                        // 不为空则判断是否合法
+                        if (isClassificationLength(type)) {
+                            classification.setType(type);
+                            List<Classification> list = classificationMapper.selectListClassification(new Classification());
+                            for (Classification c : list) {
+                                setLanguages.add(c.getLanguages());
+                                setRegion.add(c.getRegion());
+                                setGender.add(c.getGender());
+                            }
+                            for (String languagesValue : setLanguages) {
+                                for (String regionValue : setRegion) {
+                                    for (String genderValue : setGender) {
+                                        classification.setLanguages(languagesValue);
+                                        classification.setGender(regionValue);
+                                        classification.setGender(genderValue);
+                                        if (classificationMapper.insertClassification(classification) < 1) {
+                                            // 如果失败是数据库错误
+                                            logger.error("分类：" + classification + "添加时，数据库出错");
+                                            throw new DataBaseException("分类：" + classification + "添加时，数据库出错");
+                                        }
                                     }
                                 }
                             }
+                            state.setState(1);
+                        } else {
+                            state.setInformation(type + "不合法");
                         }
-                    } else {
+                    }
+                } else {
+                    // 不为空则判断是否合法
+                    if (isClassificationLength(region)) {
                         classification.setRegion(region);
                         List<Classification> list = classificationMapper.selectListClassification(new Classification());
                         for (Classification c : list) {
@@ -141,8 +151,14 @@ public class ClassificationInformationService {
                                 }
                             }
                         }
+                        state.setState(1);
+                    } else {
+                        state.setInformation(region + "不合法");
                     }
-                } else {
+                }
+            } else {
+                // 不为空则判断是否合法
+                if (isClassificationLength(languages)) {
                     classification.setLanguages(languages);
                     List<Classification> list = classificationMapper.selectListClassification(new Classification());
                     for (Classification c : list) {
@@ -164,8 +180,14 @@ public class ClassificationInformationService {
                             }
                         }
                     }
+                    state.setState(1);
+                } else {
+                    state.setInformation(languages + "不合法");
                 }
-            } else {
+            }
+        } else {
+            // 不为空则判断是否合法
+            if (isClassificationLength(gender)) {
                 classification.setGender(gender);
                 List<Classification> list = classificationMapper.selectListClassification(new Classification());
                 for (Classification c : list) {
@@ -187,10 +209,14 @@ public class ClassificationInformationService {
                         }
                     }
                 }
+                state.setState(1);
+            } else {
+                state.setInformation(gender + "不合法");
             }
         }
-        return new State(1);
+        return state;
     }
+
 
     /**
      * 删除分类，分类前先先判断音乐，MV，专辑是否选有指定分类，如果有删除失败
@@ -256,5 +282,12 @@ public class ClassificationInformationService {
             return true;
         }
         return songListMapper.selectListSongList(songList).size() != 0;
+    }
+
+    /**
+     * 用于判断输入的分类的长度是否合法
+     */
+    public boolean isClassificationLength(String string) {
+        return string.length() > 0 && string.length() <= 6;
     }
 }

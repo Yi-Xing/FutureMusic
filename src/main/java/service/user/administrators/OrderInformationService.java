@@ -17,6 +17,10 @@ import javax.annotation.Resource;
 import java.text.ParseException;
 import java.util.List;
 
+/**
+ * 订单
+ * @author 5月22日 张易兴创建
+ */
 @Service(value = "OrderInformationService")
 public class OrderInformationService {
     private static final Logger logger = LoggerFactory.getLogger(OrderInformationService.class);

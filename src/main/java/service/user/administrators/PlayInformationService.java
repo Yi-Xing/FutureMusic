@@ -2,6 +2,8 @@ package service.user.administrators;
 
 import entity.Play;
 import mapper.PlayMapper;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -10,9 +12,13 @@ import javax.annotation.Resource;
 import java.text.ParseException;
 import java.util.List;
 
+/**
+ * 播放记录
+ * @author 5月22日 张易兴创建
+ */
 @Service(value = "PlayInformationService")
 public class PlayInformationService {
-
+    private static final Logger logger = LoggerFactory.getLogger(ActivityInformationService.class);
     @Resource(name ="PlayMapper")
     PlayMapper playMapper;
 

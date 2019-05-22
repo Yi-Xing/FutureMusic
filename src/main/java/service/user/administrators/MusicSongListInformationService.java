@@ -2,6 +2,8 @@ package service.user.administrators;
 
 import entity.MusicSongList;
 import mapper.MusicSongListMapper;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -10,9 +12,13 @@ import javax.annotation.Resource;
 import java.text.ParseException;
 import java.util.List;
 
+/**
+ * 歌单或专辑中的音乐
+ * @author 5月22日 张易兴创建
+ */
 @Service(value = "MusicSongListInformationService")
 public class MusicSongListInformationService {
-
+    private static final Logger logger = LoggerFactory.getLogger(ActivityInformationService.class);
     @Resource(name = "MusicSongListMapper")
     MusicSongListMapper musicSongListMapper;
     /**

@@ -19,6 +19,10 @@ import javax.servlet.http.HttpSession;
 import java.text.ParseException;
 import java.util.List;
 
+/**
+ * 邮箱
+ * @author 5月22日 张易兴创建
+ */
 @Service(value = "MailInformationService")
 public class MailInformationService {
     private static final Logger logger = LoggerFactory.getLogger(MailInformationService.class);
@@ -69,6 +73,9 @@ public class MailInformationService {
      * 添加邮箱信息
      */
     public State addMail( Mail mail) throws DataBaseException {
+        // 验证发送方的id是否存在
+        // 验证接收方的id是否存在
+        // 验证发送的信息是否合法
         if(mailMapper.insertMail(mail)< 1) {
             // 如果失败是数据库错误
             logger.error("添加邮箱时，数据库出错");

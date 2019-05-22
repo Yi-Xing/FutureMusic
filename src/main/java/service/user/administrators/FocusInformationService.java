@@ -2,6 +2,8 @@ package service.user.administrators;
 
 import entity.Focus;
 import mapper.FocusMapper;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -9,8 +11,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import javax.annotation.Resource;
 import java.text.ParseException;
 
+/**
+ * 关注和访客
+ * @author 5月22日 张易兴创建
+ */
 @Service(value = "FocusInformationService")
 public class FocusInformationService {
+    private static final Logger logger = LoggerFactory.getLogger(ActivityInformationService.class);
     @Resource(name ="FocusMapper")
     FocusMapper focusMapper;
     /**

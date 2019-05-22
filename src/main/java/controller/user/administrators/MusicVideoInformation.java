@@ -3,11 +3,14 @@ package controller.user.administrators;
 import entity.Music;
 import entity.MusicVideo;
 import entity.State;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import service.user.administrators.ActivityInformationService;
 import service.user.administrators.MusicInformationService;
 import service.user.administrators.MusicVideoInformationService;
 import util.exception.DataBaseException;
@@ -30,9 +33,11 @@ import java.text.ParseException;
  *            8、活动id
  *            9、分类的id
  *  可更改
+ * @author 5月22日 张易兴创建
  */
 @Controller
 public class MusicVideoInformation {
+    private static final Logger logger = LoggerFactory.getLogger(ActivityInformationService.class);
     @Resource(name = "MusicVideoInformationService")
     MusicVideoInformationService musicVideoInformationService;
     /**

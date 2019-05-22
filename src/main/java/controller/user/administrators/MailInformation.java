@@ -4,11 +4,14 @@ import entity.Activity;
 import entity.Classification;
 import entity.Mail;
 import entity.State;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import service.user.administrators.ActivityInformationService;
 import service.user.administrators.MailInformationService;
 import util.exception.DataBaseException;
 
@@ -27,10 +30,12 @@ import java.text.ParseException;
  * 4、按指定状态
  * 可修改：设置邮件的状态
  * 可删除：按id删除
+ *
+ * @author 5月22日 张易兴创建
  */
 @Controller
 public class MailInformation {
-
+    private static final Logger logger = LoggerFactory.getLogger(ActivityInformationService.class);
     @Resource(name = "MailInformationService")
     MailInformationService mailInformationService;
 

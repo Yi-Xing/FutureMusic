@@ -4,10 +4,13 @@ import entity.Classification;
 import entity.MusicVideo;
 import entity.SongList;
 import entity.State;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import service.user.administrators.ActivityInformationService;
 import service.user.administrators.SongListInformationService;
 import util.exception.DataBaseException;
 
@@ -23,10 +26,10 @@ import javax.annotation.Resource;
  *            4、用户的id
  *  修改：专辑用于修改活动
  *  删除：id
- *
+ * @author 5月22日 张易兴创建
  */
 public class SongListInformation {
-
+    private static final Logger logger = LoggerFactory.getLogger(ActivityInformationService.class);
     @Resource(name = "SongListInformationService")
     SongListInformationService songListInformationService;
     /**

@@ -18,6 +18,10 @@ import util.exception.DataBaseException;
 import javax.annotation.Resource;
 import java.util.List;
 
+/**
+ * 专辑或歌单的信息
+ * @author 5月22日 张易兴创建
+ */
 @Service(value = "SongListInformationService")
 public class SongListInformationService {
     private static final Logger logger = LoggerFactory.getLogger(ActivityInformationService.class);

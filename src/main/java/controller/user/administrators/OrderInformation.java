@@ -2,10 +2,13 @@ package controller.user.administrators;
 
 import entity.Order;
 import entity.State;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import service.user.administrators.ActivityInformationService;
 import service.user.administrators.OrderInformationService;
 import util.exception.DataBaseException;
 
@@ -18,9 +21,11 @@ import java.text.ParseException;
  *      查询：1、用户id
  *            2、音乐或MVid
  *  删除按id
+ * @author 5月22日 张易兴创建
  */
 @Controller
 public class OrderInformation {
+    private static final Logger logger = LoggerFactory.getLogger(ActivityInformationService.class);
     @Resource(name = "OrderInformationService")
     OrderInformationService orderInformationService;
     /**

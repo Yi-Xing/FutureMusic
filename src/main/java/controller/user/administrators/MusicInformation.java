@@ -6,11 +6,14 @@ import entity.Classification;
 import entity.Music;
 import entity.State;
 import entity.User;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import service.user.administrators.ActivityInformationService;
 import service.user.administrators.MusicInformationService;
 import util.exception.DataBaseException;
 
@@ -33,9 +36,11 @@ import java.util.List;
  *            8、活动id
  *            9、分类的id
  *  可更改
+ * @author 5月22日 张易兴创建
  */
 @Controller
 public class MusicInformation {
+    private static final Logger logger = LoggerFactory.getLogger(ActivityInformationService.class);
     @Resource(name = "MusicInformationService")
     MusicInformationService musicInformationService;
     /**
