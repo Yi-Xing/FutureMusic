@@ -42,7 +42,7 @@ body::-webkit-scrollbar {
     color: #fff;
 }
 
-.player_container .play {
+.player_container .Play {
     width: 70%;
     height: 100%;
     float: left;
@@ -54,7 +54,7 @@ body::-webkit-scrollbar {
     z-index: 1;
 }
 /*伪类背景模糊*/
-.player_container .play:after {
+.player_container .Play:after {
     content: "";
     width: 100%;
     height: 100%;
@@ -66,7 +66,7 @@ body::-webkit-scrollbar {
     z-index: 2;
 }
 /*真正的内容div*/
-.player_container .play .drag{
+.player_container .Play .drag{
     width: 100%;
     height: 100%;
     position: absolute;
@@ -172,38 +172,115 @@ body::-webkit-scrollbar {
 
 /*右侧*/
 /*歌曲名字*/
-.play .drag .music_name {
+.Play .drag .music_name {
     width: 100%;
     height: 8%;
     margin: 10px auto;
     font-size: 18px;
     border-bottom: 2px solid lightgrey;
     box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.2);
+    z-index: 20;
 }
-.play .drag .music_name h2{
+.Play .drag .music_name h2{
     color: #fff;
 }
 /*歌词*/
-.play .drag .Lyric{
+.Play .drag .Lyric{
     width: 100%;
-    height: 84%;
+    height: 80%;
     overflow: auto;
     text-align: center;
     padding: 20px 30px;
     color: #fff;
     font-size: 18px;
     line-height: 25px;
+    z-index: 19;
 }
-.play .drag .Lyric::-webkit-scrollbar {
+.Play .drag .Lyric::-webkit-scrollbar {
     width: 8px;
 }
 
-.play .drag .Lyric::-webkit-scrollbar-thumb {
+.Play .drag .Lyric::-webkit-scrollbar-thumb {
     background-color: lightgray;
     border-radius: 4px;
 }
 /*播放控制器*/
-.play .drag .play_control{
+.Play .drag .Play_control{
     width: 100%;
-    height: 8%;
+    /*height: 12%;*/
+
+    overflow: hidden;
+}
+.Play .drag .play_control audio{
+    width: 100%;
+    color: #333333;
+}
+.foot {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    border-top: 1px solid #E1E1E2;
+    background-color: rgba(0,0,0,1);
+    color: #fff;
+    display: flex;
+    justify-content: space-around;
+    z-index: 20;
+}
+.foot i {
+    display: inline-block;
+    margin-right: 10px;
+    font-size: 35px;
+    cursor: pointer;
+}
+.foot .Progress {
+    line-height: 50px;
+    width: 50%;
+    display: flex;
+    justify-content: space-around;
+}
+.foot .progress_range {
+    height: 5px;
+    width: 78%;
+    margin-top: 20px;
+    background-color: gainsboro;
+    position: relative;
+    border-radius: 5px;
+}
+.foot .progress span:nth-of-type(2) {
+
+}
+.foot .model {
+    line-height: 50px;
+    display: flex;
+    justify-content: space-around;
+}
+.foot .model span {
+    cursor: pointer;
+}
+.foot .volume_range {
+    width: 100px;
+    height: 5px;
+    margin-top: 20px;
+    background-color: gainsboro;
+    position: relative;
+    border-radius: 5px;
+}
+.foot .range {
+    position: absolute;
+    width: 0;
+    height: 5px;
+    background-color: #fff;
+}
+.foot .circle {
+    position: absolute;
+    top: -2px;
+    width: 10px;
+    height: 10px;
+    border-radius: 100%;
+    background-color: red;
+    border: 2px solid #fff;
+    cursor: pointer;
+}
+.foot .bofangModel {
+
 }
