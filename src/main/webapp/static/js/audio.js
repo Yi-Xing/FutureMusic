@@ -6,11 +6,17 @@ window.onload = function () {
     var oPlay = document.getElementsByClassName("play")[0];
     var clickNum = 0;       //用于判断是要播放还是暂停
     var oProgress = document.getElementsByClassName("range")[0];
+    var oMaxVolume=document.getElementsByClassName("volume_range")[0];
     var oMaxProgress = document.getElementsByClassName("Progress")[0];
     var oProgress_circle = document.getElementsByClassName("circle")[0];
+    var oVolume_circle=document.getElementsByClassName("circle")[1];
     var oCurrent = document.getElementsByClassName("current_time")[0];
     var oBofangModel = document.getElementsByClassName("bofangModel")[0];
     var clickNum3 = 0;
+    var oNext=document.getElementsByClassName("icon-yduixiayiqu")[0];
+    var oPre=document.getElementsByClassName("icon-yduishangyiqu")[0];
+    var oMaxProgress=document.getElementsByClassName("progress")[0];
+    var oVolumeIcon=document.getElementsByClassName("volume")[0];
 
     //获取进度条的宽
     var wid = document.getElementsByClassName("progress_range")[0].clientWidth;
@@ -22,8 +28,8 @@ window.onload = function () {
         oAudio.play();
         oPlay.innerHTML = "<i class='iconfont icon-bofang' title='暂停'></i>";
         clickNum = 1;
-        oNeedle.style.animation = "rotate-needle-resume 0.5s 1 normal linear forwards;";
-        oDisk.animationPlayState = "running";
+        // oNeedle.style.animation = "rotate-needle-resume 0.5s 1 normal linear forwards;";
+        // oDisk.animationPlayState = "running";
         setInterval(setProgress, 1000);
     }
 
@@ -34,14 +40,14 @@ window.onload = function () {
             setInterval(setProgress, 1000);
             oPlay.innerHTML = "<i class='iconfont icon-zanting' title='播放'></i>";
             clickNum = 1;
-            oNeedle.style.transform = "rotate(0deg)";
-            oDisk.style.animationPlayState = "running";
+            // oNeedle.style.transform = "rotate(0deg)";
+            // oDisk.style.animationPlayState = "running";
         } else {
             oAudio.pause();
             oPlay.innerHTML = "<i class='iconfont icon-bofang' title='暂停'></i>";
             clickNum = 0;
-            oNeedle.style.transform = "rotate(-25deg)";
-            oDisk.style.animationPlayState = "paused";
+            // oNeedle.style.transform = "rotate(-25deg)";
+            // oDisk.style.animationPlayState = "paused";
         }
     }
 
