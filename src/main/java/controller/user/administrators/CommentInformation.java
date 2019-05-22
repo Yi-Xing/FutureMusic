@@ -53,11 +53,11 @@ public class CommentInformation {
         return commentInformationService.selectComment(id, model);
     }
 
-    /**
-     * 删除指定评论，也要删除该评论的子评论
-     */
-    @RequestMapping(value = "/deleteComment")
-    public State deleteComment(Integer id) throws DataBaseException {
-        return aboutMusicService.deleteComment(id);
-    }
+//    /**
+//     * 删除指定评论，也要删除该评论的子评论
+//     */
+//    @RequestMapping(value = "/deleteComment")
+//    public State deleteComment(Integer id) throws DataBaseException {
+//        return aboutMusicService.deleteComment(id);
+//    }
 }

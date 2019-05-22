@@ -34,7 +34,7 @@ public class OrderInformation {
      * @param pageNum 表示当前第几页
      * @param type 1表示是音乐  2表示MV 3表示用户
      */
-    @RequestMapping(value = "/showActivity")
+    @RequestMapping(value = "/showOrder")
     public String showOrder(Integer id,Integer type,Integer pageNum ,Model model) throws ParseException {
         return orderInformationService.showOrder(id,type,pageNum,model);
     }

@@ -28,7 +28,7 @@ public class FocusInformation {
      * 返回指定用户的粉丝量
      * @param id 用户的id
      */
-    @RequestMapping(value = "/showActivity")
+    @RequestMapping(value = "/showFocus")
     public String showFocus(Integer id, Model model) throws ParseException {
         return focusInformationService.showFocus(id,model);
     }
