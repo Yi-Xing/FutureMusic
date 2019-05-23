@@ -2,20 +2,20 @@
     border-radius: 5px;
     margin-left: 10px;
 }
-.artistS{
+.artistS,.mvS{
     width: 100%;
     margin-top: 20px;
 }
-.artistS ul{
+.artistS ul,.mvS ul{
     width: 100%;
     display: flex;
     flex-flow: row wrap;
     justify-content: space-around;
 }
-.artist{
+.artist,.mv{
     margin-bottom: 20px;
 }
-.artist *{
+.artist *,.mv *{
     font-family: "AkkuratPro-Regular", Helvetica, Arial, sans-serif;
 }
 .artist .artist_top{
