@@ -15,6 +15,11 @@ public class Main {
         return "index";
     }
 
+    @RequestMapping(value = "/index")
+    public String index() {
+        return "index";
+    }
+
     @RequestMapping(value = "/player")
     public String player() {
         return "player";
