@@ -35,5 +35,10 @@ public class Main {
         return "musicVideo";
     }
 
+    @RequestMapping(value = "/mvPlayer")
+    public String mvPlayer() {
+        return "mvPlayer";
+    }
+
 }
 

@@ -174,7 +174,7 @@ body::-webkit-scrollbar {
 /*歌曲名字*/
 .Play .drag .music_name {
     width: 100%;
-    height: 8%;
+    /*height: 8%;*/
     margin: 10px auto;
     font-size: 18px;
     border-bottom: 2px solid lightgrey;
@@ -182,6 +182,12 @@ body::-webkit-scrollbar {
     z-index: 20;
 }
 .Play .drag .music_name h2{
+    margin-top: 5px;
+    color: #fff;
+}
+.Play .drag .music_name p{
+    margin: 0;
+    font-size: 14px;
     color: #fff;
 }
 /*歌词*/
