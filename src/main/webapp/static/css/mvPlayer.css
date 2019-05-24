@@ -19,3 +19,23 @@
     background-color: #F5F5F5;
     outline: none;
 }
+.Comment .comment_container{
+    margin-top: 50px;
+}
+.Comment .comment_container .header_container{
+    width: 80px;
+    height: 80px;
+}
+.Comment .comment_container .header_container img{
+    width: 100%;
+}
+.Comment .comment_container .comment_content .panel-body{
+    padding-bottom: 5px;
+}
+.Comment .comment_container .comment_content .panel-body .iconfont{
+    font-size: 25px;
+}
+.icon-dianzan1{
+    color: #ffc537;
+    display: none;
+}
