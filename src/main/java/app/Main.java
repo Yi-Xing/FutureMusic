@@ -15,10 +15,29 @@ public class Main {
         return "index";
     }
 
+    @RequestMapping(value = "/index")
+    public String index() {
+        return "index";
+    }
 
     @RequestMapping(value = "/player")
-    public String a() {
+    public String player() {
         return "player";
+    }
+
+    @RequestMapping(value = "/artist")
+    public String artist() {
+        return "artist";
+    }
+
+    @RequestMapping(value = "/musicVideo")
+    public String musicVideo() {
+        return "musicVideo";
+    }
+
+    @RequestMapping(value = "/mvPlayer")
+    public String mvPlayer() {
+        return "mvPlayer";
     }
 
 }
