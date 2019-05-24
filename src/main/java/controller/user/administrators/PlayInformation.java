@@ -9,7 +9,6 @@ import service.user.administrators.ActivityInformationService;
 import service.user.administrators.PlayInformationService;
 
 import javax.annotation.Resource;
-import java.text.ParseException;
 
 /**
  * 查询：指定音乐或MV被播放的次数
@@ -29,7 +28,7 @@ public class PlayInformation {
      * @param type 1、音乐  2、MV  3、专辑
      */
     @RequestMapping(value = "/showPlay")
-    public String showPlay(Integer id,Integer type, Model model) throws ParseException {
+    public String showPlay(Integer id,Integer type, Model model) {
         return playInformationService.showPlay(id,type,model);
     }
 }

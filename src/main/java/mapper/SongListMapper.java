@@ -25,6 +25,7 @@ public interface SongListMapper {
      *                 name按照名字模糊查歌单或专辑
      *                 activity查找参加指定活动的专辑
      *                 userId和type查找指定用户的所有歌单或专辑
+     *                 classificationId查询指定分类的歌单或专辑
      * @return List<SongList>  返回查找到的指定歌单或专辑的信息
      */
     public List<SongList> selectListSongList(SongList songList);

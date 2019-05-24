@@ -21,6 +21,9 @@
             <if test='activity!=0'>
                 and song_list_activity=#{activity}
             </if>
+            <if test='classificationId!=0'>
+                and song_list_classification_id=#{classificationId}
+            </if>
         </where>
     </select>
     <insert id="insertSongList" parameterType="SongList">

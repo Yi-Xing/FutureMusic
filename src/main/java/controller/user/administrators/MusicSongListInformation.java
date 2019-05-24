@@ -9,7 +9,6 @@ import service.user.administrators.ActivityInformationService;
 import service.user.administrators.MusicSongListInformationService;
 
 import javax.annotation.Resource;
-import java.text.ParseException;
 
 /**
  * 歌单或专辑的存放的歌曲

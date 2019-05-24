@@ -11,7 +11,6 @@ import org.springframework.ui.Model;
 import service.user.IdExistence;
 
 import javax.annotation.Resource;
-import java.text.ParseException;
 import java.util.List;
 
 /**
@@ -32,7 +31,7 @@ public class CommentInformationService {
      * @param id      对应类型的id
      * @param pageNum 表示当前第几页
      */
-    public String showComment(Integer type, Integer id, Integer pageNum, Model model) throws ParseException {
+    public String showComment(Integer type, Integer id, Integer pageNum, Model model) {
         Comment comment = new Comment();
         if(type!=null){
         if (type >0 && type < 4) {

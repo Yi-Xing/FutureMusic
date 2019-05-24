@@ -1,6 +1,5 @@
 package controller.user.administrators;
 
-import entity.Music;
 import entity.MusicVideo;
 import entity.State;
 import org.slf4j.Logger;
@@ -11,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import service.user.administrators.ActivityInformationService;
-import service.user.administrators.MusicInformationService;
 import service.user.administrators.MusicVideoInformationService;
 import util.exception.DataBaseException;
 

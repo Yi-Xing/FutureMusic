@@ -9,7 +9,6 @@ import service.user.administrators.ActivityInformationService;
 import service.user.administrators.SongListCollectInformationService;
 
 import javax.annotation.Resource;
-import java.text.ParseException;
 
 /**
  * 查询：指定专辑或歌单被收藏的次数

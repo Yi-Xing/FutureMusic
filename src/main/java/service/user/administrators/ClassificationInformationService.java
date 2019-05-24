@@ -96,17 +96,14 @@ public class ClassificationInformationService {
         String languages = classification.getLanguages();
         String region = classification.getRegion();
         String type = classification.getType();
-        System.out.println(classification);
         if (gender == null || "".equals(gender)) {
             if (languages == null || "".equals(languages)) {
                 if (region == null || "".equals(region)) {
                     if (type != null && !"".equals(type)) {
                         // 不为空则判断是否合法
-                        System.out.println("开始运行");
                         if (isClassificationLength(type)) {
                             classification.setType(type);
                             List<Classification> list = classificationMapper.selectListClassification(new Classification());
-                            System.out.println(list);
                             for (Classification c : list) {
                                 setLanguages.add(c.getLanguages());
                                 setRegion.add(c.getRegion());
@@ -147,7 +144,6 @@ public class ClassificationInformationService {
                                     classification.setLanguages(languagesValue);
                                     classification.setType(typeValue);
                                     classification.setGender(genderValue);
-                                    System.out.println(classification);
                                     if (classificationMapper.insertClassification(classification) < 1) {
                                         // 如果失败是数据库错误
                                         logger.error("分类：" + classification + "添加时，数据库出错");
@@ -191,7 +187,6 @@ public class ClassificationInformationService {
                 }
             }
         } else {
-            System.out.println("我不该运行的");
             // 不为空则判断是否合法
             if (isClassificationLength(gender)) {
                 classification.setGender(gender);
@@ -227,7 +222,7 @@ public class ClassificationInformationService {
     /**
      * 删除分类，分类前先先判断音乐，MV，专辑是否选有指定分类，如果有删除失败
      */
-    public String deleteClassification(@RequestBody Classification classification, Model model) throws DataBaseException {
+    public String deleteClassification( Classification classification, Model model) throws DataBaseException {
         String gender = classification.getGender();
         String languages = classification.getLanguages();
         String region = classification.getRegion();
@@ -261,7 +256,7 @@ public class ClassificationInformationService {
             }
         }
         // 不存在则开始删除
-        if (classificationMapper.deleteClassification(classification) < 1) {
+        if ((classificationMapper.deleteClassification(classification)) < 1) {
             // 如果失败是数据库错误
             logger.error("分类：" + classification + "删除时，数据库出错");
             throw new DataBaseException("分类：" + classification + "删除时，数据库出错");
@@ -293,7 +288,7 @@ public class ClassificationInformationService {
     /**
      * 用于判断输入的分类的长度是否合法
      */
-    public boolean isClassificationLength(String string) {
+    private boolean isClassificationLength(String string) {
         return string.length() > 0 && string.length() <= 6;
     }
 }

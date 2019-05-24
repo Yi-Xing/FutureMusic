@@ -2,7 +2,6 @@ package service.user.administrators;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import entity.Order;
 import entity.SongList;
 import entity.State;
 import mapper.SongListMapper;
@@ -11,10 +10,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 import service.user.IdExistence;
-import service.user.ValidationInformation;
 import util.exception.DataBaseException;
 
 import javax.annotation.Resource;
