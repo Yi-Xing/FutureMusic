@@ -43,7 +43,7 @@
             <if test='introduction!=null and introduction!=""'>
                 ,song_list_introduction=#{introduction}
             </if>
-            <if test='date!=null and date!=""'>
+            <if test='date!=null '>
                 , song_list_date=#{date}
             </if>
             <if test='classificationId!=0'>

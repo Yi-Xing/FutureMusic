@@ -29,7 +29,7 @@ public class FocusInformation {
      * @param id 用户的id
      */
     @RequestMapping(value = "/showFocus")
-    public String showFocus(Integer id, Model model) throws ParseException {
+    public String showFocus(Integer id, Model model) {
         return focusInformationService.showFocus(id,model);
     }
 }

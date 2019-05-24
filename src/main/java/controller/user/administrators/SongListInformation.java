@@ -44,7 +44,7 @@ public class SongListInformation {
     }
 
     /**
-     * 修改专辑信息，ajax
+     *  修改专辑的活动，ajax
      */
     @RequestMapping(value = "/modifySongList")
     @ResponseBody

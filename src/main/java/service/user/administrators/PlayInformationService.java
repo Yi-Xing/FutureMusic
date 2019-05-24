@@ -28,7 +28,7 @@ public class PlayInformationService {
      * @param id 音乐或MV或专辑的id
      * @param type 1、音乐  2、MV  3、专辑
      */
-    public String showPlay(Integer id,Integer type, Model model) throws ParseException {
+    public String showPlay(Integer id,Integer type, Model model)  {
         Play play=new Play();
         if(type<3){
             play.setMusicId(id);

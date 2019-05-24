@@ -60,7 +60,7 @@
             <if test='introduction!=null and introduction!=""'>
                 ,music_video_introduction=#{introduction}
             </if>
-            <if test='date!=null and date!=""'>
+            <if test='date!=null '>
                 ,music_video_date=#{date}
             </if>
             <if test='level!=0'>

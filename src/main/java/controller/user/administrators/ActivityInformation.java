@@ -71,8 +71,8 @@ public class ActivityInformation {
      * 删除活动信息
      */
     @RequestMapping(value = "/deleteActivity")
-    public String deleteActivity(Integer id) throws DataBaseException {
+    public String deleteActivity(Integer id,Model model) throws DataBaseException {
         logger.trace("deleteActivity方法开始执行");
-        return activityInformationService.deleteActivity(id);
+        return activityInformationService.deleteActivity(id,model);
     }
 }

@@ -3,14 +3,12 @@ package service.user.administrators;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import entity.Comment;
-import entity.State;
 import mapper.CommentMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
-import util.exception.DataBaseException;
+import service.user.IdExistence;
 
 import javax.annotation.Resource;
 import java.text.ParseException;
@@ -36,11 +34,15 @@ public class CommentInformationService {
      */
     public String showComment(Integer type, Integer id, Integer pageNum, Model model) throws ParseException {
         Comment comment = new Comment();
-        if (type < 4) {
+        if(type!=null){
+        if (type >0 && type < 4) {
             comment.setType(type);
             comment.setMusicId(id);
-        } else {
+        } else if(type ==4) {
             comment.setUserId(id);
+        }else if(type ==5){
+            comment.setId(id);
+        }
         }
         //在查询之前传入当前页，然后多少记录
         PageHelper.startPage(pageNum, 8);

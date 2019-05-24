@@ -13,6 +13,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import service.user.IdExistence;
+import service.user.ValidationInformation;
 import util.JudgeIsOverdueUtil;
 import util.exception.DataBaseException;
 
@@ -22,6 +24,7 @@ import java.util.List;
 
 /**
  * 音乐
+ *
  * @author 5月22日 张易兴创建
  */
 @Service(value = "MusicInformationService")
@@ -29,17 +32,68 @@ public class MusicInformationService {
     private static final Logger logger = LoggerFactory.getLogger(MusicInformationService.class);
     @Resource(name = "MusicMapper")
     MusicMapper musicMapper;
+    @Resource(name = "ValidationInformation")
+    ValidationInformation validationInformation;
+    @Resource(name = "IdExistence")
+    IdExistence idExistence;
 
     /**
      * 添加音乐
      */
-    public State addMusic( Music music) throws DataBaseException {
-        if (musicMapper.insertMusic(music) < 1) {
-            // 如果失败是数据库错误
-            logger.error(music + "添加音乐信息时，数据库出错");
-            throw new DataBaseException(music + "添加音乐信息时，数据库出错");
+    public State addMusic(Music music) throws DataBaseException {
+        State state = new State();
+        if (validationInformation.isName(music.getName())) {
+            // 判断价格是否符合要求
+            if (validationInformation.isPrice(String.valueOf(music.getPrice()))) {
+                // 判断歌手是否存在
+                User user = idExistence.isUserId(music.getSingerId());
+                if (user != null) {
+                    if (user.getLevel() == 2) {
+                        // 判断专辑是否存在
+                        if (idExistence.isSongListId(music.getAlbumId()) != null) {
+                            // 判断分类是否存在
+                            if (idExistence.isClassificationId(music.getClassificationId()) != null) {
+                                // 先判断是否设置了MV
+                                if (music.getMusicVideoId() != 0) {
+                                    // 判断MV是否存在
+                                    if (idExistence.isMusicVideoId(music.getMusicVideoId()) == null) {
+                                        state.setInformation("音乐的MV不存在");
+                                        return state;
+                                    }
+                                }
+                                // 先判断是否设置了活动
+                                if (music.getActivity() != 0) {
+                                    // 判断活动id是否存在
+                                    if (idExistence.isActivityId(music.getActivity()) == null) {
+                                        state.setInformation("音乐的活动不存在");
+                                        return state;
+                                    }
+                                }
+                                if (musicMapper.insertMusic(music) < 1) {
+                                    // 如果失败是数据库错误
+                                    logger.error(music + "添加音乐信息时，数据库出错");
+                                    throw new DataBaseException(music + "添加音乐信息时，数据库出错");
+                                }
+                                state.setState(1);
+                            } else {
+                                state.setInformation("音乐的分类不存在");
+                            }
+                        } else {
+                            state.setInformation("音乐的专辑不存在");
+                        }
+                    } else {
+                        state.setInformation("音乐的歌手不存在");
+                    }
+                } else {
+                    state.setInformation("音乐的歌手不存在");
+                }
+            } else {
+                state.setInformation("音乐的价格不符合要求");
+            }
+        } else {
+            state.setInformation("音乐的名字不符合要求");
         }
-        return new State(1);
+        return state;
     }
 
     /**
@@ -91,12 +145,54 @@ public class MusicInformationService {
     /**
      * 修改音乐信息，ajax
      */
-    public State modifyMusic( Music music) throws DataBaseException {
-        if (musicMapper.updateMusic(music) < 1) {
-            // 如果失败是数据库错误
-            logger.error(music + "修改音乐信息，数据库出错");
-            throw new DataBaseException(music + "修改音乐信息，数据库出错");
+    public State modifyMusic(Music music) throws DataBaseException {
+        State state = new State();
+        if (validationInformation.isName(music.getName())) {
+            // 判断价格是否符合要求
+            if (validationInformation.isPrice(String.valueOf(music.getPrice()))) {
+                // 判断歌手是否存在
+                if (idExistence.isUserId(music.getSingerId()) != null) {
+                    // 判断专辑是否存在
+                    if (idExistence.isSongListId(music.getAlbumId()) != null) {
+                        // 判断分类是否存在
+                        if (idExistence.isClassificationId(music.getClassificationId()) != null) {
+                            // 先判断是否设置了MV
+                            if (music.getMusicVideoId() != 0) {
+                                // 判断MV是否存在
+                                if (idExistence.isMusicVideoId(music.getMusicVideoId()) == null) {
+                                    state.setInformation("音乐的MV不存在");
+                                    return state;
+                                }
+                            }
+                            // 先判断是否设置了活动
+                            if (music.getActivity() != 0) {
+                                // 判断活动id是否存在
+                                if (idExistence.isActivityId(music.getActivity()) == null) {
+                                    state.setInformation("音乐的活动不存在");
+                                    return state;
+                                }
+                            }
+                            if (musicMapper.updateMusic(music) < 1) {
+                                // 如果失败是数据库错误
+                                logger.error(music + "修改音乐信息，数据库出错");
+                                throw new DataBaseException(music + "修改音乐信息，数据库出错");
+                            }
+                            state.setState(1);
+                        } else {
+                            state.setInformation("音乐的分类不存在");
+                        }
+                    } else {
+                        state.setInformation("音乐的专辑不存在");
+                    }
+                } else {
+                    state.setInformation("音乐的歌手不存在");
+                }
+            } else {
+                state.setInformation("音乐的价格不符合要求");
+            }
+        } else {
+            state.setInformation("音乐的名字不符合要求");
         }
-        return new State(1);
+        return state;
     }
 }

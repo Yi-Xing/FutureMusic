@@ -34,7 +34,7 @@ public class CommentInformation {
     /**
      * 显示评论信息
      *
-     * @param type    选择的类型  1：音乐，2：MV，3：专辑，4：用户
+     * @param type    选择的类型  1：音乐，2：MV，3：专辑，4：用户 5：id
      * @param id      对应类型的id
      * @param pageNum 表示当前第几页
      */
@@ -43,15 +43,15 @@ public class CommentInformation {
         return commentInformationService.showComment(type, id, pageNum, model);
     }
 
-    /**
-     * 显示指定id的评论信息
-     *
-     * @param id 评论的id
-     */
-    @RequestMapping(value = "/selectComment")
-    public String selectComment(Integer id, Model model) {
-        return commentInformationService.selectComment(id, model);
-    }
+//    /**
+//     * 显示指定id的评论信息
+//     *
+//     * @param id 评论的id
+//     */
+//    @RequestMapping(value = "/selectComment")
+//    public String selectComment(Integer id, Model model) {
+//        return commentInformationService.selectComment(id, model);
+//    }
 
 //    /**
 //     * 删除指定评论，也要删除该评论的子评论

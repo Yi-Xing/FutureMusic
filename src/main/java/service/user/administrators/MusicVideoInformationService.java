@@ -12,6 +12,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
+import service.user.IdExistence;
+import service.user.ValidationInformation;
 import util.JudgeIsOverdueUtil;
 import util.exception.DataBaseException;
 
@@ -21,6 +23,7 @@ import java.util.List;
 
 /**
  * MV
+ *
  * @author 5月22日 张易兴创建
  */
 @Service(value = "MusicVideoInformationService")
@@ -28,17 +31,60 @@ public class MusicVideoInformationService {
     private static final Logger logger = LoggerFactory.getLogger(MusicVideoInformationService.class);
     @Resource(name = "MusicVideoMapper")
     MusicVideoMapper musicVideoMapper;
+    @Resource(name = "ValidationInformation")
+    ValidationInformation validationInformation;
+    @Resource(name = "IdExistence")
+    IdExistence idExistence;
 
     /**
      * 添加MV
      */
     public State addMusicVideo(MusicVideo musicVideo) throws DataBaseException {
-        if (musicVideoMapper.insertMusicVideo(musicVideo) < 1) {
-            // 如果失败是数据库错误
-            logger.error(musicVideo + "添加MV信息时，数据库出错");
-            throw new DataBaseException(musicVideo + "添加MV信息时，数据库出错");
+        State state = new State();
+        if (validationInformation.isName(musicVideo.getName())) {
+            // 判断价格是否符合要求
+            if (validationInformation.isPrice(String.valueOf(musicVideo.getPrice()))) {
+                // 判断歌手是否存在
+                if (idExistence.isUserId(musicVideo.getSingerId()) != null) {
+                    // 判断音乐是否存在
+                    if (idExistence.isMusicId(musicVideo.getMusicId()) != null) {
+                        // 判断分类是否存在
+                        if (idExistence.isClassificationId(musicVideo.getClassificationId()) != null) {
+                            // 先判断是否设置了活动
+                            if (musicVideo.getActivity() != 0) {
+                                // 判断活动id是否存在
+                                if (idExistence.isActivityId(musicVideo.getActivity()) == null) {
+                                    state.setInformation("音乐的活动不存在");
+                                    return state;
+                                }
+                            }
+                            // 判断MV的介绍是否合法
+                            state = validationInformation.isContent(musicVideo.getIntroduction());
+                            if (state.getState() == 1) {
+                                if (musicVideoMapper.insertMusicVideo(musicVideo) < 1) {
+                                    // 如果失败是数据库错误
+                                    logger.error(musicVideo + "添加MV信息时，数据库出错");
+                                    throw new DataBaseException(musicVideo + "添加MV信息时，数据库出错");
+                                }
+                            } else {
+                                return state;
+                            }
+                        } else {
+                            state.setInformation("MV的分类不存在");
+                        }
+                    } else {
+                        state.setInformation("MV的音乐不存在");
+                    }
+                } else {
+                    state.setInformation("MV的歌手不存在");
+                }
+            } else {
+                state.setInformation("MV的价格不符合要求");
+            }
+        } else {
+            state.setInformation("MV的名字不符合要求");
         }
-        return new State(1);
+        return state;
     }
 
     /**
@@ -90,12 +136,51 @@ public class MusicVideoInformationService {
     /**
      * 修改MV信息，ajax
      */
-    public State modifyMusicVideo( MusicVideo musicVideo) throws DataBaseException {
-        if (musicVideoMapper.updateMusicVideo(musicVideo) < 1) {
-            // 如果失败是数据库错误
-            logger.error(musicVideo + "修改MV信息，数据库出错");
-            throw new DataBaseException(musicVideo + "修改MV信息，数据库出错");
+    public State modifyMusicVideo(MusicVideo musicVideo) throws DataBaseException {
+        State state = new State();
+        if (validationInformation.isName(musicVideo.getName())) {
+            // 判断价格是否符合要求
+            if (validationInformation.isPrice(String.valueOf(musicVideo.getPrice()))) {
+                // 判断歌手是否存在
+                if (idExistence.isUserId(musicVideo.getSingerId()) != null) {
+                    // 判断音乐是否存在
+                    if (idExistence.isMusicId(musicVideo.getMusicId()) != null) {
+                        // 判断分类是否存在
+                        if (idExistence.isClassificationId(musicVideo.getClassificationId()) != null) {
+                            // 先判断是否设置了活动
+                            if (musicVideo.getActivity() != 0) {
+                                // 判断活动id是否存在
+                                if (idExistence.isActivityId(musicVideo.getActivity()) == null) {
+                                    state.setInformation("音乐的活动不存在");
+                                    return state;
+                                }
+                            }
+                            // 判断MV的介绍是否合法
+                            state = validationInformation.isContent(musicVideo.getIntroduction());
+                            if (state.getState() == 1) {
+                                if (musicVideoMapper.updateMusicVideo(musicVideo) < 1) {
+                                    // 如果失败是数据库错误
+                                    logger.error(musicVideo + "修改MV信息，数据库出错");
+                                    throw new DataBaseException(musicVideo + "修改MV信息，数据库出错");
+                                }
+                            } else {
+                                return state;
+                            }
+                        } else {
+                            state.setInformation("MV的分类不存在");
+                        }
+                    } else {
+                        state.setInformation("MV的音乐不存在");
+                    }
+                } else {
+                    state.setInformation("MV的歌手不存在");
+                }
+            } else {
+                state.setInformation("MV的价格不符合要求");
+            }
+        } else {
+            state.setInformation("MV的名字不符合要求");
         }
-        return new State(1);
+        return state;
     }
 }

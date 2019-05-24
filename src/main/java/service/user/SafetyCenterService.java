@@ -42,10 +42,10 @@ public class SafetyCenterService {
             // 如果会话上绑定有用户信息则不需要绑定
             session.setAttribute("userMailbox", user.getMailbox());
         }
-            String userMailbox = specialFunctions.getUserMailbox(session);
-            if (userMailbox != null) {
-                return null;
-            }
+        String userMailbox = specialFunctions.getUserMailbox(session);
+        if (userMailbox != null) {
+            return null;
+        }
         return null;
     }
 
@@ -69,24 +69,27 @@ public class SafetyCenterService {
         }
         return state;
     }
+
     /**
      * 取消邮箱绑定
+     *
      * @return State 状态码为1时跳转到安全中心首页
      */
-    public State cancelBinding(HttpServletRequest request, HttpServletResponse response,HttpSession session) {
+    public State cancelBinding(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
         //得到会话上的用户信息
         User user = specialFunctions.getUser(session);
         if (user != null) {
             // 如果会话上绑定有用户信息则需要先删除会话上的用户信息
-            loginService.signOutLogin(request,response,session);
+            loginService.signOutLogin(request, response, session);
         }
         // 删除绑定的邮箱
         session.removeAttribute("userMailbox");
         logger.info("邮箱解绑成功");
-        State state=new State();
+        State state = new State();
         state.setState(1);
         return state;
     }
+
     /**
      * 修改密码
      *

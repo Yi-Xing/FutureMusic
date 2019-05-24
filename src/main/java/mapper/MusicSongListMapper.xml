@@ -44,7 +44,7 @@
             <if test='classificationId!=0'>
                 ,music_classification_id=#{classificationId}
             </if>
-            <if test='date!=null and date!=""'>
+            <if test='date!=null'>
                 ,music_song_list_music_date=#{date}
             </if>
         </set>

@@ -18,7 +18,7 @@
         </where>
     </select>
     <select id="selectUserFocusCount" parameterType="Focus" resultType="Integer">
-        select * from tb_focus
+        select count(*) from tb_focus
         <where>
             <if test='userId!=0'>
                 focus_user_id=#{userId}
@@ -34,7 +34,7 @@
     <update id="updateFocus" parameterType="Focus">
         update tb_focus
         <set>
-            <if test='date!=null and date!=""'>
+            <if test='date!=null '>
                 focus_date=#{date}
             </if>
         </set>

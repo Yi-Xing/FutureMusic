@@ -63,7 +63,7 @@
             <if test='balance!=null and balance!=""'>
                 ,user_balance=#{balance}
             </if>
-            <if test='date!=null and date!=""'>
+            <if test='date!=null'>
                 ,user_date=#{date}
             </if>
             <if test='headPortrait!=null and headPortrait!=""'>

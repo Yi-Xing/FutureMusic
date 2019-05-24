@@ -1,8 +1,10 @@
 package service.user;
 
+import entity.State;
 import entity.User;
 import mapper.UserMapper;
 import org.springframework.stereotype.Service;
+import util.ConstantUtil;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
@@ -99,7 +101,32 @@ public class ValidationInformation {
      * 验证或名字标题是否是1-15个字符
      * 用于活动标题，音乐MV歌单专辑的名字
      */
-    public boolean isName(String name){
-        return name.length()>0 && name.length()<=15;
+    public boolean isName(String name) {
+        return name.length() > 0 && name.length() <= 15;
+    }
+
+    /**
+     * 用于判断发送邮箱的内容或MV或歌单专辑的介绍是否合法
+     *
+     * @param content 内容
+     */
+    public State isContent(String content) {
+        State state = new State();
+        if (content.length() != 0) {
+            if (content.length() <= ConstantUtil.Two_Hundred.getIntValue()) {
+                state.setState(1);
+            } else {
+                state.setInformation("内容过长");
+            }
+        } else {
+            state.setInformation("内容不能为空");
+        }
+        return state;
+    }
+    /**
+     * 用于判断字符串是不是一个两位小数
+     */
+    public boolean isPrice(String string){
+        return string.matches("(^[1-9]\\d*|^0)(\\.\\d{1,2}|)$");
     }
 }
