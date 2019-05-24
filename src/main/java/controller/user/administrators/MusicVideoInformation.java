@@ -41,7 +41,7 @@ public class MusicVideoInformation {
     @Resource(name = "MusicVideoInformationService")
     MusicVideoInformationService musicVideoInformationService;
     /**
-     * 添加音乐
+     * 添加MV
      */
     @RequestMapping(value = "/addMusicVideo")
     @ResponseBody
@@ -49,7 +49,7 @@ public class MusicVideoInformation {
         return musicVideoInformationService.addMusicVideo(musicVideo);
     }
     /**
-     * 显示和按条件查询音乐
+     * 显示和按条件查询MV
      * @param condition 条件可以有多个
      * @param pageNum 表示当前第几页
      */
@@ -59,7 +59,7 @@ public class MusicVideoInformation {
     }
 
     /**
-     * 修改音乐信息，ajax
+     * 修改MV信息，ajax
      */
     @RequestMapping(value = "/modifyMusicVideo")
     @ResponseBody

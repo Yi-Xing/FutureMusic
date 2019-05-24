@@ -127,6 +127,7 @@ public class MusicVideoInformationService {
         PageHelper.startPage(pageNum, 8);
         // 根据条件查找用户信息
         List<MusicVideo> list = musicVideoMapper.selectListMusicVideo(musicVideo);
+        System.out.println(list);
         PageInfo pageInfo = new PageInfo<>(list);
         // 传入页面信息
         model.addAttribute("pageInfo", pageInfo);

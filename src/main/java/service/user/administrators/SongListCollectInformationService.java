@@ -22,18 +22,17 @@ public class SongListCollectInformationService {
     SongListCollectMapper songListCollectMapper;
 
     /**
-     * 指定歌手的所有音乐被播放的次数
-     * 指定专辑中的所有音乐被播放的次数
+     * 指定歌单或专辑被收藏的次数
      * @param id 歌单或专辑的id
      * @param type 1表示是歌单 2表示是专辑
      */
-    @RequestMapping(value = "/showSongListCollect")
     public String showSongListCollect(Integer id,Integer type, Model model)  {
         SongListCollect songListCollect=new  SongListCollect();
         songListCollect.setMusicId(id);
         songListCollect.setType(type);
         List<SongListCollect> list= songListCollectMapper.selectListSongListCollect(songListCollect);
         model.addAttribute("SongListCollectCount",list.size());
+        System.out.println(list.size());
         return null;
     }
 }

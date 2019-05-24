@@ -43,6 +43,7 @@ public class OrderInformationService {
         PageHelper.startPage(pageNum, 8);
         // 根据条件查找订单信息
         List<Order> list = orderMapper.selectListOrder(order);
+        System.out.println(list);
         PageInfo pageInfo = new PageInfo<>(list);
         // 传入页面信息
         model.addAttribute("pageInfo", pageInfo);

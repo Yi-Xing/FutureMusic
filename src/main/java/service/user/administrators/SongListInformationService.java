@@ -39,7 +39,6 @@ public class SongListInformationService {
      * @param id   歌单或专辑的id
      * @param type 1表示歌单或专辑的id，2表示活动的id 3、分类的id  4、用户的id
      */
-    @RequestMapping(value = "/showSongList")
     public String showSongList(Integer id, Integer type, Integer pageNum, Model model) {
         SongList songList = new SongList();
         if (type == 1) {
@@ -64,8 +63,6 @@ public class SongListInformationService {
     /**
      * 修改专辑的活动，ajax
      */
-    @RequestMapping(value = "/modifySongList")
-    @ResponseBody
     public State modifySongList(@RequestBody SongList songList) throws DataBaseException {
         State state = new State();
         // 判断活动是否存在
@@ -86,7 +83,6 @@ public class SongListInformationService {
     /**
      * 删除指定id专辑或歌单
      */
-    @RequestMapping(value = "/deleteSongList")
     public String deleteSongList(Integer id) throws DataBaseException {
         if (songListMapper.deleteSongList(id) < 1) {
             // 如果失败是数据库错误

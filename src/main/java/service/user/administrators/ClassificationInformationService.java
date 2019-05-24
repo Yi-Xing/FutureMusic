@@ -106,6 +106,7 @@ public class ClassificationInformationService {
                         if (isClassificationLength(type)) {
                             classification.setType(type);
                             List<Classification> list = classificationMapper.selectListClassification(new Classification());
+                            System.out.println(list);
                             for (Classification c : list) {
                                 setLanguages.add(c.getLanguages());
                                 setRegion.add(c.getRegion());
@@ -115,7 +116,7 @@ public class ClassificationInformationService {
                                 for (String regionValue : setRegion) {
                                     for (String genderValue : setGender) {
                                         classification.setLanguages(languagesValue);
-                                        classification.setGender(regionValue);
+                                        classification.setRegion(regionValue);
                                         classification.setGender(genderValue);
                                         if (classificationMapper.insertClassification(classification) < 1) {
                                             // 如果失败是数据库错误
@@ -190,6 +191,7 @@ public class ClassificationInformationService {
                 }
             }
         } else {
+            System.out.println("我不该运行的");
             // 不为空则判断是否合法
             if (isClassificationLength(gender)) {
                 classification.setGender(gender);

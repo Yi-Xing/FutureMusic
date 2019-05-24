@@ -6,6 +6,7 @@ import entity.SongList;
 import entity.State;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -28,6 +29,7 @@ import javax.annotation.Resource;
  *  删除：id
  * @author 5月22日 张易兴创建
  */
+@Controller
 public class SongListInformation {
     private static final Logger logger = LoggerFactory.getLogger(ActivityInformationService.class);
     @Resource(name = "SongListInformationService")

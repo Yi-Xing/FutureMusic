@@ -37,6 +37,7 @@ public class PlayInformationService {
             play.setAlbumId(id);
         }
         List<Play> list= playMapper.selectListPlay(play);
+        System.out.println(list);
         model.addAttribute("PlayCount",list.size());
         return null;
     }
