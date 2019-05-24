@@ -29,7 +29,14 @@ public interface SongListMapper {
      * @return List<SongList>  返回查找到的指定歌单或专辑的信息
      */
     public List<SongList> selectListSongList(SongList songList);
-
+    /**
+     * 查找符合指定规则的音乐信息
+     *
+     * @param ids 查找指定id的音乐
+     *
+     * @return List<SongList> 返回查找到的音乐
+     */
+    public List<SongList> listIdSelectListSongList(List<Integer> ids);
     /**
      * 添加指定歌单或专辑的信息
      *

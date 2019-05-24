@@ -1,10 +1,7 @@
 package service.music;
 
 import entity.*;
-import mapper.ActivityMapper;
-import mapper.ClassificationMapper;
-import mapper.MusicMapper;
-import mapper.UserMapper;
+import mapper.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -29,6 +26,10 @@ public class ExhibitionService {
     UserMapper userMapper;
     @Resource(name = "ActivityMapper")
     ActivityMapper activityMapper;
+    @Resource(name = "SongListMapper")
+    SongListMapper songListMapper;
+    @Resource(name = "MusicVideoMapper")
+    MusicVideoMapper musicVideoMapper;
 
     /**
      * 查找7天内播放量最高的歌曲
@@ -131,7 +132,49 @@ public class ExhibitionService {
         }
         return musicSingerMap;
     }
+    /**
+     * 根据分类查找歌单
+     * @param classification
+     */
 
+    public Map<SongList,User> selectListSongListByClassification(Classification classification){
+        //获取符合条件得分类对象
+        List<Integer> classificationIds = new ArrayList<>();
+        Map<SongList,User> musicSingerMap = new HashMap<>();
+        User user = new User();
+        List<Classification> classificationList = classificationMapper.selectListClassification(classification);
+        for (Classification clf : classificationList) {
+            //List获取对应得分类id
+            classificationIds.add(clf.getId());
+        }
+        List<SongList> songLists = songListMapper.listIdSelectListSongList(classificationIds);
+        for (SongList songList : songLists) {
+            user.setId(songList.getUserId());
+            musicSingerMap.put(songList, userMapper.selectUser(user).get(0));
+        }
+        return musicSingerMap;
+    }
+
+    /**
+     * 根据分类查找MV
+     * @param classification
+     */
+    public Map<MusicVideo,User> selectListMusicVideoListByClassification(Classification classification){
+        //获取符合条件得分类对象
+        List<Integer> classificationIds = new ArrayList<>();
+        Map<MusicVideo,User> musicSingerMap = new HashMap<>();
+        User user = new User();
+        List<Classification> classificationList = classificationMapper.selectListClassification(classification);
+        for (Classification clf : classificationList) {
+            classificationIds.add(clf.getId());
+        }
+        List<MusicVideo> musicVideoList = musicVideoMapper.listIdSelectListMusicVideo(classificationIds);
+        for (MusicVideo musicVideo : musicVideoList) {
+            user.setId(musicVideo.getSingerId());
+            musicSingerMap.put(musicVideo, userMapper.selectUser(user).get(0));
+        }
+        return musicSingerMap;
+    }
 //    /**
 //     *
 //     * @param singerName 按照指定规则查找指定歌曲
