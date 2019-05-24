@@ -18,8 +18,14 @@
             <if test='userId!=null and userId!=""'>
                 and comment_user_id=#{userId}
             </if>
-             <if test='reply!=0'>
+            <if test='reply!=0'>
                 and comment_reply=#{reply}
+            </if>
+            <if test="date!=null">
+                ORDER BY music_date	DESC
+            </if>
+            <if test='fabulous!=0'>
+                order by comment_fabulous DESC
             </if>
         </where>
     </select>

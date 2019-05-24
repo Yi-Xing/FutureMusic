@@ -2,12 +2,15 @@ package entity;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.Objects;
 
 /**
  * 用来存储音乐或mv或专辑的评论
  * @author 5月9日 张易兴创建
  */
 public class Comment implements Serializable {
+
+
     /**
      * 主键
      */
@@ -131,5 +134,25 @@ public class Comment implements Serializable {
 
     public void setFabulous(int fabulous) {
         this.fabulous = fabulous;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Comment comment = (Comment) o;
+        return id == comment.id &&
+                musicId == comment.musicId &&
+                type == comment.type &&
+                userId == comment.userId &&
+                reply == comment.reply &&
+                fabulous == comment.fabulous &&
+                Objects.equals(content, comment.content) &&
+                Objects.equals(date, comment.date);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, musicId, type, userId, content, date, reply, fabulous);
     }
 }
