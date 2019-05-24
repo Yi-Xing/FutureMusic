@@ -12,8 +12,8 @@ import java.util.*;
 /**
  * @author 蒋靓峣 5.23创建
  */
-@Service(value = "CommentInformationService")
-public class CommentInformationService {   private static final Logger logger = LoggerFactory.getLogger(SearchService.class);
+@Service(value = "ShowCommentService")
+public class ShowCommentService {   private static final Logger logger = LoggerFactory.getLogger(SearchService.class);
     @Resource(name="MusicMapper")
     MusicMapper musicMapper;
     @Resource(name="MusicVideoMapper")

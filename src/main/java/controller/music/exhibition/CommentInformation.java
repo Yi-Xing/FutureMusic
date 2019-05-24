@@ -7,7 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import service.music.CommentInformationService;
+import service.music.ShowCommentService;
 import service.music.SearchService;
 
 import javax.annotation.Resource;
@@ -26,8 +26,8 @@ public class CommentInformation {
     private static final Logger logger = LoggerFactory.getLogger(CommentInformation.class);
     @Resource(name = "SearchService")
     private SearchService searchService;
-    @Resource(name = "InformationService")
-    private CommentInformationService informationService;
+    @Resource(name = "ShowCommentService")
+    private ShowCommentService informationService;
     public static State state;
 
     /**
