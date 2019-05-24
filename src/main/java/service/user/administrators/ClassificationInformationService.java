@@ -10,6 +10,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
+import service.user.IdExistence;
 import util.exception.DataBaseException;
 
 import javax.annotation.Resource;
@@ -95,11 +96,13 @@ public class ClassificationInformationService {
         String languages = classification.getLanguages();
         String region = classification.getRegion();
         String type = classification.getType();
+        System.out.println(classification);
         if (gender == null || "".equals(gender)) {
             if (languages == null || "".equals(languages)) {
                 if (region == null || "".equals(region)) {
                     if (type != null && !"".equals(type)) {
                         // 不为空则判断是否合法
+                        System.out.println("开始运行");
                         if (isClassificationLength(type)) {
                             classification.setType(type);
                             List<Classification> list = classificationMapper.selectListClassification(new Classification());
@@ -143,6 +146,7 @@ public class ClassificationInformationService {
                                     classification.setLanguages(languagesValue);
                                     classification.setType(typeValue);
                                     classification.setGender(genderValue);
+                                    System.out.println(classification);
                                     if (classificationMapper.insertClassification(classification) < 1) {
                                         // 如果失败是数据库错误
                                         logger.error("分类：" + classification + "添加时，数据库出错");

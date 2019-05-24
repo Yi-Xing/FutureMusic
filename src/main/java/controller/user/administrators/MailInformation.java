@@ -61,7 +61,7 @@ public class MailInformation {
     }
 
     /**
-     * 修改邮箱信息，ajax
+     * 修改邮箱信息,只修改状态，ajax
      */
     @RequestMapping(value = "/modifyMail")
     @ResponseBody

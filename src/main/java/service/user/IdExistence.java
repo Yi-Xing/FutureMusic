@@ -1,4 +1,4 @@
-package service.user.administrators;
+package service.user;
 
 import entity.*;
 import mapper.*;

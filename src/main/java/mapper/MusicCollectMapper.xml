@@ -60,7 +60,7 @@
             <if test='classificationId!=0'>
                 ,music_collect_classification_id=#{classificationId}
             </if>
-            <if test='date!=null and date!=""'>
+            <if test='date!=null '>
                 ,music_collect_date=#{date}
             </if>
         </set>

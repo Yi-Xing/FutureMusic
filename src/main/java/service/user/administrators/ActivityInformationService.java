@@ -9,6 +9,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
+import service.user.IdExistence;
 import service.user.ValidationInformation;
 import util.JudgeIsOverdueUtil;
 import util.exception.DataBaseException;
@@ -29,6 +30,8 @@ public class ActivityInformationService {
     ActivityMapper activityMapper;
     @Resource(name = "ValidationInformation")
     ValidationInformation validationInformation;
+    @Resource(name = "IdExistence")
+    IdExistence idExistence;
 
     /**
      * 添加活动信息，ajax
@@ -37,12 +40,17 @@ public class ActivityInformationService {
         State state = new State();
         if (validationInformation.isName(activity.getName())) {
             if (activity.getContent().length() <= 300) {
-                if (activityMapper.insertActivity(activity) < 1) {
-                    // 如果失败是数据库错误
-                    logger.error("活动：" + activity + "添加时，数据库出错");
-                    throw new DataBaseException("活动：" + activity + "添加时，数据库出错");
+                // 判断活动的折扣是否符合要求
+                if (validationInformation.isPrice(String.valueOf(activity.getDiscount()))) {
+                    if (activityMapper.insertActivity(activity) < 1) {
+                        // 如果失败是数据库错误
+                        logger.error("活动：" + activity + "添加时，数据库出错");
+                        throw new DataBaseException("活动：" + activity + "添加时，数据库出错");
+                    } else {
+                        state.setState(1);
+                    }
                 } else {
-                    state.setState(1);
+                    state.setInformation("活动折扣不符合要求");
                 }
             } else {
                 state.setInformation("活动内容不符合要求");
@@ -62,18 +70,20 @@ public class ActivityInformationService {
     public String showActivity(String[] condition, Integer pageNum, Model model) throws ParseException {
         // 用来存储管理员输入的条件
         Activity activity = new Activity();
-        if ((condition[0] != null) && !"".equals(condition[0])) {
-            activity.setId(Integer.parseInt(condition[0]));
-        }
-        if ((condition[1] != null) && !"".equals(condition[1])) {
-            activity.setName(condition[1]);
-        }
-        if ((condition[2] != null) && !"".equals(condition[2])) {
-            // 将字符串转为日期类型
-            activity.setEndDate(JudgeIsOverdueUtil.toDate(condition[2]));
-        }
-        if ((condition[3] != null) && !"".equals(condition[3])) {
-            activity.setType(Integer.parseInt(condition[3]));
+        if (condition != null) {
+            if ((condition[0] != null) && !"".equals(condition[0])) {
+                activity.setId(Integer.parseInt(condition[0]));
+            }
+            if ((condition[1] != null) && !"".equals(condition[1])) {
+                activity.setName(condition[1]);
+            }
+            if ((condition[2] != null) && !"".equals(condition[2])) {
+                // 将字符串转为日期类型
+                activity.setEndDate(JudgeIsOverdueUtil.toDate(condition[2]));
+            }
+            if ((condition[3] != null) && !"".equals(condition[3])) {
+                activity.setType(Integer.parseInt(condition[3]));
+            }
         }
         //在查询之前传入当前页，然后多少记录
         PageHelper.startPage(pageNum, 8);
@@ -82,7 +92,7 @@ public class ActivityInformationService {
         PageInfo pageInfo = new PageInfo<>(list);
         // 传入页面信息
         model.addAttribute("pageInfo", pageInfo);
-        return null;
+        return "index";
     }
 
     /**
@@ -92,12 +102,17 @@ public class ActivityInformationService {
         State state = new State();
         if (validationInformation.isName(activity.getName())) {
             if (activity.getContent().length() <= 300) {
-                if (activityMapper.updateActivity(activity) < 1) {
-                    // 如果失败是数据库错误
-                    logger.error("活动：" + activity + "更新时，数据库出错");
-                    throw new DataBaseException("活动：" + activity + "更新时，数据库出错");
+                // 判断活动的折扣是否符合要求
+                if (validationInformation.isPrice(String.valueOf(activity.getDiscount()))) {
+                    if ( activityMapper.updateActivity(activity)< 1) {
+                        // 如果失败是数据库错误
+                        logger.error("活动：" + activity + "更新时，数据库出错");
+                        throw new DataBaseException("活动：" + activity + "更新时，数据库出错");
+                    } else {
+                        state.setState(1);
+                    }
                 } else {
-                    state.setState(1);
+                    state.setInformation("活动折扣不符合要求");
                 }
             } else {
                 state.setInformation("活动内容不符合要求");
@@ -111,28 +126,19 @@ public class ActivityInformationService {
     /**
      * 删除活动信息
      */
-    public String deleteActivity(Integer id) throws DataBaseException {
-        if (activityMapper.deleteActivity(id) < 1) {
-            // 如果失败是数据库错误
-            logger.error("活动：" + id + "删除时，数据库出错");
-            throw new DataBaseException("活动：" + id + "删除时，数据库出错");
+    public String deleteActivity(Integer id, Model model) throws DataBaseException {
+        if (idExistence.isActivityId(id) != null) {
+            if (activityMapper.deleteActivity(id) < 1) {
+                // 如果失败是数据库错误
+                logger.error("活动：" + id + "删除时，数据库出错");
+                throw new DataBaseException("活动：" + id + "删除时，数据库出错");
+            }
+            model.addAttribute("state", "添加成功");
+        } else {
+            model.addAttribute("state", "id：" + id + "的活动不存在");
         }
         return null;
     }
 
-    /**
-     * 用于验证活动的百分比是否合法
-     */
-    private Boolean isDiscount(float discount){
-//            String str=discount+"";
-//            if(str.trim().indexOf(".") == -1){
-//                return false;
-//            }
-//            int fourplace = str.trim().length() - str.trim().indexOf(".") - 1;
-//            if(fourplace<discount){
-//                return false;
-//            }else{
-                return true;
-//            }
-    }
+
 }

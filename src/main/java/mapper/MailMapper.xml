@@ -25,13 +25,7 @@
           values(#{senderId},#{recipientId},#{content},#{date},#{reply},#{state})
     </insert>
     <update id="updateMail" parameterType="Mail">
-        update tb_mail
-        <set>
-            <if test='state!=0'>
-                mail_state=#{state}
-            </if>
-        </set>
-        where mail_id=#{id}
+        update tb_mail set mail_state=#{state}  where mail_id=#{id}
     </update>
     <delete id="deleteMail" parameterType="Integer" >
         delete from tb_mail where mail_id=#{value}

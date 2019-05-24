@@ -111,24 +111,7 @@ public class AboutUserService {
         return state;
     }
 
-    /**
-     * 用于判断发送的内容是否合法
-     *
-     * @param content 内容
-     */
-    private State isContent(String content) {
-        State state = new State();
-        if (content.length() != 0) {
-            if (content.length() <= ConstantUtil.Two_Hundred.getIntValue()) {
-                state.setState(1);
-            } else {
-                state.setInformation("内容过长");
-            }
-        } else {
-            state.setInformation("内容不能为空");
-        }
-        return state;
-    }
+
 
     /**
      * 用户之间发送邮件
@@ -142,7 +125,7 @@ public class AboutUserService {
         // 判断接收者是否存在
         if (validationInformation.isMailboxExistence(mailbox)) {
             // 判断内容是否合法
-            state = aboutUserService.isContent(content);
+            state = validationInformation.isContent(content);
             if (state.getState() == 1) {
                 Mail mail = new Mail();
                 // 发送邮件的用户信息
@@ -176,7 +159,7 @@ public class AboutUserService {
      */
     public State reportUser(String mailbox, String content, HttpSession session) throws DataBaseException {
         // 判断内容是否合法
-        State state = aboutUserService.isContent(content);
+        State state = validationInformation.isContent(content);
         if (state.getState() == 1) {
             User userReport = userMapper.selectUserMailbox(mailbox);
             // 增加该用户被举报的次数
@@ -203,7 +186,7 @@ public class AboutUserService {
      */
     public State feedback(Integer id, String content) throws DataBaseException {
         // 判断内容是否合法
-        State state = aboutUserService.isContent(content);
+        State state = validationInformation.isContent(content);
         if (state.getState() == 1) {
             Mail mail = new Mail();
             // 发送邮件的用户id
