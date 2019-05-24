@@ -10,10 +10,30 @@ import java.util.List;
 
 @Controller
 public class Main {
-    @RequestMapping(value = "/main")
-    public String searchListSongLista(){
-        System.out.println(2);
+
+    @RequestMapping(value = "/index")
+    public String index() {
         return "index";
+    }
+
+    @RequestMapping(value = "/player")
+    public String player() {
+        return "player";
+    }
+
+    @RequestMapping(value = "/artist")
+    public String artist() {
+        return "artist";
+    }
+
+    @RequestMapping(value = "/musicVideo")
+    public String musicVideo() {
+        return "musicVideo";
+    }
+
+    @RequestMapping(value = "/mvPlayer")
+    public String mvPlayer() {
+        return "mvPlayer";
     }
 
 }

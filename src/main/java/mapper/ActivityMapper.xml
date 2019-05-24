@@ -15,8 +15,8 @@
             <if test='type!=0'>
                 and activity_type=#{type}
             </if>
-            <if test='endDate!=null'>
-                and activity_end_date>=#{endDate}
+            <if test='endDate!=null and name!=""' >
+                and activity_end_date &lt;= #{endDate}
             </if>
         </where>
     </select>
@@ -47,10 +47,10 @@
             <if test='website!=null and website!=""'>
                 ,activity_website=#{website}
             </if>
-            <if test='startDate!=null and startDate!=""'>
+            <if test='startDate!=null '>
                 ,activity_start_date=#{startDate}
             </if>
-            <if test='endDate!=null and endDate!=""'>
+            <if test='endDate!=null '>
                 ,activity_end_date=#{endDate}
             </if>
         </set>

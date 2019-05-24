@@ -43,7 +43,7 @@ public class UserInformation {
     }
 
     /**
-     * 修改用户信息，ajax
+     * 修改用户信息，ajax * 可修改：  等级  VIP时间  余额  举报次数
      */
     @RequestMapping(value = "/modifyUser")
     @ResponseBody

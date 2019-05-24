@@ -23,6 +23,9 @@
             <if test='userId!=0'>
                 music_collect_user_id=#{userId}
             </if>
+            <if test='musicId!=0'>
+                and music_collect_music_id=#{musicId}
+            </if>
             <if test='type!=0'>
                 and music_collect_type=#{type}
             </if>
@@ -57,7 +60,7 @@
             <if test='classificationId!=0'>
                 ,music_collect_classification_id=#{classificationId}
             </if>
-            <if test='date!=null and date!=""'>
+            <if test='date!=null '>
                 ,music_collect_date=#{date}
             </if>
         </set>

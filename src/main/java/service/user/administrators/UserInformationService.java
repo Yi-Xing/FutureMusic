@@ -9,6 +9,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
+import service.user.ValidationInformation;
 import util.exception.DataBaseException;
 
 import javax.annotation.Resource;
@@ -25,6 +26,8 @@ public class UserInformationService {
     private static final Logger logger = LoggerFactory.getLogger(UserInformationService.class);
     @Resource(name = "UserMapper")
     UserMapper userMapper;
+    @Resource(name = "ValidationInformation")
+    ValidationInformation validationInformation;
 
     /**
      * 显示和按条件查询用户信息
@@ -61,16 +64,21 @@ public class UserInformationService {
     }
 
     /**
-     * 修改用户信息，ajax
+     * 修改用户信息，ajax * 可修改： 等级  VIP时间  余额  举报次数
      */
     public State modifyUser(User user) throws DataBaseException {
-        if (userMapper.updateUser(user) < 1) {
-            // 如果失败是数据库错误
-            logger.error("邮箱：" + user.getMailbox() + "修改用户信息时，数据库出错");
-            throw new DataBaseException("邮箱：" + user.getMailbox() + "修改用户信息时，数据库出错");
-        }
         State state = new State();
-        state.setState(1);
+        // 判断余额是否合法
+        if (validationInformation.isPrice(String.valueOf(user.getBalance()))) {
+            if (userMapper.updateUser(user) < 1) {
+                // 如果失败是数据库错误
+                logger.error("邮箱：" + user.getMailbox() + "修改用户信息时，数据库出错");
+                throw new DataBaseException("邮箱：" + user.getMailbox() + "修改用户信息时，数据库出错");
+            }
+            state.setState(1);
+        } else {
+            state.setInformation("余额不合法");
+        }
         return state;
     }
 

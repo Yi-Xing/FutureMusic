@@ -30,6 +30,9 @@
             <if test='available!=0'>
                 and music_available=#{available}
             </if>
+            <if test='date!=null'>
+                and music_date >=#{date}
+            </if>
             <if test='playCount!=0'>
                 order by music_play_count DESC
             </if>
@@ -79,7 +82,7 @@
             <if test='classificationId!=0'>
                 ,music_classification_id=#{classificationId}
             </if>
-            <if test='date!=null and date!=""'>
+            <if test='date!=null '>
                 ,music_date=#{date}
             </if>
             <if test='path!=null and path!=""'>

@@ -19,14 +19,19 @@ public class ExceptionResolver implements HandlerExceptionResolver {
     public ModelAndView resolveException(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object o, Exception e) {
         ModelAndView modelAndView = new ModelAndView();
         if (e instanceof DataBaseException) {
-             logger.debug(""+o);
+             logger.debug("数据库异常"+o);
+            System.out.println("数据库异常"+o);
+            System.out.println("异常信息"+e);
             // 设置跳转的路径
             modelAndView.setViewName("/js/www");
         } else {
-            logger.debug(""+o);
+            // 补充捕获 ParseException异常
+            logger.debug("异常"+o);
+            System.out.println("异常"+o);
+            System.out.println("异常信息"+e);
             modelAndView.addObject("a", "出异常了");
             // 设置跳转的路径
-            modelAndView.setViewName("/js/www");
+            modelAndView.setViewName("BackgroundManagementSystem");
         }
         return modelAndView;
     }
