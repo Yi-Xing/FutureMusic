@@ -6,10 +6,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.annotation.Resource;
-import java.text.ParseException;
 import java.util.List;
 
 /**
@@ -37,6 +35,7 @@ public class PlayInformationService {
             play.setAlbumId(id);
         }
         List<Play> list= playMapper.selectListPlay(play);
+        System.out.println(list);
         model.addAttribute("PlayCount",list.size());
         return null;
     }

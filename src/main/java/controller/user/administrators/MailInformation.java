@@ -1,7 +1,5 @@
 package controller.user.administrators;
 
-import entity.Activity;
-import entity.Classification;
 import entity.Mail;
 import entity.State;
 import org.slf4j.Logger;
@@ -17,7 +15,6 @@ import util.exception.DataBaseException;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
-import java.text.ParseException;
 
 /**
  * 邮箱：
@@ -47,7 +44,7 @@ public class MailInformation {
      * @param session   用于判断等级
      */
     @RequestMapping(value = "/showMail")
-    public String showMail(String[] condition, Integer pageNum, Model model, HttpSession session) throws ParseException {
+    public String showMail(String[] condition, Integer pageNum, Model model, HttpSession session) {
         return mailInformationService.showMail(condition,pageNum,model,session);
     }
 

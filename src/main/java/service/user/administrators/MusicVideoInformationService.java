@@ -2,16 +2,13 @@ package service.user.administrators;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import entity.Music;
 import entity.MusicVideo;
 import entity.State;
-import mapper.MusicMapper;
 import mapper.MusicVideoMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestBody;
 import service.user.IdExistence;
 import service.user.ValidationInformation;
 import util.JudgeIsOverdueUtil;
@@ -127,6 +124,7 @@ public class MusicVideoInformationService {
         PageHelper.startPage(pageNum, 8);
         // 根据条件查找用户信息
         List<MusicVideo> list = musicVideoMapper.selectListMusicVideo(musicVideo);
+        System.out.println(list);
         PageInfo pageInfo = new PageInfo<>(list);
         // 传入页面信息
         model.addAttribute("pageInfo", pageInfo);

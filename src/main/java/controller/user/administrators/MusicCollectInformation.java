@@ -6,7 +6,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import service.user.administrators.ActivityInformationService;
-import service.user.administrators.FocusInformationService;
 import service.user.administrators.MusicCollectInformationService;
 
 import javax.annotation.Resource;

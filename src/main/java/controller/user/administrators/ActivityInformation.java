@@ -1,10 +1,7 @@
 package controller.user.administrators;
 
-import com.github.pagehelper.PageHelper;
-import com.github.pagehelper.PageInfo;
 import entity.Activity;
 import entity.State;
-import mapper.ActivityMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -17,7 +14,6 @@ import util.exception.DataBaseException;
 
 import javax.annotation.Resource;
 import java.text.ParseException;
-import java.util.List;
 
 /**
  * 活动：
