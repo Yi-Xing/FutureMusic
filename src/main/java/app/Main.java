@@ -40,5 +40,10 @@ public class Main {
         return "mvPlayer";
     }
 
+    @RequestMapping(value = "/musicComment")
+    public String musicComment() {
+        return "musicComment";
+    }
+
 }
 
