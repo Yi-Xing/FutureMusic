@@ -22,8 +22,8 @@ import java.util.Map;
  * */
 
 @Controller
-public class CommentInformation {
-    private static final Logger logger = LoggerFactory.getLogger(CommentInformation.class);
+public class ShowComment {
+    private static final Logger logger = LoggerFactory.getLogger(ShowComment.class);
     @Resource(name = "SearchService")
     private SearchService searchService;
     @Resource(name = "ShowCommentService")
