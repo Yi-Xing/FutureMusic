@@ -39,6 +39,7 @@
 <form name="userForm2" action="demo" enctype="multipart/form-data" method="post">
 <div id="newUpload2">
     <input type="file" name="file">
+    <input type="text" name="text">
 </div>
 <input type="button" id="btn_add2" value="增加一行" >
 <input type="submit" value="上传" >

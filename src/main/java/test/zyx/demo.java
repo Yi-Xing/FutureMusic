@@ -34,7 +34,8 @@ public class demo {
 
 
     @RequestMapping(value = "/demo")
-    public String test(HttpServletRequest request) throws IOException {
+    public String test(String text,HttpServletRequest request) throws IOException {
+        System.out.println(text);
         fileUpload.userHeadPortrait(request);
         return null;
     }
