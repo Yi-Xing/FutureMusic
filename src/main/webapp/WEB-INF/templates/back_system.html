@@ -17,13 +17,19 @@
 </head>
 <body>
 <!--模态框-->
-<div class="mol">
-    <div class="pop">
-    </div>
-    <div class="pop_main">
-
-    </div>
-</div>
+<!--<div class="mol">-->
+<!--    <div class="pop">-->
+<!--    </div>-->
+<!--    <div class="pop_main">-->
+<!--       <div class="pop_main_header">-->
+<!--           <button type="button" class="close" data-dismiss="modal" aria-hidden="true">-->
+<!--               &times;-->
+<!--           </button>-->
+<!--       </div>-->
+<!--        <div class="pop_main_body"></div>-->
+<!--        <div class="pop_main_footer"></div>-->
+<!--    </div>-->
+<!--</div>-->
 <div class="total">
     <!--头部-->
     <div class="header">
@@ -73,6 +79,82 @@
                     </form>
                 </div>
             </div>
+<!--        模态框    -->
+            <!-- 模态框（Modal） -->
+            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                                &times;
+                            </button>
+                            <h4 class="modal-title" id="myModalLabel">
+
+                            </h4>
+                        </div>
+                        <div class="modal-body">
+
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button"  data-dismiss="modal">关闭
+                            </button>
+                            <button type="button" >
+                                commit
+                            </button>
+                        </div>
+                    </div><!-- /.modal-content -->
+                </div><!-- /.modal -->
+            </div>
+
+            <!-- 模态框（Modal_1） -->
+            <div class="modal fade" id="myModal_1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel-1" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header" >
+                            <p type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                                &times;
+                            </p>
+                            <h4>修改信息</h4>
+                        </div>
+                        <div class="modal-body" style="width:80%;display: flex;flex-direction: column">
+                            <input type="text" placeholder="等级">
+                            <input type="text" placeholder="vip余天">
+                            <input type="text" placeholder="余额">
+                            <input type="text" placeholder="举报次数">
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" >
+                                commit
+                            </button>
+                            <button type="button"  data-dismiss="modal">cancel
+                            </button>
+                        </div>
+                    </div><!-- /.modal-content -->
+                </div><!-- /.modal -->
+            </div>
+                        <!-- 模态框（Modal_2） -->
+            <div class="modal fade" id="myModal_2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel-2" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                                &times;
+                            </button>
+                        </div>
+                        <div class="modal-body">
+
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" >
+                                commit
+                            </button>
+                            <button type="button"  data-dismiss="modal">cancel
+                            </button>
+                        </div>
+                    </div><!-- /.modal-content -->
+                </div><!-- /.modal -->
+            </div>
+<!--            -->
             <div class="main_rh_main" >
                 <table class="" style="overflow-x: auto;width:1540px;">
 <!--                    content table table-hover-->
@@ -99,7 +181,7 @@
                     <tr>
                         <td>Bangalore</td>
                         <td>560001</td>
-                        <td class="hid">Tanmay</td>
+                        <td>Tanmay</td>
                         <td>Bangalore</td>
                         <td>560001</td>
                         <td>Tanmay</td>
@@ -149,8 +231,15 @@
                                 查看
                             </button>
                         </td>
-                        <td><span class="glyphicon glyphicon-plus" id="re"></span>
-                            <span class="glyphicon glyphicon-trash"></span></td>
+                        <td class="button_color">
+                             <button data-toggle="modal" data-target="#myModal_1">
+                                 <span class="glyphicon glyphicon-plus"></span>
+                            </button>
+                            <button data-toggle="modal" data-target="#myModal_2">
+                            <span class="glyphicon glyphicon-trash"></span>
+                            </button>
+
+                        </td>
                     </tr>
                     <tr>
                         <td> <div class="hid_show"  title="鼠标悬停"  onmouseover="overShow(this,event)" onmouseout="outHide()">
@@ -168,15 +257,21 @@
                         <td>560001</td>
                         <td>560001</td>
                         <td>0</td>
-                        <td> <button data-toggle="modal" data-target="#myModal">
+                        <td>
+                            <button data-toggle="modal" data-target="#myModal">
                             查看
-                        </button></td>
-                        <td> <button data-toggle="modal" data-target="#myModal">
+                        </button>
+                        </td>
+                        <td>
+                            <button data-toggle="modal" data-target="#myModal">
                             查看
-                        </button></td>
-                        <td> <button data-toggle="modal" data-target="#myModal">
+                        </button>
+                        </td>
+                        <td>
+                            <button data-toggle="modal" data-target="#myModal">
                             查看
-                        </button></td>
+                        </button>
+                        </td>
                         <td>
                             <button data-toggle="modal" data-target="#myModal">
                                 查看
@@ -210,8 +305,8 @@
                                 查看
                             </button>
                         </td>
-                        <td><span class="glyphicon glyphicon-plus replace"></span>
-                            <span class="glyphicon glyphicon-trash delete"></span></td>
+                        <td><span class="glyphicon glyphicon-plus"></span>
+                            <span class="glyphicon glyphicon-trash"></span></td>
                     </tr>
                     <tr>
                         <td>Bangalore</td>
@@ -238,11 +333,15 @@
                                 查看
                             </button>
                         </td>
-                        <td><span class="glyphicon glyphicon-plus replace"></span>
-                            <span class="glyphicon glyphicon-trash delete"></span></td>
+                        <td><span class="glyphicon glyphicon-plus"></span>
+                            <span class="glyphicon glyphicon-trash"></span></td>
                     </tr>
                     <tr>
-                        <td>Bangalore</td>
+                        <td>
+                            <button data-toggle="modal" data-target=".mol">
+                                查看
+                            </button>
+                        </td>
                         <td>560001</td>
                         <td>Tanmay</td>
                         <td>Bangalore</td>
@@ -266,8 +365,8 @@
                                 查看
                             </button>
                         </td>
-                        <td><span class="glyphicon glyphicon-plus replace"></span>
-                            <span class="glyphicon glyphicon-trash delete"></span></td>
+                        <td><span class="glyphicon glyphicon-plus"></span>
+                            <span class="glyphicon glyphicon-trash"></span></td>
                     </tr>
                     <tr>
                         <td>Bangalore</td>
@@ -294,8 +393,8 @@
                                 查看
                             </button>
                         </td>
-                        <td><span class="glyphicon glyphicon-plus replace"></span>
-                            <span class="glyphicon glyphicon-trash delete"></span></td>
+                        <td><span class="glyphicon glyphicon-plus"></span>
+                            <span class="glyphicon glyphicon-trash"></span></td>
                     </tr>
                     <tr>
                         <td>Bangalore</td>
@@ -319,31 +418,7 @@
                             <button data-toggle="modal" data-target="#myModal">
                                 查看
                             </button>
-                            <!-- 模态框（Modal） -->
-                            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                                <div class="modal-dialog">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-                                                &times;
-                                            </button>
-                                            <h4 class="modal-title" id="myModalLabel">
-                                                模态框（Modal）标题
-                                            </h4>
-                                        </div>
-                                        <div class="modal-body">
-                                            在这里添加一些文本
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button"  data-dismiss="modal">关闭
-                                            </button>
-                                            <button type="button" >
-                                                commit
-                                            </button>
-                                        </div>
-                                    </div><!-- /.modal-content -->
-                                </div><!-- /.modal -->
-                            </div></td>
+                        </td>
                         <td>
                             <button data-toggle="modal" data-target="#myModal">
                                 查看
@@ -352,8 +427,8 @@
                         <td> <button data-toggle="modal" data-target="#myModal">
                             查看
                         </button></td>
-                        <td><span class="glyphicon glyphicon-plus replace"></span>
-                            <span class="glyphicon glyphicon-trash delete"></span></td>
+                        <td><span class="glyphicon glyphicon-plus"></span>
+                            <span class="glyphicon glyphicon-trash"></span></td>
                     </tr>
                     <tr>
                         <td>Bangalore</td>
@@ -380,8 +455,8 @@
                                 查看
                             </button>
                         </td>
-                        <td><span class="glyphicon glyphicon-plus replace"></span>
-                            <span class="glyphicon glyphicon-trash delete"></span></td>
+                        <td><span class="glyphicon glyphicon-edit"></span>
+                            <span class="glyphicon glyphicon-trash"></span></td>
                     </tr>
                     <tr>
                         <td>Bangalore</td>
@@ -408,18 +483,17 @@
                                 查看
                             </button>
                         </td>
-                        <td><span class="glyphicon glyphicon-plus replace"></span>
-                            <span class="glyphicon glyphicon-trash delete"></span></td>
+                        <td><span class="glyphicon glyphicon-edit"></span>
+                            <span class="glyphicon glyphicon-trash"></span></td>
                     </tr>
                     </tbody>
                 </table>
 
             </div>
             <div class="main_rh_footer">
-
-
+<!--                分页-->
             <div class="zzsc">
-<!--                currentpage="1" numbercount="100"-->
+<!--                currentpage="1" numbercount="**"-->
                 <ul class="page" id="page" pagelistcount="10" maxshowpageitem="5">
                     <li class="pageItemDisable" page-rel="firstpage" page-data="1">首页</li>
                     <li class="pageItemDisable" page-rel="prepage" page-data="0">&lt;上一页</li>
