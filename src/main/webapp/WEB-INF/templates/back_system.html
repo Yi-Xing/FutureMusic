@@ -107,7 +107,34 @@
                         <td>0</td>
                         <td>0</td>
                         <td><button>查看</button></td>
-                        <td>0</td>
+                        <td><button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+                            开始演示模态框
+                        </button>
+                            <!-- 模态框（Modal） -->
+                            <div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                                                &times;
+                                            </button>
+                                            <h4 class="modal-title" >
+                                                模态框（Modal）标题
+                                            </h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            在这里添加一些文本
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">关闭
+                                            </button>
+                                            <button type="button" class="btn btn-primary">
+                                                提交更改
+                                            </button>
+                                        </div>
+                                    </div><!-- /.modal-content -->
+                                </div><!-- /.modal -->
+                            </div></td>
                         <td>5</td>
                         <td>0</td>
                         <td></td>
@@ -220,7 +247,35 @@
                     </tr>
                     <tr>
                         <td>Bangalore</td>
-                        <td>560001</td>
+                        <td><!-- 按钮触发模态框 -->
+                            <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+                                开始演示模态框
+                            </button>
+                            <!-- 模态框（Modal） -->
+                            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                                                &times;
+                                            </button>
+                                            <h4 class="modal-title" id="myModalLabel">
+                                                模态框（Modal）标题
+                                            </h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            在这里添加一些文本
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">关闭
+                                            </button>
+                                            <button type="button" class="btn btn-primary">
+                                                提交更改
+                                            </button>
+                                        </div>
+                                    </div><!-- /.modal-content -->
+                                </div><!-- /.modal -->
+                            </div></td>
                         <td>Tanmay</td>
                         <td>Bangalore</td>
                         <td>560001</td>
@@ -283,7 +338,7 @@
                         <td>0</td>
                         <td>0</td>
                         <td><button>查看</button></td>
-                        <td>0</td>
+                        <td></td>
                         <td>0</td>
                         <td>0</td>
                         <td>0</td>
@@ -316,7 +371,8 @@
     </div>
 </div>
 </body>
-<script src="js/bootstrap.js"  th:src="@{/static/js/bootstrap.min.js}" ></script>
+<script src="js/jquery.js" th:src="@{/static/js/jquery.js}"></script>
+<script src="js/bootstrap.min.js"  th:src="@{/static/js/bootstrap.min.js}" ></script>
 <script src="js/jquery-1.9.1.js" th:src="@{/static/js/jquery-1.9.1.js}" ></script>
 <script src="js/back_system.js" th:src="@{/static/js/back_system.js}"></script>
 <script src="js/page.js" th:src="@{/static/js/page.js}" ></script>
