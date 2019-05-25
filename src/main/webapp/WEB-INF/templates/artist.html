@@ -1,17 +1,13 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/head :: commonHead('首页')"></head>
 <head>
-    <meta charset="UTF-8">
-    <title>Music</title>
-    <link rel="stylesheet" href="/static/css/bootstrap.css" th:href="@{/static/css/bootstrap.css}">
-    <link rel="stylesheet" href="/static/font/iconfont.css" th:href="@{/static/font/iconfont.css}">
-    <link rel="stylesheet" href="//at.alicdn.com/t/font_1195775_lq37qljhnaq.css">
-
+    <link rel="stylesheet" href="/static/css/artist.css" th:href="@{/static/css/artist.css}">
 </head>
 <body>
 
 <!--头部-->
-<div th:replace="hard::html" ></div>
+<div th:replace="webHead::html" ></div>
 
 <!--音乐人-->
 <div class="container-fluid color_2" style="position: relative">
