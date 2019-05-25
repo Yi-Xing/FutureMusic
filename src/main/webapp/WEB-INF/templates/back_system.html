@@ -1,0 +1,323 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>后台管理系统</title>
+    <link rel="stylesheet" href="css/bootstrap.css" th:href="@{/static/css/bootstrap.css}">
+    <link rel="stylesheet" href="css/back_system.css"th:href="@{/static/css/back_system.css}" >
+    <style type="text/css">
+        @font-face {
+            font-family: 'webfont';
+        url('//at.alicdn.com/t/webfont_oogj9rdy3g8.ttf') format('truetype'), /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/
+        }
+    </style>
+</head>
+<body>
+<!--模态框-->
+<div class="mol">
+    <div class="pop">
+    </div>
+    <div class="pop_main">
+
+    </div>
+</div>
+<div class="total">
+    <!--头部-->
+    <div class="header">
+        <a class="header_brand " href="index.html">
+            <span class="had_br_main"><img src="img/音乐.png"  th:src="@{/static/img/音乐.png}"alt=""><span class="web-font">futurMusic</span></span>
+        </a>
+        <div class="menu_toggle_button">
+            <img src="img/多项经营汇总统计.png" th:src="@{/static/img/多项经营汇总统计.png}" id="bookmarak" alt="">
+        </div>
+        <div class="header_right">
+            <div class="rig_col_left"></div>
+            <div class="rig_col_right"><p style="cursor: pointer">退出</p></div>
+        </div>
+    </div>
+    <div class="main">
+        <div class="side">
+            <div class="side_head">
+                <span></span>
+            </div>
+            <ul>
+                <li>fdfdfd</li>
+                <li>fdfd</li>
+                <li>fd</li>
+                <li>fd</li>
+                <li>fdfdfd</li>
+                <li>fdfd</li>
+                <li>fd</li>
+                <li>fd</li>
+                <li>fdfdfd</li>
+                <li>fdfd</li>
+                <li>fd</li>
+                <li></li>
+            </ul>
+
+        </div>
+        <div class="main_right">
+            <div class="main_right_header">
+                <div class="mrh">
+                    <form action="">
+                        <input type="text" placeholder="id">
+                        <input type="text"placeholder="邮箱">
+                        <input type="text" placeholder="名字">
+                        <input type="text" placeholder="等级">
+                        <input type="text" placeholder="被举报次数及以上">
+                        <button type="submit">
+                            <img src="img/搜索--1.png" th:src="@{/static/img/搜索--1.png}" alt=""></button>
+                    </form>
+                </div>
+            </div>
+            <div class="main_rh_main" >
+                <table class="" style="overflow-x: auto;width:1540px;">
+<!--                    content table table-hover-->
+                    <thead>
+                    <tr>
+                        <th>用户</th>
+                        <th>ID</th>
+                        <th>邮箱</th>
+                        <th>名字</th>
+                        <th>等级</th>
+                        <th>VIP到期时间</th>
+                        <th>余额</th>
+                        <th>创号时间</th>
+                        <th>被举报次数</th>
+                        <th>粉丝量</th>
+                        <th>专辑</th>
+                        <th>上传的音乐</th>
+                        <th>订单</th>
+                        <th>参与评论</th>
+                        <th></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>Bangalore</td>
+                        <td>560001</td>
+                        <td class="hid">Tanmay</td>
+                        <td>Bangalore</td>
+                        <td>560001</td>
+                        <td>Tanmay</td>
+                        <td>Bangalore</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td><button>查看</button></td>
+                        <td>0</td>
+                        <td>5</td>
+                        <td>0</td>
+                        <td></td>
+                        <div class="mol">
+                            <div class="pop">
+                            </div>
+                            <div class="pop_main">
+
+                            </div>
+                        </div>
+                        <td><span class="replace glyphicon glyphicon-plus "></span>
+                        <span class="glyphicon glyphicon-trash delete"></span></td>
+                    </tr>
+                    <tr>
+                        <td>Bangalore</td>
+                        <td>560001</td>
+                        <td>Tanmay</td>
+                        <td>Bangalore</td>
+                        <td>560001</td>
+                        <td>Tanmay</td>
+                        <td>Bangalore</td>
+                        <td>560001</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td> </td>
+                        <td><span class="glyphicon glyphicon-plus" id="re"></span>
+                            <span class="glyphicon glyphicon-trash"></span></td>
+                    </tr>
+                    <tr>
+                        <td> <div class="hid_show"  title="鼠标悬停"  onmouseover="overShow(this,event)" onmouseout="outHide()">
+                            1234567891011121314151617181910
+                        </div>
+                            <div id="showDiv"></div></td>
+                        <td><div class="hid_show"  onmouseover="overShow(this,event)" onmouseout="outHide()">
+                            1234567891011121314151617181910
+                        </div></td>
+                        <td>Tanmay</td>
+                        <td>Bangae</td>
+                        <td>560001</td>
+                        <td>Tanmay</td>
+                        <td>Bangalore</td>
+                        <td>560001</td>
+                        <td>560001</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>
+
+                        </td>
+                        <td><span class="glyphicon glyphicon-plus replace"></span>
+                            <span class="glyphicon glyphicon-trash delete"></span></td>
+                    </tr>
+                    <tr>
+                        <td>Bangalore</td>
+                        <td>560001</td>
+                        <td>Tanmay</td>
+                        <td>Bangalore</td>
+                        <td>560001</td>
+                        <td>Tanmay</td>
+                        <td>Bangalore</td>
+                        <td>560001</td>
+                        <td>560001</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td><span class="glyphicon glyphicon-plus replace"></span>
+                            <span class="glyphicon glyphicon-trash delete"></span></td>
+                    </tr>
+                    <tr>
+                        <td>Bangalore</td>
+                        <td>560001</td>
+                        <td>Tanmay</td>
+                        <td>Bangalore</td>
+                        <td>560001</td>
+                        <td>Tanmay</td>
+                        <td>Bangalore</td>
+                        <td>560001</td>
+                        <td>560001</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td><span class="glyphicon glyphicon-plus replace"></span>
+                            <span class="glyphicon glyphicon-trash delete"></span></td>
+                    </tr>
+                    <tr>
+                        <td>Bangalore</td>
+                        <td>560001</td>
+                        <td>Tanmay</td>
+                        <td>Bangalore</td>
+                        <td>560001</td>
+                        <td>Tanmay</td>
+                        <td>Bangalore</td>
+                        <td>560001</td>
+                        <td>560001</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td><span class="glyphicon glyphicon-plus replace"></span>
+                            <span class="glyphicon glyphicon-trash delete"></span></td>
+                    </tr>
+                    <tr>
+                        <td>Bangalore</td>
+                        <td>560001</td>
+                        <td>Tanmay</td>
+                        <td>Bangalore</td>
+                        <td>560001</td>
+                        <td>Tanmay</td>
+                        <td>Bangalore</td>
+                        <td>560001</td>
+                        <td>560001</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td><span class="glyphicon glyphicon-plus replace"></span>
+                            <span class="glyphicon glyphicon-trash delete"></span></td>
+                    </tr>
+                    <tr>
+                        <td>Bangalore</td>
+                        <td>560001</td>
+                        <td>Tanmay</td>
+                        <td>Bangalore</td>
+                        <td>560001</td>
+                        <td>Tanmay</td>
+                        <td>Bangalore</td>
+                        <td>560001</td>
+                        <td>560001</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td><span class="glyphicon glyphicon-plus replace"></span>
+                            <span class="glyphicon glyphicon-trash delete"></span></td>
+                    </tr>
+                    <tr>
+                        <td>Bangalore</td>
+                        <td>560001</td>
+                        <td>Tanmay</td>
+                        <td>Bangalore</td>
+                        <td>560001</td>
+                        <td>Tanmay</td>
+                        <td>Bangalore</td>
+                        <td>560001</td>
+                        <td>560001</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td><span class="glyphicon glyphicon-plus replace"></span>
+                            <span class="glyphicon glyphicon-trash delete"></span></td>
+                    </tr>
+                    <tr>
+                        <td>Bangalore</td>
+                        <td>560001</td>
+                        <td>Tanmay</td>
+                        <td>Bangalore</td>
+                        <td>560001</td>
+                        <td>Tanmay</td>
+                        <td>Bangalore</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td><button>查看</button></td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td><span class="glyphicon glyphicon-plus replace"></span>
+                            <span class="glyphicon glyphicon-trash delete"></span></td>
+                    </tr>
+                    </tbody>
+                </table>
+
+            </div>
+            <div class="main_rh_footer">
+
+
+            <div class="zzsc">
+<!--                currentpage="1" numbercount="100"-->
+                <ul class="page" id="page" pagelistcount="10" maxshowpageitem="5">
+                    <li class="pageItemDisable" page-rel="firstpage" page-data="1">首页</li>
+                    <li class="pageItemDisable" page-rel="prepage" page-data="0">&lt;上一页</li>
+                    <li class="pageItemActive" page-rel="itempage" page-data="1">1</li>
+                    <li class="pageItem" page-rel="itempage" page-data="2">2</li>
+                    <li class="pageItem" page-rel="itempage" page-data="3">3</li>
+                    <li class="pageItem" page-rel="itempage" page-data="4">4</li>
+                    <li class="pageItem" page-rel="itempage" page-data="5">5</li>
+                    <li class="pageItem" page-rel="nextpage" page-data="2">下一页&gt;</li>
+                    <li class="pageItem" page-rel="lastpage" page-data="8">尾页</li>
+                </ul>
+            </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<script src="js/bootstrap.js"  th:src="@{/static/js/bootstrap.min.js}" ></script>
+<script src="js/jquery-1.9.1.js" th:src="@{/static/js/jquery-1.9.1.js}" ></script>
+<script src="js/back_system.js" th:src="@{/static/js/back_system.js}"></script>
+<script src="js/page.js" th:src="@{/static/js/page.js}" ></script>
+</html>

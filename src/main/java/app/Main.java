@@ -40,5 +40,10 @@ public class Main {
         return "mvPlayer";
     }
 
+    @RequestMapping(value = "/system")
+    public String back_system() {
+        return "back_system";
+    }
+
 }
 
