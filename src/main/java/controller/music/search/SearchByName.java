@@ -89,11 +89,4 @@ public class SearchByName {
         PageInfo page = new PageInfo(singerList, 5);
         return page;
     }
-
-    /**
-     *？？？搜索歌词，这个怎么实现
-     */
-    /**
-     * 点击ajax推荐的结果，直接跳到歌曲的详细信息
-     */
 }

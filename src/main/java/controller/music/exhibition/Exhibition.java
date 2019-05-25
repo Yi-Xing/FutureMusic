@@ -21,7 +21,6 @@ import java.util.Map;
  * */
 @Controller
 public class Exhibition {
-    private static final Logger logger = LoggerFactory.getLogger(Exhibition.class);
     @Resource(name = "ExhibitionService")
     private ExhibitionService exhibitionService;
 

@@ -35,8 +35,10 @@ public class DetailsService {
     ShowCommentService showCommentService;
     @Resource(name = "MusicSongListMapper")
     MusicSongListMapper musicSongListMapper;
+
      /**
-     * 显示歌曲的音乐、专辑图片、歌手信息、分类信息、评论（精彩评论、最新评论）、MV(如果有，显示mv的信息，如果无，显示其他相关歌单）
+     * 显示歌曲的详细信息
+      *     音乐、专辑图片、歌手信息、分类信息、评论（精彩评论、最新评论）、MV(如果有，显示mv的信息，如果无，显示其他相关歌单）
      * @param music 封装音乐id
      * @return Map<String,Object>
      *     音乐、专辑图片、歌手信息、分类信息、评论的详细信息的Map集合
@@ -110,26 +112,57 @@ public class DetailsService {
     }
 
     /**
-     * 显示歌单或专辑的详细信息、分类、歌手、列表歌曲、评论
+     * 显示歌单或专辑的详细信息
+     *          分类、歌手、列表歌曲、评论
      * @param songList   将条件封装
      * @return  Map<String,Object> 返回和歌单关联的所有信息
      */
     public Map<String,Object> showSongList(SongList songList){
-        Map<String,Object> songlistMap  = new HashMap<>(10);
+        Map<String,Object> songListMap  = new HashMap<>(10);
         SongList resultSongList = songListMapper.selectListSongList(songList).get(0);
-        songlistMap.put("songList",resultSongList);
+        songListMap.put("songList",resultSongList);
         Classification classification  = new Classification();
         classification.setId(resultSongList.getClassificationId());
-        songlistMap.put("classification",
+        songListMap.put("classification",
                 classificationMapper.selectListClassification(classification).get(0));
         User user = new User();
         user.setId(resultSongList.getUserId());
-        songlistMap.put("singer",userMapper.selectUser(user).get(0));
+        songListMap.put("singer",userMapper.selectUser(user).get(0));
         MusicSongList musicSongList   = new MusicSongList();
         musicSongList.setBelongId(resultSongList.getId());
         List<MusicSongList> musicSongLists = musicSongListMapper.selectListMusicSongList(musicSongList);
-        songlistMap.put("musicSongList",musicSongList);
-        return songlistMap;
+        songListMap.put("musicSongList",musicSongLists);
+        return songListMap;
     }
 
+    /**
+     * 显示活动的详细信息包括活动的详细信息、参与活动的歌曲或者专辑
+     * @param activity 封装activity的id
+     * @return 返回一系列的相关信息
+     */
+    public Map<String,Object> showActivity(Activity activity) {
+        Map<String,Object> activityMap = new HashMap<>(3);
+        Activity resultActivity = activityMapper.selectListActivity(activity).get(0);
+        activityMap.put("activity",resultActivity);
+        int activityId = resultActivity.getId();
+        //取出活动对应的音乐
+        Music music = new Music();
+        music.setActivity(activityId);
+        List<Music> musicList = musicMapper.selectListMusic(music);
+        if(musicList.size()==0){
+            activityMap.put("musicList",null);
+        }else{
+            activityMap.put("musicList",musicList);
+        }
+        //取出活动对应的专辑
+        SongList songList = new SongList();
+        songList.setActivity(activityId);
+        List<SongList> songListList = songListMapper.selectListSongList(songList);
+        if(songListList.size()==0){
+            activityMap.put("songListList",null);
+        }else{
+            activityMap.put("songListList",songListList);
+        }
+        return activityMap;
+    }
 }

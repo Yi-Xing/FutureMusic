@@ -6,7 +6,7 @@ import org.springframework.stereotype.Controller;
 import javax.servlet.http.HttpSession;
 
 /**
- * 充值余额，充值VIP，购买音乐，购买MV，购买专辑
+ * 充值余额，充值VIP，购买音乐，购买MV，购买专辑，判断指定用户没有有购买指定音乐或MV
  *
  * @author 5月14日 张易兴创建
  */

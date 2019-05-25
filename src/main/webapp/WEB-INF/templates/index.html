@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="/head :: commonHead('首页')"></head>
+<head th:replace="head::html"></head>
 <head>
     <link rel="stylesheet" href="css/RotationChart.css" th:href="@{/static/css/RotationChart.css}">
 </head>
@@ -704,7 +704,6 @@
     </div>
 </div>
 
-
 <!--光影-->
 <div class="container-fluid color_1 LB" style="position: relative">
     <div class="row inner music_video">
@@ -1172,7 +1171,6 @@
     </div>
 </div>
 
-
 <!--排行榜-->
 <div class="container-fluid color_2 LB">
     <div class="row inner Ranking">
@@ -1295,42 +1293,9 @@
 </div>
 
 <!--尾部-->
-<div class="container-fluid  last_color">
-    <div class="row inner">
-        <div class="col-lg-3 col-lg-offset-2">
-            <h3>下载歌曲</h3>
-            <ul class="">
-                <li><a href="javascript:;">pc</a></li>
-                <li><a href="javascript:;">mac</a></li>
-                <li><a href="javascript:;">android</a></li>
-                <li><a href="javascript:;">iphone</a></li>
-            </ul>
-        </div>
-        <div class="col-lg-3">
-            <h3>特色项目</h3>
-            <ul>
-                <li><a href="javascript:;">音乐网站</a></li>
-                <li><a href="javascript:;">博客网站</a></li>
-                <li><a href="javascript:;">电子商城</a></li>
-                <li><a href="javascript:;">旅行网</a></li>
-            </ul>
-        </div>
-        <div class="col-lg-3">
-            <h3>友情链接</h3>
-            <ul>
-                <li><a href="javascript:;">未来官网</a></li>
-            </ul>
-        </div>
-    </div>
-    <div class="inner statement row">
-        <div class="text-center">
-            <small class="small"><a href="javascript:;">Copyright © 2012 - 2019 未来软件工作室</a></small>
-            <br>
-            <small class="small">未来软件工作室 版权所有</small>
-        </div>
-    </div>
-</div>
+<div th:replace="webFoot.html"></div>
 
+</div>
 </body>
 <span th:include="on-load-js.html"></span>
 <script src="js/RotationChart.js" th:src="@{/static/js/RotationChart.js}"></script>

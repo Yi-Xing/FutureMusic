@@ -9,10 +9,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import service.user.consumer.AccountInformationService;
-import service.user.SecretProtectionService;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.io.IOException;
 
 /**
  * 个人账号信息
@@ -22,12 +23,11 @@ import javax.servlet.http.HttpSession;
  */
 @Controller
 public class AccountInformation {
-    @Resource(name = "SecretProtectionService")
-    SecretProtectionService secretProtectionService;
     @Resource(name = "AccountInformationService")
     AccountInformationService accountInformationService;
 
     private static final Logger logger = LoggerFactory.getLogger(AccountInformation.class);
+
     /**
      * 显示用户页面
      * Model封装：
@@ -52,20 +52,17 @@ public class AccountInformation {
     }
 
     /**
-     * 设置或更改用户头像
+     * 设置或更改用户头像，修改图片路径还需删除原来的图片
      *
-     * @param path    获取图片的路径
+     * @param request    获取图片的路径
      * @param session 当前会话
      */
     @RequestMapping(value = "/setUpHeadPortrait")
     @ResponseBody
-    public State setUpHeadPortrait(String path, HttpSession session) {
+    public State setUpHeadPortrait(HttpServletRequest request, HttpSession session) throws IOException, DataBaseException {
         logger.trace("setUpHeadPortrait方法开始执行");
-        return null;
+        return accountInformationService.setUpHeadPortrait(request,session);
     }
-
-
-
 
     /**
      * 点击开通或关闭个人空间执行此方法，ajax

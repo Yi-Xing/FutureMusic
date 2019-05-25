@@ -70,34 +70,12 @@ window.onload = function () {
     }
     var httpurl = ""//请求路径
 
-    // $("#button4").on("click", function () {
-    //     var registerUserName = $("#registerUserName").val();
-    //     $.ajax({
-    //         // contentType: "application/x-www-form-urlencoded",
-    //         type: "get",
-    //         url: "registerVerificationCode?mailbox=" + registerUserName,
-    //         // data:{"name":$("#input").val()},
-    //         dataType: "json",
-    //         success: function (data, status) {
-    //             alert(data.state);
-    //             alert(data.registerUserName);
-    //             if (data.state) {
-    //                 alert("我调用了");
-    //             }
-    //             alert("数据: \n" + data + "----" + status);
-    //             $("#wc").text(data);
-    //             document.getElementsByClassName('reg_hed_right')[0].children[1].innerHTML = data.information;
-    //         }
-    //     });
-    // })
     // 用于发送验证码
     $("#button4").on("click", function () {
         var registerMail = $("#registerMail").val();
         $.ajax({
-            // contentType: "application/x-www-form-urlencoded",
             type: "get",
             url: "registerVerificationCode?mailbox=" + registerMail,
-            // data:{"name":$("#input").val()},
             dataType: "json",
             success: function (data, status) {
                 alert(data.state);
