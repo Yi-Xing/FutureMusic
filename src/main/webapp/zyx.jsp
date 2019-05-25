@@ -33,30 +33,17 @@
     </script>
 </head>
 <body>
-
-<h1>springMVC字节流输入上传文件</h1>
-<form name="userForm1" action="/springMVC7/file/upload" enctype="multipart/form-data" method="post">
-    <div id="newUpload1">
-        <input type="file" name="file">
-    </div>
-
-    <input type="button" id="btn_add1" value="增加一行" >
-    <input type="submit" value="上传" >
-</form>
-<br>
-<br>
-<hr align="left" width="60%" color="#FF0000" size="3">
 <br>
 <br>
 <h1>springMVC包装类上传文件</h1>
-<form name="userForm2" action="/FutureMusic_war_exploded/aaa" enctype="multipart/form-data" method="post">
+<form name="userForm2" action="demo" enctype="multipart/form-data" method="post">
 <div id="newUpload2">
     <input type="file" name="file">
 </div>
 <input type="button" id="btn_add2" value="增加一行" >
 <input type="submit" value="上传" >
 
-
+<img src="" alt="">
 </form>
 </body>
 </html>

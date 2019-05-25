@@ -2,6 +2,7 @@ package util;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
@@ -9,7 +10,6 @@ import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import javax.servlet.http.HttpServletRequest;
 import java.io.File;
 import java.io.IOException;
-import java.util.Date;
 import java.util.Iterator;
 
 /**
@@ -17,7 +17,7 @@ import java.util.Iterator;
  *
  * @author 张易兴  5.24 创建
  */
-
+@Service(value = "FileUpload")
 public class FileUpload {
     private static final Logger logger = LoggerFactory.getLogger(FileUpload.class);
 
@@ -27,8 +27,7 @@ public class FileUpload {
      * @return 返回该用户头像的路径
      */
     public String userHeadPortrait(HttpServletRequest request) throws IOException {
-        fileUpload(request, "/userHeadPortrait/");
-        return null;
+        return fileUpload(request, "/static/file/userHeadPortrait/");
     }
 
     /**
@@ -37,8 +36,7 @@ public class FileUpload {
      * @return 返回该音乐的路径
      */
     public String music(HttpServletRequest request) throws IOException {
-        fileUpload(request, "/music/");
-        return null;
+        return fileUpload(request, "/static/file/music/");
     }
 
     /**
@@ -47,8 +45,7 @@ public class FileUpload {
      * @return 返回该音乐的歌词的路径
      */
     public String musicLyric(HttpServletRequest request) throws IOException {
-        fileUpload(request, "/musicLyric/");
-        return null;
+        return fileUpload(request, "/static/file/musicLyric/");
     }
 
     /**
@@ -57,8 +54,7 @@ public class FileUpload {
      * @return 返回该MV的路径
      */
     public String musicVideo(HttpServletRequest request) throws IOException {
-        fileUpload(request, "/musicVideo/");
-        return null;
+        return fileUpload(request, "/static/file/musicVideo/");
     }
 
     /**
@@ -67,8 +63,7 @@ public class FileUpload {
      * @return 返回该用户图片的路径
      */
     public String songList(HttpServletRequest request) throws IOException {
-        fileUpload(request, "/songList/");
-        return null;
+        return fileUpload(request, "/static/file/songList/");
     }
 
     /**
@@ -76,8 +71,8 @@ public class FileUpload {
      *
      * @return 返回该活动图片的路径
      */
-    public String activityPicture() {
-        return null;
+    public String activityPicture(HttpServletRequest request) throws IOException {
+        return fileUpload(request, "/static/file/activityPicture/");
     }
 
     public String fileUpload(HttpServletRequest request, String uploadPath) throws IllegalStateException, IOException {
@@ -100,10 +95,17 @@ public class FileUpload {
                     if (fileName != null) {
                         if (!"".equals(fileName.trim())) {
                             logger.trace("上传的文件名为：" + fileName);
+                            // 先得到路径，判断文件是否存在
+                            String path = "C:/first/FutureMusic/src/main/webapp" + uploadPath;
+                            File filePath = new File(path);
+                            // 判断文件夹是否存在 不存在这创建
+                            if (!filePath.exists()) {
+                                logger.trace("文件夹不存在，开始创建文件：" + filePath.mkdirs());
+                            }
                             // 得到文件的后缀,然后重命名上传后的文件名
-                            fileName = uploadPath + System.currentTimeMillis() + fileName.substring(fileName.lastIndexOf("\\") + 1);
+                            fileName = System.currentTimeMillis() + fileName.substring(fileName.lastIndexOf("\\") + 1);
                             //定义上传路径
-                            String path = "C:/first/FutureMusic/file" + fileName;
+                            path = path + fileName;
                             File localFile = new File(path);
                             file.transferTo(localFile);
                         }
@@ -112,5 +114,13 @@ public class FileUpload {
             }
         }
         return fileName;
+    }
+
+    /**
+     * 删除指定路径的文件
+     */
+    public boolean deleteFile(String path) {
+        path = "C:/first/FutureMusic/src/main/webapp" + path;
+        return new File(path).delete();
     }
 }
