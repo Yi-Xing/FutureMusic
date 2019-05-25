@@ -40,6 +40,7 @@ public class LoginAndRegister {
      * @param password         接收输入的密码
      * @param passwordAgain    接收再次输入的密码
      * @param verificationCode 接收输入的邮箱验证码
+     * @param agreement 判断协议是否同意
      * @param session          获取当前会话的对象
      * @return State 返回执行的结果
      * @throws DataBaseException 数据库异常
@@ -47,9 +48,9 @@ public class LoginAndRegister {
     @RequestMapping(value = "/register")
     @ResponseBody
     public State register(String userName, String sendMail, String password, String passwordAgain, String verificationCode,
-                          HttpSession session) throws DataBaseException {
+                          String agreement,HttpSession session) throws DataBaseException {
         logger.trace("register方法开始执行");
-        return registerService.register(userName,sendMail,password,passwordAgain,verificationCode,session);
+        return registerService.register(userName,sendMail,password,passwordAgain,verificationCode,agreement,session);
     }
 
     /**
