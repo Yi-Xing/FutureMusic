@@ -20,6 +20,7 @@
 </head>
 <body>
 <div style="padding:30px 30%">
+    <h1>搜索显示</h1>
     <div class="input-group">
         <input type="text" id="keyword">
         <span class="input-group-addon" id="dosearch">搜索</span><!--href="SearchVideoByTitle?title="  -->
@@ -43,6 +44,16 @@
         </tr>
     </table>
 
+    <h1>springMVC字节流输入上传文件</h1>
+    <form name="userForm1" action="/springMVC7/file/upload" enctype="multipart/form-data" method="post">
+        <div id="newUpload1">
+            <input type="file" name="file">
+        </div>
+
+        <input type="button" id="btn_add1" value="增加一行" >
+        <input type="submit" value="上传" >
+    </form>
+    <br>
 </div>
 </body>
 <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
