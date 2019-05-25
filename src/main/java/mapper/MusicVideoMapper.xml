@@ -28,7 +28,7 @@
                 and music_video_available=#{available}
             </if>
             <if test='playCount!=0'>
-                and music_video_play_count=#{playCount} order by music_video_play_count
+               order by music_video_play_count
             </if>
         </where>
     </select>

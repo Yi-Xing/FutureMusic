@@ -10,10 +10,6 @@ import java.util.List;
 
 @Controller
 public class Main {
-    @RequestMapping(value = "/main")
-    public String searchListSongLista() {
-        return "index";
-    }
 
     @RequestMapping(value = "/index")
     public String index() {
@@ -40,10 +36,16 @@ public class Main {
         return "mvPlayer";
     }
 
+    @RequestMapping(value = "/musicComment")
+    public String musicComment() {
+        return "musicComment";
+    }
+
     @RequestMapping(value = "/system")
     public String back_system() {
         return "back_system";
     }
 
 }
+
 

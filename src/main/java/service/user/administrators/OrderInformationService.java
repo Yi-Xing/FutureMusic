@@ -9,8 +9,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
 import util.exception.DataBaseException;
 
 import javax.annotation.Resource;
@@ -43,6 +41,7 @@ public class OrderInformationService {
         PageHelper.startPage(pageNum, 8);
         // 根据条件查找订单信息
         List<Order> list = orderMapper.selectListOrder(order);
+        System.out.println(list);
         PageInfo pageInfo = new PageInfo<>(list);
         // 传入页面信息
         model.addAttribute("pageInfo", pageInfo);

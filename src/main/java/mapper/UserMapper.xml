@@ -12,7 +12,7 @@
             <if test='name!=null and name!=""'>
                 and user_name like "%"#{name}"%"
             </if>
-            <if test='mailbox!=null and email!=""'>
+            <if test='mailbox!=null and mailbox!=""'>
                 and user_mailbox like "%"#{mailbox}"%"
             </if>
             <if test='level!=0'>
@@ -60,7 +60,7 @@
             <if test='level!=0'>
                 ,user_level=#{level}
             </if>
-            <if test='balance!=null and balance!=""'>
+            <if test='balance!=null and balance !=""'>
                 ,user_balance=#{balance}
             </if>
             <if test='date!=null'>
@@ -69,7 +69,7 @@
             <if test='headPortrait!=null and headPortrait!=""'>
                 ,user_head_portrait=#{headPortrait}
             </if>
-            <if test='vipDate!=null and vipDate!=""'>
+            <if test='vipDate!=null '>
                 ,user_vip_date=#{vipDate}
             </if>
             <if test='secret!=0'>
@@ -98,6 +98,7 @@
         <result column="user_level" property="level"/>
         <result column="user_balance" property="balance"/>
         <result column="user_date" property="date"/>
+        <result column="user_head_portrait" property="headPortrait"/>
         <result column="user_vip_date" property="vipDate"/>
         <result column="user_secret" property="secret"/>
         <result column="user_fabulous" property="fabulous"/>

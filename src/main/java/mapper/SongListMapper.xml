@@ -21,6 +21,17 @@
             <if test='activity!=0'>
                 and song_list_activity=#{activity}
             </if>
+            <if test='classificationId!=0'>
+                and song_list_classification_id=#{classificationId}
+            </if>
+        </where>
+    </select>
+    <select id="listIdSelectListSongList" parameterType="Integer" resultMap="songList">
+        select * from tb_song_list
+        <where>
+            <foreach collection="list" item="value" separator="," open="song_list_id in(" close=")">
+                #{value}
+            </foreach>
         </where>
     </select>
     <insert id="insertSongList" parameterType="SongList">

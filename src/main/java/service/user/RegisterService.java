@@ -31,7 +31,7 @@ public class RegisterService {
      * 注册账号
      *
      * @param userName         接收用户名
-     * @param mailbox         接收邮箱号
+     * @param mailbox          接收邮箱号
      * @param password         接收输入的密码
      * @param passwordAgain    接收再次输入的密码
      * @param verificationCode 接收输入的邮箱验证码
@@ -40,7 +40,10 @@ public class RegisterService {
      * @throws DataBaseException 数据库异常
      */
     public State register(String userName, String mailbox, String password, String passwordAgain, String verificationCode,
-                          HttpSession session) throws DataBaseException {
+                          String agreement, HttpSession session) throws DataBaseException {
+        System.out.println(userName);
+        System.out.println(agreement);
+        logger.debug("日志输出");
         State state = new State();
         // 验证用户名是否合法
         if (validationInformation.isUserName(userName)) {
@@ -56,10 +59,15 @@ public class RegisterService {
                             if (validationInformation.isMailboxVerificationCodeTime(session)) {
                                 // 验证邮箱的验证码是否正确
                                 if (validationInformation.isMailboxVerificationCode(session, verificationCode)) {
-                                    // 将信息存入数据库
-                                    insertUser(userName, mailbox, password);
-                                    state.setState(1);
-                                    logger.info("邮箱：" + mailbox + "注册成功");
+                                    if ("true".equals(agreement)) {
+                                        // 将信息存入数据库
+                                        insertUser(userName, mailbox, password);
+                                        state.setState(1);
+                                        logger.info("邮箱：" + mailbox + "注册成功");
+                                    } else {
+                                        logger.debug("邮箱：" + mailbox + "协议未选中");
+                                        state.setInformation("协议未选中");
+                                    }
                                 } else {
                                     logger.debug("邮箱：" + mailbox + "邮箱验证码出错");
                                     state.setInformation("邮箱验证码出错");
@@ -108,7 +116,7 @@ public class RegisterService {
                 state.setInformation("邮箱已存在");
             } else {
                 // 发送邮箱
-                state=specialFunctions.sendVerificationCode(mailbox,session);
+                state = specialFunctions.sendVerificationCode(mailbox, session);
                 // 发送成功吗，将邮箱存入会话中
                 session.setAttribute("mailbox", mailbox);
             }
@@ -132,7 +140,11 @@ public class RegisterService {
         user.setMailbox(mailbox);
         user.setDate(new Date());
         // 对密码进行加密
+        logger.debug(user.getName());
+        logger.debug(user.getMailbox());
+        logger.debug(user.getDate()+"");
         user.setPassword(specialFunctions.encryptionMD5(password));
+        logger.debug(user.getPassword());
         if (userMapper.insertUser(user) < 1) {
             // 如果失败是数据库错误
             logger.error("邮箱：" + mailbox + "注册时，数据库出错");

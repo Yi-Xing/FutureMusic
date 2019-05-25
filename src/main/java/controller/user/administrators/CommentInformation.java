@@ -1,6 +1,5 @@
 package controller.user.administrators;
 
-import entity.State;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -8,8 +7,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import service.user.administrators.ActivityInformationService;
 import service.user.administrators.CommentInformationService;
-import service.user.consumer.AboutMusicService;
-import util.exception.DataBaseException;
 
 import javax.annotation.Resource;
 import java.text.ParseException;
@@ -26,8 +23,6 @@ import java.text.ParseException;
 @Controller
 public class CommentInformation {
     private static final Logger logger = LoggerFactory.getLogger(ActivityInformationService.class);
-    @Resource(name = "AboutMusicService")
-    AboutMusicService aboutMusicService;
     @Resource(name = "CommentInformationService")
     CommentInformationService commentInformationService;
 
@@ -39,7 +34,7 @@ public class CommentInformation {
      * @param pageNum 表示当前第几页
      */
     @RequestMapping(value = "/showComment")
-    public String showComment(Integer type, Integer id, Integer pageNum, Model model) throws ParseException {
+    public String showComment(Integer type, Integer id, Integer pageNum, Model model)  {
         return commentInformationService.showComment(type, id, pageNum, model);
     }
 

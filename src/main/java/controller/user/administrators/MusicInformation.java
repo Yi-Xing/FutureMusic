@@ -1,11 +1,7 @@
 package controller.user.administrators;
 
-import com.github.pagehelper.PageHelper;
-import com.github.pagehelper.PageInfo;
-import entity.Classification;
 import entity.Music;
 import entity.State;
-import entity.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -18,8 +14,9 @@ import service.user.administrators.MusicInformationService;
 import util.exception.DataBaseException;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import java.io.IOException;
 import java.text.ParseException;
-import java.util.List;
 
 /**
  * 音乐：
@@ -48,8 +45,8 @@ public class MusicInformation {
      */
     @RequestMapping(value = "/addMusic")
     @ResponseBody
-    public State addMusic(@RequestBody Music music) throws DataBaseException {
-        return musicInformationService.addMusic(music);
+    public State addMusic(@RequestBody Music music, HttpServletRequest request) throws DataBaseException, IOException {
+        return musicInformationService.addMusic(music,request);
     }
     /**
      * 显示和按条件查询音乐
@@ -66,7 +63,7 @@ public class MusicInformation {
      */
     @RequestMapping(value = "/modifyMusic")
     @ResponseBody
-    public State modifyMusic(@RequestBody Music music) throws DataBaseException {
-        return musicInformationService.modifyMusic(music);
+    public State modifyMusic(@RequestBody Music music, HttpServletRequest request) throws DataBaseException , IOException{
+        return musicInformationService.modifyMusic(music,request);
     }
 }

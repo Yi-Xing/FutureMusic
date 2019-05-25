@@ -2,22 +2,22 @@ package service.user.administrators;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import entity.Music;
 import entity.MusicVideo;
 import entity.State;
-import mapper.MusicMapper;
 import mapper.MusicVideoMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestBody;
 import service.user.IdExistence;
 import service.user.ValidationInformation;
+import util.FileUpload;
 import util.JudgeIsOverdueUtil;
 import util.exception.DataBaseException;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import java.io.IOException;
 import java.text.ParseException;
 import java.util.List;
 
@@ -35,11 +35,12 @@ public class MusicVideoInformationService {
     ValidationInformation validationInformation;
     @Resource(name = "IdExistence")
     IdExistence idExistence;
-
+    @Resource(name = "FileUpload")
+    FileUpload fileUpload;
     /**
      * 添加MV
      */
-    public State addMusicVideo(MusicVideo musicVideo) throws DataBaseException {
+    public State addMusicVideo(MusicVideo musicVideo, HttpServletRequest request) throws DataBaseException, IOException {
         State state = new State();
         if (validationInformation.isName(musicVideo.getName())) {
             // 判断价格是否符合要求
@@ -61,6 +62,8 @@ public class MusicVideoInformationService {
                             // 判断MV的介绍是否合法
                             state = validationInformation.isContent(musicVideo.getIntroduction());
                             if (state.getState() == 1) {
+                                // 获取上传的文件路径
+                                musicVideo.setPath(fileUpload.musicVideo(request));
                                 if (musicVideoMapper.insertMusicVideo(musicVideo) < 1) {
                                     // 如果失败是数据库错误
                                     logger.error(musicVideo + "添加MV信息时，数据库出错");
@@ -127,6 +130,7 @@ public class MusicVideoInformationService {
         PageHelper.startPage(pageNum, 8);
         // 根据条件查找用户信息
         List<MusicVideo> list = musicVideoMapper.selectListMusicVideo(musicVideo);
+        System.out.println(list);
         PageInfo pageInfo = new PageInfo<>(list);
         // 传入页面信息
         model.addAttribute("pageInfo", pageInfo);
@@ -136,7 +140,7 @@ public class MusicVideoInformationService {
     /**
      * 修改MV信息，ajax
      */
-    public State modifyMusicVideo(MusicVideo musicVideo) throws DataBaseException {
+    public State modifyMusicVideo(MusicVideo musicVideo, HttpServletRequest request) throws DataBaseException, IOException {
         State state = new State();
         if (validationInformation.isName(musicVideo.getName())) {
             // 判断价格是否符合要求
@@ -158,6 +162,8 @@ public class MusicVideoInformationService {
                             // 判断MV的介绍是否合法
                             state = validationInformation.isContent(musicVideo.getIntroduction());
                             if (state.getState() == 1) {
+                                // 获取上传的文件路径
+                                musicVideo.setPath(fileUpload.musicVideo(request));
                                 if (musicVideoMapper.updateMusicVideo(musicVideo) < 1) {
                                     // 如果失败是数据库错误
                                     logger.error(musicVideo + "修改MV信息，数据库出错");

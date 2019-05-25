@@ -25,6 +25,7 @@ public interface CommentMapper {
      *                userId查找该用户的所有评论
      *                userId和type查找指定用户的音乐或MV或专辑的所有评论
      *                reply查找指定评论的子评论
+     *               date 查找最新评论
      * @return List<Comment> 返回查找到的评论
      */
     public List<Comment> selectListComment(Comment comment);

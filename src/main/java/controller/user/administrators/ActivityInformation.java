@@ -1,10 +1,7 @@
 package controller.user.administrators;
 
-import com.github.pagehelper.PageHelper;
-import com.github.pagehelper.PageInfo;
 import entity.Activity;
 import entity.State;
-import mapper.ActivityMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -16,8 +13,9 @@ import service.user.administrators.ActivityInformationService;
 import util.exception.DataBaseException;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import java.io.IOException;
 import java.text.ParseException;
-import java.util.List;
 
 /**
  * 活动：
@@ -44,10 +42,13 @@ public class ActivityInformation {
      */
     @RequestMapping(value = "/addActivity")
     @ResponseBody
-    public State addActivity(@RequestBody Activity activity) throws DataBaseException {
+    public State addActivity(@RequestBody Activity activity,HttpServletRequest request) throws DataBaseException, IOException {
         logger.trace("addActivity方法开始执行");
-        return activityInformationService.addActivity(activity);
+        return activityInformationService.addActivity(activity,request);
     }
+
+
+
     /**
      * 显示活动信息
      * @param condition 条件可以有多个

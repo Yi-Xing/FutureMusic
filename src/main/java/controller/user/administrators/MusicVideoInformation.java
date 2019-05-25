@@ -1,6 +1,5 @@
 package controller.user.administrators;
 
-import entity.Music;
 import entity.MusicVideo;
 import entity.State;
 import org.slf4j.Logger;
@@ -11,11 +10,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import service.user.administrators.ActivityInformationService;
-import service.user.administrators.MusicInformationService;
 import service.user.administrators.MusicVideoInformationService;
 import util.exception.DataBaseException;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import java.io.IOException;
 import java.text.ParseException;
 
 /**
@@ -41,15 +41,15 @@ public class MusicVideoInformation {
     @Resource(name = "MusicVideoInformationService")
     MusicVideoInformationService musicVideoInformationService;
     /**
-     * 添加音乐
+     * 添加MV
      */
     @RequestMapping(value = "/addMusicVideo")
     @ResponseBody
-    public State addMusicVideo(@RequestBody MusicVideo musicVideo) throws DataBaseException {
-        return musicVideoInformationService.addMusicVideo(musicVideo);
+    public State addMusicVideo(@RequestBody MusicVideo musicVideo, HttpServletRequest request) throws DataBaseException , IOException {
+        return musicVideoInformationService.addMusicVideo(musicVideo,request);
     }
     /**
-     * 显示和按条件查询音乐
+     * 显示和按条件查询MV
      * @param condition 条件可以有多个
      * @param pageNum 表示当前第几页
      */
@@ -59,11 +59,11 @@ public class MusicVideoInformation {
     }
 
     /**
-     * 修改音乐信息，ajax
+     * 修改MV信息，ajax
      */
     @RequestMapping(value = "/modifyMusicVideo")
     @ResponseBody
-    public State modifyMusicVideo(@RequestBody MusicVideo musicVideo) throws DataBaseException {
-        return musicVideoInformationService.modifyMusicVideo(musicVideo);
+    public State modifyMusicVideo(@RequestBody MusicVideo musicVideo, HttpServletRequest request) throws DataBaseException , IOException{
+        return musicVideoInformationService.modifyMusicVideo(musicVideo,request);
     }
 }
