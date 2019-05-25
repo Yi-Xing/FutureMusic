@@ -95,7 +95,7 @@
             <!-- 模态框（Modal_1） -->
             <div class="modal fade" id="myModal_1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel-1" aria-hidden="true">
                 <div class="modal-dialog">
-                    <div class="modal-content">
+                    <div class="modal-content" style="width:300px;">
                         <div class="modal-header" style="color:#BA55D3;display: flex" >
                             <h4>修改信息</h4>
                             <p type="button" class="close" data-dismiss="modal" aria-hidden="true">
@@ -104,10 +104,26 @@
                         </div>
                         <div class="modal-body" style="width:80%;display: flex;flex-direction: column;align-items: center">
                             <form action="">
-                                <input type="text" placeholder="等级">
-                                <input type="text" placeholder="vip余天">
-                                <input type="text" placeholder="余额">
-                                <input type="text" placeholder="举报次数">
+                                <p>等级：<select name="等级">
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                </select>级</p>
+                                <p>vip余
+                                    <select name="vip余天">
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                    </select>
+                                    天
+                                </p>
+                                <p>
+                                    余额<input type="text" placeholder="余额">
+                                </p>
+                                <p>举报<input type="text" placeholder="举报次数">次
+                                </p>
                                 <div class="modal_footer">
                                     <input type="reset"  style="width:40%; height: 40px; background: #BA55D3;border:none;outline: none;box-shadow: none" name="button" id="button" value="reset" />
                                     <input type="submit" style="width:40%; height: 40px; background: #BA55D3;border:none;outline: none;box-shadow: none"  data-dismiss="modal" value="commit" >
