@@ -29,7 +29,7 @@ public class AboutMusic {
      *
      * @param id               获取收藏音乐或MV的id
      * @param type             获取类型1是音乐2是MV
-     * @param have             表示是音乐或MV是否已经购买，1表示购买，2表示没购买
+     * @param have             表示是音乐或MV是否已经购买，1表示购买，2表示没购买(不用传该数据)  判断指定用户没有有购买指定音乐或MV
      * @param singerId         表示是歌手的id
      * @param albumId          表示是专辑的id
      * @param classificationId 表示是音乐或MV的分类的id

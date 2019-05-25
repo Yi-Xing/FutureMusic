@@ -5,14 +5,21 @@ import mapper.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import service.user.IdExistence;
 import service.user.SpecialFunctions;
+import service.user.ValidationInformation;
+import util.FileUpload;
 import util.exception.DataBaseException;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.io.IOException;
 import java.util.Date;
+import java.util.List;
 
 /**
  * 创建编辑歌单，创建编辑专辑，收藏音乐，收藏MV，收藏歌单，收藏专辑，查看编辑历史播放记录，评论，点赞
@@ -24,35 +31,148 @@ public class AboutSongListService {
     private static final Logger logger = LoggerFactory.getLogger(AboutSongListService.class);
     @Resource(name = "SongListCollectMapper")
     SongListCollectMapper songListCollectMapper;
-    @Resource(name = "MusicCollectMapper")
-    MusicCollectMapper musicCollectMapper;
-    @Resource(name = "CommentMapper")
-    CommentMapper commentMapper;
-    @Resource(name = "PlayMapper")
-    PlayMapper playMapper;
-    @Resource(name = "UserMapper")
-    UserMapper userMapper;
     @Resource(name = "SpecialFunctions")
     SpecialFunctions specialFunctions;
     @Resource(name = "Existence")
     Existence existence;
     @Resource(name = "SongListMapper")
     SongListMapper songListMapper;
+    @Resource(name = "ValidationInformation")
+    ValidationInformation validationInformation;
+    @Resource(name = "IdExistence")
+    IdExistence idExistence;
+    @Resource(name = "FileUpload")
+    FileUpload fileUpload;
 
+    /**
+     * 创建歌单或专辑
+     *
+     * @param songList 获取传来的歌单信息
+     *                 name           获取歌单或专辑的标题
+     *                 picture        获取歌单或专辑的封面的图片路径
+     *                 introduction   获取歌单或专辑的介绍
+     *                 classification 获取分类
+     *                 type           获取类型1是歌单2是专辑
+     * @param session  获取当前会话
+     */
+    public State createMusicSongList(@RequestBody SongList songList, HttpServletRequest request, HttpSession session) throws IOException, DataBaseException {
+        User user = specialFunctions.getUser(session);
+        State state = new State();
+        //歌单或专辑的标题是否符合要求
+        if (validationInformation.isName(songList.getName())) {
+            //歌单或专辑的介绍是否符合要求
+            if (0 < songList.getIntroduction().length() && songList.getIntroduction().length() >= 300) {
+                // 判断分类是否存在
+                if (idExistence.isClassificationId(songList.getClassificationId()) != null) {
+                    // 将上传的图片存入硬盘上去
+                    String path = fileUpload.songList(request);
+                    // 存储图片路径
+                    songList.setPicture(path);
+                    // 存储创建者的id
+                    songList.setUserId(user.getId());
+                    // 设置何时创建
+                    songList.setDate(new Date());
+                    // 存入数据库
+                    if (songListMapper.insertSongList(songList) < 1) {
+                        // 如果失败是数据库错误
+                        logger.error("歌单或专辑：" + songList + "添加歌单或专辑，数据库出错");
+                        throw new DataBaseException("歌单或专辑：" + songList + "添加歌单或专辑，数据库出错");
+                    }
+                    logger.info("歌单或专辑：" + songList + "创建成功");
+                    state.setState(1);
+                } else {
+                    logger.debug("歌单或专辑：" + songList + "歌单或专辑的分类不存在");
+                    state.setInformation("歌单或专辑的分类不存在");
+                }
+            } else {
+                logger.debug("歌单或专辑：" + songList + "歌单或专辑的标题格式有误");
+                state.setInformation("标题格式有误");
+            }
+        } else {
+            logger.debug("歌单或专辑：" + songList + "歌单或专辑的标题格式有误");
+            state.setInformation("标题格式有误");
+        }
+        return state;
+    }
+
+    /**
+     * 编辑歌单或专辑
+     *
+     * @param songList 获取传来的歌单信息
+     *                 name           获取歌单或专辑的标题
+     *                 picture        获取歌单或专辑的封面的图片路径
+     *                 introduction   获取歌单或专辑的介绍
+     *                 classification 获取分类
+     *                 type           获取类型1是歌单2是专辑
+     */
+    public State editMusicSongList( SongList songList) throws DataBaseException {
+        State state=new State();
+        //歌单或专辑的标题是否符合要求
+        if (validationInformation.isName(songList.getName())) {
+            //歌单或专辑的介绍是否符合要求
+            if (0 < songList.getIntroduction().length() && songList.getIntroduction().length() >= 300) {
+                // 判断分类是否存在
+                if (idExistence.isClassificationId(songList.getClassificationId()) != null) {
+                    // 全部合法则更新数据库中的信息
+                    modifySongListInformation(songList);
+                } else {
+                    logger.debug("歌单或专辑：" + songList + "歌单或专辑的分类不存在");
+                    state.setInformation("歌单或专辑的分类不存在");
+                }
+            } else {
+                logger.debug("歌单或专辑：" + songList + "歌单或专辑的标题格式有误");
+                state.setInformation("标题格式有误");
+            }
+        } else {
+            logger.debug("歌单或专辑：" + songList + "歌单或专辑的标题格式有误");
+            state.setInformation("标题格式有误");
+        }
+        return new State();
+    }
+
+    /**
+     * 编辑歌单或专辑的封面图片
+     *
+     * @param id 需要更改的歌单或专辑的id
+     */
+    public State editMusicSongListPicture(Integer id, HttpServletRequest request) throws IOException, DataBaseException {
+        // 得到图片的原路径
+        String originalPath = idExistence.isSongListId(id).getPicture();
+        // 用来存储最新的图片路径
+        String path;
+        SongList songList = new SongList();
+        songList.setId(id);
+        // 将上传的图片存入硬盘上去，并得到路径
+        path = fileUpload.songList(request);
+        // 存储图片路径
+        songList.setPicture(path);
+        // 更新数据库中的数据
+        try {
+            // 如果更新数据库中的数据出现了异常，则需要删除刚刚存储在硬盘上的文件
+            modifySongListInformation(songList);
+            // 先捕获异常，进行文件删除，然后再抛异常
+        } catch (DataBaseException e) {
+            fileUpload.deleteFile(path);
+            throw new DataBaseException("歌单或专辑：" + songList + "修改歌单或专辑信息时，数据库出错");
+        }
+        // 更新成功则删除原来的图片
+        fileUpload.deleteFile(originalPath);
+        return  new State(1);
+    }
     /**
      * 删除歌单或专辑，ajax
      */
     public State deleteMusicSongList(Integer id) throws DataBaseException {
+        String originalPath = idExistence.isSongListId(id).getPicture();
         if (songListMapper.deleteSongList(id) < 1) {
             // 如果失败是数据库错误
             logger.error("删除歌单或专辑时，数据库出错");
             throw new DataBaseException("删除歌单或专辑时，数据库出错");
         }
-        State state = new State();
-        state.setState(1);
-        return state;
+        // 数据库中删除成功，删除硬盘上的数据
+        fileUpload.deleteFile(originalPath);
+        return new State(1);
     }
-
     /**
      * 收藏或取消收藏歌单或专辑
      *
@@ -88,8 +208,18 @@ public class AboutSongListService {
                 throw new DataBaseException("邮箱：" + user.getMailbox() + "收藏歌单或专辑时，数据库出错");
             }
         }
-        State state = new State();
-        state.setState(1);
-        return state;
+        return new State(1);
     }
+
+    /**
+     * 修改数据库中的歌单或专辑信息，失败抛异常
+     */
+    private void modifySongListInformation(SongList songList) throws DataBaseException {
+        if (songListMapper.updateSongList(songList) < 1) {
+            // 如果失败是数据库错误
+            logger.error("歌单或专辑：" + songList + "修改歌单或专辑信息时，数据库出错");
+            throw new DataBaseException("歌单或专辑：" + songList + "修改歌单或专辑信息时，数据库出错");
+        }
+    }
+
 }
