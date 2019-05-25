@@ -26,6 +26,7 @@ var  page = {
     "maxshowpageitem":5,//最多显示的页码个数
     "pagelistcount":10,//每一页显示的内容条数
     /**
+     * @param传递参数
      * 初始化分页界面
      * @param listCount 列表总量
      */
@@ -93,6 +94,5 @@ var  page = {
         appendStr+="<li class='"+nextPageClass+"' page-data='"+nextPage+"' page-rel='nextpage'>下一页&gt;</li>";
         appendStr+="<li class='"+nextPageClass+"' page-data='"+pageCount+"' page-rel='lastpage'>尾页</li>";
        return appendStr;
-
     }
 }

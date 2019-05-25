@@ -1,5 +1,6 @@
 package controller.user.consumer;
 
+import entity.MusicSongList;
 import entity.SongList;
 import entity.State;
 import org.slf4j.Logger;
@@ -41,9 +42,9 @@ public class AboutSongList {
      */
     @RequestMapping(value = "/createMusicSongList")
     @ResponseBody
-    public State createMusicSongList(@RequestBody SongList songList, HttpServletRequest request,HttpSession session) throws IOException, DataBaseException {
+    public State createMusicSongList(@RequestBody SongList songList, HttpServletRequest request, HttpSession session) throws IOException, DataBaseException {
         logger.trace("createMusicSongList方法开始执行");
-        return aboutSongListService.createMusicSongList(songList,request,session);
+        return aboutSongListService.createMusicSongList(songList, request, session);
     }
 
     /**
@@ -72,7 +73,7 @@ public class AboutSongList {
     @ResponseBody
     public State editMusicSongListPicture(Integer id, HttpServletRequest request) throws IOException, DataBaseException {
         logger.trace("editMusicSongListPicture方法开始执行");
-        return aboutSongListService.editMusicSongListPicture(id,request);
+        return aboutSongListService.editMusicSongListPicture(id, request);
     }
 
     /**
@@ -105,7 +106,17 @@ public class AboutSongList {
 
     /**
      * 将指定音乐添加到专辑或歌单中
+     *
+     * @param musicSongList 获取需要添加到指定专辑或歌单中的音乐
+     *                      所需参数：
+     *                      belongId 专辑或歌单的id
+     *                      type 是歌单2是专辑
+     *                      musicId 音乐的id
      */
-
+    @RequestMapping(value = "/SongListAddMusic")
+    @ResponseBody
+    public State addMusicSongList(@RequestBody MusicSongList musicSongList) {
+        return null;
+    }
 
 }

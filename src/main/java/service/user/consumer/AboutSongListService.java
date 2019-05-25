@@ -105,8 +105,8 @@ public class AboutSongListService {
      *                 classification 获取分类
      *                 type           获取类型1是歌单2是专辑
      */
-    public State editMusicSongList( SongList songList) throws DataBaseException {
-        State state=new State();
+    public State editMusicSongList(SongList songList) throws DataBaseException {
+        State state = new State();
         //歌单或专辑的标题是否符合要求
         if (validationInformation.isName(songList.getName())) {
             //歌单或专辑的介绍是否符合要求
@@ -157,8 +157,9 @@ public class AboutSongListService {
         }
         // 更新成功则删除原来的图片
         fileUpload.deleteFile(originalPath);
-        return  new State(1);
+        return new State(1);
     }
+
     /**
      * 删除歌单或专辑，ajax
      */
@@ -173,6 +174,7 @@ public class AboutSongListService {
         fileUpload.deleteFile(originalPath);
         return new State(1);
     }
+
     /**
      * 收藏或取消收藏歌单或专辑
      *
@@ -222,4 +224,16 @@ public class AboutSongListService {
         }
     }
 
+    /**
+     * 将指定音乐添加到专辑或歌单中
+     *
+     * @param musicSongList 获取需要添加到指定专辑或歌单中的音乐
+     *                      所需参数：
+     *                      belongId 专辑或歌单的id
+     *                      type 是歌单2是专辑
+     *                      musicId 音乐的id
+     */
+    public State addMusicSongList( MusicSongList musicSongList) {
+        return null;
+    }
 }

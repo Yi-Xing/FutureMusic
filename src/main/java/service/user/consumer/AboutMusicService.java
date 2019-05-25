@@ -1,8 +1,6 @@
 package service.user.consumer;
 
 import entity.*;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 import service.user.SpecialFunctions;
 import util.exception.DataBaseException;
 import mapper.*;
@@ -42,20 +40,21 @@ public class AboutMusicService {
     MusicVideoMapper musicVideoMapper;
 
     /**
-     * 收藏和取消收藏音乐或MV
+     * 收藏和取消收藏音乐或MV,
      *
-     * @param id               获取收藏音乐或MV的id
-     * @param type             获取类型1是音乐2是MV
-     * @param have             表示是音乐或MV是否已经购买，1表示购买，2表示没购买
-     * @param singerId         表示是歌手的id
-     * @param albumId          表示是专辑的id
-     * @param classificationId 表示是音乐或MV的分类的id
-     * @param session          获取当前会话
+     * @param musicCollectInformation 封装音乐或MV收藏的信息
+     *                                musicId               获取收藏音乐或MV的id
+     *                                type             获取类型1是音乐2是MV
+     *                                have             表示是音乐或MV是否已经购买，1表示购买，2表示没购买(不用传该数据)  判断指定用户没有有购买指定音乐或MV
+     *                                singerId         表示是歌手的id
+     *                                albumId          表示是专辑的id
+     *                                classificationId 表示是音乐或MV的分类的id
+     *                                session          获取当前会话
      */
-    public State collectionMusic(Integer id, Integer type, Integer have, Integer singerId, Integer albumId, Integer classificationId, HttpSession session) throws DataBaseException {
+    public State collectionMusic(MusicCollect musicCollectInformation, HttpSession session) throws DataBaseException {
         //得到会话上的用户
         User user = specialFunctions.getUser(session);
-        MusicCollect musicCollect = existence.isUserCollectionMusic(user.getId(), id, type);
+        MusicCollect musicCollect = existence.isUserCollectionMusic(user.getId(), musicCollectInformation.getMusicId(), musicCollectInformation.getType());
         if (musicCollect != null) {
             // 如果不为null表示已经收藏则需要用取消收藏
             if (musicCollectMapper.deleteMusicCollect(musicCollect.getId()) < 1) {
@@ -67,12 +66,12 @@ public class AboutMusicService {
             // 为null表示没有收藏，需要添加收藏
             musicCollect = new MusicCollect();
             musicCollect.setUserId(user.getId());
-            musicCollect.setMusicId(id);
-            musicCollect.setHave(have);
-            musicCollect.setType(type);
-            musicCollect.setSingerId(singerId);
-            musicCollect.setAlbumId(albumId);
-            musicCollect.setClassificationId(classificationId);
+            musicCollect.setMusicId(musicCollectInformation.getMusicId());
+            musicCollect.setHave(musicCollectInformation.getHave());
+            musicCollect.setType(musicCollectInformation.getType());
+            musicCollect.setSingerId(musicCollectInformation.getSingerId());
+            musicCollect.setAlbumId(musicCollectInformation.getAlbumId());
+            musicCollect.setClassificationId(musicCollectInformation.getClassifictionId());
             musicCollect.setDate(new Date());
             if (musicCollectMapper.insertMusicCollect(musicCollect) < 1) {
                 // 如果失败是数据库错误
@@ -80,26 +79,25 @@ public class AboutMusicService {
                 throw new DataBaseException("邮箱：" + user.getMailbox() + "收藏音乐或MV时，数据库出错");
             }
         }
-        State state = new State();
-        state.setState(1);
-        return state;
+        return new State(1);
     }
 
     /**
      * 音乐或MV的历史播放记录
      *
-     * @param id               获取收藏音乐或MV的id
-     * @param type             获取类型1是音乐2是MV
-     * @param singerId         表示是歌手的id
-     * @param albumId          表示是专辑的id
-     * @param classificationId 表示是音乐或MV的分类的id
-     * @param session          获取当前会话
+     * @param playInformation 封装评论的信息
+     *                        musicId               获取收藏音乐或MV的id
+     *                        type             获取类型1是音乐2是MV
+     *                        singerId         表示是歌手的id
+     *                        albumId          表示是专辑的id
+     *                        classificationId 表示是音乐或MV的分类的id
+     * @param session         获取当前会话
      */
     // 需要事务
-    public State musicPlay(Integer id, Integer type, Integer singerId, Integer albumId, Integer classificationId, HttpSession session) throws DataBaseException {
+    public State musicPlay(Play playInformation, HttpSession session) throws DataBaseException {
         //得到会话上的用户
         User user = specialFunctions.getUser(session);
-        Play play = existence.isUserMusicPlay(user.getId(), id, type);
+        Play play = existence.isUserMusicPlay(user.getId(), playInformation.getMusicId(), playInformation.getType());
         // 先判断该用户是否听过该音乐或MV，如果听过只需要更新时间
         if (play != null) {
             // 如果不为null表示已经播放过
@@ -113,11 +111,11 @@ public class AboutMusicService {
             // 没有播放过需要添加播放记录
             play = new Play();
             play.setUserId(user.getId());
-            play.setMusicId(id);
-            play.setType(type);
-            play.setSingerId(singerId);
-            play.setAlbumId(albumId);
-            play.setClassificationId(classificationId);
+            play.setMusicId(playInformation.getMusicId());
+            play.setType(playInformation.getType());
+            play.setSingerId(playInformation.getSingerId());
+            play.setAlbumId(playInformation.getAlbumId());
+            play.setClassificationId(playInformation.getClassificationId());
             play.setDate(new Date());
             // 添加该音乐或MV的播放次数
             if (playMapper.insertPlay(play) < 1) {
@@ -127,9 +125,9 @@ public class AboutMusicService {
             }
         }
         List<Integer> listId = new ArrayList<>();
-        listId.add(id);
+        listId.add(playInformation.getMusicId());
         // 完成后需要添加音乐或MV的播放次数  1表示音乐 2表示MV
-        if (type == 1) {
+        if (playInformation.getType() == 1) {
             List<Music> listMusic = musicMapper.listIdSelectListMusic(listId);
             if (listMusic.size() != 0) {
                 Music music = listMusic.get(0);
@@ -156,34 +154,33 @@ public class AboutMusicService {
                 throw new DataBaseException("邮箱：" + user.getMailbox() + "查找指定MV时，数据库出错");
             }
         }
-        State state = new State();
-        state.setState(1);
-        return state;
+        return new State(1);
     }
 
 
     /**
-     * 音乐或MV或专辑的评论
+     * 音乐或MV或专辑的评论，ajax
      *
-     * @param id      获取音乐或MV或专辑的id
-     * @param type    获取类型1是音乐，2是MV，3是专辑
-     * @param content 获取评论的内容
-     * @param reply   获取回复哪个评论的id, 0为独立评论
-     * @param session 获取当前会话
+     * @param commentInformation 封装平路的信息
+     *                           获取音乐或MV或专辑的id
+     *                           获取类型1是音乐，2是MV，3是专辑
+     *                           获取评论的内容
+     *                           获取回复哪个评论的id, 0为独立评论
+     * @param session            获取当前会话
      */
-    public State comment(Integer id, Integer type, String content, Integer reply, HttpSession session) throws DataBaseException {
+    public State comment(Comment commentInformation, HttpSession session) throws DataBaseException {
         State state = new State();
-        if (content.length() != 0) {
-            if (content.length() <= 200) {
+        if (commentInformation.getContent().length() != 0) {
+            if (commentInformation.getContent().length() <= 200) {
                 //得到会话上的用户
                 User user = specialFunctions.getUser(session);
                 Comment comment = new Comment();
-                comment.setMusicId(id);
-                comment.setType(type);
+                comment.setMusicId(commentInformation.getMusicId());
+                comment.setType(commentInformation.getType());
                 comment.setUserId(user.getId());
-                comment.setContent(content);
+                comment.setContent(commentInformation.getContent());
                 comment.setDate(new Date());
-                comment.setReply(reply);
+                comment.setReply(commentInformation.getReply());
                 if (commentMapper.insertComment(comment) < 1) {
                     // 如果失败是数据库错误
                     logger.error("邮箱：" + user.getMailbox() + "评论时，数据库出错");
@@ -213,7 +210,7 @@ public class AboutMusicService {
             return state;
         } else {
             // 删除指定id的评论
-            if(commentMapper.deleteComment(replyId)< 1) {
+            if (commentMapper.deleteComment(replyId) < 1) {
                 // 如果失败是数据库错误
                 logger.error("删除评论时，数据库出错");
                 throw new DataBaseException("删除评论时，数据库出错");
