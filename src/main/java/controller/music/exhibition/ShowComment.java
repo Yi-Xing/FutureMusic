@@ -64,7 +64,7 @@ public class ShowComment {
     @RequestMapping(value = "/musicCommentInformation")
     @ResponseBody
     public List<Map<Comment,Comment>> musicCommentInformation(@RequestParam(value = "musicId",defaultValue = "-1")String musicId){
-        informationService.commentByMusicId(musicId);
+//        informationService.commentByMusicId(musicId);
         return null;
     }
 }

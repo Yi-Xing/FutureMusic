@@ -14,6 +14,8 @@ import service.user.administrators.MusicVideoInformationService;
 import util.exception.DataBaseException;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import java.io.IOException;
 import java.text.ParseException;
 
 /**
@@ -43,8 +45,8 @@ public class MusicVideoInformation {
      */
     @RequestMapping(value = "/addMusicVideo")
     @ResponseBody
-    public State addMusicVideo(@RequestBody MusicVideo musicVideo) throws DataBaseException {
-        return musicVideoInformationService.addMusicVideo(musicVideo);
+    public State addMusicVideo(@RequestBody MusicVideo musicVideo, HttpServletRequest request) throws DataBaseException , IOException {
+        return musicVideoInformationService.addMusicVideo(musicVideo,request);
     }
     /**
      * 显示和按条件查询MV
@@ -61,7 +63,7 @@ public class MusicVideoInformation {
      */
     @RequestMapping(value = "/modifyMusicVideo")
     @ResponseBody
-    public State modifyMusicVideo(@RequestBody MusicVideo musicVideo) throws DataBaseException {
-        return musicVideoInformationService.modifyMusicVideo(musicVideo);
+    public State modifyMusicVideo(@RequestBody MusicVideo musicVideo, HttpServletRequest request) throws DataBaseException , IOException{
+        return musicVideoInformationService.modifyMusicVideo(musicVideo,request);
     }
 }

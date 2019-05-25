@@ -24,9 +24,9 @@ public class ShowCommentService {
      * @param musicId
      * @return
      */
-    public Map<Comment,Comment> commentByMusicId(String musicId){
+    public Map<Comment,Comment> commentByMusicId(int musicId){
         Comment comment =new Comment();
-        comment.setMusicId(Integer.parseInt(musicId));
+        comment.setMusicId(musicId);
         comment.setType(1);
         comment.setFabulous(1);
         return selectComment(comment);
@@ -36,9 +36,9 @@ public class ShowCommentService {
      * @param musicId
      * @return  Map<Comment,Comment> 返回评论和回复的对应
      */
-    public Map<Comment,Comment> commentLastByMusicId(String musicId){
+    public Map<Comment,Comment> commentLastByMusicId(int musicId){
         Comment comment =new Comment();
-        comment.setMusicId(Integer.parseInt(musicId));
+        comment.setMusicId(musicId);
         comment.setType(1);
         comment.setDate((new Date()));
         return selectComment(comment);
@@ -49,9 +49,9 @@ public class ShowCommentService {
      * @param musicVideoId MV的id
      * @return Map<Comment,Comment> 评论与对应的回复
      */
-    public Map<Comment,Comment> commentByMusicVideoId(String musicVideoId){
+    public Map<Comment,Comment> commentByMusicVideoId(int musicVideoId){
         Comment comment =new Comment();
-        comment.setMusicId(Integer.parseInt(musicVideoId));
+        comment.setMusicId(musicVideoId);
         comment.setType(2);
         comment.setFabulous(1);
         return selectComment(comment);
@@ -62,9 +62,9 @@ public class ShowCommentService {
      * @param musicVideoId
      * @return  Map<Comment,Comment> 返回评论和回复的对应
      */
-    public Map<Comment,Comment> commentLastByMusicVideoId(String musicVideoId){
+    public Map<Comment,Comment> commentLastByMusicVideoId(int musicVideoId){
         Comment comment =new Comment();
-        comment.setMusicId(Integer.parseInt(musicVideoId));
+        comment.setMusicId(musicVideoId);
         comment.setType(2);
         comment.setDate((new Date()));
         return selectComment(comment);

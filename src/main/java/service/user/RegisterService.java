@@ -41,6 +41,9 @@ public class RegisterService {
      */
     public State register(String userName, String mailbox, String password, String passwordAgain, String verificationCode,
                           String agreement, HttpSession session) throws DataBaseException {
+        System.out.println(userName);
+        System.out.println(agreement);
+        logger.debug("日志输出");
         State state = new State();
         // 验证用户名是否合法
         if (validationInformation.isUserName(userName)) {
@@ -56,7 +59,7 @@ public class RegisterService {
                             if (validationInformation.isMailboxVerificationCodeTime(session)) {
                                 // 验证邮箱的验证码是否正确
                                 if (validationInformation.isMailboxVerificationCode(session, verificationCode)) {
-                                    if (!"true".equals(agreement)) {
+                                    if ("true".equals(agreement)) {
                                         // 将信息存入数据库
                                         insertUser(userName, mailbox, password);
                                         state.setState(1);
@@ -137,7 +140,11 @@ public class RegisterService {
         user.setMailbox(mailbox);
         user.setDate(new Date());
         // 对密码进行加密
+        logger.debug(user.getName());
+        logger.debug(user.getMailbox());
+        logger.debug(user.getDate()+"");
         user.setPassword(specialFunctions.encryptionMD5(password));
+        logger.debug(user.getPassword());
         if (userMapper.insertUser(user) < 1) {
             // 如果失败是数据库错误
             logger.error("邮箱：" + mailbox + "注册时，数据库出错");

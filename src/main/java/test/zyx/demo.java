@@ -13,8 +13,11 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import util.ConstantUtil;
+import util.FileUpload;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -26,17 +29,14 @@ public class demo {
 
     @Resource(name = "UserMapper")
     UserMapper userMapper;
+    @Resource(name = "FileUpload")
+    FileUpload fileUpload;
+
+
     @RequestMapping(value = "/demo")
-    public String test() {
-        System.out.println("开始执行");
-        ApplicationContext applicationContext = new ClassPathXmlApplicationContext("spring-mvc.xml");
-        ActivityMapper activityMapper = applicationContext.getBean(ActivityMapper.class);
-        Activity activity=new Activity();
-        activity.setId(1);
-        activity.setName("222");
-        System.out.println(333);
-        System.out.println(activityMapper.updateActivity(activity));
-        System.out.println("执行完毕");
+    public String test(String text,HttpServletRequest request) throws IOException {
+        System.out.println(text);
+        fileUpload.userHeadPortrait(request);
         return null;
     }
 
