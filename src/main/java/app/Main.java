@@ -41,6 +41,11 @@ public class Main {
         return "musicComment";
     }
 
+    @RequestMapping(value = "/system")
+    public String back_system() {
+        return "back_system";
+    }
+
 }
 
 

@@ -1,17 +1,14 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="head::html"></head>
 <head>
-    <meta charset="UTF-8">
-    <title>Music</title>
-    <link rel="stylesheet" href="/static/css/bootstrap.css" th:href="@{/static/css/bootstrap.css}">
-    <link rel="stylesheet" href="/static/font/iconfont.css" th:href="@{/static/font/iconfont.css}">
-    <link rel="stylesheet" href="//at.alicdn.com/t/font_1195775_lq37qljhnaq.css">
+    <link rel="stylesheet" href="/static/css/artist.css" th:href="@{/static/css/artist.css}">
 
 </head>
 <body>
 
 <!--头部-->
-<div th:replace="hard::html" ></div>
+<div th:replace="webHead.html"></div>
 
 <!--音乐人-->
 <div class="container-fluid color_2" style="position: relative">
@@ -365,45 +362,9 @@
 </div>
 
 <!--尾部-->
-<div class="container-fluid  last_color">
-    <div class="row inner">
-        <div class="col-lg-3 col-lg-offset-2">
-            <h3>下载歌曲</h3>
-            <ul class="">
-                <li><a href="javascript:;">pc</a></li>
-                <li><a href="javascript:;">mac</a></li>
-                <li><a href="javascript:;">android</a></li>
-                <li><a href="javascript:;">iphone</a></li>
-            </ul>
-        </div>
-        <div class="col-lg-3">
-            <h3>特色项目</h3>
-            <ul>
-                <li><a href="javascript:;">音乐网站</a></li>
-                <li><a href="javascript:;">博客网站</a></li>
-                <li><a href="javascript:;">电子商城</a></li>
-                <li><a href="javascript:;">旅行网</a></li>
-            </ul>
-        </div>
-        <div class="col-lg-3">
-            <h3>友情链接</h3>
-            <ul>
-                <li><a href="javascript:;">未来官网</a></li>
-            </ul>
-        </div>
-    </div>
-    <div class="inner statement row">
-        <div class="text-center">
-            <small class="small"><a href="javascript:;">Copyright © 2012 - 2019 未来软件工作室</a></small>
-            <br>
-            <small class="small">未来软件工作室 版权所有</small>
-        </div>
-    </div>
-</div>
+<div th:replace="webFoot.html"></div>
 
 </body>
-<script src="js/jquery.js" th:src="@{/static/js/jquery.js}"></script>
-<script src="js/bootstrap.min.js" th:src="@{/static/js/bootstrap.min.js}"></script>
-<script src="js/index.js" th:src="@{/static/js/index.js}"></script>
+<div th:replace="on-load-js::html"></div>
 <script src="js/artist.js" th:src="@{/static/js/artist.js}"></script>
 </html>
