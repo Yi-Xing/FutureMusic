@@ -13,19 +13,8 @@ import java.util.*;
  * @author 蒋靓峣 5.23创建
  */
 @Service(value = "ShowCommentService")
-public class ShowCommentService {   private static final Logger logger = LoggerFactory.getLogger(SearchService.class);
-    @Resource(name="MusicMapper")
-    MusicMapper musicMapper;
-    @Resource(name="MusicVideoMapper")
-    MusicVideoMapper musicVideoMapper;
-    @Resource(name="ClassificationMapper")
-    ClassificationMapper classificationMapper;
-    @Resource(name = "UserMapper")
-    UserMapper userMapper;
-    @Resource(name = "ActivityMapper")
-    ActivityMapper activityMapper;
-    @Resource(name = "SongListMapper")
-    SongListMapper songListMapper;
+public class ShowCommentService {
+    private static final Logger logger = LoggerFactory.getLogger(SearchService.class);
     @Resource(name = "CommentMapper")
     CommentMapper  commentMapper;
 
@@ -57,8 +46,8 @@ public class ShowCommentService {   private static final Logger logger = LoggerF
     /**
      * 查找MV对应的精彩评论即点赞最多的评论
      * 果评论不是独立评论，显示出来回复的是哪个评论
-     * @param musicVideoId
-     * @return
+     * @param musicVideoId MV的id
+     * @return Map<Comment,Comment> 评论与对应的回复
      */
     public Map<Comment,Comment> commentByMusicVideoId(String musicVideoId){
         Comment comment =new Comment();
@@ -128,11 +117,11 @@ public class ShowCommentService {   private static final Logger logger = LoggerF
 
     /**
      * 递归实现遍历主评论下的所有评论
-     * @param start
-     * @param result
+     * @param start 主评论下的第一级回复
+     * @param result 主评论下的所有回复
      * @return
      */
-    public List<Comment> getAllReply(List<Comment> start,List<Comment> result){
+    private List<Comment> getAllReply(List<Comment> start,List<Comment> result){
         if(start==null){
             return null;
         } else {
@@ -153,7 +142,7 @@ public class ShowCommentService {   private static final Logger logger = LoggerF
      * @param comment
      * @return
      */
-    public Map<Comment,Comment> selectComment(Comment comment){
+    private Map<Comment,Comment> selectComment(Comment comment){
         List<Comment> commentList = commentMapper.selectListComment(comment);
         Map<Comment,Comment> commentReplyMap = new HashMap<>(16);
         if(commentList.size()==0){
@@ -177,7 +166,7 @@ public class ShowCommentService {   private static final Logger logger = LoggerF
      * @param comment
      * @return
      */
-    public Comment getCommentFromTable(Comment comment){
+    private Comment getCommentFromTable(Comment comment){
         List<Comment> commentList = commentMapper.selectListComment(comment);
         if(commentList==null){
             return null;
