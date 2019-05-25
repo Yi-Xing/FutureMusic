@@ -11,10 +11,13 @@ import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 import service.user.IdExistence;
 import service.user.ValidationInformation;
+import util.FileUpload;
 import util.JudgeIsOverdueUtil;
 import util.exception.DataBaseException;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import java.io.IOException;
 import java.text.ParseException;
 import java.util.List;
 
@@ -32,17 +35,21 @@ public class ActivityInformationService {
     ValidationInformation validationInformation;
     @Resource(name = "IdExistence")
     IdExistence idExistence;
+    @Resource(name = "FileUpload")
+    FileUpload fileUpload;
 
     /**
      * 添加活动信息，ajax
      */
-    public State addActivity(Activity activity) throws DataBaseException {
+    public State addActivity(Activity activity, HttpServletRequest request) throws DataBaseException, IOException {
         State state = new State();
         if (validationInformation.isName(activity.getName())) {
-            if (activity.getContent().length() <= 300) {
+            if (0 < activity.getContent().length() && activity.getContent().length() <= 300) {
                 // 判断活动的折扣是否符合要求
                 if (validationInformation.isPrice(String.valueOf(activity.getDiscount()))) {
                     if (activityMapper.insertActivity(activity) < 1) {
+                        // 获取上传的文件路径
+                        activity.setPicture(fileUpload.activityPicture(request));
                         // 如果失败是数据库错误
                         logger.error("活动：" + activity + "添加时，数据库出错");
                         throw new DataBaseException("活动：" + activity + "添加时，数据库出错");
@@ -59,6 +66,22 @@ public class ActivityInformationService {
             state.setInformation("活动标题不符合要求");
         }
         return state;
+    }
+
+    /**
+     * 上传活动的图片
+     */
+    public State activityPicture(Integer id, HttpServletRequest request) throws DataBaseException, IOException {
+        String path = fileUpload.activityPicture(request);
+        Activity activity = new Activity();
+        activity.setId(id);
+        activity.setPicture(path);
+        if (activityMapper.updateActivity(activity) < 1) {
+            // 如果失败是数据库错误
+            logger.error("活动：" + activity + "更新时，数据库出错");
+            throw new DataBaseException("活动：" + activity + "更新时，数据库出错");
+        }
+        return new State(1);
     }
 
     /**
@@ -104,7 +127,7 @@ public class ActivityInformationService {
             if (activity.getContent().length() <= 300) {
                 // 判断活动的折扣是否符合要求
                 if (validationInformation.isPrice(String.valueOf(activity.getDiscount()))) {
-                    if ( activityMapper.updateActivity(activity)< 1) {
+                    if (activityMapper.updateActivity(activity) < 1) {
                         // 如果失败是数据库错误
                         logger.error("活动：" + activity + "更新时，数据库出错");
                         throw new DataBaseException("活动：" + activity + "更新时，数据库出错");

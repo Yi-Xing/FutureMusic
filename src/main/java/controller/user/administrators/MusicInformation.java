@@ -14,6 +14,8 @@ import service.user.administrators.MusicInformationService;
 import util.exception.DataBaseException;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import java.io.IOException;
 import java.text.ParseException;
 
 /**
@@ -43,8 +45,8 @@ public class MusicInformation {
      */
     @RequestMapping(value = "/addMusic")
     @ResponseBody
-    public State addMusic(@RequestBody Music music) throws DataBaseException {
-        return musicInformationService.addMusic(music);
+    public State addMusic(@RequestBody Music music, HttpServletRequest request) throws DataBaseException, IOException {
+        return musicInformationService.addMusic(music,request);
     }
     /**
      * 显示和按条件查询音乐
@@ -61,7 +63,7 @@ public class MusicInformation {
      */
     @RequestMapping(value = "/modifyMusic")
     @ResponseBody
-    public State modifyMusic(@RequestBody Music music) throws DataBaseException {
-        return musicInformationService.modifyMusic(music);
+    public State modifyMusic(@RequestBody Music music, HttpServletRequest request) throws DataBaseException , IOException{
+        return musicInformationService.modifyMusic(music,request);
     }
 }

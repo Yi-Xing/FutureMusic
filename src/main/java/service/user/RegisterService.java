@@ -7,6 +7,7 @@ import mapper.UserMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
+import util.listener.SessionListener;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
@@ -41,6 +42,9 @@ public class RegisterService {
      */
     public State register(String userName, String mailbox, String password, String passwordAgain, String verificationCode,
                           String agreement, HttpSession session) throws DataBaseException {
+        System.out.println(userName);
+        System.out.println(agreement);
+        logger.debug("日志输出");
         State state = new State();
         // 验证用户名是否合法
         if (validationInformation.isUserName(userName)) {
@@ -56,11 +60,12 @@ public class RegisterService {
                             if (validationInformation.isMailboxVerificationCodeTime(session)) {
                                 // 验证邮箱的验证码是否正确
                                 if (validationInformation.isMailboxVerificationCode(session, verificationCode)) {
-                                    if (!"true".equals(agreement)) {
+                                    if ("true".equals(agreement)) {
                                         // 将信息存入数据库
-                                        insertUser(userName, mailbox, password);
+                                        insertUser(userName, mailbox, password,session);
                                         state.setState(1);
                                         logger.info("邮箱：" + mailbox + "注册成功");
+
                                     } else {
                                         logger.debug("邮箱：" + mailbox + "协议未选中");
                                         state.setInformation("协议未选中");
@@ -131,17 +136,26 @@ public class RegisterService {
      * @param mailbox  注册的邮箱
      * @param password 注册的密码
      */
-    private void insertUser(String userName, String mailbox, String password) throws DataBaseException {
+    private void insertUser(String userName, String mailbox, String password, HttpSession session) throws DataBaseException {
         User user = new User();
         user.setName(userName);
         user.setMailbox(mailbox);
         user.setDate(new Date());
         // 对密码进行加密
+        logger.debug(user.getName());
+        logger.debug(user.getMailbox());
+        logger.debug(user.getDate()+"");
         user.setPassword(specialFunctions.encryptionMD5(password));
+        logger.debug(user.getPassword());
         if (userMapper.insertUser(user) < 1) {
             // 如果失败是数据库错误
             logger.error("邮箱：" + mailbox + "注册时，数据库出错");
             throw new DataBaseException("邮箱：" + mailbox + "注册时，数据库出错");
         }
+        // 注册成功，直接登录信息存到会话中
+        session.setAttribute("userInformation", user);
+        // 实现唯一登录
+        // 将用户的信息存储的session监听器中
+        SessionListener.sessionMap.put(user.getMailbox(), session);
     }
 }

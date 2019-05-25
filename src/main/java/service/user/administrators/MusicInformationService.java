@@ -15,10 +15,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import service.user.IdExistence;
 import service.user.ValidationInformation;
+import util.FileUpload;
 import util.JudgeIsOverdueUtil;
 import util.exception.DataBaseException;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import java.io.IOException;
 import java.text.ParseException;
 import java.util.List;
 
@@ -36,11 +39,12 @@ public class MusicInformationService {
     ValidationInformation validationInformation;
     @Resource(name = "IdExistence")
     IdExistence idExistence;
-
+    @Resource(name = "FileUpload")
+    FileUpload fileUpload;
     /**
      * 添加音乐
      */
-    public State addMusic(Music music) throws DataBaseException {
+    public State addMusic(Music music, HttpServletRequest request) throws DataBaseException, IOException {
         State state = new State();
         if (validationInformation.isName(music.getName())) {
             // 判断价格是否符合要求
@@ -69,6 +73,9 @@ public class MusicInformationService {
                                         return state;
                                     }
                                 }
+                                // 获取上传的文件路径
+                                music.setPath(fileUpload.music(request));
+                                music.setLyricPath(fileUpload.musicLyric(request));
                                 if (musicMapper.insertMusic(music) < 1) {
                                     // 如果失败是数据库错误
                                     logger.error(music + "添加音乐信息时，数据库出错");
@@ -145,7 +152,7 @@ public class MusicInformationService {
     /**
      * 修改音乐信息，ajax
      */
-    public State modifyMusic(Music music) throws DataBaseException {
+    public State modifyMusic(Music music, HttpServletRequest request) throws DataBaseException, IOException {
         State state = new State();
         if (validationInformation.isName(music.getName())) {
             // 判断价格是否符合要求
@@ -172,6 +179,9 @@ public class MusicInformationService {
                                     return state;
                                 }
                             }
+                            // 获取上传的文件路径
+                            music.setPath(fileUpload.music(request));
+                            music.setLyricPath(fileUpload.musicLyric(request));
                             if (musicMapper.updateMusic(music) < 1) {
                                 // 如果失败是数据库错误
                                 logger.error(music + "修改音乐信息，数据库出错");

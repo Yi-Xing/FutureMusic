@@ -70,42 +70,19 @@ window.onload = function () {
     }
     var httpurl = ""//请求路径
 
-    $("#button4").on("click", function () {
-        var registerUserName = $("#registerUserName").val();
-        $.ajax({
-            // contentType: "application/x-www-form-urlencoded",
-            type: "get",
-            url: "registerVerificationCode?mailbox=" + registerUserName,
-            // data:{"name":$("#input").val()},
-            dataType: "json",
-            success: function (data, status) {
-                alert(data.state);
-                alert(data.information);
-                if (data.state) {
-                    alert("我调用了");
-                }
-                alert("数据: \n" + data + "----" + status);
-                $("#wc").text(data);
-                document.getElementsByClassName('reg_hed_right')[0].children[1].innerHTML = data.information;
-            }
-        });
-    })
     // 用于发送验证码
     $("#button4").on("click", function () {
-        var registerUserName = $("#registerUserName").val();
+        var registerMail = $("#registerMail").val();
         $.ajax({
-            // contentType: "application/x-www-form-urlencoded",
             type: "get",
-            url: "registerVerificationCode?mailbox=" + registerUserName,
-            // data:{"name":$("#input").val()},
+            url: "registerVerificationCode?mailbox=" + registerMail,
             dataType: "json",
             success: function (data, status) {
                 alert(data.state);
-                alert(data.information);
+                alert(data.registerMail);
                 if (data.state) {
                     alert("我调用了");
                 }
-                alert("数据: \n" + data + "----" + status);
                 $("#wc").text(data);
                 document.getElementsByClassName('reg_hed_right')[0].children[1].innerHTML = data.information;
             }
@@ -114,16 +91,16 @@ window.onload = function () {
 
     // 用于注册账号
     $("#registerUser").on("click", function () {
-
+        alert(222);
         var registerUserName = $("#registerUserName").val();
         var registerMail = $("#registerMail").val();
         var registerPassword = $("#registerPassword").val();
         var registerPasswordAgain = $("#registerPasswordAgain").val();
         var verificationCode = $("#verificationCode").val();
-        s
-        var agreement = $("#agreement").val();
+        var agreement = $("#agreement").is(":checked");
+        alert(agreement);
         $.ajax({
-            contentType: "application/x-www-form-urlencoded",
+            contentType: "application/x-www-form-urlencoded;charset=UTF-8",
             type: "post",
             url: "register",
             data: {
@@ -142,7 +119,7 @@ window.onload = function () {
                     alert("我调用了");
                 }
                 $("#wc").text(data);
-                if (data.state == 1) {
+                if (data.state == 0) {
                     document.getElementsByClassName('reg_hed_right')[0].children[1].innerHTML = data.information;
                 }else{
                     alert("注册成功了");
