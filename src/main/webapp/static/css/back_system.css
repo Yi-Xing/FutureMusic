@@ -260,8 +260,36 @@
 .main_rh_main button{
     outline: none;
     border: none;
-    color:white;
+    /*color:white;*/
     font-size: 13px;
-    border-radius: 3px;
-    background: linear-gradient(to right,#BA55D3,rebeccapurple);
+    /*border-radius: 3px;*/
+    /*background: linear-gradient(to right,#BA55D3,rebeccapurple);*/
+    background: #BA55D3;
+    border:0.4px solid #000;
 }
+.modal_footer{
+    width:144px;
+    height: 40px;
+    margin-left:80px;
+}
+#myModal_1 input{
+    width: 100%;
+    height: 45px;
+    margin-top: 10px;
+    padding-left: 9px;
+}
+i{
+    cursor: pointer;
+}
+#myModal_2 .modal-footer button{
+    width: 75px;
+    height: 35px;
+    background: dodgerblue;
+    border: none;
+    outline: none;
+    float: left;
+    margin-left: 43px;
+    border-radius: 3px;
+}
+
+

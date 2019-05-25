@@ -16,20 +16,6 @@
     </style>
 </head>
 <body>
-<!--模态框-->
-<!--<div class="mol">-->
-<!--    <div class="pop">-->
-<!--    </div>-->
-<!--    <div class="pop_main">-->
-<!--       <div class="pop_main_header">-->
-<!--           <button type="button" class="close" data-dismiss="modal" aria-hidden="true">-->
-<!--               &times;-->
-<!--           </button>-->
-<!--       </div>-->
-<!--        <div class="pop_main_body"></div>-->
-<!--        <div class="pop_main_footer"></div>-->
-<!--    </div>-->
-<!--</div>-->
 <div class="total">
     <!--头部-->
     <div class="header">
@@ -110,42 +96,46 @@
             <div class="modal fade" id="myModal_1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel-1" aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
-                        <div class="modal-header" >
+                        <div class="modal-header" style="color:#BA55D3;display: flex" >
+                            <h4>修改信息</h4>
                             <p type="button" class="close" data-dismiss="modal" aria-hidden="true">
                                 &times;
                             </p>
-                            <h4>修改信息</h4>
                         </div>
-                        <div class="modal-body" style="width:80%;display: flex;flex-direction: column">
-                            <input type="text" placeholder="等级">
-                            <input type="text" placeholder="vip余天">
-                            <input type="text" placeholder="余额">
-                            <input type="text" placeholder="举报次数">
+                        <div class="modal-body" style="width:80%;display: flex;flex-direction: column;align-items: center">
+                            <form action="">
+                                <input type="text" placeholder="等级">
+                                <input type="text" placeholder="vip余天">
+                                <input type="text" placeholder="余额">
+                                <input type="text" placeholder="举报次数">
+                                <div class="modal_footer">
+                                    <input type="reset"  style="width:40%; height: 40px; background: #BA55D3;border:none;outline: none;box-shadow: none" name="button" id="button" value="reset" />
+                                    <input type="submit" style="width:40%; height: 40px; background: #BA55D3;border:none;outline: none;box-shadow: none"  data-dismiss="modal" value="commit" >
+                                </div>
+
+                            </form>
                         </div>
-                        <div class="modal-footer">
-                            <button type="button" >
-                                commit
-                            </button>
-                            <button type="button"  data-dismiss="modal">cancel
-                            </button>
-                        </div>
+
+
+
+
                     </div><!-- /.modal-content -->
                 </div><!-- /.modal -->
             </div>
                         <!-- 模态框（Modal_2） -->
             <div class="modal fade" id="myModal_2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel-2" aria-hidden="true">
                 <div class="modal-dialog">
-                    <div class="modal-content">
+                    <div class="modal-content" style="width:300px;margin-top:200px;">
                         <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
                                 &times;
                             </button>
                         </div>
-                        <div class="modal-body">
-
+                        <div class="modal-body" style="display: flex;flex-direction: column;align-items: center;">
+                            确定要删除吗？
                         </div>
                         <div class="modal-footer">
-                            <button type="button" >
+                            <button type="button"  data-dismiss="modal" >
                                 commit
                             </button>
                             <button type="button"  data-dismiss="modal">cancel
@@ -203,8 +193,15 @@
                                 查看
                             </button>
                         </td>
-                        <td><span class="replace glyphicon glyphicon-plus "></span>
-                        <span class="glyphicon glyphicon-trash delete"></span></td>
+                        <td>
+                            <i data-toggle="modal" data-target="#myModal_1" title="编辑">
+                                <span class="glyphicon glyphicon-edit"></span>
+                            </i>
+                            <i data-toggle="modal" data-target="#myModal_2" title="删除">
+                                <span class="glyphicon glyphicon-trash"></span>
+                            </i>
+
+                        </td>
                     </tr>
                     <tr>
                         <td>Bangalore</td>
@@ -231,13 +228,13 @@
                                 查看
                             </button>
                         </td>
-                        <td class="button_color">
-                             <button data-toggle="modal" data-target="#myModal_1">
-                                 <span class="glyphicon glyphicon-plus"></span>
-                            </button>
-                            <button data-toggle="modal" data-target="#myModal_2">
-                            <span class="glyphicon glyphicon-trash"></span>
-                            </button>
+                        <td>
+                            <i data-toggle="modal" data-target="#myModal_1" title="编辑">
+                                <span class="glyphicon glyphicon-edit"></span>
+                            </i>
+                            <i data-toggle="modal" data-target="#myModal_2" title="删除">
+                                <span class="glyphicon glyphicon-trash"></span>
+                            </i>
 
                         </td>
                     </tr>
@@ -277,8 +274,15 @@
                                 查看
                             </button>
                         </td>
-                        <td><span class="glyphicon glyphicon-plus replace"></span>
-                            <span class="glyphicon glyphicon-trash delete"></span></td>
+                        <td>
+                            <i data-toggle="modal" data-target="#myModal_1" title="编辑">
+                                <span class="glyphicon glyphicon-edit"></span>
+                            </i>
+                            <i data-toggle="modal" data-target="#myModal_2" title="删除">
+                                <span class="glyphicon glyphicon-trash"></span>
+                            </i>
+
+                        </td>
                     </tr>
                     <tr>
                         <td>Bangalore</td>
@@ -305,8 +309,15 @@
                                 查看
                             </button>
                         </td>
-                        <td><span class="glyphicon glyphicon-plus"></span>
-                            <span class="glyphicon glyphicon-trash"></span></td>
+                        <td>
+                            <i data-toggle="modal" data-target="#myModal_1" title="编辑">
+                                <span class="glyphicon glyphicon-edit"></span>
+                            </i>
+                            <i data-toggle="modal" data-target="#myModal_2" title="删除">
+                                <span class="glyphicon glyphicon-trash"></span>
+                            </i>
+
+                        </td>
                     </tr>
                     <tr>
                         <td>Bangalore</td>
@@ -333,8 +344,15 @@
                                 查看
                             </button>
                         </td>
-                        <td><span class="glyphicon glyphicon-plus"></span>
-                            <span class="glyphicon glyphicon-trash"></span></td>
+                        <td>
+                            <i data-toggle="modal" data-target="#myModal_1" title="编辑">
+                                <span class="glyphicon glyphicon-edit"></span>
+                            </i>
+                            <i data-toggle="modal" data-target="#myModal_2" title="删除">
+                                <span class="glyphicon glyphicon-trash"></span>
+                            </i>
+
+                        </td>
                     </tr>
                     <tr>
                         <td>
@@ -365,8 +383,15 @@
                                 查看
                             </button>
                         </td>
-                        <td><span class="glyphicon glyphicon-plus"></span>
-                            <span class="glyphicon glyphicon-trash"></span></td>
+                        <td>
+                            <i data-toggle="modal" data-target="#myModal_1" title="编辑">
+                                <span class="glyphicon glyphicon-edit"></span>
+                            </i>
+                            <i data-toggle="modal" data-target="#myModal_2" title="删除">
+                                <span class="glyphicon glyphicon-trash"></span>
+                            </i>
+
+                        </td>
                     </tr>
                     <tr>
                         <td>Bangalore</td>
@@ -393,8 +418,14 @@
                                 查看
                             </button>
                         </td>
-                        <td><span class="glyphicon glyphicon-plus"></span>
-                            <span class="glyphicon glyphicon-trash"></span></td>
+                        <td>
+                            <i data-toggle="modal" data-target="#myModal_1" title="编辑">
+                                <span class="glyphicon glyphicon-edit"></span>
+                            </i>
+                            <i data-toggle="modal" data-target="#myModal_2" title="删除">
+                                <span class="glyphicon glyphicon-trash"></span>
+                            </i>
+                        </td>
                     </tr>
                     <tr>
                         <td>Bangalore</td>
@@ -427,8 +458,15 @@
                         <td> <button data-toggle="modal" data-target="#myModal">
                             查看
                         </button></td>
-                        <td><span class="glyphicon glyphicon-plus"></span>
-                            <span class="glyphicon glyphicon-trash"></span></td>
+                        <td>
+                            <i data-toggle="modal" data-target="#myModal_1" title="编辑">
+                                <span class="glyphicon glyphicon-edit"></span>
+                            </i>
+                            <i data-toggle="modal" data-target="#myModal_2" title="删除">
+                                <span class="glyphicon glyphicon-trash"></span>
+                            </i>
+
+                        </td>
                     </tr>
                     <tr>
                         <td>Bangalore</td>
@@ -455,8 +493,15 @@
                                 查看
                             </button>
                         </td>
-                        <td><span class="glyphicon glyphicon-edit"></span>
-                            <span class="glyphicon glyphicon-trash"></span></td>
+                        <td>
+                            <i data-toggle="modal" data-target="#myModal_1" title="编辑">
+                                <span class="glyphicon glyphicon-edit"></span>
+                            </i>
+                            <i data-toggle="modal" data-target="#myModal_2" title="删除">
+                                <span class="glyphicon glyphicon-trash"></span>
+                            </i>
+
+                        </td>
                     </tr>
                     <tr>
                         <td>Bangalore</td>
@@ -483,8 +528,15 @@
                                 查看
                             </button>
                         </td>
-                        <td><span class="glyphicon glyphicon-edit"></span>
-                            <span class="glyphicon glyphicon-trash"></span></td>
+                        <td>
+                            <i data-toggle="modal" data-target="#myModal_1" title="编辑">
+                                <span class="glyphicon glyphicon-edit"></span>
+                            </i>
+                            <i data-toggle="modal" data-target="#myModal_2" title="删除">
+                                <span class="glyphicon glyphicon-trash"></span>
+                            </i>
+
+                        </td>
                     </tr>
                     </tbody>
                 </table>
