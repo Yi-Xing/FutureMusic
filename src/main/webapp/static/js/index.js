@@ -77,11 +77,11 @@ window.onload = function () {
             type: "get",
             url: "registerVerificationCode?mailbox=" + registerMail,
             dataType: "json",
-            success: function (data, status) {
-                alert(data.state);
-                alert(data.registerMail);
+            success: function (data) {
+                alert(data);
+                // alert(data.registerMail);
                 if (data.state) {
-                    alert("我调用了");
+                    // alert("我调用了");
                 }
                 $("#wc").text(data);
                 document.getElementsByClassName('reg_hed_right')[0].children[1].innerHTML = data.information;
@@ -91,14 +91,14 @@ window.onload = function () {
 
     // 用于注册账号
     $("#registerUser").on("click", function () {
-        alert(222);
+        // alert(222);
         var registerUserName = $("#registerUserName").val();
         var registerMail = $("#registerMail").val();
         var registerPassword = $("#registerPassword").val();
         var registerPasswordAgain = $("#registerPasswordAgain").val();
         var verificationCode = $("#verificationCode").val();
         var agreement = $("#agreement").is(":checked");
-        alert(agreement);
+        // alert(agreement);
         $.ajax({
             contentType: "application/x-www-form-urlencoded;charset=UTF-8",
             type: "post",
@@ -113,10 +113,10 @@ window.onload = function () {
             },
             dataType: "json",
             success: function (data, status) {
-                alert(data.state);
-                alert(data.information);
+                // alert(data.state);
+                // alert(data.information);
                 if (data.state) {
-                    alert("我调用了");
+                    // alert("我调用了");
                 }
                 $("#wc").text(data);
                 if (data.state == 0) {

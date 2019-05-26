@@ -95,4 +95,4 @@ var  page = {
         appendStr+="<li class='"+nextPageClass+"' page-data='"+pageCount+"' page-rel='lastpage'>尾页</li>";
        return appendStr;
     }
-}
+};
