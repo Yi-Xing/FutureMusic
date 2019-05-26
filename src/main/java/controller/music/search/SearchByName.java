@@ -31,13 +31,13 @@ public class SearchByName {
      */
     @RequestMapping(value = "/searchByKeyWord")
     @ResponseBody
-    public List<String> searchByKeyWord(@RequestParam(value = "keyWord")String keyWord){
+    public List<Music> searchByKeyWord(@RequestParam(value = "keyWord")String keyWord){
         List<Music> musicList = searchService.selectListMusicByName(keyWord);
-        List<String> names = new ArrayList<>();
-        for(Music music:musicList){
-            names.add(music.getName());
-        }
-        return names;
+//        List<String> names = new ArrayList<>();
+//        for(Music music:musicList){
+//            names.add(music.getName());
+//        }
+        return musicList;
     }
     /**
      * 根据名字模糊搜索歌曲

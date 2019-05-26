@@ -89,6 +89,40 @@ window.onload = function () {
         });
     });
 
+    //搜索框提示
+    // $("#search").keyup(function () {
+    //     var searchVal = this.value;
+    //     var search_tips = $('.search_tips')[0];
+    //     console.log(search_tips);
+    //     var tips_head = "<li><a href='javascript:;'>";
+    //     var tips_last = "</a></li>";
+    //     var tips = "";
+    //     console.log(searchVal);
+    //     $.ajax({
+    //         contentType: "application/x-www-form-urlencoded;charset=UTF-8",
+    //         type: "post",
+    //         url: "searchByKeyWord",
+    //         data: {keyWord:searchVal},
+    //         dataType: "json",
+    //         success: function (data, status) {
+    //             if (searchVal === '')
+    //                 search_tips.innerHTML = '';
+    //             else {
+    //                 // alert(JSON.stringify(data));
+    //                 for(var i=0;i<data.length;i++){
+    //                     var musicName = data[i].name;
+    //                     // alert(musicName);
+    //                     tips = tips + tips_head + musicName + tips_last;
+    //                     // alert(tips);
+    //                 }
+    //
+    //                 search_tips.innerHTML = tips;
+    //             }
+    //
+    //         }
+    //     })
+    // })
+
     // 用于注册账号
     $("#registerUser").on("click", function () {
         // alert(222);
@@ -112,7 +146,7 @@ window.onload = function () {
                 "agreement": agreement
             },
             dataType: "json",
-            success: function (data,status) {
+            success: function (data, status) {
                 // alert(data.state);
                 // alert(data.information);
                 if (data.state) {
@@ -121,30 +155,40 @@ window.onload = function () {
                 $("#wc").text(data);
                 if (data.state == 0) {
                     document.getElementsByClassName('reg_hed_right')[0].children[1].innerHTML = data.information;
-                }else{
+                } else {
                     alert("注册成功了");
                 }
             }
         });
     });
 
-    //搜索框提示
     $("#search").keyup(function () {
         var searchVal = this.value;
-        console.log(searchVal);
+        // console.log(searchVal);
+        var search_tips = $(".search_tips")[0];
+        var tips_head = "<li><a href='javascript:;'>";
+        var tips_foot = "</a></li>";
+        var tips = '';
         $.ajax({
+            type: 'post',
             contentType: "application/x-www-form-urlencoded;charset=UTF-8",
-            type: "post",
-            url: "searchByKeyWord",
-            data: {pn:1, keyWord:searchVal},
-            dataType: "json",
-            success: function (data, status) {
-                alert(data);
-                alert(status);
-                // alert(data.information);
-                alert(page.getList());
+            url: 'searchByKeyWord',
+            data: {
+                keyWord: searchVal
+            },
+            success: function (data) {
+                if (searchVal === '')
+                    search_tips.innerHTML = '';
+                else {
+                    for (var i = 0; i < data.length; i++) {
+                        var musicName = data[i].name;
+                        tips = tips + tips_head + musicName + tips_foot;
+                    }
+                    search_tips.innerHTML = tips;
 
+                }
             }
         })
+
     })
-};
+}
