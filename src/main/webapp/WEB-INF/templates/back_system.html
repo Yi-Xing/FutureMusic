@@ -125,8 +125,8 @@
                                 <p>举报<input type="text" placeholder="举报次数">次
                                 </p>
                                 <div class="modal_footer">
-                                    <input type="reset"  style="width:40%; height: 40px; background: #BA55D3;border:none;outline: none;box-shadow: none" name="button" id="button" value="reset" />
-                                    <input type="submit" style="width:40%; height: 40px; background: #BA55D3;border:none;outline: none;box-shadow: none"  data-dismiss="modal" value="commit" >
+                                    <input type="reset"  style="width:40%; height: 40px; background: #BA55D3;border:none;outline: none;box-shadow: none" name="button" id="button" value="reset"/>
+                                    <input type="submit" style="width:40%; height: 40px; background: #BA55D3;border:none;outline: none;box-shadow: none"  data-dismiss="modal" value="commit"/>
                                 </div>
 
                             </form>
@@ -160,7 +160,33 @@
                     </div><!-- /.modal-content -->
                 </div><!-- /.modal -->
             </div>
-<!--            -->
+<!--            重置成功 modal——3-->
+            <div class="modal fade" id="myModal_3" tabindex="-1" role="dialog" aria-labelledby="myModalLabel_3" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                                &times;
+                            </button>
+                            <h4 class="modal-title" id="myModalLabel_3">
+
+                            </h4>
+                        </div>
+                        <div class="modal-body">
+
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button"  data-dismiss="modal">关闭
+                            </button>
+                            <button type="button" >
+                                commit
+                            </button>
+                        </div>
+                    </div><!-- /.modal-content -->
+                </div><!-- /.modal -->
+            </div>
+
+            <!--            -->
             <div class="main_rh_main" >
                 <table class="" style="overflow-x: auto;width:1540px;">
 <!--                    content table table-hover-->
@@ -258,7 +284,7 @@
                         <td> <div class="hid_show"  title="鼠标悬停"  onmouseover="overShow(this,event)" onmouseout="outHide()">
                             1234567891011121314151617181910
                         </div>
-                            <div id="showDiv"></div></td>
+<!--                            <div id="showDiv"></div></td>-->
                         <td><div class="hid_show"  onmouseover="overShow(this,event)" onmouseout="outHide()">
                             1234567891011121314151617181910
                         </div></td>
@@ -327,7 +353,7 @@
                         </td>
                         <td>
                             <i data-toggle="modal" data-target="#myModal_1" title="编辑">
-                                <span class="glyphicon glyphicon-edit"></span>
+                                <span class="glyphicon glyphicon-edit" ></span>
                             </i>
                             <i data-toggle="modal" data-target="#myModal_2" title="删除">
                                 <span class="glyphicon glyphicon-trash"></span>
@@ -371,12 +397,8 @@
                         </td>
                     </tr>
                     <tr>
-                        <td>
-                            <button data-toggle="modal" data-target=".mol">
-                                查看
-                            </button>
-                        </td>
-                        <td>560001</td>
+                        <td></td>
+                        <td></td>
                         <td>Tanmay</td>
                         <td>Bangalore</td>
                         <td>560001</td>
