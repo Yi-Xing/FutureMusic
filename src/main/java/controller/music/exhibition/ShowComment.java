@@ -1,14 +1,11 @@
 package controller.music.exhibition;
 
 import entity.*;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import service.music.ShowCommentService;
-import service.music.SearchService;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -23,48 +20,83 @@ import java.util.Map;
 
 @Controller
 public class ShowComment {
-    private static final Logger logger = LoggerFactory.getLogger(ShowComment.class);
-    @Resource(name = "SearchService")
-    private SearchService searchService;
     @Resource(name = "ShowCommentService")
-    private ShowCommentService informationService;
-    public static State state;
+    private ShowCommentService showCommentService;
 
     /**
-     * @param musicId 根据id查询详细信息
-     * @return Music 返回所有信息
-     * */
-    @RequestMapping(value = "/musicInformation")
+     * 音乐的评论
+     * @param musicId 音乐的id
+     * @return Map<Comment,Comment> 返回评论以及对应的回复
+     */
+    @RequestMapping(value = "/showMusicComment")
     @ResponseBody
-    public Music musicInformation(@RequestParam(value = "musicId",defaultValue = "-1")String musicId){
-       return searchService.selectMusicById(musicId);
+    public Map<Comment,Comment> showMusicComment(@RequestParam(value = "musicId",defaultValue = "1")int musicId){
+        return  showCommentService.commentByMusicId(musicId);
     }
+
     /**
-     * @param songListId 根据id查询详细信息专辑或歌单
-     * @return SongList 返回所有信息
-     * */
-    @RequestMapping(value = "/songListInformation")
+     * MV的评论
+     * @param musicVideoId MV的id
+     * @return Map<Comment,Comment> 返回评论以及对应的回复
+     */
+    @RequestMapping(value = "/showMusicVideoComment")
     @ResponseBody
-    public SongList songListInformation(@RequestParam(value = "songListId",defaultValue = "-1")String songListId){
-        return searchService.selectSongListById(songListId);
+    public Map<Comment,Comment> showMusicVideoComment(@RequestParam(value = "musicVideoId",defaultValue = "1")int musicVideoId){
+        return showCommentService.commentByMusicVideoId(musicVideoId);
     }
+
     /**
-     * @param musicVideoId 根据id查询详细信息专辑或歌单
-     * @return MusicVideo 返回所有信息
-     * */
-    @RequestMapping(value = "/musicVideoInformation")
+     * 歌单或专辑的评论
+     * @param songListId 歌单的id
+     * @return Map<Comment,Comment> 返回评论以及对应的回复
+     */
+    @RequestMapping(value = "/showSongListComment")
     @ResponseBody
-    public MusicVideo musicVideoInformation(@RequestParam(value = "musicVideoId",defaultValue = "-1")String musicVideoId){
-        return searchService.selectMusicVideoById(musicVideoId);
+    public Map<Comment,Comment> showSongListComment(@RequestParam(value = "songListId",defaultValue = "1")int songListId){
+        return showCommentService.commentByListSongId(songListId);
     }
+
     /**
-     * @param musicId 根据id查询详细信息专辑或歌单
-     * @return List<Comment> 返回所有信息
-     * */
-    @RequestMapping(value = "/musicCommentInformation")
+     * 音乐的最新评论
+     * @param musicId 音乐的id
+     * @return Map<Comment,Comment> 返回评论以及对应的回复
+     */
+    @RequestMapping(value = "/showMusicLastComment")
     @ResponseBody
-    public List<Map<Comment,Comment>> musicCommentInformation(@RequestParam(value = "musicId",defaultValue = "-1")String musicId){
-//        informationService.commentByMusicId(musicId);
-        return null;
+    public Map<Comment,Comment> showMusicLastComment(@RequestParam(value = "musicId",defaultValue = "1")int musicId){
+        return  showCommentService.commentLastByMusicId(musicId);
+    }
+
+    /**
+     * MV的评论
+     * @param musicVideoId MV的评论
+     * @return Map<Comment,Comment> 返回评论以及对应的回复
+     */
+    @RequestMapping(value = "/showMusicVideoLastComment")
+    @ResponseBody
+    public Map<Comment,Comment> showMusicVideoLastComment(@RequestParam(value = "musicVideoId",defaultValue = "1")int musicVideoId){
+        return showCommentService.commentLastByMusicVideoId(musicVideoId);
+    }
+
+    /**
+     * 歌单对应的全部评论
+     * @param songListId 歌单的id
+     * @return Map<Comment,Comment> 返回评论以及对应的回复
+     */
+    @RequestMapping(value = "/showSongListLastComment")
+    @ResponseBody
+    public Map<Comment,Comment> showSongListLastComment(@RequestParam(value = "songListId",defaultValue = "1")int songListId){
+        return showCommentService.commentLastByListSongId(songListId);
+    }
+
+    /**
+     * 主评论下对应的全部id
+     * @param reply 主评论的id
+     * @return 全部的回复，没有排序
+     */
+    @RequestMapping(value = "/showAllReply")
+    @ResponseBody
+    public List<Comment> showAllReply(@RequestParam(value = "replyId",defaultValue = "1")int reply){
+        return showCommentService.allReply(reply);
     }
 }

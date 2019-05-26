@@ -2,8 +2,6 @@ package service.music;
 
 import entity.Comment;
 import mapper.*;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -11,10 +9,10 @@ import java.util.*;
 
 /**
  * @author 蒋靓峣 5.23创建
+ * 显示歌曲、歌单/专辑、MV的评论
  */
 @Service(value = "ShowCommentService")
 public class ShowCommentService {
-    private static final Logger logger = LoggerFactory.getLogger(SearchService.class);
     @Resource(name = "CommentMapper")
     CommentMapper  commentMapper;
 
@@ -75,9 +73,9 @@ public class ShowCommentService {
      * @param listSongId
      * @return
      */
-    public Map<Comment,Comment> commentByListSongId(String listSongId){
+    public Map<Comment,Comment> commentByListSongId(int listSongId){
         Comment comment =new Comment();
-        comment.setMusicId(Integer.parseInt(listSongId));
+        comment.setMusicId(listSongId);
         comment.setType(3);
         comment.setFabulous(1);
         return selectComment(comment);
@@ -88,9 +86,9 @@ public class ShowCommentService {
      * @param listSongId
      * @return  Map<Comment,Comment> 返回评论和回复的对应
      */
-    public Map<Comment,Comment> commentLastByListSongId(String listSongId){
+    public Map<Comment,Comment> commentLastByListSongId(int listSongId){
         Comment comment =new Comment();
-        comment.setMusicId(Integer.parseInt(listSongId));
+        comment.setMusicId(listSongId);
         comment.setType(3);
         comment.setDate((new Date()));
         return selectComment(comment);

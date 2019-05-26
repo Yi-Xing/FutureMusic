@@ -60,13 +60,13 @@
 
 
                                         <div class="registered">
-                                            <form ><!--th:action="@{/register}" -->
+                                            <form action="">
                                                 <div class="reg_header">
                                                     <div class="reg_hed_left">
-                                                        <input id="registerUserName"  type="text" placeholder="用户名">
-                                                        <input id="registerMail"  type="text" placeholder="请输入邮箱">
-                                                        <input id="registerPassword" type="password"  placeholder="请输入密码">
-                                                        <input id="registerPasswordAgain"  type="password"  placeholder="请再次输入密码">
+                                                        <input type="text" placeholder="用户名">
+                                                        <input type="text" placeholder="请输入邮箱">
+                                                        <input type="password" name="pw" placeholder="请输入密码">
+                                                        <input type="password" name="pw1" placeholder="请再次输入密码">
                                                     </div>
                                                     <div class="reg_hed_right">
                                                         <p></p>
@@ -77,17 +77,17 @@
                                                 </div>
                                                 <div class="reg_main">
                                                     <div class="reg_main_left">
-                                                        <input  id="verificationCode"  type="text" placeholder="请输入验证码">
+                                                        <input type="text" placeholder="请输入验证码">
                                                     </div>
                                                     <div class="reg_main_right">
-                                                        <a  id="button4">点击发送</a>
+                                                        <button id="button4">点击发送</button>
                                                     </div>
                                                 </div>
                                                 <div class="reg_checkbox">
-                                                    <input id="agreement" type="checkbox" style="width:13px;height:13px;margin: 5px 5px;">同意 <a href="#">《用户协议》</a>
+                                                    <input type="checkbox" style="width:13px;height:13px;margin: 5px 5px;">同意 <a href="#">《用户协议》</a>
                                                 </div>
                                                 <div>
-                                                    <input  id="registerUser" class="reg_bom" type="button" value="注册" > <!--type="submit"-->
+                                                    <input  class="reg_bom" type="submit" value="注册" >
                                                 </div>
                                             </form>
                                         </div>

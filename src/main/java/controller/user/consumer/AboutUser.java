@@ -13,7 +13,7 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 
 /**
- * 开关个人空间，关注用户，访问其他用户，用户之间发邮件，给客服发邮件（申请音乐人等），举报用户
+ * 关注用户，访问其他用户，用户之间发邮件，给客服发邮件（申请音乐人等），举报用户
  *
  * @author 5月14日 张易兴创建
  */

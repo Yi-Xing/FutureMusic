@@ -1,8 +1,6 @@
 package controller.music.exhibition;
 
 import entity.*;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -21,7 +19,6 @@ import java.util.Map;
  * */
 @Controller
 public class Exhibition {
-    private static final Logger logger = LoggerFactory.getLogger(Exhibition.class);
     @Resource(name = "ExhibitionService")
     private ExhibitionService exhibitionService;
 

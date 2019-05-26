@@ -6,6 +6,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.Objects;
 
 /**
  * 音乐表用于存储音乐的信息
@@ -17,6 +18,33 @@ public class Music implements Serializable {
      * 主键
      */
     private int id=0;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o){ return true;}
+        if (o == null || getClass() != o.getClass()) {return false;}
+        Music music = (Music) o;
+        return id == music.id &&
+                level == music.level &&
+                singerId == music.singerId &&
+                albumId == music.albumId &&
+                classificationId == music.classificationId &&
+                musicVideoId == music.musicVideoId &&
+                activity == music.activity &&
+                available == music.available &&
+                playCount == music.playCount &&
+                Objects.equals(name, music.name) &&
+                Objects.equals(price, music.price) &&
+                Objects.equals(date, music.date) &&
+                Objects.equals(path, music.path) &&
+                Objects.equals(lyricPath, music.lyricPath);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, level, price, singerId, albumId, classificationId, date, path, lyricPath, musicVideoId, activity, available, playCount);
+    }
+
     /**
      * 音乐的名字
      */

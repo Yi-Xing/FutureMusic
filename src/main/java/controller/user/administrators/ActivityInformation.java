@@ -47,8 +47,6 @@ public class ActivityInformation {
         return activityInformationService.addActivity(activity,request);
     }
 
-
-
     /**
      * 显示活动信息
      * @param condition 条件可以有多个

@@ -41,10 +41,10 @@ public class ActivityInformationService {
     /**
      * 添加活动信息，ajax
      */
-    public State addActivity(Activity activity,HttpServletRequest request) throws DataBaseException, IOException {
+    public State addActivity(Activity activity, HttpServletRequest request) throws DataBaseException, IOException {
         State state = new State();
         if (validationInformation.isName(activity.getName())) {
-            if (activity.getContent().length() <= 300) {
+            if (0 < activity.getContent().length() && activity.getContent().length() <= 300) {
                 // 判断活动的折扣是否符合要求
                 if (validationInformation.isPrice(String.valueOf(activity.getDiscount()))) {
                     if (activityMapper.insertActivity(activity) < 1) {
