@@ -99,4 +99,11 @@ public class ShowComment {
     public List<Comment> showAllReply(@RequestParam(value = "replyId",defaultValue = "1")int reply){
         return showCommentService.allReply(reply);
     }
+    /**
+     * 根据评论的id获取回复者和被回复者的信息
+     *
+     */
+    public User getReplierAndCommentator(int commentId){
+        return null;
+    }
 }

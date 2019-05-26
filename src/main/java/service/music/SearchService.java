@@ -28,6 +28,13 @@ public class SearchService {
         @Resource(name = "SongListMapper")
         SongListMapper songListMapper;
 
+    /**
+     *获取搜索记录
+     * @param keyWord 关键字
+     * @param cookies  Cookie数组
+     * @param response 响应
+     * @return String 返回获得的搜索记录
+     */
     public String addSearchRecord(String keyWord, Cookie[] cookies, HttpServletResponse response){
         String searchRecord = keyWord;
         String cookieName = "searchRecordCookie";
@@ -96,7 +103,6 @@ public class SearchService {
     }
 
     /**
-     *
      * @param singerName 按照指定规则查找指定歌曲
      *                封装信息：歌手名字
      * @return List<Music>  返回查找到的歌曲
@@ -111,52 +117,4 @@ public class SearchService {
         }
         return userList;
     }
-//    /**
-//     * @param musicId 查看歌曲详细信息
-//     *                封装信息：音乐d
-//     * @return Music  返回查找到的歌曲
-//     */
-//    public Music selectMusicById(String musicId){
-//        Integer id = Integer.parseInt(musicId);
-//        Music music = new Music();
-//        music.setId(id);
-//        List<Music> musicList = musicMapper.selectListMusic(music);
-//        if (musicList.size()==0){
-//            return null;
-//        }
-//        return musicList.get(0);
-//    }
-//    /**
-//     * 根据专辑id显示专辑的详细信息
-//     * @param songListId
-//     * @return
-//     */
-//    public SongList selectSongListById(String songListId){
-//        SongList songList = new SongList();
-//        int id = Integer.parseInt(songListId);
-//        songList.setId(id);
-//        List<SongList> songListList = songListMapper.selectListSongList(songList);
-//        if(songListList.size()==0){
-//            return null;
-//        }
-//        return songListList.get(0);
-//    }
-//
-//    /**
-//     * 查找MV的详细信息
-//     *
-//     * 出错，可能是因为数据库里没有数据吗
-//     * @param musicVideoId
-//     * @return MusicVideo
-//     */
-//    public MusicVideo selectMusicVideoById(String musicVideoId){
-//        MusicVideo musicVideo = new MusicVideo();
-//        int id = Integer.parseInt(musicVideoId);
-//        musicVideo.setId(id);
-//        List<MusicVideo> musicVideoList = musicVideoMapper.selectListMusicVideo(musicVideo);
-//        if(musicVideoList.size()==0) {
-//            return null;
-//        }
-//        return musicVideoList.get(0);
-//    }
 }
