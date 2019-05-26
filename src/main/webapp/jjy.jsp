@@ -66,14 +66,14 @@
                 dataType:'json',
                 success:function(data){
                     alert(data);
-                /*    var size=data.length;
+                    var size=data.length;
                     if(size>3)
                         size=3;
                     for(var i=0;i<size;i++){
                         var content = data[i];
                         var id="th"+i;
                         document.getElementById(id).innerHTML=content;
-                    }*/
+                    }
                 }
             })
         })

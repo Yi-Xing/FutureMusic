@@ -86,7 +86,6 @@ public class SearchBefore {
     @RequestMapping(value = "/testCookie")
     @ResponseBody
     public String[] testCookie(HttpServletRequest request) {
-        String keyWord = request.getParameter("keyWord");
         Cookie[] cookies = request.getCookies();
         String[] str = new String[cookies.length*2];
         int i=0;

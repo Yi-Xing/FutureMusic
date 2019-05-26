@@ -91,19 +91,12 @@ public class ShowComment {
 
     /**
      * 主评论下对应的全部id
-     * @param reply 主评论的id
+     * @param replyId 主评论的id
      * @return 全部的回复，没有排序
      */
     @RequestMapping(value = "/showAllReply")
     @ResponseBody
-    public List<Comment> showAllReply(@RequestParam(value = "replyId",defaultValue = "1")int reply){
-        return showCommentService.allReply(reply);
-    }
-    /**
-     * 根据评论的id获取回复者和被回复者的信息
-     *
-     */
-    public User getReplierAndCommentator(int commentId){
-        return null;
+    public List<Comment> showAllReply(@RequestParam(value = "replyId")int replyId){
+        return showCommentService.allReply(replyId);
     }
 }
