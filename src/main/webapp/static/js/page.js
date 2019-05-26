@@ -95,4 +95,4 @@ var  page = {
        return appendStr;
 
     }
-}
+};
