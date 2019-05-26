@@ -112,7 +112,7 @@ window.onload = function () {
                 "agreement": agreement
             },
             dataType: "json",
-            success: function (data, status) {
+            success: function (data,status) {
                 // alert(data.state);
                 // alert(data.information);
                 if (data.state) {
@@ -127,4 +127,24 @@ window.onload = function () {
             }
         });
     });
+
+    //搜索框提示
+    $("#search").keyup(function () {
+        var searchVal = this.value;
+        console.log(searchVal);
+        $.ajax({
+            contentType: "application/x-www-form-urlencoded;charset=UTF-8",
+            type: "post",
+            url: "searchByKeyWord",
+            data: {pn:1, keyWord:searchVal},
+            dataType: "json",
+            success: function (data, status) {
+                alert(data);
+                alert(status);
+                // alert(data.information);
+                alert(page.getList());
+
+            }
+        })
+    })
 };
