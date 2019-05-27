@@ -26,19 +26,7 @@
     <!--开启ioc注解-->
     <context:annotation-config/>
 
-        <!--配置平台事务管理器-->
-        <bean id="dataSourceTransactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
-            <property name="dataSource" ref="source"/>
-        </bean>
-    <tx:annotation-driven transaction-manager="dataSourceTransactionManager"/>
-    <!--配置事务-->
-    <tx:advice  transaction-manager="dataSourceTransactionManager" id="transactionInterceptor"/>
 
-    <!--配置事务的切面-->
-    <aop:config>
-        <aop:pointcut id="pointcut" expression="execution(* test.zyx.demo.aaaazyx(..))"/>
-        <aop:advisor advice-ref="transactionInterceptor" pointcut-ref="pointcut"/>
-    </aop:config>
 
     <!-- 定义文件上传解析器 -->
     <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">

@@ -77,7 +77,8 @@ public class ExhibitionService {
      * 地区榜
      *
      * @param region 根据音乐的分类的地区查找信息
-     * @return Map<Music, User> 音乐和对应的歌手集合
+     * @return Map<Music, User> 音乐和对应的
+     * 歌手集合
      */
     public Map<Music, User> selectListMusicByRegion(String region) {
         Classification classification = new Classification();
@@ -190,24 +191,24 @@ public class ExhibitionService {
 
     /**
      * 查找播放记录最多的音乐或MV
-     * @param id
+     * 1表示是音乐的播放历史  2表示是MV的播放历史
      * @param type
-     * @return List<Music>
+     * @return List<Play>
      */
-    private List<Play> getPlayMusic(int id,int type){
+    private List<Play> getPlayMusic(int type){
         Play play = new Play();
-        play.setMusicId(id);
+        play.setType(type);
         List<Play> playList = playMapper.selectListPlay(play);
         return playList;
     }
 
     /**
      * 统计一个集合中音乐id出现的次数,按照大小排序
-     * @param playList
-     * @return
+     * @param playList 传入所有的播放历史
+     * @return 返回id和对应的播放次数、无序
      */
-    private Map<Integer,Integer> getMostPlay(List<Play> playList){
-        Map<Integer,Integer> musicCountMap = new HashMap<>(16);
+    public Map<Integer,Integer> getMostPlayMusic(List<Play> playList){
+        Map<Integer,Integer> musicCountMap = new LinkedHashMap<>(16);
         for(Play play:playList){
             int musicId = play.getMusicId();
             if(musicCountMap.containsKey(musicId)){
@@ -221,12 +222,51 @@ public class ExhibitionService {
     }
 
     /**
-     * 将map按照value的值降序排列
-     * @param map
-     * @return
+     * 统计一个集合中专辑出现的次数,按照大小排序
+     * @param playList 传入所有的播放历史
+     * @return 返回id和对应的播放次数、无序
+     */
+    private Map<Integer,Integer> getMostPlayAlbumm(List<Play> playList){
+        Map<Integer,Integer> musicCountMap = new LinkedHashMap<>(16);
+        for(Play play:playList){
+            int albumId = play.getAlbumId();
+            if(musicCountMap.containsKey(albumId)){
+                musicCountMap.put(albumId,musicCountMap.get(albumId)+1);
+            }else{
+                musicCountMap.put(albumId,1);
+            }
+        }
+        musicCountMap = sortByValueDescending(musicCountMap);
+        return musicCountMap;
+    }
+
+    /**
+     * 将map按照value的值降序排列 仅用于Map<Integer,Integer>
+     * @param map 要排序的map
+     * @return 排好序的map
      */
     public Map<Integer,Integer> sortByValueDescending(Map<Integer,Integer> map){
-        
-        return null;
+        Map<Integer,Integer> integerIntegerMap = new LinkedHashMap<>();
+        int size = map.size();
+        int[] ints = new int[size];
+        int i = 0;
+        //将map中得键存到一个数组里，然后将数组排序
+        for (int key : map.keySet()) {
+            ints[i] = map.get(key);
+            i++;
+        }
+        Arrays.sort(ints);
+        //从value中找对应的key，存到将要返回的Map中，LinkedHashMap有序
+        for (int j = ints.length ;j>0;j--){
+            for(Integer key:map.keySet()){
+                if(map.get(key).equals(ints[j-1])){
+                    integerIntegerMap.put(key,map.get(key));
+                    map.put(key,-1);
+                    System.out.println(integerIntegerMap.get(key));
+                    break;
+                }
+            }
+        }
+        return integerIntegerMap;
     }
 }

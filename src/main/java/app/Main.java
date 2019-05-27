@@ -72,7 +72,6 @@ public class Main {
     public String personal() {
         return "personal";
     }
-
 }
 
 

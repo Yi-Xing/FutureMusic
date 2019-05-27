@@ -16,7 +16,7 @@ public class Test {
         integerIntegerMap.put(5,6);
         integerIntegerMap.put(6,7);
         ExhibitionService exhibitionService = new ExhibitionService();
-        exhibitionService.sortByValueDescending(integerIntegerMap);
-        System.out.println(integerIntegerMap);
+        Map<Integer,Integer> integerIntegerMap1 = exhibitionService.sortByValueDescending(integerIntegerMap);
+        System.out.println(integerIntegerMap1);
     }
 }

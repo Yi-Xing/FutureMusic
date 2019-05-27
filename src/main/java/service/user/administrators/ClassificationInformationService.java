@@ -77,7 +77,7 @@ public class ClassificationInformationService {
      *
      * @param id 分类的id
      */
-    public String selectClassification(Integer id, Model model) {
+    public String showSelectClassification(Integer id, Model model) {
         Classification classification=idExistence.isClassificationId(id);
         if (classification != null) {
             model.addAttribute("classification", classification);

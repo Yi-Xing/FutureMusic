@@ -25,9 +25,12 @@ import javax.annotation.Resource;
  *            4、用户的id
  *  修改：专辑用于修改活动
  *  删除：id
+ *       * 查找指定专辑或歌单中的所有音乐
+ *  查询：指定专辑或歌单被收藏的次数
  * @author 5月22日 张易兴创建
  */
 @Controller
+@RequestMapping(value = "/administrators")
 public class SongListInformation {
     private static final Logger logger = LoggerFactory.getLogger(ActivityInformationService.class);
     @Resource(name = "SongListInformationService")
@@ -58,5 +61,24 @@ public class SongListInformation {
     @RequestMapping(value = "/deleteSongList")
     public String deleteSongList(Integer id) throws DataBaseException {
         return songListInformationService.deleteSongList(id);
+    }
+
+    /**
+     * 指定歌单或专辑被收藏的次数
+     * @param id 歌单或专辑的id
+     * @param type 1表示是歌单 2表示是专辑
+     */
+    @RequestMapping(value = "/showSongListCollect")
+    public String showSongListCollect(Integer id,Integer type, Model model)  {
+        return songListInformationService.showSongListCollect(id,type,model);
+    }
+    /**
+     * 查找指定专辑或歌单中的所有音乐
+     * @param id 专辑或歌单的id
+     * @param type 1是歌单2是专辑
+     */
+    @RequestMapping(value = "/showMusicSongList")
+    public String showMusicSongList(Integer id,Integer type,Model model) {
+        return songListInformationService.showMusicSongList(id,type,model);
     }
 }

@@ -2,9 +2,13 @@ package service.user.administrators;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import entity.MusicCollect;
 import entity.MusicVideo;
+import entity.Play;
 import entity.State;
+import mapper.MusicCollectMapper;
 import mapper.MusicVideoMapper;
+import mapper.PlayMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -37,6 +41,10 @@ public class MusicVideoInformationService {
     IdExistence idExistence;
     @Resource(name = "FileUpload")
     FileUpload fileUpload;
+    @Resource(name = "MusicCollectMapper")
+    MusicCollectMapper musicCollectMapper;
+    @Resource(name ="PlayMapper")
+    PlayMapper playMapper;
     /**
      * 添加MV
      */
@@ -188,5 +196,40 @@ public class MusicVideoInformationService {
             state.setInformation("MV的名字不符合要求");
         }
         return state;
+    }
+
+    /**
+     * 返回指定音乐或MV被收藏的次数
+     *
+     * @param id   音乐或MV的id
+     * @param type 1表示是音乐收藏  2表示是MV的收藏
+     */
+    public String showMusicCollect(Integer id, Integer type, Model model) throws ParseException {
+        MusicCollect musicCollect = new MusicCollect();
+        musicCollect.setMusicId(id);
+        musicCollect.setType(type);
+        int musicCollectCount = musicCollectMapper.selectUserMusicCollectCount(musicCollect);
+        model.addAttribute("musicCollectCount", musicCollectCount);
+        System.out.println(musicCollectCount);
+        return null;
+    }
+    /**
+     * 指定歌手的所有音乐被播放的次数
+     * 指定专辑中的所有音乐被播放的次数
+     * @param id 音乐或MV或专辑的id
+     * @param type 1、音乐  2、MV  3、专辑
+     */
+    public String showPlay(Integer id,Integer type, Model model)  {
+        Play play=new Play();
+        if(type<3){
+            play.setMusicId(id);
+            play.setType(type);
+        }else if(type ==3){
+            play.setAlbumId(id);
+        }
+        List<Play> list= playMapper.selectListPlay(play);
+        System.out.println(list);
+        model.addAttribute("PlayCount",list.size());
+        return null;
     }
 }

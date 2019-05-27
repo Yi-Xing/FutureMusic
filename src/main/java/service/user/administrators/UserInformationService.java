@@ -2,13 +2,16 @@ package service.user.administrators;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import entity.Focus;
 import entity.State;
 import entity.User;
+import mapper.FocusMapper;
 import mapper.UserMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
+import service.user.IdExistence;
 import service.user.ValidationInformation;
 import util.exception.DataBaseException;
 
@@ -28,7 +31,10 @@ public class UserInformationService {
     UserMapper userMapper;
     @Resource(name = "ValidationInformation")
     ValidationInformation validationInformation;
-
+    @Resource(name = "FocusMapper")
+    FocusMapper focusMapper;
+    @Resource(name = "IdExistence")
+    IdExistence idExistence;
     /**
      * 显示和按条件查询用户信息
      *
@@ -82,4 +88,24 @@ public class UserInformationService {
         return state;
     }
 
+
+    /**
+     * 返回指定用户的粉丝量
+     *
+     * @param id 条件可以有多个
+     */
+    public String showFocus(Integer id, Model model) {
+        Focus focus = new Focus();
+        if (idExistence.isUserId(id) != null) {
+            focus.setUserFocusId(id);
+            // 1表示关注
+            focus.setUserType(1);
+            int focusCount = focusMapper.selectUserFocusCount(focus);
+            // 该用户的粉丝量
+            model.addAttribute("focusCount", focusCount);
+        } else {
+            model.addAttribute("state", "id：" + id + "的用户不存在");
+        }
+        return null;
+    }
 }

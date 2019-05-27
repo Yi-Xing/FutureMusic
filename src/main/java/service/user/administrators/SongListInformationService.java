@@ -2,8 +2,13 @@ package service.user.administrators;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import entity.MusicSongList;
 import entity.SongList;
+import entity.SongListCollect;
 import entity.State;
+import mapper.MusicCollectMapper;
+import mapper.MusicSongListMapper;
+import mapper.SongListCollectMapper;
 import mapper.SongListMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -28,6 +33,10 @@ public class SongListInformationService {
     SongListMapper songListMapper;
     @Resource(name = "IdExistence")
     IdExistence idExistence;
+    @Resource(name = "SongListCollectMapper")
+    SongListCollectMapper songListCollectMapper;
+    @Resource(name = "MusicSongListMapper")
+    MusicSongListMapper musicSongListMapper;
     /**
      * 指定歌手的所有音乐被播放的次数
      * 指定专辑中的所有音乐被播放的次数
@@ -87,5 +96,33 @@ public class SongListInformationService {
         }
         return null;
     }
+    /**
+     * 指定歌单或专辑被收藏的次数
+     * @param id 歌单或专辑的id
+     * @param type 1表示是歌单 2表示是专辑
+     */
+    public String showSongListCollect(Integer id,Integer type, Model model)  {
+        SongListCollect songListCollect=new  SongListCollect();
+        songListCollect.setMusicId(id);
+        songListCollect.setType(type);
+        List<SongListCollect> list= songListCollectMapper.selectListSongListCollect(songListCollect);
+        model.addAttribute("SongListCollectCount",list.size());
+        System.out.println(list.size());
+        return null;
+    }
 
+    /**
+     * 查找指定专辑或歌单中的所有音乐
+     * @param id 专辑或歌单的id
+     * @param type 1是歌单2是专辑
+     */
+    public String showMusicSongList(Integer id,Integer type,Model model) {
+        MusicSongList musicSongList=new MusicSongList();
+        musicSongList.setBelongId(id);
+        musicSongList.setType(type);
+        // 查找指定歌单或专辑的所有音乐
+        List<MusicSongList> list=musicSongListMapper.selectListMusicSongList(musicSongList);
+        model.addAttribute("MusicSongList",list);
+        return null;
+    }
 }
