@@ -426,5 +426,4 @@ window.onload = function () {
             }
         }
     });
-});
-};
+}
