@@ -89,39 +89,37 @@ window.onload = function () {
         });
     });
 
-    //搜索框提示
-    // $("#search").keyup(function () {
-    //     var searchVal = this.value;
-    //     var search_tips = $('.search_tips')[0];
-    //     console.log(search_tips);
-    //     var tips_head = "<li><a href='javascript:;'>";
-    //     var tips_last = "</a></li>";
-    //     var tips = "";
-    //     console.log(searchVal);
-    //     $.ajax({
-    //         contentType: "application/x-www-form-urlencoded;charset=UTF-8",
-    //         type: "post",
-    //         url: "searchByKeyWord",
-    //         data: {keyWord:searchVal},
-    //         dataType: "json",
-    //         success: function (data, status) {
-    //             if (searchVal === '')
-    //                 search_tips.innerHTML = '';
-    //             else {
-    //                 // alert(JSON.stringify(data));
-    //                 for(var i=0;i<data.length;i++){
-    //                     var musicName = data[i].name;
-    //                     // alert(musicName);
-    //                     tips = tips + tips_head + musicName + tips_last;
-    //                     // alert(tips);
-    //                 }
-    //
-    //                 search_tips.innerHTML = tips;
-    //             }
-    //
-    //         }
-    //     })
-    // })
+    // 搜索框提示
+    $("#search").keyup(function () {
+        var searchVal = this.value;
+        var search_tips = $('.search_tips')[0];
+        var tips_head = "<li><a href='javascript:;'>";
+        var tips_last = "</a></li>";
+        var tips = "";
+        $.ajax({
+            contentType: "application/x-www-form-urlencoded;charset=UTF-8",
+            type: "post",
+            url: "searchListAll",
+            data: {keyWord:searchVal},
+            dataType: "json",
+            success: function (data, status) {
+                if (searchVal === '')
+                    search_tips.innerHTML = '';
+                else {
+                    for(var i=0;i<data.length;i++){
+                        var musicName = data[i].getName(0).name;
+                        // var musicAlbum = data[i].albumId;
+                        // console.log(musicAlbum);
+
+                        tips = tips + tips_head + musicName + tips_last;
+                    }
+
+                    search_tips.innerHTML = tips;
+                }
+
+            }
+        })
+    });
 
     // 用于注册账号
     $("#registerUser").on("click", function () {
@@ -162,33 +160,4 @@ window.onload = function () {
         });
     });
 
-    $("#search").keyup(function () {
-        var searchVal = this.value;
-        // console.log(searchVal);
-        var search_tips = $(".search_tips")[0];
-        var tips_head = "<li><a href='javascript:;'>";
-        var tips_foot = "</a></li>";
-        var tips = '';
-        $.ajax({
-            type: 'post',
-            contentType: "application/x-www-form-urlencoded;charset=UTF-8",
-            url: 'searchByKeyWord',
-            data: {
-                keyWord: searchVal
-            },
-            success: function (data) {
-                if (searchVal === '')
-                    search_tips.innerHTML = '';
-                else {
-                    for (var i = 0; i < data.length; i++) {
-                        var musicName = data[i].name;
-                        tips = tips + tips_head + musicName + tips_foot;
-                    }
-                    search_tips.innerHTML = tips;
-
-                }
-            }
-        })
-
-    })
-}
+};
