@@ -1,0 +1,20 @@
+.personal_information{
+    margin-bottom: 20px;
+    overflow: hidden;
+}
+.personal_information img{
+    width: 160px;
+}
+.personal_information .name{
+    margin-left: 30px;
+}
+
+.color_2 .navbar-default{
+    border: none;
+}
+.color_2 .btn-group{
+    margin-left: 20px;
+}
+.color_2 .btn-group  button{
+    margin: 0 20px;
+}

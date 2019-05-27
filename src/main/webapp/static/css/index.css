@@ -18,11 +18,15 @@ ul li{
 }
 .color_1{
     background-color: #FDFDFD;
-    margin: 50px 0;
+    padding: 50px 0;
 }
 .color_2{
     background-color: #F6F6F6;
-    margin: 50px 0;
+    padding: 50px 0;
+}
+.color_3{
+    background-color: #222222;
+    padding: 50px 0;
 }
 
 /*头部*/

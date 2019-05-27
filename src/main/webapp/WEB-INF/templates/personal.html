@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="head::html"></head>
+<head>
+    <link rel="stylesheet" href="../../static/css/personal.css" th:href="@{/static/css/personal.css}">
+</head>
+<body>
+<!--头部-->
+<div th:replace="webHead::html"></div>
+
+<div class="container-fluid  color_2">
+    <div class="row inner">
+        <div class="container-fluid">
+            <div class="personal_information">
+                <a href="javascript:;" class="pull-left">
+                    <img src="img/头像_邓紫棋.jpg" th:src="@{/static/img/头像_邓紫棋.jpg}" alt="">
+                </a>
+                <div class="pull-left name">
+                    <a href="javascript:;">
+                        <h2>name</h2>
+                        <h3>2</h3>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <nav class="navbar navbar-default">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                            data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="#">个人中心</a>
+                </div>
+
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav">
+                        <li class="active"><a href="#">我喜欢 <span class="sr-only">(current)</span></a></li>
+                        <li><a href="#">我的关注</a></li>
+                        <li><a href="#">粉丝</a></li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                               aria-haspopup="true" aria-expanded="false">我的歌单 <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#">1</a></li>
+                                <li><a href="#">2</a></li>
+                                <li><a href="#">3</a></li>
+<!--                                <li role="separator" class="divider"></li>-->
+<!--                                <li><a href="#">Separated link</a></li>-->
+                                <li role="separator" class="divider"></li>
+                                <li><a href="#">新建歌单</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <div class="btn-group" role="group" aria-label="...">
+            <button type="button" class="btn btn-success">Left</button>
+            <button type="button" class="btn btn-success">Middle</button>
+            <button type="button" class="btn btn-success">Right</button>
+        </div>
+
+    </div>
+</div>
+
+<!--尾部-->
+<div th:replace="webFoot.html"></div>
+</body>
+<div th:replace="on-load-js::on-load-js"></div>
+</html>

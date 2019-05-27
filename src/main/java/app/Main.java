@@ -68,6 +68,11 @@ public class Main {
         return "noFind";
     }
 
+    @RequestMapping(value = "/personal")
+    public String personal() {
+        return "personal";
+    }
+
 }
 
 
