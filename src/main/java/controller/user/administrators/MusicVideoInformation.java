@@ -77,8 +77,9 @@ public class MusicVideoInformation {
      * @param type 1表示是音乐收藏  2表示是MV的收藏
      */
     @RequestMapping(value = "/showMusicCollect")
-    public String showMusicCollect(Integer id, Integer type,Model model) throws ParseException {
-        return musicVideoInformationService.showMusicCollect(id,type,model);
+    @ResponseBody
+    public int showMusicCollect(Integer id, Integer type)  {
+        return musicVideoInformationService.showMusicCollect(id,type);
     }
 
     /**
@@ -88,7 +89,7 @@ public class MusicVideoInformation {
      * @param type 1、音乐  2、MV  3、专辑
      */
     @RequestMapping(value = "/showPlay")
-    public String showPlay(Integer id,Integer type, Model model) {
-        return musicVideoInformationService.showPlay(id,type,model);
+    public int showPlay(Integer id,Integer type) {
+        return musicVideoInformationService.showPlay(id,type);
     }
 }

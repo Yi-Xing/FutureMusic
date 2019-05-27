@@ -21,10 +21,15 @@ import com.alipay.demo.trade.service.impl.AlipayMonitorServiceImpl;
 import com.alipay.demo.trade.service.impl.AlipayTradeServiceImpl;
 import com.alipay.demo.trade.service.impl.AlipayTradeWithHBServiceImpl;
 import com.alipay.demo.trade.utils.Utils;
+import controller.user.LoginAndRegister;
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.*;
 
@@ -33,10 +38,10 @@ import java.util.*;
  * 简单main函数，用于测试当面付api
  * sdk和demo的意见和问题反馈请联系：liuyang.kly@alipay.com
  */
-@Service
+@Controller
 public class AjaxServive {
-    private static Log log = LogFactory.getLog(Main.class);
-
+//    private static Log log = LogFactory.getLog(AjaxServive.class);
+    private static final Logger log = LoggerFactory.getLogger(AjaxServive.class);
     // 支付宝当面付2.0服务
     private static AlipayTradeService   tradeService;
 
@@ -80,7 +85,7 @@ public class AjaxServive {
     }
 
     public static void main(String[] args) {
-        Main main = new Main();
+        AjaxServive main = new AjaxServive();
 
         // 系统商商测试交易保障接口api
         //        main.test_monitor_sys();
@@ -370,6 +375,7 @@ public class AjaxServive {
     }
 
     // 测试当面付2.0生成支付二维码
+    @RequestMapping(value = "/test_trade_precreate")
     public void test_trade_precreate() {
         // (必填) 商户网站订单系统中唯一订单号，64个字符以内，只能包含字母、数字、下划线，
         // 需保证商户系统端不能重复，建议通过数据库sequence生成，
@@ -428,10 +434,11 @@ public class AjaxServive {
                 .setGoodsDetailList(goodsDetailList);
 
         AlipayF2FPrecreateResult result = tradeService.tradePrecreate(builder);
+        System.out.println("准备下的————————————————————————————");
+
         switch (result.getTradeStatus()) {
             case SUCCESS:
                 log.info("支付宝预下单成功: )");
-
                 AlipayTradePrecreateResponse response = result.getResponse();
                 dumpResponse(response);
 

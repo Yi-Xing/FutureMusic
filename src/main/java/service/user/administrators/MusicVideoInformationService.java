@@ -23,6 +23,7 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 import java.text.ParseException;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -43,8 +44,9 @@ public class MusicVideoInformationService {
     FileUpload fileUpload;
     @Resource(name = "MusicCollectMapper")
     MusicCollectMapper musicCollectMapper;
-    @Resource(name ="PlayMapper")
+    @Resource(name = "PlayMapper")
     PlayMapper playMapper;
+
     /**
      * 添加MV
      */
@@ -71,7 +73,12 @@ public class MusicVideoInformationService {
                             state = validationInformation.isContent(musicVideo.getIntroduction());
                             if (state.getState() == 1) {
                                 // 获取上传的文件路径
-                                musicVideo.setPath(fileUpload.musicVideo(request));
+                                String path = fileUpload.musicVideo(request);
+                                if (path != null && !"".equals(path)) {
+                                    musicVideo.setPath(path);
+                                }
+                                // 设置上传日期
+                                musicVideo.setDate(new Date());
                                 if (musicVideoMapper.insertMusicVideo(musicVideo) < 1) {
                                     // 如果失败是数据库错误
                                     logger.error(musicVideo + "添加MV信息时，数据库出错");
@@ -171,7 +178,10 @@ public class MusicVideoInformationService {
                             state = validationInformation.isContent(musicVideo.getIntroduction());
                             if (state.getState() == 1) {
                                 // 获取上传的文件路径
-                                musicVideo.setPath(fileUpload.musicVideo(request));
+                                String path = fileUpload.musicVideo(request);
+                                if (path != null && !"".equals(path)) {
+                                    musicVideo.setPath(path);
+                                }
                                 if (musicVideoMapper.updateMusicVideo(musicVideo) < 1) {
                                     // 如果失败是数据库错误
                                     logger.error(musicVideo + "修改MV信息，数据库出错");
@@ -204,32 +214,29 @@ public class MusicVideoInformationService {
      * @param id   音乐或MV的id
      * @param type 1表示是音乐收藏  2表示是MV的收藏
      */
-    public String showMusicCollect(Integer id, Integer type, Model model) throws ParseException {
+    public int showMusicCollect(Integer id, Integer type) {
         MusicCollect musicCollect = new MusicCollect();
         musicCollect.setMusicId(id);
         musicCollect.setType(type);
-        int musicCollectCount = musicCollectMapper.selectUserMusicCollectCount(musicCollect);
-        model.addAttribute("musicCollectCount", musicCollectCount);
-        System.out.println(musicCollectCount);
-        return null;
+        return musicCollectMapper.selectUserMusicCollectCount(musicCollect);
     }
+
     /**
      * 指定歌手的所有音乐被播放的次数
      * 指定专辑中的所有音乐被播放的次数
-     * @param id 音乐或MV或专辑的id
+     *
+     * @param id   音乐或MV或专辑的id
      * @param type 1、音乐  2、MV  3、专辑
      */
-    public String showPlay(Integer id,Integer type, Model model)  {
-        Play play=new Play();
-        if(type<3){
+    public int showPlay(Integer id, Integer type) {
+        Play play = new Play();
+        if (type < 3) {
             play.setMusicId(id);
             play.setType(type);
-        }else if(type ==3){
+        } else if (type == 3) {
             play.setAlbumId(id);
         }
-        List<Play> list= playMapper.selectListPlay(play);
-        System.out.println(list);
-        model.addAttribute("PlayCount",list.size());
-        return null;
+        List<Play> list = playMapper.selectListPlay(play);
+        return list.size();
     }
 }

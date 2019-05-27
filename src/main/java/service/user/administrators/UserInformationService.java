@@ -94,18 +94,16 @@ public class UserInformationService {
      *
      * @param id 条件可以有多个
      */
-    public String showFocus(Integer id, Model model) {
+    public Integer showFocus(Integer id) {
         Focus focus = new Focus();
         if (idExistence.isUserId(id) != null) {
             focus.setUserFocusId(id);
             // 1表示关注
             focus.setUserType(1);
-            int focusCount = focusMapper.selectUserFocusCount(focus);
             // 该用户的粉丝量
-            model.addAttribute("focusCount", focusCount);
-        } else {
-            model.addAttribute("state", "id：" + id + "的用户不存在");
+            return focusMapper.selectUserFocusCount(focus);
         }
-        return null;
+        // 用户不存在返回0
+        return 0;
     }
 }

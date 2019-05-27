@@ -39,6 +39,7 @@ public class UserInformation {
      * @param pageNum 表示当前第几页
      */
     @RequestMapping(value = "/showUser")
+    @ResponseBody
     public String showUser(String[] condition,Integer pageNum, Model model) {
         return userInformationService.showUser(condition,pageNum,model);
     }
@@ -57,7 +58,8 @@ public class UserInformation {
      * @param id 用户的id
      */
     @RequestMapping(value = "/showFocus")
-    public String showFocus(Integer id, Model model) {
-        return userInformationService.showFocus(id,model);
+    @ResponseBody
+    public Integer showFocus(Integer id) {
+        return userInformationService.showFocus(id);
     }
 }

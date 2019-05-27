@@ -41,6 +41,14 @@ public class AccountInformation {
     }
 
     /**
+     * 显示用户个人信息页面
+     */
+    @RequestMapping(value = "/userInformation")
+    public State userInformation(){
+        return null;
+    }
+
+    /**
      * 点击修改用户名执行此方法，ajax
      *
      * @param userName 修改后的用户名
@@ -77,4 +85,5 @@ public class AccountInformation {
         // 修改用户空间状态，失败抛异常
         return accountInformationService.privacy(session);
     }
+
 }
