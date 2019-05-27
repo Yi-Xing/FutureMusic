@@ -56,7 +56,6 @@ public class MailInformation {
     public State addMail(@RequestBody Mail mail) throws DataBaseException {
         return mailInformationService.addMail(mail);
     }
-
     /**
      * 修改邮箱信息,只修改状态，ajax
      */

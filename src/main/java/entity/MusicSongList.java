@@ -24,7 +24,7 @@ public class MusicSongList implements Serializable {
      */
     private int type=0;
     /**
-     * 1是已拥有2是没购买
+     *   0是没购买  1是已拥有
      */
     private int have=0;
     /**

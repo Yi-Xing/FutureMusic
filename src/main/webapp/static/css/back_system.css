@@ -17,6 +17,10 @@
 .header a{
     text-decoration: none;
 }
+@font-face {
+    font-family: 'webfont';
+url('//at.alicdn.com/t/webfont_oogj9rdy3g8.ttf') format('truetype'), /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/
+}
 .header_brand{
    width:29%;
     height: 60px;

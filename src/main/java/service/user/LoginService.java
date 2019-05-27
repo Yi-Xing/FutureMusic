@@ -86,7 +86,7 @@ public class LoginService {
      * @param session  获取当前会话的对象
      */
     public State signOutLogin(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
-        User user = (User) session.getAttribute("userInformation");
+        User user = specialFunctions.getUser(session);
         // 退出登录将信息从域对象中删除
         session.removeAttribute("userInformation");
         // 删除监听器上的用户信息
@@ -144,7 +144,7 @@ public class LoginService {
      */
     private void isUserLogin(HttpSession session) {
         // 将会话中的用户信息取出来
-        User user = (User) session.getAttribute("userInformation");
+        User user =specialFunctions.getUser(session);
         HttpSession originalSession1 = SessionListener.sessionMap.get(user.getMailbox());
         // 判断该用户是否已经登录
         if (originalSession1 != null) {
