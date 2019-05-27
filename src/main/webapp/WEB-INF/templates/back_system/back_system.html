@@ -12,7 +12,7 @@
 <body>
 <div class="total">
     <!--头部-->
-    <div class="header">
+    <div class="header" th:fragment="pagination">
         <a class="header_brand " href="../index.html">
             <span class="had_br_main"><img src="img/音乐.png"  th:src="@{/static/img/音乐.png}"alt=""><span class="web-font">futurMusic</span></span>
         </a>
@@ -126,7 +126,7 @@
                                 <p id="sh"></p>
                                 <div class="modal_footer">
                                     <input type="reset"  style="width:40%; height: 40px; background: #BA55D3;border:none;outline: none;box-shadow: none" name="button" id="button" value="reset"/>
-                                    <input type="submit" style="width:40%; height: 40px; background: #BA55D3;border:none;outline: none;box-shadow: none"  data-dismiss="modal" value="commit"/>
+                                    <input type="submit" style="width:40%; height: 40px; background: #BA55D3;border:none;outline: none;box-shadow: none"  data-dismiss="modal" value="commit"  data-toggle="modal" data-target="#myModal_4"/>
                                 </div>
 
                             </form>
@@ -163,7 +163,7 @@
             <!--            重置成功 modal——3-->
             <div class="modal fade" id="myModal_3" tabindex="-1" role="dialog" aria-labelledby="myModalLabel_3" aria-hidden="true">
                 <div class="modal-dialog">
-                    <div class="modal-content">
+                    <div class="modal-content" style="width: 200px;height: 174px;margin-top: 200px;">
                         <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
                                 &times;
@@ -172,24 +172,50 @@
 
                             </h4>
                         </div>
-                        <div class="modal-body">
-                            <p style="float:left;">
-                                <img src="img/对号.png" th:src="@{/static/img/img/对号.png}" alt="">
+                        <div class="modal-body" style="width:200px;height:65px;">
+                            <p style="float:left;height: 50px;line-height: 50px;">
+                                <img src="img/对号.png" th:src="@{/static/img/对号.png}" style="width:40px;height: 40px;" alt="">
                             </p>
-                            <p style="float:left;">
-                                删除成功
+                            <p style="float:left;height: 50px;line-height: 50px;">
+                            删除成功
                             </p>
                         </div>
                         <div class="modal-footer">
-                            <button type="button"  data-dismiss="modal">关闭
-                            </button>
-                            <button type="button" >
-                                commit
+                            <button type="button"  data-dismiss="modal" style=" width: 58px;background: #0099FF; height: 33px;border: none;border-radius: 3px;">确定
                             </button>
                         </div>
                     </div><!-- /.modal-content -->
                 </div><!-- /.modal -->
             </div>
+
+            <!--            重置成功 modal——4-->
+            <div class="modal fade" id="myModal_4" tabindex="-1" role="dialog" aria-labelledby="myModalLabel_4" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content" style="width: 200px;height: 174px;margin-top: 200px;">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                                &times;
+                            </button>
+                            <h4 class="modal-title" id="myModalLabel_4">
+
+                            </h4>
+                        </div>
+                        <div class="modal-body" style="width:200px;height:65px;">
+                            <p style="float:left;height: 50px;line-height: 50px;">
+                                <img src="img/对号.png" th:src="@{/static/img/对号.png}" style="width:40px;height: 40px;" alt="">
+                            </p>
+                            <p style="float:left;height: 50px;line-height: 50px;">
+                                修改成功
+                            </p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button"  data-dismiss="modal" style=" width: 58px;background: #0099FF; height: 33px;border: none;border-radius: 3px;">确定
+                            </button>
+                        </div>
+                    </div><!-- /.modal-content -->
+                </div><!-- /.modal -->
+            </div>
+
 
             <!--            -->
             <div class="main_rh_main" >
