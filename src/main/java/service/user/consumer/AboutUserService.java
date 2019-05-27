@@ -4,6 +4,9 @@ import entity.Focus;
 import entity.Mail;
 import entity.State;
 import entity.User;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import service.user.SpecialFunctions;
 import util.exception.DataBaseException;
 import mapper.FocusMapper;
@@ -17,6 +20,7 @@ import util.ConstantUtil;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -44,6 +48,44 @@ public class AboutUserService {
     Existence existence;
 
     /**
+     * 查找指定用户关注的所有用户，或被关注所有用户，被访问的记录
+     *
+     * @param type    获取类型 1表示关注的用户，2表示被关注用户，3表示被访问的记录
+     * @param session 获取当前会话
+     */
+    public State showFollowUser(Integer type, HttpSession session, Model model) throws DataBaseException {
+        User user = specialFunctions.getUser(session);
+        Focus focus = new Focus();
+        List<Integer> idList=new ArrayList<>();
+        if (type == 1) {
+            // 查找指定用户关注的所有用户
+            focus.setUserType(1);
+            focus.setUserId(user.getId());
+            List<Focus> list = focusMapper.selectListFocus(focus);
+            for(Focus f:list){
+                idList.add(f.getUserFocusId());
+            }
+        } else if (type == 2) {
+            focus.setUserType(1);
+            focus.setUserFocusId(user.getId());
+            List<Focus> list = focusMapper.selectListFocus(focus);
+            for(Focus f:list){
+                idList.add(f.getUserId());
+            }
+        } else {
+            focus.setUserType(2);
+            focus.setUserFocusId(user.getId());
+            List<Focus> list = focusMapper.selectListFocus(focus);
+            for(Focus f:list){
+                idList.add(f.getUserFocusId());
+            }
+        }
+        List<User> userList=userMapper.listIdSelectListUser(idList);
+        model.addAttribute("User", userList);
+        return null;
+    }
+
+    /**
      * 点击关注其他用户
      *
      * @param id      获取被关注者的id
@@ -62,7 +104,7 @@ public class AboutUserService {
         // 为访客时，需要进行是否存在判断
         if (focus.getUserType() == 2) {
             // 判断用户是否访问过该用户，如果访问过不需要添加只需要更新，没有访问则需要添加
-            Focus newFocus=existence.isUserFollow(user.getId(),id,type);
+            Focus newFocus = existence.isUserFollow(user.getId(), id, type);
             // 判断有没有访问
             if (newFocus != null) {
                 //更新时间
@@ -87,7 +129,6 @@ public class AboutUserService {
     }
 
 
-
     /**
      * 点击取消关注其他用户
      *
@@ -110,7 +151,6 @@ public class AboutUserService {
         state.setState(1);
         return state;
     }
-
 
 
     /**

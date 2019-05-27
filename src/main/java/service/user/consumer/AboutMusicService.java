@@ -1,6 +1,8 @@
 package service.user.consumer;
 
 import entity.*;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
 import service.user.SpecialFunctions;
 import util.exception.DataBaseException;
 import mapper.*;
@@ -15,7 +17,7 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * 收藏音乐，收藏MV，添加历史播放记录，评论，点赞
+ * 收藏音乐，收藏MV，添加历史播放记录，评论，点赞，用户播放音乐
  *
  * @author 5月15日 张易兴创建
  */
@@ -38,6 +40,55 @@ public class AboutMusicService {
     MusicMapper musicMapper;
     @Resource(name = "MusicVideoMapper")
     MusicVideoMapper musicVideoMapper;
+    @Resource(name = "OrderMapper")
+    OrderMapper orderMapper;
+
+    /**
+     * 添加显示用户收藏的所有音乐，显示用户收藏的所有MV
+     *
+     * @param type 1表示查找音乐收藏 2表示查找MV收藏
+     */
+    public String showUserCollectionMusic(Integer type, Model model, HttpSession session) {
+        //得到会话上的用户
+        User user = specialFunctions.getUser(session);
+        MusicCollect musicCollect = new MusicCollect();
+        musicCollect.setType(type);
+        musicCollect.setUserId(user.getId());
+        List<MusicCollect> list = musicCollectMapper.selectListMusicCollect(musicCollect);
+        model.addAttribute("CollectionMusic", list);
+        return null;
+    }
+
+    /**
+     * 显示用户购买过的音乐，显示用户购买过的MV
+     *
+     * @param type 1表示查找音乐购买 2表示查找MV购买
+     */
+    public String showUserPurchaseMusic(Integer type, Model model, HttpSession session) throws DataBaseException {
+        //得到会话上的用户
+        User user = specialFunctions.getUser(session);
+        Order order = new Order();
+        order.setType(type);
+        order.setUserId(user.getId());
+        List<Order> list = orderMapper.selectListOrder(order);
+        if (list.size() != 0) {
+            List<Integer> idList = new ArrayList<>();
+            // 得到所有音乐或MV的id
+            for (Order o : list) {
+                idList.add(o.getMusicId());
+            }
+            if (type == 1) {
+                // 查找所有的音乐
+                List<Music> musicList= musicMapper.listIdSelectListMusic(idList);
+                model.addAttribute("",musicList);
+            } else {
+                // 查找所有的MV
+                List<MusicVideo> musicVideoList= musicVideoMapper.listIdSelectListMusicVideo(idList);
+                model.addAttribute("",musicVideoList);
+            }
+        }
+        return null;
+    }
 
     /**
      * 收藏和取消收藏音乐或MV,
@@ -126,37 +177,36 @@ public class AboutMusicService {
         }
         List<Integer> listId = new ArrayList<>();
         listId.add(playInformation.getMusicId());
-        // 完成后需要添加音乐或MV的播放次数  1表示音乐 2表示MV
-        if (playInformation.getType() == 1) {
-            List<Music> listMusic = musicMapper.listIdSelectListMusic(listId);
-            if (listMusic.size() != 0) {
-                Music music = listMusic.get(0);
-                music.setPlayCount(music.getPlayCount() + 1);
-                if (musicMapper.updateMusic(music) < 1) {
-                    logger.debug("邮箱：" + user.getMailbox() + "更新音乐信息时，数据库出错");
-                    throw new DataBaseException("邮箱：" + user.getMailbox() + "更新音乐信息时，数据库出错");
-                }
-            } else {
-                logger.debug("邮箱：" + user.getMailbox() + "查找指定音乐时，数据库出错");
-                throw new DataBaseException("邮箱：" + user.getMailbox() + "查找指定音乐时，数据库出错");
-            }
-        } else {
-            List<MusicVideo> listMusic = musicVideoMapper.listIdSelectListMusicVideo(listId);
-            if (listMusic.size() != 0) {
-                MusicVideo musicVideo = listMusic.get(0);
-                musicVideo.setPlayCount(musicVideo.getPlayCount() + 1);
-                if (musicVideoMapper.updateMusicVideo(musicVideo) < 1) {
-                    logger.debug("邮箱：" + user.getMailbox() + "更新MV信息时，数据库出错");
-                    throw new DataBaseException("邮箱：" + user.getMailbox() + "更新MV信息时，数据库出错");
-                }
-            } else {
-                logger.debug("邮箱：" + user.getMailbox() + "查找指定MV时，数据库出错");
-                throw new DataBaseException("邮箱：" + user.getMailbox() + "查找指定MV时，数据库出错");
-            }
-        }
         return new State(1);
     }
-
+    // 完成后需要添加音乐或MV的播放次数  1表示音乐 2表示MV
+//        if (playInformation.getType() == 1) {
+//            List<Music> listMusic = musicMapper.listIdSelectListMusic(listId);
+//            if (listMusic.size() != 0) {
+//                Music music = listMusic.get(0);
+//                music.setPlayCount(music.getPlayCount() + 1);
+//                if (musicMapper.updateMusic(music) < 1) {
+//                    logger.debug("邮箱：" + user.getMailbox() + "更新音乐信息时，数据库出错");
+//                    throw new DataBaseException("邮箱：" + user.getMailbox() + "更新音乐信息时，数据库出错");
+//                }
+//            } else {
+//                logger.debug("邮箱：" + user.getMailbox() + "查找指定音乐时，数据库出错");
+//                throw new DataBaseException("邮箱：" + user.getMailbox() + "查找指定音乐时，数据库出错");
+//            }
+//        } else {
+//            List<MusicVideo> listMusic = musicVideoMapper.listIdSelectListMusicVideo(listId);
+//            if (listMusic.size() != 0) {
+//                MusicVideo musicVideo = listMusic.get(0);
+//                musicVideo.setPlayCount(musicVideo.getPlayCount() + 1);
+//                if (musicVideoMapper.updateMusicVideo(musicVideo) < 1) {
+//                    logger.debug("邮箱：" + user.getMailbox() + "更新MV信息时，数据库出错");
+//                    throw new DataBaseException("邮箱：" + user.getMailbox() + "更新MV信息时，数据库出错");
+//                }
+//            } else {
+//                logger.debug("邮箱：" + user.getMailbox() + "查找指定MV时，数据库出错");
+//                throw new DataBaseException("邮箱：" + user.getMailbox() + "查找指定MV时，数据库出错");
+//            }
+//        }
 
     /**
      * 音乐或MV或专辑的评论，ajax

@@ -24,6 +24,17 @@ public class AboutUser {
     private static final Logger logger = LoggerFactory.getLogger(AboutUser.class);
 
     /**
+     * 查找指定用户关注的所有用户，或被关注所有用户，被访问的记录
+     * @param type    获取类型 1表示关注的用户，2表示被关注用户，3表示被访问的记录
+     * @param session 获取当前会话
+     */
+    @RequestMapping(value = "/showFollowUser")
+    @ResponseBody
+    public State showFollowUser( Integer type, HttpSession session) throws DataBaseException {
+        logger.trace("showFollowUser方法开始执行");
+        return null;
+    }
+    /**
      * 点击关注指定用户或访问指定用户空间时执行该方法,ajax
      *
      * @param id      获取被关注者的id

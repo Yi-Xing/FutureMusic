@@ -6,8 +6,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 import service.user.IdExistence;
 import service.user.SpecialFunctions;
 import service.user.ValidationInformation;
@@ -43,6 +41,35 @@ public class AboutSongListService {
     IdExistence idExistence;
     @Resource(name = "FileUpload")
     FileUpload fileUpload;
+    @Resource(name = "MusicSongListMapper")
+    MusicSongListMapper musicSongListMapper;
+
+    /**
+     * 显示用户创建的所有歌单或专辑
+     * @param  type 1是歌单2是专辑
+     */
+    public String showUserSongList(Integer type,HttpSession session){
+        User user = specialFunctions.getUser(session);
+        SongList songList=new SongList();
+        songList.setType(type);
+        songList.setUserId(user.getId());
+        // 查找到用户创建的歌单或专辑
+        List<SongList> list=songListMapper.selectListSongList(songList);
+        return null;
+    }
+    /**
+     * 显示用户收藏的所有歌单或专辑
+     * @param  type 1是歌单2是专辑
+     */
+    public String showUserCollectionSongList(Integer type,HttpSession session){
+        User user = specialFunctions.getUser(session);
+        SongListCollect songListCollect=new SongListCollect();
+        songListCollect.setType(type);
+        songListCollect.setUserId(user.getId());
+        // 查找到指定用户收藏的所有歌单或专辑
+        List<SongListCollect> list=songListCollectMapper.selectListSongListCollect(songListCollect);
+        return null;
+    }
 
     /**
      * 创建歌单或专辑
@@ -225,15 +252,39 @@ public class AboutSongListService {
     }
 
     /**
+     * 得到用户创建的所有歌单或专辑，没有返回null
+     * @param userId 用户的id
+     * @param  type 1是歌单2是专辑
+     */
+    public List<SongList> userSongList(int userId,int type){
+        SongList songList=new SongList();
+        songList.setUserId(userId);
+        songList.setType(type);
+        List<SongList> list=songListMapper.selectListSongList(songList);
+        if(list.size()==0){
+            return null;
+        }
+        return list;
+    }
+
+    /**
      * 将指定音乐添加到专辑或歌单中
      *
      * @param musicSongList 获取需要添加到指定专辑或歌单中的音乐
      *                      所需参数：
      *                      belongId 专辑或歌单的id
-     *                      type 是歌单2是专辑
+     *                        type 1是歌单2是专辑
      *                      musicId 音乐的id
      */
-    public State addMusicSongList( MusicSongList musicSongList) {
+    public State addMusicSongList(MusicSongList musicSongList) throws DataBaseException {
+        // 判断用户有没有购买
+        // 查找音乐的歌手的id
+        // 查找音乐的分类的id
+        if (musicSongListMapper.insertMusicSongList(musicSongList) < 1) {
+            // 如果失败是数据库错误
+            logger.error("歌单或专辑：" + musicSongList + "添加歌单或专辑信息时，数据库出错");
+            throw new DataBaseException("歌单或专辑：" + musicSongList + "添加歌单或专辑信息时，数据库出错");
+        }
         return null;
     }
 }
