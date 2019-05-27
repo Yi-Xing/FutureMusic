@@ -8,6 +8,10 @@
 .personal_information .name{
     margin-left: 30px;
 }
+.icon-iconvip{
+    font-size: 30px;
+    color: #999999;
+}
 
 .color_2 .navbar-default{
     border: none;
@@ -17,4 +21,16 @@
 }
 .color_2 .btn-group  button{
     margin: 0 20px;
+}
+.color_2 .navbar-right .iconfont{
+    font-size: 30px;
+    font-weight: 600;
+}
+
+/*举报模态框*/
+#Report{
+    width: 100%;
+    resize: none;
+    border-radius: 4px;
+    border: 1px solid rgba(0,0,0,0.1);
 }
