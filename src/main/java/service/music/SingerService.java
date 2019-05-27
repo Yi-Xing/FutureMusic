@@ -1,16 +1,15 @@
 package service.music;
 
-import entity.Focus;
-import entity.Music;
-import entity.Play;
-import entity.User;
+import entity.*;
 import mapper.*;
+import org.springframework.stereotype.Service;
+
 import javax.annotation.Resource;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
+@Service(value =  "SingerService")
 public class SingerService {
     @Resource(name = "MusicMapper")
     MusicMapper musicMapper;
@@ -30,18 +29,17 @@ public class SingerService {
     FocusMapper focusMapper;
 
     /**
-     * 包含信息：歌手名字、粉丝数、图片地址、id、热门歌曲和id、代表作
-     * 数组，第一个是歌手id，第二个是
+     * 通过地区查找歌手
      * @param region
      * @return
      */
-    public List<String[]> exhibitionSingersByRegion(String region){
+    public List<ShowSinger> exhibitionSingersByRegion(String region){
+        List<ShowSinger> showSingerList = new ArrayList<>();
         User user = new User();
         user.setAddress(region);
         Map<Integer,Integer> singerCountMap = new HashMap<>();
         List<User> userList = userMapper.selectUser(user);
         List<Integer> singerIds = new ArrayList<>();
-        List<String[]> show = new ArrayList<>();
         Play play = new Play();
         int singerId;
         //查找热门歌手的id
@@ -59,34 +57,30 @@ public class SingerService {
         for(Integer integer:resultMap.keySet()){
             rankingSingers.add(integer);
         }
-        //根据歌手查找歌手的名字和图片路径
-        List<String> singerName = new ArrayList<>();
-        List<String> singerPicture = new ArrayList<>();
+        //根据歌手查找歌手的名字、id、和图片路径
         User singer = new User();
-        for(Integer integer:rankingSingers){
-            singer.setId(integer);
+        for(Integer rankingSingerId:rankingSingers){
+            ShowSinger showSinger = new ShowSinger();
+            singer.setId(rankingSingerId);
             singer.setLevel(2);
             User temp = userMapper.selectUser(singer).get(0);
-            singerName.add(temp.getName());
-            singerPicture.add(temp.getHeadPortrait());
-        }
-        //根据歌手查找粉丝数
-        Focus focus = new Focus();
-        focus.setUserType(1);
-        List<Integer> focusCount = new ArrayList<>();
-        for(int rankingSingerId:rankingSingers){
+            showSinger.setSingerId(rankingSingerId);
+            showSinger.setSingerName(temp.getName());
+            showSinger.setPortrait(temp.getHeadPortrait());
+            //根据歌手查找粉丝数
+            Focus focus = new Focus();
+            focus.setUserType(1);
             focus.setUserFocusId(rankingSingerId);
             int count = focusMapper.selectUserFocusCount(focus);
-            focusCount.add(count);
-        }
-        //根据一个歌手id查找热门歌曲，将歌曲的id和名字添加到两个数组里
-        Map<Integer,List<Music>> integerMusicMap = new HashMap<>();
-        for(int rankingSingerId:rankingSingers) {
+            showSinger.setFocus(count);
+            //根据一个歌手id查找热门歌曲，将歌曲的id和名字添加到两个数组里
+            Map<String,Integer>  music = new HashMap<>();
             List<Music> musicList = popularMusicBySinger(rankingSingerId);
-            //将歌曲的id和名字添加到两个数组里
-            integerMusicMap.put(rankingSingerId,musicList);
+            showSinger.setMusicName(musicList.get(0).getName());
+            showSinger.setMusic(musicList);
+            showSingerList.add(showSinger);
         }
-        return null;
+        return showSingerList;
     }
 
     /**
@@ -113,4 +107,12 @@ public class SingerService {
         List<Music> musics = musicMapper.listIdSelectListMusic(musicIds);
         return musics;
     }
+
+    /**
+     * 分页显示
+     * 通过分类查找歌手
+     * 返回信息包括歌手的图片，id、name、最热的五首歌
+     */
+
+
 }

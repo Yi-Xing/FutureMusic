@@ -6,6 +6,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import service.music.ExhibitionService;
+import service.music.MusicVideoService;
+import service.music.SingerService;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -21,6 +23,10 @@ import java.util.Map;
 public class Exhibition {
     @Resource(name = "ExhibitionService")
     private ExhibitionService exhibitionService;
+    @Resource(name = "SingerService")
+    SingerService singerService;
+    @Resource(name = "MusicVideoService")
+    MusicVideoService musicVideoService;
 
 
     private final String musicType = "电音";
@@ -38,11 +44,11 @@ public class Exhibition {
         //首页显示的活动
         model.addAttribute("activities",activity());
         //首页显示的音乐人
-        model.addAttribute("singerAddress1",null);
-        model.addAttribute("singerAddress2",null);
-        model.addAttribute("singerAddress3",null);
-        //显示的MV
-
+        model.addAttribute("singerAddress1",singerService.exhibitionSingersByRegion(singerAddress1));
+        model.addAttribute("singerAddress2",singerService.exhibitionSingersByRegion(singerAddress2));
+        model.addAttribute("singerAddress3",singerService.exhibitionSingersByRegion(singerAddress3));
+        //显示的MV显示15首
+        model.addAttribute("musicVideo",musicVideoService.exhibitionMusicVideo());
         //新歌前三首歌曲
         model.addAttribute("rankingNewSong",rankingListByNewSong());
         //电音前三歌曲
