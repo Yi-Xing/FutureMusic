@@ -29,6 +29,29 @@ public class AboutSongList {
     AboutSongListService aboutSongListService;
     private static final Logger logger = LoggerFactory.getLogger(AboutSongList.class);
 
+
+    /**
+     * 显示用户创建的所有歌单或专辑
+     * @param  type 1是歌单2是专辑
+     */
+    @RequestMapping(value = "/showUserSongList")
+    @ResponseBody
+    public String showUserSongList(Integer type,HttpSession session){
+        return null;
+    }
+    /**
+     * 显示用户收藏的所有歌单或专辑
+     * @param  type 1是歌单2是专辑
+     */
+    @RequestMapping(value = "/showUserCollectionSongList")
+    @ResponseBody
+    public String showUserCollectionSongList(Integer type,HttpSession session){
+        return null;
+    }
+
+    /**
+     * 显示指定专辑（jjy应该写了）
+     */
     /**
      * 创建歌单或专辑
      *
@@ -110,7 +133,7 @@ public class AboutSongList {
      * @param musicSongList 获取需要添加到指定专辑或歌单中的音乐
      *                      所需参数：
      *                      belongId 专辑或歌单的id
-     *                      type 是歌单2是专辑
+     *                      type 1是歌单2是专辑
      *                      musicId 音乐的id
      */
     @RequestMapping(value = "/SongListAddMusic")

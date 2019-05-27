@@ -28,6 +28,7 @@ public class AccountInformation {
 
     private static final Logger logger = LoggerFactory.getLogger(AccountInformation.class);
 
+    // 查看用户的余额，查看用户的vip到期时间
     /**
      * 显示用户页面
      * Model封装：

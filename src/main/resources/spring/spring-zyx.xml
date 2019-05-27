@@ -28,7 +28,7 @@
 
 
     <!--配置异常处理器-->
-    <bean class="util.exception.ExceptionResolver"/>
+    <bean class="util.exception.ExceptionResolver" />
 
 
     <!--拦截器-->
