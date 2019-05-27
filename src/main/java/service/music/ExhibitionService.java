@@ -30,6 +30,8 @@ public class ExhibitionService {
     SongListMapper songListMapper;
     @Resource(name = "MusicVideoMapper")
     MusicVideoMapper musicVideoMapper;
+    @Resource(name = "PlayMapper")
+    PlayMapper playMapper;
 
     /**
      * 查找7天内播放量最高的歌曲
@@ -122,10 +124,10 @@ public class ExhibitionService {
      *                       封装信息：分类
      * @return Map<Music, User>  返回查找到的歌曲
      */
-    public Map<Music, User> selectListMusicByClassification(Classification classification) {
+    private Map<Music, User> selectListMusicByClassification(Classification classification) {
         //获取符合条件得分类对象
         List<Integer> classificationIds = new ArrayList<>();
-        Map<Music, User> musicSingerMap = new HashMap<>();
+        Map<Music, User> musicSingerMap = new HashMap<>(16);
         User user = new User();
         List<Classification> classificationList = classificationMapper.selectListClassification(classification);
         for (Classification clf : classificationList) {
@@ -184,5 +186,47 @@ public class ExhibitionService {
             musicSingerMap.put(musicVideo, userMapper.selectUser(user).get(0));
         }
         return musicSingerMap;
+    }
+
+    /**
+     * 查找播放记录最多的音乐或MV
+     * @param id
+     * @param type
+     * @return List<Music>
+     */
+    private List<Play> getPlayMusic(int id,int type){
+        Play play = new Play();
+        play.setMusicId(id);
+        List<Play> playList = playMapper.selectListPlay(play);
+        return playList;
+    }
+
+    /**
+     * 统计一个集合中音乐id出现的次数,按照大小排序
+     * @param playList
+     * @return
+     */
+    private Map<Integer,Integer> getMostPlay(List<Play> playList){
+        Map<Integer,Integer> musicCountMap = new HashMap<>(16);
+        for(Play play:playList){
+            int musicId = play.getMusicId();
+            if(musicCountMap.containsKey(musicId)){
+                musicCountMap.put(musicId,musicCountMap.get(musicId)+1);
+            }else{
+                musicCountMap.put(musicId,1);
+            }
+        }
+        musicCountMap = sortByValueDescending(musicCountMap);
+        return musicCountMap;
+    }
+
+    /**
+     * 将map按照value的值降序排列
+     * @param map
+     * @return
+     */
+    public Map<Integer,Integer> sortByValueDescending(Map<Integer,Integer> map){
+        
+        return null;
     }
 }

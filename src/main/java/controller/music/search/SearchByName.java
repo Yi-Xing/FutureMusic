@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import service.music.SearchService;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -22,6 +23,22 @@ import java.util.List;
 public class SearchByName {
     @Resource(name = "SearchService")
     private SearchService searchService;
+
+    /**
+     * ajax搜索框智能提示名字
+     * @param keyWord 传入的关键字
+     * @return List<String> 返回的音乐名称
+     */
+    @RequestMapping(value = "/searchByKeyWord")
+    @ResponseBody
+    public List<Music> searchByKeyWord(@RequestParam(value = "keyWord")String keyWord){
+        List<Music> musicList = searchService.selectListMusicByName(keyWord);
+//        List<String> names = new ArrayList<>();
+//        for(Music music:musicList){
+//            names.add(music.getName());
+//        }
+        return musicList;
+    }
     /**
      * 根据名字模糊搜索歌曲
      * 或者点击导航栏歌曲执行此方法

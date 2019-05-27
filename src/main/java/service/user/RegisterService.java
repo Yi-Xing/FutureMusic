@@ -76,7 +76,7 @@ public class RegisterService {
                                 }
                             } else {
                                 logger.debug("邮箱：" + mailbox + "的验证码超时");
-                                state.setInformation("邮箱的验证码超时，请重新获得");
+                                state.setInformation("验证码超时");
                             }
                         } else {
                             logger.debug("邮箱：" + mailbox + "请先获取验证码");

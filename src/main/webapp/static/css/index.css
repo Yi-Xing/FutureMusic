@@ -26,6 +26,27 @@ ul li{
 }
 
 /*头部*/
+.search_container{
+    /*position: relative;*/
+    width:70%;
+    height: 30px;
+    float: left;
+    margin-top: 38px;
+    outline-style: none;
+}
+.search_container .search_tips{
+    width: 169px;
+    position: absolute;
+    border: 1px solid rgba(0,0,0,0.1);
+    border-radius: 4px;
+    z-index: 10;
+    background-color: #fff;
+}
+.search_container .search_tips li{
+    line-height: 40px;
+    padding-left: 5px;
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+}
 .header{
     width:100%;
     height: 90px;
@@ -78,16 +99,16 @@ ul li{
 .header_main ul li a{
     color:#000;
 }
-.header_right input{
-    width:70%;
-    height: 30px;
-    float: left;
-    margin-top: 38px;
-    outline-style: none;
-}
+/*.header_right input{*/
+/*    width:70%;*/
+/*    height: 30px;*/
+/*    float: left;*/
+/*    margin-top: 38px;*/
+/*    outline-style: none;*/
+/*}*/
 .header_right button{
-    width:13%;
-    height: 30px;
+    width: 11%;
+    height: 25px;
     float: left;
     margin-top: 38px;
 }
@@ -253,7 +274,7 @@ ul li{
     height: 200px;
 }
 .reg_hed_left{
-    width:350px;
+    width:333px;
     height: 250px;
     float: left;
 }
@@ -277,7 +298,7 @@ ul li{
     width:70px;
     height: 250px;
     float: left;
-    background: #000;
+    background: #fff;
 }
 .reg_main{
     width:400px;
@@ -330,10 +351,13 @@ ul li{
     color:#000;
 }
 .reg_hed_right p{
-    width:70px;
+    width:111px;
     height: 40px;
+    color: #d43f3a;
+    font-size: 13px;
     margin-top:17px;
-    background: red;
+    background: #fff;
+    line-height: 40px;
 }
 .modal_main input{
     width:330px;

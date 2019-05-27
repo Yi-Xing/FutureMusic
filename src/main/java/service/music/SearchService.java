@@ -10,7 +10,6 @@ import util.CookieUtil;
 import javax.annotation.Resource;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
-import java.util.ArrayList;
 import java.util.List;
 /**
  * 对搜索的操作的Service
@@ -24,30 +23,18 @@ public class SearchService {
         MusicMapper musicMapper;
         @Resource(name="MusicVideoMapper")
         MusicVideoMapper musicVideoMapper;
-        @Resource(name="ClassificationMapper")
-        ClassificationMapper classificationMapper;
         @Resource(name = "UserMapper")
         UserMapper userMapper;
-        @Resource(name = "ActivityMapper")
-        ActivityMapper activityMapper;
         @Resource(name = "SongListMapper")
         SongListMapper songListMapper;
-//    /**
-//     * @return List<Music>  返回查找到的歌曲
-//     *                       设置显示条数，也可用于智搜索框能提示，只显示名字
-//     */
-//    public List<Music> selectListMusicRecommend(){
-//        return null;
-//    }
-//    /**
-//     *
-//     * @param singerName 按照指定规则查找指定歌曲
-//     *                封装信息：歌手名字
-//     * @return List<Music>  返回查找到的歌曲
-//     */
-//    public List<Music> selectListMusicBySingerName(String singerName){
-//        return null;
-//    }
+
+    /**
+     *获取搜索记录
+     * @param keyWord 关键字
+     * @param cookies  Cookie数组
+     * @param response 响应
+     * @return String 返回获得的搜索记录
+     */
     public String addSearchRecord(String keyWord, Cookie[] cookies, HttpServletResponse response){
         String searchRecord = keyWord;
         String cookieName = "searchRecordCookie";
@@ -71,7 +58,7 @@ public class SearchService {
     }
     /**
      * 搜索框中鞥提示音乐、专辑、歌单、MV
-     * @param keyWord
+     * @param keyWord 输入的关键字
      * @return List[] 返回搜索到的集合
      */
     public List[] searchListAll(String keyWord){
@@ -90,7 +77,7 @@ public class SearchService {
      * @return List<SongList>  返回查找到的歌曲
      *                       设置显示条数，也可用于智搜索框能提示，只显示名字
      */
-    public List<SongList> selectListSongListByName(String keyWord){
+    private List<SongList> selectListSongListByName(String keyWord){
         SongList songList =new SongList();
         songList.setName(keyWord);
         return songListMapper.selectListSongList(songList);
@@ -116,7 +103,6 @@ public class SearchService {
     }
 
     /**
-     *
      * @param singerName 按照指定规则查找指定歌曲
      *                封装信息：歌手名字
      * @return List<Music>  返回查找到的歌曲
@@ -130,53 +116,5 @@ public class SearchService {
             return null;
         }
         return userList;
-    }
-    /**
-     * @param musicId 查看歌曲详细信息
-     *                封装信息：音乐d
-     * @return Music  返回查找到的歌曲
-     */
-    public Music selectMusicById(String musicId){
-        Integer id = Integer.parseInt(musicId);
-        Music music = new Music();
-        music.setId(id);
-        List<Music> musicList = musicMapper.selectListMusic(music);
-        if (musicList.size()==0){
-            return null;
-        }
-        return musicList.get(0);
-    }
-    /**
-     * 根据专辑id显示专辑的详细信息
-     * @param songListId
-     * @return
-     */
-    public SongList selectSongListById(String songListId){
-        SongList songList = new SongList();
-        int id = Integer.parseInt(songListId);
-        songList.setId(id);
-        List<SongList> songListList = songListMapper.selectListSongList(songList);
-        if(songListList.size()==0){
-            return null;
-        }
-        return songListList.get(0);
-    }
-
-    /**
-     * 查找MV的详细信息
-     *
-     * 出错，可能是因为数据库里没有数据吗
-     * @param musicVideoId
-     * @return MusicVideo
-     */
-    public MusicVideo selectMusicVideoById(String musicVideoId){
-        MusicVideo musicVideo = new MusicVideo();
-        int id = Integer.parseInt(musicVideoId);
-        musicVideo.setId(id);
-        List<MusicVideo> musicVideoList = musicVideoMapper.selectListMusicVideo(musicVideo);
-        if(musicVideoList.size()==0) {
-            return null;
-        }
-        return musicVideoList.get(0);
     }
 }
