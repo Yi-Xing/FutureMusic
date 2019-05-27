@@ -46,6 +46,11 @@ public class Main {
         return "back_system";
     }
 
+    @RequestMapping(value = "/noFind")
+    public String noFind() {
+        return "noFind";
+    }
+
 }
 
 
