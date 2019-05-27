@@ -4,6 +4,7 @@ import entity.Comment;
 import entity.MusicCollect;
 import entity.Play;
 import entity.State;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
 import util.exception.DataBaseException;
 import org.slf4j.Logger;
@@ -26,6 +27,27 @@ public class AboutMusic {
     @Resource(name = "AboutMusicService")
     AboutMusicService aboutMusicService;
     private static final Logger logger = LoggerFactory.getLogger(AboutMusic.class);
+
+    /**
+     * 添加显示用户收藏的所有音乐，显示用户收藏的所有MV
+     * @param type 1表示查找音乐收藏 2表示查找MV收藏
+     */
+    @RequestMapping(value = "/showUserCollectionMusic")
+    public String showUserCollectionMusic(Integer type,Model model, HttpSession session) throws DataBaseException {
+        logger.trace("showUserCollectionMusic方法开始执行");
+        return null;
+    }
+
+    /**
+     * 显示用户购买过的音乐，显示用户购买过的MV
+     * @param type 1表示查找音乐购买 2表示查找MV购买
+     */
+    @RequestMapping(value = "/showUserPurchaseMusic")
+    @ResponseBody
+    public String showUserPurchaseMusic(Integer type,Model model, HttpSession session) throws DataBaseException {
+        logger.trace("showUserPurchaseMusic方法开始执行");
+        return null;
+    }
 
     /**
      * 收藏和取消收藏音乐或MV,ajax

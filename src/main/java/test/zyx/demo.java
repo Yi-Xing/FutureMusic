@@ -11,6 +11,7 @@ import mapper.UserMapper;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestMapping;
 import util.ConstantUtil;
 import util.FileUpload;
@@ -27,11 +28,10 @@ import java.util.List;
 @Controller
 public class demo {
 
-    @Resource(name = "UserMapper")
-    UserMapper userMapper;
     @Resource(name = "FileUpload")
     FileUpload fileUpload;
-
+    @Resource(name = "UserMapper")
+    UserMapper userMapper;
 
     @RequestMapping(value = "/demo")
     public String test(String text,HttpServletRequest request) throws IOException {
@@ -40,17 +40,27 @@ public class demo {
         return null;
     }
 
+    @Transactional
     @RequestMapping(value = "/aaaazyx")
-    public void aaaazyx() {
-        System.out.println(222);
+    public String aaaazyx() {
+        User user=new User();
+        user.setId(1);
+        user.setName("aaaa");
+        userMapper.updateUser(user);
+        int a=2/0;
+        user.setName("我是你爸爸");
+        userMapper.updateUser(user);
+        System.out.println("我执行完了");
+        return "index";
     }
 
     public static void main(String[] args) {
+
 //        SimpleDateFormat sdFormat = new SimpleDateFormat("yyyy年MM月dd日 HH时mm分ss秒");
 //        Calendar calendar = Calendar.getInstance();
 //        calendar.setTime(new Date());
 //        System.out.println(sdFormat.format(calendar.getTime()));
-//        calendar.add(Calendar.MINUTE, 30);
+//        calendar.add(Calendar.MONTH, 30);
 //        System.out.println(sdFormat.format(calendar.getTime()));
 //        System.out.println("2860482971@qq.com".matches("[a-zA-z_0-9]+@[a-zA-z_0-9]{2,6}(\\.[a-zA-z_0-9]{2,3})+"));
 //        // 对密码进行加密
