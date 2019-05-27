@@ -33,9 +33,13 @@ import java.text.ParseException;
  *            8、活动id
  *            9、分类的id
  *  可更改
+ * 查询：指定音乐或MV被收藏的次数
+ * 查询：指定音乐或MV被播放的次数
+ *       指定专辑中的所有音乐被播放的次数
  * @author 5月22日 张易兴创建
  */
 @Controller
+@RequestMapping(value = "/administrators")
 public class MusicVideoInformation {
     private static final Logger logger = LoggerFactory.getLogger(ActivityInformationService.class);
     @Resource(name = "MusicVideoInformationService")
@@ -65,5 +69,26 @@ public class MusicVideoInformation {
     @ResponseBody
     public State modifyMusicVideo(@RequestBody MusicVideo musicVideo, HttpServletRequest request) throws DataBaseException , IOException{
         return musicVideoInformationService.modifyMusicVideo(musicVideo,request);
+    }
+
+    /**
+     * 返回指定音乐或MV被收藏的次数
+     * @param id 音乐或MV的id
+     * @param type 1表示是音乐收藏  2表示是MV的收藏
+     */
+    @RequestMapping(value = "/showMusicCollect")
+    public String showMusicCollect(Integer id, Integer type,Model model) throws ParseException {
+        return musicVideoInformationService.showMusicCollect(id,type,model);
+    }
+
+    /**
+     * 指定音乐或MV的播放量
+     * 指定专辑中的所有音乐被播放的次数
+     * @param id 音乐或MV或专辑的id
+     * @param type 1、音乐  2、MV  3、专辑
+     */
+    @RequestMapping(value = "/showPlay")
+    public String showPlay(Integer id,Integer type, Model model) {
+        return musicVideoInformationService.showPlay(id,type,model);
     }
 }

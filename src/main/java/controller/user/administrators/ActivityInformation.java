@@ -33,6 +33,7 @@ import java.text.ParseException;
  * @author 5月20日 张易兴创建
  */
 @Controller
+@RequestMapping(value = "/administrators")
 public class ActivityInformation {
     private static final Logger logger = LoggerFactory.getLogger(ActivityInformation.class);
     @Resource(name = "ActivityInformationService")
@@ -55,6 +56,7 @@ public class ActivityInformation {
     @RequestMapping(value = "/showActivity")
     public String showActivity(String[] condition,Integer pageNum, Model model) throws ParseException {
         logger.trace("showActivity方法开始执行");
+
         return activityInformationService.showActivity(condition,pageNum,model);
     }
     /**

@@ -11,6 +11,7 @@ import mapper.UserMapper;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Controller;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestMapping;
 import util.ConstantUtil;
@@ -28,30 +29,46 @@ import java.util.List;
 @Controller
 public class demo {
 
-    @Resource(name = "FileUpload")
-    FileUpload fileUpload;
+    @Resource(name = "Flie")
+    Flie flie;
     @Resource(name = "UserMapper")
     UserMapper userMapper;
 
-    @RequestMapping(value = "/demo")
-    public String test(String text,HttpServletRequest request) throws IOException {
-        System.out.println(text);
-        fileUpload.userHeadPortrait(request);
+    @RequestMapping(value = "/test")
+    public String test()  {
+        System.out.println(flie);
+        flie.zyx();
+//        System.out.println(text);
+//        fileUpload.userHeadPortrait(request);
+        System.out.println("啊哈哈哈");
         return null;
     }
 
-    @Transactional
-    @RequestMapping(value = "/aaaazyx")
+//    @RequestMapping(value = "/a")
+    public String aa(){
+        return aaaazyx();
+    }
+//    @Transactional
     public String aaaazyx() {
+        System.out.println("开始");
+        b();
+        System.out.println("异常准备开始");
+        int a=2/0;
+        a();
+        System.out.println("我执行完了");
+        return "index";
+    }
+    private void a(){
+        User user=new User();
+        user.setId(1);
+        user.setName("我是你");
+        userMapper.updateUser(user);
+    }
+    private void b(){
         User user=new User();
         user.setId(1);
         user.setName("aaaa");
         userMapper.updateUser(user);
-        int a=2/0;
-        user.setName("我是你爸爸");
-        userMapper.updateUser(user);
-        System.out.println("我执行完了");
-        return "index";
     }
 
     public static void main(String[] args) {

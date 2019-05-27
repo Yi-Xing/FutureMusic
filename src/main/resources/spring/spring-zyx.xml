@@ -31,11 +31,51 @@
     <bean class="util.exception.ExceptionResolver" />
 
 
+    <!--配置平台事务管理器-->
+    <bean id="dataSourceTransactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="source"/>
+    </bean>
+    <!--配置事务-->
+    <tx:advice  transaction-manager="dataSourceTransactionManager" id="transactionInterceptor">
+        <!--配置事务传播性，隔离级别以及超时回滚等问题 -->
+        <tx:attributes>
+            <tx:method name="*" propagation="REQUIRED"   />
+        </tx:attributes>
+    </tx:advice>
+
+    <!--配置事务的切面-->
+    <aop:config>
+        <aop:pointcut id="pointcut" expression="execution(* test.zyx.Flie.zyx(..))"/>
+        <aop:advisor advice-ref="transactionInterceptor" pointcut-ref="pointcut"/>
+    </aop:config>
+
+    <!--注解事务-->
+<!--    <tx:annotation-driven transaction-manager="dataSourceTransactionManager"/>-->
+
+
     <!--拦截器-->
     <mvc:interceptors>
         <mvc:interceptor>
             <mvc:mapping path="/**"/>
             <bean class="util.interceptor.LoginInterceptor"/>
+        </mvc:interceptor>
+        <mvc:interceptor>
+            <!--管理员可以增删改-->
+            <mvc:mapping path="/administrators/add*"/>
+            <bean class="util.interceptor.AddInterceptor"/>
+        </mvc:interceptor>
+        <mvc:interceptor>
+            <mvc:mapping path="/administrators/delete*"/>
+            <bean class="util.interceptor.DeleteInterceptor"/>
+        </mvc:interceptor>
+        <mvc:interceptor>
+            <mvc:mapping path="/administrators/modify*"/>
+            <bean class="util.interceptor.ModifyInterceptor"/>
+        </mvc:interceptor>
+        <mvc:interceptor>
+            <!--客服以上的权限可以查看-->
+            <mvc:mapping path="/administrators/Show*"/>
+            <bean class="util.interceptor.ShowInterceptor"/>
         </mvc:interceptor>
     </mvc:interceptors>
 </beans>

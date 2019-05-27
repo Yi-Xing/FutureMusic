@@ -15,6 +15,7 @@ import java.util.List;
 
 /**
  * 评论
+ *
  * @author 5月22日 张易兴创建
  */
 @Service(value = "CommentInformationService")
@@ -24,24 +25,25 @@ public class CommentInformationService {
     CommentMapper commentMapper;
     @Resource(name = "IdExistence")
     IdExistence idExistence;
+
     /**
      * 显示评论信息
      *
-     * @param type    选择的类型  1：音乐，2：MV，3：专辑，4：用户
+     * @param type    选择的类型  1：音乐，2：MV，3：专辑，4：用户 5：id
      * @param id      对应类型的id
      * @param pageNum 表示当前第几页
      */
     public String showComment(Integer type, Integer id, Integer pageNum, Model model) {
         Comment comment = new Comment();
-        if(type!=null){
-        if (type >0 && type < 4) {
-            comment.setType(type);
-            comment.setMusicId(id);
-        } else if(type ==4) {
-            comment.setUserId(id);
-        }else if(type ==5){
-            comment.setId(id);
-        }
+        if (type != null) {
+            if (type > 0 && type < 4) {
+                comment.setType(type);
+                comment.setMusicId(id);
+            } else if (type == 4) {
+                comment.setUserId(id);
+            } else if (type == 5) {
+                comment.setId(id);
+            }
         }
         //在查询之前传入当前页，然后多少记录
         PageHelper.startPage(pageNum, 8);
@@ -53,18 +55,4 @@ public class CommentInformationService {
         return null;
     }
 
-    /**
-     * 显示指定id的评论信息
-     *
-     * @param id 评论的id
-     */
-    public String selectComment(Integer id,Model model){
-        Comment comment=idExistence.isCommentId(id);
-        if (comment != null) {
-            model.addAttribute("Comment", comment);
-        } else {
-            model.addAttribute("state", "没有指定id的评论");
-        }
-        return null;
-    }
 }

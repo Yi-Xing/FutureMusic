@@ -31,6 +31,7 @@ import javax.servlet.http.HttpSession;
  * @author 5月22日 张易兴创建
  */
 @Controller
+@RequestMapping(value = "/administrators")
 public class MailInformation {
     private static final Logger logger = LoggerFactory.getLogger(ActivityInformationService.class);
     @Resource(name = "MailInformationService")

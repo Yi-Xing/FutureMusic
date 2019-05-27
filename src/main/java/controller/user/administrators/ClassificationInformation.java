@@ -23,6 +23,7 @@ import javax.annotation.Resource;
  * @author 5月20日 张易兴创建
  */
 @Controller
+@RequestMapping(value = "/administrators")
 public class ClassificationInformation {
     private static final Logger logger = LoggerFactory.getLogger(ClassificationInformation.class);
     @Resource(name = "ClassificationInformationService")
@@ -40,9 +41,9 @@ public class ClassificationInformation {
      * 显示指定id的分类信息
      * @param id 分类的id
      */
-    @RequestMapping(value = "/selectClassification")
-    public String selectClassification(Integer id,Model model){
-        return classificationInformationService.selectClassification(id,model);
+    @RequestMapping(value = "/showSelectClassification")
+    public String showSelectClassification(Integer id,Model model){
+        return classificationInformationService.showSelectClassification(id,model);
     }
     /**
      * 添加分类

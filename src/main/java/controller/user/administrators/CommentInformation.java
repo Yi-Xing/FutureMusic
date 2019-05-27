@@ -1,12 +1,17 @@
 package controller.user.administrators;
 
+import entity.State;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import service.user.administrators.ActivityInformationService;
 import service.user.administrators.CommentInformationService;
+import service.user.consumer.AboutMusicService;
+import util.exception.DataBaseException;
 
 import javax.annotation.Resource;
 import java.text.ParseException;
@@ -21,11 +26,13 @@ import java.text.ParseException;
  * @author 5月22日 张易兴创建
  */
 @Controller
+@RequestMapping(value = "/administrators")
 public class CommentInformation {
     private static final Logger logger = LoggerFactory.getLogger(ActivityInformationService.class);
     @Resource(name = "CommentInformationService")
     CommentInformationService commentInformationService;
 
+    AboutMusicService aboutMusicService;
     /**
      * 显示评论信息
      *
@@ -38,21 +45,13 @@ public class CommentInformation {
         return commentInformationService.showComment(type, id, pageNum, model);
     }
 
-//    /**
-//     * 显示指定id的评论信息
-//     *
-//     * @param id 评论的id
-//     */
-//    @RequestMapping(value = "/selectComment")
-//    public String selectComment(Integer id, Model model) {
-//        return commentInformationService.selectComment(id, model);
-//    }
 
-//    /**
-//     * 删除指定评论，也要删除该评论的子评论
-//     */
-//    @RequestMapping(value = "/deleteComment")
-//    public State deleteComment(Integer id) throws DataBaseException {
-//        return aboutMusicService.deleteComment(id);
-//    }
+    /**
+     * 删除指定评论，也要删除该评论的子评论
+     */
+    @RequestMapping(value = "/deleteComment")
+    @ResponseBody
+    public State deleteComment(Integer id) throws DataBaseException {
+        return aboutMusicService.deleteComment(id);
+    }
 }
