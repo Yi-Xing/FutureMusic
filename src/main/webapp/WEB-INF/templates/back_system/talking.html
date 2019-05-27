@@ -5,21 +5,15 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>后台管理系统</title>
+    <title>评论</title>
     <link rel="stylesheet" href="css/bootstrap.css" th:href="@{/static/css/bootstrap.css}">
     <link rel="stylesheet" href="css/back_system.css"th:href="@{/static/css/back_system.css}" >
-    <style type="text/css">
-        @font-face {
-            font-family: 'webfont';
-        url('//at.alicdn.com/t/webfont_oogj9rdy3g8.ttf') format('truetype'), /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/
-        }
-    </style>
 </head>
 <body>
 <div class="total">
     <!--头部-->
     <div class="header">
-        <a class="header_brand " href="index.html">
+        <a class="header_brand " href="../../../../../target/FutureMusic/WEB-INF/templates/index.html">
             <span class="had_br_main"><img src="img/音乐.png"  th:src="@{/static/img/音乐.png}"alt=""><span class="web-font">futurMusic</span></span>
         </a>
         <div class="menu_toggle_button">
@@ -36,20 +30,17 @@
                 <span></span>
             </div>
             <ul>
-                <li>fdfdfd</li>
-                <li>fdfd</li>
-                <li>fd</li>
-                <li>fd</li>
-                <li>fdfdfd</li>
-                <li>fdfd</li>
-                <li>fd</li>
-                <li>fd</li>
-                <li>fdfdfd</li>
-                <li>fdfd</li>
-                <li>fd</li>
-                <li></li>
+                <li><a href="../../../../../target/FutureMusic/WEB-INF/templates/back_system.html">用户</a></li>
+                <li><a href="../../../../../target/FutureMusic/WEB-INF/templates/Email.html">邮箱</a></li>
+                <li><a href="../../../../../target/FutureMusic/WEB-INF/templates/order.html">订单</a></li>
+                <li><a href="back_music.html">音乐</a></li>
+                <li><a href="../../../../../target/FutureMusic/WEB-INF/templates/song_list.html">歌单/专辑</a></li>
+                <li><a href="back_MV.html">MV</a></li>
+                <li><a href="talking.html">评论</a></li>
+                <li><a href="../../../../../target/FutureMusic/WEB-INF/templates/classification.html">分类</a></li>
+                <li><a href="active.html">活动</a></li>
+                <li><a href=""></a></li>
             </ul>
-
         </div>
         <div class="main_right">
             <div class="main_right_header">
@@ -58,34 +49,42 @@
                         <input type="text" placeholder="id">
                         <input type="text"placeholder="邮箱">
                         <input type="text" placeholder="名字">
-                        <input type="text" placeholder="等级">
-                        <input type="text" placeholder="被举报次数及以上">
+                        <sapn>等级</sapn><select name="等级">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3" selected>3</option>
+                        <option value="4">4</option>
+                    </select>
+                        <span>被举报次数</span><select name="被举报次数" placeholder="bei">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3" selected>3</option>
+                        <option value="4">4</option>
+                    </select>
                         <button type="submit">
                             <img src="img/搜索--1.png" th:src="@{/static/img/搜索--1.png}" alt=""></button>
                     </form>
                 </div>
             </div>
-<!--        模态框    -->
+            <!--        模态框    -->
             <!-- 模态框（Modal） -->
             <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
-                        <div class="modal-header">
+                        <div class="modal-header" style="text-align: center">
+                            <h4 class="modal-title" id="myModalLabel">
+                                查看信息
+                            </h4>
                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
                                 &times;
                             </button>
-                            <h4 class="modal-title" id="myModalLabel">
-
-                            </h4>
                         </div>
                         <div class="modal-body">
 
                         </div>
                         <div class="modal-footer">
-                            <button type="button"  data-dismiss="modal">关闭
-                            </button>
-                            <button type="button" >
-                                commit
+                            <button type="button"  data-dismiss="modal" style="width:30%; height: 40px; background: #BA55D3;border:none;outline: none;box-shadow: none;">
+                                确定
                             </button>
                         </div>
                     </div><!-- /.modal-content -->
@@ -103,7 +102,7 @@
                             </p>
                         </div>
                         <div class="modal-body" style="width:80%;display: flex;flex-direction: column;align-items: center">
-                            <form action="">
+                            <form action=""  >
                                 <p>等级：<select name="等级">
                                     <option value="1">1</option>
                                     <option value="2">2</option>
@@ -120,10 +119,11 @@
                                     天
                                 </p>
                                 <p>
-                                    余额<input type="text" placeholder="余额">
+                                    余额<input type="text" placeholder="余额" id="balance">
                                 </p>
-                                <p>举报<input type="text" placeholder="举报次数">次
+                                <p>举报<input type="text" placeholder="举报次数" id="warn">次
                                 </p>
+                                <p id="sh"></p>
                                 <div class="modal_footer">
                                     <input type="reset"  style="width:40%; height: 40px; background: #BA55D3;border:none;outline: none;box-shadow: none" name="button" id="button" value="reset"/>
                                     <input type="submit" style="width:40%; height: 40px; background: #BA55D3;border:none;outline: none;box-shadow: none"  data-dismiss="modal" value="commit"/>
@@ -138,7 +138,7 @@
                     </div><!-- /.modal-content -->
                 </div><!-- /.modal -->
             </div>
-                        <!-- 模态框（Modal_2） -->
+            <!-- 模态框（Modal_2） -->
             <div class="modal fade" id="myModal_2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel-2" aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content" style="width:300px;margin-top:200px;">
@@ -160,7 +160,7 @@
                     </div><!-- /.modal-content -->
                 </div><!-- /.modal -->
             </div>
-<!--            重置成功 modal——3-->
+            <!--            重置成功 modal——3-->
             <div class="modal fade" id="myModal_3" tabindex="-1" role="dialog" aria-labelledby="myModalLabel_3" aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
@@ -189,7 +189,7 @@
             <!--            -->
             <div class="main_rh_main" >
                 <table class="" style="overflow-x: auto;width:1540px;">
-<!--                    content table table-hover-->
+                    <!--                    content table table-hover-->
                     <thead>
                     <tr>
                         <th>用户</th>
@@ -284,7 +284,7 @@
                         <td> <div class="hid_show"  title="鼠标悬停"  onmouseover="overShow(this,event)" onmouseout="outHide()">
                             1234567891011121314151617181910
                         </div>
-<!--                            <div id="showDiv"></div></td>-->
+                            <!--                            <div id="showDiv"></div></td>-->
                         <td><div class="hid_show"  onmouseover="overShow(this,event)" onmouseout="outHide()">
                             1234567891011121314151617181910
                         </div></td>
@@ -298,18 +298,18 @@
                         <td>0</td>
                         <td>
                             <button data-toggle="modal" data-target="#myModal">
-                            查看
-                        </button>
+                                查看
+                            </button>
                         </td>
                         <td>
                             <button data-toggle="modal" data-target="#myModal">
-                            查看
-                        </button>
+                                查看
+                            </button>
                         </td>
                         <td>
                             <button data-toggle="modal" data-target="#myModal">
-                            查看
-                        </button>
+                                查看
+                            </button>
                         </td>
                         <td>
                             <button data-toggle="modal" data-target="#myModal">
@@ -581,21 +581,21 @@
 
             </div>
             <div class="main_rh_footer">
-<!--                分页-->
-            <div class="zzsc">
-<!--                currentpage="1" numbercount="**"-->
-                <ul class="page" id="page" pagelistcount="10" maxshowpageitem="5">
-                    <li class="pageItemDisable" page-rel="firstpage" page-data="1">首页</li>
-                    <li class="pageItemDisable" page-rel="prepage" page-data="0">&lt;上一页</li>
-                    <li class="pageItemActive" page-rel="itempage" page-data="1">1</li>
-                    <li class="pageItem" page-rel="itempage" page-data="2">2</li>
-                    <li class="pageItem" page-rel="itempage" page-data="3">3</li>
-                    <li class="pageItem" page-rel="itempage" page-data="4">4</li>
-                    <li class="pageItem" page-rel="itempage" page-data="5">5</li>
-                    <li class="pageItem" page-rel="nextpage" page-data="2">下一页&gt;</li>
-                    <li class="pageItem" page-rel="lastpage" page-data="8">尾页</li>
-                </ul>
-            </div>
+                <!--                分页-->
+                <div class="zzsc">
+                    <!--                currentpage="1" numbercount="**"-->
+                    <ul class="page" id="page" pagelistcount="10" maxshowpageitem="5">
+                        <li class="pageItemDisable" page-rel="firstpage" page-data="1">首页</li>
+                        <li class="pageItemDisable" page-rel="prepage" page-data="0">&lt;上一页</li>
+                        <li class="pageItemActive" page-rel="itempage" page-data="1">1</li>
+                        <li class="pageItem" page-rel="itempage" page-data="2">2</li>
+                        <li class="pageItem" page-rel="itempage" page-data="3">3</li>
+                        <li class="pageItem" page-rel="itempage" page-data="4">4</li>
+                        <li class="pageItem" page-rel="itempage" page-data="5">5</li>
+                        <li class="pageItem" page-rel="nextpage" page-data="2">下一页&gt;</li>
+                        <li class="pageItem" page-rel="lastpage" page-data="8">尾页</li>
+                    </ul>
+                </div>
             </div>
         </div>
     </div>

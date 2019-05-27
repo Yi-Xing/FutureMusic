@@ -43,8 +43,47 @@ public class Main {
 
     @RequestMapping(value = "/system")
     public String back_system() {
-        return "back_system";
+        return "back_system/back_system";
     }
+
+
+    @RequestMapping(value = "/back_music")
+    public String back_music() {
+        return "back_system/back_music";
+    }
+
+
+    @RequestMapping(value = "/back_MV")
+    public String back_MV() {
+        return "back_system/back_MV";
+    }
+
+    @RequestMapping(value = "/classification")
+    public String classification() {
+        return "back_system/classification";
+    }
+
+    @RequestMapping(value = "/Email")
+    public String Email(){
+        return "back_system/Email";
+    }
+
+    @RequestMapping(value = "/order")
+    public String order(){
+        return "back_system/order";
+    }
+
+    @RequestMapping(value = "/song_list")
+    public String song_list (){
+        return "back_system/song_list";
+    }
+
+    @RequestMapping(value = "/talking")
+    public String talking() {
+        return "back_system/talking";
+    }
+
+
 
 }
 
