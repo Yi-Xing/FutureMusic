@@ -59,8 +59,7 @@ public class SafetyCenter {
      * @return State 状态码为1时刷新网页
      */
     @RequestMapping(value = "/cancelBinding")
-    @ResponseBody
-    public State cancelBinding(HttpServletRequest request, HttpServletResponse response,HttpSession session) {
+    public String cancelBinding(HttpServletRequest request, HttpServletResponse response,HttpSession session) {
         logger.trace("bindingMailbox方法开始执行");
         return safetyCenterService.cancelBinding(request,response,session);
     }
@@ -129,7 +128,6 @@ public class SafetyCenter {
      * 第二步，验证账号的密保是否正确
      * 第三步，调用设置密保
      *
-     * @param mailbox  需要验证的邮箱
      * @param gender   密保——性别
      * @param age      密保——年龄
      * @param birthday 密保——出生日期
@@ -137,9 +135,9 @@ public class SafetyCenter {
      */
     @RequestMapping(value = "/verificationSecretProtection")
     @ResponseBody
-    public State verificationSecretProtection(String mailbox, String gender, String age, String birthday, String address) {
+    public State verificationSecretProtection( String gender, String age, String birthday, String address,HttpSession session) {
         logger.trace("verificationSecretProtection方法开始执行");
-        return secretProtectionService.verificationSecretProtection(mailbox, gender, age, birthday, address);
+        return secretProtectionService.verificationSecretProtection( gender, age, birthday, address,session);
     }
 
 }

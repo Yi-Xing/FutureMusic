@@ -1,9 +1,6 @@
 package service.user.consumer;
 
 import entity.*;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 import service.user.IdExistence;
 import service.user.SpecialFunctions;
 import util.exception.DataBaseException;
@@ -37,7 +34,7 @@ public class AboutMusicService {
     @Resource(name = "SpecialFunctions")
     SpecialFunctions specialFunctions;
     @Resource(name = "Existence")
-    Existence existence;
+    ExistenceService existenceService;
     @Resource(name = "MusicMapper")
     MusicMapper musicMapper;
     @Resource(name = "MusicVideoMapper")
@@ -107,7 +104,7 @@ public class AboutMusicService {
     public State collectionMusic(MusicCollect musicCollectInformation, HttpSession session) throws DataBaseException {
         //得到会话上的用户
         User user = specialFunctions.getUser(session);
-        MusicCollect musicCollect = existence.isUserCollectionMusic(user.getId(), musicCollectInformation.getMusicId(), musicCollectInformation.getType());
+        MusicCollect musicCollect = existenceService.isUserCollectionMusic(user.getId(), musicCollectInformation.getMusicId(), musicCollectInformation.getType());
         if (musicCollect != null) {
             // 如果不为null表示已经收藏则需要用取消收藏
             if (musicCollectMapper.deleteMusicCollect(musicCollect.getId()) < 1) {
@@ -143,7 +140,7 @@ public class AboutMusicService {
     public State musicPlay(Play playInformation, HttpSession session) throws DataBaseException {
         //得到会话上的用户
         User user = specialFunctions.getUser(session);
-        Play play = existence.isUserMusicPlay(user.getId(), playInformation.getMusicId(), playInformation.getType());
+        Play play = existenceService.isUserMusicPlay(user.getId(), playInformation.getMusicId(), playInformation.getType());
         // 先判断该用户是否听过该音乐或MV，如果听过只需要更新时间
         if (play != null) {
             // 如果不为null表示已经播放过
@@ -309,7 +306,7 @@ public class AboutMusicService {
     public State deleteComment(Integer id) throws DataBaseException {
         // 判断是否有子评论，返回0
         State state = new State();
-        int replyId = existence.isComment(id);
+        int replyId = existenceService.isComment(id);
         if (replyId == 0) {
             state.setState(1);
             return state;
