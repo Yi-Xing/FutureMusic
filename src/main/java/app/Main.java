@@ -77,6 +77,17 @@ public class Main {
     public String email() {
         return "back_system/Email";
     }
+
+    @RequestMapping(value = "/order")
+    public String order() {
+        return "back_system/order";
+    }
+
+
+
 }
+
+
+
 
 
