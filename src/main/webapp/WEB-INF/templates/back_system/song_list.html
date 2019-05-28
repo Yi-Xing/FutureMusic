@@ -5,11 +5,10 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>activities</title>
+    <title>song_list</title>
     <link rel="stylesheet" href="css/bootstrap.css" th:href="@{/static/css/bootstrap.css}">
     <link rel="stylesheet" href="css/back_system.css"th:href="@{/static/css/back_system.css}" >
-    <link rel="stylesheet" href="css/Email.css"th:href="@{/static/css/Email.css}" >
-    <link rel="stylesheet" href="css/Activities.css"th:href="@{/static/css/Activities.css}" >
+    <link rel="stylesheet" href="css/song_list.css"th:href="@{/static/css/song_list.css}" >
 </head>
 <body>
 <div class="total">
@@ -18,42 +17,40 @@
     <div class="main">
         <!--        侧边栏-->
         <div   th:replace="back_system/back_side::html"></div>
-
         <div class="main_right">
             <div class="main_right_header">
                 <div class="mrh">
                     <form action="">
-                        <input type="text" placeholder="id">
-                        <input type="text"placeholder="标题">
-                        <input type="text" placeholder="截止日期">
-                        <select name="对象" style="margin: 0 8px;">
-                            <option value="已发送">关于音乐</option>
-                            <option value="未发送">关于vip</option>
-                            <option value="标记">关于专辑</option>
+                        <input type="text" placeholder="专辑id">
+                        <input type="text"placeholder="活动 id">
+                        <input type="text"placeholder="用户 id">
+                        <input type="text"placeholder="被收藏量">
+                        <select name="分类对象" style="margin: 0 8px;">
+                            <option value="已发送">音乐</option>
+                            <option value="未发送">vip</option>
+                            <option value="标记">专辑</option>
                         </select>
-                        <button type="submit">
+                        <button type="submit" style="width:7%;" >
                             <img src="img/搜索--1.png" th:src="@{/static/img/搜索--1.png}" alt=""></button>
                     </form>
                 </div>
             </div>
-            <!--        模态框    -->
-            <!-- 模态框（Modal） -->
             <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content" style="margin-top: 200px">
                         <div class="modal-header" style="text-align: center">
-                            <h4 class="modal-title" id="myModalLabel">
-                                （活动名称）
+                            <h4 class="modal-title" id="myModalLabel" style="height:9px;">
+                                专辑名称
                             </h4>
                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
                                 &times;
                             </button>
                         </div>
                         <div class="modal-body" style="height: 250px;">
-                            <div class="activities_img">
+                            <div class="activities_img2">
                                 插入图片
                             </div>
-                            <div class="activities_introduse">
+                            <div class="activities_introduse2">
                                 文字介绍
                             </div>
                         </div>
@@ -68,66 +65,78 @@
             <!--            modal_6新增信息-->
             <div class="modal fade" id="myModal_6" tabindex="-1" role="dialog" aria-labelledby="myModalLabel-1" aria-hidden="true">
                 <div class="modal-dialog">
-                    <div class="modal-content" style="width:300px;">
+                    <div class="modal-content" style="width:500px;">
                         <div class="modal-header" style="color:#BA55D3;display: flex" >
-                            <h4>新增活动</h4>
+                            <h4>新增专辑</h4>
                             <p type="button" class="close" data-dismiss="modal" aria-hidden="true">
                                 &times;
                             </p>
                         </div>
-                        <div class="modal-body_1" style="width:80%;display: flex;flex-direction: column;align-items: center">
-                            <form action="">
-                                <input type="text"  placeholder="活动ID" >
-                                <input type="text"  placeholder="开始时间" >
-                                <input type="text"  placeholder="结束时间" >
-                                <input type="text"  placeholder="" >
-                                <li></li>
-                            </form>
-                            <table  style="background:#000;" id="tip1"></table>
+                        <div class="modal-body" style="width:100%;display: flex;flex-direction: row;align-items: center">
+                         <div class="modal_body_left">
+                             <input type="text"  placeholder="专辑">
+                             <input type="text"  placeholder="分类">
+                             <input type="text"  placeholder="活动">
+                             <input type="text"  placeholder="创建时间">
+                             <table  style="background:#000;"></table>
+                         </div>
+                         <div class="modal_body_right" style="display: flex;flex-direction: column">
+                                请插入专辑封面
+                             <div class="activities_img" id="image-wrap" >
+
+                             </div>
+                             <div class=""><input type="file" id="file" style="width: 230px;height: 30px;border: none;"></div>
+                             <div class="activities_introduse">
+                               <textarea rows="5" cols="15">请描述本专辑</textarea>
+
+                             </div>
+                        </div>
+                        </div>
                             <div class="modal_footer">
-                                <input type="submit" data-toggle="modal" data-target="#myModal_5"  data-dismiss="modal" value="commit"/>
+                                <input type="submit" data-toggle="modal" data-target="#myModal_5" style="width:54%; height: 40px; background: #BA55D3;border:none;outline: none;margin-left: 368px;box-shadow: none"  data-dismiss="modal" value="commit"/>
                             </div>
-                            </form>
+
+<!--                            </form>-->
                         </div>
                     </div><!-- /.modal-content -->
                 </div><!-- /.modal -->
-            </div>
 
 
-            <!-- 模态框（Modal_1） -->
+
             <div class="modal fade" id="myModal_1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel-1" aria-hidden="true">
                 <div class="modal-dialog">
-                    <div class="modal-content" style="width:300px;">
+                    <div class="modal-content" style="width:500px;">
                         <div class="modal-header" style="color:#BA55D3;display: flex" >
-                            <h4>修改</h4>
+                            <h4>修改专辑</h4>
                             <p type="button" class="close" data-dismiss="modal" aria-hidden="true">
                                 &times;
                             </p>
                         </div>
-                        <div class="modal-body" style="width:80%;display: flex;flex-direction: column;align-items: center">
+                        <div class="modal-body" style="width:100%;display: flex;flex-direction: row;align-items: center">
+                            <div class="modal_body_left">
+                                <input type="text"  placeholder="专辑">
+                                <input type="text"  placeholder="分类">
+                                <input type="text"  placeholder="活动">
+                                <input type="text"  placeholder="创建时间">
+                                <table  style="background:#000;"></table>
+                            </div>
+                            <div class="modal_body_right" style="display: flex;flex-direction: column">
+                                请插入专辑封面
+                                <div class="activities_img" id="image-wrap2" >
 
-                            <form action=""  >
-                                <p>
-                                    活动标题：<input type="text" class="input_modal_1" placeholder="活动标题">
-                                </p>
-                                <p>
-                                    折扣优惠：<input type="text" class="input_modal_1" placeholder="折扣百分比">
-                                </p>
-                                <p>
-                                    开始时间：<input type="text"class="input_modal_1"  placeholder="开始时间">
+                                </div>
+                                <div class=""><input type="file" id="file2" style="width: 230px;height: 30px;border: none;"></div>
+                                <div class="activities_introduse">
+                                    <textarea rows="5" cols="15">请描述本专辑</textarea>
 
-                                </p>
-                                <p>
-                                    结束时间：<input type="text"class="input_modal_1"  placeholder="结束时间">
-                                </p>
-                                <p>  </p>
-
-                            </form>
+                                </div>
+                            </div>
                         </div>
                         <div class="modal_footer">
-                            <input type="submit" data-toggle="modal" data-target="#myModal_4" style=" width: 52%; height: 40px;margin-top: -3px; background: #BA55D3;border: none; outline: none;box-shadow: none;padding-left: 0px;border-radius: 5px;margin-left: 149px;"  data-dismiss="modal" value="commit"/>
+                            <input type="submit" data-toggle="modal" data-target="#myModal_5" style="width:54%; height: 40px; background: #BA55D3;border:none;outline: none;margin-left: 368px;box-shadow: none"  data-dismiss="modal" value="commit"/>
                         </div>
-                        </form>
+
+                        <!--                            </form>-->
                     </div>
                 </div><!-- /.modal-content -->
             </div><!-- /.modal -->
@@ -238,8 +247,6 @@
             </div>
 
 
-
-
             <!--            -->
             <div class="main_rh_button">
                 <button data-toggle="modal" data-target="#myModal_6" title="添加邮箱">
@@ -247,17 +254,16 @@
                 </button>
             </div>
             <div class="main_rh_main" >
-
-                <table class="">
+                <table class="" style="overflow-x: auto;">
                     <!--                    content table table-hover-->
                     <thead>
                     <tr>
-                        <th>ID</th>
-                        <th>折扣百分比</th>
-                        <th>对象</th>
-                        <th>开始时间</th>
-                        <th>结束时间</th>
-                        <th>查看</th>
+                        <th>专辑</th>
+                        <th>用户</th>
+                        <th>分类</th>
+                        <th>创建时间</th>
+                        <th>活动</th>
+                        <th>详情</th>
                         <th></th>
                     </tr>
                     </thead>
@@ -267,12 +273,12 @@
                         <td>560001</td>
                         <td>Tanmay</td>
                         <td>Bangalore</td>
-                        <td>Bangalore</td>
+                        <td>560001</td>
                         <td> <button data-toggle="modal" data-target="#myModal">
                             查看
                         </button></td>
                         <td>
-                            <i data-toggle="modal" data-target="#myModal_1" title="修改">
+                            <i data-toggle="modal" data-target="#myModal_1" title="编辑">
                                 <span class="glyphicon glyphicon-edit"></span>
                             </i>
                             <i data-toggle="modal" data-target="#myModal_2" title="删除">
@@ -286,12 +292,12 @@
                         <td>560001</td>
                         <td>Tanmay</td>
                         <td>Bangalore</td>
-                        <td>Bangalore</td>
+                        <td>560001</td>
                         <td> <button data-toggle="modal" data-target="#myModal">
                             查看
                         </button></td>
                         <td>
-                            <i data-toggle="modal" data-target="#myModal_1" title="修改">
+                            <i data-toggle="modal" data-target="#myModal_1" title="编辑">
                                 <span class="glyphicon glyphicon-edit"></span>
                             </i>
                             <i data-toggle="modal" data-target="#myModal_2" title="删除">
@@ -305,12 +311,12 @@
                         <td>560001</td>
                         <td>Tanmay</td>
                         <td>Bangalore</td>
-                        <td>Bangalore</td>
+                        <td>560001</td>
                         <td> <button data-toggle="modal" data-target="#myModal">
                             查看
                         </button></td>
                         <td>
-                            <i data-toggle="modal" data-target="#myModal_1" title="修改">
+                            <i data-toggle="modal" data-target="#myModal_1" title="编辑">
                                 <span class="glyphicon glyphicon-edit"></span>
                             </i>
                             <i data-toggle="modal" data-target="#myModal_2" title="删除">
@@ -324,12 +330,12 @@
                         <td>560001</td>
                         <td>Tanmay</td>
                         <td>Bangalore</td>
-                        <td>Bangalore</td>
+                        <td>560001</td>
                         <td> <button data-toggle="modal" data-target="#myModal">
                             查看
                         </button></td>
                         <td>
-                            <i data-toggle="modal" data-target="#myModal_1" title="修改">
+                            <i data-toggle="modal" data-target="#myModal_1" title="编辑">
                                 <span class="glyphicon glyphicon-edit"></span>
                             </i>
                             <i data-toggle="modal" data-target="#myModal_2" title="删除">
@@ -343,12 +349,12 @@
                         <td>560001</td>
                         <td>Tanmay</td>
                         <td>Bangalore</td>
-                        <td>Bangalore</td>
+                        <td>560001</td>
                         <td> <button data-toggle="modal" data-target="#myModal">
                             查看
                         </button></td>
                         <td>
-                            <i data-toggle="modal" data-target="#myModal_1" title="修改">
+                            <i data-toggle="modal" data-target="#myModal_1" title="编辑">
                                 <span class="glyphicon glyphicon-edit"></span>
                             </i>
                             <i data-toggle="modal" data-target="#myModal_2" title="删除">
@@ -362,32 +368,12 @@
                         <td>560001</td>
                         <td>Tanmay</td>
                         <td>Bangalore</td>
-                        <td>Bangalore</td>
-                        <td> <button data-toggle="modal" data-target="#myModal">
-                            查看
-                        </button></td>
-                        <td>
-                            <i data-toggle="modal" data-target="#myModal_1" title="修改">
-                                <span class="glyphicon glyphicon-edit"></span>
-                            </i>
-                            <i data-toggle="modal" data-target="#myModal_2" title="删除">
-                                <span class="glyphicon glyphicon-trash"></span>
-                            </i>
-
-                        </td>
-                    </tr>
-                    <tr>
-
-                        <td>Bangalore</td>
                         <td>560001</td>
-                        <td>Tanmay</td>
-                        <td>Bangalore</td>
-                        <td>Bangalore</td>
                         <td> <button data-toggle="modal" data-target="#myModal">
                             查看
                         </button></td>
                         <td>
-                            <i data-toggle="modal" data-target="#myModal_1" title="修改">
+                            <i data-toggle="modal" data-target="#myModal_1" title="编辑">
                                 <span class="glyphicon glyphicon-edit"></span>
                             </i>
                             <i data-toggle="modal" data-target="#myModal_2" title="删除">
@@ -401,12 +387,12 @@
                         <td>560001</td>
                         <td>Tanmay</td>
                         <td>Bangalore</td>
-                        <td>Bangalore</td>
+                        <td>560001</td>
                         <td> <button data-toggle="modal" data-target="#myModal">
                             查看
                         </button></td>
                         <td>
-                            <i data-toggle="modal" data-target="#myModal_1" title="修改">
+                            <i data-toggle="modal" data-target="#myModal_1" title="编辑">
                                 <span class="glyphicon glyphicon-edit"></span>
                             </i>
                             <i data-toggle="modal" data-target="#myModal_2" title="删除">
@@ -420,12 +406,12 @@
                         <td>560001</td>
                         <td>Tanmay</td>
                         <td>Bangalore</td>
-                        <td>Bangalore</td>
+                        <td>560001</td>
                         <td> <button data-toggle="modal" data-target="#myModal">
                             查看
                         </button></td>
                         <td>
-                            <i data-toggle="modal" data-target="#myModal_1" title="修改">
+                            <i data-toggle="modal" data-target="#myModal_1" title="编辑">
                                 <span class="glyphicon glyphicon-edit"></span>
                             </i>
                             <i data-toggle="modal" data-target="#myModal_2" title="删除">
@@ -439,22 +425,41 @@
                         <td>560001</td>
                         <td>Tanmay</td>
                         <td>Bangalore</td>
-                        <td>Bangalore</td>
+                        <td>560001</td>
                         <td> <button data-toggle="modal" data-target="#myModal">
                             查看
                         </button></td>
                         <td>
-                            <i data-toggle="modal" data-target="#myModal_1" title="修改">
+                            <i data-toggle="modal" data-target="#myModal_1" title="编辑">
                                 <span class="glyphicon glyphicon-edit"></span>
                             </i>
                             <i data-toggle="modal" data-target="#myModal_2" title="删除">
                                 <span class="glyphicon glyphicon-trash"></span>
                             </i>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Bangalore</td>
+                        <td>560001</td>
+                        <td>Tanmay</td>
+                        <td>Bangalore</td>
+                        <td>560001</td>
+                        <td> <button data-toggle="modal" data-target="#myModal">
+                            查看
+                        </button></td>
+                        <td>
+                            <i data-toggle="modal" data-target="#myModal_1" title="编辑">
+                                <span class="glyphicon glyphicon-edit"></span>
+                            </i>
+                            <i data-toggle="modal" data-target="#myModal_2" title="删除">
+                                <span class="glyphicon glyphicon-trash"></span>
+                            </i>
+
                         </td>
                     </tr>
                     </tbody>
                 </table>
-
 
             </div>
             <div class="main_rh_footer">
@@ -483,5 +488,5 @@
 <script src="js/jquery-1.9.1.js" th:src="@{/static/js/jquery-1.9.1.js}" ></script>
 <script src="js/back_system.js" th:src="@{/static/js/back_system.js}"></script>
 <script src="js/page.js" th:src="@{/static/js/page.js}" ></script>
-<script src="js/Email.js" th:src="@{/static/js/page.js}" ></script>
+<script src="js/song_list.js" th:src="@{/static/js/song_list.js}" ></script>
 </html>
