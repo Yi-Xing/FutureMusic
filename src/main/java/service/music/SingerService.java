@@ -77,10 +77,12 @@ public class SingerService {
             ShowSinger showSinger = new ShowSinger();
             singer.setId(rankingSingerId);
             singer.setLevel(2);
-            User temp = userMapper.selectUser(singer).get(0);
-            showSinger.setSingerId(rankingSingerId);
-            showSinger.setSingerName(temp.getName());
-            showSinger.setPortrait(temp.getHeadPortrait());
+            List<User> userList1 = userMapper.selectUser(singer);
+            if(userList1.size()!=0) {
+                showSinger.setSingerId(rankingSingerId);
+                showSinger.setSingerName(userList1.get(0).getName());
+                showSinger.setPortrait(userList1.get(0).getHeadPortrait());
+            }
             //根据歌手查找粉丝数
             Focus focus = new Focus();
             focus.setUserType(1);
@@ -88,11 +90,12 @@ public class SingerService {
             int count = focusMapper.selectUserFocusCount(focus);
             showSinger.setFocus(count);
             //根据一个歌手id查找热门歌曲，将歌曲的id和名字添加到两个数组里
-            Map<String,Integer>  music = new HashMap<>();
             List<Music> musicList = popularMusicBySinger(rankingSingerId);
-            showSinger.setMusicName(musicList.get(0).getName());
-            showSinger.setMusic(musicList);
-            showSingerList.add(showSinger);
+            if(musicList.size()!=0) {
+                showSinger.setMusicName(musicList.get(0).getName());
+                showSinger.setMusic(musicList);
+                showSingerList.add(showSinger);
+            }
         }
         return showSingerList;
     }
