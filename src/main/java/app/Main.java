@@ -46,16 +46,16 @@ public class Main {
         return "back_system/back_system";
     }
 
+//
+//    @RequestMapping(value = "/backMusic")
+//    public String back_music() {
+//        return "back_system/back_MV";
+//    }
+
 
     @RequestMapping(value = "/back_music")
-    public String back_music() {
-        return "back_system/back_music";
-    }
-
-
-    @RequestMapping(value = "/back_MV")
     public String back_MV() {
-        return "back_system/back_MV";
+        return "back_system/back_music";
     }
 
     @RequestMapping(value = "/classification")
@@ -71,6 +71,11 @@ public class Main {
     @RequestMapping(value = "/personal")
     public String personal() {
         return "personal";
+    }
+
+    @RequestMapping(value = "/Email")
+    public String email() {
+        return "back_system/Email";
     }
 }
 

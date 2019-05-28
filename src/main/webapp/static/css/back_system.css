@@ -110,7 +110,10 @@ url('//at.alicdn.com/t/webfont_oogj9rdy3g8.ttf') format('truetype'), /* chromeã€
     color:white;
     text-align: center;
 }
-.side ul li:hover{
+.side ul li a{
+    color:white;
+}
+.side ul li a:hover{
     color:mediumpurple;
 }
 .main_right{
