@@ -49,13 +49,29 @@ $(document).ready(function () {
     });
 });
 
+var like = 0;
 $('.icon-like').on('click', function () {
-    $(this).css('color', '#e52222');
+    console.log($(this)[0]);
+    let obj = $(this)[0];
+    if (like === 0){
+        $(obj).addClass('like');
+        like = 1;
+    }else {
+        $(obj).removeClass('like');
+        like = 0;
+    }
 });
 
 
 //头部
-window.onload = function () {
+// window.onload = function () {
+    console.log(111);
+    console.log($(".icon-laji").parent());
+    $(".icon-laji").parent().click(function () {
+        console.log(111);
+        $(this).parent().parent().parent().parent().remove();
+    });
+
     var mh_a1 = document.querySelectorAll(".modal_header a")[0];
     var mh_a2 = document.querySelectorAll(".modal_header a")[1];
     var login = document.getElementsByClassName("login")[0];
@@ -63,11 +79,11 @@ window.onload = function () {
     mh_a1.onclick = function () {
         login.style.display = "block";
         registered.style.display = "none";
-    }
+    };
     mh_a2.onclick = function () {
         login.style.display = "none";
         registered.style.display = "block";
-    }
+    };
     var httpurl = ""//请求路径
 
     // 用于发送验证码
@@ -100,16 +116,16 @@ window.onload = function () {
             contentType: "application/x-www-form-urlencoded;charset=UTF-8",
             type: "post",
             url: "searchListAll",
-            data: {keyWord:searchVal},
+            data: {keyWord: searchVal},
             dataType: "json",
             success: function (data, status) {
-                if (searchVal === '')
+                if (searchVal === '') {
                     search_tips.innerHTML = '';
-                else {
-                    for(var i=0;i<data.length;i++){
-                        var musicName = data[i].getName(0).name;
+                } else {
+                    for (var i = 0; i < data.length; i++) {
                         // var musicAlbum = data[i].albumId;
-                        // console.log(musicAlbum);
+                        console.log(data[i]);
+                        var musicName = data[i].getName(0).name;
 
                         tips = tips + tips_head + musicName + tips_last;
                     }
@@ -159,5 +175,9 @@ window.onload = function () {
             }
         });
     });
+// };
 
-};
+//垃圾箱删除函数
+window.onload = function () {
+
+}

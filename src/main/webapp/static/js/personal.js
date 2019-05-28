@@ -4,8 +4,8 @@ $('#myModal').on('shown.bs.modal', function () {
 });
 //锁定个人中心
 var personalLock = 0;
-$(".color_2 nav .navbar-right").on('click',function () {
-    var onclock = this.children[3].children[0].children[0];
+$(".color_2 nav .navbar-right .lock").on('click',function () {
+    var onclock = $(this);
     if(personalLock === 0){
         $(onclock).addClass('green');
         personalLock = 1;
@@ -17,7 +17,7 @@ $(".color_2 nav .navbar-right").on('click',function () {
     }
 });
 //个人中心TAB切换栏
-$(".collapse .navbar-nav li").click(function () {
+$(".collapse .navbar-nav .personal_tab").click(function () {
     var personalCenterTab = $(".personalCenterTab");
     console.log($(this)[0]);
     var tmp = $(this)[0];
@@ -55,3 +55,10 @@ $(".collapse .navbar-nav li").click(function () {
         }
     }
 });
+//修改个人信息表单
+$("#myInformation h2").click(function () {
+    $("#myInformation form").slideToggle(300);
+});
+
+
+

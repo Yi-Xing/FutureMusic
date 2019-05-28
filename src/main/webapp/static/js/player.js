@@ -1,6 +1,3 @@
-$('.icon-like').on('click',function () {
-    $(this).css('color','#F06868');
-});
 $('.musicList ul li').on('click',function () {
     let all = $('.musicList ul li');
     for (let i = 0; i < all.length; i++) {
