@@ -160,9 +160,11 @@ ul li{
     border-radius: 30px;
     float:left;
 }
-.modal-content{
+.modal_content{
     width:500px;
     height:450px;
+    background-color: #fff;
+    border-radius: 5px;
 }
 .modal_header{
     width:400px;

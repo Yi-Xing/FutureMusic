@@ -17,8 +17,12 @@
                 </a>
                 <div class="pull-left name">
                     <a href="javascript:;">
-                        <h2>name</h2>
+                        <h2>
+                            name
+                            <span class="iconfont icon-iconvip"></span>
+                        </h2>
                         <h3>2</h3>
+                        <h3>3</h3>
                     </a>
                 </div>
             </div>
@@ -38,9 +42,9 @@
 
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav">
-                        <li class="active"><a href="#">我喜欢 <span class="sr-only">(current)</span></a></li>
-                        <li><a href="#">我的关注</a></li>
-                        <li><a href="#">粉丝</a></li>
+                        <li class="active"><a href="javascript:;">我喜欢 <span class="sr-only">(current)</span></a></li>
+                        <li><a href="javascript:;">我的关注</a></li>
+                        <li><a href="javascript:;">粉丝</a></li>
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
                                aria-haspopup="true" aria-expanded="false">我的歌单 <span class="caret"></span></a>
@@ -54,16 +58,100 @@
                                 <li><a href="#">新建歌单</a></li>
                             </ul>
                         </li>
+                        <li><a href="javascript:;">个人信息</a></li>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="javascript:;"><i class="iconfont icon-youxiang-kong"></i></a></li>
+                        <li><a href="javascript:;" type="button" data-toggle="modal" data-target=".bs-example-modal-sm"><i class="iconfont icon-jinggao"></i></a></li>
+                        <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+                            <div class="modal-dialog modal-lg" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                        <h4 class="modal-title">告诉我们发生了什么!</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form action="">
+                                            <textarea name="Report" id="Report" rows="4" placeholder="我们会帮你解决问题的！"></textarea>
+                                            <button type="submit" class="btn btn-primary">提交</button>
+                                        </form>
+                                    </div>
+<!--                                    <div class="modal-footer">-->
+<!--                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>-->
+<!--                                        <button type="button" class="btn btn-primary">Save changes</button>-->
+<!--                                    </div>-->
+                                </div>
+                            </div>
+                        </div>
+                        <li><a href="javascript:;"><i class="iconfont icon-aui-icon-lock"></i></a></li>
+
                     </ul>
                 </div>
             </div>
         </nav>
-        <div class="btn-group" role="group" aria-label="...">
-            <button type="button" class="btn btn-success">Left</button>
-            <button type="button" class="btn btn-success">Middle</button>
-            <button type="button" class="btn btn-success">Right</button>
+        <div id="iLike" class="personalCenterTab">
+            <div class="btn-group" role="group" aria-label="...">
+                <button type="button" class="btn btn-success">歌曲</button>
+                <button type="button" class="btn btn-success">歌单</button>
+                <button type="button" class="btn btn-success">专辑</button>
+                <button type="button" class="btn btn-success">视频</button>
+            </div>
+            <div>
+                <table class="table table-hover table-striped">
+                    <thead>
+                    <tr>
+                        <th>歌名</th>
+                        <th>歌手</th>
+                        <th>专辑</th>
+                        <th>更多</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="music_list">
+                        <td>NAME</td>
+                        <td>artistName</td>
+                        <td>album</td>
+                        <th class="dropdown">
+                            <span class="iconfont icon-like"></span>
+                            <span type="button" class="iconfont icon-more dropdown-toggle" data-toggle="dropdown"
+                                  aria-haspopup="true" aria-expanded="false"></span>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a href="#">
+                                        <span class="iconfont icon-laji"></span>
+                                        删除
+                                    </a>
+                                </li>
+                                <li role="separator" class="divider"></li>
+                                <li>
+                                    <a href="#">
+                                        <span class="iconfont icon-tianjia"></span>
+                                        添加到...
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <span class="iconfont icon-tianjia"></span>
+                                        添加到...
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <span class="iconfont icon-tianjia"></span>
+                                        添加到...
+                                    </a>
+                                </li>
+                            </ul>
+                        </th>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
-
+        <div id="myFollow" class="personalCenterTab"></div>
+        <div id="myFans" class="personalCenterTab"></div>
+        <div id="myList" class="personalCenterTab"></div>
+        <div id="myInformation" class="personalCenterTab"></div>
     </div>
 </div>
 
@@ -71,4 +159,5 @@
 <div th:replace="webFoot.html"></div>
 </body>
 <div th:replace="on-load-js::on-load-js"></div>
+<script src="../../static/js/personal.js" th:src="@{/static/js/personal.js}"></script>
 </html>

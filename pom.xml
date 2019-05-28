@@ -276,19 +276,60 @@
       <scope>compile</scope>
     </dependency>
 
-    <!--支付宝支付所需的jar-->
-    <!--alipay-sdk-java -->
-    <dependency>
-      <groupId>com.alipay.sdk</groupId>
-      <artifactId>alipay-sdk-java</artifactId>
-      <version>3.7.26.ALL</version>
-    </dependency>
-    <!-- commons-logging -->
-    <dependency>
-      <groupId>commons-logging</groupId>
-      <artifactId>commons-logging</artifactId>
-      <version>1.1.1</version>
-    </dependency>
+<!--    &lt;!&ndash;支付宝支付所需的jar&ndash;&gt;-->
+<!--    &lt;!&ndash;alipay-sdk-java &ndash;&gt;-->
+<!--    <dependency>-->
+<!--      <groupId>com.alipay.sdk</groupId>-->
+<!--      <artifactId>alipay-sdk-java</artifactId>-->
+<!--      <version>3.7.26.ALL</version>-->
+<!--    </dependency>-->
+<!--    &lt;!&ndash; commons-logging &ndash;&gt;-->
+<!--    <dependency>-->
+<!--      <groupId>commons-logging</groupId>-->
+<!--      <artifactId>commons-logging</artifactId>-->
+<!--      <version>1.1.1</version>-->
+<!--    </dependency>-->
+<!--    &lt;!&ndash; https://mvnrepository.com/artifact/commons-codec/commons-codec &ndash;&gt;-->
+<!--    <dependency>-->
+<!--      <groupId>commons-codec</groupId>-->
+<!--      <artifactId>commons-codec</artifactId>-->
+<!--      <version>1.12</version>-->
+<!--    </dependency>-->
+<!--    &lt;!&ndash; https://mvnrepository.com/artifact/commons-configuration/commons-configuration &ndash;&gt;-->
+<!--    <dependency>-->
+<!--      <groupId>commons-configuration</groupId>-->
+<!--      <artifactId>commons-configuration</artifactId>-->
+<!--      <version>1.10</version>-->
+<!--    </dependency>-->
+<!--    &lt;!&ndash; https://mvnrepository.com/artifact/commons-lang/commons-lang &ndash;&gt;-->
+<!--    <dependency>-->
+<!--      <groupId>commons-lang</groupId>-->
+<!--      <artifactId>commons-lang</artifactId>-->
+<!--      <version>2.6</version>-->
+<!--    </dependency>-->
+<!--    &lt;!&ndash; https://mvnrepository.com/artifact/org.mockito/mockito-core &ndash;&gt;-->
+<!--    <dependency>-->
+<!--      <groupId>org.mockito</groupId>-->
+<!--      <artifactId>mockito-core</artifactId>-->
+<!--      <version>2.27.0</version>-->
+<!--      <scope>test</scope>-->
+<!--    </dependency>-->
+<!--    &lt;!&ndash; https://mvnrepository.com/artifact/com.google.code.gson/gson &ndash;&gt;-->
+<!--    <dependency>-->
+<!--      <groupId>com.google.code.gson</groupId>-->
+<!--      <artifactId>gson</artifactId>-->
+<!--      <version>2.8.5</version>-->
+<!--    </dependency>-->
+<!--    &lt;!&ndash; https://mvnrepository.com/artifact/org.hamcrest/hamcrest-core &ndash;&gt;-->
+<!--    <dependency>-->
+<!--      <groupId>org.hamcrest</groupId>-->
+<!--      <artifactId>hamcrest-core</artifactId>-->
+<!--      <version>2.1</version>-->
+<!--      <scope>test</scope>-->
+<!--    </dependency>-->
+
+
+
 
     <!--引入pageHelper分页插件-->
     <dependency>
@@ -324,6 +365,8 @@
         <!--默认是true-->
         <filtering>true</filtering>
       </resource>
+
+
     </resources>
 
 

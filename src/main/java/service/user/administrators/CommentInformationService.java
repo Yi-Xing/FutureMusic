@@ -9,12 +9,14 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 import service.user.IdExistence;
+import util.JudgeIsOverdueUtil;
 
 import javax.annotation.Resource;
 import java.util.List;
 
 /**
  * 评论
+ *
  * @author 5月22日 张易兴创建
  */
 @Service(value = "CommentInformationService")
@@ -24,47 +26,42 @@ public class CommentInformationService {
     CommentMapper commentMapper;
     @Resource(name = "IdExistence")
     IdExistence idExistence;
+
     /**
      * 显示评论信息
      *
-     * @param type    选择的类型  1：音乐，2：MV，3：专辑，4：用户
-     * @param id      对应类型的id
-     * @param pageNum 表示当前第几页
+     * @param condition 选择的类型  1：音乐，2：MV，3：专辑，4：用户 5：id
+     *                  对应类型的id
+     * @param pageNum   表示当前第几页
      */
-    public String showComment(Integer type, Integer id, Integer pageNum, Model model) {
+    public PageInfo showComment(String[] condition, Integer pageNum, Model model) {
         Comment comment = new Comment();
-        if(type!=null){
-        if (type >0 && type < 4) {
-            comment.setType(type);
-            comment.setMusicId(id);
-        } else if(type ==4) {
-            comment.setUserId(id);
-        }else if(type ==5){
-            comment.setId(id);
-        }
+        if (condition != null) {
+            if ((condition[0] != null) && !"".equals(condition[0])) {
+                comment.setType(1);
+                comment.setMusicId(Integer.parseInt(condition[0]));
+            }
+            if ((condition[1] != null) && !"".equals(condition[1])) {
+                comment.setType(2);
+                comment.setMusicId(Integer.parseInt(condition[1]));
+            }
+            if ((condition[2] != null) && !"".equals(condition[2])) {
+                comment.setType(3);
+                comment.setMusicId(Integer.parseInt(condition[2]));
+            }
+            if ((condition[3] != null) && !"".equals(condition[3])) {
+                comment.setUserId(Integer.parseInt(condition[3]));
+            }
+            if ((condition[4] != null) && !"".equals(condition[4])) {
+                comment.setId(Integer.parseInt(condition[4]));
+            }
         }
         //在查询之前传入当前页，然后多少记录
         PageHelper.startPage(pageNum, 8);
         // 根据条件查找信息
         List<Comment> list = commentMapper.selectListComment(comment);
-        PageInfo pageInfo = new PageInfo<>(list);
         // 传入页面信息
-        model.addAttribute("pageInfo", pageInfo);
-        return null;
+        return  new PageInfo<>(list);
     }
 
-    /**
-     * 显示指定id的评论信息
-     *
-     * @param id 评论的id
-     */
-    public String selectComment(Integer id,Model model){
-        Comment comment=idExistence.isCommentId(id);
-        if (comment != null) {
-            model.addAttribute("Comment", comment);
-        } else {
-            model.addAttribute("state", "没有指定id的评论");
-        }
-        return null;
-    }
 }

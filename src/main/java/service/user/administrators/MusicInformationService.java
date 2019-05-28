@@ -74,8 +74,14 @@ public class MusicInformationService {
                                     }
                                 }
                                 // 获取上传的文件路径
-                                music.setPath(fileUpload.music(request));
-                                music.setLyricPath(fileUpload.musicLyric(request));
+                                String path = fileUpload.music(request);
+                                if (path != null && !"".equals(path)) {
+                                    music.setPath(path);
+                                }
+                                String lyricPath = fileUpload.musicLyric(request);
+                                if (lyricPath != null && !"".equals(lyricPath)) {
+                                    music.setLyricPath(lyricPath);
+                                }
                                 if (musicMapper.insertMusic(music) < 1) {
                                     // 如果失败是数据库错误
                                     logger.error(music + "添加音乐信息时，数据库出错");
@@ -180,8 +186,14 @@ public class MusicInformationService {
                                 }
                             }
                             // 获取上传的文件路径
-                            music.setPath(fileUpload.music(request));
-                            music.setLyricPath(fileUpload.musicLyric(request));
+                            String path = fileUpload.music(request);
+                            if (path != null && !"".equals(path)) {
+                                music.setPath(path);
+                            }
+                            String lyricPath = fileUpload.musicLyric(request);
+                            if (lyricPath != null && !"".equals(lyricPath)) {
+                                music.setLyricPath(lyricPath);
+                            }
                             if (musicMapper.updateMusic(music) < 1) {
                                 // 如果失败是数据库错误
                                 logger.error(music + "修改音乐信息，数据库出错");

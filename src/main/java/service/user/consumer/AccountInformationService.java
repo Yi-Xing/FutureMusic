@@ -68,6 +68,8 @@ public class AccountInformationService {
         return null;
     }
 
+
+
     /**
      * 用于修改用户的用户名
      * 并修改会话上的用户名
