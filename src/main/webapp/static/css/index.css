@@ -28,6 +28,9 @@ ul li{
     background-color: #222222;
     padding: 50px 0;
 }
+.like{
+    color: #e52222!important;
+}
 
 /*头部*/
 .search_container{

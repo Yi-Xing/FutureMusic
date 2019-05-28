@@ -2,6 +2,7 @@ package controller.user.consumer;
 
 import entity.MusicSongList;
 import entity.SongList;
+import entity.SongListCollect;
 import entity.State;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,6 +18,7 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.util.List;
 
 /**
  * 创建编辑歌单或专辑，收藏或取消收藏歌单或专辑，添加历史播放记录，在歌单或专辑中添加音乐
@@ -36,8 +38,8 @@ public class AboutSongList {
      */
     @RequestMapping(value = "/showUserSongList")
     @ResponseBody
-    public String showUserSongList(Integer type,HttpSession session){
-        return null;
+    public List<SongList> showUserSongList(Integer type, HttpSession session){
+        return aboutSongListService.showUserSongList(type,session);
     }
     /**
      * 显示用户收藏的所有歌单或专辑
@@ -45,13 +47,16 @@ public class AboutSongList {
      */
     @RequestMapping(value = "/showUserCollectionSongList")
     @ResponseBody
-    public String showUserCollectionSongList(Integer type,HttpSession session){
-        return null;
+    public List<SongListCollect> showUserCollectionSongList(Integer type, HttpSession session){
+        return aboutSongListService.showUserCollectionSongList(type,session);
     }
 
     /**
      * 显示指定专辑（jjy应该写了）
      */
+
+
+
     /**
      * 创建歌单或专辑
      *
@@ -75,7 +80,6 @@ public class AboutSongList {
      *
      * @param songList 获取传来的歌单信息
      *                 name           获取歌单或专辑的标题
-     *                 picture        获取歌单或专辑的封面的图片路径
      *                 introduction   获取歌单或专辑的介绍
      *                 classification 获取分类
      *                 type           获取类型1是歌单2是专辑
@@ -116,15 +120,13 @@ public class AboutSongList {
      *
      * @param id               获取收藏歌单或专辑的id
      * @param type             获取类型1是歌单2是专辑
-     * @param classificationId 分类的id
-     * @param userCollectId    歌单创建者的用户id
      * @param session          获取当前会话
      */
     @RequestMapping(value = "/collectionSongList")
     @ResponseBody
-    public State collectionSongList(Integer id, Integer type, Integer classificationId, Integer userCollectId, HttpSession session) throws DataBaseException {
+    public State collectionSongList(Integer id, Integer type, HttpSession session) throws DataBaseException {
         logger.trace("collectionSongList方法开始执行");
-        return aboutSongListService.collectionSongList(id, type, classificationId, userCollectId, session);
+        return aboutSongListService.collectionSongList(id, type, session);
     }
 
     /**
@@ -138,8 +140,8 @@ public class AboutSongList {
      */
     @RequestMapping(value = "/SongListAddMusic")
     @ResponseBody
-    public State addMusicSongList(@RequestBody MusicSongList musicSongList) {
-        return null;
+    public State addMusicSongList(@RequestBody MusicSongList musicSongList,HttpSession session) throws DataBaseException {
+        return aboutSongListService.addMusicSongList(musicSongList,session);
     }
 
 }

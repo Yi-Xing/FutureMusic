@@ -34,7 +34,7 @@ public class AlipayConfig {
 
     // 页面跳转同步通知页面路径 需http://格式的完整路径，不能加?id=123这类自定义参数，必须外网可以正常访问
 
-    public static String return_url = "http://10.1.36.102/alipay.trade.page.pay-JAVA-UTF-8/return_url.jsp";
+    public static String return_url = "http://localhost:8080/FutureMusic_war_exploded/index";
 
     // 签名方式
 

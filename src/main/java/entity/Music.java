@@ -93,7 +93,7 @@ public class Music implements Serializable {
      */
     private int activity=0;
     /**
-     * 该音乐是否可听
+     * 该音乐是否可听，0为可听
      */
     private int available=0;
     /**
