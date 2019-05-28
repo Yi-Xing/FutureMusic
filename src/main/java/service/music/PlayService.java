@@ -15,9 +15,9 @@ import java.util.*;
  *
  * @author 蒋靓峣 5.11创建
  * */
-@Service(value = "ExhibitionService")
-public class ExhibitionService {
-    private static final Logger logger = LoggerFactory.getLogger(ExhibitionService.class);
+@Service(value = "PlayService")
+public class PlayService {
+    private static final Logger logger = LoggerFactory.getLogger(PlayService.class);
     @Resource(name = "MusicMapper")
     MusicMapper musicMapper;
     @Resource(name = "ClassificationMapper")
@@ -33,44 +33,18 @@ public class ExhibitionService {
     @Resource(name = "PlayMapper")
     PlayMapper playMapper;
 
-    /**
-     * 查找7天内播放量最高的歌曲
-     * 按播放量排列
-     *
-     * @return
-     */
-    public Map<Music, User> selectListMusicByNewSong() {
-        Map<Music, User> musicSingerMap = new HashMap<>(16);
-        Music music = new Music();
-        List<Music> musicList = musicMapper.selectListMusic(music);
-        Date musicDate;
-        User user = new User();
-        for (int i = 0; i < musicList.size(); i++) {
-            music = musicList.get(i);
-            musicDate = music.getDate();
-            if (JudgeIsOverdueUtil.reduceDay(JudgeIsOverdueUtil.toDateSting(musicDate)) > 0) {
-                musicList.remove(i);
-                i = i - 1;
-            }
-        }
-        for (Music m : musicList) {
-            user.setId(m.getSingerId());
-            musicSingerMap.put(m, userMapper.selectUser(user).get(0));
-        }
-        //获取符合条件得分类对象
-        return musicSingerMap;
-    }
 
     /**
      * 音乐的流派榜
-     *
      * @param type 根据音乐的流派分类查找信息
      * @return Map<Music, User>
      */
-    public Map<Music, User> selectListMusicByMusicType(String type) {
+    public List<Music> selectListMusicByMusicType(String type) {
         Classification classification = new Classification();
         classification.setType(type);
-        return this.selectListMusicByClassification(classification);
+        Map<Music,User> musicSingerMap = this.selectListMusicByClassification(classification);
+        List<Music> musicList = sortMusicByPlay(musicSingerMap);
+        return musicList;
     }
 
     /**
@@ -80,10 +54,12 @@ public class ExhibitionService {
      * @return Map<Music, User> 音乐和对应的
      * 歌手集合
      */
-    public Map<Music, User> selectListMusicByRegion(String region) {
+    public List<Music> selectListMusicByRegion(String region) {
         Classification classification = new Classification();
         classification.setRegion(region);
-        return this.selectListMusicByClassification(classification);
+        Map<Music,User> musicSingerMap = this.selectListMusicByClassification(classification);
+        List<Music> musicList = sortMusicByPlay(musicSingerMap);
+        return musicList;
     }
 
     /**
@@ -92,10 +68,12 @@ public class ExhibitionService {
      * @param language 根据音乐的分类的地区查找信息
      * @return Map<Music, User> 音乐和对应的歌手集合
      */
-    public Map<Music, User> selectListMusicByLanguage(String language) {
+    public List<Music> selectListMusicByLanguage(String language) {
         Classification classification = new Classification();
         classification.setRegion(language);
-        return this.selectListMusicByClassification(classification);
+        Map<Music,User> musicSingerMap = this.selectListMusicByClassification(classification);
+        List<Music> musicList = sortMusicByPlay(musicSingerMap);
+        return musicList;
     }
 
     /**
@@ -107,14 +85,6 @@ public class ExhibitionService {
         activity.setEndDate(new Date());
         List<Activity> activityList = activityMapper.selectListActivity(activity);
         return activityList;
-    }
-    /**
-     * @param videoName 按照指定规则查找指定MV
-     *                  封装信息搜索的关键字
-     * @return List<MusicVideo>  返回查找到的MV
-     */
-    public List<MusicVideo> selectListMusicVideoByVideoName(String videoName) {
-        return null;
     }
 
     /**
@@ -166,80 +136,34 @@ public class ExhibitionService {
         }
         return musicSingerMap;
     }
-
     /**
-     * 根据分类查找MV
-     *
-     * @param classification
-     */
-    public Map<MusicVideo, User> selectListMusicVideoListByClassification(Classification classification) {
-        //获取符合条件得分类对象
-        List<Integer> classificationIds = new ArrayList<>();
-        Map<MusicVideo, User> musicSingerMap = new HashMap<>();
-        User user = new User();
-        List<Classification> classificationList = classificationMapper.selectListClassification(classification);
-        for (Classification clf : classificationList) {
-            classificationIds.add(clf.getId());
-        }
-        List<MusicVideo> musicVideoList = musicVideoMapper.listIdSelectListMusicVideo(classificationIds);
-        for (MusicVideo musicVideo : musicVideoList) {
-            user.setId(musicVideo.getSingerId());
-            musicSingerMap.put(musicVideo, userMapper.selectUser(user).get(0));
-        }
-        return musicSingerMap;
-    }
-
-    /**
-     * 查找播放记录最多的音乐或MV
+     * 查找播放记录
      * 1表示是音乐的播放历史  2表示是MV的播放历史
      * @param type
      * @return List<Play>
      */
-    private List<Play> getPlayMusic(int type){
+    private List<Play> getPlayMusic(int type,int id){
         Play play = new Play();
         play.setType(type);
+        play.setMusicId(id);
         List<Play> playList = playMapper.selectListPlay(play);
         return playList;
     }
 
     /**
-     * 统计一个集合中音乐id出现的次数,按照大小排序
-     * @param playList 传入所有的播放历史
-     * @return 返回id和对应的播放次数、无序
+     * 传入一个集合，并查询浏览量
      */
     public Map<Integer,Integer> getMostPlayMusic(List<Play> playList){
-        Map<Integer,Integer> musicCountMap = new LinkedHashMap<>(16);
+        Map<Integer,Integer> musicPlay = new HashMap<>();
         for(Play play:playList){
-            int musicId = play.getMusicId();
-            if(musicCountMap.containsKey(musicId)){
-                musicCountMap.put(musicId,musicCountMap.get(musicId)+1);
+            if(!musicPlay.containsKey(play.getMusicId())) {
+                musicPlay.put(play.getMusicId(), 1);
             }else{
-                musicCountMap.put(musicId,1);
+                musicPlay.put(play.getMusicId(),musicPlay.get(play.getMusicId())+1);
             }
         }
-        musicCountMap = sortByValueDescending(musicCountMap);
-        return musicCountMap;
+        return musicPlay;
     }
-
-    /**
-     * 统计一个集合中专辑出现的次数,按照大小排序
-     * @param playList 传入所有的播放历史
-     * @return 返回id和对应的播放次数、无序
-     */
-    private Map<Integer,Integer> getMostPlayAlbumm(List<Play> playList){
-        Map<Integer,Integer> musicCountMap = new LinkedHashMap<>(16);
-        for(Play play:playList){
-            int albumId = play.getAlbumId();
-            if(musicCountMap.containsKey(albumId)){
-                musicCountMap.put(albumId,musicCountMap.get(albumId)+1);
-            }else{
-                musicCountMap.put(albumId,1);
-            }
-        }
-        musicCountMap = sortByValueDescending(musicCountMap);
-        return musicCountMap;
-    }
-
     /**
      * 将map按照value的值降序排列 仅用于Map<Integer,Integer>
      * @param map 要排序的map
@@ -269,4 +193,27 @@ public class ExhibitionService {
         }
         return integerIntegerMap;
     }
+
+    /**
+     * 根据浏览量排序音乐
+     */
+    public List<Music> sortMusicByPlay(Map<Music,User> musicSingerMap){
+        Map<Integer,Integer> musicCount = new HashMap<>();
+        for(Music music:musicSingerMap.keySet()){
+            List<Play> playList = getPlayMusic(1,music.getId());
+            musicCount.put(music.getId(),playList.size());
+        }
+        List<Music> result = new ArrayList<>();
+        Map<Integer,Integer> resultMusic = sortByValueDescending(musicCount);
+        for(Integer i:resultMusic.keySet()){
+            Music music = new Music();
+            music.setId(i);
+            result.add(musicMapper.selectListMusic(music).get(0));
+        }
+        return result;
+    }
+
+    /**
+     * 传入Map<Integer,Integer>，对浏览量进行排序
+     */
 }

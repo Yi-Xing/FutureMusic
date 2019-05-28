@@ -1,7 +1,6 @@
 package test.jjy;
 
-import controller.music.exhibition.Exhibition;
-import service.music.ExhibitionService;
+import service.music.PlayService;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -15,8 +14,8 @@ public class Test {
         integerIntegerMap.put(4,3);
         integerIntegerMap.put(5,6);
         integerIntegerMap.put(6,7);
-        ExhibitionService exhibitionService = new ExhibitionService();
-        Map<Integer,Integer> integerIntegerMap1 = exhibitionService.sortByValueDescending(integerIntegerMap);
+        PlayService playService = new PlayService();
+        Map<Integer,Integer> integerIntegerMap1 = playService.sortByValueDescending(integerIntegerMap);
         System.out.println(integerIntegerMap1);
     }
 }

@@ -29,15 +29,29 @@ public class SingerService {
     FocusMapper focusMapper;
 
     /**
+     * 通过名字查找歌手
+     */
+    public List<ShowSinger> exhibitionSingersByName(String singerName){
+        User user = new User();
+        user.setName(singerName);
+        return searchSingersBySinger(user);
+    }
+
+    /**
      * 通过地区查找歌手
-     * @param region
-     * @return
+     * 也用这个分类查找歌手
      */
     public List<ShowSinger> exhibitionSingersByRegion(String region){
-        List<ShowSinger> showSingerList = new ArrayList<>();
         User user = new User();
         user.setAddress(region);
-        Map<Integer,Integer> singerCountMap = new HashMap<>();
+        return searchSingersBySinger(user);
+    }
+    /**
+     * 封装歌手信息查找歌手
+     */
+    public List<ShowSinger> searchSingersBySinger(User user){
+        List<ShowSinger> showSingerList = new ArrayList<>();
+        Map<Integer,Integer> singerCountMap = new HashMap<>(16);
         List<User> userList = userMapper.selectUser(user);
         List<Integer> singerIds = new ArrayList<>();
         Play play = new Play();
@@ -51,7 +65,7 @@ public class SingerService {
             int playCount = playMapper.selectListPlay(play).size();
             singerCountMap.put(singerId,playCount);
         }
-        Map<Integer,Integer> resultMap = (new ExhibitionService()).sortByValueDescending(singerCountMap);
+        Map<Integer,Integer> resultMap = (new PlayService()).sortByValueDescending(singerCountMap);
         //将热门歌手存到List里
         List<Integer> rankingSingers = new ArrayList<>();
         for(Integer integer:resultMap.keySet()){
@@ -99,7 +113,7 @@ public class SingerService {
             musicAndPlayCountMap.put(m.getId(), plays.size());
         }
         Map<Integer, Integer> resultMap =
-                (new ExhibitionService().sortByValueDescending(musicAndPlayCountMap));
+                (new PlayService().sortByValueDescending(musicAndPlayCountMap));
         List<Integer> musicIds = new ArrayList<>();
         for (Integer integer:resultMap.keySet()) {
                 musicIds.add(integer);
@@ -107,12 +121,6 @@ public class SingerService {
         List<Music> musics = musicMapper.listIdSelectListMusic(musicIds);
         return musics;
     }
-
-    /**
-     * 分页显示
-     * 通过分类查找歌手
-     * 返回信息包括歌手的图片，id、name、最热的五首歌
-     */
 
 
 }
