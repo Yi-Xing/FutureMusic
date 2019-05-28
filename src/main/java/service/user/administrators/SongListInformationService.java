@@ -38,31 +38,30 @@ public class SongListInformationService {
     @Resource(name = "MusicSongListMapper")
     MusicSongListMapper musicSongListMapper;
     /**
-     * 指定歌手的所有音乐被播放的次数
-     * 指定专辑中的所有音乐被播放的次数
+     * 歌单或专辑的信息
      *
-     * @param id   歌单或专辑的id
-     * @param type 1表示歌单或专辑的id，2表示活动的id 3、分类的id  4、用户的id
+     * @param condition 1表示歌单或专辑的id，2表示活动的id 3、分类的id  4、歌手的id
      */
-    public String showSongList(Integer id, Integer type, Integer pageNum, Model model) {
+    public PageInfo showSongList(String[] condition, Integer pageNum) {
         SongList songList = new SongList();
-        if (type == 1) {
-            songList.setId(id);
-        } else if (type == 2) {
-            songList.setActivity(id);
-        } else if (type == 3) {
-            songList.setClassificationId(id);
-        } else if (type == 4) {
-            songList.setUserId(id);
+        if ((condition[0] != null) && !"".equals(condition[0])) {
+            songList.setId(Integer.parseInt(condition[0]));
+        }
+        if ((condition[1] != null) && !"".equals(condition[1])) {
+            songList.setActivity(Integer.parseInt(condition[1]));
+        }
+        if ((condition[2] != null) && !"".equals(condition[2])) {
+            songList.setClassificationId(Integer.parseInt(condition[2]));
+        }
+        if ((condition[3] != null) && !"".equals(condition[3])) {
+            songList.setUserId(Integer.parseInt(condition[3]));
         }
         //在查询之前传入当前页，然后多少记录
         PageHelper.startPage(pageNum, 8);
         // 根据条件查找专辑或歌单信息
         List<SongList> list = songListMapper.selectListSongList(songList);
-        PageInfo pageInfo = new PageInfo<>(list);
         // 传入页面信息
-        model.addAttribute("pageInfo", pageInfo);
-        return null;
+        return new PageInfo<>(list);
     }
 
     /**
@@ -88,27 +87,25 @@ public class SongListInformationService {
     /**
      * 删除指定id专辑或歌单
      */
-    public String deleteSongList(Integer id) throws DataBaseException {
+    public State deleteSongList(Integer id) throws DataBaseException {
         if (songListMapper.deleteSongList(id) < 1) {
             // 如果失败是数据库错误
             logger.error("专辑或歌单：" + id + "删除时，数据库出错");
             throw new DataBaseException("专辑或歌单：" + id + "删除时，数据库出错");
         }
-        return null;
+        return new State(1);
     }
     /**
      * 指定歌单或专辑被收藏的次数
      * @param id 歌单或专辑的id
      * @param type 1表示是歌单 2表示是专辑
      */
-    public String showSongListCollect(Integer id,Integer type, Model model)  {
+    public int showSongListCollect(Integer id,Integer type)  {
         SongListCollect songListCollect=new  SongListCollect();
         songListCollect.setMusicId(id);
         songListCollect.setType(type);
         List<SongListCollect> list= songListCollectMapper.selectListSongListCollect(songListCollect);
-        model.addAttribute("SongListCollectCount",list.size());
-        System.out.println(list.size());
-        return null;
+        return list.size();
     }
 
     /**
@@ -116,13 +113,15 @@ public class SongListInformationService {
      * @param id 专辑或歌单的id
      * @param type 1是歌单2是专辑
      */
-    public String showMusicSongList(Integer id,Integer type,Model model) {
+    public PageInfo showMusicSongList(Integer id,Integer type, Integer pageNum) {
         MusicSongList musicSongList=new MusicSongList();
         musicSongList.setBelongId(id);
         musicSongList.setType(type);
-        // 查找指定歌单或专辑的所有音乐
+        //在查询之前传入当前页，然后多少记录
+        PageHelper.startPage(pageNum, 8);
+        // 根据条件查找专辑或歌单信息
         List<MusicSongList> list=musicSongListMapper.selectListMusicSongList(musicSongList);
-        model.addAttribute("MusicSongList",list);
-        return null;
+        // 传入页面信息
+        return new PageInfo<>(list);
     }
 }

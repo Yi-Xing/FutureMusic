@@ -4,12 +4,15 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import entity.Music;
 import entity.MusicVideo;
+import entity.ShowSinger;
 import entity.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import service.music.MusicVideoService;
 import service.music.SearchService;
+import service.music.SingerService;
 
 import javax.annotation.Resource;
 import java.util.ArrayList;
@@ -23,20 +26,20 @@ import java.util.List;
 public class SearchByName {
     @Resource(name = "SearchService")
     private SearchService searchService;
-
+    @Resource(name = "MusicVideoService")
+    MusicVideoService musicVideoService;
+    @Resource(name = "SingerService")
+    private SingerService singerService;
     /**
-     * ajax搜索框智能提示名字
+     * ajax搜索框智能提示名字（临时测试）
      * @param keyWord 传入的关键字
      * @return List<String> 返回的音乐名称
+     * 还会有个显示包括专辑、歌单、歌手、歌曲的名字和用id做连接
      */
     @RequestMapping(value = "/searchByKeyWord")
     @ResponseBody
     public List<Music> searchByKeyWord(@RequestParam(value = "keyWord")String keyWord){
         List<Music> musicList = searchService.selectListMusicByName(keyWord);
-//        List<String> names = new ArrayList<>();
-//        for(Music music:musicList){
-//            names.add(music.getName());
-//        }
         return musicList;
     }
     /**
@@ -72,7 +75,7 @@ public class SearchByName {
     public PageInfo searchListMusicVideo(@RequestParam(required = false,value = "pn", defaultValue = "1") Integer pn,
                                          @RequestParam(value = "keyWord",defaultValue = "")String keyWord) {
         PageHelper.startPage(pn, 10);
-        List<MusicVideo> musicVideos = searchService.selectListMusicVideoByVideoName(keyWord);
+        List<String[]> musicVideos = musicVideoService.exhibitionMusicVideo();
         PageInfo page = new PageInfo(musicVideos, 5);
         return page;
     }
@@ -87,7 +90,7 @@ public class SearchByName {
     public PageInfo searchListSinger(@RequestParam(required = false,value = "pn", defaultValue = "1") Integer pn,
                                      @RequestParam(value = "keyWord",defaultValue = "")String keyWord) {
         PageHelper.startPage(pn, 10);
-        List<User> singerList = searchService.selectSingerByName(keyWord);
+        List<ShowSinger> singerList = singerService.exhibitionSingersByName(keyWord);
         PageInfo page = new PageInfo(singerList, 5);
         return page;
     }

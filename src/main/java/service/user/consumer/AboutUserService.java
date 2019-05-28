@@ -23,25 +23,24 @@ import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 /**
- * 开关个人空间，关注用户，访问其他用户，用户之间发邮件，举报，发邮件给客服，更改邮件状态的业务逻辑
+ * 开关个人空间，关注用户，访问其他用户，举报用户
  *
  * @author 5月14日 张易兴创建
  */
 @Service(value = "AboutUserService")
 public class AboutUserService {
     private static final Logger logger = LoggerFactory.getLogger(AboutUserService.class);
-    @Resource(name = "AboutUserService")
-    private AboutUserService aboutUserService;
     @Resource(name = "ValidationInformation")
     ValidationInformation validationInformation;
     @Resource(name = "UserMapper")
     UserMapper userMapper;
     @Resource(name = "FocusMapper")
     FocusMapper focusMapper;
-    @Resource(name = "MailMapper")
-    MailMapper mailMapper;
+    @Resource(name = "AboutMailService")
+    AboutMailService aboutMailService;
     @Resource(name = "SpecialFunctions")
     SpecialFunctions specialFunctions;
     @Resource(name = "Existence")
@@ -53,7 +52,7 @@ public class AboutUserService {
      * @param type    获取类型 1表示关注的用户，2表示被关注用户，3表示被访问的记录
      * @param session 获取当前会话
      */
-    public State showFollowUser(Integer type, HttpSession session, Model model) throws DataBaseException {
+    public List<User> showFollowUser(Integer type, HttpSession session) {
         User user = specialFunctions.getUser(session);
         Focus focus = new Focus();
         List<Integer> idList=new ArrayList<>();
@@ -80,9 +79,7 @@ public class AboutUserService {
                 idList.add(f.getUserFocusId());
             }
         }
-        List<User> userList=userMapper.listIdSelectListUser(idList);
-        model.addAttribute("User", userList);
-        return null;
+         return userMapper.listIdSelectListUser(idList);
     }
 
     /**
@@ -152,43 +149,6 @@ public class AboutUserService {
         return state;
     }
 
-
-    /**
-     * 用户之间发送邮件
-     *
-     * @param mailbox 获取接收邮件的用户邮箱
-     * @param content 邮件发送的内容
-     * @param session 获取当前会话
-     */
-    public State sendMailUser(String mailbox, String content, HttpSession session) throws DataBaseException {
-        State state = new State();
-        // 判断接收者是否存在
-        if (validationInformation.isMailboxExistence(mailbox)) {
-            // 判断内容是否合法
-            state = validationInformation.isContent(content);
-            if (state.getState() == 1) {
-                Mail mail = new Mail();
-                // 发送邮件的用户信息
-                User sendUser = specialFunctions.getUser(session);
-                mail.setSenderId(sendUser.getId());
-                // 接收邮件的用户信息
-                User receiveUser = userMapper.selectUserMailbox(mailbox);
-                mail.setRecipientId(receiveUser.getId());
-                mail.setContent(content);
-                mail.setDate(new Date());
-                if (mailMapper.insertMail(mail) < 1) {
-                    // 如果失败是数据库错误
-                    logger.error("邮箱：" + sendUser.getMailbox() + "发送邮件时，数据库出错");
-                    throw new DataBaseException("邮箱：" + sendUser.getMailbox() + "发送邮件时，数据库出错");
-                }
-            }
-        } else {
-            logger.debug("邮箱：" + mailbox + "邮箱不存在");
-            state.setInformation("邮箱不存在");
-        }
-        return state;
-    }
-
     /**
      * 举报指定用户
      * 添加指定用户的被举报次数，并给客服和管理员发邮件
@@ -212,34 +172,7 @@ public class AboutUserService {
             // 获取举报者的用户信息
             User user = specialFunctions.getUser(session);
             // 将举报信息交给客服，进行核对
-            feedback(user.getId(), content);
-        }
-        return state;
-    }
-
-    /**
-     * 给客服发信息
-     * 向客服反馈，举报用户
-     *
-     * @param id      发送者的id
-     * @param content 发送的内容的内容
-     */
-    public State feedback(Integer id, String content) throws DataBaseException {
-        // 判断内容是否合法
-        State state = validationInformation.isContent(content);
-        if (state.getState() == 1) {
-            Mail mail = new Mail();
-            // 发送邮件的用户id
-            mail.setSenderId(id);
-            // 发送给客服
-            mail.setReply(1);
-            mail.setContent(content);
-            mail.setDate(new Date());
-            if (mailMapper.insertMail(mail) < 1) {
-                // 如果失败是数据库错误
-                logger.debug("用户id：" + id + "给客服发送邮件时，数据库出错");
-                throw new DataBaseException("用户id：" + id + "给客服发送邮件时，数据库出错");
-            }
+            aboutMailService.feedback(user.getId(), content);
         }
         return state;
     }

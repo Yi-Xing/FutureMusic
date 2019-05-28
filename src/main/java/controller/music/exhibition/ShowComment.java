@@ -92,7 +92,7 @@ public class ShowComment {
     /**
      * 主评论下对应的全部id
      * @param replyId 主评论的id
-     * @return 全部的回复，没有排序
+     * @return 全部的回复，暂时没有排序
      */
     @RequestMapping(value = "/showAllReply")
     @ResponseBody

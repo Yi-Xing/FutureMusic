@@ -28,7 +28,6 @@ public class AccountInformation {
 
     private static final Logger logger = LoggerFactory.getLogger(AccountInformation.class);
 
-    // 查看用户的余额，查看用户的vip到期时间
     /**
      * 显示用户页面
      * Model封装：
@@ -38,14 +37,6 @@ public class AccountInformation {
     @RequestMapping(value = "/userPage")
     public String userPage(HttpSession session, Model model){
         return accountInformationService.userPage(session,model);
-    }
-
-    /**
-     * 显示用户个人信息页面
-     */
-    @RequestMapping(value = "/userInformation")
-    public State userInformation(){
-        return null;
     }
 
     /**

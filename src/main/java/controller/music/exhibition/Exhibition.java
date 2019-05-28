@@ -5,15 +5,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import service.music.ExhibitionService;
+import service.music.MusicService;
+import service.music.PlayService;
 import service.music.MusicVideoService;
 import service.music.SingerService;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
-import java.util.Map;
-
 /**
  * 页面展示相关的层
  * 1.音乐人、MV、排行榜
@@ -21,12 +20,14 @@ import java.util.Map;
  * */
 @Controller
 public class Exhibition {
-    @Resource(name = "ExhibitionService")
-    private ExhibitionService exhibitionService;
+    @Resource(name = "PlayService")
+    private PlayService playService;
     @Resource(name = "SingerService")
     SingerService singerService;
     @Resource(name = "MusicVideoService")
     MusicVideoService musicVideoService;
+    @Resource(name = "MusicService")
+    MusicService musicService;
 
 
     private final String musicType = "电音";
@@ -40,7 +41,7 @@ public class Exhibition {
 
     @RequestMapping("/indexExhibition")
     @ResponseBody
-    public String indexExhibition(Model model,HttpServletRequest request){
+    public String indexExhibition(Model model){
         //首页显示的活动
         model.addAttribute("activities",activity());
         //首页显示的音乐人
@@ -52,7 +53,7 @@ public class Exhibition {
         //新歌前三首歌曲
         model.addAttribute("rankingNewSong",rankingListByNewSong());
         //电音前三歌曲
-        model.addAttribute("rankingByMusicType", musicType);
+        model.addAttribute("rankingByMusicType", rankingListByMusicType(musicType));
         //首页的歌曲地区排行榜(包括欧美、日韩、华语）
         model.addAttribute("rankingByMusicRegion",rankingListByRegion(region1));
         model.addAttribute("rankingByMusicRegion",rankingListByRegion(region2));
@@ -60,17 +61,15 @@ public class Exhibition {
         return "index";
     }
     /**
-     * @param request 展示指定的歌曲（巅峰榜）
      *      功能：首页的流派排行榜
      *          只显示3条数据
      * @return List<Music> 返回符合条件的歌曲集合
      */
     @RequestMapping(value = "/rankingListByMusicType")
     @ResponseBody
-    public Map<Music,User> rankingListByMusicType(HttpServletRequest request){
-        String musicType = request.getParameter("musicType");
-        Map<Music,User> musicSingerList = exhibitionService.selectListMusicByMusicType(musicType);
-        return musicSingerList;
+    public List<Music> rankingListByMusicType(String musicType){
+        List<Music> musicList = playService.selectListMusicByMusicType(musicType);
+        return musicList;
     }
     /**
      *      功能：首页的新歌排行榜
@@ -80,11 +79,10 @@ public class Exhibition {
      */
     @RequestMapping(value = "/rankingListByNewSong")
     @ResponseBody
-    public Map<Music,User> rankingListByNewSong(){
-        Map<Music,User> musicSingeMap = exhibitionService.selectListMusicByNewSong();
-        return musicSingeMap;
+    public List<Music> rankingListByNewSong(){
+        List<Music> musicList = musicService.selectListMusicByNewSong();
+        return musicList;
     }
-
     /**
      *      功能：首页的地区排行榜
      *      只显示3条数据
@@ -92,31 +90,31 @@ public class Exhibition {
      */
     @RequestMapping(value = "/rankingListByRegion")
     @ResponseBody
-    public Map<Music,User> rankingListByRegion(String region){
-        Map<Music,User> musicList = exhibitionService.selectListMusicByRegion(region);
+    public List<Music> rankingListByRegion(String region){
+        List<Music> musicList = playService.selectListMusicByRegion(region);
         return musicList;
     }
     /**
-     *      功能：首页的地区排行榜
+     *      功能：首页的语种排行榜
      *      只显示3条数据
      * @return List<Music> 返回符合条件的歌曲集合
      */
     @RequestMapping(value = "/rankingListByLanguage")
     @ResponseBody
-    public Map<Music,User> rankingListByLanguage(HttpServletRequest request){
+    public List<Music> rankingListByLanguage(HttpServletRequest request){
         String region = request.getParameter("classification");
-        Map<Music,User> musicList = exhibitionService.selectListMusicByLanguage(region);
+        List<Music> musicList = playService.selectListMusicByLanguage(region);
         return musicList;
     }
 
     /**
-     * 首页推荐专辑的显示
+     * 首页推荐活动的显示
      * @return List<SongList> 返回专辑的集合
      */
     @RequestMapping(value = "/activity")
     @ResponseBody
     public List<Activity> activity(){
-        List<Activity> activityList = exhibitionService.selectActivity();
+        List<Activity> activityList = playService.selectActivity();
         return activityList;
     }
 }
