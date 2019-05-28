@@ -64,55 +64,54 @@
 }
 
 /*我的关注*/
-#myFollow .container{
+#myFollow .container,#myFans .container, #shipin .container{
     display: flex;
     flex-flow: row wrap;
     justify-content: space-around;
 }
-#myFollow .container .follow{
+#myFollow .container .follow,#myFans .container .fans{
     margin: 20px 50px;
     width: 160px;
     overflow: hidden;
 }
-#myFollow .container .follow .follow_top{
+#myFollow .container .follow .follow_top,#myFans .container .fans .fans_top{
     width: 160px;
     height: 160px;
     border-radius: 50%;overflow: hidden;
 }
-#myFollow .container .follow .follow_top a{
+#myFollow .container .follow .follow_top a, .container .fans .fans_top a{
     width: 160px;
-
-
 }
-#myFollow .container .follow .follow_top a img{
+#myFollow .container .follow .follow_top a img, .container .fans .fans_top a img{
     width: 100%;
 }
-#myFans .container{
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: space-around;
+/*视频*/
+.mv_top{
+    width: 280px;
 }
-#myFans .container .fans{
-    margin: 20px 50px;
-    width: 160px;
-    overflow: hidden;
-}
-#myFans .container .fans .fans_top{
-    width: 160px;
-    height: 160px;
-    border-radius: 50%;overflow: hidden;
-}
-#myFans .container .fans .fans_top a{
-    width: 160px;
-}
-#myFans .container .fans .fans_top a img{
+.mv_top img{
     width: 100%;
 }
+.mv_bottom *{
+    margin: 5px 0;
+}
 
-#myList .personal_list img{
+
+.personal_list img{
     width: 50px;
 }
 
 #myInformation form{
+    display: none;
+}
+
+.money{
+    margin-bottom: 100px;
+}
+.money h3{
+    color: #f40;
+}
+
+#gedan,#zhuanji,#shipin{
     display: none;
 }

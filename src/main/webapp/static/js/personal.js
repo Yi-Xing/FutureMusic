@@ -56,8 +56,24 @@ $(".collapse .navbar-nav .personal_tab").click(function () {
     }
 });
 //修改个人信息表单
-$("#myInformation h2").click(function () {
+$("#changeInformation").click(function () {
     $("#myInformation form").slideToggle(300);
+});
+
+//我喜欢tab切换
+$("#iLike .btn-group button").hover(function () {
+    $(this).click(function () {
+        let num = $(this).index();
+        console.log($(this).index());
+        let likeTab = $(".likeTab");
+        for (i = 0; i < likeTab.length; i++) {
+            if(i === num){
+                $(likeTab[i]).slideDown(200);
+            }else {
+                $(likeTab[i]).slideUp(200);
+            }
+        }
+    })
 });
 
 

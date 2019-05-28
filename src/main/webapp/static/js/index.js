@@ -123,13 +123,11 @@ $('.icon-like').on('click', function () {
                     search_tips.innerHTML = '';
                 } else {
                     for (var i = 0; i < data.length; i++) {
-                        // var musicAlbum = data[i].albumId;
                         console.log(data[i]);
                         var musicName = data[i].getName(0).name;
 
                         tips = tips + tips_head + musicName + tips_last;
                     }
-
                     search_tips.innerHTML = tips;
                 }
 
@@ -139,14 +137,12 @@ $('.icon-like').on('click', function () {
 
     // 用于注册账号
     $("#registerUser").on("click", function () {
-        // alert(222);
         var registerUserName = $("#registerUserName").val();
         var registerMail = $("#registerMail").val();
         var registerPassword = $("#registerPassword").val();
         var registerPasswordAgain = $("#registerPasswordAgain").val();
         var verificationCode = $("#verificationCode").val();
         var agreement = $("#agreement").is(":checked");
-        // alert(agreement);
         $.ajax({
             contentType: "application/x-www-form-urlencoded;charset=UTF-8",
             type: "post",
@@ -175,9 +171,3 @@ $('.icon-like').on('click', function () {
             }
         });
     });
-// };
-
-//垃圾箱删除函数
-window.onload = function () {
-
-}
