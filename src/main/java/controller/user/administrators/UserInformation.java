@@ -27,6 +27,7 @@ import javax.annotation.Resource;
  * @author 5月20日 张易兴创建
  */
 @Controller
+@RequestMapping(value = "/administrators")
 public class UserInformation {
     private static final Logger logger = LoggerFactory.getLogger(UserInformation.class);
     @Resource(name = "UserInformationService")
@@ -38,6 +39,7 @@ public class UserInformation {
      * @param pageNum 表示当前第几页
      */
     @RequestMapping(value = "/showUser")
+    @ResponseBody
     public String showUser(String[] condition,Integer pageNum, Model model) {
         return userInformationService.showUser(condition,pageNum,model);
     }
@@ -49,5 +51,15 @@ public class UserInformation {
     @ResponseBody
     public State modifyUser(@RequestBody User user) throws DataBaseException {
         return userInformationService.modifyUser(user);
+    }
+
+    /**
+     * 返回指定用户的粉丝量
+     * @param id 用户的id
+     */
+    @RequestMapping(value = "/showFocus")
+    @ResponseBody
+    public Integer showFocus(Integer id) {
+        return userInformationService.showFocus(id);
     }
 }

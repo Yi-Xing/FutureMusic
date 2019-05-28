@@ -1,5 +1,6 @@
 package controller.user.administrators;
 
+import com.github.pagehelper.PageInfo;
 import entity.SongList;
 import entity.State;
 import org.slf4j.Logger;
@@ -25,22 +26,24 @@ import javax.annotation.Resource;
  *            4、用户的id
  *  修改：专辑用于修改活动
  *  删除：id
+ *       * 查找指定专辑或歌单中的所有音乐
+ *  查询：指定专辑或歌单被收藏的次数
  * @author 5月22日 张易兴创建
  */
 @Controller
+@RequestMapping(value = "/administrators")
 public class SongListInformation {
     private static final Logger logger = LoggerFactory.getLogger(ActivityInformationService.class);
     @Resource(name = "SongListInformationService")
     SongListInformationService songListInformationService;
     /**
-     * 指定歌手的所有音乐被播放的次数
-     * 指定专辑中的所有音乐被播放的次数
-     * @param id 歌单或专辑的id
-     * @param type 1表示歌单或专辑的id，2表示活动的id 3、分类的id  4、用户的id
+     * 显示歌单或专辑的信息
+     * @param condition 1表示歌单或专辑的id，2表示活动的id 3、分类的id  4、歌手的id
      */
     @RequestMapping(value = "/showSongList")
-    public String showSongList(Integer id,Integer type,Integer pageNum, Model model)  {
-        return songListInformationService.showSongList(id,type,pageNum,model);
+    @ResponseBody
+    public PageInfo showSongList(String[] condition, Integer pageNum)  {
+        return songListInformationService.showSongList(condition,pageNum);
     }
 
     /**
@@ -56,7 +59,29 @@ public class SongListInformation {
      * 删除指定id专辑或歌单
      */
     @RequestMapping(value = "/deleteSongList")
-    public String deleteSongList(Integer id) throws DataBaseException {
+    @ResponseBody
+    public State deleteSongList(Integer id) throws DataBaseException {
         return songListInformationService.deleteSongList(id);
+    }
+
+    /**
+     * 指定歌单或专辑被收藏的次数
+     * @param id 歌单或专辑的id
+     * @param type 1表示是歌单 2表示是专辑
+     */
+    @RequestMapping(value = "/showSongListCollect")
+    @ResponseBody
+    public int showSongListCollect(Integer id,Integer type)  {
+        return songListInformationService.showSongListCollect(id,type);
+    }
+    /**
+     * 查找指定专辑或歌单中的所有音乐，分页显示
+     * @param id 专辑或歌单的id
+     * @param type 1是歌单2是专辑
+     */
+    @RequestMapping(value = "/showMusicSongList")
+    @ResponseBody
+    public PageInfo showMusicSongList(Integer id,Integer type, Integer pageNum) {
+        return songListInformationService.showMusicSongList(id,type,pageNum);
     }
 }

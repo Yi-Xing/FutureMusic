@@ -1,5 +1,6 @@
 package controller.user.administrators;
 
+import com.github.pagehelper.PageInfo;
 import entity.Mail;
 import entity.State;
 import org.slf4j.Logger;
@@ -31,6 +32,7 @@ import javax.servlet.http.HttpSession;
  * @author 5月22日 张易兴创建
  */
 @Controller
+@RequestMapping(value = "/administrators")
 public class MailInformation {
     private static final Logger logger = LoggerFactory.getLogger(ActivityInformationService.class);
     @Resource(name = "MailInformationService")
@@ -44,8 +46,9 @@ public class MailInformation {
      * @param session   用于判断等级
      */
     @RequestMapping(value = "/showMail")
-    public String showMail(String[] condition, Integer pageNum, Model model, HttpSession session) {
-        return mailInformationService.showMail(condition,pageNum,model,session);
+    @ResponseBody
+    public PageInfo showMail(String[] condition, Integer pageNum, HttpSession session) {
+        return mailInformationService.showMail(condition,pageNum,session);
     }
 
     /**

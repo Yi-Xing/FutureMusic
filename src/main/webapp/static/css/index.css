@@ -18,11 +18,15 @@ ul li{
 }
 .color_1{
     background-color: #FDFDFD;
-    margin: 50px 0;
+    padding: 50px 0;
 }
 .color_2{
     background-color: #F6F6F6;
-    margin: 50px 0;
+    padding: 50px 0;
+}
+.color_3{
+    background-color: #222222;
+    padding: 50px 0;
 }
 
 /*头部*/
@@ -156,9 +160,11 @@ ul li{
     border-radius: 30px;
     float:left;
 }
-.modal-content{
+.modal_content{
     width:500px;
     height:450px;
+    background-color: #fff;
+    border-radius: 5px;
 }
 .modal_header{
     width:400px;

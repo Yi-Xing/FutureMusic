@@ -18,7 +18,7 @@ import java.util.Map;
  * */
 @Service(value = "DetailsService")
 public class DetailsService {
-    private static final Logger logger = LoggerFactory.getLogger(ExhibitionService.class);
+    private static final Logger logger = LoggerFactory.getLogger(PlayService.class);
     @Resource(name="MusicMapper")
     MusicMapper musicMapper;
     @Resource(name="ClassificationMapper")

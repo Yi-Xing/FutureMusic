@@ -93,6 +93,7 @@ public class ShowCommentService {
         comment.setDate((new Date()));
         return selectComment(comment);
     }
+
     /**
      * 从这里开始以及下面的都是不能直接用的
      * 查找一个评论（主评论）的全部回复
@@ -117,7 +118,7 @@ public class ShowCommentService {
      * 递归实现遍历主评论下的所有评论
      * @param start 主评论下的第一级回复
      * @param result 主评论下的所有回复
-     * @return
+     *               评论挨一下，差的时候带上user的id和头像和name
      */
     private List<Comment> getAllReply(List<Comment> start,List<Comment> result){
         if(start==null){
@@ -137,8 +138,6 @@ public class ShowCommentService {
     /**
      * 查找评论 公共可用
      * 如果评论不是独立评论，显示出来回复的是哪个评论
-     * @param comment
-     * @return
      */
     private Map<Comment,Comment> selectComment(Comment comment){
         List<Comment> commentList = commentMapper.selectListComment(comment);
@@ -171,4 +170,5 @@ public class ShowCommentService {
         }
         return commentList.get(0);
     }
+    
 }

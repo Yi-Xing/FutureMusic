@@ -101,9 +101,8 @@ public class SearchService {
         music.setName(keyWord);
         return  musicMapper.selectListMusic(music);
     }
-
     /**
-     * @param singerName 按照指定规则查找指定歌曲
+     * @param singerName 查找歌手
      *                封装信息：歌手名字
      * @return List<Music>  返回查找到的歌曲
      */
