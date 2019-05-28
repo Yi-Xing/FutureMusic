@@ -1,5 +1,9 @@
 package test.zyx;
 
+import com.alipay.api.AlipayApiException;
+import com.alipay.api.AlipayClient;
+import com.alipay.api.DefaultAlipayClient;
+import com.alipay.api.request.AlipayTradePagePayRequest;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import entity.Activity;
@@ -19,12 +23,11 @@ import util.FileUpload;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 @Controller
 public class demo {
@@ -85,6 +88,38 @@ public class demo {
 //        System.out.println( EncryptionUtil.encryptionMD5("12346578"));
 //        System.out.println( EncryptionUtil.encryptionMD5("12346578"));
         System.out.println("2860482971.0".matches("(^[1-9]\\d*|^0)(\\.\\d{1,2}|)$"));
+    }
+
+
+    @RequestMapping("/ali")
+    public void ali(HttpServletResponse response, HttpServletRequest request) throws AlipayApiException, IOException{
+        //设置编码
+        response.setContentType("text/html;charset=utf-8");
+
+        PrintWriter out = response.getWriter();
+        //获得初始化的AlipayClient
+        AlipayClient alipayClient = new DefaultAlipayClient(AlipayConfig.gatewayUrl, AlipayConfig.app_id, AlipayConfig.merchant_private_key, "json", AlipayConfig.charset, AlipayConfig.alipay_public_key, AlipayConfig.sign_type);
+        //设置请求参数
+        AlipayTradePagePayRequest aliPayRequest = new AlipayTradePagePayRequest();
+        aliPayRequest.setReturnUrl(AlipayConfig.return_url);
+        aliPayRequest.setNotifyUrl(AlipayConfig.notify_url);
+
+        //商户订单号，后台可以写一个工具类生成一个订单号，必填
+        Random random=new Random();
+        int randomInt=random.nextInt(10000);
+        String order_number =System.currentTimeMillis()+""+randomInt;
+        //付款金额，从前台获取，必填
+        String total_amount = request.getParameter("id");
+        //订单名称，必填
+        String subject = new String("未来音乐");
+        aliPayRequest.setBizContent("{\"out_trade_no\":\"" + order_number + "\","
+                + "\"total_amount\":\"" + total_amount + "\","
+                + "\"subject\":\"" + subject + "\","
+                + "\"product_code\":\"FAST_INSTANT_TRADE_PAY\"}");
+        //请求
+        String result = alipayClient.pageExecute(aliPayRequest).getBody();
+        //输出
+        out.println(result);//以下写自己的订单代码
     }
 }
 //        List<User> listUser=userMapper.selectUser(new User());

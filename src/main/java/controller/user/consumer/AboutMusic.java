@@ -1,9 +1,6 @@
 package controller.user.consumer;
 
-import entity.Comment;
-import entity.MusicCollect;
-import entity.Play;
-import entity.State;
+import entity.*;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
 import util.exception.DataBaseException;
@@ -16,6 +13,7 @@ import service.user.consumer.AboutMusicService;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
+import java.util.List;
 
 /**
  * 收藏和取消收藏音乐或MV，添加历史播放记录，评论，删除评论，点赞
@@ -29,36 +27,35 @@ public class AboutMusic {
     private static final Logger logger = LoggerFactory.getLogger(AboutMusic.class);
 
     /**
-     * 添加显示用户收藏的所有音乐，显示用户收藏的所有MV
+     * 显示用户收藏的所有音乐，显示用户收藏的所有MV
+     *
      * @param type 1表示查找音乐收藏 2表示查找MV收藏
      */
     @RequestMapping(value = "/showUserCollectionMusic")
-    public String showUserCollectionMusic(Integer type,Model model, HttpSession session) throws DataBaseException {
+    @ResponseBody
+    public List<MusicCollect> showUserCollectionMusic(Integer type, HttpSession session) {
         logger.trace("showUserCollectionMusic方法开始执行");
-        return null;
+        return aboutMusicService.showUserCollectionMusic(type, session);
     }
 
     /**
      * 显示用户购买过的音乐，显示用户购买过的MV
+     *
      * @param type 1表示查找音乐购买 2表示查找MV购买
      */
     @RequestMapping(value = "/showUserPurchaseMusic")
     @ResponseBody
-    public String showUserPurchaseMusic(Integer type,Model model, HttpSession session) throws DataBaseException {
+    public List showUserPurchaseMusic(Integer type, HttpSession session) {
         logger.trace("showUserPurchaseMusic方法开始执行");
-        return null;
+        return aboutMusicService.showUserPurchaseMusic(type, session);
     }
 
     /**
      * 收藏和取消收藏音乐或MV,ajax
      *
      * @param musicCollectInformation 封装音乐或MV收藏的信息
-     *                                musicId               获取收藏音乐或MV的id
+     *                                musicId          获取收藏音乐或MV的id
      *                                type             获取类型1是音乐2是MV
-     *                                have             表示是音乐或MV是否已经购买，1表示购买，2表示没购买(不用传该数据)  判断指定用户没有有购买指定音乐或MV
-     *                                singerId         表示是歌手的id
-     *                                albumId          表示是专辑的id
-     *                                classificationId 表示是音乐或MV的分类的id
      *                                session          获取当前会话
      */
     @RequestMapping(value = "/collectionMusic")
@@ -69,32 +66,41 @@ public class AboutMusic {
     }
 
     /**
-     * 音乐或MV的历史播放记录,ajax
+     * 添加音乐或MV的历史播放记录,ajax
      *
-     * @param playInformation 封装评论的信息
-     *                        musicId               获取收藏音乐或MV的id
-     *                        type             获取类型1是音乐2是MV
-     *                        singerId         表示是歌手的id
-     *                        albumId          表示是专辑的id
-     *                        classificationId 表示是音乐或MV的分类的id
-     * @param session         获取当前会话
+     * @param play    封装评论的信息
+     *                musicId          获取收藏音乐或MV的id
+     *                type             获取类型1是音乐2是MV
+     * @param session 获取当前会话
      */
     @RequestMapping(value = "/musicPlay")
     @ResponseBody
-    public State musicPlay(@RequestBody Play playInformation, HttpSession session) throws DataBaseException {
+    public State musicPlay(@RequestBody Play play, HttpSession session) throws DataBaseException {
         logger.trace("musicPlay方法开始执行");
-        return aboutMusicService.musicPlay(playInformation, session);
+        return aboutMusicService.musicPlay(play, session);
     }
 
+    /**
+     * 显示用户的音乐或MV的历史播放记录,ajax
+     *
+     * @param type 1表示音乐 2表示MV
+     * @param session 获取当前会话
+     */
+    @RequestMapping(value = "/showMusicPlay")
+    @ResponseBody
+    public List showMusicPlay(Integer type, HttpSession session) {
+        logger.trace("showMusicPlay方法开始执行");
+        return aboutMusicService.showMusicPlay(type, session);
+    }
 
     /**
      * 音乐或MV或专辑的评论，ajax
      *
      * @param commentInformation 封装评论的信息
-     *                           获取音乐或MV或专辑的id
-     *                           获取类型1是音乐，2是MV，3是专辑
-     *                           获取评论的内容
-     *                           获取回复哪个评论的id, 0为独立评论
+     *                           获取musicId音乐或MV或专辑的id
+     *                           获取type类型1是音乐，2是MV，3是专辑
+     *                           获取content评论的内容
+     *                           获取reply回复哪个评论的id, 0为独立评论
      * @param session            获取当前会话
      */
     @RequestMapping(value = "/comment")
@@ -127,5 +133,24 @@ public class AboutMusic {
     public State commentFabulous(String id, HttpSession session) throws DataBaseException {
         logger.trace("commentFabulous方法开始执行");
         return aboutMusicService.commentFabulous(id, session);
+    }
+
+    /**
+     * 播放音乐判断用户是否拥有该音乐
+     * @param id 音乐的id
+     */
+    @RequestMapping(value = "/playMusic")
+    @ResponseBody
+    public Music playMusic(Integer id,HttpSession session){
+        return aboutMusicService.playMusic(id,session);
+    }
+    /**
+     * 播放MV判断用户是否购买该MV
+     * @param id MV的id
+     */
+    @RequestMapping(value = "/playMusicVideo")
+    @ResponseBody
+    public MusicVideo playMusicVideo(Integer id,HttpSession session){
+        return aboutMusicService.playMusicVideo(id,session);
     }
 }

@@ -28,7 +28,7 @@ public class MusicCollect implements Serializable {
      */
     private int type=0;
     /**
-     * 1是已拥有2是没购买
+     * 1是已拥有，其他表示没有购买
      */
     private int have=0;
     /**
