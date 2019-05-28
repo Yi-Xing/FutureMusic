@@ -7,14 +7,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import service.music.MusicService;
 import service.music.MusicVideoService;
 import service.music.PlayService;
 import service.music.SingerService;
 
 import javax.annotation.Resource;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 /**
  * 根据分类搜索
@@ -29,6 +28,7 @@ public class SearchByClassification {
     private MusicVideoService musicVideoService;
     @Resource(name = "SingerService")
     private SingerService singerService;
+    private MusicService musicService;
     /**
      * 根据分类中的地区查找歌曲 排行榜
      */
@@ -37,7 +37,7 @@ public class SearchByClassification {
     public PageInfo searchMusicByRegion(@RequestParam(required = false,value = "pn", defaultValue = "1") Integer pn,
                                                 @RequestParam(value = "region",defaultValue = "")String region) {
         PageHelper.startPage(pn, 10);
-        List<Music> musicList= playService.selectListMusicByRegion(region);
+        List<Music> musicList= musicService.selectListMusicByRegion(region);
         return new PageInfo(musicList);
     }
     /**
@@ -48,14 +48,16 @@ public class SearchByClassification {
     public PageInfo searchMusicByType(@RequestParam(required = false,value = "pn", defaultValue = "1") Integer pn,
                                       @RequestParam(value = "type",defaultValue = "")String type) {
         PageHelper.startPage(pn, 10);
-        List<Music> musicList= playService.selectListMusicByMusicType(type);
+        List<Music> musicList= musicService.selectListMusicByMusicType(type);
         return new PageInfo(musicList);
     }
 
     /**
      * 根据分类查找歌手
      */
-    public PageInfo searchSingerByReegion(@RequestParam(required = false,value = "pn", defaultValue = "1") Integer pn,
+    @RequestMapping("/searchSingerByRegion")
+    @ResponseBody
+    public PageInfo searchSingerByRegion(@RequestParam(required = false,value = "pn", defaultValue = "1") Integer pn,
                                           @RequestParam(value = "singerRegion")String singerRegion){
         PageHelper.startPage(pn,10);
         List<ShowSinger> showSingerList = singerService.exhibitionSingersByRegion(singerRegion);

@@ -68,7 +68,7 @@ public class Exhibition {
     @RequestMapping(value = "/rankingListByMusicType")
     @ResponseBody
     public List<Music> rankingListByMusicType(String musicType){
-        List<Music> musicList = playService.selectListMusicByMusicType(musicType);
+        List<Music> musicList = musicService.selectListMusicByMusicType(musicType);
         return musicList;
     }
     /**
@@ -91,7 +91,7 @@ public class Exhibition {
     @RequestMapping(value = "/rankingListByRegion")
     @ResponseBody
     public List<Music> rankingListByRegion(String region){
-        List<Music> musicList = playService.selectListMusicByRegion(region);
+        List<Music> musicList = musicService.selectListMusicByRegion(region);
         return musicList;
     }
     /**
@@ -103,7 +103,7 @@ public class Exhibition {
     @ResponseBody
     public List<Music> rankingListByLanguage(HttpServletRequest request){
         String region = request.getParameter("classification");
-        List<Music> musicList = playService.selectListMusicByLanguage(region);
+        List<Music> musicList = musicService.selectListMusicByLanguage(region);
         return musicList;
     }
 

@@ -1,29 +1,22 @@
 package service.user.consumer;
 
 import entity.Focus;
-import entity.Mail;
 import entity.State;
 import entity.User;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 import service.user.SpecialFunctions;
 import util.exception.DataBaseException;
 import mapper.FocusMapper;
-import mapper.MailMapper;
 import mapper.UserMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import service.user.ValidationInformation;
-import util.ConstantUtil;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.Map;
 
 /**
  * 开关个人空间，关注用户，访问其他用户，举报用户
@@ -44,7 +37,7 @@ public class AboutUserService {
     @Resource(name = "SpecialFunctions")
     SpecialFunctions specialFunctions;
     @Resource(name = "Existence")
-    Existence existence;
+    ExistenceService existenceService;
 
     /**
      * 查找指定用户关注的所有用户，或被关注所有用户，被访问的记录
@@ -101,7 +94,7 @@ public class AboutUserService {
         // 为访客时，需要进行是否存在判断
         if (focus.getUserType() == 2) {
             // 判断用户是否访问过该用户，如果访问过不需要添加只需要更新，没有访问则需要添加
-            Focus newFocus = existence.isUserFollow(user.getId(), id, type);
+            Focus newFocus = existenceService.isUserFollow(user.getId(), id, type);
             // 判断有没有访问
             if (newFocus != null) {
                 //更新时间

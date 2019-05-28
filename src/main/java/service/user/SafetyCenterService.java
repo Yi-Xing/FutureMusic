@@ -75,7 +75,7 @@ public class SafetyCenterService {
      *
      * @return State 状态码为1时跳转到安全中心首页
      */
-    public State cancelBinding(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
+    public String cancelBinding(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
         //得到会话上的用户信息
         User user = specialFunctions.getUser(session);
         if (user != null) {
@@ -85,9 +85,7 @@ public class SafetyCenterService {
         // 删除绑定的邮箱
         session.removeAttribute("userMailbox");
         logger.info("邮箱解绑成功");
-        State state = new State();
-        state.setState(1);
-        return state;
+        return null;
     }
 
     /**

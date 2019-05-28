@@ -50,7 +50,7 @@
     </aop:config>
 
     <!--注解事务-->
-<!--    <tx:annotation-driven transaction-manager="dataSourceTransactionManager"/>-->
+    <tx:annotation-driven transaction-manager="dataSourceTransactionManager"/>
 
 
     <!--拦截器-->

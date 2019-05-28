@@ -32,7 +32,7 @@ public class AboutSongListService {
     @Resource(name = "SpecialFunctions")
     SpecialFunctions specialFunctions;
     @Resource(name = "Existence")
-    Existence existence;
+    ExistenceService existenceService;
     @Resource(name = "SongListMapper")
     SongListMapper songListMapper;
     @Resource(name = "ValidationInformation")
@@ -215,7 +215,7 @@ public class AboutSongListService {
     public State collectionSongList(Integer id, Integer type, HttpSession session) throws DataBaseException {
         //得到会话上的用户
         User user = specialFunctions.getUser(session);
-        SongListCollect songListCollect = existence.isUserCollectionSongList(user.getId(), id, type);
+        SongListCollect songListCollect = existenceService.isUserCollectionSongList(user.getId(), id, type);
         if (songListCollect != null) {
             // 如果不为null表示已经收藏则需要用取消收藏
             if (songListCollectMapper.deleteSongListCollect(songListCollect.getId()) < 1) {
