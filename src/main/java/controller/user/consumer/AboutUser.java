@@ -2,7 +2,6 @@ package controller.user.consumer;
 
 import entity.State;
 import entity.User;
-import service.user.SpecialFunctions;
 import util.exception.DataBaseException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -24,8 +23,6 @@ import java.util.List;
 public class AboutUser {
     @Resource(name = "AboutUserService")
     private AboutUserService aboutUserService;
-    @Resource(name = "SpecialFunctions")
-    SpecialFunctions specialFunctions;
     private static final Logger logger = LoggerFactory.getLogger(AboutUser.class);
 
     /**
@@ -35,7 +32,7 @@ public class AboutUser {
      */
     @RequestMapping(value = "/showFollowUser")
     @ResponseBody
-    public List<User> showFollowUser(Integer type, HttpSession session) throws DataBaseException {
+    public List<User> showFollowUser(Integer type, HttpSession session)  {
         logger.trace("showFollowUser方法开始执行");
         return aboutUserService.showFollowUser(type,session);
     }

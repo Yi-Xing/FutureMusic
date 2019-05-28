@@ -43,32 +43,35 @@ public class AboutSongListService {
     FileUpload fileUpload;
     @Resource(name = "MusicSongListMapper")
     MusicSongListMapper musicSongListMapper;
+    @Resource(name = "TransactionService")
+    TransactionService transactionService;
 
     /**
      * 显示用户创建的所有歌单或专辑
-     * @param  type 1是歌单2是专辑
+     *
+     * @param type 1是歌单2是专辑
      */
-    public String showUserSongList(Integer type,HttpSession session){
+    public List<SongList> showUserSongList(Integer type, HttpSession session) {
         User user = specialFunctions.getUser(session);
-        SongList songList=new SongList();
+        SongList songList = new SongList();
         songList.setType(type);
         songList.setUserId(user.getId());
         // 查找到用户创建的歌单或专辑
-        List<SongList> list=songListMapper.selectListSongList(songList);
-        return null;
+        return songListMapper.selectListSongList(songList);
     }
+
     /**
      * 显示用户收藏的所有歌单或专辑
-     * @param  type 1是歌单2是专辑
+     *
+     * @param type 1是歌单2是专辑
      */
-    public String showUserCollectionSongList(Integer type,HttpSession session){
+    public List<SongListCollect> showUserCollectionSongList(Integer type, HttpSession session) {
         User user = specialFunctions.getUser(session);
-        SongListCollect songListCollect=new SongListCollect();
+        SongListCollect songListCollect = new SongListCollect();
         songListCollect.setType(type);
         songListCollect.setUserId(user.getId());
         // 查找到指定用户收藏的所有歌单或专辑
-        List<SongListCollect> list=songListCollectMapper.selectListSongListCollect(songListCollect);
-        return null;
+        return songListCollectMapper.selectListSongListCollect(songListCollect);
     }
 
     /**
@@ -205,13 +208,11 @@ public class AboutSongListService {
     /**
      * 收藏或取消收藏歌单或专辑
      *
-     * @param id               获取收藏歌单或专辑的id
-     * @param type             获取类型1是歌单2是专辑
-     * @param classificationId 分类的id
-     * @param userCollectId    歌单创建者的用户id
-     * @param session          获取当前会话
+     * @param id      获取收藏歌单或专辑的id
+     * @param type    获取类型1是歌单2是专辑
+     * @param session 获取当前会话
      */
-    public State collectionSongList(Integer id, Integer type, Integer classificationId, Integer userCollectId, HttpSession session) throws DataBaseException {
+    public State collectionSongList(Integer id, Integer type, HttpSession session) throws DataBaseException {
         //得到会话上的用户
         User user = specialFunctions.getUser(session);
         SongListCollect songListCollect = existence.isUserCollectionSongList(user.getId(), id, type);
@@ -223,12 +224,13 @@ public class AboutSongListService {
                 throw new DataBaseException("邮箱：" + user.getMailbox() + "删除收藏的歌单或专辑时，数据库出错");
             }
         } else {
+            SongList songList = idExistence.isSongListId(id);
             // 为null表示没有收藏，需要添加收藏
             songListCollect = new SongListCollect();
             songListCollect.setMusicId(id);
             songListCollect.setUserId(user.getId());
-            songListCollect.setClassificationId(classificationId);
-            songListCollect.setUserCollectId(userCollectId);
+            songListCollect.setClassificationId(songList.getClassificationId());
+            songListCollect.setUserCollectId(songList.getUserId());
             songListCollect.setType(type);
             songListCollect.setDate(new Date());
             if (songListCollectMapper.insertSongListCollect(songListCollect) < 1) {
@@ -253,15 +255,16 @@ public class AboutSongListService {
 
     /**
      * 得到用户创建的所有歌单或专辑，没有返回null
+     *
      * @param userId 用户的id
-     * @param  type 1是歌单2是专辑
+     * @param type   1是歌单2是专辑
      */
-    public List<SongList> userSongList(int userId,int type){
-        SongList songList=new SongList();
+    public List<SongList> userSongList(int userId, int type) {
+        SongList songList = new SongList();
         songList.setUserId(userId);
         songList.setType(type);
-        List<SongList> list=songListMapper.selectListSongList(songList);
-        if(list.size()==0){
+        List<SongList> list = songListMapper.selectListSongList(songList);
+        if (list.size() == 0) {
             return null;
         }
         return list;
@@ -273,18 +276,31 @@ public class AboutSongListService {
      * @param musicSongList 获取需要添加到指定专辑或歌单中的音乐
      *                      所需参数：
      *                      belongId 专辑或歌单的id
-     *                        type 1是歌单2是专辑
+     *                      type 1是歌单2是专辑
      *                      musicId 音乐的id
      */
-    public State addMusicSongList(MusicSongList musicSongList) throws DataBaseException {
-        // 判断用户有没有购买
-        // 查找音乐的歌手的id
-        // 查找音乐的分类的id
+    public State addMusicSongList(MusicSongList musicSongList, HttpSession session) throws DataBaseException {
+        // 得到音乐的id
+        int musicId = musicSongList.getMusicId();
+        // 得到音乐信息
+        Music music = idExistence.isMusicId(musicId);
+        musicSongList.setHave(1);
+        // 为歌单时候，再判断
+        if (musicSongList.getType() == 1) {
+            // 判断用户有没有购买
+            if (transactionService.isPurchaseMusic(musicId, 1, specialFunctions.getUser(session)) == null) {
+                musicSongList.setHave(0);
+            }
+        }
+        // 音乐的歌手的id
+        musicSongList.setSingerId(music.getSingerId());
+        // 音乐的分类的id
+        musicSongList.setClassificationId(music.getClassificationId());
         if (musicSongListMapper.insertMusicSongList(musicSongList) < 1) {
             // 如果失败是数据库错误
             logger.error("歌单或专辑：" + musicSongList + "添加歌单或专辑信息时，数据库出错");
             throw new DataBaseException("歌单或专辑：" + musicSongList + "添加歌单或专辑信息时，数据库出错");
         }
-        return null;
+        return new State(1);
     }
 }
