@@ -43,14 +43,19 @@
                     <div class="modal-content" style="margin-top: 200px">
                         <div class="modal-header" style="text-align: center">
                             <h4 class="modal-title" id="myModalLabel">
-                                查看信息
+                                （活动名称）
                             </h4>
                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
                                 &times;
                             </button>
                         </div>
-                        <div class="modal-body">
-
+                        <div class="modal-body" style="height: 250px;">
+                            <div class="activities_img">
+插入图片
+                            </div>
+                            <div class="activities_introduse">
+文字介绍
+                            </div>
                         </div>
                         <div class="modal-footer">
                             <button type="button"  data-dismiss="modal" style="width:30%; height: 40px; background: #BA55D3;border:none;outline: none;box-shadow: none;">
@@ -70,12 +75,12 @@
                                 &times;
                             </p>
                         </div>
-                        <div class="modal-body" style="width:80%;display: flex;flex-direction: column;align-items: center">
+                        <div class="modal-body_1" style="width:80%;display: flex;flex-direction: column;align-items: center">
                             <form action="">
-                                <input type="email"  placeholder="活动ID" >
-                                <input type="email"  placeholder="开始时间" >
-                                <input type="email"  placeholder="结束时间" >
-                                <input type="email"  placeholder="" >
+                                <input type="text"  placeholder="活动ID" >
+                                <input type="text"  placeholder="开始时间" >
+                                <input type="text"  placeholder="结束时间" >
+                                <input type="text"  placeholder="" >
                                 <li></li>
                             </form>
                             <table  style="background:#000;" id="tip1"></table>
@@ -94,28 +99,39 @@
                 <div class="modal-dialog">
                     <div class="modal-content" style="width:300px;">
                         <div class="modal-header" style="color:#BA55D3;display: flex" >
-                            <h4>邮件状态修改</h4>
+                            <h4>修改</h4>
                             <p type="button" class="close" data-dismiss="modal" aria-hidden="true">
                                 &times;
                             </p>
                         </div>
                         <div class="modal-body" style="width:80%;display: flex;flex-direction: column;align-items: center">
-                            <form action="">
-                                <select name="状态">
-                                    <option value="已发送">已发送</option>
-                                    <option value="未发送">未发送</option>
-                                    <option value="标记">标记</option>
-                                </select>
+
+                            <form action=""  >
+                                <p>
+                                    活动标题：<input type="text" class="input_modal_1" placeholder="活动标题">
+                                </p>
+                               <p>
+                                   折扣优惠：<input type="text" class="input_modal_1" placeholder="折扣百分比">
+                               </p>
+                                <p>
+                                    开始时间：<input type="text"class="input_modal_1"  placeholder="开始时间">
+
+                                </p>
+                                <p>
+                                    结束时间：<input type="text"class="input_modal_1"  placeholder="结束时间">
+                                </p>
+                                <p>  </p>
+
                             </form>
-                            <table  style="background:#000;" id="tip2"></table>
+                        </div>
                             <div class="modal_footer">
-                                <input type="submit" data-toggle="modal" data-target="#myModal_5" style="width:40%; height: 40px; background: #BA55D3;border:none;outline: none;box-shadow: none"  data-dismiss="modal" value="commit"/>
+                                <input type="submit" data-toggle="modal" data-target="#myModal_4" style=" width: 52%; height: 40px;margin-top: -3px; background: #BA55D3;border: none; outline: none;box-shadow: none;padding-left: 0px;border-radius: 5px;margin-left: 149px;"  data-dismiss="modal" value="commit"/>
                             </div>
                             </form>
                         </div>
                     </div><!-- /.modal-content -->
                 </div><!-- /.modal -->
-            </div>
+
             <!-- 模态框（Modal_2） -->
             <div class="modal fade" id="myModal_2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel-2" aria-hidden="true">
                 <div class="modal-dialog">

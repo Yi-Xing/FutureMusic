@@ -22,18 +22,6 @@
     border-radius: 5px;
 
 }
-.input_modal_1 input{
-    display: block;
-    width: 205px;
-    height: 40px;
-    margin: 8px 0px;
-    border-radius: 3px;
-    box-shadow: none;
-    outline: none;
-    font-size: 16px;
-    padding-left: 10px;
-    border: 1px solid lightgray;
-}
 .activities_img{
     width:40%;
     height:200px;
