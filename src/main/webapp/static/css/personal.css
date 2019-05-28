@@ -25,7 +25,9 @@
 .color_2 .navbar-right .iconfont{
     font-size: 30px;
     font-weight: 600;
-
+}
+.green{
+    color: lightgreen;
 }
 
 /*举报模态框*/

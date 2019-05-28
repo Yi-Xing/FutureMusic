@@ -42,9 +42,9 @@
 
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav">
-                        <li class="active"><a href="#">我喜欢 <span class="sr-only">(current)</span></a></li>
-                        <li><a href="#">我的关注</a></li>
-                        <li><a href="#">粉丝</a></li>
+                        <li class="active"><a href="javascript:;">我喜欢 <span class="sr-only">(current)</span></a></li>
+                        <li><a href="javascript:;">我的关注</a></li>
+                        <li><a href="javascript:;">粉丝</a></li>
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
                                aria-haspopup="true" aria-expanded="false">我的歌单 <span class="caret"></span></a>
@@ -58,11 +58,11 @@
                                 <li><a href="#">新建歌单</a></li>
                             </ul>
                         </li>
-                        <li><a href="#">个人信息</a></li>
+                        <li><a href="javascript:;">个人信息</a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a href="#"><i class="iconfont icon-youxiang-kong"></i></a></li>
-                        <li><a href="#" type="button" data-toggle="modal" data-target=".bs-example-modal-sm"><i class="iconfont icon-jinggao"></i></a></li>
+                        <li><a href="javascript:;"><i class="iconfont icon-youxiang-kong"></i></a></li>
+                        <li><a href="javascript:;" type="button" data-toggle="modal" data-target=".bs-example-modal-sm"><i class="iconfont icon-jinggao"></i></a></li>
                         <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
                             <div class="modal-dialog modal-lg" role="document">
                                 <div class="modal-content">
@@ -83,13 +83,13 @@
                                 </div>
                             </div>
                         </div>
-                        <li><a href="#"><i class="iconfont icon-aui-icon-lock"></i></a></li>
+                        <li><a href="javascript:;"><i class="iconfont icon-aui-icon-lock"></i></a></li>
 
                     </ul>
                 </div>
             </div>
         </nav>
-        <div id="iLike">
+        <div id="iLike" class="personalCenterTab">
             <div class="btn-group" role="group" aria-label="...">
                 <button type="button" class="btn btn-success">歌曲</button>
                 <button type="button" class="btn btn-success">歌单</button>
@@ -148,10 +148,10 @@
                 </table>
             </div>
         </div>
-        <div id="myFollow"></div>
-        <div id="myFans"></div>
-        <div id="myList"></div>
-        <div id="myInformation"></div>
+        <div id="myFollow" class="personalCenterTab"></div>
+        <div id="myFans" class="personalCenterTab"></div>
+        <div id="myList" class="personalCenterTab"></div>
+        <div id="myInformation" class="personalCenterTab"></div>
     </div>
 </div>
 
@@ -159,16 +159,5 @@
 <div th:replace="webFoot.html"></div>
 </body>
 <div th:replace="on-load-js::on-load-js"></div>
-<script>
-    $('#myModal').on('shown.bs.modal', function () {
-        $('#myInput').focus()
-    });
-    var lock = 0;
-    $(".color_2 nav .navbar-right").onclick(function () {
-        if(lock == 0){
-            $(".icon-aui-icon-lock")
-        }
-    })
-
-</script>
+<script src="../../static/js/personal.js" th:src="@{/static/js/personal.js}"></script>
 </html>
