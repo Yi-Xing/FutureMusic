@@ -1,6 +1,8 @@
 package controller.user.consumer;
 
 import entity.State;
+import entity.User;
+import service.user.SpecialFunctions;
 import util.exception.DataBaseException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -11,9 +13,10 @@ import service.user.consumer.AboutUserService;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
+import java.util.List;
 
 /**
- * 关注用户，访问其他用户，用户之间发邮件，给客服发邮件（申请音乐人等），举报用户
+ * 关注用户，访问其他用户，举报用户
  *
  * @author 5月14日 张易兴创建
  */
@@ -21,6 +24,8 @@ import javax.servlet.http.HttpSession;
 public class AboutUser {
     @Resource(name = "AboutUserService")
     private AboutUserService aboutUserService;
+    @Resource(name = "SpecialFunctions")
+    SpecialFunctions specialFunctions;
     private static final Logger logger = LoggerFactory.getLogger(AboutUser.class);
 
     /**
@@ -30,10 +35,11 @@ public class AboutUser {
      */
     @RequestMapping(value = "/showFollowUser")
     @ResponseBody
-    public State showFollowUser( Integer type, HttpSession session) throws DataBaseException {
+    public List<User> showFollowUser(Integer type, HttpSession session) throws DataBaseException {
         logger.trace("showFollowUser方法开始执行");
-        return null;
+        return aboutUserService.showFollowUser(type,session);
     }
+
     /**
      * 点击关注指定用户或访问指定用户空间时执行该方法,ajax
      *
@@ -64,19 +70,7 @@ public class AboutUser {
         return aboutUserService.cancelFollowUser(id, session);
     }
 
-    /**
-     * 用户之间发送邮件执行次方法,ajax
-     *
-     * @param mailbox 获取接收邮件的用户邮箱
-     * @param content 邮件发送的内容
-     * @param session 获取当前会话
-     */
-    @RequestMapping(value = "/sendMailUser")
-    @ResponseBody
-    public State sendMailUser(String mailbox, String content, HttpSession session) throws DataBaseException {
-        logger.trace("sendMailUser方法开始执行");
-        return aboutUserService.sendMailUser(mailbox, content, session);
-    }
+
 
     /**
      * 举报指定用户执行次方法,ajax
@@ -93,17 +87,5 @@ public class AboutUser {
         return aboutUserService.reportUser(mailbox, content, session);
     }
 
-    /**
-     * 给客服发邮件执行次方法（可用于申请音乐人）,ajax
-     *
-     * @param id      发送者的id
-     * @param content 发送的内容的内容
-     */
-    @RequestMapping(value = "/feedback")
-    @ResponseBody
-    public State feedback(Integer id, String content) throws DataBaseException {
-        logger.trace("feedback方法开始执行");
-        return aboutUserService.feedback(id, content);
-    }
 }
 

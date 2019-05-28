@@ -43,7 +43,7 @@ public class MailInformationService {
      * @param pageNum   表示当前第几页
      * @param session   用于判断等级
      */
-    public String showMail(String[] condition, Integer pageNum, Model model, HttpSession session) {
+    public PageInfo showMail(String[] condition, Integer pageNum, HttpSession session) {
         User user = specialFunctions.getUser(session);
         Mail mail = new Mail();
         if (condition != null) {
@@ -70,10 +70,8 @@ public class MailInformationService {
         PageHelper.startPage(pageNum, 8);
         // 根据条件查找用户信息
         List<Mail> list = mailMapper.selectListMail(mail);
-        PageInfo pageInfo = new PageInfo<>(list);
         // 传入页面信息
-        model.addAttribute("pageInfo", pageInfo);
-        return null;
+        return new PageInfo<>(list);
     }
 
 
@@ -134,6 +132,6 @@ public class MailInformationService {
             logger.error("删除指定邮箱时，数据库出错");
             throw new DataBaseException("删除指定邮箱时，数据库出错");
         }
-        return null;
+        return new State(1);
     }
 }

@@ -49,7 +49,10 @@ public class ActivityInformationService {
                 if (validationInformation.isPrice(String.valueOf(activity.getDiscount()))) {
                     if (activityMapper.insertActivity(activity) < 1) {
                         // 获取上传的文件路径
-                        activity.setPicture(fileUpload.activityPicture(request));
+                        String path = fileUpload.activityPicture(request);
+                        if (path != null && !"".equals(path)) {
+                            activity.setPicture(path);
+                        }
                         // 如果失败是数据库错误
                         logger.error("活动：" + activity + "添加时，数据库出错");
                         throw new DataBaseException("活动：" + activity + "添加时，数据库出错");
@@ -69,13 +72,16 @@ public class ActivityInformationService {
     }
 
     /**
-     * 上传活动的图片
+     * 上传活动的图片，或许被删！！！！！！！！！！！！！
      */
     public State activityPicture(Integer id, HttpServletRequest request) throws DataBaseException, IOException {
         String path = fileUpload.activityPicture(request);
         Activity activity = new Activity();
         activity.setId(id);
-        activity.setPicture(path);
+        // 获取上传的文件路径
+        if (path != null && !"".equals(path)) {
+            activity.setPicture(path);
+        }
         if (activityMapper.updateActivity(activity) < 1) {
             // 如果失败是数据库错误
             logger.error("活动：" + activity + "更新时，数据库出错");
@@ -90,7 +96,7 @@ public class ActivityInformationService {
      * @param condition 条件可以有多个
      * @param pageNum   表示当前第几页
      */
-    public String showActivity(String[] condition, Integer pageNum, Model model) throws ParseException {
+    public PageInfo showActivity(String[] condition, Integer pageNum) throws ParseException {
         // 用来存储管理员输入的条件
         Activity activity = new Activity();
         if (condition != null) {
@@ -112,21 +118,23 @@ public class ActivityInformationService {
         PageHelper.startPage(pageNum, 8);
         // 根据条件查找信息
         List<Activity> list = activityMapper.selectListActivity(activity);
-        PageInfo pageInfo = new PageInfo<>(list);
-        // 传入页面信息
-        model.addAttribute("pageInfo", pageInfo);
-        return "index";
+        return new PageInfo<>(list);
     }
 
     /**
      * 修改活动信息，ajax
      */
-    public State modifyActivity(Activity activity) throws DataBaseException {
+    public State modifyActivity(Activity activity, HttpServletRequest request) throws DataBaseException, IOException {
         State state = new State();
         if (validationInformation.isName(activity.getName())) {
             if (activity.getContent().length() <= 300) {
                 // 判断活动的折扣是否符合要求
                 if (validationInformation.isPrice(String.valueOf(activity.getDiscount()))) {
+                    // 获取上传的文件路径
+                    String path = fileUpload.activityPicture(request);
+                    if (path != null && !"".equals(path)) {
+                        activity.setPicture(path);
+                    }
                     if (activityMapper.updateActivity(activity) < 1) {
                         // 如果失败是数据库错误
                         logger.error("活动：" + activity + "更新时，数据库出错");
@@ -149,18 +157,13 @@ public class ActivityInformationService {
     /**
      * 删除活动信息
      */
-    public String deleteActivity(Integer id, Model model) throws DataBaseException {
-        if (idExistence.isActivityId(id) != null) {
-            if (activityMapper.deleteActivity(id) < 1) {
-                // 如果失败是数据库错误
-                logger.error("活动：" + id + "删除时，数据库出错");
-                throw new DataBaseException("活动：" + id + "删除时，数据库出错");
-            }
-            model.addAttribute("state", "添加成功");
-        } else {
-            model.addAttribute("state", "id：" + id + "的活动不存在");
+    public State deleteActivity(Integer id) throws DataBaseException {
+        if (activityMapper.deleteActivity(id) < 1) {
+            // 如果失败是数据库错误
+            logger.error("活动：" + id + "删除时，数据库出错");
+            throw new DataBaseException("活动：" + id + "删除时，数据库出错");
         }
-        return null;
+        return new State(1);
     }
 
 

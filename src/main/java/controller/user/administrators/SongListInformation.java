@@ -1,5 +1,6 @@
 package controller.user.administrators;
 
+import com.github.pagehelper.PageInfo;
 import entity.SongList;
 import entity.State;
 import org.slf4j.Logger;
@@ -36,14 +37,13 @@ public class SongListInformation {
     @Resource(name = "SongListInformationService")
     SongListInformationService songListInformationService;
     /**
-     * 指定歌手的所有音乐被播放的次数
-     * 指定专辑中的所有音乐被播放的次数
-     * @param id 歌单或专辑的id
-     * @param type 1表示歌单或专辑的id，2表示活动的id 3、分类的id  4、用户的id
+     * 显示歌单或专辑的信息
+     * @param condition 1表示歌单或专辑的id，2表示活动的id 3、分类的id  4、歌手的id
      */
     @RequestMapping(value = "/showSongList")
-    public String showSongList(Integer id,Integer type,Integer pageNum, Model model)  {
-        return songListInformationService.showSongList(id,type,pageNum,model);
+    @ResponseBody
+    public PageInfo showSongList(String[] condition, Integer pageNum)  {
+        return songListInformationService.showSongList(condition,pageNum);
     }
 
     /**
@@ -59,7 +59,8 @@ public class SongListInformation {
      * 删除指定id专辑或歌单
      */
     @RequestMapping(value = "/deleteSongList")
-    public String deleteSongList(Integer id) throws DataBaseException {
+    @ResponseBody
+    public State deleteSongList(Integer id) throws DataBaseException {
         return songListInformationService.deleteSongList(id);
     }
 
@@ -69,16 +70,18 @@ public class SongListInformation {
      * @param type 1表示是歌单 2表示是专辑
      */
     @RequestMapping(value = "/showSongListCollect")
-    public String showSongListCollect(Integer id,Integer type, Model model)  {
-        return songListInformationService.showSongListCollect(id,type,model);
+    @ResponseBody
+    public int showSongListCollect(Integer id,Integer type)  {
+        return songListInformationService.showSongListCollect(id,type);
     }
     /**
-     * 查找指定专辑或歌单中的所有音乐
+     * 查找指定专辑或歌单中的所有音乐，分页显示
      * @param id 专辑或歌单的id
      * @param type 1是歌单2是专辑
      */
     @RequestMapping(value = "/showMusicSongList")
-    public String showMusicSongList(Integer id,Integer type,Model model) {
-        return songListInformationService.showMusicSongList(id,type,model);
+    @ResponseBody
+    public PageInfo showMusicSongList(Integer id,Integer type, Integer pageNum) {
+        return songListInformationService.showMusicSongList(id,type,pageNum);
     }
 }
