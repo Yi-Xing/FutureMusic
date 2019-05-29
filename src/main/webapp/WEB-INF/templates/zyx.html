@@ -1,10 +1,39 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
+<script src="js/jquery.js" th:src="@{/static/js/jquery.js}"></script>
 <body>
-找不到我哈哈
+<script>
+    window.onload = function () {
+        var value = $("#title").val();
+        alert(value);
+        $("#aa").on("click", function () {
+            //得到4个条件存成数组
+            $.ajax({
+                contentType: "application/x-www-form-urlencoded;charset=UTF-8",
+                type: "post",
+                url: "token",
+                data: {
+                    "value": value
+                },
+                dataType: "json",
+                success: function (data, status) {
+                    alert(data)
+                    // 返回PageInfo
+                }
+            });
+        });
+    };
+</script>
+<form method="post" action="token">
+    <input type="text" name="formToken" th:value="${session.formToken}"/>
+    <input type="text" name="value"/>
+    <input type="submit" value="提交">
+</form>
+<input type="text" id="title">
+<input type="submit" id="aa"/>
 </body>
 </html>

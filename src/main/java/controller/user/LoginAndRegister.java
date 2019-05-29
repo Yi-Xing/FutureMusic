@@ -75,6 +75,7 @@ public class LoginAndRegister {
      * @param automatic 获取用户是否选择了7天自动登陆的复选框
      * @param session   获取当前会话
      */
+
     @RequestMapping(value = "/loginAccount")
     @ResponseBody
     public State login(String mailbox, String password, boolean automatic, HttpServletResponse response, HttpSession session) {
