@@ -157,7 +157,7 @@ public class AboutSongListService {
             logger.debug("歌单或专辑：" + songList + "歌单或专辑的标题格式有误");
             state.setInformation("标题格式有误");
         }
-        return new State();
+        return state;
     }
 
     /**
