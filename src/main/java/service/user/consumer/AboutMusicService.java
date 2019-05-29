@@ -1,6 +1,7 @@
 package service.user.consumer;
 
 import entity.*;
+import org.springframework.transaction.annotation.Transactional;
 import service.user.IdExistence;
 import service.user.SpecialFunctions;
 import util.exception.DataBaseException;
@@ -331,7 +332,8 @@ public class AboutMusicService {
      * @param id      评论的id
      * @param session 获取当前会话
      */
-    public State commentFabulous(String id, HttpSession session) throws DataBaseException {
+    @Transactional
+    public synchronized State commentFabulous(String id, HttpSession session) throws DataBaseException {
         //得到会话上的用户
         User user = specialFunctions.getUser(session);
         // 得到用户给哪些评论点过赞
