@@ -2,12 +2,12 @@ body{
     background-image: url("../img/collapse.jpg");
     background-size: cover;
 }
-.collapse{
+.Collapse{
     position: absolute;
-    top: 72vh;
+    top: 33vh;
     left: 50%;
     transform: translateX(-50%);
 }
-.collapse a{
+.Collapse a{
     margin: 0 20px;
 }
