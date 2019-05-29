@@ -1,8 +1,8 @@
 package service.user.consumer;
 
 import entity.*;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.transaction.annotation.Transactional;
+import service.user.IdExistence;
 import service.user.SpecialFunctions;
 import util.exception.DataBaseException;
 import mapper.*;
@@ -17,7 +17,7 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * 收藏音乐，收藏MV，添加历史播放记录，评论，点赞，用户播放音乐
+ * 收藏音乐，收藏MV，添加历史播放记录，评论，点赞，用户播放过的音乐
  *
  * @author 5月15日 张易兴创建
  */
@@ -35,28 +35,30 @@ public class AboutMusicService {
     @Resource(name = "SpecialFunctions")
     SpecialFunctions specialFunctions;
     @Resource(name = "Existence")
-    Existence existence;
+    ExistenceService existenceService;
     @Resource(name = "MusicMapper")
     MusicMapper musicMapper;
     @Resource(name = "MusicVideoMapper")
     MusicVideoMapper musicVideoMapper;
     @Resource(name = "OrderMapper")
     OrderMapper orderMapper;
+    @Resource(name = "TransactionService")
+    TransactionService transactionService;
+    @Resource(name = "IdExistence")
+    IdExistence idExistence;
 
     /**
      * 添加显示用户收藏的所有音乐，显示用户收藏的所有MV
      *
      * @param type 1表示查找音乐收藏 2表示查找MV收藏
      */
-    public String showUserCollectionMusic(Integer type, Model model, HttpSession session) {
+    public List<MusicCollect> showUserCollectionMusic(Integer type, HttpSession session) {
         //得到会话上的用户
         User user = specialFunctions.getUser(session);
         MusicCollect musicCollect = new MusicCollect();
         musicCollect.setType(type);
         musicCollect.setUserId(user.getId());
-        List<MusicCollect> list = musicCollectMapper.selectListMusicCollect(musicCollect);
-        model.addAttribute("CollectionMusic", list);
-        return null;
+        return musicCollectMapper.selectListMusicCollect(musicCollect);
     }
 
     /**
@@ -64,7 +66,7 @@ public class AboutMusicService {
      *
      * @param type 1表示查找音乐购买 2表示查找MV购买
      */
-    public String showUserPurchaseMusic(Integer type, Model model, HttpSession session) throws DataBaseException {
+    public List showUserPurchaseMusic(Integer type, HttpSession session) {
         //得到会话上的用户
         User user = specialFunctions.getUser(session);
         Order order = new Order();
@@ -79,15 +81,13 @@ public class AboutMusicService {
             }
             if (type == 1) {
                 // 查找所有的音乐
-                List<Music> musicList= musicMapper.listIdSelectListMusic(idList);
-                model.addAttribute("",musicList);
+                return musicMapper.listIdSelectListMusic(idList);
             } else {
                 // 查找所有的MV
-                List<MusicVideo> musicVideoList= musicVideoMapper.listIdSelectListMusicVideo(idList);
-                model.addAttribute("",musicVideoList);
+                return musicVideoMapper.listIdSelectListMusicVideo(idList);
             }
         }
-        return null;
+        return list;
     }
 
     /**
@@ -105,7 +105,7 @@ public class AboutMusicService {
     public State collectionMusic(MusicCollect musicCollectInformation, HttpSession session) throws DataBaseException {
         //得到会话上的用户
         User user = specialFunctions.getUser(session);
-        MusicCollect musicCollect = existence.isUserCollectionMusic(user.getId(), musicCollectInformation.getMusicId(), musicCollectInformation.getType());
+        MusicCollect musicCollect = existenceService.isUserCollectionMusic(user.getId(), musicCollectInformation.getMusicId(), musicCollectInformation.getType());
         if (musicCollect != null) {
             // 如果不为null表示已经收藏则需要用取消收藏
             if (musicCollectMapper.deleteMusicCollect(musicCollect.getId()) < 1) {
@@ -115,20 +115,14 @@ public class AboutMusicService {
             }
         } else {
             // 为null表示没有收藏，需要添加收藏
-            musicCollect = new MusicCollect();
-            musicCollect.setUserId(user.getId());
-            musicCollect.setMusicId(musicCollectInformation.getMusicId());
-            musicCollect.setHave(musicCollectInformation.getHave());
-            musicCollect.setType(musicCollectInformation.getType());
-            musicCollect.setSingerId(musicCollectInformation.getSingerId());
-            musicCollect.setAlbumId(musicCollectInformation.getAlbumId());
-            musicCollect.setClassificationId(musicCollectInformation.getClassifictionId());
-            musicCollect.setDate(new Date());
-            if (musicCollectMapper.insertMusicCollect(musicCollect) < 1) {
-                // 如果失败是数据库错误
-                logger.error("邮箱：" + user.getMailbox() + "收藏音乐或MV时，数据库出错");
-                throw new DataBaseException("邮箱：" + user.getMailbox() + "收藏音乐或MV时，数据库出错");
+            int have = 0;
+            // 判断用户是否购买了该MV或音乐
+            Order order = transactionService.isPurchaseMusic(musicCollectInformation.getMusicId(), musicCollectInformation.getType(), user);
+            if (order != null) {
+                have = 1;
             }
+            // 添加收藏
+            collectionAndPlay(have, musicCollectInformation, null, user);
         }
         return new State(1);
     }
@@ -144,11 +138,10 @@ public class AboutMusicService {
      *                        classificationId 表示是音乐或MV的分类的id
      * @param session         获取当前会话
      */
-    // 需要事务
     public State musicPlay(Play playInformation, HttpSession session) throws DataBaseException {
         //得到会话上的用户
         User user = specialFunctions.getUser(session);
-        Play play = existence.isUserMusicPlay(user.getId(), playInformation.getMusicId(), playInformation.getType());
+        Play play = existenceService.isUserMusicPlay(user.getId(), playInformation.getMusicId(), playInformation.getType());
         // 先判断该用户是否听过该音乐或MV，如果听过只需要更新时间
         if (play != null) {
             // 如果不为null表示已经播放过
@@ -160,53 +153,113 @@ public class AboutMusicService {
             }
         } else {
             // 没有播放过需要添加播放记录
-            play = new Play();
+            collectionAndPlay(0, null, playInformation, user);
+        }
+        return new State(1);
+    }
+
+    /**
+     * 为指定的音乐或MV，添加收藏或播放记录
+     *
+     * @param have         只有收藏有
+     * @param musicCollect 音乐或MV收藏信息
+     * @param play         音乐或MV播放信息
+     * @param user         用户信息
+     */
+    private void collectionAndPlay(int have, MusicCollect musicCollect, Play play, User user) throws DataBaseException {
+        // 该音乐或MV的歌手
+        int singerId;
+        // 该音乐的专辑 mv没有
+        int albumId = 0;
+        // 该音乐或MV的分类
+        int classificationId;
+        // 存储类型1表示音乐 2表示MV
+        int type;
+        // 音乐或MV的id
+        int musicId;
+        if (musicCollect != null) {
+            type = musicCollect.getType();
+            musicId = musicCollect.getMusicId();
+        } else {
+            type = play.getType();
+            musicId = play.getMusicId();
+        }
+        // 表示音乐，去音乐表查询
+        if (type == 1) {
+            Music music = new Music();
+            music.setId(musicId);
+            // 查找指定id信息
+            music = musicMapper.selectListMusic(music).get(0);
+            singerId = music.getSingerId();
+            albumId = music.getAlbumId();
+            classificationId = music.getClassificationId();
+        } else {
+            //表示MV，去MV表查找
+            MusicVideo musicVideo = new MusicVideo();
+            musicVideo.setId(musicId);
+            // 查找指定id信息
+            musicVideo = musicVideoMapper.selectListMusicVideo(musicVideo).get(0);
+            singerId = musicVideo.getSingerId();
+            classificationId = musicVideo.getClassificationId();
+        }
+        if (musicCollect != null) {
+            musicCollect.setUserId(user.getId());
+            musicCollect.setMusicId(musicId);
+            musicCollect.setHave(have);
+            musicCollect.setType(type);
+            musicCollect.setSingerId(singerId);
+            musicCollect.setAlbumId(albumId);
+            musicCollect.setClassificationId(classificationId);
+            musicCollect.setDate(new Date());
+            if (musicCollectMapper.insertMusicCollect(musicCollect) < 1) {
+                // 如果失败是数据库错误
+                logger.error("邮箱：" + user.getMailbox() + "收藏音乐或MV时，数据库出错");
+                throw new DataBaseException("邮箱：" + user.getMailbox() + "收藏音乐或MV时，数据库出错");
+            }
+        } else {
             play.setUserId(user.getId());
-            play.setMusicId(playInformation.getMusicId());
-            play.setType(playInformation.getType());
-            play.setSingerId(playInformation.getSingerId());
-            play.setAlbumId(playInformation.getAlbumId());
-            play.setClassificationId(playInformation.getClassificationId());
+            play.setMusicId(musicId);
+            play.setType(type);
+            play.setSingerId(singerId);
+            play.setAlbumId(albumId);
+            play.setClassificationId(classificationId);
             play.setDate(new Date());
-            // 添加该音乐或MV的播放次数
+            // 添加该音乐或MV的播放记录
             if (playMapper.insertPlay(play) < 1) {
                 // 如果失败是数据库错误
                 logger.debug("邮箱：" + user.getMailbox() + "添加音乐或MV的播放记录时，数据库出错");
                 throw new DataBaseException("邮箱：" + user.getMailbox() + "添加音乐或MV的播放记录时，数据库出错");
             }
         }
-        List<Integer> listId = new ArrayList<>();
-        listId.add(playInformation.getMusicId());
-        return new State(1);
     }
-    // 完成后需要添加音乐或MV的播放次数  1表示音乐 2表示MV
-//        if (playInformation.getType() == 1) {
-//            List<Music> listMusic = musicMapper.listIdSelectListMusic(listId);
-//            if (listMusic.size() != 0) {
-//                Music music = listMusic.get(0);
-//                music.setPlayCount(music.getPlayCount() + 1);
-//                if (musicMapper.updateMusic(music) < 1) {
-//                    logger.debug("邮箱：" + user.getMailbox() + "更新音乐信息时，数据库出错");
-//                    throw new DataBaseException("邮箱：" + user.getMailbox() + "更新音乐信息时，数据库出错");
-//                }
-//            } else {
-//                logger.debug("邮箱：" + user.getMailbox() + "查找指定音乐时，数据库出错");
-//                throw new DataBaseException("邮箱：" + user.getMailbox() + "查找指定音乐时，数据库出错");
-//            }
-//        } else {
-//            List<MusicVideo> listMusic = musicVideoMapper.listIdSelectListMusicVideo(listId);
-//            if (listMusic.size() != 0) {
-//                MusicVideo musicVideo = listMusic.get(0);
-//                musicVideo.setPlayCount(musicVideo.getPlayCount() + 1);
-//                if (musicVideoMapper.updateMusicVideo(musicVideo) < 1) {
-//                    logger.debug("邮箱：" + user.getMailbox() + "更新MV信息时，数据库出错");
-//                    throw new DataBaseException("邮箱：" + user.getMailbox() + "更新MV信息时，数据库出错");
-//                }
-//            } else {
-//                logger.debug("邮箱：" + user.getMailbox() + "查找指定MV时，数据库出错");
-//                throw new DataBaseException("邮箱：" + user.getMailbox() + "查找指定MV时，数据库出错");
-//            }
-//        }
+
+    /**
+     * 显示用户的音乐或MV的历史播放记录,ajax
+     *
+     * @param type    1表示音乐 2表示MV
+     * @param session 获取当前会话
+     */
+    public List showMusicPlay(Integer type, HttpSession session) {
+        //得到会话上的用户
+        User user = specialFunctions.getUser(session);
+        Play play = new Play();
+        play.setType(type);
+        play.setUserId(user.getId());
+        // 查找用户播放过的音乐或MV
+        List<Play> list = playMapper.selectListPlay(play);
+        // 用来存放音乐或MV的id
+        List<Integer> idList = new ArrayList<>();
+        for (Play p : list) {
+            idList.add(p.getMusicId());
+        }
+        if (type == 1) {
+            // 1表示音乐
+            return musicMapper.listIdSelectListMusic(idList);
+        } else {
+            // 2表示MV
+            return musicMapper.listIdSelectListMusic(idList);
+        }
+    }
 
     /**
      * 音乐或MV或专辑的评论，ajax
@@ -254,7 +307,7 @@ public class AboutMusicService {
     public State deleteComment(Integer id) throws DataBaseException {
         // 判断是否有子评论，返回0
         State state = new State();
-        int replyId = existence.isComment(id);
+        int replyId = existenceService.isComment(id);
         if (replyId == 0) {
             state.setState(1);
             return state;
@@ -279,7 +332,8 @@ public class AboutMusicService {
      * @param id      评论的id
      * @param session 获取当前会话
      */
-    public State commentFabulous(String id, HttpSession session) throws DataBaseException {
+    @Transactional
+    public synchronized State commentFabulous(String id, HttpSession session) throws DataBaseException {
         //得到会话上的用户
         User user = specialFunctions.getUser(session);
         // 得到用户给哪些评论点过赞
@@ -340,9 +394,72 @@ public class AboutMusicService {
             logger.error("邮箱：" + user.getMailbox() + "修改用户点赞记录时，数据库出错");
             throw new DataBaseException("邮箱：" + user.getMailbox() + "修改用户点赞记录时，数据库出错");
         }
-        State state = new State();
-        state.setState(1);
-        return state;
+        return new State(1);
     }
 
+
+    /**
+     * 播放音乐判断用户是否拥有该音乐
+     *
+     * @param id 音乐的id
+     */
+    public Music playMusic(Integer id, HttpSession session) {
+        //得到会话上的用户
+        User user = specialFunctions.getUser(session);
+        // 查找指定的音乐信息
+        Music music = idExistence.isMusicId(id);
+        // 得到音乐的等级
+        int level = music.getLevel();
+        // 先判断该音乐有没有版权 0表示有版权
+        if (music.getAvailable() == 0) {
+            if (0 < level && level < 4) {
+                // 判断用户是不是VIP
+                if (user.getVipDate().getTime() >= System.currentTimeMillis()) {
+                    return music;
+                }
+            } else if (level == 4) {
+                // 判断用户有没有购买，不为null表示购买
+                if (transactionService.isPurchaseMusic(id, 1, specialFunctions.getUser(session)) != null) {
+                    return music;
+                }
+            } else {
+                // 等级为0 ，表示免费
+                return music;
+            }
+        }
+        return null;
+    }
+
+    /**
+     * 播放MV判断用户是否购买该MV
+     *
+     * @param id MV的id
+     */
+    public MusicVideo playMusicVideo(Integer id, HttpSession session) {
+        //得到会话上的用户
+        User user = specialFunctions.getUser(session);
+        // 查找指定的音乐信息
+        MusicVideo musicVideo = idExistence.isMusicVideoId(id);
+        // 得到音乐的等级
+        int level = musicVideo.getLevel();
+        // 先判断该音乐有没有版权 0表示有版权
+        if (musicVideo.getAvailable() == 0) {
+            if (0 < level && level < 4) {
+                // 判断用户是不是VIP
+                if (user.getVipDate().getTime() >= System.currentTimeMillis()) {
+                    return musicVideo;
+                }
+            } else if (level == 4) {
+                // 判断用户有没有购买，不为null表示购买
+                if (transactionService.isPurchaseMusic(id, 2, specialFunctions.getUser(session)) != null) {
+                    return musicVideo;
+                }
+            } else {
+                // 等级为0 ，表示免费
+                return musicVideo;
+            }
+        }
+        return null;
+
+    }
 }

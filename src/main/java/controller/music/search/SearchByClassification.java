@@ -7,14 +7,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import service.music.MusicService;
 import service.music.MusicVideoService;
-import service.music.PlayService;
 import service.music.SingerService;
 
 import javax.annotation.Resource;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 /**
  * 根据分类搜索
@@ -23,21 +21,22 @@ import java.util.Map;
  */
 @Controller
 public class SearchByClassification {
-    @Resource(name = "PlayService")
-    private PlayService playService;
     @Resource(name = "MusicVideoService")
     private MusicVideoService musicVideoService;
     @Resource(name = "SingerService")
     private SingerService singerService;
+    @Resource(name = "MusicService")
+    private MusicService musicService;
+
     /**
      * 根据分类中的地区查找歌曲 排行榜
      */
     @RequestMapping("/searchMusicByRegion")
     @ResponseBody
     public PageInfo searchMusicByRegion(@RequestParam(required = false,value = "pn", defaultValue = "1") Integer pn,
-                                                @RequestParam(value = "region",defaultValue = "")String region) {
+                                                @RequestParam(value = "region",defaultValue = "1")String region) {
         PageHelper.startPage(pn, 10);
-        List<Music> musicList= playService.selectListMusicByRegion(region);
+        List<Music> musicList= musicService.selectListMusicByRegion(region);
         return new PageInfo(musicList);
     }
     /**
@@ -48,14 +47,16 @@ public class SearchByClassification {
     public PageInfo searchMusicByType(@RequestParam(required = false,value = "pn", defaultValue = "1") Integer pn,
                                       @RequestParam(value = "type",defaultValue = "")String type) {
         PageHelper.startPage(pn, 10);
-        List<Music> musicList= playService.selectListMusicByMusicType(type);
+        List<Music> musicList= musicService.selectListMusicByMusicType(type);
         return new PageInfo(musicList);
     }
 
     /**
      * 根据分类查找歌手
      */
-    public PageInfo searchSingerByReegion(@RequestParam(required = false,value = "pn", defaultValue = "1") Integer pn,
+    @RequestMapping("/searchSingerByRegion")
+    @ResponseBody
+    public PageInfo searchSingerByRegion(@RequestParam(required = false,value = "pn", defaultValue = "1") Integer pn,
                                           @RequestParam(value = "singerRegion")String singerRegion){
         PageHelper.startPage(pn,10);
         List<ShowSinger> showSingerList = singerService.exhibitionSingersByRegion(singerRegion);
@@ -98,9 +99,6 @@ public class SearchByClassification {
             classification.setRegion(region);
         }
         List<String[]> musicVideoList = musicVideoService.searchMusicVideoByClassification(classification);
-//        Map<MusicVideo, User> musicVideoSingerMap= playService.selectListMusicVideoListByClassification(classification);
-//        List<Map<MusicVideo, User>> list=new ArrayList<>();
-//        list.add(musicVideoSingerMap);
         return new PageInfo(musicVideoList);
     }
 }

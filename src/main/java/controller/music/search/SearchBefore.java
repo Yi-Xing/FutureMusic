@@ -34,7 +34,7 @@ public class SearchBefore {
      */
     @RequestMapping(value = "/searchMyRecord")
     @ResponseBody
-    private String[] searchMyRecord(HttpServletRequest request) {
+    public String[] searchMyRecord(HttpServletRequest request) {
         Cookie[] cookies = request.getCookies();
         Cookie cookie = CookieUtil.obtainCookie(cookies, "searchRecordCookie");
         String searchRecord = cookie.getValue();
@@ -50,7 +50,7 @@ public class SearchBefore {
      */
     @RequestMapping(value = "/addSearchRecord")
     @ResponseBody
-    private String addSearchRecord(HttpServletRequest request, HttpServletResponse response) {
+    public String addSearchRecord(HttpServletRequest request, HttpServletResponse response) {
         Cookie[] cookies = request.getCookies();
         String keyWord = request.getParameter("keyWord");
         String searchRecord = searchService.addSearchRecord(keyWord, cookies, response);
@@ -62,7 +62,7 @@ public class SearchBefore {
      */
     @RequestMapping(value = "/deleteSearchRecord")
     @ResponseBody
-    private void deleteSearchRecord(HttpServletRequest request, HttpServletResponse response) {
+    public void deleteSearchRecord(HttpServletRequest request, HttpServletResponse response) {
         Cookie[] cookies = request.getCookies();
         Cookie cookie = CookieUtil.obtainCookie(cookies, "searchRecordCookie");
         if (cookie != null) {
@@ -83,6 +83,9 @@ public class SearchBefore {
         return searchService.searchListAll(keyWord);
     }
 
+    /**
+     * 测试cookie用的
+     */
     @RequestMapping(value = "/testCookie")
     @ResponseBody
     public String[] testCookie(HttpServletRequest request) {

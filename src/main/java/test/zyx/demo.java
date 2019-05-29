@@ -1,5 +1,9 @@
 package test.zyx;
 
+import com.alipay.api.AlipayApiException;
+import com.alipay.api.AlipayClient;
+import com.alipay.api.DefaultAlipayClient;
+import com.alipay.api.request.AlipayTradePagePayRequest;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import entity.Activity;
@@ -19,12 +23,11 @@ import util.FileUpload;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 @Controller
 public class demo {
@@ -35,7 +38,7 @@ public class demo {
     UserMapper userMapper;
 
     @RequestMapping(value = "/test")
-    public String test()  {
+    public String test() {
         System.out.println(flie);
         flie.zyx();
 //        System.out.println(text);
@@ -44,28 +47,31 @@ public class demo {
         return null;
     }
 
-//    @RequestMapping(value = "/a")
-    public String aa(){
+    //    @RequestMapping(value = "/a")
+    public String aa() {
         return aaaazyx();
     }
-//    @Transactional
+
+    //    @Transactional
     public String aaaazyx() {
         System.out.println("开始");
         b();
         System.out.println("异常准备开始");
-        int a=2/0;
+        int a = 2 / 0;
         a();
         System.out.println("我执行完了");
         return "index";
     }
-    private void a(){
-        User user=new User();
+
+    private void a() {
+        User user = new User();
         user.setId(1);
         user.setName("我是你");
         userMapper.updateUser(user);
     }
-    private void b(){
-        User user=new User();
+
+    private void b() {
+        User user = new User();
         user.setId(1);
         user.setName("aaaa");
         userMapper.updateUser(user);
@@ -86,6 +92,8 @@ public class demo {
 //        System.out.println( EncryptionUtil.encryptionMD5("12346578"));
         System.out.println("2860482971.0".matches("(^[1-9]\\d*|^0)(\\.\\d{1,2}|)$"));
     }
+
+
 }
 //        List<User> listUser=userMapper.selectUser(new User());
 //        //引入分页查询，使用PageHelper分页功能

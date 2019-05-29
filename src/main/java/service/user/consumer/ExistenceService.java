@@ -18,7 +18,7 @@ import java.util.List;
  * @author 5月19日 张易兴创建
  */
 @Service(value = "Existence")
-public class Existence {
+public class ExistenceService {
     @Resource(name = "FocusMapper")
     FocusMapper focusMapper;
     @Resource(name = "MusicCollectMapper")

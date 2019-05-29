@@ -12,36 +12,11 @@
 <body>
 <div class="total">
     <!--头部-->
-    <div class="header">
-        <a class="header_brand " href="../index.html">
-            <span class="had_br_main"><img src="img/音乐.png"  th:src="@{/static/img/音乐.png}"alt=""><span class="web-font">futurMusic</span></span>
-        </a>
-        <div class="menu_toggle_button">
-            <img src="img/多项经营汇总统计.png" th:src="@{/static/img/多项经营汇总统计.png}" id="bookmarak" alt="">
-        </div>
-        <div class="header_right">
-            <div class="rig_col_left"></div>
-            <div class="rig_col_right"><p style="cursor: pointer"><p >退出</p></div>
-        </div>
-    </div>
+    <div th:replace="back_system/back_head::html" ></div>
+
     <div class="main">
-        <div class="side">
-            <div class="side_head">
-                <span></span>
-            </div>
-            <ul>
-                <li><a href="back_system.html">用户</a></li>
-                <li><a href="Email.html">邮箱</a></li>
-                <li><a href="order.html">订单</a></li>
-                <li><a href="back_music.html">音乐</a></li>
-                <li><a href="song_list.html">歌单/专辑</a></li>
-                <li><a href="back_MV.html">MV</a></li>
-                <li><a href="talking.html">评论</a></li>
-                <li><a href="classification.html">分类</a></li>
-                <li><a href="active.html">活动</a></li>
-                <li><a href=""></a></li>
-            </ul>
-        </div>
+        <!--        侧边栏-->
+        <div   th:replace="back_system/back_side::html"></div>
         <div class="main_right">
             <div class="main_right_header">
                 <div class="mrh">

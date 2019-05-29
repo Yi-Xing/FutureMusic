@@ -3,13 +3,14 @@ package controller.music.search;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import entity.Music;
-import entity.MusicVideo;
 import entity.ShowSinger;
 import entity.User;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import service.music.MusicService;
 import service.music.MusicVideoService;
 import service.music.SearchService;
 import service.music.SingerService;
@@ -17,6 +18,7 @@ import service.music.SingerService;
 import javax.annotation.Resource;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 /**
  *  根据名字搜索
@@ -30,6 +32,8 @@ public class SearchByName {
     MusicVideoService musicVideoService;
     @Resource(name = "SingerService")
     private SingerService singerService;
+    @Resource(name = "MusicService")
+    MusicService musicService;
     /**
      * ajax搜索框智能提示名字（临时测试）
      * @param keyWord 传入的关键字
@@ -53,14 +57,8 @@ public class SearchByName {
     @ResponseBody
     public PageInfo searchListMusic(@RequestParam(required = false, value = "pn", defaultValue = "1") Integer pn,
                                     @RequestParam(value = "keyWord", defaultValue = "") String keyWord) {
-        //使用分页插件进行分页查询
-        //传入页码和页面的大小
         PageHelper.startPage(pn, 10);
-        //start后面紧跟的查询，就是分页查询
         List<Music> musicList = searchService.selectListMusicByName(keyWord);
-        //包装查询结果，只需将pageinfo交给页面
-        //包括我们查询的数据
-        //第二个，传入连续显示的页数
         PageInfo page = new PageInfo(musicList, 5);
         return page;
     }
@@ -108,5 +106,37 @@ public class SearchByName {
         List<User> singerList = searchService.selectSingerByName(keyWord);
         PageInfo page = new PageInfo(singerList, 5);
         return page;
+    }
+
+    /**
+     * 搜索专辑
+     */
+    public List<Map<String,String[]>> searchSonglistByName(@RequestParam(required = false,value = "pn", defaultValue = "1") Integer pn,
+                                         @RequestParam(value = "keyWord",defaultValue = "")String keyWord){
+
+        return null;
+    }
+    /**
+     * 搜索音乐
+     * @param pn 当前页数
+     * @param keyWord 关键字
+     */
+    @RequestMapping(value ="/searchMusicByName")
+    @ResponseBody
+    public List<Map<String, String[]>> searchMusicByName(@RequestParam(required = false,value = "pn", defaultValue = "1") Integer pn,
+                                     @RequestParam(value = "keyWord",defaultValue = "")String keyWord) {
+        List<Map<String, String[]>> singerList = musicService.searchMusicByName(keyWord);
+        return singerList;
+    }
+    /**
+     * 搜索歌手(通过名字）
+     */
+    @RequestMapping(value = "/searchSingerByNames")
+    @ResponseBody
+    public List<ShowSinger> searchSingerByNames(@RequestParam(required = false,value = "pn", defaultValue = "1") Integer pn,
+                                               @RequestParam(value = "keyWord",defaultValue = "")String keyWord){
+        System.out.println("我开始执行了");
+        List<ShowSinger> singers = singerService.exhibitionSingersByName(keyWord);
+        return singers;
     }
 }

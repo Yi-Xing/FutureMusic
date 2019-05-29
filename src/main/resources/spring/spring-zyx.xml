@@ -50,10 +50,14 @@
     </aop:config>
 
     <!--注解事务-->
-<!--    <tx:annotation-driven transaction-manager="dataSourceTransactionManager"/>-->
+    <tx:annotation-driven transaction-manager="dataSourceTransactionManager"/>
 
 
-    <!--拦截器-->
+
+
+
+
+<!--    拦截器-->
     <mvc:interceptors>
         <mvc:interceptor>
             <mvc:mapping path="/**"/>
@@ -77,5 +81,11 @@
             <mvc:mapping path="/administrators/Show*"/>
             <bean class="util.interceptor.ShowInterceptor"/>
         </mvc:interceptor>
+<!--        <mvc:interceptor>-->
+<!--            &lt;!&ndash;防止表单重复提交&ndash;&gt;-->
+<!--            <mvc:mapping path="/**"/>-->
+<!--            <bean class="util.interceptor.TokenInterceptor"/>-->
+<!--        </mvc:interceptor>-->
+
     </mvc:interceptors>
 </beans>

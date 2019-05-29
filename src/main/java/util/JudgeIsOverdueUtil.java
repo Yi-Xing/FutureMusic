@@ -49,7 +49,7 @@ public class JudgeIsOverdueUtil {
             String date1 = simpleDateFormat.format(new Date());
             long time1 = simpleDateFormat.parse(date1).getTime();
             long reduceSecond = (time-time1)/1000;
-            return reduceSecond;
+            return -reduceSecond;
         }catch (Exception e){
             e.printStackTrace();
             return 0;

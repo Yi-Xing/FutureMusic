@@ -5,10 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import service.music.MusicService;
-import service.music.PlayService;
-import service.music.MusicVideoService;
-import service.music.SingerService;
+import service.music.*;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -20,14 +17,14 @@ import java.util.List;
  * */
 @Controller
 public class Exhibition {
-    @Resource(name = "PlayService")
-    private PlayService playService;
     @Resource(name = "SingerService")
     SingerService singerService;
     @Resource(name = "MusicVideoService")
     MusicVideoService musicVideoService;
     @Resource(name = "MusicService")
     MusicService musicService;
+    @Resource(name = "ActivityService")
+    ActivityService activityService;
 
 
     private final String musicType = "电音";
@@ -68,7 +65,7 @@ public class Exhibition {
     @RequestMapping(value = "/rankingListByMusicType")
     @ResponseBody
     public List<Music> rankingListByMusicType(String musicType){
-        List<Music> musicList = playService.selectListMusicByMusicType(musicType);
+        List<Music> musicList = musicService.selectListMusicByMusicType(musicType);
         return musicList;
     }
     /**
@@ -91,7 +88,7 @@ public class Exhibition {
     @RequestMapping(value = "/rankingListByRegion")
     @ResponseBody
     public List<Music> rankingListByRegion(String region){
-        List<Music> musicList = playService.selectListMusicByRegion(region);
+        List<Music> musicList = musicService.selectListMusicByRegion(region);
         return musicList;
     }
     /**
@@ -103,7 +100,7 @@ public class Exhibition {
     @ResponseBody
     public List<Music> rankingListByLanguage(HttpServletRequest request){
         String region = request.getParameter("classification");
-        List<Music> musicList = playService.selectListMusicByLanguage(region);
+        List<Music> musicList = musicService.selectListMusicByLanguage(region);
         return musicList;
     }
 
@@ -114,7 +111,15 @@ public class Exhibition {
     @RequestMapping(value = "/activity")
     @ResponseBody
     public List<Activity> activity(){
-        List<Activity> activityList = playService.selectActivity();
+        List<Activity> activityList = activityService.selectActivity();
         return activityList;
+    }
+    /**
+     * 搜索音乐人
+     */
+    @RequestMapping(value = "/exhibitionSingersByRegion")
+    @ResponseBody
+    public List<ShowSinger> exhibitionSingersByRegion(String  region){
+        return singerService.exhibitionSingersByRegion("2");
     }
 }

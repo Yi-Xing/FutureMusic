@@ -33,60 +33,6 @@ public class PlayService {
     @Resource(name = "PlayMapper")
     PlayMapper playMapper;
 
-
-    /**
-     * 音乐的流派榜
-     * @param type 根据音乐的流派分类查找信息
-     * @return Map<Music, User>
-     */
-    public List<Music> selectListMusicByMusicType(String type) {
-        Classification classification = new Classification();
-        classification.setType(type);
-        Map<Music,User> musicSingerMap = this.selectListMusicByClassification(classification);
-        List<Music> musicList = sortMusicByPlay(musicSingerMap);
-        return musicList;
-    }
-
-    /**
-     * 地区榜
-     *
-     * @param region 根据音乐的分类的地区查找信息
-     * @return Map<Music, User> 音乐和对应的
-     * 歌手集合
-     */
-    public List<Music> selectListMusicByRegion(String region) {
-        Classification classification = new Classification();
-        classification.setRegion(region);
-        Map<Music,User> musicSingerMap = this.selectListMusicByClassification(classification);
-        List<Music> musicList = sortMusicByPlay(musicSingerMap);
-        return musicList;
-    }
-
-    /**
-     * 语言榜
-     *
-     * @param language 根据音乐的分类的地区查找信息
-     * @return Map<Music, User> 音乐和对应的歌手集合
-     */
-    public List<Music> selectListMusicByLanguage(String language) {
-        Classification classification = new Classification();
-        classification.setRegion(language);
-        Map<Music,User> musicSingerMap = this.selectListMusicByClassification(classification);
-        List<Music> musicList = sortMusicByPlay(musicSingerMap);
-        return musicList;
-    }
-
-    /**
-     * 在首页中展示活动
-     * @return List<Activity>  返回查找到的活动
-     */
-    public List<Activity> selectActivity() {
-        Activity activity = new Activity();
-        activity.setEndDate(new Date());
-        List<Activity> activityList = activityMapper.selectListActivity(activity);
-        return activityList;
-    }
-
     /**
      * 提取的公共代码
      * 因为用静态变量会报错，没有写道公共类里
@@ -95,7 +41,7 @@ public class PlayService {
      *                       封装信息：分类
      * @return Map<Music, User>  返回查找到的歌曲
      */
-    private Map<Music, User> selectListMusicByClassification(Classification classification) {
+    public Map<Music, User> selectListMusicByClassification(Classification classification) {
         //获取符合条件得分类对象
         List<Integer> classificationIds = new ArrayList<>();
         Map<Music, User> musicSingerMap = new HashMap<>(16);
@@ -115,8 +61,8 @@ public class PlayService {
 
     /**
      * 根据分类查找歌单
-     *
-     * @param classification
+     * 浏览量
+     * @param classification 查找歌单
      */
 
     public Map<SongList, User> selectListSongListByClassification(Classification classification) {
@@ -213,7 +159,4 @@ public class PlayService {
         return result;
     }
 
-    /**
-     * 传入Map<Integer,Integer>，对浏览量进行排序
-     */
 }

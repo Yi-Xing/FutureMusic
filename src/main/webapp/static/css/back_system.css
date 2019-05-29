@@ -160,7 +160,12 @@ url('//at.alicdn.com/t/webfont_oogj9rdy3g8.ttf') format('truetype'), /* chromeã€
     outline: none;
     border:0px;
     margin-left:1%;
-    border: 0.5px solid #000;
+    background: rebeccapurple;
+}
+.mrh select{
+    border-radius: 5px;
+    outline: none;
+    border:none;
 }
 .mrh button img{
     width:70%;

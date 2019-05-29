@@ -145,20 +145,19 @@ public class SecretProtectionService {
      * 第二步，验证账号的密保是否正确
      * 第三步，调用设置密保
      *
-     * @param mailbox  需要验证的邮箱
      * @param gender   密保——性别
      * @param age      密保——年龄
      * @param birthday 密保——出生日期
      * @param address  密保——住址
      */
-    public State verificationSecretProtection(String mailbox, String gender, String age, String birthday, String address) {
+    public State verificationSecretProtection( String gender, String age, String birthday, String address,HttpSession session) {
         State state = new State();
         // 验证密保是否正确
-        if (isSecretProtection(mailbox, gender, age, birthday, address)) {
-            logger.info("邮箱：" + mailbox + "找回密码成功，开始设置新密码");
+        if (isSecretProtection(specialFunctions.getUserMailbox(session), gender, age, birthday, address)) {
+            logger.info("邮箱：" + specialFunctions.getUserMailbox(session) + "找回密码成功，开始设置新密码");
             state.setState(1);
         } else {
-            logger.debug("邮箱：" + mailbox + "的密保验证有误");
+            logger.debug("邮箱：" + specialFunctions.getUserMailbox(session) + "的密保验证有误");
             state.setInformation("密保有误");
         }
         return state;

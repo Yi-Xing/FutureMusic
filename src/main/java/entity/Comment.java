@@ -12,8 +12,6 @@ import java.util.Objects;
  * @author 5月9日 张易兴创建
  */
 public class Comment implements Serializable {
-
-
     /**
      * 主键
      */
