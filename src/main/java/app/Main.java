@@ -94,6 +94,11 @@ public class Main {
         return "back_system/song_list";
     }
 
+    @RequestMapping(value = "/collapse")
+    public String collapse() {
+        return "collapse";
+    }
+
 
 
 }
