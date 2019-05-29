@@ -25,25 +25,30 @@ public class ExceptionResolver implements HandlerExceptionResolver {
         if (e instanceof DataBaseException) {
             // DataBaseException 数据库异常
             logger.debug("数据库异常" + o);
-            modelAndView.addObject("Exception", "出异常了");
+            logger.debug("数据库异常" + e);
+            modelAndView.addObject("Exception", "数据库异常");
         } else if (e instanceof IOException) {
             // IOException异常  文件上传下载
             logger.debug("文件上传下载异常" + o);
-            modelAndView.addObject("Exception", "出异常了");
+            logger.debug("文件上传下载异常" + e);
+            modelAndView.addObject("Exception", "文件上传下载异常");
         } else if (e instanceof ParseException) {
             //ParseException  字符串转换日期异常
             logger.debug("字符串转换日期异常" + o);
-            modelAndView.addObject("Exception", "出异常了");
+            logger.debug("字符串转换日期异常" + e);
+            modelAndView.addObject("Exception", "字符串转换日期异常");
         } else if (e instanceof AlipayApiException) {
             //AlipayApiException 阿里巴巴的支付异常
             logger.debug("阿里巴巴的支付异常异常" + o);
-            modelAndView.addObject("Exception", "出异常了");
+            logger.debug("阿里巴巴的支付异常异常" + e);
+            modelAndView.addObject("Exception", "阿里巴巴的支付异常异常");
         } else {
             // 其他异常
             logger.debug("其他异常" + o);
-            modelAndView.addObject("Exception", "出异常了");
+            logger.debug("其他异常" + e);
+            modelAndView.addObject("Exception", "其他异常");
         }
-        modelAndView.setViewName("BackgroundManagementSystem");
+        modelAndView.setViewName("index");
         return modelAndView;
     }
 }

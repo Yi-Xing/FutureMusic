@@ -18,7 +18,7 @@
         <!--这个输出控制台的配置-->
         <Console name="Console" target="SYSTEM_OUT">
             <!--控制台只输出level及以上级别的信息（onMatch），其他的直接拒绝（onMismatch）-->
-            <ThresholdFilter level="all" onMatch="ACCEPT" onMismatch="DENY" />
+            <ThresholdFilter level="debug" onMatch="ACCEPT" onMismatch="DENY" />
             <!--这个都知道是输出日志的格式-->
             <PatternLayout pattern="%d{HH:mm:ss.SSS} %-5level %class{36} %L %M - %msg%xEx%n" />
         </Console>
@@ -43,7 +43,7 @@
             <AppenderRef ref="RollingFile" />
         </Logger>
         <!--建立一个默认的root的logger-->
-        <Root level="all">
+        <Root level="debug">
             <!-- 在root中关联appender才会在对应的位置输出日志，定义一个输出到文件的appender也必须关联到此处才会保存日志到文件 -->
             <AppenderRef ref="Console" />
         </Root>

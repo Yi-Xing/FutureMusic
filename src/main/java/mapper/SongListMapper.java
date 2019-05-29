@@ -30,11 +30,11 @@ public interface SongListMapper {
      */
     public List<SongList> selectListSongList(SongList songList);
     /**
-     * 查找符合指定规则的音乐信息
+     * 查找符合指定规则的歌单或专辑信息
      *
-     * @param ids 查找指定id的音乐
+     * @param ids 查找指定id的歌单或专辑信息
      *
-     * @return List<SongList> 返回查找到的音乐
+     * @return List<SongList> 返回查找到的歌单或专辑信息
      */
     public List<SongList> listIdSelectListSongList(List<Integer> ids);
     /**

@@ -400,7 +400,7 @@ window.onload = function () {
 
     // 歌单专辑篇-------------------------------
     // 显示歌单专辑信息，根据条件页数显示信息
-    function showUserInformation(page) {
+    function showSongListInformation(page) {
         //得到4个条件存成数组
         var condition = new Array();
         condition[0] = $("#registerUserName").val();
