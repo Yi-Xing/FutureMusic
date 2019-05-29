@@ -23,8 +23,6 @@ public class MusicService {
     MusicVideoMapper musicVideoMapper;
     @Resource(name = "PlayMapper")
     PlayMapper playMapper;
-    @Resource(name = "FocusMapper")
-    FocusMapper focusMapper;
 
     /**
      * 音乐的流派榜

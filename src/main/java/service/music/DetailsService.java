@@ -2,6 +2,7 @@ package service.music;
 
 import entity.*;
 import mapper.*;
+import org.apache.ibatis.cache.CacheKey;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -57,7 +58,7 @@ public class DetailsService {
         SongList songList = new SongList();
         songList.setId(musicAlbumId);
         List<SongList> albums = songListMapper.selectListSongList(songList);
-        if (albums != null) {
+        if (albums.size()!=0) {
             musicAllInformationMap.put("album", albums.get(0));
         } else {
             musicAllInformationMap.put("album", null);
@@ -66,19 +67,28 @@ public class DetailsService {
         User user = new User();
         user.setId(singerId);
         user.setLevel(2);
-        musicAllInformationMap.put("singer",userMapper.selectUser(user).get(0));
+        List<User> singerList = userMapper.selectUser(user);
+        if(singerList.size()!=0) {
+            musicAllInformationMap.put("singer", singerList.get(0));
+        }else if(singerList.size()==0){
+            musicAllInformationMap.put("singer",null);
+            logger.error("音乐"+music.getId()+"缺少歌手信息");
+        }
         //获取分类的详细信息
         Classification classification = new Classification();
         classification.setId(classificationId);
-        musicAllInformationMap.put("classification",
-                classificationMapper.selectListClassification(classification).get(0));
+        List<Classification> classificationList = classificationMapper.selectListClassification(classification);
+        if(classificationList.size()!=0){
+            musicAllInformationMap.put("classification",
+                    classificationList.get(0));
+        }else if(classificationList.size()==0){
+            musicAllInformationMap.put("classification",classificationList.get(0));
+        }
         //获取mv的详细信息
         MusicVideo musicVideo = new MusicVideo();
         musicVideo.setId(musicVideoId);
-        //按浏览量搜索
-        musicVideo.setPlayCount(1);
         List<MusicVideo> musicVideos = musicVideoMapper.selectListMusicVideo(musicVideo);
-        if(musicVideos!=null){
+        if(musicVideos.size()!=0){
             musicAllInformationMap.put("musicVideo",musicVideos.get(0));
         }else{
             musicAllInformationMap.put("musicVideo",null);
