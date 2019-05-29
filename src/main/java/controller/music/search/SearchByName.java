@@ -131,10 +131,11 @@ public class SearchByName {
     /**
      * 搜索歌手(通过名字）
      */
-    @RequestMapping(name = "/searchSingerByName")
+    @RequestMapping(name = "/searchSingerByNames")
     @ResponseBody
-    public List<ShowSinger> searchSingerByName(@RequestParam(required = false,value = "pn", defaultValue = "1") Integer pn,
+    public List<ShowSinger> searchSingerByNames(@RequestParam(required = false,value = "pn", defaultValue = "1") Integer pn,
                                                @RequestParam(value = "keyWord",defaultValue = "")String keyWord){
+        System.out.println("我开始执行了");
         List<ShowSinger> singers = singerService.exhibitionSingersByName(keyWord);
         return singers;
     }

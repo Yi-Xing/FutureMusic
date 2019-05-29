@@ -42,7 +42,7 @@ public class Detail {
      * @param musicVideoId 传入MV的id
      * @return Map<String,Object>
      */
-    @RequestMapping(value = "showMusicVideoDetail")
+    @RequestMapping(value = "/showMusicVideoDetail")
     @ResponseBody
     public Map<String,Object> showMusicVideoDetail(@RequestParam(value = "musicVideoId",defaultValue = "1")int musicVideoId){
         MusicVideo musicVideo = new MusicVideo();

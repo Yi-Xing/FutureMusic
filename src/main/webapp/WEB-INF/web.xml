@@ -45,9 +45,9 @@
     <url-pattern>/</url-pattern>
   </servlet-mapping>
 
-  <!-- 替换404页面 start -->
-  <error-page>
-    <error-code>404</error-code>
-    <location>/WEB-INF/templates/zyx.html</location>
-  </error-page>
+<!--  &lt;!&ndash; 替换404页面 start &ndash;&gt;-->
+<!--  <error-page>-->
+<!--    <error-code>404</error-code>-->
+<!--    <location>/WEB-INF/templates/zyx.html</location>-->
+<!--  </error-page>-->
 </web-app>

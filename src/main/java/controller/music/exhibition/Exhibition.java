@@ -117,7 +117,7 @@ public class Exhibition {
     /**
      * 搜索音乐人
      */
-    @RequestMapping(value = "exhibitionSingersByRegion")
+    @RequestMapping(value = "/exhibitionSingersByRegion")
     @ResponseBody
     public List<ShowSinger> exhibitionSingersByRegion(String  region){
         return singerService.exhibitionSingersByRegion("2");
