@@ -44,10 +44,10 @@
     <servlet-name>springMVC</servlet-name>
     <url-pattern>/</url-pattern>
   </servlet-mapping>
-<!--
-  &lt;!&ndash; 替换404页面 start &ndash;&gt;
+
+  <!-- 替换404页面 start -->
   <error-page>
     <error-code>404</error-code>
-    <location>/views/404.html</location>
-  </error-page>-->
+    <location>/WEB-INF/templates/zyx.html</location>
+  </error-page>
 </web-app>

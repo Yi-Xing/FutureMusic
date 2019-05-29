@@ -1,55 +1,64 @@
 package controller.user.consumer;
 
 import com.alipay.api.AlipayApiException;
-import com.alipay.api.AlipayClient;
-import com.alipay.api.DefaultAlipayClient;
-import com.alipay.api.request.AlipayTradePagePayRequest;
 import entity.State;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import test.zyx.AlipayConfig;
+import service.user.consumer.AlipayService;
+import service.user.consumer.TransactionService;
+import util.exception.DataBaseException;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.io.UnsupportedEncodingException;
 
 /**
- * 充值余额，充值VIP，购买音乐，购买MV，购买专辑，判断指定用户没有有购买指定音乐或MV
+ * 充值余额，充值VIP，购买音乐，购买MV，判断指定用户没有有购买指定音乐或MV
  *
  * @author 5月14日 张易兴创建
  */
 @Controller
 public class Transaction {
+    @Resource(name = "AlipayService")
+    AlipayService alipayService;
+    @Resource(name = "TransactionService")
+    TransactionService transactionService;
     /**
      * 充值按钮执行此方法，输入充值的金额
      *
      * @param money   需要充值的金额
-     * @param orderName   订单的名称
-     * @param commodityDescription   订单的描述
-     * @param session   获取当前会话
      */
     @RequestMapping(value = "/rechargeBalance")
-    public void rechargeBalance(HttpServletRequest request, HttpServletResponse response, String money,String orderName,String commodityDescription, HttpSession session) throws IOException, AlipayApiException {
+    public void rechargeBalance(HttpServletRequest request, HttpServletResponse response, String money) throws IOException, AlipayApiException {
+        alipayService.ali(request,response,money);
+    }
 
+    /**
+     * 充值完回调此方法
+     *
+     */
+    @RequestMapping(value = "/rechargeCallback")
+    public State rechargeCallback(HttpServletRequest request, HttpSession session) throws IOException, AlipayApiException, DataBaseException {
+        return transactionService.rechargeBalance(request,session);
     }
     /**
-     * 购买音乐或MV或专辑
+     * 购买音乐或MV
+     * @param id   得到购买的id
+     * @param type 得到购买的类型 1表示音乐  2表示MV
      */
     @RequestMapping(value = "/purchase")
-    public  State purchase(HttpSession session){
-        return null;
+    public  State purchase(Integer id, Integer type,HttpSession session) throws DataBaseException {
+        return transactionService.purchase(id,type,session);
     }
 
     /**
      * 充值VIP
      */
     @RequestMapping(value = "/rechargeVIP")
-    public void rechargeVIP( HttpSession session) throws IOException, AlipayApiException {
-
+    public State rechargeVIP( Integer count,HttpSession session) throws DataBaseException {
+       return transactionService.rechargeVIP(count,session);
     }
 
 }

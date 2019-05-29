@@ -60,9 +60,7 @@ public class SpecialFunctions {
         session.setAttribute("verificationCodeTime", new Date());
         // 邮箱发送成功
         logger.info("邮箱：" + mailbox + "验证码发送成功");
-        State state=new State();
-        state.setState(1);
-        return state;
+        return new State(1);
     }
 
     /**

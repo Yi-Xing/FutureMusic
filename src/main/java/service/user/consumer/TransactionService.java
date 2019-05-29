@@ -1,15 +1,17 @@
 package service.user.consumer;
 
 import com.alipay.api.AlipayApiException;
+import com.alipay.api.internal.util.AlipaySignature;
 import entity.*;
 import mapper.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import service.user.IdExistence;
 import service.user.SpecialFunctions;
-import service.user.administrators.ActivityInformationService;
 import service.user.administrators.UserInformationService;
+import util.AlipayConfig;
 import util.exception.DataBaseException;
 
 import javax.annotation.Resource;
@@ -17,10 +19,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.math.BigDecimal;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 /**
  * @author HP
@@ -30,10 +31,6 @@ public class TransactionService {
     private static final Logger logger = LoggerFactory.getLogger(TransactionService.class);
     @Resource(name = "SpecialFunctions")
     SpecialFunctions specialFunctions;
-    @Resource(name = "MusicMapper")
-    MusicMapper musicMapper;
-    @Resource(name = "MusicVideoMapper")
-    MusicVideoMapper musicVideoMapper;
     @Resource(name = "OrderMapper")
     OrderMapper orderMapper;
     @Resource(name = "UserInformationService")
@@ -41,7 +38,7 @@ public class TransactionService {
     @Resource(name = "IdExistence")
     IdExistence idExistence;
     @Resource(name = "Existence")
-    Existence existence;
+    ExistenceService existenceService;
     @Resource(name = "MusicCollectMapper")
     MusicCollectMapper musicCollectMapper;
     @Resource(name = "AboutSongListService")
@@ -49,16 +46,42 @@ public class TransactionService {
     @Resource(name = "MusicSongListMapper")
     MusicSongListMapper musicSongListMapper;
 
-    /**
-     * 充值按钮执行此方法，输入充值的金额
-     *
-     * @param money                需要充值的金额
-     * @param orderName            订单的名称
-     * @param commodityDescription 订单的描述
-     * @param session              获取当前会话
-     */
-    public void rechargeBalance(HttpServletRequest request, HttpServletResponse response, String money, String orderName, String commodityDescription, HttpSession session) throws IOException, AlipayApiException {
 
+    /**
+     * 充值完回调此方法
+     */
+    public State rechargeBalance(HttpServletRequest request, HttpSession session) throws UnsupportedEncodingException, AlipayApiException, DataBaseException {
+        Map<String, String> params = new HashMap<>();
+        Map<String, String[]> requestParams = request.getParameterMap();
+        for (Iterator<String> iter = requestParams.keySet().iterator(); iter.hasNext(); ) {
+            String name = (String) iter.next();
+            String[] values = (String[]) requestParams.get(name);
+            String valueStr = "";
+            for (int i = 0; i < values.length; i++) {
+                valueStr = (i == values.length - 1) ? valueStr + values[i]
+                        : valueStr + values[i] + ",";
+            }
+            //乱码解决，这段代码在出现乱码时使用
+            valueStr = new String(valueStr.getBytes("ISO-8859-1"), "utf-8");
+            params.put(name, valueStr);
+        }
+        //调用SDK验证签名
+        boolean signVerified = AlipaySignature.rsaCheckV1(params, AlipayConfig.alipay_public_key, AlipayConfig.charset, AlipayConfig.sign_type);
+        if (signVerified) {
+            // 获取充值金额
+            String money = request.getParameter("total_amount");
+            User user = specialFunctions.getUser(session);
+            logger.debug("充值前的余额"+user.getBalance());
+            user.setBalance(user.getBalance().add(new BigDecimal(money)));
+            logger.debug("充值后的余额"+user.getBalance());
+            userInformationService.modifyUser(user);
+            return new State(1);
+        } else {//验证失败
+            System.out.println("验证失败");
+            State state = new State();
+            state.setInformation("支付失败");
+            return state;
+        }
     }
 
     /**
@@ -67,6 +90,7 @@ public class TransactionService {
      * @param id   得到购买的id
      * @param type 得到购买的类型 1表示音乐  2表示MV
      */
+    @Transactional
     public State purchase(Integer id, Integer type, HttpSession session) throws DataBaseException {
         State state = new State();
         User user = specialFunctions.getUser(session);
@@ -124,7 +148,7 @@ public class TransactionService {
                 // 添加订单信息,失败抛异常
                 addOrder(user.getId(), id, type, singerId, albumId, classificationId, originalPrice, price);
                 // 用户购买音乐完成，开始修改用户收藏的音乐或MV的是否购买状态
-                modifyCollectionAndSongList( user.getId(),  id,  type);
+                modifyCollectionAndSongList(user.getId(), id, type);
             } else {
                 state.setInformation("余额不足，请立即充值");
             }
@@ -167,7 +191,7 @@ public class TransactionService {
      */
     public void modifyCollectionAndSongList(int userId, int musicId, int type) throws DataBaseException {
         // 判断用户是否收藏了该音乐或MV
-        MusicCollect musicCollect = existence.isUserCollectionMusic(userId, musicId, type);
+        MusicCollect musicCollect = existenceService.isUserCollectionMusic(userId, musicId, type);
         if (musicCollect != null) {
             // 将状态修改为购买过了
             musicCollect.setHave(1);
@@ -194,7 +218,7 @@ public class TransactionService {
                         // 判断用户的所有歌单中是否有该音乐，如果有则更改该音乐的状态
                         if (songListMusic.getMusicId() == musicId) {
                             songListMusic.setHave(1);
-                            if(musicSongListMapper.updateMusicSongList(songListMusic)<1){
+                            if (musicSongListMapper.updateMusicSongList(songListMusic) < 1) {
                                 // 如果失败是数据库错误
                                 logger.error("音乐列表：" + songListMusic + "更新音乐列表时，数据库出错");
                                 throw new DataBaseException("音乐列表：" + songListMusic + "更新音乐列表时，数据库出错");
@@ -213,6 +237,7 @@ public class TransactionService {
      *
      * @param count 指定的充值几个月
      */
+    @Transactional
     public State rechargeVIP(Integer count, HttpSession session) throws DataBaseException {
         State state = new State();
         User user = specialFunctions.getUser(session);
