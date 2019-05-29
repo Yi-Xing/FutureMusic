@@ -77,6 +77,11 @@ public class Main {
     public String email() {
         return "back_system/Email";
     }
+
+    @RequestMapping(value = "/musicList")
+    public String musicList() {
+        return "musicList";
+    }
 }
 
 
