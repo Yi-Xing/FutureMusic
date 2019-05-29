@@ -121,7 +121,7 @@ public class SearchByName {
      * @param pn 当前页数
      * @param keyWord 关键字
      */
-    @RequestMapping(value ="/searchMusicByName")
+    @RequestMapping("/searchMusicByName")
     @ResponseBody
     public List<Map<String, String[]>> searchMusicByName(@RequestParam(required = false,value = "pn", defaultValue = "1") Integer pn,
                                      @RequestParam(value = "keyWord",defaultValue = "")String keyWord) {
@@ -135,7 +135,6 @@ public class SearchByName {
     @ResponseBody
     public List<ShowSinger> searchSingerByNames(@RequestParam(required = false,value = "pn", defaultValue = "1") Integer pn,
                                                @RequestParam(value = "keyWord",defaultValue = "")String keyWord){
-        System.out.println("我开始执行了");
         List<ShowSinger> singers = singerService.exhibitionSingersByName(keyWord);
         return singers;
     }
