@@ -50,7 +50,7 @@ public class TransactionService {
     /**
      * 充值完回调此方法
      */
-    public State rechargeBalance(HttpServletRequest request, HttpSession session) throws UnsupportedEncodingException, AlipayApiException, DataBaseException {
+    public synchronized State rechargeBalance(HttpServletRequest request, HttpSession session) throws UnsupportedEncodingException, AlipayApiException, DataBaseException {
         Map<String, String> params = new HashMap<>();
         Map<String, String[]> requestParams = request.getParameterMap();
         for (Iterator<String> iter = requestParams.keySet().iterator(); iter.hasNext(); ) {
