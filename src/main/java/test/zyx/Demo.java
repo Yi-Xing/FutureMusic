@@ -18,6 +18,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import util.ConstantUtil;
 import util.FileUpload;
 
@@ -30,12 +31,13 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 
 @Controller
-public class demo {
+public class Demo {
 
-    @Resource(name = "Flie")
     Flie flie;
     @Resource(name = "UserMapper")
     UserMapper userMapper;
+
+
 
     @RequestMapping(value = "/test")
     public String test() {
