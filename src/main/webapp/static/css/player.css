@@ -46,7 +46,7 @@ body::-webkit-scrollbar {
     height: 100%;
     float: left;
     position: relative;
-    background: url("http://image.baidu.com/search/detail?ct=503316480&z=undefined&tn=baiduimagedetail&ipn=d&word=%E6%89%8B%E6%9C%BA%E5%A3%81%E7%BA%B8&step_word=&ie=utf-8&in=&cl=2&lm=-1&st=undefined&hd=undefined&latest=undefined&copyright=undefined&cs=2888842633,3373259898&os=4129720690,1910493624&simid=3383646038,368239711&pn=22&rn=1&di=150700&ln=1286&fr=&fmq=1559027646653_R&fm=&ic=undefined&s=undefined&se=&sme=&tab=0&width=undefined&height=undefined&face=undefined&is=0,0&istype=0&ist=&jit=&bdtype=0&spn=0&pi=0&gsm=0&hs=2&objurl=http%3A%2F%2Fattachments.gfan.com%2Fforum%2F201502%2F27%2F081819psovwv6dvwvovwjq.jpg&rpstart=0&rpnum=0&adpicid=0&force=undefined") no-repeat fixed;
+    background: url("../img/head1.jpg") no-repeat fixed;
     background-size: 100% 100%;
     padding: 1px;
     box-sizing: border-box;
@@ -61,7 +61,7 @@ body::-webkit-scrollbar {
     left: 0;
     top: 0;
     background: inherit;
-    filter: blur(5px);
+    filter: blur(20px);
     z-index: 2;
 }
 /*真正的内容div*/

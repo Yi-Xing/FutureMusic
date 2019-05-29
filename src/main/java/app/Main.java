@@ -73,6 +73,12 @@ public class Main {
         return "back_system/Email";
     }
 
+    @RequestMapping(value = "/musicList")
+    public String musicList() {
+        return "musicList";
+    }
+
+
     @RequestMapping(value = "/order")
     public String order() {
         return "back_system/order";

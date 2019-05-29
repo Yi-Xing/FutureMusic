@@ -34,9 +34,17 @@
 #myFollow,#myFans,#myList,#myInformation{
     display: none;
 }
-#myFans,#myFollow{
+#myFans,#myFollow,#iLike,#myList{
     max-height: 900px;
     overflow: auto;
+}
+#myFollow::-webkit-scrollbar {
+    width: 8px;
+}
+
+#myFollow::-webkit-scrollbar-thumb {
+    background-color: lightgray;
+    border-radius: 4px;
 }
 #myFans::-webkit-scrollbar {
     width: 8px;
@@ -46,6 +54,15 @@
     background-color: lightgray;
     border-radius: 4px;
 }
+#iLike::-webkit-scrollbar {
+    width: 8px;
+}
+
+#iLike::-webkit-scrollbar-thumb {
+    background-color: lightgray;
+    border-radius: 4px;
+}
+
 #myList::-webkit-scrollbar {
     width: 8px;
 }
