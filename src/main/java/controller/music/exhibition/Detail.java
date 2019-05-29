@@ -28,11 +28,12 @@ public class Detail {
      * @param musicId 传入歌曲的id
      * @return Map<String,Object>
      */
-    @RequestMapping(value = "showMusicDetail")
+    @RequestMapping(value = "/showMusicDetail")
     @ResponseBody
     public Map<String,Object> showMusicDetail(@RequestParam(value = "musicId",defaultValue = "1")int musicId){
         Music music = new Music();
         music.setId(musicId);
+        System.out.println("进来了");
         return detailsService.showMusic(music);
     }
 

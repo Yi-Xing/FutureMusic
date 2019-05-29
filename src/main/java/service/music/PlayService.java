@@ -33,19 +33,6 @@ public class PlayService {
     @Resource(name = "PlayMapper")
     PlayMapper playMapper;
 
-
-
-    /**
-     * 在首页中展示活动
-     * @return List<Activity>  返回查找到的活动
-     */
-    public List<Activity> selectActivity() {
-        Activity activity = new Activity();
-        activity.setEndDate(new Date());
-        List<Activity> activityList = activityMapper.selectListActivity(activity);
-        return activityList;
-    }
-
     /**
      * 提取的公共代码
      * 因为用静态变量会报错，没有写道公共类里

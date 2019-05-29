@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import service.music.MusicService;
 import service.music.MusicVideoService;
-import service.music.PlayService;
 import service.music.SingerService;
 
 import javax.annotation.Resource;
@@ -22,20 +21,20 @@ import java.util.List;
  */
 @Controller
 public class SearchByClassification {
-    @Resource(name = "PlayService")
-    private PlayService playService;
     @Resource(name = "MusicVideoService")
     private MusicVideoService musicVideoService;
     @Resource(name = "SingerService")
     private SingerService singerService;
+    @Resource(name = "MusicService")
     private MusicService musicService;
+
     /**
      * 根据分类中的地区查找歌曲 排行榜
      */
     @RequestMapping("/searchMusicByRegion")
     @ResponseBody
     public PageInfo searchMusicByRegion(@RequestParam(required = false,value = "pn", defaultValue = "1") Integer pn,
-                                                @RequestParam(value = "region",defaultValue = "")String region) {
+                                                @RequestParam(value = "region",defaultValue = "1")String region) {
         PageHelper.startPage(pn, 10);
         List<Music> musicList= musicService.selectListMusicByRegion(region);
         return new PageInfo(musicList);
@@ -100,9 +99,6 @@ public class SearchByClassification {
             classification.setRegion(region);
         }
         List<String[]> musicVideoList = musicVideoService.searchMusicVideoByClassification(classification);
-//        Map<MusicVideo, User> musicVideoSingerMap= playService.selectListMusicVideoListByClassification(classification);
-//        List<Map<MusicVideo, User>> list=new ArrayList<>();
-//        list.add(musicVideoSingerMap);
         return new PageInfo(musicVideoList);
     }
 }

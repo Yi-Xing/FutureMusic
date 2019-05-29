@@ -3,6 +3,8 @@ package service.music;
 import entity.*;
 import mapper.*;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
 import java.util.ArrayList;
@@ -31,6 +33,8 @@ public class SingerService {
     /**
      * 通过名字查找歌手
      */
+    @RequestMapping("/exhibitionSingersByName")
+    @ResponseBody
     public List<ShowSinger> exhibitionSingersByName(String singerName){
         User user = new User();
         user.setName(singerName);
@@ -49,6 +53,8 @@ public class SingerService {
     /**
      * 封装歌手信息查找歌手
      */
+    @RequestMapping("/searchSingersBySinger")
+    @ResponseBody
     public List<ShowSinger> searchSingersBySinger(User user){
         List<ShowSinger> showSingerList = new ArrayList<>();
         Map<Integer,Integer> singerCountMap = new HashMap<>(16);
@@ -104,6 +110,8 @@ public class SingerService {
      * 查找歌手的热门歌曲
      * @param singerId 歌手id
      */
+    @RequestMapping("/searchSingersBySinger")
+    @ResponseBody
     public List<Music> popularMusicBySinger(int singerId) {
         Music music = new Music();
         music.setSingerId(singerId);

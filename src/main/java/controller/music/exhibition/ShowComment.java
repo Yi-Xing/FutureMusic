@@ -96,7 +96,7 @@ public class ShowComment {
      */
     @RequestMapping(value = "/showAllReply")
     @ResponseBody
-    public List<Comment> showAllReply(@RequestParam(value = "replyId")int replyId){
+    public List<Comment> showAllReply(@RequestParam(value = "replyId",defaultValue = "1")int replyId){
         return showCommentService.allReply(replyId);
     }
 }
