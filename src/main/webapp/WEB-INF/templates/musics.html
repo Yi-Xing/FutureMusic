@@ -2,19 +2,19 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="head::html"></head>
 <head>
-    <link rel="stylesheet" href="../../static/css/personal.css" th:href="@{/static/css/personal.css}">
+    <link rel="stylesheet" href="/static/css/mvPlayer.css" th:href="@{/static/css/mvPlayer.css}">
     <link rel="stylesheet" href="/static/css/Comment.css" th:href="@{/static/css/Comment.css}">
     <link rel="stylesheet" href="../../static/css/musicList.css" th:href="@{/static/css/musicList.css}">
 </head>
 <body>
 
 <!--头部-->
-<div th:replace="webHead::html"></div>
+<div th:replace="webHead.html"></div>
 
-<!--歌单主页-->
+<!--单曲首页-->
 <div class="container-fluid  color_2">
     <div class="row inner">
-        <h1>歌单</h1>
+        <h1>单曲</h1>
         <div class="container-fluid">
             <div class="personal_information">
                 <a href="javascript:;" class="pull-left">
@@ -90,7 +90,6 @@
 <div th:replace="webFoot.html"></div>
 
 </body>
-<div th:replace="on-load-js::on-load-js"></div>
-<script src="../../static/js/personal.js" th:src="@{/static/js/personal.js}"></script>
-<script src="../../static/js/musicList.js" th:src="@{/static/js/musicList.js}"></script>
+<div th:replace="on-load-js.html"></div>
+<script src="../../static/js/mvPlayer.js" th:src="@{/static/js/mvPlayer.js}"></script>
 </html>

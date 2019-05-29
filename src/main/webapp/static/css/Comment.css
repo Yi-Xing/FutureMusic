@@ -1,4 +1,4 @@
-#Comment{
+.CommentForm{
     width: 100%;
     resize: none;
     border: 1px solid rgba(0,0,0,0.3);
@@ -26,5 +26,8 @@
 }
 .icon-dianzan1{
     color: #ffc537;
+    display: none;
+}
+.comment_reply{
     display: none;
 }
