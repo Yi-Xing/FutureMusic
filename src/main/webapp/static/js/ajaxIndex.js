@@ -10,11 +10,6 @@ window.onload = function () {
             dataType: "json",
             success: function (data) {
                 alert(data);
-                // alert(data.registerMail);
-                if (data.state) {
-                    // alert("我调用了");
-                }
-                $("#wc").text(data);
                 document.getElementsByClassName('reg_hed_right')[0].children[1].innerHTML = data.information;
             }
         });

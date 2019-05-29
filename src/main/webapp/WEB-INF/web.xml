@@ -48,6 +48,11 @@
   <!-- 替换404页面 start -->
   <error-page>
     <error-code>404</error-code>
-    <location>/WEB-INF/templates/zyx.html</location>
+    <location>/noFind</location>
+  </error-page>
+  <!-- 替换404页面 start -->
+  <error-page>
+    <error-code>500</error-code>
+    <location>/noFind</location>
   </error-page>
 </web-app>

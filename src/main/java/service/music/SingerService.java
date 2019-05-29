@@ -3,6 +3,8 @@ package service.music;
 import entity.*;
 import mapper.*;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
 import java.util.ArrayList;
@@ -32,6 +34,7 @@ public class SingerService {
      * 通过名字查找歌手
      */
     public List<ShowSinger> exhibitionSingersByName(String singerName){
+        System.out.println("1+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
         User user = new User();
         user.setName(singerName);
         return searchSingersBySinger(user);
@@ -42,6 +45,7 @@ public class SingerService {
      * 也用这个分类查找歌手
      */
     public List<ShowSinger> exhibitionSingersByRegion(String region){
+        System.out.println("2+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
         User user = new User();
         user.setAddress(region);
         return searchSingersBySinger(user);
@@ -50,6 +54,7 @@ public class SingerService {
      * 封装歌手信息查找歌手
      */
     public List<ShowSinger> searchSingersBySinger(User user){
+        System.out.println("3+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
         List<ShowSinger> showSingerList = new ArrayList<>();
         Map<Integer,Integer> singerCountMap = new HashMap<>(16);
         List<User> userList = userMapper.selectUser(user);
@@ -64,6 +69,7 @@ public class SingerService {
             play.setSingerId(singerId);
             int playCount = playMapper.selectListPlay(play).size();
             singerCountMap.put(singerId,playCount);
+            System.out.println(u.getName());
         }
         Map<Integer,Integer> resultMap = (new PlayService()).sortByValueDescending(singerCountMap);
         //将热门歌手存到List里

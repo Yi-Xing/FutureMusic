@@ -1,0 +1,13 @@
+body{
+    background-image: url("../img/collapse.jpg");
+    background-size: cover;
+}
+.collapse{
+    position: absolute;
+    top: 72vh;
+    left: 50%;
+    transform: translateX(-50%);
+}
+.collapse a{
+    margin: 0 20px;
+}

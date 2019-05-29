@@ -1,0 +1,14 @@
+.personal_information{
+    margin-bottom: 20px;
+    overflow: hidden;
+}
+.personal_information img{
+    width: 250px;
+}
+.personal_information .name{
+    margin-left: 30px;
+}
+.personal_information .name h5{
+    color: #999999;
+    margin: 20px 0;
+}

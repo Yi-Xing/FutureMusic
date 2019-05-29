@@ -64,9 +64,6 @@ $('.icon-like').on('click', function () {
 
 
 //头部
-// window.onload = function () {
-    console.log(111);
-    console.log($(".icon-laji").parent());
     $(".icon-laji").parent().click(function () {
         console.log(111);
         $(this).parent().parent().parent().parent().remove();
