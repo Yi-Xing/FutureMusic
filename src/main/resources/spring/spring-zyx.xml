@@ -17,15 +17,15 @@
        http://www.springframework.org/schema/mvc/spring-mvc.xsd"
 >
 
-    <!--配置aop-->
-<!--    <aop:config>-->
-<!--        &lt;!&ndash;配置给哪些方法增强&ndash;&gt;-->
-<!--        <aop:pointcut id="notice" expression="execution(* *.*(..))"/>-->
-<!--        &lt;!&ndash;配置切面&ndash;&gt;-->
-<!--        <aop:aspect ref="Notice">-->
-<!--            <aop:around method="surround" pointcut-ref="notice"/>-->
-<!--        </aop:aspect>-->
-<!--    </aop:config>-->
+<!--    &lt;!&ndash;配置aop&ndash;&gt;
+    <aop:config>
+        &lt;!&ndash;配置给哪些方法增强&ndash;&gt;
+        <aop:pointcut id="notice" expression="execution(* *.*(..))"/>
+        &lt;!&ndash;配置切面&ndash;&gt;
+        <aop:aspect ref="Notice">
+            <aop:around method="surround" pointcut-ref="notice"/>
+        </aop:aspect>
+    </aop:config>-->
 
     <!--配置异常处理器-->
     <bean class="util.exception.ExceptionResolver" />

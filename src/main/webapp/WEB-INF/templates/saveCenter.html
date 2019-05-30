@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="head::html"></head>
+<head>
+    <link rel="stylesheet" th:href="@{/static/css/saveCenter.css}">
+</head>
+<body>
+
+<!--头部-->
+<div th:replace="webHead::html" ></div>
+
+
+
+<!--尾部-->
+<div th:replace="webFoot.html"></div>
+
+</div>
+</body>
+<div th:include="on-load-js::on-load-js"></div>
+<script th:src="@{/static/js/saveCenter.js}"></script>
+</html>
