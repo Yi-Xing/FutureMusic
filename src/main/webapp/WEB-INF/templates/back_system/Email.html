@@ -50,6 +50,9 @@
                                 &times;
                             </button>
                         </div>
+                        <div id="mailContent">
+
+                        </div>
                         <div class="modal-body">
 
                         </div>
@@ -84,6 +87,8 @@
                                         style="width:40%; height: 40px; background: #BA55D3;border:none;outline: none;box-shadow: none;margin-left: 125px;margin-top: 10px;border-radius: 6px;"
                                         data-dismiss="modal" value="commit">commit
                                 </button>
+
+
                             </div>
                         </div>
                     </div><!-- /.modal-content -->
@@ -138,9 +143,12 @@
                             确定要删除吗？
                         </div>
                         <div class="modal-footer">
-                            <button type="button" data-dismiss="modal" data-toggle="modal" data-target="#myModal_3">
-                                commit
-                            </button>
+                            <form action="/administrators/deleteMail" method="post">
+                                <!--用来存储id看不了-。- -->
+                                <input id="mailInformationDeleteId" name="id" style="display:none"/>
+                                <!--data-dismiss="modal" data-toggle="modal" data-target="#myModal_3"-->
+                                <button type="submit">commit</button>
+                            </form>
                             <button type="button" data-dismiss="modal">cancel
                             </button>
                         </div>
@@ -258,8 +266,8 @@
                         <th>发件人</th>
                         <th>收件人</th>
                         <th>邮件发送时间</th>
-                        <th>邮件状态</th>
                         <th>等级</th>
+                        <th>邮件状态</th>
                         <th>邮件内容</th>
                         <th></th>
                     </tr>
@@ -273,7 +281,7 @@
                         <td th:text="${list.reply}"></td>
                         <td th:text="${list.state}"></td>
                         <td>
-                            <button class="songListInformation" th:value="${list.id}" data-toggle="modal"
+                            <button class="mailInformation" th:data-id="${list.id}" data-toggle="modal"
                                     data-target="#myModal">
                                 查看
                             </button>
@@ -282,7 +290,8 @@
                             <i th:data-id="${list.id}" data-toggle="modal" data-target="#myModal_1" title="修改">
                                 <span class="glyphicon glyphicon-edit"></span>
                             </i>
-                            <i th:data-id="${list.id}" data-toggle="modal" data-target="#myModal_2" title="删除">
+                            <i th:data-id="${list.id}" class="mailInformationDelete" data-toggle="modal"
+                               data-target="#myModal_2" title="删除">
                                 <span class="glyphicon glyphicon-trash"></span>
                             </i>
 
@@ -310,7 +319,7 @@
                         <li class="pageItem" page-rel="itempage" page-data="4">4</li>
                         <li class="pageItem" page-rel="itempage" page-data="5">5</li>
                         <li class="pageItem" page-rel="nextpage" page-data="2"><a
-                                th:href="@{/administrators/showMail(condition=${conditionZero},condition=${conditionOne},condition=${conditionTwo},condition=${conditionThree},pageNum=${pageInfo.pageNum+1})}">下2aaaaaa一页</a>
+                                th:href="@{/administrators/showMail(condition=${conditionZero},condition=${conditionOne},condition=${conditionTwo},condition=${conditionThree},pageNum=${pageInfo.pageNum+1})}">下一页</a>
                         </li>
                         <li class="pageItem" page-rel="lastpage" page-data="8"><a
                                 th:href="@{/administrators/showMail(condition=${conditionZero},condition=${conditionOne},condition=${conditionTwo},condition=${conditionThree},pageNum=${pageInfo.pages})}">尾页</a>
@@ -328,4 +337,5 @@
 <script src="js/back_system.js" th:src="@{/static/js/back_system.js}"></script>
 <script src="js/page.js" th:src="@{/static/js/page.js}"></script>
 <script src="js/Email.js" th:src="@{/static/js/page.js}"></script>
+<script src="js/song_list.js" th:src="@{/static/js/ajax.js}"></script>
 </html>
