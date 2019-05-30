@@ -9,7 +9,68 @@
 <!--头部-->
 <div th:replace="webHead::html" ></div>
 
+<!--安全中心-->
+<div class="container-fluid color_2" style="position: relative">
+    <div class="container-fluid saveCenter_tab">
 
+    </div>
+    <div class="row inner saveCenter">
+        <div id="email">
+            <form class="">
+                <div class="form-group">
+                    <label for="exampleInputEmail1">绑定邮箱</label>
+                    <input type="email" class="form-control" id="exampleInputEmail1" placeholder="输入你的邮箱">
+                </div>
+                <button type="submit" class="btn btn-warning">提交</button>
+            </form>
+        </div>
+        <div id="changePassword">
+            <form class="">
+                <div class="form-group">
+                    <label for="originalPassword">请输入你的旧密码</label>
+                    <input type="password" class="form-control" id="originalPassword" placeholder="输入你的旧密码">
+                    <p></p>
+                </div>
+                <div class="form-group">
+                    <label for="password">设置你的新密码</label>
+                    <input type="password" class="form-control" id="password" placeholder="输入你的新密码">
+                    <p></p>
+                </div>
+                <div class="form-group">
+                    <label for="passwordAgain">确认你的密码</label>
+                    <input type="password" class="form-control" id="passwordAgain" placeholder="确认你的密码">
+                    <p></p>
+                </div>
+                <button type="submit" class="btn btn-warning">提交</button>
+            </form>
+        </div>
+        <div id="mibao">
+            <form class="">
+                <div class="form-group">
+                    <label for="gender">性别</label>
+                    <input type="password" class="form-control" id="gender" placeholder="输入你的性别">
+                    <p></p>
+                </div>
+                <div class="form-group">
+                    <label for="age">年龄</label>
+                    <input type="password" class="form-control" id="age" placeholder="输入你的年龄">
+                    <p></p>
+                </div>
+                <div class="form-group">
+                    <label for="birthday">出生日期</label>
+                    <input type="password" class="form-control" id="birthday" placeholder="确认你的出生日期">
+                    <p></p>
+                </div>
+                <div class="form-group">
+                    <label for="address">住址</label>
+                    <input type="password" class="form-control" id="address" placeholder="确认你的住址">
+                    <p></p>
+                </div>
+                <button type="submit" class="btn btn-warning">提交</button>
+            </form>
+        </div>
+    </div>
+</div>
 
 <!--尾部-->
 <div th:replace="webFoot.html"></div>

@@ -1,0 +1,4 @@
+.saveCenter_tab{
+    display: flex;
+    justify-content: space-between;
+}
