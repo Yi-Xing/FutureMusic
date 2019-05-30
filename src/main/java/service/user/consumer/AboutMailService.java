@@ -58,6 +58,8 @@ public class AboutMailService {
                 mail.setRecipientId(receiveUser.getId());
                 mail.setContent(content);
                 mail.setDate(new Date());
+                // 添加的邮件未读
+                mail.setState(0);
                 if (mailMapper.insertMail(mail) < 1) {
                     // 如果失败是数据库错误
                     logger.error("邮箱：" + sendUser.getMailbox() + "发送邮件时，数据库出错");
@@ -89,6 +91,8 @@ public class AboutMailService {
             mail.setReply(1);
             mail.setContent(content);
             mail.setDate(new Date());
+            // 添加的邮件未读
+            mail.setState(0);
             if (mailMapper.insertMail(mail) < 1) {
                 // 如果失败是数据库错误
                 logger.debug("用户id：" + id + "给客服发送邮件时，数据库出错");

@@ -402,7 +402,7 @@ window.onload = function () {
     // 显示指的的歌单或专辑的详细信息
     $(".songListInformation").on("click", function () {
         //得到对应的id
-        var id = this.value;
+        var id = $(this).data("id");
         alert(id);
         $.ajax({
             contentType: "application/x-www-form-urlencoded;charset=UTF-8",
@@ -422,20 +422,19 @@ window.onload = function () {
         });
     });
 
-    // 点击编辑按钮触发的事件
+    // 点击编辑歌单或专辑按钮触发的事件
     $(".songListInformationEdit").on("click", function () {
         // 得到对应的id
         var id = this.value;
 
     });
 
-    // 点击删除按钮触发的事件
+    // 点击删除歌单或专辑按钮触发的事件
     $(".songListInformationDelete").on("click", function () {
         // 得到对应的id
         var ids= $(this).data("id");
         // var id = this.getAttribute("value");
         $("#songListInformationDeleteId").attr("value",ids);
-
     });
     // 修改专辑信息（仅修改活动）
     $("#registerUser").on("click", function () {
@@ -457,7 +456,6 @@ window.onload = function () {
             }
         });
     });
-
 
     // 指定歌单或专辑被收藏的次数
     $("#registerUser").on("click", function () {
@@ -652,29 +650,33 @@ window.onload = function () {
     });
 
     // 邮箱篇-------------------------------------
-    //显示邮箱
-    function showUserInformation(page) {
-        //得到4个条件存成数组
-        var condition = new Array();
-        condition[0] = $("#registerUserName").val();
-        condition[1] = $("#registerUserName").val();
-        condition[2] = $("#registerUserName").val();
-        condition[3] = $("#registerUserName").val();
+
+    // 显示指定邮箱详细信息
+    $(".mailInformation").on("click", function () {
+        //得到对应的id
+        var id = $(this).data("id");
         $.ajax({
             contentType: "application/x-www-form-urlencoded;charset=UTF-8",
             type: "post",
-            url: "administrators/showMail",
+            url: "/administrators/showIdMail",
             data: {
-                "condition": condition,
-                "pageNum": page
+                "id": id
             },
             dataType: "json",
             success: function (data, status) {
-                // 返回PageInfo
+                // 返回Mail
+                $('#mailContent').html(data.content);
             }
         });
-    }
+    });
 
+    // 点击删除歌单或专辑按钮触发的事件
+    $(".mailInformationDelete").on("click", function () {
+        // 得到对应的id
+        var ids= $(this).data("id");
+        // var id = this.getAttribute("value");
+        $("#mailInformationDeleteId").attr("value",ids);
+    });
     // 添加邮箱
     $("#registerUser").on("click", function () {
         // 发送方的id

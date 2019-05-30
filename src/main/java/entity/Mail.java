@@ -38,9 +38,9 @@ public class Mail implements Serializable {
      */
     private int reply=0;
     /**
-     * 0表示未读，1表示已读，2表示标记
+     * 0表示未读，1表示已读，2表示标记, -1表示全部
      */
-    private int state=0;
+    private int state=-1;
 
     @Override
     public String toString() {

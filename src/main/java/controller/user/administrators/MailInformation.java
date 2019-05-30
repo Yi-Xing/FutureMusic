@@ -52,6 +52,14 @@ public class MailInformation {
     }
 
     /**
+     * 显示指定id的邮箱信息
+     */
+    @RequestMapping(value = "/showIdMail")
+    @ResponseBody
+    public Mail showIdMail(Integer id){
+        return mailInformationService.showIdMail(id);
+    }
+    /**
      * 添加邮箱信息
      */
     @RequestMapping(value = "/addMail")
@@ -72,7 +80,7 @@ public class MailInformation {
      * 删除指定邮箱
      */
     @RequestMapping(value = "/deleteMail")
-    public State deleteMail(Integer id) throws DataBaseException {
-        return mailInformationService.deleteMail(id);
+    public String  deleteMail(Integer id,Model model,HttpSession session) throws DataBaseException {
+        return mailInformationService.deleteMail(id,model,session);
     }
 }

@@ -10,6 +10,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import service.user.IdExistence;
 import service.user.SpecialFunctions;
 import service.user.ValidationInformation;
@@ -45,6 +47,7 @@ public class MailInformationService {
      */
     public String  showMail(String[] condition, Integer pageNum, HttpSession session,Model model) {
 //        User user = specialFunctions.getUser(session);
+        System.out.println(condition);
         Mail mail = new Mail();
         if (condition != null) {
             if ((condition[0] != null) && !"".equals(condition[0])) {
@@ -80,11 +83,20 @@ public class MailInformationService {
         // 根据条件查找用户信息
         List<Mail> list = mailMapper.selectListMail(mail);
         // 传入页面信息
-        System.out.println(list);
         model.addAttribute("pageInfo",new PageInfo<>(list));
         return "back_system/Email";
     }
-
+    /**
+     * 显示指定id的邮箱信息
+     */
+    @RequestMapping(value = "/showIdMail")
+    @ResponseBody
+    public Mail showIdMail(Integer id){
+        Mail mail = new Mail();
+        mail.setId(id);
+        List<Mail> list = mailMapper.selectListMail(mail);
+        return list.get(0);
+    }
 
     /**
      * 添加邮箱信息
@@ -98,6 +110,8 @@ public class MailInformationService {
                 // 验证发送的信息是否合法
                 state = validationInformation.isContent(mail.getContent());
                 if (state.getState() == 1) {
+                    // 添加的邮件未读
+                    mail.setState(0);
                     if (mailMapper.insertMail(mail) < 1) {
                         // 如果失败是数据库错误
                         logger.error("添加邮箱时，数据库出错");
@@ -136,13 +150,13 @@ public class MailInformationService {
     /**
      * 删除指定邮箱
      */
-    public State deleteMail(Integer id) throws DataBaseException {
+    public String  deleteMail(Integer id,Model model,HttpSession session) throws DataBaseException {
         // 删除指定id的评论
         if (mailMapper.deleteMail(id) < 1) {
             // 如果失败是数据库错误
             logger.error("删除指定邮箱时，数据库出错");
             throw new DataBaseException("删除指定邮箱时，数据库出错");
         }
-        return new State(1);
+        return showMail(null,1,session,model);
     }
 }

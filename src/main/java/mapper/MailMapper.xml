@@ -6,6 +6,9 @@
     <select id="selectListMail" parameterType="Mail" resultMap="mail">
         select * from tb_mail
         <where>
+            <if test='id!=0'>
+                mail_id=#{id}
+            </if>
             <if test='senderId!=0'>
                 mail_sender_id=#{senderId}
             </if>
