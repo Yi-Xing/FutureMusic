@@ -44,7 +44,7 @@ public class SongListInformation {
     /**
      * 显示歌单或专辑的信息
      *
-     * @param condition 1表示歌单或专辑的id，2表示活动的id 3、分类的id  4、歌手的id
+     * @param condition 1表示歌单或专辑的id，2表示活动的id 3、分类的id  4、歌手的id  5、type
      */
     @RequestMapping(value = "/showSongList")
     public String showSongList(String[] condition, @RequestParam(defaultValue="1")Integer pageNum, Model model) {

@@ -42,35 +42,35 @@
                                         <div class="login">
 
 
-                                            <form action="./personal.html" method="post">
+                                            <form  method="post">
                                                 <div class="login_header">
-                                                    <input type="text" id="username" name="fname" placeholder="please enter your e-mail">
-                                                    <div class="tip1"></div>
-                                                    <input type="password" name="pwd" id="password" placeholder="please enter your password">
-                                                    <div class="tip2"></div>
+                                                    <input type="text" id="loginMail " name="fname" placeholder="please enter your e-mail">
+                                                    <div id="loginMailTips" class="tip1"></div>
+                                                    <input type="password" name="pwd" id="loginPassword" placeholder="please enter your password">
+                                                    <div id="loginPasswordTips" class="tip2"></div>
                                                 </div>
                                                 <div class="login_bottom">
                                                     <div class="log_bom_flo">
-                                                        <input type="checkbox" style="width:13px;height:13px;margin-top: 15px;margin-right: 7px;">七天内自动登录
+                                                        <input id="automatic" type="checkbox" style="width:13px;height:13px;margin-top: 15px;margin-right: 7px;">七天内自动登录
                                                     </div>
                                                     <div class="log_bom_flo">
                                                         <a href="#">找回密码</a>|
-                                                        <a href="#">无法登录</a>
+                                                        <a href="#">联系客服</a>
                                                     </div>
                                                 </div>
-                                                <input type="submit" class="one_log" value="登录" style="background: red" >
+                                                <input class="one_log" id="login" value="登录" style="background: red" >
                                             </form>
                                         </div>
 
 
                                         <div class="registered">
-                                            <form action="">
+                                            <form >
                                                 <div class="reg_header">
                                                     <div class="reg_hed_left">
-                                                        <input type="text" placeholder="用户名">
-                                                        <input type="text" placeholder="请输入邮箱">
-                                                        <input type="password" name="pw" placeholder="请输入密码">
-                                                        <input type="password" name="pw1" placeholder="请再次输入密码">
+                                                        <input id="registerName" type="text" placeholder="用户名">
+                                                        <input id="registerMail" type="text" placeholder="请输入邮箱">
+                                                        <input id="registerPassword" type="password" name="pw" placeholder="请输入密码">
+                                                        <input id="registerPasswordAgain" type="password" name="pw1" placeholder="请再次输入密码">
                                                     </div>
                                                     <div class="reg_hed_right">
                                                         <p></p>
@@ -81,17 +81,17 @@
                                                 </div>
                                                 <div class="reg_main">
                                                     <div class="reg_main_left">
-                                                        <input type="text" placeholder="请输入验证码">
+                                                        <input id="registerVerificationCode"  type="text" placeholder="请输入验证码">
                                                     </div>
                                                     <div class="reg_main_right">
                                                         <a id="button4">点击发送</a>
                                                     </div>
                                                 </div>
                                                 <div class="reg_checkbox" style="overflow: hidden">
-                                                    <input type="checkbox" style="float: left; width:13px;height:13px;margin: 5px 5px;">同意 <a href="#" style="float: left">《用户协议》</a>
+                                                    <input   id="registerAgreement" type="checkbox" style="float: left; width:13px;height:13px;margin: 5px 5px;">同意 <a href="#" style="float: left">《用户协议》</a>
                                                 </div>
                                                 <div>
-                                                    <input class="reg_bom" style="background-color: red" type="submit" value="注册">
+                                                    <input id="registerUserInformation"  class="reg_bom" style="background-color: red" value="注册">
                                                 </div>
                                             </form>
                                         </div>
