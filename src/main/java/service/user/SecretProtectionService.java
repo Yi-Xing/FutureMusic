@@ -13,6 +13,7 @@ import javax.servlet.http.HttpSession;
 
 /**
  * 关于密保的所有操作
+ *
  * @author 5月18日 张易兴创建
  */
 @Service(value = "SecretProtectionService")
@@ -85,10 +86,10 @@ public class SecretProtectionService {
      * 设置密保和通过验证码更改密保
      *
      * @param verificationCode 用户输入的验证码
-     * @param gender           密保——性别
-     * @param age              密保——年龄
-     * @param birthday         密保——出生日期
-     * @param address          密保——住址
+     * @param gender           密保——爱好
+     * @param age              密保——特长
+     * @param birthday         密保——梦想
+     * @param address          密保——愿望
      * @param session          当前会话
      */
     public State addSecretProtection(String verificationCode, String gender, String age, String birthday, String address, HttpSession session) throws DataBaseException {
@@ -97,23 +98,47 @@ public class SecretProtectionService {
         State state = new State();
         // 验证邮箱验证码是否超时
         if (validationInformation.isMailboxVerificationCodeTime(session)) {
-            // 验证邮箱的验证码是否正确
-            if (validationInformation.isMailboxVerificationCode(session, verificationCode)) {
-                User user = changeSecretProtection(gender, age, birthday, address, session);
-                //成功用户信息，失败返回null
-                if (user != null) {
-                    // 修改会话上的用户信息
-                    session.setAttribute("userInformation", user);
-                    logger.info("邮箱：" + mailbox + "的密保设置或修改成功");
-                    state.setState(1);
+            // 判断爱好是否合法
+            if (validationInformation.isName(gender)) {
+                // 判断特长是否合法
+                if (validationInformation.isName(age)) {
+                    // 判断梦想是否合法
+                    if (validationInformation.isName(birthday)) {
+                        // 判断愿望是否合法
+                        if (validationInformation.isName(address)) {
+                            // 验证邮箱的验证码是否正确
+                            if (validationInformation.isMailboxVerificationCode(session, verificationCode)) {
+                                User user = changeSecretProtection(gender, age, birthday, address, session);
+                                //成功用户信息，失败返回null
+                                if (user != null) {
+                                    // 修改会话上的用户信息
+                                    session.setAttribute("userInformation", user);
+                                    logger.info("邮箱：" + mailbox + "的密保设置或修改成功");
+                                    state.setState(1);
+                                } else {
+                                    // 如果失败是数据库错误
+                                    logger.error("邮箱：" + mailbox + "设置密保时，数据库出错");
+                                    throw new DataBaseException("邮箱：" + mailbox + "设置密保时，数据库出错");
+                                }
+                            } else {
+                                logger.debug("邮箱：" + mailbox + "验证码错误");
+                                state.setInformation("验证码错误");
+                            }
+                        } else {
+                            logger.debug("邮箱：" + mailbox + "愿望不合法");
+                            state.setInformation("愿望不合法");
+                        }
+                    } else {
+                        logger.debug("邮箱：" + mailbox + "梦想不合法");
+                        state.setInformation("梦想不合法");
+                    }
                 } else {
-                    // 如果失败是数据库错误
-                    logger.error("邮箱：" + mailbox + "设置密保时，数据库出错");
-                    throw new DataBaseException("邮箱：" + mailbox + "设置密保时，数据库出错");
+                    logger.debug("邮箱：" + mailbox + "特长不合法");
+                    state.setInformation("特长不合法");
                 }
             } else {
-                logger.debug("邮箱：" + mailbox + "验证码错误");
-                state.setInformation("验证码错误");
+                logger.debug("邮箱：" + mailbox + "爱好不合法");
+                state.setInformation("爱好不合法");
             }
         } else {
             logger.debug("邮箱：" + mailbox + "的验证码超时");
@@ -130,13 +155,13 @@ public class SecretProtectionService {
      */
     public State verificationAccount(String mailbox) {
         State state = new State();
-            if(isSetUpSecretProtection(mailbox)){
-                logger.info("邮箱：" + mailbox + "找回密码第一步完成");
-                state.setState(1);
-            }else{
-                logger.debug("邮箱：" + mailbox + "邮箱没有设置密保");
-                state.setInformation(mailbox + "邮箱没有设置密保");
-            }
+        if (isSetUpSecretProtection(mailbox)) {
+            logger.info("邮箱：" + mailbox + "找回密码第一步完成");
+            state.setState(1);
+        } else {
+            logger.debug("邮箱：" + mailbox + "邮箱没有设置密保");
+            state.setInformation(mailbox + "邮箱没有设置密保");
+        }
         return state;
     }
 
@@ -150,7 +175,7 @@ public class SecretProtectionService {
      * @param birthday 密保——出生日期
      * @param address  密保——住址
      */
-    public State verificationSecretProtection( String gender, String age, String birthday, String address,HttpSession session) {
+    public State verificationSecretProtection(String gender, String age, String birthday, String address, HttpSession session) {
         State state = new State();
         // 验证密保是否正确
         if (isSecretProtection(specialFunctions.getUserMailbox(session), gender, age, birthday, address)) {

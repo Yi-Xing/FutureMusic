@@ -42,12 +42,10 @@ public class RegisterService {
      */
     public State register(String userName, String mailbox, String password, String passwordAgain, String verificationCode,
                           String agreement, HttpSession session) throws DataBaseException {
-        System.out.println(userName);
-        System.out.println(agreement);
-        logger.debug("日志输出");
         State state = new State();
         // 验证用户名是否合法
         if (validationInformation.isUserName(userName)) {
+            System.out.println("我执行了");
             //判断邮箱是否合法
             if (validationInformation.isMailbox(mailbox)) {
                 // 验证密码是否合法
@@ -62,18 +60,18 @@ public class RegisterService {
                                 if (validationInformation.isMailboxVerificationCode(session, verificationCode)) {
                                     if ("true".equals(agreement)) {
                                         // 将信息存入数据库
-                                        insertUser(userName, mailbox, password,session);
+                                        insertUser(userName, mailbox, password, session);
                                         state.setState(1);
                                         logger.info("邮箱：" + mailbox + "注册成功");
 
                                     } else {
                                         logger.debug("邮箱：" + mailbox + "协议未选中");
-                                        state.setState(-5);
+                                        state.setState(-4);
                                         state.setInformation("协议未选中");
                                     }
                                 } else {
                                     logger.debug("邮箱：" + mailbox + "邮箱验证码出错");
-                                    state.setState(-5);
+                                    state.setState(-4);
                                     state.setInformation("邮箱验证码出错");
                                 }
                             } else {
@@ -88,7 +86,7 @@ public class RegisterService {
                         }
                     } else {
                         logger.debug("邮箱：" + mailbox + "两次密码不相同");
-                        state.setState(-3);
+                        state.setState(-4);
                         state.setInformation("两次密码不相同");
                     }
                 } else {
@@ -120,11 +118,14 @@ public class RegisterService {
         State state = new State();
         //发邮箱前先判断邮箱是否合法
         if (validationInformation.isMailbox(mailbox)) {
+            System.out.println("开始验证邮箱");
             //判断邮箱是否已存在
             if (validationInformation.isMailboxExistence(mailbox)) {
                 logger.debug("邮箱：" + mailbox + "邮箱已存在");
+                state.setState(-2);
                 state.setInformation("邮箱已存在");
             } else {
+                System.out.println("发送邮箱");
                 // 发送邮箱
                 state = specialFunctions.sendVerificationCode(mailbox, session);
                 // 发送成功吗，将邮箱存入会话中
@@ -132,6 +133,7 @@ public class RegisterService {
             }
         } else {
             logger.debug("邮箱：" + mailbox + "邮箱格式有误");
+            state.setState(-2);
             state.setInformation("邮箱格式有误");
         }
         return state;
@@ -152,7 +154,7 @@ public class RegisterService {
         // 对密码进行加密
         logger.debug(user.getName());
         logger.debug(user.getMailbox());
-        logger.debug(user.getDate()+"");
+        logger.debug(user.getDate() + "");
         user.setPassword(specialFunctions.encryptionMD5(password));
         logger.debug(user.getPassword());
         if (userMapper.insertUser(user) < 1) {

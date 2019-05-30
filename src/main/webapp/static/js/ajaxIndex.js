@@ -6,29 +6,36 @@ window.onload = function () {
         var registerMail = $("#registerMail").val();
         $.ajax({
             type: "get",
-            url: "registerVerificationCode?mailbox=" + registerMail,
+            url: "/registerVerificationCode?mailbox=" + registerMail,
             dataType: "json",
             success: function (data) {
-                alert(data);
-                if (data.state === 0) {
+                if (data.state !== 1) {
+                    document.getElementsByClassName('reg_hed_right')[0].children[0].innerHTML = "";
                     document.getElementsByClassName('reg_hed_right')[0].children[1].innerHTML = data.information;
+                    document.getElementsByClassName('reg_hed_right')[0].children[2].innerHTML = "";
+                    document.getElementsByClassName('reg_hed_right')[0].children[3].innerHTML = "";
+                } else {
+                    document.getElementsByClassName('reg_hed_right')[0].children[0].innerHTML = "";
+                    document.getElementsByClassName('reg_hed_right')[0].children[1].innerHTML = "发送成功";
+                    document.getElementsByClassName('reg_hed_right')[0].children[2].innerHTML = "";
+                    document.getElementsByClassName('reg_hed_right')[0].children[3].innerHTML = "";
                 }
             }
         });
     });
 
     // 用于注册账号
-    $("#registerUser").on("click", function () {
+    $("#registerUserInformation").on("click", function () {
         var userName = $("#registerName").val();
         var sendMail = $("#registerMail").val();
         var password = $("#registerPassword").val();
-        var passwordAgain = $("#registerVerificationCode").val();
-        var verificationCode = $("#verificationCode").val();
+        var passwordAgain = $("#registerPasswordAgain").val();
+        var verificationCode = $("#registerVerificationCode").val();
         var agreement = $("#registerAgreement").is(":checked");
         $.ajax({
             contentType: "application/x-www-form-urlencoded;charset=UTF-8",
             type: "post",
-            url: "register",
+            url: "/register",
             data: {
                 "userName": userName,
                 "sendMail": sendMail,
@@ -39,40 +46,49 @@ window.onload = function () {
             },
             dataType: "json",
             success: function (data, status) {
-                $("#wc").text(data);
                 if (data.state === -1) {
                     document.getElementsByClassName('reg_hed_right')[0].children[0].innerHTML = data.information;
-                } else if(data.state === -2){
+                    document.getElementsByClassName('reg_hed_right')[0].children[1].innerHTML = "";
+                    document.getElementsByClassName('reg_hed_right')[0].children[2].innerHTML = "";
+                    document.getElementsByClassName('reg_hed_right')[0].children[3].innerHTML = "";
+                } else if (data.state === -2) {
+                    document.getElementsByClassName('reg_hed_right')[0].children[0].innerHTML = "";
                     document.getElementsByClassName('reg_hed_right')[0].children[1].innerHTML = data.information;
-
-                } else if(data.state === -3){
+                    document.getElementsByClassName('reg_hed_right')[0].children[2].innerHTML = "";
+                    document.getElementsByClassName('reg_hed_right')[0].children[3].innerHTML = "";
+                } else if (data.state === -3) {
+                    document.getElementsByClassName('reg_hed_right')[0].children[0].innerHTML = "";
+                    document.getElementsByClassName('reg_hed_right')[0].children[1].innerHTML = "";
                     document.getElementsByClassName('reg_hed_right')[0].children[2].innerHTML = data.information;
-
-                } else if(data.state === -4){
-                    document.getElementsByClassName('reg_hed_right')[0].children[4].innerHTML = data.information;
-
-                } else if(data.state === -5){
-
-                }else {
+                    document.getElementsByClassName('reg_hed_right')[0].children[3].innerHTML = "";
+                } else if (data.state === -4) {
+                    document.getElementsByClassName('reg_hed_right')[0].children[0].innerHTML = "";
+                    document.getElementsByClassName('reg_hed_right')[0].children[1].innerHTML = "";
+                    document.getElementsByClassName('reg_hed_right')[0].children[2].innerHTML = "";
+                    document.getElementsByClassName('reg_hed_right')[0].children[3].innerHTML = data.information;
+                } else {
                     // 刷新网页
                     alert("注册成功了");
+                    setTimeout(function () {
+                        location.reload();
+                    },1000); //指定2秒刷新一次
                 }
             }
         });
     });
 
     // 用于登录账号
-    $("#registerUser").on("click", function () {
+    $("#login").on("click", function () {
         // 账号
-        var mailbox = $("#registerUserName").val();
+        var mailbox = $("#loginMail").val();
         // 密码
-        var password = $("#registerUserName").val();
+        var password = $("#loginPassword").val();
         // 是否选中7天登录
-        var automatic = $("#agreement").is(":checked");
+        var automatic = $("#automatic").is(":checked");
         $.ajax({
             contentType: "application/x-www-form-urlencoded;charset=UTF-8",
             type: "post",
-            url: "loginAccount",
+            url: "/loginAccount",
             data: {
                 "mailbox": mailbox,
                 "password": password,
@@ -80,11 +96,8 @@ window.onload = function () {
             },
             dataType: "json",
             success: function (data, status) {
-                $("#wc").text(data);
-                if (data.state <= 0) {
-                    document.getElementsByClassName('reg_hed_right')[0].children[1].innerHTML = data.information;
-                } else {
-                    alert("登录成功了");
+                if(data.state===-1){
+
                 }
             }
         });
@@ -787,7 +800,7 @@ window.onload = function () {
     });
 
     // 用于发送验证码
-    $("#button4").on("click", function () {
+    $("#button24").on("click", function () {
         $.ajax({
             type: "get",
             url: "secretProtectionVerificationCode",
@@ -798,10 +811,10 @@ window.onload = function () {
     });
 
     // 找回密码第一步
-    $("#button4").on("click", function () {
+    $("#button42").on("click", function () {
         $.ajax({
             type: "get",
-            url: "verificationAccount",
+            url: "verificationAccount2",
             dataType: "json",
             success: function (data) {
             }

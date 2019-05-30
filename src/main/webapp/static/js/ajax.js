@@ -402,7 +402,7 @@ window.onload = function () {
     // 显示指的的歌单或专辑的详细信息
     $(".songListInformation").on("click", function () {
         //得到4个条件存成数组
-        var id = this.html();
+        var id = this.value;
         alert(id);
         $.ajax({
             contentType: "application/x-www-form-urlencoded;charset=UTF-8",
@@ -413,10 +413,9 @@ window.onload = function () {
             },
             dataType: "json",
             success: function (data, status) {
-                alert(data);
-                $("#songListInformation").text(data.introduction);
-                document.getElementById("songListPicture").src=data.picture;
                 // 返回showSongList
+                document.getElementById("songListIntroduce").innerHTML=data.introduction;
+                document.getElementById("songListPicture").src=data.picture;
             }
         });
     });
