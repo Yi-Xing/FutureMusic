@@ -144,9 +144,21 @@ ul li{
     height: 90px;
     float: left;
 }
+.head{
+    display: flex;
+    justify-content: center;
+}
+.head div{
+    width: 70px;
+    height: 70px;
+    margin-top: 25px;
+}
+#headImg img{
+    width: 100%;
+    border-radius: 50%;
+}
 #button1{
-    width: 56%;
-    height: 43px;
+    position: absolute;
     outline-style: none;
     box-shadow: none;
     margin-top: 33px;

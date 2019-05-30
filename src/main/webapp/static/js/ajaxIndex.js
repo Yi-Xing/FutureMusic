@@ -2,6 +2,7 @@
 window.onload = function () {
     //登录注册篇---------------------------
     // 用于发送验证码
+    var pp = $(".reg_hed_right")[0];
     $("#button4").on("click", function () {
         var registerMail = $("#registerMail").val();
         $.ajax({
@@ -10,15 +11,15 @@ window.onload = function () {
             dataType: "json",
             success: function (data) {
                 if (data.state !== 1) {
-                    document.getElementsByClassName('reg_hed_right')[0].children[0].innerHTML = "";
-                    document.getElementsByClassName('reg_hed_right')[0].children[1].innerHTML = data.information;
-                    document.getElementsByClassName('reg_hed_right')[0].children[2].innerHTML = "";
-                    document.getElementsByClassName('reg_hed_right')[0].children[3].innerHTML = "";
+                    pp.children[0].innerHTML = "";
+                    pp.children[1].innerHTML = data.information;
+                    pp.children[2].innerHTML = "";
+                    pp.children[3].innerHTML = "";
                 } else {
-                    document.getElementsByClassName('reg_hed_right')[0].children[0].innerHTML = "";
-                    document.getElementsByClassName('reg_hed_right')[0].children[1].innerHTML = "发送成功";
-                    document.getElementsByClassName('reg_hed_right')[0].children[2].innerHTML = "";
-                    document.getElementsByClassName('reg_hed_right')[0].children[3].innerHTML = "";
+                    pp.children[0].innerHTML = "";
+                    pp.children[1].innerHTML = "发送成功";
+                    pp.children[2].innerHTML = "";
+                    pp.children[3].innerHTML = "";
                 }
             }
         });
@@ -47,25 +48,25 @@ window.onload = function () {
             dataType: "json",
             success: function (data, status) {
                 if (data.state === -1) {
-                    document.getElementsByClassName('reg_hed_right')[0].children[0].innerHTML = data.information;
-                    document.getElementsByClassName('reg_hed_right')[0].children[1].innerHTML = "";
-                    document.getElementsByClassName('reg_hed_right')[0].children[2].innerHTML = "";
-                    document.getElementsByClassName('reg_hed_right')[0].children[3].innerHTML = "";
+                    pp.children[0].innerHTML = data.information;
+                    pp.children[1].innerHTML = "";
+                    pp.children[2].innerHTML = "";
+                    pp.children[3].innerHTML = "";
                 } else if (data.state === -2) {
-                    document.getElementsByClassName('reg_hed_right')[0].children[0].innerHTML = "";
-                    document.getElementsByClassName('reg_hed_right')[0].children[1].innerHTML = data.information;
-                    document.getElementsByClassName('reg_hed_right')[0].children[2].innerHTML = "";
-                    document.getElementsByClassName('reg_hed_right')[0].children[3].innerHTML = "";
+                    pp.children[0].innerHTML = "";
+                    pp.children[1].innerHTML = data.information;
+                    pp.children[2].innerHTML = "";
+                    pp.children[3].innerHTML = "";
                 } else if (data.state === -3) {
-                    document.getElementsByClassName('reg_hed_right')[0].children[0].innerHTML = "";
-                    document.getElementsByClassName('reg_hed_right')[0].children[1].innerHTML = "";
-                    document.getElementsByClassName('reg_hed_right')[0].children[2].innerHTML = data.information;
-                    document.getElementsByClassName('reg_hed_right')[0].children[3].innerHTML = "";
+                    pp.children[0].innerHTML = "";
+                    pp.children[1].innerHTML = "";
+                    pp.children[2].innerHTML = data.information;
+                    pp.children[3].innerHTML = "";
                 } else if (data.state === -4) {
-                    document.getElementsByClassName('reg_hed_right')[0].children[0].innerHTML = "";
-                    document.getElementsByClassName('reg_hed_right')[0].children[1].innerHTML = "";
-                    document.getElementsByClassName('reg_hed_right')[0].children[2].innerHTML = "";
-                    document.getElementsByClassName('reg_hed_right')[0].children[3].innerHTML = data.information;
+                    pp.children[0].innerHTML = "";
+                    pp.children[1].innerHTML = "";
+                    pp.children[2].innerHTML = "";
+                    pp.children[3].innerHTML = data.information;
                 } else {
                     // 刷新网页
                     alert("注册成功了");
