@@ -10,5 +10,13 @@ $(".saveCenter_tab .saveTab").hover(function () {
                 $(likeTab[i]).slideUp(200);
             }
         }
+        let sss = $('.saveTab');
+        for(j = 0 ; j < sss.length ; j++){
+            if(j === num){
+                $(sss[j]).addClass('active');
+            }else {
+                $(sss[j]).removeClass('active');
+            }
+        }
     })
 });
