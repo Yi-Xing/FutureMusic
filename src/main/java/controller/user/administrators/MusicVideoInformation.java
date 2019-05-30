@@ -29,7 +29,7 @@ import java.text.ParseException;
  *            4.日期，指定日期之后发布的
  *            5、版权
  *            6、歌手id
- *            7、音乐id
+ *            7、歌手id
  *            8、活动id
  *            9、分类的id
  *  可更改

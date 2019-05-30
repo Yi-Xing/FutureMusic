@@ -55,6 +55,8 @@ public class Transaction {
 
     /**
      * 充值VIP
+     *
+     * @param count 表示充值几个月
      */
     @RequestMapping(value = "/rechargeVIP")
     public State rechargeVIP( Integer count,HttpSession session) throws DataBaseException {
