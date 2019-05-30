@@ -43,8 +43,8 @@ public class MailInformationService {
      * @param pageNum   表示当前第几页
      * @param session   用于判断等级
      */
-    public PageInfo showMail(String[] condition, Integer pageNum, HttpSession session) {
-        User user = specialFunctions.getUser(session);
+    public String  showMail(String[] condition, Integer pageNum, HttpSession session,Model model) {
+//        User user = specialFunctions.getUser(session);
         Mail mail = new Mail();
         if (condition != null) {
             if ((condition[0] != null) && !"".equals(condition[0])) {
@@ -59,19 +59,30 @@ public class MailInformationService {
             if ((condition[3] != null) && !"".equals(condition[3])) {
                 mail.setState(Integer.parseInt(condition[3]));
             }
+            model.addAttribute("conditionZero", condition[0]);
+            model.addAttribute("conditionOne", condition[1]);
+            model.addAttribute("conditionTwo", condition[2]);
+            model.addAttribute("conditionThree", condition[3]);
+        } else {
+            model.addAttribute("conditionZero", null);
+            model.addAttribute("conditionOne", null);
+            model.addAttribute("conditionTwo", null);
+            model.addAttribute("conditionThree", null);
         }
-        // 控制显示的邮箱等级
-        if (user.getLevel() == 3) {
-            mail.setReply(1);
-        } else if (user.getLevel() >= 4) {
-            mail.setReply(2);
-        }
+//        // 控制显示的邮箱等级
+//        if (user.getLevel() == 3) {
+//            mail.setReply(1);
+//        } else if (user.getLevel() >= 4) {
+//            mail.setReply(2);
+//        }
         //在查询之前传入当前页，然后多少记录
-        PageHelper.startPage(pageNum, 8);
+        PageHelper.startPage(pageNum, 9);
         // 根据条件查找用户信息
         List<Mail> list = mailMapper.selectListMail(mail);
         // 传入页面信息
-        return new PageInfo<>(list);
+        System.out.println(list);
+        model.addAttribute("pageInfo",new PageInfo<>(list));
+        return "back_system/Email";
     }
 
 

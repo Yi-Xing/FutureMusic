@@ -39,8 +39,6 @@ public class SongListInformation {
     @Resource(name = "SongListInformationService")
     SongListInformationService songListInformationService;
 
-
-
     /**
      * 显示歌单或专辑的信息
      *
@@ -71,9 +69,8 @@ public class SongListInformation {
      * 删除指定id专辑或歌单
      */
     @RequestMapping(value = "/deleteSongList")
-    @ResponseBody
-    public State deleteSongList(Integer id) throws DataBaseException {
-        return songListInformationService.deleteSongList(id);
+    public String  deleteSongList(Integer id, Model model) throws DataBaseException {
+        return songListInformationService.deleteSongList(id,model);
     }
 
     /**
