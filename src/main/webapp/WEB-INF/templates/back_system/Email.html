@@ -7,25 +7,30 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>email</title>
     <link rel="stylesheet" href="css/bootstrap.css" th:href="@{/static/css/bootstrap.css}">
-    <link rel="stylesheet" href="css/back_system.css"th:href="@{/static/css/back_system.css}" >
-    <link rel="stylesheet" href="css/Email.css"th:href="@{/static/css/Email.css}" >
+    <link rel="stylesheet" href="css/back_system.css" th:href="@{/static/css/back_system.css}">
+    <link rel="stylesheet" href="css/Email.css" th:href="@{/static/css/Email.css}">
 </head>
 <body>
 <div class="total">
     <!--头部-->
-    <div th:replace="back_system/back_head::html" ></div>
+    <div th:replace="back_system/back_head::html"></div>
     <div class="main">
-<!--        侧边栏-->
-        <div   th:replace="back_system/back_side::html"></div>
+        <!--        侧边栏-->
+        <div th:replace="back_system/back_side::html"></div>
 
         <div class="main_right">
             <div class="main_right_header">
                 <div class="mrh">
-                    <form action="">
-                        <input type="text" placeholder="id">
-                        <input type="text"placeholder="收件人">
-                        <input type="text" placeholder="发件人">
-                        <input type="text" placeholder="状态">
+                    <form action="/administrators/showMail">
+                        <input name="condition" type="text" placeholder="id">
+                        <input name="condition" type="text" placeholder="收件人">
+                        <input name="condition" type="text" placeholder="发件人">
+                        <select name="condition">
+                            <option value="-1">全部</option>
+                            <option value="0">未查看</option>
+                            <option value="1">已查看</option>
+                            <option value="2">标记</option>
+                        </select>
                         <button type="submit">
                             <img src="img/搜索--1.png" th:src="@{/static/img/搜索--1.png}" alt=""></button>
                     </form>
@@ -33,7 +38,8 @@
             </div>
             <!--        模态框    -->
             <!-- 模态框（Modal） -->
-            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+                 aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content" style="margin-top: 200px">
                         <div class="modal-header" style="text-align: center">
@@ -44,33 +50,45 @@
                                 &times;
                             </button>
                         </div>
+                        <div id="mailContent">
+
+                        </div>
                         <div class="modal-body">
 
                         </div>
                         <div class="modal-footer">
-                            <button type="button"  data-dismiss="modal" style="width:30%; height: 40px; background: #BA55D3;border:none;outline: none;box-shadow: none;">
+                            <button type="button" data-dismiss="modal"
+                                    style="width:30%; height: 40px; background: #BA55D3;border:none;outline: none;box-shadow: none;">
                                 确定
                             </button>
                         </div>
                     </div><!-- /.modal-content -->
                 </div><!-- /.modal -->
             </div>
-<!--            modal_6新增信息-->
-            <div class="modal fade" id="myModal_6" tabindex="-1" role="dialog" aria-labelledby="myModalLabel-1" aria-hidden="true">
+            <!--            modal_6新增信息-->
+            <div class="modal fade" id="myModal_6" tabindex="-1" role="dialog" aria-labelledby="myModalLabel-1"
+                 aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content" style="width:300px;">
-                        <div class="modal-header" style="color:#BA55D3;display: flex" >
+                        <div class="modal-header" style="color:#BA55D3;display: flex">
                             <h4>新增用户</h4>
                             <p type="button" class="close" data-dismiss="modal" aria-hidden="true">
                                 &times;
                             </p>
                         </div>
-                        <div class="modal-body" style="width:80%;display: flex;flex-direction: column;align-items: center">
+                        <div class="modal-body"
+                             style="width:80%;display: flex;flex-direction: column;align-items: center">
 
-                            <input type="email"  placeholder="请输入邮箱" style="width: 211px;height: 40px;border-radius: 4px;outline: none;border: 0.5px solid #000;box-shadow: none;padding-left: 3px;">
-                            <table  style="background:#000;" id="tip1"></table>
+                            <input type="email" placeholder="请输入邮箱"
+                                   style="width: 211px;height: 40px;border-radius: 4px;outline: none;border: 0.5px solid #000;box-shadow: none;padding-left: 3px;">
+                            <table style="background:#000;" id="tip1"></table>
                             <div class="modal_footer">
-                                <button type="submit" data-toggle="modal" data-target="#myModal_5" style="width:40%; height: 40px; background: #BA55D3;border:none;outline: none;box-shadow: none;margin-left: 125px;margin-top: 10px;border-radius: 6px;"  data-dismiss="modal" value="commit">commit</button>
+                                <button type="submit" data-toggle="modal" data-target="#myModal_5"
+                                        style="width:40%; height: 40px; background: #BA55D3;border:none;outline: none;box-shadow: none;margin-left: 125px;margin-top: 10px;border-radius: 6px;"
+                                        data-dismiss="modal" value="commit">commit
+                                </button>
+
+
                             </div>
                         </div>
                     </div><!-- /.modal-content -->
@@ -79,28 +97,32 @@
 
 
             <!-- 模态框（Modal_1） -->
-            <div class="modal fade" id="myModal_1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel-1" aria-hidden="true">
+            <div class="modal fade" id="myModal_1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel-1"
+                 aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content" style="width:300px;">
-                        <div class="modal-header" style="color:#BA55D3;display: flex" >
+                        <div class="modal-header" style="color:#BA55D3;display: flex">
                             <h4>邮件状态修改</h4>
                             <p type="button" class="close" data-dismiss="modal" aria-hidden="true">
                                 &times;
                             </p>
                         </div>
-                        <div class="modal-body" style="width:80%;display: flex;flex-direction: column;align-items: center">
+                        <div class="modal-body"
+                             style="width:80%;display: flex;flex-direction: column;align-items: center">
                             <form action="">
                                 <select name="状态">
-                                    <option value="已发送">已发送</option>
-                                    <option value="未发送">未发送</option>
+                                    <option value="已发送">已查看</option>
+                                    <option value="未发送">未查看</option>
                                     <option value="标记">标记</option>
                                 </select>
                             </form>
 
-                            <table  style="background:#000;" id="tip2"></table>
-                                <div class="modal_footer">
-                                    <input type="submit" data-toggle="modal" data-target="#myModal_5" style=" width: 34%; height: 30px;background: #BA55D3;border: none;outline: none;box-shadow: none;padding-left: 0px;border-radius: 4px;margin-left: 140px;margin-top: 16px;" data-dismiss="modal" value="commit"/>
-                                </div>
+                            <table style="background:#000;" id="tip2"></table>
+                            <div class="modal_footer">
+                                <input type="submit" data-toggle="modal" data-target="#myModal_5"
+                                       style=" width: 34%; height: 30px;background: #BA55D3;border: none;outline: none;box-shadow: none;padding-left: 0px;border-radius: 4px;margin-left: 140px;margin-top: 16px;"
+                                       data-dismiss="modal" value="commit"/>
+                            </div>
 
                             </form>
                         </div>
@@ -108,7 +130,8 @@
                 </div><!-- /.modal -->
             </div>
             <!-- 模态框（Modal_2） -->
-            <div class="modal fade" id="myModal_2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel-2" aria-hidden="true">
+            <div class="modal fade" id="myModal_2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel-2"
+                 aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content" style="width:300px;margin-top:200px;">
                         <div class="modal-header">
@@ -120,17 +143,21 @@
                             确定要删除吗？
                         </div>
                         <div class="modal-footer">
-                            <button type="button"  data-dismiss="modal" data-toggle="modal" data-target="#myModal_3">
-                                commit
-                            </button>
-                            <button type="button"  data-dismiss="modal">cancel
+                            <form action="/administrators/deleteMail" method="post">
+                                <!--用来存储id看不了-。- -->
+                                <input id="mailInformationDeleteId" name="id" style="display:none"/>
+                                <!--data-dismiss="modal" data-toggle="modal" data-target="#myModal_3"-->
+                                <button type="submit">commit</button>
+                            </form>
+                            <button type="button" data-dismiss="modal">cancel
                             </button>
                         </div>
                     </div><!-- /.modal-content -->
                 </div><!-- /.modal -->
             </div>
             <!--            重置成功 modal——3-->
-            <div class="modal fade" id="myModal_3" tabindex="-1" role="dialog" aria-labelledby="myModalLabel_3" aria-hidden="true">
+            <div class="modal fade" id="myModal_3" tabindex="-1" role="dialog" aria-labelledby="myModalLabel_3"
+                 aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content" style="width: 200px;height: 200px;margin-top: 200px;">
                         <div class="modal-header">
@@ -143,14 +170,17 @@
                         </div>
                         <div class="modal-body" style="width:200px;height:65px;">
                             <p style="float:left;height: 50px;line-height: 50px;">
-                                <img src="img/对号.png" th:src="@{/static/img/对号.png}" style="width:40px;height: 40px;" alt="">
+                                <img src="img/对号.png" th:src="@{/static/img/对号.png}" style="width:40px;height: 40px;"
+                                     alt="">
                             </p>
                             <p style="float:left;height: 50px;line-height: 50px;">
                                 删除成功
                             </p>
                         </div>
                         <div class="modal-footer">
-                            <button type="button"  data-dismiss="modal" style=" width: 58px;background: #0099FF; height: 33px;border: none;border-radius: 3px;">确定
+                            <button type="button" data-dismiss="modal"
+                                    style=" width: 58px;background: #0099FF; height: 33px;border: none;border-radius: 3px;">
+                                确定
                             </button>
                         </div>
                     </div><!-- /.modal-content -->
@@ -158,7 +188,8 @@
             </div>
 
             <!--            修改成功 modal——4-->
-            <div class="modal fade" id="myModal_4" tabindex="-1" role="dialog" aria-labelledby="myModalLabel_4" aria-hidden="true">
+            <div class="modal fade" id="myModal_4" tabindex="-1" role="dialog" aria-labelledby="myModalLabel_4"
+                 aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content" style="width: 200px;height: 174px;margin-top: 200px;">
                         <div class="modal-header">
@@ -170,21 +201,25 @@
                         </div>
                         <div class="modal-body" style="width:200px;height:65px;">
                             <p style="float:left;height: 50px;line-height: 50px;">
-                                <img src="img/对号.png" th:src="@{/static/img/对号.png}" style="width:40px;height: 40px;" alt="">
+                                <img src="img/对号.png" th:src="@{/static/img/对号.png}" style="width:40px;height: 40px;"
+                                     alt="">
                             </p>
                             <p style="float:left;height: 50px;line-height: 50px;">
                                 修改成功
                             </p>
                         </div>
                         <div class="modal-footer">
-                            <button type="button"  data-dismiss="modal" style=" width: 58px;background: #0099FF; height: 33px;border: none;border-radius: 3px;">确定
+                            <button type="button" data-dismiss="modal"
+                                    style=" width: 58px;background: #0099FF; height: 33px;border: none;border-radius: 3px;">
+                                确定
                             </button>
                         </div>
                     </div><!-- /.modal-content -->
                 </div><!-- /.modal -->
             </div>
-<!--            modal_5添加成功-->
-            <div class="modal fade" id="myModal_5" tabindex="-1" role="dialog" aria-labelledby="myModalLabel_4" aria-hidden="true">
+            <!--            modal_5添加成功-->
+            <div class="modal fade" id="myModal_5" tabindex="-1" role="dialog" aria-labelledby="myModalLabel_4"
+                 aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content" style="width: 200px;height: 174px;margin-top: 200px;">
                         <div class="modal-header">
@@ -197,21 +232,22 @@
                         </div>
                         <div class="modal-body" style="width:200px;height:65px;">
                             <p style="float:left;height: 50px;line-height: 50px;">
-                                <img src="img/对号.png" th:src="@{/static/img/对号.png}" style="width:40px;height: 40px;" alt="">
+                                <img src="img/对号.png" th:src="@{/static/img/对号.png}" style="width:40px;height: 40px;"
+                                     alt="">
                             </p>
                             <p style="float:left;height: 50px;line-height: 50px;">
                                 添加成功
                             </p>
                         </div>
                         <div class="modal-footer">
-                            <button type="button"  data-dismiss="modal" style=" width: 58px;background: #0099FF; height: 33px;border: none;border-radius: 3px;">确定
+                            <button type="button" data-dismiss="modal"
+                                    style=" width: 58px;background: #0099FF; height: 33px;border: none;border-radius: 3px;">
+                                确定
                             </button>
                         </div>
                     </div><!-- /.modal-content -->
                 </div><!-- /.modal -->
             </div>
-
-
 
 
             <!--            -->
@@ -220,183 +256,49 @@
                     添加
                 </button>
             </div>
-            <div class="main_rh_main" >
+            <div class="main_rh_main">
 
-                    <table class="" style="overflow-x: auto;width:1540px;">
-                        <!--                    content table table-hover-->
-                        <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>发件人</th>
-                            <th>收件人</th>
-                            <th>邮件发送时间</th>
-                            <th>邮件状态</th>
-                            <th></th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr>
-                            <td>Bangalore</td>
-                            <td>560001</td>
-                            <td>Tanmay</td>
-                            <td>Bangalore</td>
-                            <td>Bangalore</td>
-                            <td>
-                                <i data-toggle="modal" data-target="#myModal_1" title="修改">
-                                    <span class="glyphicon glyphicon-edit"></span>
-                                </i>
-                                <i data-toggle="modal" data-target="#myModal_2" title="删除">
-                                    <span class="glyphicon glyphicon-trash"></span>
-                                </i>
+                <table class="" style="overflow-x: auto;width:1540px;">
+                    <!--                    content table table-hover-->
+                    <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>发件人</th>
+                        <th>收件人</th>
+                        <th>邮件发送时间</th>
+                        <th>等级</th>
+                        <th>邮件状态</th>
+                        <th>邮件内容</th>
+                        <th></th>
+                    </tr>
+                    </thead>
+                    <tbody th:each="list:${pageInfo.list}">
+                    <tr>
+                        <td th:text="${list.id}"></td>
+                        <td th:text="${list.senderId}"></td>
+                        <td th:text="${list.recipientId}"></td>
+                        <td th:text="${#dates.format(list.date, 'yyyy-MM-dd HH:mm:ss')}"></td>
+                        <td th:text="${list.reply}"></td>
+                        <td th:text="${list.state}"></td>
+                        <td>
+                            <button class="mailInformation" th:data-id="${list.id}" data-toggle="modal"
+                                    data-target="#myModal">
+                                查看
+                            </button>
+                        </td>
+                        <td>
+                            <i th:data-id="${list.id}" data-toggle="modal" data-target="#myModal_1" title="修改">
+                                <span class="glyphicon glyphicon-edit"></span>
+                            </i>
+                            <i th:data-id="${list.id}" class="mailInformationDelete" data-toggle="modal"
+                               data-target="#myModal_2" title="删除">
+                                <span class="glyphicon glyphicon-trash"></span>
+                            </i>
 
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Bangalore</td>
-                            <td>560001</td>
-                            <td>Tanmay</td>
-                            <td>Bangalore</td>
-                            <td>Bangalore</td>
-                            <td>
-                                <i data-toggle="modal" data-target="#myModal_1" title="修改">
-                                    <span class="glyphicon glyphicon-edit"></span>
-                                </i>
-                                <i data-toggle="modal" data-target="#myModal_2" title="删除">
-                                    <span class="glyphicon glyphicon-trash"></span>
-                                </i>
-
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Bangalore</td>
-                            <td>560001</td>
-                            <td>Tanmay</td>
-                            <td>Bangalore</td>
-                            <td>Bangalore</td>
-                            <td>
-                                <i data-toggle="modal" data-target="#myModal_1" title="修改">
-                                    <span class="glyphicon glyphicon-edit"></span>
-                                </i>
-                                <i data-toggle="modal" data-target="#myModal_2" title="删除">
-                                    <span class="glyphicon glyphicon-trash"></span>
-                                </i>
-
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Bangalore</td>
-                            <td>560001</td>
-                            <td>Tanmay</td>
-                            <td>Bangalore</td>
-                            <td>Bangalore</td>
-                            <td>
-                                <i data-toggle="modal" data-target="#myModal_1" title="修改">
-                                    <span class="glyphicon glyphicon-edit"></span>
-                                </i>
-                                <i data-toggle="modal" data-target="#myModal_2" title="删除">
-                                    <span class="glyphicon glyphicon-trash"></span>
-                                </i>
-
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Bangalore</td>
-                            <td>560001</td>
-                            <td>Tanmay</td>
-                            <td>Bangalore</td>
-                            <td>Bangalore</td>
-                            <td>
-                                <i data-toggle="modal" data-target="#myModal_1" title="修改">
-                                    <span class="glyphicon glyphicon-edit"></span>
-                                </i>
-                                <i data-toggle="modal" data-target="#myModal_2" title="删除">
-                                    <span class="glyphicon glyphicon-trash"></span>
-                                </i>
-
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Bangalore</td>
-                            <td>560001</td>
-                            <td>Tanmay</td>
-                            <td>Bangalore</td>
-                            <td>Bangalore</td>
-                            <td>
-                                <i data-toggle="modal" data-target="#myModal_1" title="修改">
-                                    <span class="glyphicon glyphicon-edit"></span>
-                                </i>
-                                <i data-toggle="modal" data-target="#myModal_2" title="删除">
-                                    <span class="glyphicon glyphicon-trash"></span>
-                                </i>
-
-                            </td>
-                        </tr>
-                        <tr>
-
-                            <td>Bangalore</td>
-                            <td>560001</td>
-                            <td>Tanmay</td>
-                            <td>Bangalore</td>
-                            <td>Bangalore</td>
-                            <td>
-                                <i data-toggle="modal" data-target="#myModal_1" title="修改">
-                                    <span class="glyphicon glyphicon-edit"></span>
-                                </i>
-                                <i data-toggle="modal" data-target="#myModal_2" title="删除">
-                                    <span class="glyphicon glyphicon-trash"></span>
-                                </i>
-
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Bangalore</td>
-                            <td>560001</td>
-                            <td>Tanmay</td>
-                            <td>Bangalore</td>
-                            <td>Bangalore</td>
-                            <td>
-                                <i data-toggle="modal" data-target="#myModal_1" title="修改">
-                                    <span class="glyphicon glyphicon-edit"></span>
-                                </i>
-                                <i data-toggle="modal" data-target="#myModal_2" title="删除">
-                                    <span class="glyphicon glyphicon-trash"></span>
-                                </i>
-
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Bangalore</td>
-                            <td>560001</td>
-                            <td>Tanmay</td>
-                            <td>Bangalore</td>
-                            <td>Bangalore</td>
-                            <td>
-                                <i data-toggle="modal" data-target="#myModal_1" title="修改">
-                                    <span class="glyphicon glyphicon-edit"></span>
-                                </i>
-                                <i data-toggle="modal" data-target="#myModal_2" title="删除">
-                                    <span class="glyphicon glyphicon-trash"></span>
-                                </i>
-
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Bangalore</td>
-                            <td>560001</td>
-                            <td>Tanmay</td>
-                            <td>Bangalore</td>
-                            <td>Bangalore</td>
-                            <td>
-                                <i data-toggle="modal" data-target="#myModal_1" title="修改">
-                                    <span class="glyphicon glyphicon-edit"></span>
-                                </i>
-                                <i data-toggle="modal" data-target="#myModal_2" title="删除">
-                                    <span class="glyphicon glyphicon-trash"></span>
-                                </i>
-                            </td>
-                        </tr>
-                        </tbody>
-                    </table>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
 
 
             </div>
@@ -405,15 +307,23 @@
                 <div class="zzsc">
                     <!--                currentpage="1" numbercount="**"-->
                     <ul class="page" id="page" pagelistcount="10" maxshowpageitem="5">
-                        <li class="pageItemDisable" page-rel="firstpage" page-data="1">首页</li>
-                        <li class="pageItemDisable" page-rel="prepage" page-data="0">&lt;上一页</li>
+                        <li class="pageItemDisable" page-rel="firstpage" page-data="1"><a
+                                th:href="@{/administrators/showMail(condition=${conditionZero},condition=${conditionOne},condition=${conditionTwo},condition=${conditionThree},pageNum=1)}">首页</a>
+                        </li>
+                        <li class="pageItemDisable" page-rel="prepage" page-data="0"><a
+                                th:href="@{/administrators/showMail(condition=${conditionZero},condition=${conditionOne},condition=${conditionTwo},condition=${conditionThree},pageNum=${pageInfo.pageNum-1})}">上一页</a>
+                        </li>
                         <li class="pageItemActive" page-rel="itempage" page-data="1">1</li>
                         <li class="pageItem" page-rel="itempage" page-data="2">2</li>
                         <li class="pageItem" page-rel="itempage" page-data="3">3</li>
                         <li class="pageItem" page-rel="itempage" page-data="4">4</li>
                         <li class="pageItem" page-rel="itempage" page-data="5">5</li>
-                        <li class="pageItem" page-rel="nextpage" page-data="2">下一页&gt;</li>
-                        <li class="pageItem" page-rel="lastpage" page-data="8">尾页</li>
+                        <li class="pageItem" page-rel="nextpage" page-data="2"><a
+                                th:href="@{/administrators/showMail(condition=${conditionZero},condition=${conditionOne},condition=${conditionTwo},condition=${conditionThree},pageNum=${pageInfo.pageNum+1})}">下一页</a>
+                        </li>
+                        <li class="pageItem" page-rel="lastpage" page-data="8"><a
+                                th:href="@{/administrators/showMail(condition=${conditionZero},condition=${conditionOne},condition=${conditionTwo},condition=${conditionThree},pageNum=${pageInfo.pages})}">尾页</a>
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -422,9 +332,10 @@
 </div>
 </body>
 <script src="js/jquery.js" th:src="@{/static/js/jquery.js}"></script>
-<script src="js/bootstrap.min.js"  th:src="@{/static/js/bootstrap.min.js}" ></script>
-<script src="js/jquery-1.9.1.js" th:src="@{/static/js/jquery-1.9.1.js}" ></script>
+<script src="js/bootstrap.min.js" th:src="@{/static/js/bootstrap.min.js}"></script>
+<script src="js/jquery-1.9.1.js" th:src="@{/static/js/jquery-1.9.1.js}"></script>
 <script src="js/back_system.js" th:src="@{/static/js/back_system.js}"></script>
-<script src="js/page.js" th:src="@{/static/js/page.js}" ></script>
-<script src="js/Email.js" th:src="@{/static/js/page.js}" ></script>
+<script src="js/page.js" th:src="@{/static/js/page.js}"></script>
+<script src="js/Email.js" th:src="@{/static/js/page.js}"></script>
+<script src="js/song_list.js" th:src="@{/static/js/ajax.js}"></script>
 </html>

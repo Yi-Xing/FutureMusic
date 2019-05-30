@@ -1,0 +1,353 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>classification</title>
+    <link rel="stylesheet" href="css/bootstrap-datetimepicker.min.css"th:href="@{/static/css/bootstrap-datetimepicker.min.css}" >
+    <link rel="stylesheet" href="css/bootstrap.css" th:href="@{/static/css/bootstrap.css}">
+    <link rel="stylesheet" href="css/back_system.css"th:href="@{/static/css/back_system.css}" >
+    <link rel="stylesheet" href="css/classification.css"th:href="@{/static/css/classification.css}" >
+</head>
+<body>
+<div class="total">
+    <!--头部-->
+    <div th:replace="back_system/back_head::html" ></div>
+    <div class="main">
+        <!--        侧边栏-->
+        <div   th:replace="back_system/back_side::html"></div>
+        <div class="main_right">
+            <div class="main_right_header">
+                <div class="mrh">
+                    <form action="">
+                        <select name="分类" style="width: 60px;height: 38px;border: 0.5px solid #000;">
+                            <option value="volvo">语言</option>
+                            <option value="saab">地区</option>
+                            <option value="fiat">Fiat</option>
+                            <option value="audi">Audi</option>
+                        </select>
+                        <input type="text"placeholder="id">
+                        <button type="submit" style=" width: 5%;">
+                            <img src="img/搜索--1.png" th:src="@{/static/img/搜索--1.png}" alt=""></button>
+                    </form>
+                </div>
+            </div>
+            <!-- 模态框（Modal） -->
+            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content" style="margin-top: 200px;width:400px;">
+                        <div class="modal-header" style="text-align: center">
+                            <h4 class="modal-title" id="myModalLabel" style="height: 6px;color:rebeccapurple">
+                                删除分类
+                            </h4>
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                                &times;
+                            </button>
+                        </div>
+                        <div class="modal-body" style="height: 100px;">
+                            <form action="">
+                                <select name="分类" style="width: 60px;height: 30px;">
+                                    <option value="volvo">语言</option>
+                                    <option value="saab">地区</option>
+                                    <option value="fiat">Fiat</option>
+                                    <option value="audi">Audi</option>
+                                </select>
+                                <input type="text" placeholder="fd" style="width: 219px;height: 30px;">
+                            </form>
+                            <p>f</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button"  data-dismiss="modal" style="width:30%; height: 40px; background: #BA55D3;border:none;outline: none;box-shadow: none;">
+                                确定
+                            </button>
+                        </div>
+                    </div><!-- /.modal-content -->
+                </div><!-- /.modal -->
+            </div>
+            <!--            modal_6新增信息-->
+            <div class="modal fade" id="myModal_6" tabindex="-1" role="dialog" aria-labelledby="myModalLabel-6" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content" style="margin-top: 200px;width:400px;">
+                        <div class="modal-header" style="text-align: center">
+                            <h4 class="modal-title" id="myModalLabel_6" style="height: 6px;color:rebeccapurple">
+                                删除分类
+                            </h4>
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                                &times;
+                            </button>
+                        </div>
+                        <div class="modal-body" style="height: 100px;">
+                            <form action="">
+                                <select name="分类" style="width: 60px;height: 30px;">
+                                <option value="volvo">语言</option>
+                                <option value="saab">地区</option>
+                                <option value="fiat">Fiat</option>
+                                <option value="audi">Audi</option>
+                            </select>
+                                < input type="text" placeholder="fd" style="width: 219px;height: 30px;">
+                            </form>
+                            <p>f</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button"  data-dismiss="modal" style="width:30%; height: 40px; background: #BA55D3;border:none;outline: none;box-shadow: none;">
+                                确定
+                            </button>
+                        </div>
+
+                        <!--                            </form>-->
+                    </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal -->
+
+            <!-- 模态框（Modal_1） -->
+            <div class="modal fade" id="myModal_1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel-1" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content" style="width:600px;">
+                        <div class="modal-header" style="color:#BA55D3;display: flex" >
+                            <h4>新增分类</h4>
+                            <p type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                                &times;
+                            </p>
+                        </div>
+                        <div class="modal-body" style="width:100%;display: flex;flex-direction: row;align-items: center">
+                            <form action="">
+                            </form>
+                        </div>
+                        <div class="modal_footer">
+                            <input type="submit" data-toggle="modal" data-target="#myModal_4" style="width:54%; height: 40px; background: #BA55D3;border:none;outline: none;margin-left: 469px;box-shadow: none;border-radius: 5px;
+    margin-top: -1px;"  data-dismiss="modal" value="commit" />
+                        </div>
+
+                        <!--                            </form>-->
+                    </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal -->
+            <!-- 模态框（Modal_2） -->
+            <div class="modal fade" id="myModal_2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel-2" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content" style="width:300px;margin-top:200px;">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                                &times;
+                            </button>
+                        </div>
+                        <div class="modal-body" style="display: flex;flex-direction: column;align-items: center;">
+                            确定要删除吗？
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button"  data-dismiss="modal" data-toggle="modal" data-target="#myModal_3">
+                                commit
+                            </button>
+                            <button type="button"  data-dismiss="modal">cancel
+                            </button>
+                        </div>
+                    </div><!-- /.modal-content -->
+                </div><!-- /.modal -->
+            </div>
+            <!--            重置成功 modal——3-->
+            <div class="modal fade" id="myModal_3" tabindex="-1" role="dialog" aria-labelledby="myModalLabel_3" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content" style="width: 200px;height: 200px;margin-top: 200px;">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                                &times;
+                            </button>
+                            <h4 class="modal-title" id="myModalLabel_3">
+
+                            </h4>
+                        </div>
+                        <div class="modal-body" style="width:200px;height:65px;">
+                            <p style="float:left;height: 50px;line-height: 50px;">
+                                <img src="img/对号.png" th:src="@{/static/img/对号.png}" style="width:40px;height: 40px;" alt="">
+                            </p>
+                            <p style="float:left;height: 50px;line-height: 50px;">
+                                删除成功
+                            </p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button"  data-dismiss="modal" style=" width: 58px;background: #0099FF; height: 33px;border: none;border-radius: 3px;">确定
+                            </button>
+                        </div>
+                    </div><!-- /.modal-content -->
+                </div><!-- /.modal -->
+            </div>
+
+            <!--            修改成功 modal——4-->
+            <div class="modal fade" id="myModal_4" tabindex="-1" role="dialog" aria-labelledby="myModalLabel_4" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content" style="width: 200px;height: 174px;margin-top: 200px;">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                                &times;
+                            </button>
+                            <h4 class="modal-title" id="myModalLabel_4">
+
+                            </h4>
+                        </div>
+                        <div class="modal-body" style="width:200px;height:65px;">
+                            <p style="float:left;height: 50px;line-height: 50px;">
+                                <img src="img/对号.png" th:src="@{/static/img/对号.png}" style="width:40px;height: 40px;" alt="">
+                            </p>
+                            <p style="float:left;height: 50px;line-height: 50px;">
+                                修改成功
+                            </p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button"  data-dismiss="modal" style=" width: 58px;background: #0099FF; height: 33px;border: none;border-radius: 3px;">确定
+                            </button>
+                        </div>
+                    </div><!-- /.modal-content -->
+                </div><!-- /.modal -->
+            </div>
+            <!--            modal_5添加成功-->
+            <div class="modal fade" id="myModal_5" tabindex="-1" role="dialog" aria-labelledby="myModalLabel_4" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content" style="width: 200px;height: 174px;margin-top: 200px;">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                                &times;
+                            </button>
+                            <h4 class="modal-title" id="myModalLabel_5">
+
+                            </h4>
+                        </div>
+                        <div class="modal-body" style="width:200px;height:65px;">
+                            <p style="float:left;height: 50px;line-height: 50px;">
+                                <img src="img/对号.png" th:src="@{/static/img/对号.png}" style="width:40px;height: 40px;" alt="">
+                            </p>
+                            <p style="float:left;height: 50px;line-height: 50px;">
+                                添加成功
+                            </p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button"  data-dismiss="modal" style=" width: 58px;background: #0099FF; height: 33px;border: none;border-radius: 3px;">确定
+                            </button>
+                        </div>
+                    </div><!-- /.modal-content -->
+                </div><!-- /.modal -->
+            </div>
+
+
+
+
+            <!--            -->
+            <div class="main_rh_button">
+                <button data-toggle="modal" data-target="#myModal_6" style="width: 60px;height: 35px;background:green;color:white;box-shadow: none;outline: none;margin-left: -419px; margin-top: 10px;border:0px;">
+                    添加
+                </button>
+                <button data-toggle="modal" data-target="#myModal" style="width: 60px;height: 35px;box-shadow: none;outline: none;color:white;margin-top: 10px;background: red;border:0px;" >
+                    删除
+                </button>
+            </div>
+            <div class="main_rh_main" >
+                <table class="" style="overflow-x: auto;width:1540px;">
+                    <!-- content table table-hover-->
+                    <tbody>
+                    <tr>
+                        <th>语种</th>
+                        <td>Bangalore</td>
+                        <td>560001</td>
+                        <td>Tanmay</td>
+                        <td>Bangalore</td>
+                        <td>560001</td>
+                        <td>Tanmay</td>
+
+                    </tr>
+                    <tr>
+                        <th>地区</th>
+                        <td>Bangalore</td>
+                        <td>560001</td>
+                        <td>Tanmay</td>
+                        <td>Bangalore</td>
+                        <td>560001</td>
+                        <td>Tanmay</td>
+                    </tr>
+                    <tr>
+                        <th>语种</th>
+                        <td>Bangalore</td>
+                        <td>560001</td>
+                        <td>Tanmay</td>
+                        <td>Bangalore</td>
+                        <td>560001</td>
+                        <td>Tanmay</td>
+                    </tr>
+                    <tr>
+                        <th>语种</th>
+                        <td>Bangalore</td>
+                        <td>560001</td>
+                        <td>Tanmay</td>
+                        <td>Bangalore</td>
+                        <td>560001</td>
+                        <td>Tanmay</td>
+                    </tr>
+                    <tr>
+                        <th>语种</th>
+                        <td>Bangalore</td>
+                        <td>560001</td>
+                        <td>Tanmay</td>
+                        <td>Bangalore</td>
+                        <td>560001</td>
+                        <td>Tanmay</td>
+                    </tr>
+                    <tr>
+                        <th>语种</th>
+                        <td>Bangalore</td>
+                        <td>560001</td>
+                        <td>Tanmay</td>
+                        <td>Bangalore</td>
+                        <td>560001</td>
+                        <td>Tanmay</td>
+                    </tr>
+                    <tr>
+                        <th>语种</th>
+                        <td>Bangalore</td>
+                        <td>560001</td>
+                        <td>Tanmay</td>
+                        <td>Bangalore</td>
+                        <td>560001</td>
+                        <td>Tanmay</td>
+                    </tr>
+
+                    <tr>
+                        <th>语种</th>
+                        <td>Bangalore</td>
+                        <td>560001</td>
+                        <td>Tanmay</td>
+                        <td>Bangalore</td>
+                        <td>560001</td>
+                        <td>Tanmay</td>
+                    </tr>
+                    <tr>
+                        <th>语种</th>
+                        <td>Bangalore</td>
+                        <td>560001</td>
+                        <td>Tanmay</td>
+                        <td>Bangalore</td>
+                        <td>560001</td>
+                        <td>Tanmay</td>
+                    </tr>
+                    <tr>
+                        <th>语种</th>
+                        <td>Bangalore</td>
+                        <td>560001</td>
+                        <td>Tanmay</td>
+                        <td>Bangalore</td>
+                        <td>560001</td>
+                        <td>Tanmay</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="main_rh_footer">
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<script src="js/jquery.js" th:src="@{/static/js/jquery.js}"></script>
+<script src="js/bootstrap.min.js"  th:src="@{/static/js/bootstrap.min.js}" ></script>
+<script src="js/jquery-1.9.1.js" th:src="@{/static/js/jquery-1.9.1.js}" ></script>
+<script src="js/back_system.js" th:src="@{/static/js/back_system.js}"></script>
+</html>

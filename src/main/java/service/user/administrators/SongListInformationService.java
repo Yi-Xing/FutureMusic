@@ -46,9 +46,7 @@ public class SongListInformationService {
      * @param condition 1表示歌单或专辑的id，2表示活动的id 3、分类的id  4、歌手的id  5、type
      */
     public String showSongList(String[] condition, Integer pageNum, Model model) {
-        System.out.println(condition);
         SongList songList = new SongList();
-
         if (condition != null) {
             if ((condition[0] != null) && !"".equals(condition[0])) {
                 songList.setId(Integer.parseInt(condition[0]));
@@ -61,20 +59,21 @@ public class SongListInformationService {
             }
             if ((condition[3] != null) && !"".equals(condition[3])) {
                 songList.setUserId(Integer.parseInt(condition[3]));
-            }if((condition[4] != null) && !"".equals(condition[4])){
+            }
+            if ((condition[4] != null) && !"".equals(condition[4])) {
                 songList.setType(Integer.parseInt(condition[4]));
             }
-            model.addAttribute("condition0", condition[0]);
-            model.addAttribute("condition1", condition[1]);
-            model.addAttribute("condition2", condition[2]);
-            model.addAttribute("condition3", condition[3]);
-            model.addAttribute("condition4", condition[4]);
+            model.addAttribute("conditionZero", condition[0]);
+            model.addAttribute("conditionOne", condition[1]);
+            model.addAttribute("conditionTwo", condition[2]);
+            model.addAttribute("conditionThree", condition[3]);
+            model.addAttribute("conditionFour", condition[4]);
         } else {
-            model.addAttribute("condition0", null);
-            model.addAttribute("condition1", null);
-            model.addAttribute("condition2", null);
-            model.addAttribute("condition3", null);
-            model.addAttribute("condition4", null);
+            model.addAttribute("conditionZero", null);
+            model.addAttribute("conditionOne", null);
+            model.addAttribute("conditionTwo", null);
+            model.addAttribute("conditionThree", null);
+            model.addAttribute("conditionFour", null);
         }
         //在查询之前传入当前页，然后多少记录
         PageHelper.startPage(pageNum, 9);
@@ -89,11 +88,10 @@ public class SongListInformationService {
     /**
      * 显示指定id的歌单或专辑信息
      */
-    public SongList showIdSongList(Integer id){
+    public SongList showIdSongList(Integer id) {
         SongList songList = new SongList();
         songList.setId(id);
         List<SongList> list = songListMapper.selectListSongList(songList);
-        System.out.println(list);
         return list.get(0);
     }
 
@@ -125,13 +123,13 @@ public class SongListInformationService {
     /**
      * 删除指定id专辑或歌单
      */
-    public State deleteSongList(Integer id) throws DataBaseException {
+    public String deleteSongList(Integer id, Model model) throws DataBaseException {
         if (songListMapper.deleteSongList(id) < 1) {
             // 如果失败是数据库错误
             logger.error("专辑或歌单：" + id + "删除时，数据库出错");
             throw new DataBaseException("专辑或歌单：" + id + "删除时，数据库出错");
         }
-        return new State(1);
+        return showSongList(null,1,model);
     }
 
     /**
