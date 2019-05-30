@@ -33,6 +33,7 @@ ul li{
 }
 
 /*头部*/
+
 .search_container{
     /*position: relative;*/
     width:70%;
@@ -42,7 +43,7 @@ ul li{
     outline-style: none;
 }
 .search_container .search_tips{
-    width: 169px;
+    width: 173px;
     position: absolute;
     border: 1px solid rgba(0,0,0,0.1);
     border-radius: 4px;
@@ -229,6 +230,7 @@ ul li{
 .login_header{
     width:400px;
     height: 190px;
+    margin-top: 50px;
 }
 .log_bom_flo input{
     width:13px;
@@ -237,19 +239,19 @@ ul li{
 .tip1{
     width: 400px;
     height: 30px;
-    position: relative;
+    /*position: relative;*/
     top:83px;
     line-height: 30px;
-    background: #000;
+    background: #fff;
 }
 .tip2{
     width: 400px;
     height: 30px;
     /*background: #000;*/
-    position: relative;
+    /*position: relative;*/
     top: 128px;
     line-height: 30px;
-    background: #000;
+    background: #fff;
 }
 .log_bom_flo{
     width:200px;
@@ -279,18 +281,19 @@ ul li{
     transition: 1s;
 }
 .reg_header{
-    width:420px;
-    height: 200px;
+    width:430px;
+    overflow: hidden;
 }
 .reg_hed_left{
-    width:333px;
+    width:330px;
     height: 250px;
     float: left;
 }
 #button4{
     width: 90px;
-    position: relative;
-    top: -29px;
+    /*position: relative;*/
+    /*top: -29px;*/
+    line-height: 50px;
 }
 .reg_hed_left input{
     width:350px;
@@ -311,7 +314,8 @@ ul li{
 }
 .reg_main{
     width:400px;
-    height: 96px;
+    /*height: 96px;*/
+    overflow: hidden;
 }
 .reg_main_left{
     width:200px;
@@ -353,7 +357,7 @@ ul li{
     outline: none;
     line-height: 30px;
     border-radius: 5px;
-    position: relative;
+    /*position: relative;*/
     top: -40px;
 }
 .reg_bom a{
@@ -381,6 +385,21 @@ ul li{
     width:13px;
     height:13px;
 }
+
+/*TAB*/
+.TAB ul{
+    display: flex;
+    justify-content: center;
+}
+.TAB ul li{
+    margin: 20px 30px 10px 30px;
+}
+.TAB ul li a{
+    font-size: 20px;
+    font-weight: 600;
+    color: #2e6da4;
+}
+
 
 
 

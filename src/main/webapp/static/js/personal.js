@@ -61,7 +61,7 @@ $("#changeInformation").click(function () {
 });
 
 //我喜欢tab切换
-$("#iLike .btn-group button").hover(function () {
+$(".btn-group button").hover(function () {
     $(this).click(function () {
         let num = $(this).index();
         console.log($(this).index());
