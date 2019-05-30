@@ -43,8 +43,13 @@ public class Main {
 
 
     @RequestMapping(value = "/back_music")
-    public String back_MV() {
+    public String back_music() {
         return "back_system/back_music";
+    }
+
+    @RequestMapping(value = "/back_MV")
+    public String back_MV() {
+        return "back_system/back_MV";
     }
 
     @RequestMapping(value = "/Activities")

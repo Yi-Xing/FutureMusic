@@ -208,6 +208,7 @@ url('//at.alicdn.com/t/webfont_oogj9rdy3g8.ttf') format('truetype'), /* chromeã€
 }
 .hid_show{
     width:110px;
+    height:30px;
     background: red;
     text-align: center;
     text-overflow: ellipsis;
@@ -216,6 +217,7 @@ url('//at.alicdn.com/t/webfont_oogj9rdy3g8.ttf') format('truetype'), /* chromeã€
     cursor: pointer;
 }
 .hid_show:hover{
+    height:100px;
     overflow: unset;
     z-index: 2;
     transition-timing-function:linear;
