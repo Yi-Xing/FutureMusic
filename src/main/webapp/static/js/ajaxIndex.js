@@ -10,37 +10,51 @@ window.onload = function () {
             dataType: "json",
             success: function (data) {
                 alert(data);
-                document.getElementsByClassName('reg_hed_right')[0].children[1].innerHTML = data.information;
+                if (data.state === 0) {
+                    document.getElementsByClassName('reg_hed_right')[0].children[1].innerHTML = data.information;
+                }
             }
         });
     });
 
     // 用于注册账号
     $("#registerUser").on("click", function () {
-        var registerUserName = $("#registerUserName").val();
-        var registerMail = $("#registerMail").val();
-        var registerPassword = $("#registerPassword").val();
-        var registerPasswordAgain = $("#registerPasswordAgain").val();
+        var userName = $("#registerName").val();
+        var sendMail = $("#registerMail").val();
+        var password = $("#registerPassword").val();
+        var passwordAgain = $("#registerVerificationCode").val();
         var verificationCode = $("#verificationCode").val();
-        var agreement = $("#agreement").is(":checked");
+        var agreement = $("#registerAgreement").is(":checked");
         $.ajax({
             contentType: "application/x-www-form-urlencoded;charset=UTF-8",
             type: "post",
             url: "register",
             data: {
-                "userName": registerUserName,
-                "sendMail": registerMail,
-                "password": registerPassword,
-                "passwordAgain": registerPasswordAgain,
+                "userName": userName,
+                "sendMail": sendMail,
+                "password": password,
+                "passwordAgain": passwordAgain,
                 "verificationCode": verificationCode,
                 "agreement": agreement
             },
             dataType: "json",
             success: function (data, status) {
                 $("#wc").text(data);
-                if (data.state <= 0) {
+                if (data.state === -1) {
+                    document.getElementsByClassName('reg_hed_right')[0].children[0].innerHTML = data.information;
+                } else if(data.state === -2){
                     document.getElementsByClassName('reg_hed_right')[0].children[1].innerHTML = data.information;
-                } else {
+
+                } else if(data.state === -3){
+                    document.getElementsByClassName('reg_hed_right')[0].children[2].innerHTML = data.information;
+
+                } else if(data.state === -4){
+                    document.getElementsByClassName('reg_hed_right')[0].children[4].innerHTML = data.information;
+
+                } else if(data.state === -5){
+
+                }else {
+                    // 刷新网页
                     alert("注册成功了");
                 }
             }
@@ -268,7 +282,7 @@ window.onload = function () {
         var id = $("#registerUserName").val();
         $.ajax({
             type: "get",
-            url: "showSendMail?id="+id,
+            url: "showSendMail?id=" + id,
             dataType: "json",
             success: function (data, status) {
                 //返回List<Mail>
@@ -294,7 +308,7 @@ window.onload = function () {
         var id = $("#registerUserName").val();
         $.ajax({
             type: "get",
-            url: "showReceiveMail?id="+id,
+            url: "showReceiveMail?id=" + id,
             dataType: "json",
             success: function (data, status) {
                 //返回List<Mail>
@@ -408,7 +422,7 @@ window.onload = function () {
         var type = $("#registerUserName").val();
         $.ajax({
             type: "get",
-            url: "showMusicPlay?type="+type,
+            url: "showMusicPlay?type=" + type,
             dataType: "json",
             success: function (data, status) {
                 //返回 List<Music>或List<MusicVideo>
@@ -422,7 +436,7 @@ window.onload = function () {
         var id = $("#registerUserName").val();
         $.ajax({
             type: "get",
-            url: "playMusic?id="+id,
+            url: "playMusic?id=" + id,
             dataType: "json",
             success: function (data, status) {
                 //返回 Music
@@ -436,7 +450,7 @@ window.onload = function () {
         var id = $("#registerUserName").val();
         $.ajax({
             type: "get",
-            url: "playMusicVideo?id="+id,
+            url: "playMusicVideo?id=" + id,
             dataType: "MusicVideo",
             success: function (data, status) {
                 //返回 Music
@@ -482,7 +496,7 @@ window.onload = function () {
         var id = $("#registerUserName").val();
         $.ajax({
             type: "get",
-            url: "deleteComment?id="+id,
+            url: "deleteComment?id=" + id,
             dataType: "json",
             success: function (data, status) {
                 //返回State
@@ -496,7 +510,7 @@ window.onload = function () {
         var id = $("#registerUserName").val();
         $.ajax({
             type: "get",
-            url: "commentFabulous?id="+id,
+            url: "commentFabulous?id=" + id,
             dataType: "json",
             success: function (data, status) {
                 //返回State
@@ -512,7 +526,7 @@ window.onload = function () {
         var type = $("#registerUserName").val();
         $.ajax({
             type: "get",
-            url: "showUserSongList?type="+type,
+            url: "showUserSongList?type=" + type,
             dataType: "json",
             success: function (data, status) {
                 //返回 List<SongList>
@@ -526,7 +540,7 @@ window.onload = function () {
         var type = $("#registerUserName").val();
         $.ajax({
             type: "get",
-            url: "showUserCollectionSongList?type="+type,
+            url: "showUserCollectionSongList?type=" + type,
             dataType: "json",
             success: function (data, status) {
                 //返回 List<SongListCollect>
@@ -594,7 +608,7 @@ window.onload = function () {
         var id = $("#registerUserName").val();
         $.ajax({
             type: "get",
-            url: "editMusicSongListPicture?id="+id,
+            url: "editMusicSongListPicture?id=" + id,
             dataType: "json",
             success: function (data, status) {
                 //返回 State
@@ -608,7 +622,7 @@ window.onload = function () {
         var id = $("#registerUserName").val();
         $.ajax({
             type: "get",
-            url: "deleteMusicSongList?id="+id,
+            url: "deleteMusicSongList?id=" + id,
             dataType: "json",
             success: function (data, status) {
                 //返回 State

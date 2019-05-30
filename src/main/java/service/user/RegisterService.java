@@ -68,34 +68,42 @@ public class RegisterService {
 
                                     } else {
                                         logger.debug("邮箱：" + mailbox + "协议未选中");
+                                        state.setState(-5);
                                         state.setInformation("协议未选中");
                                     }
                                 } else {
                                     logger.debug("邮箱：" + mailbox + "邮箱验证码出错");
+                                    state.setState(-5);
                                     state.setInformation("邮箱验证码出错");
                                 }
                             } else {
                                 logger.debug("邮箱：" + mailbox + "的验证码超时");
+                                state.setState(-4);
                                 state.setInformation("验证码超时");
                             }
                         } else {
                             logger.debug("邮箱：" + mailbox + "请先获取验证码");
+                            state.setState(-4);
                             state.setInformation("请先获取验证码");
                         }
                     } else {
                         logger.debug("邮箱：" + mailbox + "两次密码不相同");
+                        state.setState(-3);
                         state.setInformation("两次密码不相同");
                     }
                 } else {
                     logger.debug("邮箱：" + mailbox + "输入的密码不合法");
+                    state.setState(-3);
                     state.setInformation("输入的密码不合法");
                 }
             } else {
                 logger.debug("邮箱：" + mailbox + "邮箱格式有误");
+                state.setState(-2);
                 state.setInformation("邮箱格式有误");
             }
         } else {
             logger.debug("用户名：" + userName + "用户名格式有误");
+            state.setState(-1);
             state.setInformation("用户名格式有误");
         }
         return state;

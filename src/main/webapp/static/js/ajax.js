@@ -399,28 +399,27 @@ window.onload = function () {
     });
 
     // 歌单专辑篇-------------------------------
-    // 显示歌单专辑信息，根据条件页数显示信息
-    function showSongListInformation(page) {
+    // 显示指的的歌单或专辑的详细信息
+    $(".songListInformation").on("click", function () {
         //得到4个条件存成数组
-        var condition = new Array();
-        condition[0] = $("#registerUserName").val();
-        condition[1] = $("#registerUserName").val();
-        condition[2] = $("#registerUserName").val();
-        condition[3] = $("#registerUserName").val();
+        var id = this.html();
+        alert(id);
         $.ajax({
             contentType: "application/x-www-form-urlencoded;charset=UTF-8",
             type: "post",
-            url: "administrators/showSongList",
+            url: "/administrators/showIdSongList",
             data: {
-                "condition": condition,
-                "pageNum": page
+                "id": id
             },
             dataType: "json",
             success: function (data, status) {
+                alert(data);
+                $("#songListInformation").text(data.introduction);
+                document.getElementById("songListPicture").src=data.picture;
                 // 返回showSongList
             }
         });
-    }
+    });
 
     // 修改专辑信息（仅修改活动）
     $("#registerUser").on("click", function () {

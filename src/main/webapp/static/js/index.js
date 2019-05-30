@@ -84,23 +84,23 @@ $('.icon-like').on('click', function () {
     var httpurl = ""//请求路径
 
     // 用于发送验证码
-    $("#button4").on("click", function () {
-        var registerMail = $("#registerMail").val();
-        $.ajax({
-            type: "get",
-            url: "registerVerificationCode?mailbox=" + registerMail,
-            dataType: "json",
-            success: function (data) {
-                alert(data);
-                // alert(data.registerMail);
-                if (data.state) {
-                    // alert("我调用了");
-                }
-                $("#wc").text(data);
-                document.getElementsByClassName('reg_hed_right')[0].children[1].innerHTML = data.information;
-            }
-        });
-    });
+    // $("#button4").on("click", function () {
+    //     var registerMail = $("#registerMail").val();
+    //     $.ajax({
+    //         type: "get",
+    //         url: "registerVerificationCode?mailbox=" + registerMail,
+    //         dataType: "json",
+    //         success: function (data) {
+    //             alert(data);
+    //             // alert(data.registerMail);
+    //             if (data.state) {
+    //                 // alert("我调用了");
+    //             }
+    //             $("#wc").text(data);
+    //             document.getElementsByClassName('reg_hed_right')[0].children[1].innerHTML = data.information;
+    //         }
+    //     });
+    // });
 
     // 搜索框提示
     $("#search").keyup(function () {
@@ -133,38 +133,38 @@ $('.icon-like').on('click', function () {
     });
 
     // 用于注册账号
-    $("#registerUser").on("click", function () {
-        var registerUserName = $("#registerUserName").val();
-        var registerMail = $("#registerMail").val();
-        var registerPassword = $("#registerPassword").val();
-        var registerPasswordAgain = $("#registerPasswordAgain").val();
-        var verificationCode = $("#verificationCode").val();
-        var agreement = $("#agreement").is(":checked");
-        $.ajax({
-            contentType: "application/x-www-form-urlencoded;charset=UTF-8",
-            type: "post",
-            url: "register",
-            data: {
-                "userName": registerUserName,
-                "sendMail": registerMail,
-                "password": registerPassword,
-                "passwordAgain": registerPasswordAgain,
-                "verificationCode": verificationCode,
-                "agreement": agreement
-            },
-            dataType: "json",
-            success: function (data, status) {
-                // alert(data.state);
-                // alert(data.information);
-                if (data.state) {
-                    // alert("我调用了");
-                }
-                $("#wc").text(data);
-                if (data.state == 0) {
-                    document.getElementsByClassName('reg_hed_right')[0].children[1].innerHTML = data.information;
-                } else {
-                    alert("注册成功了");
-                }
-            }
-        });
-    });
+    // $("#registerUser").on("click", function () {
+    //     var registerUserName = $("#registerUserName").val();
+    //     var registerMail = $("#registerMail").val();
+    //     var registerPassword = $("#registerPassword").val();
+    //     var registerPasswordAgain = $("#registerPasswordAgain").val();
+    //     var verificationCode = $("#verificationCode").val();
+    //     var agreement = $("#agreement").is(":checked");
+    //     $.ajax({
+    //         contentType: "application/x-www-form-urlencoded;charset=UTF-8",
+    //         type: "post",
+    //         url: "register",
+    //         data: {
+    //             "userName": registerUserName,
+    //             "sendMail": registerMail,
+    //             "password": registerPassword,
+    //             "passwordAgain": registerPasswordAgain,
+    //             "verificationCode": verificationCode,
+    //             "agreement": agreement
+    //         },
+    //         dataType: "json",
+    //         success: function (data, status) {
+    //             // alert(data.state);
+    //             // alert(data.information);
+    //             if (data.state) {
+    //                 // alert("我调用了");
+    //             }
+    //             $("#wc").text(data);
+    //             if (data.state == 0) {
+    //                 document.getElementsByClassName('reg_hed_right')[0].children[1].innerHTML = data.information;
+    //             } else {
+    //                 alert("注册成功了");
+    //             }
+    //         }
+    //     });
+    // });

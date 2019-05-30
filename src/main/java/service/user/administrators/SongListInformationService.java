@@ -43,7 +43,7 @@ public class SongListInformationService {
     /**
      * 歌单或专辑的信息
      *
-     * @param condition 1表示歌单或专辑的id，2表示活动的id 3、分类的id  4、歌手的id  5type
+     * @param condition 1表示歌单或专辑的id，2表示活动的id 3、分类的id  4、歌手的id  5、type
      */
     public String showSongList(String[] condition, Integer pageNum, Model model) {
         System.out.println(condition);
@@ -93,6 +93,7 @@ public class SongListInformationService {
         SongList songList = new SongList();
         songList.setId(id);
         List<SongList> list = songListMapper.selectListSongList(songList);
+        System.out.println(list);
         return list.get(0);
     }
 
