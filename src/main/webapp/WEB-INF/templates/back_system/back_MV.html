@@ -28,7 +28,6 @@
                         <input type="text"placeholder="歌手id">
                         <input type="text"placeholder="活动id">
                         <input type="text"placeholder="分类的id">
-
                         <button type="submit" style=" width: 13%;">
                             <img src="img/搜索--1.png" th:src="@{/static/img/搜索--1.png}" alt=""></button>
                     </form>
@@ -37,8 +36,6 @@
 <!--                小日历-->
             <input type="text" class="date-picker">
 
-
-            <!--        模态框    -->
             <!-- 模态框（Modal） -->
             <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
@@ -72,14 +69,29 @@
                 <div class="modal-dialog">
                     <div class="modal-content" style="width:300px;">
                         <div class="modal-header" style="color:#BA55D3;display: flex" >
-                            <h4>新增用户</h4>
+                            <h4>MV添加</h4>
                             <p type="button" class="close" data-dismiss="modal" aria-hidden="true">
                                 &times;
                             </p>
                         </div>
                         <div class="modal-body" style="width:80%;display: flex;flex-direction: column;align-items: center">
-                            <input type="email"  placeholder="请输入邮箱">
-                            <table  style="background:#000;" id="tip1"></table>
+                            <input type="text"  placeholder="id">
+                            <input type="text"  placeholder="名字">
+                            <input type="text"  placeholder="等级">
+                            <input type="text"  placeholder="日期">
+                            <input type="text"  placeholder="歌手id">
+                            <input type="text"  placeholder="活动id">
+                            <input type="text"  placeholder="分类id">
+                            <p> <lable>版权</lable>
+                                <select name="版权">
+                                <option value="是">是</option>
+                                <option value="否">否</option>
+                            </select>
+                            </p>
+
+
+
+                            <table  style="background:#000;"></table>
                             <div class="modal_footer">
                                 <input type="submit" data-toggle="modal" data-target="#myModal_5" style="width:51%; height: 40px; background: #BA55D3;border:none;outline: none;box-shadow: none"  data-dismiss="modal" value="commit"/>
                             </div>
@@ -96,26 +108,16 @@
                 <div class="modal-dialog">
                     <div class="modal-content" style="width:300px;">
                         <div class="modal-header" style="color:#BA55D3;display: flex" >
-                            <h4>邮件状态修改</h4>
+                            <h4>修改信息</h4>
                             <p type="button" class="close" data-dismiss="modal" aria-hidden="true">
                                 &times;
                             </p>
                         </div>
                         <div class="modal-body" style="width:80%;display: flex;flex-direction: column;align-items: center">
-                            <form action="">
-                                <select name="状态">
-                                    <option value="已发送">已发送</option>
-                                    <option value="未发送">未发送</option>
-                                    <option value="标记">标记</option>
-                                </select>
-                            </form>
-
-                            <table  style="background:#000;" id="tip2"></table>
+                            <table  style="background:#000;" ></table>
                             <div class="modal_footer">
                                 <input type="submit" data-toggle="modal" data-target="#myModal_5" style="width:40%; height: 40px; background: #BA55D3;border:none;outline: none;box-shadow: none"  data-dismiss="modal" value="commit"/>
                             </div>
-
-                            </form>
                         </div>
                     </div><!-- /.modal-content -->
                 </div><!-- /.modal -->

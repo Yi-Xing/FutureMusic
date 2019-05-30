@@ -71,7 +71,7 @@ window.onload = function () {
                     alert("注册成功了");
                     setTimeout(function () {
                         location.reload();
-                    },1000); //指定2秒刷新一次
+                    }, 1000); //指定1秒刷新一次
                 }
             }
         });
@@ -96,8 +96,15 @@ window.onload = function () {
             },
             dataType: "json",
             success: function (data, status) {
-                if(data.state===-1){
-
+                if (data.state === 0) {
+                    $('#loginTips').html(data.information);
+                } else {
+                    $('#loginTips').html("");
+                    // 刷新网页
+                    alert("登录成功了");
+                    setTimeout(function () {
+                        location.reload();
+                    }, 1000); //指定1秒刷新一次
                 }
             }
         });
