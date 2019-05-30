@@ -104,7 +104,15 @@ public class Main {
         return "collapse";
     }
 
+    @RequestMapping(value = "/musicLists")
+    public String musicLists() {
+        return "musicLists";
+    }
 
+    @RequestMapping(value = "/saveCenter")
+    public String saveCenter() {
+        return "saveCenter";
+    }
 
 }
 

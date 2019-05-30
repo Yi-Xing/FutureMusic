@@ -28,6 +28,9 @@ public class ValidationInformation {
      * @return boolean 返回用户名是否合法
      */
     public boolean isUserName(String userName) {
+        if (userName == null) {
+            return false;
+        }
         return userName.length() >= 2 && userName.length() <= 6;
     }
 
@@ -39,6 +42,9 @@ public class ValidationInformation {
      * @return boolean 返回验证码是否正确
      */
     public boolean isMailboxVerificationCode(HttpSession session, String verificationCode) {
+        if (verificationCode == null) {
+            return false;
+        }
         return verificationCode.equals(session.getAttribute("verificationCode"));
     }
 
@@ -72,7 +78,10 @@ public class ValidationInformation {
      * @return boolean 返回邮箱是否合法
      */
     boolean isMailbox(String mailbox) {
-        return mailbox.matches("[a-zA-z_0-9]+@[a-zA-z_0-9]{2,6}(\\.[a-zA-z_0-9]{2,3})+");
+        if (mailbox == null) {
+            return false;
+        }
+        return mailbox.matches("[a-zA-z_0-9]+@qq.com");
     }
 
     /**
@@ -94,6 +103,9 @@ public class ValidationInformation {
      * @return boolean 返回密码是否合法
      */
     public boolean isPassword(String password) {
+        if (password == null) {
+            return false;
+        }
         return password.length() >= 8 && password.length() <= 12;
     }
 
@@ -102,6 +114,9 @@ public class ValidationInformation {
      * 用于活动标题，音乐MV歌单专辑的名字
      */
     public boolean isName(String name) {
+        if (name == null) {
+            return false;
+        }
         return name.length() > 0 && name.length() <= 15;
     }
 
@@ -112,21 +127,29 @@ public class ValidationInformation {
      */
     public State isContent(String content) {
         State state = new State();
-        if (content.length() != 0) {
-            if (content.length() <= ConstantUtil.Two_Hundred.getIntValue()) {
-                state.setState(1);
+        if (content != null) {
+            if (content.length() != 0) {
+                if (content.length() <= ConstantUtil.Two_Hundred.getIntValue()) {
+                    state.setState(1);
+                } else {
+                    state.setInformation("内容过长");
+                }
             } else {
-                state.setInformation("内容过长");
+                state.setInformation("内容不能为空");
             }
         } else {
             state.setInformation("内容不能为空");
         }
         return state;
     }
+
     /**
      * 用于判断字符串是不是一个两位小数
      */
-    public boolean isPrice(String string){
+    public boolean isPrice(String string) {
+        if (string == null) {
+            return false;
+        }
         return string.matches("(^[1-9]\\d*|^0)(\\.\\d{1,2}|)$");
     }
 }
