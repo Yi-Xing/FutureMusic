@@ -42,7 +42,7 @@ public class SongList implements Serializable {
      */
     private int classificationId=0;
     /**
-     * 1是专辑2是歌单
+     * 1是歌单2是专辑
      */
     private int type=0;
     /**

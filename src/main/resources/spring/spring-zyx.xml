@@ -17,7 +17,7 @@
        http://www.springframework.org/schema/mvc/spring-mvc.xsd"
 >
 
-    <!--配置aop-->
+<!--    &lt;!&ndash;配置aop&ndash;&gt;-->
 <!--    <aop:config>-->
 <!--        &lt;!&ndash;配置给哪些方法增强&ndash;&gt;-->
 <!--        <aop:pointcut id="notice" expression="execution(* *.*(..))"/>-->
@@ -70,8 +70,10 @@
             <mvc:mapping path="/**"/>
             <bean class="util.interceptor.LoginInterceptor"/>
         </mvc:interceptor>
-        <mvc:interceptor>
-            <!--管理员可以增删改-->
+
+
+   <!--     <mvc:interceptor>
+            &lt;!&ndash;管理员可以增删改&ndash;&gt;
             <mvc:mapping path="/administrators/add*"/>
             <bean class="util.interceptor.AddInterceptor"/>
         </mvc:interceptor>
@@ -84,10 +86,10 @@
             <bean class="util.interceptor.ModifyInterceptor"/>
         </mvc:interceptor>
         <mvc:interceptor>
-            <!--客服以上的权限可以查看-->
+            &lt;!&ndash;客服以上的权限可以查看&ndash;&gt;
             <mvc:mapping path="/administrators/Show*"/>
             <bean class="util.interceptor.ShowInterceptor"/>
-        </mvc:interceptor>
+        </mvc:interceptor>-->
 
 
     </mvc:interceptors>
