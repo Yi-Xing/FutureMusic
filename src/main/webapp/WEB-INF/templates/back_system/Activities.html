@@ -17,7 +17,6 @@
     <div class="main">
         <!--        侧边栏-->
         <div   th:replace="back_system/back_side::html"></div>
-
         <div class="main_right">
             <div class="main_right_header">
                 <div class="mrh">
@@ -25,11 +24,11 @@
                         <input type="text" placeholder="id">
                         <input type="text"placeholder="标题">
                         <input type="text" placeholder="截止日期">
-                            <select name="对象" style="margin: 0 8px;">
-                                <option value="已发送">关于音乐</option>
-                                <option value="未发送">关于vip</option>
-                                <option value="标记">关于专辑</option>
-                            </select>
+                        <select name="对象" style="margin: 0 8px;">
+                            <option value="已发送">关于音乐</option>
+                            <option value="未发送">关于vip</option>
+                            <option value="标记">关于专辑</option>
+                        </select>
                         <button type="submit">
                             <img src="img/搜索--1.png" th:src="@{/static/img/搜索--1.png}" alt=""></button>
                     </form>
@@ -76,7 +75,7 @@
                         </div>
                         <div class="modal-body_1" style="width:80%;display: flex;flex-direction: column;align-items: center">
                             <form action="">
-                                <input type="text"  placeholder="活动ID" >
+                                <input type="text"  placeholder="活动名称" >
                                 <input type="text"  placeholder="开始时间" >
                                 <input type="text"  placeholder="结束时间" >
                                 <input type="text"  placeholder="" >
@@ -91,8 +90,6 @@
                     </div><!-- /.modal-content -->
                 </div><!-- /.modal -->
             </div>
-
-
             <!-- 模态框（Modal_1） -->
             <div class="modal fade" id="myModal_1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel-1" aria-hidden="true">
                 <div class="modal-dialog">
@@ -104,14 +101,13 @@
                             </p>
                         </div>
                         <div class="modal-body" style="width:80%;display: flex;flex-direction: column;align-items: center">
-
                             <form action=""  >
                                 <p>
                                     活动标题：<input type="text" class="input_modal_1" placeholder="活动标题">
                                 </p>
-                               <p>
-                                   折扣优惠：<input type="text" class="input_modal_1" placeholder="折扣百分比">
-                               </p>
+                                <p>
+                                    折扣优惠：<input type="text" class="input_modal_1" placeholder="折扣百分比">
+                                </p>
                                 <p>
                                     开始时间：<input type="text"class="input_modal_1"  placeholder="开始时间">
 
@@ -123,13 +119,13 @@
 
                             </form>
                         </div>
-                            <div class="modal_footer">
-                                <input type="submit" data-toggle="modal" data-target="#myModal_4" style=" width: 52%; height: 40px;margin-top: -3px; background: #BA55D3;border: none; outline: none;box-shadow: none;padding-left: 0px;border-radius: 5px;margin-left: 149px;"  data-dismiss="modal" value="commit"/>
-                            </div>
-                            </form>
+                        <div class="modal_footer">
+                            <input type="submit" data-toggle="modal" data-target="#myModal_4" style=" width: 52%; height: 40px;margin-top: -3px; background: #BA55D3;border: none; outline: none;box-shadow: none;padding-left: 0px;border-radius: 5px;margin-left: 149px;"  data-dismiss="modal" value="commit"/>
                         </div>
-                    </div><!-- /.modal-content -->
-                </div><!-- /.modal -->
+                        </form>
+                    </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal -->
 
             <!-- 模态框（Modal_2） -->
             <div class="modal fade" id="myModal_2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel-2" aria-hidden="true">
@@ -162,7 +158,6 @@
                                 &times;
                             </button>
                             <h4 class="modal-title" id="myModalLabel_3">
-
                             </h4>
                         </div>
                         <div class="modal-body" style="width:200px;height:65px;">
@@ -180,7 +175,6 @@
                     </div><!-- /.modal-content -->
                 </div><!-- /.modal -->
             </div>
-
             <!--            修改成功 modal——4-->
             <div class="modal fade" id="myModal_4" tabindex="-1" role="dialog" aria-labelledby="myModalLabel_4" aria-hidden="true">
                 <div class="modal-dialog">
@@ -241,7 +235,7 @@
 
             <!--            -->
             <div class="main_rh_button">
-                <button data-toggle="modal" data-target="#myModal_6" title="添加邮箱">
+                <button data-toggle="modal"F data-target="#myModal_6" title="添加活动">
                     添加
                 </button>
             </div>
@@ -252,6 +246,7 @@
                     <thead>
                     <tr>
                         <th>ID</th>
+                        <th>活动名称</th>
                         <th>折扣百分比</th>
                         <th>对象</th>
                         <th>开始时间</th>
@@ -263,24 +258,6 @@
                     <tbody>
                     <tr>
                         <td>Bangalore</td>
-                        <td>560001</td>
-                        <td>Tanmay</td>
-                        <td>Bangalore</td>
-                        <td>Bangalore</td>
-                        <td> <button data-toggle="modal" data-target="#myModal">
-                            查看
-                        </button></td>
-                        <td>
-                            <i data-toggle="modal" data-target="#myModal_1" title="修改">
-                                <span class="glyphicon glyphicon-edit"></span>
-                            </i>
-                            <i data-toggle="modal" data-target="#myModal_2" title="删除">
-                                <span class="glyphicon glyphicon-trash"></span>
-                            </i>
-
-                        </td>
-                    </tr>
-                    <tr>
                         <td>Bangalore</td>
                         <td>560001</td>
                         <td>Tanmay</td>
@@ -301,24 +278,6 @@
                     </tr>
                     <tr>
                         <td>Bangalore</td>
-                        <td>560001</td>
-                        <td>Tanmay</td>
-                        <td>Bangalore</td>
-                        <td>Bangalore</td>
-                        <td> <button data-toggle="modal" data-target="#myModal">
-                            查看
-                        </button></td>
-                        <td>
-                            <i data-toggle="modal" data-target="#myModal_1" title="修改">
-                                <span class="glyphicon glyphicon-edit"></span>
-                            </i>
-                            <i data-toggle="modal" data-target="#myModal_2" title="删除">
-                                <span class="glyphicon glyphicon-trash"></span>
-                            </i>
-
-                        </td>
-                    </tr>
-                    <tr>
                         <td>Bangalore</td>
                         <td>560001</td>
                         <td>Tanmay</td>
@@ -339,44 +298,6 @@
                     </tr>
                     <tr>
                         <td>Bangalore</td>
-                        <td>560001</td>
-                        <td>Tanmay</td>
-                        <td>Bangalore</td>
-                        <td>Bangalore</td>
-                        <td> <button data-toggle="modal" data-target="#myModal">
-                            查看
-                        </button></td>
-                        <td>
-                            <i data-toggle="modal" data-target="#myModal_1" title="修改">
-                                <span class="glyphicon glyphicon-edit"></span>
-                            </i>
-                            <i data-toggle="modal" data-target="#myModal_2" title="删除">
-                                <span class="glyphicon glyphicon-trash"></span>
-                            </i>
-
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Bangalore</td>
-                        <td>560001</td>
-                        <td>Tanmay</td>
-                        <td>Bangalore</td>
-                        <td>Bangalore</td>
-                        <td> <button data-toggle="modal" data-target="#myModal">
-                            查看
-                        </button></td>
-                        <td>
-                            <i data-toggle="modal" data-target="#myModal_1" title="修改">
-                                <span class="glyphicon glyphicon-edit"></span>
-                            </i>
-                            <i data-toggle="modal" data-target="#myModal_2" title="删除">
-                                <span class="glyphicon glyphicon-trash"></span>
-                            </i>
-
-                        </td>
-                    </tr>
-                    <tr>
-
                         <td>Bangalore</td>
                         <td>560001</td>
                         <td>Tanmay</td>
@@ -397,24 +318,6 @@
                     </tr>
                     <tr>
                         <td>Bangalore</td>
-                        <td>560001</td>
-                        <td>Tanmay</td>
-                        <td>Bangalore</td>
-                        <td>Bangalore</td>
-                        <td> <button data-toggle="modal" data-target="#myModal">
-                            查看
-                        </button></td>
-                        <td>
-                            <i data-toggle="modal" data-target="#myModal_1" title="修改">
-                                <span class="glyphicon glyphicon-edit"></span>
-                            </i>
-                            <i data-toggle="modal" data-target="#myModal_2" title="删除">
-                                <span class="glyphicon glyphicon-trash"></span>
-                            </i>
-
-                        </td>
-                    </tr>
-                    <tr>
                         <td>Bangalore</td>
                         <td>560001</td>
                         <td>Tanmay</td>
@@ -434,6 +337,108 @@
                         </td>
                     </tr>
                     <tr>
+                        <td>Bangalore</td>
+                        <td>Bangalore</td>
+                        <td>560001</td>
+                        <td>Tanmay</td>
+                        <td>Bangalore</td>
+                        <td>Bangalore</td>
+                        <td> <button data-toggle="modal" data-target="#myModal">
+                            查看
+                        </button></td>
+                        <td>
+                            <i data-toggle="modal" data-target="#myModal_1" title="修改">
+                                <span class="glyphicon glyphicon-edit"></span>
+                            </i>
+                            <i data-toggle="modal" data-target="#myModal_2" title="删除">
+                                <span class="glyphicon glyphicon-trash"></span>
+                            </i>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Bangalore</td>
+                        <td>Bangalore</td>
+                        <td>560001</td>
+                        <td>Tanmay</td>
+                        <td>Bangalore</td>
+                        <td>Bangalore</td>
+                        <td> <button data-toggle="modal" data-target="#myModal">
+                            查看
+                        </button></td>
+                        <td>
+                            <i data-toggle="modal" data-target="#myModal_1" title="修改">
+                                <span class="glyphicon glyphicon-edit"></span>
+                            </i>
+                            <i data-toggle="modal" data-target="#myModal_2" title="删除">
+                                <span class="glyphicon glyphicon-trash"></span>
+                            </i>
+
+                        </td>
+                    </tr>
+                    <tr>
+
+                        <td>Bangalore</td>
+                        <td>Bangalore</td>
+                        <td>560001</td>
+                        <td>Tanmay</td>
+                        <td>Bangalore</td>
+                        <td>Bangalore</td>
+                        <td> <button data-toggle="modal" data-target="#myModal">
+                            查看
+                        </button></td>
+                        <td>
+                            <i data-toggle="modal" data-target="#myModal_1" title="修改">
+                                <span class="glyphicon glyphicon-edit"></span>
+                            </i>
+                            <i data-toggle="modal" data-target="#myModal_2" title="删除">
+                                <span class="glyphicon glyphicon-trash"></span>
+                            </i>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Bangalore</td>
+                        <td>Bangalore</td>
+                        <td>560001</td>
+                        <td>Tanmay</td>
+                        <td>Bangalore</td>
+                        <td>Bangalore</td>
+                        <td> <button data-toggle="modal" data-target="#myModal">
+                            查看
+                        </button></td>
+                        <td>
+                            <i data-toggle="modal" data-target="#myModal_1" title="修改">
+                                <span class="glyphicon glyphicon-edit"></span>
+                            </i>
+                            <i data-toggle="modal" data-target="#myModal_2" title="删除">
+                                <span class="glyphicon glyphicon-trash"></span>
+                            </i>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Bangalore</td>
+                        <td>Bangalore</td>
+                        <td>560001</td>
+                        <td>Tanmay</td>
+                        <td>Bangalore</td>
+                        <td>Bangalore</td>
+                        <td> <button data-toggle="modal" data-target="#myModal">
+                            查看
+                        </button></td>
+                        <td>
+                            <i data-toggle="modal" data-target="#myModal_1" title="修改">
+                                <span class="glyphicon glyphicon-edit"></span>
+                            </i>
+                            <i data-toggle="modal" data-target="#myModal_2" title="删除">
+                                <span class="glyphicon glyphicon-trash"></span>
+                            </i>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Bangalore</td>
                         <td>Bangalore</td>
                         <td>560001</td>
                         <td>Tanmay</td>

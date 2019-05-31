@@ -20,21 +20,42 @@
         <div   th:replace="back_system/back_side::html"></div>
         <div class="main_right">
             <div class="main_right_header">
-                <div class="mrh">
+                <div class="mrh" style="width:90%;">
                     <form action="">
                         <input type="text"placeholder="id">
+                        等级 <select name="等级">
+                        <option value="1">1</option>
+                        <option value="1">2</option>
+                    </select>
                         <input type="text"placeholder="MV名字">
-                        <input type="text"placeholder="歌手id">
-                        <input type="text"placeholder="歌手id">
-                        <input type="text"placeholder="活动id">
-                        <input type="text"placeholder="分类的id">
+                        <input type="text"placeholder="歌手ID">
+                        <input type="text"placeholder="活动ID">
+                        <input type="text"placeholder="分类ID">
+                        版权
+                        <select name="版权">
+                            <option value="是">是</option>
+                            <option value="否">否</option>
+                        </select>
+                        日期
+                        <select name="Date">
+                            <option value="2018">2018</option>
+                            <option value="2019">2019</option>
+                        </select>
+                        <select name="Date">
+                            <option value="1">1</option>
+                            <option value="1">2</option>
+                        </select>
+                        <select name="Date">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                        </select>
                         <button type="submit" style=" width: 13%;">
                             <img src="img/搜索--1.png" th:src="@{/static/img/搜索--1.png}" alt=""></button>
                     </form>
                 </div>
             </div>
-<!--                小日历-->
-            <input type="text" class="date-picker">
+            <!--                用小日历插件替代下拉菜单日期（未完成）-->
+            <!--            <input type="text" class="date-picker">-->
 
             <!-- 模态框（Modal） -->
             <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -258,13 +279,60 @@
                     </div><!-- /.modal-content -->
                 </div><!-- /.modal -->
             </div>
+            <!--            收藏次数         modal_7-->
+            <div class="modal fade" id="myModal_7" tabindex="-1" role="dialog" aria-labelledby="myModalLabel_7" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content" style="width: 200px;height: 174px;margin-top: 200px;">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                                &times;
+                            </button>
+                            <h4 class="modal-title" id="myModalLabel_7">
+                                总播放量
+                            </h4>
+                        </div>
+                        <div class="modal-body" style="width:200px;height:65px;">
+                            <img src="img/播放量.png" th:src="@{/static/img/播放量.png}"  alt="">
+                            <p>f</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button"  data-dismiss="modal" style=" width: 58px;background: #0099FF; height: 33px;border: none;border-radius: 3px;">确定
+                            </button>
+                        </div>
+                    </div><!-- /.modal-content -->
+                </div><!-- /.modal -->
+            </div>
+            <!--            播放量   modal_8      -->
+            <div class="modal fade" id="myModal_8" tabindex="-1" role="dialog" aria-labelledby="myModalLabel_8" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content" style="width: 200px;height: 174px;margin-top: 200px;">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                                &times;
+                            </button>
+                            <h4 class="modal-title" id="myModalLabel_8">
+                                总收藏量
+                            </h4>
+                        </div>
+                        <div class="modal-body" style="width:200px;height:65px;">
+
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button"  data-dismiss="modal" style=" width: 58px;background: #0099FF; height: 33px;border: none;border-radius: 3px;">确定
+                            </button>
+                        </div>
+                    </div><!-- /.modal-content -->
+                </div><!-- /.modal -->
+            </div>
+
+
 
 
 
 
             <!--            -->
             <div class="main_rh_button">
-                <button data-toggle="modal" data-target="#myModal_6" title="添加邮箱">
+                <button data-toggle="modal" data-target="#myModal_6" title="添加MV">
                     添加
                 </button>
             </div>
@@ -280,6 +348,7 @@
                         <th>上传日期</th>
                         <th>是否有版权</th>
                         <th>播放次数</th>
+                        <th>收藏量</th>
                         <th>歌手</th>
                         <th>分类</th>
                         <th>
@@ -298,13 +367,22 @@
                         <td>Bangalore</td>
                         <td>Bangalore</td>
                         <td>Bangalore</td>
-                        <td>560001</td>
+                        <td>
+                            <button data-toggle="modal" data-target="#myModal_7">
+                                查看
+                            </button>
+                        </td>
+                        <td>
+                            <button data-toggle="modal" data-target="#myModal_8">
+                                查看
+                            </button>
+                        </td>
                         <td>Tanmay</td>
                         <td>Bangalore</td>
                         <td>Bangalore</td>
                         <td>
                             <button data-toggle="modal" data-target="#myModal">
-                            查看
+                                查看
                             </button>
                         </td>
                         <td></td>
@@ -325,13 +403,24 @@
                         <td>Bangalore</td>
                         <td>Bangalore</td>
                         <td>Bangalore</td>
-                        <td>560001</td>
+                        <td>
+                            <button data-toggle="modal" data-target="#myModal_7">
+                                查看
+                            </button>
+                        </td>
+                        <td>
+                            <button data-toggle="modal" data-target="#myModal_8">
+                                查看
+                            </button>
+                        </td>
                         <td>Tanmay</td>
                         <td>Bangalore</td>
                         <td>Bangalore</td>
-                        <td> <button data-toggle="modal" data-target="#myModal">
-                            查看
-                        </button></td>
+                        <td>
+                            <button data-toggle="modal" data-target="#myModal">
+                                查看
+                            </button>
+                        </td>
                         <td></td>
                         <td>
                             <i data-toggle="modal" data-target="#myModal_1" title="修改">
@@ -350,13 +439,24 @@
                         <td>Bangalore</td>
                         <td>Bangalore</td>
                         <td>Bangalore</td>
-                        <td>560001</td>
+                        <td>
+                            <button data-toggle="modal" data-target="#myModal_7">
+                                查看
+                            </button>
+                        </td>
+                        <td>
+                            <button data-toggle="modal" data-target="#myModal_8">
+                                查看
+                            </button>
+                        </td>
                         <td>Tanmay</td>
                         <td>Bangalore</td>
                         <td>Bangalore</td>
-                        <td> <button data-toggle="modal" data-target="#myModal">
-                            查看
-                        </button></td>
+                        <td>
+                            <button data-toggle="modal" data-target="#myModal">
+                                查看
+                            </button>
+                        </td>
                         <td></td>
                         <td>
                             <i data-toggle="modal" data-target="#myModal_1" title="修改">
@@ -375,13 +475,24 @@
                         <td>Bangalore</td>
                         <td>Bangalore</td>
                         <td>Bangalore</td>
-                        <td>560001</td>
+                        <td>
+                            <button data-toggle="modal" data-target="#myModal_7">
+                                查看
+                            </button>
+                        </td>
+                        <td>
+                            <button data-toggle="modal" data-target="#myModal_8">
+                                查看
+                            </button>
+                        </td>
                         <td>Tanmay</td>
                         <td>Bangalore</td>
                         <td>Bangalore</td>
-                        <td> <button data-toggle="modal" data-target="#myModal">
-                            查看
-                        </button></td>
+                        <td>
+                            <button data-toggle="modal" data-target="#myModal">
+                                查看
+                            </button>
+                        </td>
                         <td></td>
                         <td>
                             <i data-toggle="modal" data-target="#myModal_1" title="修改">
@@ -400,13 +511,24 @@
                         <td>Bangalore</td>
                         <td>Bangalore</td>
                         <td>Bangalore</td>
-                        <td>560001</td>
+                        <td>
+                            <button data-toggle="modal" data-target="#myModal_7">
+                                查看
+                            </button>
+                        </td>
+                        <td>
+                            <button data-toggle="modal" data-target="#myModal_8">
+                                查看
+                            </button>
+                        </td>
                         <td>Tanmay</td>
                         <td>Bangalore</td>
                         <td>Bangalore</td>
-                        <td> <button data-toggle="modal" data-target="#myModal">
-                            查看
-                        </button></td>
+                        <td>
+                            <button data-toggle="modal" data-target="#myModal">
+                                查看
+                            </button>
+                        </td>
                         <td></td>
                         <td>
                             <i data-toggle="modal" data-target="#myModal_1" title="修改">
@@ -425,13 +547,24 @@
                         <td>Bangalore</td>
                         <td>Bangalore</td>
                         <td>Bangalore</td>
-                        <td>560001</td>
+                        <td>
+                            <button data-toggle="modal" data-target="#myModal_7">
+                                查看
+                            </button>
+                        </td>
+                        <td>
+                            <button data-toggle="modal" data-target="#myModal_8">
+                                查看
+                            </button>
+                        </td>
                         <td>Tanmay</td>
                         <td>Bangalore</td>
                         <td>Bangalore</td>
-                        <td> <button data-toggle="modal" data-target="#myModal">
-                            查看
-                        </button></td>
+                        <td>
+                            <button data-toggle="modal" data-target="#myModal">
+                                查看
+                            </button>
+                        </td>
                         <td></td>
                         <td>
                             <i data-toggle="modal" data-target="#myModal_1" title="修改">
@@ -450,13 +583,24 @@
                         <td>Bangalore</td>
                         <td>Bangalore</td>
                         <td>Bangalore</td>
-                        <td>560001</td>
+                        <td>
+                            <button data-toggle="modal" data-target="#myModal_7">
+                                查看
+                            </button>
+                        </td>
+                        <td>
+                            <button data-toggle="modal" data-target="#myModal_8">
+                                查看
+                            </button>
+                        </td>
                         <td>Tanmay</td>
                         <td>Bangalore</td>
                         <td>Bangalore</td>
-                        <td> <button data-toggle="modal" data-target="#myModal">
-                            查看
-                        </button></td>
+                        <td>
+                            <button data-toggle="modal" data-target="#myModal">
+                                查看
+                            </button>
+                        </td>
                         <td></td>
                         <td>
                             <i data-toggle="modal" data-target="#myModal_1" title="修改">
@@ -475,13 +619,24 @@
                         <td>Bangalore</td>
                         <td>Bangalore</td>
                         <td>Bangalore</td>
-                        <td>560001</td>
+                        <td>
+                            <button data-toggle="modal" data-target="#myModal_7">
+                                查看
+                            </button>
+                        </td>
+                        <td>
+                            <button data-toggle="modal" data-target="#myModal_8">
+                                查看
+                            </button>
+                        </td>
                         <td>Tanmay</td>
                         <td>Bangalore</td>
                         <td>Bangalore</td>
-                        <td> <button data-toggle="modal" data-target="#myModal">
-                            查看
-                        </button></td>
+                        <td>
+                            <button data-toggle="modal" data-target="#myModal">
+                                查看
+                            </button>
+                        </td>
                         <td></td>
                         <td>
                             <i data-toggle="modal" data-target="#myModal_1" title="修改">
@@ -500,13 +655,24 @@
                         <td>Bangalore</td>
                         <td>Bangalore</td>
                         <td>Bangalore</td>
-                        <td>560001</td>
+                        <td>
+                            <button data-toggle="modal" data-target="#myModal_7">
+                                查看
+                            </button>
+                        </td>
+                        <td>
+                            <button data-toggle="modal" data-target="#myModal_8">
+                                查看
+                            </button>
+                        </td>
                         <td>Tanmay</td>
                         <td>Bangalore</td>
                         <td>Bangalore</td>
-                        <td> <button data-toggle="modal" data-target="#myModal">
-                            查看
-                        </button></td>
+                        <td>
+                            <button data-toggle="modal" data-target="#myModal">
+                                查看
+                            </button>
+                        </td>
                         <td></td>
                         <td>
                             <i data-toggle="modal" data-target="#myModal_1" title="修改">
@@ -516,6 +682,41 @@
                                 <span class="glyphicon glyphicon-trash"></span>
                             </i>
 
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Bangalore</td>
+                        <td>560001</td>
+                        <td>Tanmay</td>
+                        <td>Bangalore</td>
+                        <td>Bangalore</td>
+                        <td>Bangalore</td>
+                        <td>
+                            <button data-toggle="modal" data-target="#myModal_7">
+                                查看
+                            </button>
+                        </td>
+                        <td>
+                            <button data-toggle="modal" data-target="#myModal_8">
+                                查看
+                            </button>
+                        </td>
+                        <td>Tanmay</td>
+                        <td>Bangalore</td>
+                        <td>Bangalore</td>
+                        <td>
+                            <button data-toggle="modal" data-target="#myModal">
+                                查看
+                            </button>
+                        </td>
+                        <td></td>
+                        <td>
+                            <i data-toggle="modal" data-target="#myModal_1" title="修改">
+                                <span class="glyphicon glyphicon-edit"></span>
+                            </i>
+                            <i data-toggle="modal" data-target="#myModal_2" title="删除">
+                                <span class="glyphicon glyphicon-trash"></span>
+                            </i>
                         </td>
                     </tr>
                     </tbody>

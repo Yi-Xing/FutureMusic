@@ -71,31 +71,48 @@
                 <div class="modal-dialog">
                     <div class="modal-content" style="width:300px;">
                         <div class="modal-header" style="color:#BA55D3;display: flex">
-                            <h4>新增用户</h4>
+                            <h4>添加</h4>
                             <p type="button" class="close" data-dismiss="modal" aria-hidden="true">
                                 &times;
                             </p>
                         </div>
                         <div class="modal-body"
                              style="width:80%;display: flex;flex-direction: column;align-items: center">
+                            <div class="modal_body_left">
+                                <input type="text"  placeholder="id">
+                                <input type="text"  placeholder="名字">
+                                <input type="text"  placeholder="等级">
+                                <input type="text"  placeholder="日期">
+                                <input type="text"  placeholder="歌手id">
+                                <input type="text"  placeholder="活动id">
+                                <input type="text"  placeholder="分类id">
+                                <p> <lable>版权</lable>
+                                    <select name="版权">
+                                        <option value="是">是</option>
+                                        <option value="否">否</option>
+                                    </select>
+                                </p>
+                            </div>
+                            <div class="modal_body_right" style="display: flex;flex-direction: column">
+                                请插入MV封面
+                                <div class="activities_img" id="image-wrap3" >
+                                </div>
+                                <div class=""><input type="file" id="file3" style="width: 230px;height: 30px;border: none;"></div>
+                                <div class="activities_introduse">
+                                    <textarea rows="5" cols="23">请描述本MV</textarea>
+                                </div>
+                            </div>
 
-                            <input type="email" placeholder="请输入邮箱"
-                                   style="width: 211px;height: 40px;border-radius: 4px;outline: none;border: 0.5px solid #000;box-shadow: none;padding-left: 3px;">
-                            <table style="background:#000;" id="tip1"></table>
                             <div class="modal_footer">
                                 <button type="submit" data-toggle="modal" data-target="#myModal_5"
                                         style="width:40%; height: 40px; background: #BA55D3;border:none;outline: none;box-shadow: none;margin-left: 125px;margin-top: 10px;border-radius: 6px;"
                                         data-dismiss="modal" value="commit">commit
                                 </button>
-
-
                             </div>
                         </div>
                     </div><!-- /.modal-content -->
                 </div><!-- /.modal -->
             </div>
-
-
             <!-- 模态框（Modal_1） -->
             <div class="modal fade" id="myModal_1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel-1"
                  aria-hidden="true">
@@ -116,14 +133,12 @@
                                     <option value="标记">标记</option>
                                 </select>
                             </form>
-
                             <table style="background:#000;" id="tip2"></table>
                             <div class="modal_footer">
                                 <input type="submit" data-toggle="modal" data-target="#myModal_5"
                                        style=" width: 34%; height: 30px;background: #BA55D3;border: none;outline: none;box-shadow: none;padding-left: 0px;border-radius: 4px;margin-left: 140px;margin-top: 16px;"
                                        data-dismiss="modal" value="commit"/>
                             </div>
-
                             </form>
                         </div>
                     </div><!-- /.modal-content -->
