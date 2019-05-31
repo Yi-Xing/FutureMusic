@@ -20,23 +20,23 @@
         <div class="main_right">
             <div class="main_right_header">
                 <div class="mrh">
-                    <form action="">
-                        <input type="text" placeholder="id">
-                        <input type="text"placeholder="邮箱">
-                        <input type="text" placeholder="名字">
-                        <sapn>等级</sapn><select name="等级">
-                        <option value="1">全部</option>
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3" selected>3</option>
-                        <option value="4">4</option>
+                    <form action="/administrators/showUser" method="post">
+                        <input  name="condition" type="text" placeholder="id">
+                        <input  name="condition" type="text"placeholder="邮箱">
+                        <input   name="condition" type="text" placeholder="名字">
+                        <sapn>等级</sapn><select  name="condition" >
+                        <option value="0" selected>全部</option>
+                        <option value="1">VIP</option>
+                        <option value="2">音乐人</option>
+                        <option value="3" >客服</option>
+                        <option value="4">管理员</option>
                     </select>
-                        <span>被举报次数</span><select name="被举报次数" placeholder="bei">
-                        <option value="1">全部</option>
-                        <option value="1">100</option>
-                        <option value="2">200</option>
-                        <option value="3" selected>300</option>
-                        <option value="4">400</option>
+                        <span>被举报次数</span><select name="condition" placeholder="bei">
+                        <option value="0" selected>全部</option>
+                        <option value="100">100</option>
+                        <option value="200">200</option>
+                        <option value="300" >300</option>
+                        <option value="400">400</option>
                     </select>
                         <button type="submit">
                             <img src="img/搜索--1.png" th:src="@{/static/img/搜索--1.png}" alt=""></button>
