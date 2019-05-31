@@ -360,9 +360,11 @@ window.onload = function () {
 
     //音乐和MV篇-------------------------------------------
     //显示用户收藏的所有音乐，显示用户收藏的所有MV
-    $("#registerUser").on("click", function () {
         // 1表示查找音乐收藏 2表示查找MV收藏
-        var type = $("#registerUserName").val();
+    $(".MyFavoriteMusic").on("click", function () {
+        var type = $(this).data("value");
+        // alert(type);
+        console.log(type);
         $.ajax({
             contentType: "application/x-www-form-urlencoded;charset=UTF-8",
             type: "post",
@@ -373,6 +375,7 @@ window.onload = function () {
             dataType: "json",
             success: function (data, status) {
                 //返回 List<MusicCollect>
+
             }
         });
     });

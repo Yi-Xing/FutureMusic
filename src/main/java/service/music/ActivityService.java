@@ -2,15 +2,13 @@ package service.music;
 
 import entity.Activity;
 import entity.Music;
+import entity.Play;
 import entity.SongList;
 import mapper.*;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * @author  蒋靓峣
@@ -24,6 +22,7 @@ private ActivityMapper activityMapper;
     MusicMapper musicMapper;
     @Resource(name = "SongListMapper")
     SongListMapper songListMapper;
+
     /**
      * 在首页中展示活动
      * @return List<Activity>  返回查找到的活动

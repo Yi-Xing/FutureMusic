@@ -63,11 +63,6 @@ public class Main {
         return "back_system/classification";
     }
 
-    @RequestMapping(value = "/noFind")
-    public String noFind() {
-        return "noFind";
-    }
-
     @RequestMapping(value = "/personal")
     public String personal() {
         return "personal";
@@ -104,10 +99,7 @@ public class Main {
         return "back_system/song_list";
     }
 
-    @RequestMapping(value = "/collapse")
-    public String collapse() {
-        return "collapse";
-    }
+
 
     @RequestMapping(value = "/musicLists")
     public String musicLists() {

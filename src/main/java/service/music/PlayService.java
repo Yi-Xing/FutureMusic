@@ -2,14 +2,15 @@ package service.music;
 
 import entity.*;
 import mapper.*;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
-import util.JudgeIsOverdueUtil;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.annotation.Resource;
 import java.util.*;
-
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 /**
  * 对MV的操作的Service
  *
@@ -17,40 +18,19 @@ import java.util.*;
  * */
 @Service(value = "PlayService")
 public class PlayService {
-    private static final Logger logger = LoggerFactory.getLogger(PlayService.class);
     @Resource(name = "MusicMapper")
-    MusicMapper musicMapper;
-    @Resource(name = "ClassificationMapper")
-    ClassificationMapper classificationMapper;
+     MusicMapper musicMapper;
+    @Resource(name = "PlayMapper")
+     PlayMapper playMapper;
     @Resource(name = "UserMapper")
     UserMapper userMapper;
-    @Resource(name = "SongListMapper")
-    SongListMapper songListMapper;
-    @Resource(name = "PlayMapper")
-    PlayMapper playMapper;
-//
-//    /**
-//     * 根据分类查找歌单
-//     * 浏览量
-//     * @param classification 查找歌单
-//     */
-//    public Map<SongList, User> selectListSongListByClassification(Classification classification) {
-//        //获取符合条件得分类对象
-//        List<Integer> classificationIds = new ArrayList<>();
-//        Map<SongList, User> musicSingerMap = new HashMap<>();
-//        User user = new User();
-//        List<Classification> classificationList = classificationMapper.selectListClassification(classification);
-//        for (Classification clf : classificationList) {
-//            //List获取对应得分类id
-//            classificationIds.add(clf.getId());
-//        }
-//        List<SongList> songLists = songListMapper.listIdSelectListSongList(classificationIds);
-//        for (SongList songList : songLists) {
-//            user.setId(songList.getUserId());
-//            musicSingerMap.put(songList, userMapper.selectUser(user).get(0));
-//        }
-//        return musicSingerMap;
-//    }
+
+    public String test() {
+        System.out.println(userMapper);
+        System.out.println(musicMapper);
+        System.out.println(playMapper);
+        return null;
+    }
     /**
      * 查找播放记录
      * 1表示是音乐的播放历史  2表示是MV的播放历史
@@ -115,20 +95,26 @@ public class PlayService {
      * 传入一个音乐的集合，并获取各自的浏览量，指定是音乐集合
      */
     public Map<Integer,Integer> getMusicPlayCount(List<Music> musicList){
-        System.out.println("9999999999999999");
+        System.out.println(userMapper);
+        System.out.println(musicMapper);
+        System.out.println(playMapper);
         if(musicList.size()==0) {
-            System.out.println("rrrrrrrrrrrrrrrrr");
             return null;
         }else {
         Map<Integer,Integer> musicCount = new HashMap<>(16);
+            System.out.println("musicList----------------"+musicList);
             for (Music m : musicList) {
                 Play play = new Play();
                 play.setMusicId(m.getId());
-                System.out.println("gggggggggggggggg");
-                List<Play> plays = playMapper.selectListPlay(play);
-                System.out.println("SSSSSSSSSSSSSSss");
+                play.setType(1);
+                System.out.println(playMapper);
+                System.out.println(musicMapper);
+                System.out.println("play数据库开始查询"+play);
+                List<Play> playss = playMapper.selectListPlay(new Play());
+                System.out.println("我执行完了");
+                List<Play> plays =new ArrayList<>();
+                        System.out.println("数据库查询成功"+plays);
                 musicCount.put(m.getId(), plays.size());
-                System.out.println("PPPPPPPPPPPPP");
             }
             return musicCount;
         }
@@ -139,9 +125,15 @@ public class PlayService {
      */
     public List<Music> sortMusicByPlay(List<Music> musicList){
         if(musicList.size()==0){
-            return null;
+            System.out.println("我要啊返回null");
+            return new  ArrayList<Music>();
         }
+            System.out.println("我准备执行了");
+        System.out.println(userMapper);
+        System.out.println(musicMapper);
+        System.out.println(playMapper);
         Map<Integer,Integer> musicPlay = sortByValueDescending(getMusicPlayCount(musicList));
+        System.out.println("musicPlay"+musicPlay);
         List<Integer> musicIds = new ArrayList<>();
         for(Integer musicId:musicPlay.keySet()){
             musicIds.add(musicId);

@@ -33,6 +33,7 @@ public class OrderInformationService {
     public String showOrder(String[] condition,Integer pageNum, Model model){
         Order order=new Order();
         if (condition != null) {
+            logger.debug("condition[0]"+condition[0]);
             if ((condition[0] != null) && !"".equals(condition[0])) {
                 order.setId(Integer.parseInt(condition[0]));
             }

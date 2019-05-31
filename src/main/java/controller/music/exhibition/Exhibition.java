@@ -45,75 +45,99 @@ public class Exhibition {
 
     @RequestMapping("/indexExhibition")
     @ResponseBody
-    public Map<String,Object> indexExhibition(){
-        Map<String,Object> model = new HashMap<>(16);
+    public Map<String, Object> indexExhibition() {
+        Map<String, Object> model = new HashMap<>(16);
         //首页显示的活动
-        model.put("activities",activity());
+        model.put("activities", activity());
         //首页显示的音乐人
-        model.put("singerAddress1",singerService.exhibitionSingersByRegion(singerAddress1));
-        model.put("singerAddress2",singerService.exhibitionSingersByRegion(singerAddress2));
-        model.put("singerAddress3",singerService.exhibitionSingersByRegion(singerAddress3));
+        System.out.println("----------------------------------");
+        model.put("singerAddress1", singerService.exhibitionSingersByRegion(singerAddress1));
+        System.out.println("----------------------------------");
+        model.put("singerAddress2", singerService.exhibitionSingersByRegion(singerAddress2));
+        model.put("singerAddress3", singerService.exhibitionSingersByRegion(singerAddress3));
         //显示的MV显示15首
-        model.put("musicVideo",musicVideoService.exhibitionMusicVideo());
+        System.out.println("好烦呐");
+        model.put("musicVideo", musicVideoService.exhibitionMusicVideo());
         //新歌前三首歌曲
-        model.put("rankingNewSong",rankingListByNewSong());
+        model.put("rankingNewSong", rankingListByNewSong());
         //电音前三歌曲
+        System.out.println(model);
+        System.out.println("开始检查");
         model.put("rankingByMusicType", rankingListByMusicType(musicType));
+        System.out.println("第一个vabw");
         //首页的歌曲地区排行榜(包括欧美、日韩、华语）
-        model.put("rankingByMusicRegion",rankingListByRegion(region1));
-        model.put("rankingByMusicRegion",rankingListByRegion(region2));
-        model.put("rankingByMusicRegion",rankingListByRegion(region3));
+        model.put("rankingByMusicRegion", rankingListByRegion(region1));
+        System.out.println("33333");
+        model.put("rankingByMusicRegion", rankingListByRegion(region2));
+        model.put("rankingByMusicRegion", rankingListByRegion(region3));
         return model;
     }
+
     /**
-     *      功能：首页的流派排行榜 供总方法调用
-     *          只显示3条数据
+     * 功能：首页的流派排行榜 供总方法调用
+     * 只显示3条数据
+     *
      * @return List<Music> 返回符合条件的歌曲集合
      */
-    public List<Music> rankingListByMusicType(String musicType){
+    public List<Music> rankingListByMusicType(String musicType) {
         List<Music> musicList = musicService.selectListMusicByMusicType(musicType);
         return getThree(musicList);
     }
+
     /**
-     *      功能：首页的新歌排行榜
-     *      根据七天内上传的新歌曲的播放量算
-     *      只显示3条数据
+     * 功能：首页的新歌排行榜
+     * 根据七天内上传的新歌曲的播放量算
+     * 只显示3条数据
+     *
      * @return List<Music> 返回符合条件的歌曲集合
      */
-    public List<Music> rankingListByNewSong(){
+    public List<Music> rankingListByNewSong() {
         List<Music> musicList = musicService.selectListMusicByNewSong();
         return getThree(musicList);
     }
+
     /**
-          *      功能：首页的地区排行榜
-          *      只显示3条数据
-          * @return List<Music> 返回符合条件的歌曲集合
-          */
-    public List<Music> rankingListByRegion(String region){
+     * 功能：首页的地区排行榜
+     * 只显示3条数据
+     *
+     * @return List<Music> 返回符合条件的歌曲集合
+     */
+    public List<Music> rankingListByRegion(String region) {
+        System.out.println("region封装的数据" + region);
         List<Music> musicList = musicService.selectListMusicByRegion(region);
+        System.out.println("rankingListByRegion方法" + musicList);
+        System.out.println("");
         return getThree(musicList);
     }
+
     /**
      * 首页推荐活动的显示
+     *
      * @return List<SongList> 返回专辑的集合
      */
-    public List<Activity> activity(){
+    public List<Activity> activity() {
         List<Activity> activityList = activityService.selectActivity();
         return activityList;
     }
+
     /**
      * 获取三条数据音乐集合
      */
     public List<Music> getThree(List<Music> musicList) {
+        System.out.println("我看i是开始执行力");
         int limit = 0;
         List<Music> rankingMusicList = new ArrayList<>();
+        System.out.println("rankingMusicList的值" + rankingMusicList);
         for (Music music : musicList) {
+            System.out.println("musicList的值" + music);
             rankingMusicList.add(music);
             limit++;
-            if (limit >2) {
+            if (limit > 2) {
                 break;
             }
         }
+        System.out.println("getThree方法" + rankingMusicList);
         return rankingMusicList;
     }
+
 }

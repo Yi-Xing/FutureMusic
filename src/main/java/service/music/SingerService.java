@@ -20,6 +20,8 @@ public class SingerService {
     UserMapper userMapper;
     @Resource(name = "FocusMapper")
     FocusMapper focusMapper;
+    @Resource(name = "PlayService")
+    PlayService playService;
 
     /**
      * 通过名字查找歌手
@@ -40,6 +42,7 @@ public class SingerService {
         User user = new User();
         user.setAddress(region);
         List<User> singerList = userMapper.selectUser(user);
+        System.out.println("userMapper"+userMapper);
         List<ShowSinger> showSingerList = searchSingersListBySinger(singerList);
         return showSingerList;
     }
@@ -108,13 +111,13 @@ public class SingerService {
         System.out.println("222222222222222");
         List<Music> allMusic = musicMapper.selectListMusic(tempMusic);
         System.out.println("3333333333333333");
-        Map<Integer, Integer> playCount = (new PlayService()).getMusicPlayCount(allMusic);
+        Map<Integer, Integer> playCount = playService.getMusicPlayCount(allMusic);
         System.out.println("4444444444444444");
         if(playCount==null||playCount.size()==0){
             return null;
         }else {
             System.out.println("55555555555555");
-            Map<Integer, Integer> sortPlayCount = (new PlayService()).sortByValueDescending(playCount);
+            Map<Integer, Integer> sortPlayCount = playService.sortByValueDescending(playCount);
             List<Music> hotMusic = new ArrayList<>();
             for (Integer musicId : sortPlayCount.keySet()) {
                 Music musicCondition = new Music();
