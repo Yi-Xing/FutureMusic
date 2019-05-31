@@ -60,9 +60,9 @@ public class Exhibition {
         //电音前三歌曲
         model.put("rankingByMusicType", rankingListByMusicType(musicType));
         //首页的歌曲地区排行榜(包括欧美、日韩、华语）
-//        model.put("rankingByMusicRegion",rankingListByRegion(region1));
-//        model.put("rankingByMusicRegion",rankingListByRegion(region2));
-//        model.put("rankingByMusicRegion",rankingListByRegion(region3));
+        model.put("rankingByMusicRegion",rankingListByRegion(region1));
+        model.put("rankingByMusicRegion",rankingListByRegion(region2));
+        model.put("rankingByMusicRegion",rankingListByRegion(region3));
         return model;
     }
     /**
@@ -70,8 +70,8 @@ public class Exhibition {
      *          只显示3条数据
      * @return List<Music> 返回符合条件的歌曲集合
      */
-    public List<Map<String, String[]>> rankingListByMusicType(String musicType){
-        List<Map<String, String[]>> musicList = musicService.selectListMusicByMusicType(musicType);
+    public List<Music> rankingListByMusicType(String musicType){
+        List<Music> musicList = musicService.selectListMusicByMusicType(musicType);
         return getThree(musicList);
     }
     /**
@@ -82,24 +82,15 @@ public class Exhibition {
      */
     public List<Music> rankingListByNewSong(){
         List<Music> musicList = musicService.selectListMusicByNewSong();
-        int limit  = 0;
-        List<Music> rankingMusicList = new ArrayList<>();
-        for(Music m:musicList){
-            rankingMusicList.add(m);
-            limit++;
-            if(limit>2){
-                break;
-            }
-        }
-        return rankingMusicList;
+        return getThree(musicList);
     }
     /**
-     *      功能：首页的地区排行榜
-     *      只显示3条数据
-     * @return List<Music> 返回符合条件的歌曲集合
-     */
-    public List<Map<String, String[]>> rankingListByRegion(String region){
-        List<Map<String, String[]>> musicList = musicService.selectListMusicByRegion(region);
+          *      功能：首页的地区排行榜
+          *      只显示3条数据
+          * @return List<Music> 返回符合条件的歌曲集合
+          */
+    public List<Music> rankingListByRegion(String region){
+        List<Music> musicList = musicService.selectListMusicByRegion(region);
         return getThree(musicList);
     }
     /**
@@ -110,18 +101,17 @@ public class Exhibition {
         List<Activity> activityList = activityService.selectActivity();
         return activityList;
     }
-
     /**
-     * 获取三条数据
+     * 获取三条数据音乐集合
      */
-    public List<Map<String, String[]>> getThree(List<Map<String, String[]>> musicList) {
+    public List<Music> getThree(List<Music> musicList) {
         int limit = 0;
-        List<Map<String, String[]>> rankingMusicList = new ArrayList<>();
-        for (Map<String, String[]> threeMusic : musicList) {
-            rankingMusicList.add(threeMusic);
+        List<Music> rankingMusicList = new ArrayList<>();
+        for (Music music : musicList) {
+            rankingMusicList.add(music);
             limit++;
             if (limit >2) {
-            break;
+                break;
             }
         }
         return rankingMusicList;
