@@ -20,13 +20,12 @@
         <div class="container-fluid">
             <div class="personal_information">
                 <a href="javascript:;" class="pull-left">
-                    <img src="img/头像_邓紫棋.jpg" th:src="@{/static/img/头像_邓紫棋.jpg}" alt="">
+                    <img src="img/头像_邓紫棋.jpg" th:src="${session.userInformation.headPortrait}" alt="">
                 </a>
                 <div class="pull-left name">
                     <a href="javascript:;">
-                        <h2>
-                            name
-                            <span class="iconfont icon-iconvip" data-toggle="modal" data-target="#vip"></span>
+                        <div>
+                            <h2 th:text="${session.userInformation.name}">name<span class="iconfont icon-iconvip" data-toggle="modal" data-target="#vip"></span></h2>
                             <div class="modal fade" id="vip" tabindex="-1" role="dialog" aria-labelledby="vip">
                                 <div class="modal-dialog" role="document">
                                     <div class="modal-content">
@@ -62,9 +61,9 @@
                                     </div>
                                 </div>
                             </div>
-                        </h2>
-                        <h3>2</h3>
-                        <h3>3</h3>
+                        </div>
+                        <h3>关注：</h3>
+                        <h3>粉丝：</h3>
                     </a>
                 </div>
             </div>
@@ -149,10 +148,10 @@
         </nav>
         <div id="iLike" class="personalCenterTab">
             <div class="btn-group" role="group" aria-label="...">
-                <button type="button" class="btn btn-success">歌曲</button>
+                <button type="button" class="btn btn-success MyFavoriteMusic"  data-value="1">歌曲</button>
                 <button type="button" class="btn btn-success">歌单</button>
                 <button type="button" class="btn btn-success">专辑</button>
-                <button type="button" class="btn btn-success">视频</button>
+                <button type="button" class="btn btn-success MyFavoriteMusic" data-value="2">视频</button>
             </div>
             <div id="woxihuan">
                 <div id="gequ" class="likeTab">
@@ -318,7 +317,7 @@
                     <div class="follow">
                         <div class="follow_top">
                             <a href="javascript:;">
-                                <img src="/static/img/头像_邓紫棋.jpg" th:src="/static/img/头像_邓紫棋.jpg" alt="">
+                                <img src="/static/img/头像_邓紫棋.jpg" th:src="@{/static/img/头像_邓紫棋.jpg}" alt="">
                             </a>
                         </div>
                         <div class="follow_bottom">
@@ -337,7 +336,7 @@
                     <div class="fans">
                         <div class="fans_top">
                             <a href="javascript:;">
-                                <img src="/FutureMusic_war_exploded/static/img/头像_邓紫棋.jpg" alt="">
+                                <img src="/static/img/头像_邓紫棋.jpg" alt="">
                             </a>
                         </div>
                         <div class="fans_bottom">
@@ -400,7 +399,7 @@
                         账户余额
                         <span class="iconfont icon-iconvip"></span>
                     </h2>
-                    <h3>￥6.00</h3>
+                    <h3 th:text="'￥ '+${session.userInformation.balance}">￥6.00</h3>
                     <button class="btn btn-danger pull-right" id="Recharge" data-toggle="modal" data-target="#recharge_container" data-whatever="Recharge">充值余额</button>
                     <div class="modal fade" id="recharge_container" tabindex="-1" role="dialog" aria-labelledby="recharge_container">
                         <div class="modal-dialog" role="document">
@@ -461,4 +460,5 @@
 </body>
 <div th:replace="on-load-js::on-load-js"></div>
 <script src="../../static/js/personal.js" th:src="@{/static/js/personal.js}"></script>
+<script src="../../static/js/personal.js" th:src="@{/static/js/ajaxIndex.js}"></script>
 </html>

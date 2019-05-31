@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import service.user.administrators.UserInformationService;
 import util.exception.DataBaseException;
@@ -40,7 +41,7 @@ public class UserInformation {
      * @param pageNum 表示当前第几页
      */
     @RequestMapping(value = "/showUser")
-    public String showUser(String[] condition,Integer pageNum, Model model) {
+    public String showUser(String[] condition, @RequestParam(defaultValue="1")Integer pageNum, Model model) {
         return userInformationService.showUser(condition,pageNum,model);
     }
 

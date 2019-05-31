@@ -105,7 +105,7 @@ var httpurl = ""//请求路径
 $("#search").keyup(function () {
     var searchVal = this.value;
     var search_tips = $('.search_tips')[0];
-    var tips_head = "<li><a href='javascript:;'>";
+    var tips_head = "<li><a href='./musics.html?musicId='>";
     var tips_last = "</a></li>";
     var tips = "";
     $.ajax({
@@ -115,13 +115,15 @@ $("#search").keyup(function () {
         data: {keyWord: searchVal},
         dataType: "json",
         success: function (data, status) {
+            var music = data[1];
             if (searchVal === '') {
                 search_tips.innerHTML = '';
             } else {
-                for (var i = 0; i < data.length; i++) {
-                    console.log(data[i]);
-                    var musicName = data[i].getName(0).name;
-
+                console.log(music);
+                for (let i in music) {
+                    var musicName = music[i].name;
+                    tips_head = "<li><a href='./musics.html?musicId="+ music[i].id +"'>";
+                    console.log(tips_head);
                     tips = tips + tips_head + musicName + tips_last;
                 }
                 search_tips.innerHTML = tips;
@@ -170,6 +172,28 @@ $("#search").keyup(function () {
 
 
 //AJAX
+// $.ajax({
+//     contentType: "application/x-www-form-urlencoded;charset=UTF-8",
+//     url: "indexExhibition",
+//     type: 'post',
+//     // dataType: "json",
+//     success:function (data) {
+//         console.log(data);
+//         console.log(data.rankingNewSong);
+//         var dianyin = data.rankingByMusicType;
+//         var xinge = data.rankingNewSong;
+//         for (i = 0; i < dianyin.length; i++) {
+//             console.log(dianyin[i]);
+//         }
+//         for (j = 0; j < xinge.length; j++) {
+//             console.log(xinge[j]);
+//         }
+//     },
+//     error:function () {
+//         console.log("错误!")
+//     }
+// });
+
 var like = 0;
 $(".thumbnail .icon-like").click(function () {
     var musicId = $(this).parent().parent().parent()[0].children[0];
@@ -178,13 +202,13 @@ $(".thumbnail .icon-like").click(function () {
     $.ajax({
         contentType: "application/json;charset=UTF-8",
         type: "post",
-        dataType: "json",
+        // dataType: "json",
         url: "collectionMusic",
         data:{
             "musicId" : musicId,
             "type" : 1,
         },
-        success: function (data, status) {
+        success: function (data) {
             console.log(111);
             let obj = $(this)[0];
             if (like === 0) {

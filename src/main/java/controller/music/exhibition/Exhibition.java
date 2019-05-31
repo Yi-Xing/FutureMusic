@@ -32,6 +32,8 @@ public class Exhibition {
     MusicService musicService;
     @Resource(name = "ActivityService")
     ActivityService activityService;
+
+
     private final String musicType = "电音";
     private final String region1 = "华语";
     private final String region2 = "日韩";
