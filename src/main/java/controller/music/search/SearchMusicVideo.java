@@ -42,23 +42,7 @@ public class SearchMusicVideo {
         model.addAttribute("musicVideoDetail",musicVideoDetail);
         return "musicVideoDetail";
     }
-    /**
-     * 搜索MV
-     * @param pn 当前页数
-     * @param keyWord 关键字
-     */
-    @RequestMapping("/searchMusicVideoByName")
-    @ResponseBody
-    public PageInfo searchMusicVideoByName(@RequestParam(required = false,value = "pn", defaultValue = "1") Integer pn,
-                                     @RequestParam(value = "keyWord",defaultValue = "")String keyWord) {
-
-        PageHelper.startPage(pn, 10);
-        MusicVideo musicVideo = new MusicVideo();
-        musicVideo.setName(keyWord);
-        List<String[]> musicVideoList = musicVideoService.selectListMusicVideoByVideoName(musicVideo);
-        return new PageInfo(musicVideoList);
-    }
-    /**
+   /**
      * 根据分类查找MV
      * @param pn 分页
      * @param region 地区

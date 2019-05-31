@@ -12,6 +12,7 @@ import org.springframework.web.servlet.ModelAndView;
 import service.music.ActivityService;
 import service.music.DetailsService;
 import service.music.MusicService;
+import service.music.MusicVideoService;
 
 import javax.annotation.Resource;
 import java.util.Map;
@@ -29,6 +30,7 @@ public class Detail {
     @Resource(name = "MusicService")
     MusicService musicService;
     @Resource(name = "MusicVideoService")
+    MusicVideoService musicVideoService;
 
 
 

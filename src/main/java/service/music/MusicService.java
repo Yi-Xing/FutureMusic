@@ -102,13 +102,13 @@ public class MusicService {
         //获取精彩评论详细信息
         musicAllInformationMap.put("goodComment",
                 new ShowCommentService().commentByMusicId(resultMusic.getId()));
+        System.out.println("2222222222222");
         //获取最新评论
         musicAllInformationMap.put("lastComment",
                 new ShowCommentService().commentLastByMusicId(resultMusic.getId()));
+        System.out.println("33333333333");
         return musicAllInformationMap;
     }
-
-
     /**
      * 音乐的流派榜
      *

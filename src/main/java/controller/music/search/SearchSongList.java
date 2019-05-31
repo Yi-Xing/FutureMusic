@@ -44,7 +44,7 @@ public class SearchSongList {
     }
 
     /**
-     * 点击搜索专辑，ajax
+     * 点击搜索专辑/专辑，ajax
      *
      * @param pn 接收请求
      * @return List<SongList>返回匹配到的歌曲
