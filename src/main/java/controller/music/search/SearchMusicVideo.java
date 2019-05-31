@@ -34,13 +34,12 @@ public class SearchMusicVideo {
      * 显示MV的详细信息
      */
     @RequestMapping(value = "/showMusicVideoDetail")
-    @ResponseBody
-    public  String showMusicVideoDetail(String musicVideoId,Model model){
+    public  String showMusicVideoDetail(@RequestParam(value = "musicVideoId",defaultValue = "1") String musicVideoId,Model model){
         MusicVideo musicVideo = new MusicVideo();
         musicVideo.setId(Integer.parseInt(musicVideoId));
         Map<String,Object> musicVideoDetail = musicVideoService.showMusicVideo(musicVideo);
         model.addAttribute("musicVideoDetail",musicVideoDetail);
-        return "musicVideoDetail";
+        return "index";
     }
    /**
      * 根据分类查找MV

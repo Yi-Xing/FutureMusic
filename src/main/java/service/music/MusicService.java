@@ -32,6 +32,8 @@ public class MusicService {
     PlayMapper playMapper;
     @Resource(name = "MusicCollectMapper")
     MusicCollectMapper musicCollectMapper;
+    @Resource(name = "PlayService")
+    PlayService playService;
     /**
      * 显示歌曲的详细信息
      *     音乐、专辑图片、歌手信息、分类信息、评论（精彩评论、最新评论）、MV(如果有，显示mv的信息，如果无，显示其他相关歌单）
@@ -134,7 +136,7 @@ public class MusicService {
         classification.setRegion(region);
         List<Music> musicList = selectListMusicByClassification(classification);
         System.out.println("selectListMusicByRegion方法1"+musicList);
-        List<Music> resultMusic = (new PlayService()).sortMusicByPlay(musicList);
+        List<Music> resultMusic = playService.sortMusicByPlay(musicList);
         System.out.println("selectListMusicByRegion方法2"+resultMusic);
         return resultMusic;
     }

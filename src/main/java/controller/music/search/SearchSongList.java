@@ -6,6 +6,7 @@ import entity.ShowSinger;
 import entity.SongList;
 import entity.User;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -36,11 +37,12 @@ public class SearchSongList {
      * @return Map<String,Object>
      */
     @RequestMapping(value = "/showSongListDetail")
-    @ResponseBody
-    public Map<String,Object> showSongListDetail(@RequestParam(value = "songListId",defaultValue = "1")int songListId){
+    public String showSongListDetail(@RequestParam(value = "songListId",defaultValue = "1")int songListId, Model model){
         SongList songList = new SongList();
         songList.setId(songListId);
-        return songListService.showSongList(songList);
+        Map<String,Object> songListDetail = songListService.showSongList(songList);
+        model.addAttribute("songListDetail",songListDetail);
+        return "musicList";
     }
 
     /**
@@ -49,14 +51,12 @@ public class SearchSongList {
      * @param pn 接收请求
      * @return List<SongList>返回匹配到的歌曲
      */
-    @RequestMapping(value = "/searchListSongList")
+    @RequestMapping(value = "/showSongListByClassification")
     @ResponseBody
-    public PageInfo searchListSongList(@RequestParam(required = false,value = "pn", defaultValue = "1") Integer pn,
-                                       @RequestParam(value = "keyWord",defaultValue = "")String keyWord) {
+    public PageInfo showSongListByClassification(@RequestParam(required = false,value = "pn", defaultValue = "1") Integer pn,
+                                       @RequestParam(value = "classification",defaultValue = "国语")String classification) {
         PageHelper.startPage(pn, 10);
-        SongList songList = new SongList();
-        songList.setName(keyWord);
-        Map<String,Object>  showSongList= songListService.showSongList(songList);
+        Map<String,Object>  showSongList= songListService.showSongListByClassification(classification);
         List<Map<String,Object>> resultSongListMap = new ArrayList<>();
         resultSongListMap.add(showSongList);
         PageInfo page = new PageInfo(resultSongListMap, 5);
