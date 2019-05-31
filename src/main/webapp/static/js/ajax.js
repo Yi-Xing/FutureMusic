@@ -746,40 +746,14 @@ window.onload = function () {
     });
 
     // 订单篇----------------------------------------
-    //显示订单
-    function showUserInformation(page) {
-        //得到4个条件存成数组
-        var condition = new Array();
-        condition[0] = $("#registerUserName").val();
-        condition[1] = $("#registerUserName").val();
-        condition[2] = $("#registerUserName").val();
-        $.ajax({
-            contentType: "application/x-www-form-urlencoded;charset=UTF-8",
-            type: "post",
-            url: "administrators/showOrder",
-            data: {
-                "condition": condition,
-                "pageNum": page
-            },
-            dataType: "json",
-            success: function (data, status) {
-                // 返回PageInfo
-            }
-        });
-    }
 
-    // 删除订单
-    $("#registerUser").on("click", function () {
-        // id
-        var id = $("#registerUserName").val();
-        $.ajax({
-            type: "get",
-            url: "administrators/deleteOrder?id=" + id,
-            dataType: "json",
-            success: function (data, status) {
-                // 返回state
-            }
-        });
+
+    // 点击删除订单按钮触发的事件
+    $(".orderInformationDelete").on("click", function () {
+        // 得到对应的id
+        var ids= $(this).data("id");
+        // var id = this.getAttribute("value");
+        $("#orderInformationDeleteId").attr("value",ids);
     });
 
 

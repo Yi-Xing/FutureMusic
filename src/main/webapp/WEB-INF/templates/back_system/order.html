@@ -21,9 +21,11 @@
         <div class="main_right">
             <div class="main_right_header">
                 <div class="mrh">
-                    <form action="">
-                        <input type="text" placeholder="用户id">
-                        <input type="text"placeholder="音乐/MV id">
+                    <form action="/administrators/showOrder">
+                        <input type="text"  name="condition" placeholder=" id">
+                        <input type="text"  name="condition" placeholder="音乐 id">
+                        <input type="text"  name="condition" placeholder="MV id">
+                        <input type="text"  name="condition" placeholder="用户id">
                         <button type="submit">
                             <img src="img/搜索--1.png" th:src="@{/static/img/搜索--1.png}" alt=""></button>
                     </form>
@@ -74,9 +76,14 @@
                             确定要删除吗？
                         </div>
                         <div class="modal-footer">
-                            <button type="button"  data-dismiss="modal" data-toggle="modal" data-target="#myModal_3">
-                                commit
-                            </button>
+                            <form action="/administrators/deleteOrder" method="post">
+                                <!--用来存储id看不了-。- -->
+                                <input id="orderInformationDeleteId" name="id" style="display:none"/>
+                                <!--data-dismiss="modal" data-toggle="modal" data-target="#myModal_3"-->
+                                <button type="submit">
+                                    commit
+                                </button>
+                            </form>
                             <button type="button"  data-dismiss="modal">cancel
                             </button>
                         </div>
@@ -146,203 +153,37 @@
                     <!--                    content table table-hover-->
                     <thead>
                     <tr>
+                        <th>id</th>
                         <th>用户id</th>
                         <th>音乐/MV</th>
                         <th>类型</th>
                         <th>歌手id</th>
                         <th>专辑id</th>
                         <th>分类id</th>
-                        <th>购买前的原价</th>
-                        <th>购买时候的价格</th>
+                        <th>原价</th>
+                        <th>现价</th>
                         <th>支付方式</th>
                         <th>购买日期</th>
                         <th></th>
                     </tr>
                     </thead>
-                    <tbody>
+                    <tbody th:each="list:${pageInfo.list}" >
                     <tr>
-                        <td><a href="#">Bangalore</a></td>
-                        <td><a href="#"></a></td>
-                        <td><a href="#"></a></td>
-                        <td><a href="#"></a></td>
-                        <td><a href="#"></a></td>
-                        <td><a href="#"></a></td>
-                        <td>560001</td>
-                        <td>560001</td>
-                        <td>560001</td>
-                        <td>Tanmay</td>
+                        <td ><a href="#" th:text="${list.id}"></a></td>
+                        <td ><a href="#" th:text="${list.userId}"></a></td>
+                        <td><a href="#" th:text="${list.musicId}"></a></td>
+                        <td><a href="#" th:text="${list.type}" ></a></td>
+                        <td><a href="#" th:text="${list.singerId}"></a></td>
+                        <td><a href="#" th:text="${list.albumId}"></a></td>
+                        <td><a href="#" th:text="${list.classificationId}"></a></td>
+                        <td th:text="${list.originalPrice}"></td>
+                        <td th:text="${list.price}"></td>
+                        <td th:text="${list.mode}"></td>
+                        <td th:text="${#dates.format(list.date, 'yyyy-MM-dd HH:mm:ss')}" ></td>
                         <td>
-                            <i data-toggle="modal" data-target="#myModal_2" title="删除">
+                            <i th:data-id="${list.id}" class="orderInformationDelete" data-toggle="modal" data-target="#myModal_2" title="删除">
                                 <span class="glyphicon glyphicon-trash"></span>
                             </i>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Bangalore</td>
-                        <td><a href="#"></a></td>
-                        <td><a href="#"></a></td>
-                        <td><a href="#"></a></td>
-                        <td><a href="#"></a></td>
-                        <td><a href="#"></a></td>
-                        <td>560001</td>
-                        <td>560001</td>
-                        <td>560001</td>
-                        <td>Tanmay</td>
-                        <td>
-
-                            <i data-toggle="modal" data-target="#myModal_2" title="删除">
-                                <span class="glyphicon glyphicon-trash"></span>
-                            </i>
-
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Bangalore</td>
-                        <td><a href="#"></a></td>
-                        <td><a href="#"></a></td>
-                        <td><a href="#"></a></td>
-                        <td><a href="#"></a></td>
-                        <td><a href="#"></a></td>
-                        <td>560001</td>
-                        <td>560001</td>
-                        <td>560001</td>
-                        <td>Tanmay</td>
-                        <td>
-
-                            <i data-toggle="modal" data-target="#myModal_2" title="删除">
-                                <span class="glyphicon glyphicon-trash"></span>
-                            </i>
-
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Bangalore</td>
-                        <td><a href="#"></a></td>
-                        <td><a href="#"></a></td>
-                        <td><a href="#"></a></td>
-                        <td><a href="#"></a></td>
-                        <td><a href="#"></a></td>
-                        <td>560001</td>
-                        <td>560001</td>
-                        <td>560001</td>
-                        <td>Tanmay</td>
-                        <td>
-
-                            <i data-toggle="modal" data-target="#myModal_2" title="删除">
-                                <span class="glyphicon glyphicon-trash"></span>
-                            </i>
-
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Bangalore</td>
-                        <td><a href="#"></a></td>
-                        <td><a href="#"></a></td>
-                        <td><a href="#"></a></td>
-                        <td><a href="#"></a></td>
-                        <td><a href="#"></a></td>
-                        <td>560001</td>
-                        <td>560001</td>
-                        <td>560001</td>
-                        <td>Tanmay</td>
-                        <td>
-
-                            <i data-toggle="modal" data-target="#myModal_2" title="删除">
-                                <span class="glyphicon glyphicon-trash"></span>
-                            </i>
-
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Bangalore</td>
-                        <td><a href="#"></a></td>
-                        <td><a href="#"></a></td>
-                        <td><a href="#"></a></td>
-                        <td><a href="#"></a></td>
-                        <td><a href="#"></a></td>
-                        <td>560001</td>
-                        <td>560001</td>
-                        <td>560001</td>
-                        <td>Tanmay</td>
-                        <td>
-
-                            <i data-toggle="modal" data-target="#myModal_2" title="删除">
-                                <span class="glyphicon glyphicon-trash"></span>
-                            </i>
-
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Bangalore</td>
-                        <td><a href="#"></a></td>
-                        <td><a href="#"></a></td>
-                        <td><a href="#"></a></td>
-                        <td><a href="#"></a></td>
-                        <td><a href="#"></a></td>
-                        <td>560001</td>
-                        <td>560001</td>
-                        <td>560001</td>
-                        <td>Tanmay</td>
-                        <td>
-
-                            <i data-toggle="modal" data-target="#myModal_2" title="删除">
-                                <span class="glyphicon glyphicon-trash"></span>
-                            </i>
-
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Bangalore</td>
-                        <td><a href="#"></a></td>
-                        <td><a href="#"></a></td>
-                        <td><a href="#"></a></td>
-                        <td><a href="#"></a></td>
-                        <td><a href="#"></a></td>
-                        <td>560001</td>
-                        <td>560001</td>
-                        <td>560001</td>
-                        <td>Tanmay</td>
-                        <td>
-                            <i data-toggle="modal" data-target="#myModal_2" title="删除">
-                                <span class="glyphicon glyphicon-trash"></span>
-                            </i>
-
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Bangalore</td>
-                        <td><a href="#"></a></td>
-                        <td><a href="#"></a></td>
-                        <td><a href="#"></a></td>
-                        <td><a href="#"></a></td>
-                        <td><a href="#"></a></td>
-                        <td>560001</td>
-                        <td>560001</td>
-                        <td>560001</td>
-                        <td>Tanmay</td>
-                        <td>
-                            <i data-toggle="modal" data-target="#myModal_2" title="删除">
-                                <span class="glyphicon glyphicon-trash"></span>
-                            </i>
-
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Bangalore</td>
-                        <td><a href="#"></a></td>
-                        <td><a href="#"></a></td>
-                        <td><a href="#"></a></td>
-                        <td><a href="#"></a></td>
-                        <td><a href="#"></a></td>
-                        <td>560001</td>
-                        <td>560001</td>
-                        <td>560001</td>
-                        <td>Tanmay</td>
-                        <td>
-                            <i data-toggle="modal" data-target="#myModal_2" title="删除">
-                                <span class="glyphicon glyphicon-trash"></span>
-                            </i>
-
                         </td>
                     </tr>
                     </tbody>
@@ -355,15 +196,15 @@
                 <div class="zzsc">
                     <!--                currentpage="1" numbercount="**"-->
                     <ul class="page" id="page" pagelistcount="10" maxshowpageitem="5">
-                        <li class="pageItemDisable" page-rel="firstpage" page-data="1">首页</li>
-                        <li class="pageItemDisable" page-rel="prepage" page-data="0">&lt;上一页</li>
+                        <li class="pageItemDisable" page-rel="firstpage" page-data="1"><a
+                                th:href="@{/administrators/showOrder(condition=${conditionZero},condition=${conditionOne},condition=${conditionTwo},condition=${conditionThree},pageNum=1)}">首页</a></li>
+                        <li class="pageItemDisable" page-rel="prepage" page-data="0"><a
+                                th:href="@{/administrators/showOrder(condition=${conditionZero},condition=${conditionOne},condition=${conditionTwo},condition=${conditionThree},pageNum=${pageInfo.pageNum-1})}">上一页</a></li>
                         <li class="pageItemActive" page-rel="itempage" page-data="1">1</li>
-                        <li class="pageItem" page-rel="itempage" page-data="2">2</li>
-                        <li class="pageItem" page-rel="itempage" page-data="3">3</li>
-                        <li class="pageItem" page-rel="itempage" page-data="4">4</li>
-                        <li class="pageItem" page-rel="itempage" page-data="5">5</li>
-                        <li class="pageItem" page-rel="nextpage" page-data="2">下一页&gt;</li>
-                        <li class="pageItem" page-rel="lastpage" page-data="8">尾页</li>
+                        <li class="pageItem" page-rel="nextpage" page-data="2"><a
+                                th:href="@{/administrators/showOrder(condition=${conditionZero},condition=${conditionOne},condition=${conditionTwo},condition=${conditionThree},pageNum=${pageInfo.pageNum+1})}">下一页&gt;</a></li>
+                        <li class="pageItem" page-rel="lastpage" page-data="8"><a
+                                th:href="@{/administrators/showOrder(condition=${conditionZero},condition=${conditionOne},condition=${conditionTwo},condition=${conditionThree},pageNum=${pageInfo.pages})}">尾页</a></li>
                     </ul>
                 </div>
             </div>
@@ -377,4 +218,5 @@
 <script src="js/back_system.js" th:src="@{/static/js/back_system.js}"></script>
 <script src="js/page.js" th:src="@{/static/js/page.js}" ></script>
 <script src="js/Email.js" th:src="@{/static/js/page.js}" ></script>
+<script src="js/song_list.js" th:src="@{/static/js/ajax.js}"></script>
 </html>

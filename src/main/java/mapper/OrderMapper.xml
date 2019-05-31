@@ -6,6 +6,9 @@
     <select id="selectListOrder" parameterType="Order" resultMap="order">
         select * from tb_order
         <where>
+            <if test='id!=0'>
+                order_id=#{id}
+            </if>
             <if test='userId!=0'>
                 order_user_id=#{userId}
             </if>
