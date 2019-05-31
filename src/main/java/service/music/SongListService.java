@@ -5,21 +5,22 @@ import mapper.*;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+/**
+ * @author 蒋靓峣
+ */
 @Service(value = "SongListService")
 public class SongListService {
-    @Resource(name="MusicMapper")
-    MusicMapper musicMapper;
     @Resource(name="ClassificationMapper")
     ClassificationMapper classificationMapper;
     @Resource(name = "UserMapper")
     UserMapper userMapper;
     @Resource(name = "SongListMapper")
     SongListMapper songListMapper;
-    @Resource(name = "MusicVideoMapper")
-    MusicVideoMapper musicVideoMapper;
     @Resource(name = "ShowCommentService")
     ShowCommentService showCommentService;
     @Resource(name = "MusicSongListMapper")
@@ -28,6 +29,10 @@ public class SongListService {
     PlayMapper playMapper;
     @Resource(name = "SongListCollectMapper")
     SongListCollectMapper songListCollectMapper;
+    @Resource(name = "MusicService")
+    MusicService musicService;
+    @Resource(name = "MusicMapper")
+    MusicMapper musicMapper;
     /**
      *根据分类搜索歌单
      */
@@ -71,7 +76,7 @@ public class SongListService {
         MusicSongList musicSongList   = new MusicSongList();
         musicSongList.setBelongId(resultSongList.getId());
         List<MusicSongList> musicSongLists = musicSongListMapper.selectListMusicSongList(musicSongList);
-        songListMap.put("musicSongList",musicSongLists);
+        songListMap.put("musicSongList",transformationMusic(musicSongLists));
         songListMap.put("musicSongListComment",showCommentService.commentByListSongId(resultSongList.getId()));
         songListMap.put("musicSongListLastComment",showCommentService.commentLastByListSongId(resultSongList.getId()));
         Play play = new Play();
@@ -84,5 +89,17 @@ public class SongListService {
         songListMap.put("songListCollectCount",songListCollects.size());
         return songListMap;
     }
-
+    /**
+     * 将MusicSongList转化成显示的歌曲
+     */
+    public  List<Map<String, String[]>> transformationMusic(List<MusicSongList> musicSongLists){
+       List<Music> musicList = new ArrayList<>();
+        for(MusicSongList musicSongList:musicSongLists){
+            Music music = new Music();
+            music.setId(musicSongList.getMusicId());
+            Music m = musicMapper.selectListMusic(music).get(0);
+            musicList.add(m);
+        }
+        return musicService.transformationMusic(musicList);
+    }
 }

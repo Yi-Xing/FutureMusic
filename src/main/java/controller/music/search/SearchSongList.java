@@ -37,12 +37,13 @@ public class SearchSongList {
      * @return Map<String,Object>
      */
     @RequestMapping(value = "/showSongListDetail")
-    public String showSongListDetail(@RequestParam(value = "songListId",defaultValue = "1")int songListId, Model model){
+    @ResponseBody
+    public Map<String,Object> showSongListDetail(@RequestParam(value = "songListId",defaultValue = "1")int songListId, Model model){
         SongList songList = new SongList();
         songList.setId(songListId);
         Map<String,Object> songListDetail = songListService.showSongList(songList);
         model.addAttribute("songListDetail",songListDetail);
-        return "musicList";
+        return songListDetail;
     }
 
     /**
