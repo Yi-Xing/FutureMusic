@@ -109,18 +109,7 @@ public class MusicService {
         System.out.println("33333333333");
         return musicAllInformationMap;
     }
-//    /**
-//     * 音乐的流派榜
-//     *
-//     * @param type 根据音乐的流派分类查找信息
-//     * @return Map<Music, User>
-//     */
-//    public List<Map<String, String[]>> selectListMusicByMusicType(String type) {
-//        Classification classification = new Classification();
-//        classification.setType(type);
-//        List<Music> musicList = selectListMusicByClassification(classification);
-//        return transformationMusic(musicList);
-//    }
+
     /**
      * 音乐的流派榜
      *
@@ -133,20 +122,6 @@ public class MusicService {
         List<Music> musicList = selectListMusicByClassification(classification);
         return musicList;
     }
-//    /**
-//     * 地区榜
-//     *
-//     * @param region 根据音乐的分类的地区查找信息
-//     * @return Map<Music, User> 音乐和对应的
-//     * 歌手集合
-//     */
-//    public List<Map<String, String[]>> selectListMusicByRegion(String region) {
-//        Classification classification = new Classification();
-//        classification.setRegion(region);
-//        List<Music> musicList = selectListMusicByClassification(classification);
-//        List<Music> resultMusic = (new PlayService()).sortMusicByPlay(musicList);
-//        return transformationMusic(resultMusic);
-//    }
     /**
      * 地区榜
      *
@@ -158,7 +133,9 @@ public class MusicService {
         Classification classification = new Classification();
         classification.setRegion(region);
         List<Music> musicList = selectListMusicByClassification(classification);
+        System.out.println("selectListMusicByRegion方法1"+musicList);
         List<Music> resultMusic = (new PlayService()).sortMusicByPlay(musicList);
+        System.out.println("selectListMusicByRegion方法2"+resultMusic);
         return resultMusic;
     }
     /**

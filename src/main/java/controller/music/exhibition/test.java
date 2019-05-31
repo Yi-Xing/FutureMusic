@@ -1,8 +1,19 @@
 package controller.music.exhibition;
 
+import entity.Music;
+import entity.Play;
+import mapper.MusicMapper;
+import mapper.PlayMapper;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestParam;
+import service.music.DetailsService;
+
+import javax.annotation.Resource;
+
 /**
  * @author 蒋靓峣
  */
+@Controller
 public class test {
     /**
      * 评论查出来回复但是没有对回复排序
@@ -13,4 +24,5 @@ public class test {
      *play数据库查询差不了
      * musicService语言查找没有实现，应该是数据库的原因
      */
+
 }
