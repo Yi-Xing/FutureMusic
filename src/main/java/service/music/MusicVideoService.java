@@ -9,26 +9,44 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.concurrent.CopyOnWriteArrayList;
 
+/**
+ * @author 蒋靓峣
+ */
 @Service(value = "MusicVideoService")
 public class MusicVideoService {
-    @Resource(name = "MusicMapper")
-    MusicMapper musicMapper;
     @Resource(name = "ClassificationMapper")
     ClassificationMapper classificationMapper;
     @Resource(name = "UserMapper")
     UserMapper userMapper;
-    @Resource(name = "ActivityMapper")
-    ActivityMapper activityMapper;
-    @Resource(name = "SongListMapper")
-    SongListMapper songListMapper;
     @Resource(name = "MusicVideoMapper")
     MusicVideoMapper musicVideoMapper;
+    @Resource(name = "MusicMapper")
+    MusicMapper musicMapper;
     @Resource(name = "PlayMapper")
     PlayMapper playMapper;
-    @Resource(name = "FocusMapper")
-    FocusMapper focusMapper;
+    @Resource(name = "ShowCommentService")
+    ShowCommentService showCommentService;
+
+
+    /**
+     * 点击显示MV的详细信息
+     *      MV、歌手、评论
+     * @param musicVideo 封装要搜索的MVid
+     * @return  Map<String,Object> 各类信息
+     */
+    public Map<String,Object> showMusicVideo(MusicVideo musicVideo){
+        Map<String,Object> musicVideoMap = new HashMap<>(10);
+        List<MusicVideo> musicVideos = musicVideoMapper.selectListMusicVideo(musicVideo);
+        musicVideoMap.put("musicVideo",musicVideos.get(0));
+        int singerId = musicVideos.get(0).getSingerId();
+        User user = new User();
+        user.setId(singerId);
+        musicVideoMap.put("singer",userMapper.selectUser(user).get(0));
+        musicVideoMap.put("goodComment",showCommentService.commentByMusicVideoId(musicVideo.getId()));
+        musicVideoMap.put("lastComment",showCommentService.commentLastByMusicVideoId(musicVideo.getId()));
+        return musicVideoMap;
+    }
 
     /**
      * 展示主页的MV
@@ -66,17 +84,13 @@ public class MusicVideoService {
     }
         return showMusicVideoList;
     }
-
-
-
     /**
      * @return List<MusicVideo>  返回查找到的MV
      *                       设置显示条数，也可用于智搜索框能提示，只显示名字
      */
-    public List<MusicVideo> selectListMusicVideoByVideoName(String keyWord){
-        MusicVideo musicVideo = new MusicVideo();
-        musicVideo.setName(keyWord);
-        return musicVideoMapper.selectListMusicVideo(musicVideo);
+    public List<String[]> selectListMusicVideoByVideoName(MusicVideo musicVideo){
+        List<MusicVideo> musicVideoList = musicVideoMapper.selectListMusicVideo(musicVideo);
+        return searchMusicVideo(musicVideoList);
     }
     /**
      * 通过分类查找MV
@@ -86,35 +100,15 @@ public class MusicVideoService {
     public List<String[]> searchMusicVideoByClassification(Classification classification){
         List<Classification> classificationList =
                 classificationMapper.selectListClassification(classification);
-        List<Integer> musicVideoList = new ArrayList<>();
+        List<MusicVideo> musicVideoList = new ArrayList<>();
+        MusicVideo musicVideo = new MusicVideo();
         for(Classification c:classificationList){
-            MusicVideo musicVideo = new MusicVideo();
             musicVideo.setClassificationId(c.getId());
-            musicVideoList.add(musicVideoMapper.selectListMusicVideo(musicVideo).get(0).getId());
+            musicVideoList.add(musicVideoMapper.selectListMusicVideo(musicVideo).get(0));
         }
-        //mv的id和播放量
-        Map<Integer,Integer> musicVideoCount = singerMusicVideo(musicVideoList);
-        Map<Integer,User> musicSinger = musicSinger(musicVideoList);
-        List<String[]> allMusicVideo = new ArrayList<>();
-        for(Integer musicVideoId:musicSinger.keySet()){
-            MusicVideo temp = new MusicVideo();
-            temp.setId(musicVideoId);
-            MusicVideo musicVideo = musicVideoMapper.selectListMusicVideo(temp).get(0);
-//            音乐id、播放量、mv的名字
-            String playCount = musicVideoCount.get(musicVideoId)+"";
-            String musicVideoName = musicVideo.getName();
-            String singerPortrait = musicSinger.get(musicVideoId).getHeadPortrait();
-            String singerName = musicSinger.get(musicVideoId).getName();
-            String[] showMusicVideo = new String[5];
-            showMusicVideo[0] = musicVideoId+"";
-            showMusicVideo[1] = playCount;
-            showMusicVideo[2] = musicVideoName;
-            showMusicVideo[3] = singerPortrait;
-            showMusicVideo[4] = singerName;
-            allMusicVideo.add(showMusicVideo);
-        }
-        return allMusicVideo;
+        return searchMusicVideo(musicVideoList);
     }
+
     /**
      *  传入音乐或mv的id，获得mv或音乐的id 播放量
      */
@@ -132,12 +126,67 @@ public class MusicVideoService {
      */
     public Map<Integer,User> musicSinger(List<Integer> musicVideos){
         Map<Integer,User> musicSinger = new HashMap<>(16);
+        System.out.println(musicVideos);
         for(Integer musicVideoId:musicVideos){
-            User user = new User();
-            user.setId(musicVideoId);
-            User singer = userMapper.selectUser(user).get(0);
-            musicSinger.put(musicVideoId,singer);
+            Music m = new Music();
+            m.setId(musicVideoId);
+            List<Music> musicList = musicMapper.selectListMusic(m);
+            System.out.println(musicList);
+            if(musicList.size()==0){
+                musicSinger.put(musicVideoId,null);
+            }else {
+                User user = new User();
+                user.setId(musicList.get(0).getSingerId());
+                List<User> users =  userMapper.selectUser(user);
+                System.out.println(users);
+                if(users.size()!=0) {
+                    User singer = users.get(0);
+                    musicSinger.put(musicVideoId,singer);
+                }else{
+                    musicSinger.put(musicVideoId,null);
+                }
+            }
         }
         return musicSinger;
+    }
+    /**
+     * 传入MV获得需要显示的信息
+     */
+    public List<String[]> searchMusicVideo(List<MusicVideo> musicVideos){
+        List<Integer> musicVideoList = new ArrayList<>();
+        for(MusicVideo m:musicVideos){
+            musicVideoList.add(m.getId());
+        }
+        //mv的id和播放量
+        Map<Integer,Integer> musicVideoCount = singerMusicVideo(musicVideoList);
+        Map<Integer,User> musicSinger = musicSinger(musicVideoList);
+        List<String[]> allMusicVideo = new ArrayList<>();
+        for(Integer musicVideoId:musicSinger.keySet()){
+            MusicVideo temp = new MusicVideo();
+            temp.setId(musicVideoId);
+            String[] showMusicVideo = new String[5];
+            List<MusicVideo> musicVideos1 = musicVideoMapper.selectListMusicVideo(temp);
+            if(musicVideos1.size()!=0) {
+                MusicVideo musicVideo = musicVideos1.get(0);
+                String musicVideoName = musicVideo.getName();
+                showMusicVideo[2] = musicVideoName;
+            }else{
+                showMusicVideo[2] = null;
+            }
+//            音乐id、播放量、mv的名字
+            String playCount = musicVideoCount.get(musicVideoId)+"";
+            if(musicSinger.get(musicVideoId)!=null) {
+                String singerPortrait = musicSinger.get(musicVideoId).getHeadPortrait();
+                showMusicVideo[3] = singerPortrait;
+                String singerName = musicSinger.get(musicVideoId).getName();
+                showMusicVideo[1] = playCount;
+                showMusicVideo[4] = singerName;
+                showMusicVideo[0] = musicVideoId+"";
+                allMusicVideo.add(showMusicVideo);
+            }else{
+                allMusicVideo.add(null);
+            }
+        }
+        return allMusicVideo;
     }
 }

@@ -80,4 +80,3 @@ $(".btn-group button").hover(function () {
 
 // ajax
 
-

@@ -33,9 +33,6 @@
             <if test='date!=null'>
                 and music_date >=#{date}
             </if>
-            <if test='playCount!=0'>
-                order by music_play_count DESC
-            </if>
         </where>
     </select>
     <select id="listIdSelectListMusic" parameterType="Integer" resultMap="music">
@@ -53,7 +50,6 @@
                 #{value}
             </foreach>
         </where>
-        order by music_play_count
     </select>
     <insert id="insertMusic" parameterType="Music">
          insert into tb_music (music_name,music_level,music_price,music_singer_id,music_album_id,music_classification_id,

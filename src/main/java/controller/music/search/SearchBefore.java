@@ -1,6 +1,4 @@
 package controller.music.search;
-import com.github.pagehelper.PageHelper;
-import com.github.pagehelper.PageInfo;
 import entity.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -79,7 +77,7 @@ public class SearchBefore {
      */
     @RequestMapping(value = "/searchListAll")
     @ResponseBody
-    public List[] searchListAll(String keyWord) {
+    public List[] searchListAll(@RequestParam(value = "keyWord") String keyWord) {
         return searchService.searchListAll(keyWord);
     }
 
