@@ -172,6 +172,28 @@ $("#search").keyup(function () {
 
 
 //AJAX
+$.ajax({
+    contentType: "application/x-www-form-urlencoded;charset=UTF-8",
+    url: "indexExhibition",
+    type: 'post',
+    // dataType: "json",
+    success:function (data) {
+        console.log(data);
+        console.log(data.rankingNewSong);
+        var dianyin = data.rankingByMusicType;
+        var xinge = data.rankingNewSong;
+        for (i = 0; i < dianyin.length; i++) {
+            console.log(dianyin[i]);
+        }
+        for (j = 0; j < xinge.length; j++) {
+            console.log(xinge[j]);
+        }
+    },
+    error:function () {
+        console.log("错误!")
+    }
+});
+
 var like = 0;
 $(".thumbnail .icon-like").click(function () {
     var musicId = $(this).parent().parent().parent()[0].children[0];
@@ -180,13 +202,13 @@ $(".thumbnail .icon-like").click(function () {
     $.ajax({
         contentType: "application/json;charset=UTF-8",
         type: "post",
-        dataType: "json",
+        // dataType: "json",
         url: "collectionMusic",
         data:{
             "musicId" : musicId,
             "type" : 1,
         },
-        success: function (data, status) {
+        success: function (data) {
             console.log(111);
             let obj = $(this)[0];
             if (like === 0) {

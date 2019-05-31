@@ -60,9 +60,9 @@ public class Exhibition {
         //电音前三歌曲
         model.put("rankingByMusicType", rankingListByMusicType(musicType));
         //首页的歌曲地区排行榜(包括欧美、日韩、华语）
-        model.put("rankingByMusicRegion",rankingListByRegion(region1));
-        model.put("rankingByMusicRegion",rankingListByRegion(region2));
-        model.put("rankingByMusicRegion",rankingListByRegion(region3));
+//        model.put("rankingByMusicRegion",rankingListByRegion(region1));
+//        model.put("rankingByMusicRegion",rankingListByRegion(region2));
+//        model.put("rankingByMusicRegion",rankingListByRegion(region3));
         return model;
     }
     /**
