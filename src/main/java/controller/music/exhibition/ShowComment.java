@@ -52,7 +52,7 @@ public class ShowComment {
      */
     @RequestMapping(value = "/showSongListComment")
     @ResponseBody
-    public Map<Comment,Comment> showSongListComment(@RequestParam(value = "songListId",defaultValue = "1")int songListId){
+    public Map<User,Comment> showSongListComment(@RequestParam(value = "songListId",defaultValue = "1")int songListId){
         return showCommentService.commentByListSongId(songListId);
     }
 
@@ -85,7 +85,7 @@ public class ShowComment {
      */
     @RequestMapping(value = "/showSongListLastComment")
     @ResponseBody
-    public Map<Comment,Comment> showSongListLastComment(@RequestParam(value = "songListId",defaultValue = "1")int songListId){
+    public Map<User,Comment> showSongListLastComment(@RequestParam(value = "songListId",defaultValue = "1")int songListId){
         return showCommentService.commentLastByListSongId(songListId);
     }
 

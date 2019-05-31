@@ -21,7 +21,7 @@
   </filter>
   <filter-mapping>
     <filter-name>encoding</filter-name>
-    <url-pattern>/</url-pattern>
+    <url-pattern>/*</url-pattern>
   </filter-mapping>
 
   <!--spring监听器-->
@@ -50,9 +50,9 @@
     <error-code>404</error-code>
     <location>/noFind</location>
   </error-page>
-  <!-- 替换404页面 start -->
+  <!-- 替换500页面 start -->
   <error-page>
     <error-code>500</error-code>
-    <location>/noFind</location>
+    <location>/collapse</location>
   </error-page>
 </web-app>

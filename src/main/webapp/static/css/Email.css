@@ -11,3 +11,18 @@
     margin-top: 10px;
     border-radius: 3px;
 }
+.activities_img{
+    width: 85%;
+    height: 100px;
+    border: 1px solid #000;
+    margin: 0px 5%;
+    float: left;
+    border:none;
+}
+
+.activities_introduse{
+    width:80%;
+    height: 100px;
+    border:1px solid lightgray;
+    float: left;
+}

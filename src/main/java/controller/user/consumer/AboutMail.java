@@ -24,6 +24,7 @@ import java.util.List;
  * @author 5月14日 张易兴创建
  */
 @Controller
+@RequestMapping(value = "/user")
 public class AboutMail {
     @Resource(name = "SpecialFunctions")
     SpecialFunctions specialFunctions;
