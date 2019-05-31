@@ -62,4 +62,15 @@
     margin-top: 10px;
     border-radius: 3px;
 }
+.inset_picture{
+    width: 300px;
+    height: 200px;
+    border: 1px solid gray;
+}
+.activities_introduse2{
+    width: 80%;
+    height: 200px;
+    border: 1px solid lightgray;
+    margin-left: 20px;
+}
 

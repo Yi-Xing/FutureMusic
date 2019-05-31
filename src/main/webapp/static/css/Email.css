@@ -26,3 +26,9 @@
     border:1px solid lightgray;
     float: left;
 }
+.modal_body_left{
+    float:left;
+}
+.modal_body_right{
+    float:left;
+}
