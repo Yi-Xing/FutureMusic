@@ -17,3 +17,7 @@
 .form_col table td{
     width:100px;
 }
+.demo{width:80%; margin:20px auto}
+.demo h3{height:32px; line-height:32px}
+.demo p{line-height:24px}
+pre{margin-top:10px; padding:6px; background:#f7f7f7}
