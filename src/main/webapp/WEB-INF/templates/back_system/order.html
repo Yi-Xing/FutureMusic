@@ -194,17 +194,21 @@
             <div class="main_rh_footer">
                 <!--                分页-->
                 <div class="zzsc">
+                    <ul class="page" pagelistcount="10" maxshowpageitem="5">
+                    <li class="pageItemDisable" page-rel="firstpage" page-data="1"><a
+                            th:href="@{/administrators/showOrder(condition=${conditionZero},condition=${conditionOne},condition=${conditionTwo},condition=${conditionThree},pageNum=1)}">首页</a></li>
+                    <li th:if="${pageInfo.hasPreviousPage}" class="pageItemDisable" page-rel="prepage" page-data="0"><a
+                            th:href="@{/administrators/showOrder(condition=${conditionZero},condition=${conditionOne},condition=${conditionTwo},condition=${conditionThree},pageNum=${pageInfo.pageNum-1})}">上一页</a></li>
+                    </ul>
                     <!--                currentpage="1" numbercount="**"-->
-                    <ul class="page" id="page" pagelistcount="10" maxshowpageitem="5">
-                        <li class="pageItemDisable" page-rel="firstpage" page-data="1"><a
-                                th:href="@{/administrators/showOrder(condition=${conditionZero},condition=${conditionOne},condition=${conditionTwo},condition=${conditionThree},pageNum=1)}">首页</a></li>
-                        <li class="pageItemDisable" page-rel="prepage" page-data="0"><a
-                                th:href="@{/administrators/showOrder(condition=${conditionZero},condition=${conditionOne},condition=${conditionTwo},condition=${conditionThree},pageNum=${pageInfo.pageNum-1})}">上一页</a></li>
-                        <li class="pageItemActive" page-rel="itempage" page-data="1">1</li>
-                        <li class="pageItem" page-rel="nextpage" page-data="2"><a
-                                th:href="@{/administrators/showOrder(condition=${conditionZero},condition=${conditionOne},condition=${conditionTwo},condition=${conditionThree},pageNum=${pageInfo.pageNum+1})}">下一页&gt;</a></li>
-                        <li class="pageItem" page-rel="lastpage" page-data="8"><a
-                                th:href="@{/administrators/showOrder(condition=${conditionZero},condition=${conditionOne},condition=${conditionTwo},condition=${conditionThree},pageNum=${pageInfo.pages})}">尾页</a></li>
+                    <ul class="page" th:each="list,tmp:${pages}"  pagelistcount="10" maxshowpageitem="5">
+                        <li class="pageItemActive" page-rel="itempage" page-data="1"><a th:href="@{/administrators/showOrder(condition=${conditionZero},condition=${conditionOne},condition=${conditionTwo},condition=${conditionThree},pageNum=${tmp.count})}" th:text="${tmp.count}"></a></li>
+                    </ul>
+                    <ul class="page"  pagelistcount="10" maxshowpageitem="5">
+                    <li th:if="${pageInfo.hasNextPage}"  class="pageItem" page-rel="nextpage" page-data="2"><a
+                            th:href="@{/administrators/showOrder(condition=${conditionZero},condition=${conditionOne},condition=${conditionTwo},condition=${conditionThree},pageNum=${pageInfo.pageNum+1})}">下一页&gt;</a></li>
+                    <li class="pageItem" page-rel="lastpage" page-data="8"><a
+                            th:href="@{/administrators/showOrder(condition=${conditionZero},condition=${conditionOne},condition=${conditionTwo},condition=${conditionThree},pageNum=${pageInfo.pages})}">尾页</a></li>
                     </ul>
                 </div>
             </div>
