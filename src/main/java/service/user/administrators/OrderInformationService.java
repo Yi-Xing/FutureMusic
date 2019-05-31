@@ -64,7 +64,6 @@ public class OrderInformationService {
         PageInfo pageInfo=new PageInfo<>(list);
         // 传入页面信息
         logger.debug("查找到的订单"+list);
-        System.out.println(list);
         model.addAttribute("pageInfo", pageInfo);
         model.addAttribute("pages",new int[pageInfo.getPages()] );
         return  "back_system/order";

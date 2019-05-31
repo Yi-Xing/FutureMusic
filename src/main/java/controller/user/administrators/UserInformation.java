@@ -40,7 +40,6 @@ public class UserInformation {
      * @param pageNum 表示当前第几页
      */
     @RequestMapping(value = "/showUser")
-    @ResponseBody
     public String showUser(String[] condition,Integer pageNum, Model model) {
         return userInformationService.showUser(condition,pageNum,model);
     }
