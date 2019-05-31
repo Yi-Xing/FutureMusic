@@ -54,7 +54,7 @@ public class User implements Serializable {
     /**
      * 余额
      */
-    private BigDecimal balance=null;
+    private BigDecimal balance=new BigDecimal("0");
     /**
      * 创号的时间 年月日
      */

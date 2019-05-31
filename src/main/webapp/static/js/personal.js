@@ -20,7 +20,7 @@ $(".color_2 nav .navbar-right .lock").on('click',function () {
 //个人中心TAB切换栏
 $(".collapse .navbar-nav .personal_tab").click(function () {
     var personalCenterTab = $(".personalCenterTab");
-    console.log($(this)[0]);
+    // console.log($(this)[0]);
     var tmp = $(this)[0];
     if($(this).className === 'active'){
         let num = $(tmp).index();
@@ -37,12 +37,12 @@ $(".collapse .navbar-nav .personal_tab").click(function () {
         $(tmp).addClass('active');
         let num = $(tmp).index();
         for(j = 0 ; j < $(this).parents()[0].children.length ; j++){
-            console.log($(tmp).index());
+            // console.log($(tmp).index());
             if (j === num){
                 $(this).parents()[0].children[j].classList.add('active');
             }
             else {
-                console.log($(this).parents()[0].children[j]);
+                // console.log($(this).parents()[0].children[j]);
                 $(this).parents()[0].children[j].classList.remove('active');
             }
         }
@@ -65,7 +65,6 @@ $("#changeInformation").click(function () {
 $(".btn-group button").hover(function () {
     $(this).click(function () {
         let num = $(this).index();
-        console.log($(this).index());
         let likeTab = $(".likeTab");
         for (i = 0; i < likeTab.length; i++) {
             if(i === num){
@@ -79,4 +78,5 @@ $(".btn-group button").hover(function () {
 
 
 // ajax
+var woxihuanmusic = $("#woxihuan")
 
