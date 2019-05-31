@@ -1,15 +1,21 @@
 package controller.music.exhibition;
 
 import entity.*;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import service.music.*;
+import sun.nio.ch.AbstractPollArrayWrapper;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+
 /**
  * 页面展示相关的层
  * 1.音乐人、MV、排行榜
@@ -38,7 +44,7 @@ public class Exhibition {
 
     @RequestMapping("/indexExhibition")
     @ResponseBody
-    public String indexExhibition(Model model){
+    public Model indexExhibition(Model model){
         //首页显示的活动
         model.addAttribute("activities",activity());
         //首页显示的音乐人
@@ -55,17 +61,16 @@ public class Exhibition {
         model.addAttribute("rankingByMusicRegion",rankingListByRegion(region1));
         model.addAttribute("rankingByMusicRegion",rankingListByRegion(region2));
         model.addAttribute("rankingByMusicRegion",rankingListByRegion(region3));
-        return "index";
+        return model;
     }
     /**
-     *      功能：首页的流派排行榜
+     *      功能：首页的流派排行榜 供总方法调用
      *          只显示3条数据
      * @return List<Music> 返回符合条件的歌曲集合
      */
-    @RequestMapping(value = "/rankingListByMusicType")
-    @ResponseBody
-    public List<Music> rankingListByMusicType(String musicType){
-        List<Music> musicList = musicService.selectListMusicByMusicType(musicType);
+    public List<Map<String, String[]>> rankingListByMusicType(String musicType){
+        List<Map<String, String[]>> musicList = musicService.selectListMusicByMusicType(musicType);
+
         return musicList;
     }
     /**
@@ -74,8 +79,6 @@ public class Exhibition {
      *      只显示3条数据
      * @return List<Music> 返回符合条件的歌曲集合
      */
-    @RequestMapping(value = "/rankingListByNewSong")
-    @ResponseBody
     public List<Music> rankingListByNewSong(){
         List<Music> musicList = musicService.selectListMusicByNewSong();
         return musicList;
@@ -85,41 +88,32 @@ public class Exhibition {
      *      只显示3条数据
      * @return List<Music> 返回符合条件的歌曲集合
      */
-    @RequestMapping(value = "/rankingListByRegion")
-    @ResponseBody
-    public List<Music> rankingListByRegion(String region){
-        List<Music> musicList = musicService.selectListMusicByRegion(region);
-        return musicList;
+    public List<Map<String, String[]>> rankingListByRegion(String region){
+        List<Map<String, String[]>> musicList = musicService.selectListMusicByRegion(region);
+        return getThree(musicList);
     }
-    /**
-     *      功能：首页的语种排行榜
-     *      只显示3条数据
-     * @return List<Music> 返回符合条件的歌曲集合
-     */
-    @RequestMapping(value = "/rankingListByLanguage")
-    @ResponseBody
-    public List<Music> rankingListByLanguage(HttpServletRequest request){
-        String region = request.getParameter("classification");
-        List<Music> musicList = musicService.selectListMusicByLanguage(region);
-        return musicList;
-    }
-
     /**
      * 首页推荐活动的显示
      * @return List<SongList> 返回专辑的集合
      */
-    @RequestMapping(value = "/activity")
-    @ResponseBody
     public List<Activity> activity(){
         List<Activity> activityList = activityService.selectActivity();
         return activityList;
     }
+
     /**
-     * 搜索音乐人
+     * 获取三条数据
      */
-    @RequestMapping(value = "/exhibitionSingersByRegion")
-    @ResponseBody
-    public List<ShowSinger> exhibitionSingersByRegion(String  region){
-        return singerService.exhibitionSingersByRegion("2");
+    public List<Map<String, String[]>> getThree(List<Map<String, String[]>> musicList) {
+        int limit = 1;
+        List<Map<String, String[]>> rankingMusicList = new ArrayList<>();
+        for (Map<String, String[]> threeMusic : musicList) {
+            rankingMusicList.add(threeMusic);
+            limit++;
+            if (limit > 3) {
+                break;
+            }
+        }
+        return rankingMusicList;
     }
 }
