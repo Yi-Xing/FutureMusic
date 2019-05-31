@@ -8,10 +8,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
 /**
  * 点击显示详细信息的功能
  *  音乐、歌单、专辑、歌手
@@ -32,7 +28,11 @@ public class DetailsService {
     MusicVideoMapper musicVideoMapper;
     @Resource(name = "ShowCommentService")
     ShowCommentService showCommentService;
-    @Resource(name = "MusicSongListMapper")
-    MusicSongListMapper musicSongListMapper;
+    public void sout(){
+        System.out.println(musicMapper);
+        System.out.println(songListMapper);
+        System.out.println(musicVideoMapper);
+        System.out.println(showCommentService);
+    }
 
 }

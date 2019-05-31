@@ -5,7 +5,6 @@ import entity.User;
 import mapper.MusicMapper;
 import mapper.UserMapper;
 import service.music.MusicService;
-import service.music.PlayService;
 import service.music.SearchService;
 
 import javax.annotation.Resource;
