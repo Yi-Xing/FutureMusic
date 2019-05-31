@@ -1,27 +1,31 @@
 // 后台管理系统：
 window.onload = function () {
     // 用户篇----------------------------
-    // 显示用户信息，根据条件页数显示信息
-    function showUserInformation(page) {
-        //得到4个条件存成数组
-        var condition = $("#registerUserName").val();
+    // 显示指定用户的信息，用户修改
+    $("#registerUser").on("click", function () {
+        // 得到用户id 等级  VIP时间  余额  举报次数
+        var userId = $("#registerUserName").val();
+        var userLevel = $("#registerUserName").val();
         var userDate = $("#registerUserName").val();
         var userBalance = $("#registerUserName").val();
         var userReport = $("#registerUserName").val();
         $.ajax({
-            contentType: "application/x-www-form-urlencoded;charset=UTF-8",
+            contentType: "application/json;charset=UTF-8",
             type: "post",
-            url: "administrators/showUser",
+            url: "administrators/modifyUser",
             data: {
-                "condition": condition,
-                "pageNum": page
+                "id": userId,
+                "level": userLevel,
+                "vipDate": userDate,
+                "balance": userBalance,
+                "report": userReport
             },
             dataType: "json",
             success: function (data, status) {
-                // 返回用户信息
+                // 返回state
             }
         });
-    }
+    });
 
     // 修改用户信息 等级  VIP时间  余额  举报次数
     $("#registerUser").on("click", function () {
@@ -50,14 +54,15 @@ window.onload = function () {
     });
 
     // 显示粉丝量
-    $("#registerUser").on("click", function () {
+    $(".userInformation").on("click", function () {
         // 得到用户id
-        var userId = $("#registerUserName").val();
+        var userId =  $(this).data("id");
         $.ajax({
             type: "get",
-            url: "administrators/showFocus?id=" + userId,
+            url: "/administrators/showFocus?id=" + userId,
             success: function (data, status) {
                 // 返回该用户的粉丝量
+                $('#userInformationFocus').html(data);
             }
         });
     });

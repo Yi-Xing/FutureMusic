@@ -20,6 +20,7 @@ import java.io.IOException;
  * @author 5月14日 张易兴创建
  */
 @Controller
+@RequestMapping(value = "/user")
 public class Transaction {
     @Resource(name = "AlipayService")
     AlipayService alipayService;

@@ -22,6 +22,7 @@ import java.io.IOException;
  * @author 5月17日 张易兴创建
  */
 @Controller
+@RequestMapping(value = "/user")
 public class AccountInformation {
     @Resource(name = "AccountInformationService")
     AccountInformationService accountInformationService;

@@ -7,6 +7,7 @@ import org.springframework.web.servlet.HandlerExceptionResolver;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.text.ParseException;
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
@@ -42,6 +43,11 @@ public class ExceptionResolver implements HandlerExceptionResolver {
             logger.debug("阿里巴巴的支付异常异常" + o);
             logger.debug("阿里巴巴的支付异常异常" + e);
             modelAndView.addObject("Exception", "阿里巴巴的支付异常异常");
+        } else if (e instanceof ServletException) {
+            // ServletException 页面跳转异常
+            logger.debug("页面跳转异常" + o);
+            logger.debug("页面跳转异常" + e);
+            modelAndView.addObject("Exception", "页面跳转异常");
         } else {
             // 其他异常
             logger.debug("其他异常" + o);
