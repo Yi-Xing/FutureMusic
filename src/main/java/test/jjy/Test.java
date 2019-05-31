@@ -1,21 +1,30 @@
 package test.jjy;
 
+import entity.Music;
+import entity.User;
+import mapper.MusicMapper;
+import mapper.UserMapper;
+import service.music.MusicService;
 import service.music.PlayService;
+import service.music.SearchService;
 
+import javax.annotation.Resource;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
+/**
+ * @author 蒋靓峣
+ */
 public class Test {
+    @Resource(name = "MusicMapper")
+    static MusicMapper musicMapper;
     public static void main(String[] args) {
-        Map<Integer,Integer> integerIntegerMap = new HashMap<>(16);
-        integerIntegerMap.put(1,1);
-        integerIntegerMap.put(2,9);
-        integerIntegerMap.put(3,7);
-        integerIntegerMap.put(4,3);
-        integerIntegerMap.put(5,6);
-        integerIntegerMap.put(6,7);
-        PlayService playService = new PlayService();
-        Map<Integer,Integer> integerIntegerMap1 = playService.sortByValueDescending(integerIntegerMap);
-        System.out.println(integerIntegerMap1);
+    Music music = new Music();
+////    music.setSingerId(1);
+//        music.setId(1);
+    List<Music> musicList =
+            (new SearchService()).selectListMusicByName("1");
+    System.out.println(musicList);
     }
 }

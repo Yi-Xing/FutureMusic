@@ -113,6 +113,10 @@ public class Main {
     public String saveCenter() {
         return "saveCenter";
     }
+    @RequestMapping(value = "/talking")
+    public String talking() {
+        return "back_system/talking";
+    }
 
 }
 

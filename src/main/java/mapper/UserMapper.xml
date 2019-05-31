@@ -18,6 +18,9 @@
             <if test='level!=0'>
                 and user_level=#{level}
             </if>
+            <if test='address!=null and address!=""'>
+                and user_address=#{address}
+            </if>
             <if test='report!=0'>
                 and user_report>=#{report}
             </if>

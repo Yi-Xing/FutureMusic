@@ -24,64 +24,33 @@ public class PlayService {
     ClassificationMapper classificationMapper;
     @Resource(name = "UserMapper")
     UserMapper userMapper;
-    @Resource(name = "ActivityMapper")
-    ActivityMapper activityMapper;
     @Resource(name = "SongListMapper")
     SongListMapper songListMapper;
-    @Resource(name = "MusicVideoMapper")
-    MusicVideoMapper musicVideoMapper;
     @Resource(name = "PlayMapper")
     PlayMapper playMapper;
-
-    /**
-     * 提取的公共代码
-     * 因为用静态变量会报错，没有写道公共类里
-     *
-     * @param classification 按照指定规则查找指定歌曲
-     *                       封装信息：分类
-     * @return Map<Music, User>  返回查找到的歌曲
-     */
-    public Map<Music, User> selectListMusicByClassification(Classification classification) {
-        //获取符合条件得分类对象
-        List<Integer> classificationIds = new ArrayList<>();
-        Map<Music, User> musicSingerMap = new HashMap<>(16);
-        User user = new User();
-        List<Classification> classificationList = classificationMapper.selectListClassification(classification);
-        for (Classification clf : classificationList) {
-            //List获取对应得分类id
-            classificationIds.add(clf.getId());
-        }
-        List<Music> musicList = musicMapper.listClassificationIdSelectListMusic(classificationIds);
-        for (Music music : musicList) {
-            user.setId(music.getSingerId());
-            musicSingerMap.put(music, userMapper.selectUser(user).get(0));
-        }
-        return musicSingerMap;
-    }
-
-    /**
-     * 根据分类查找歌单
-     * 浏览量
-     * @param classification 查找歌单
-     */
-
-    public Map<SongList, User> selectListSongListByClassification(Classification classification) {
-        //获取符合条件得分类对象
-        List<Integer> classificationIds = new ArrayList<>();
-        Map<SongList, User> musicSingerMap = new HashMap<>();
-        User user = new User();
-        List<Classification> classificationList = classificationMapper.selectListClassification(classification);
-        for (Classification clf : classificationList) {
-            //List获取对应得分类id
-            classificationIds.add(clf.getId());
-        }
-        List<SongList> songLists = songListMapper.listIdSelectListSongList(classificationIds);
-        for (SongList songList : songLists) {
-            user.setId(songList.getUserId());
-            musicSingerMap.put(songList, userMapper.selectUser(user).get(0));
-        }
-        return musicSingerMap;
-    }
+//
+//    /**
+//     * 根据分类查找歌单
+//     * 浏览量
+//     * @param classification 查找歌单
+//     */
+//    public Map<SongList, User> selectListSongListByClassification(Classification classification) {
+//        //获取符合条件得分类对象
+//        List<Integer> classificationIds = new ArrayList<>();
+//        Map<SongList, User> musicSingerMap = new HashMap<>();
+//        User user = new User();
+//        List<Classification> classificationList = classificationMapper.selectListClassification(classification);
+//        for (Classification clf : classificationList) {
+//            //List获取对应得分类id
+//            classificationIds.add(clf.getId());
+//        }
+//        List<SongList> songLists = songListMapper.listIdSelectListSongList(classificationIds);
+//        for (SongList songList : songLists) {
+//            user.setId(songList.getUserId());
+//            musicSingerMap.put(songList, userMapper.selectUser(user).get(0));
+//        }
+//        return musicSingerMap;
+//    }
     /**
      * 查找播放记录
      * 1表示是音乐的播放历史  2表示是MV的播放历史
@@ -97,7 +66,7 @@ public class PlayService {
     }
 
     /**
-     * 传入一个集合，并查询浏览量
+     * 传入一个play集合，并查询浏览量 这个查询的是所有的
      */
     public Map<Integer,Integer> getMostPlayMusic(List<Play> playList){
         Map<Integer,Integer> musicPlay = new HashMap<>();
@@ -116,6 +85,9 @@ public class PlayService {
      * @return 排好序的map
      */
     public Map<Integer,Integer> sortByValueDescending(Map<Integer,Integer> map){
+        if(map.size()==0){
+            return null;
+        }
         Map<Integer,Integer> integerIntegerMap = new LinkedHashMap<>();
         int size = map.size();
         int[] ints = new int[size];
@@ -139,24 +111,43 @@ public class PlayService {
         }
         return integerIntegerMap;
     }
+    /**
+     * 传入一个音乐的集合，并获取各自的浏览量，指定是音乐集合
+     */
+    public Map<Integer,Integer> getMusicPlayCount(List<Music> musicList){
+        System.out.println("9999999999999999");
+        if(musicList.size()==0) {
+            System.out.println("rrrrrrrrrrrrrrrrr");
+            return null;
+        }else {
+        Map<Integer,Integer> musicCount = new HashMap<>(16);
+            for (Music m : musicList) {
+                Play play = new Play();
+                play.setMusicId(m.getId());
+                System.out.println("gggggggggggggggg");
+                List<Play> plays = playMapper.selectListPlay(play);
+                System.out.println("SSSSSSSSSSSSSSss");
+                musicCount.put(m.getId(), plays.size());
+                System.out.println("PPPPPPPPPPPPP");
+            }
+            return musicCount;
+        }
+    }
 
     /**
      * 根据浏览量排序音乐
      */
-    public List<Music> sortMusicByPlay(Map<Music,User> musicSingerMap){
-        Map<Integer,Integer> musicCount = new HashMap<>();
-        for(Music music:musicSingerMap.keySet()){
-            List<Play> playList = getPlayMusic(1,music.getId());
-            musicCount.put(music.getId(),playList.size());
+    public List<Music> sortMusicByPlay(List<Music> musicList){
+        if(musicList.size()==0){
+            return null;
         }
-        List<Music> result = new ArrayList<>();
-        Map<Integer,Integer> resultMusic = sortByValueDescending(musicCount);
-        for(Integer i:resultMusic.keySet()){
-            Music music = new Music();
-            music.setId(i);
-            result.add(musicMapper.selectListMusic(music).get(0));
+        Map<Integer,Integer> musicPlay = sortByValueDescending(getMusicPlayCount(musicList));
+        List<Integer> musicIds = new ArrayList<>();
+        for(Integer musicId:musicPlay.keySet()){
+            musicIds.add(musicId);
         }
-        return result;
+        List<Music> resultMusicList = musicMapper.listIdSelectListMusic(musicIds);
+        return resultMusicList;
     }
 
 }
