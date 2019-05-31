@@ -105,7 +105,7 @@ var httpurl = ""//请求路径
 $("#search").keyup(function () {
     var searchVal = this.value;
     var search_tips = $('.search_tips')[0];
-    var tips_head = "<li><a href='javascript:;'>";
+    var tips_head = "<li><a href='./musics.html?musicId='>";
     var tips_last = "</a></li>";
     var tips = "";
     $.ajax({
@@ -115,13 +115,15 @@ $("#search").keyup(function () {
         data: {keyWord: searchVal},
         dataType: "json",
         success: function (data, status) {
+            var music = data[1];
             if (searchVal === '') {
                 search_tips.innerHTML = '';
             } else {
-                for (var i = 0; i < data.length; i++) {
-                    console.log(data[i]);
-                    var musicName = data[i].getName(0).name;
-
+                console.log(music);
+                for (let i in music) {
+                    var musicName = music[i].name;
+                    tips_head = "<li><a href='./musics.html?musicId="+ music[i].id +"'>";
+                    console.log(tips_head);
                     tips = tips + tips_head + musicName + tips_last;
                 }
                 search_tips.innerHTML = tips;
