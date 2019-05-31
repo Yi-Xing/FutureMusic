@@ -125,10 +125,15 @@
 .money{
     margin-bottom: 100px;
 }
-.money h3{
+.money h3, .modal-body h3{
     color: #f40;
 }
 
 #gedan,#zhuanji,#shipin{
     display: none;
+}
+
+.amount{
+    display: flex;
+    justify-content: space-around;
 }

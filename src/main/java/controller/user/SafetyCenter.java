@@ -85,10 +85,10 @@ public class SafetyCenter {
      * 修改密保的邮箱修改
      *
      * @param verificationCode 用户输入的验证码
-     * @param gender           密保——性别
-     * @param age              密保——年龄
-     * @param birthday         密保——出生日期
-     * @param address          密保——住址
+     * @param gender           密保——爱好
+     * @param age              密保——特长
+     * @param birthday         密保——梦想
+     * @param address          密保——愿望
      * @param session          当前会话
      */
     @RequestMapping(value = "/addSecretProtection")

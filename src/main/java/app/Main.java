@@ -31,9 +31,9 @@ public class Main {
         return "mvPlayer";
     }
 
-    @RequestMapping(value = "/musicComment")
-    public String musicComment() {
-        return "musicComment";
+    @RequestMapping(value = "/musics")
+    public String musics() {
+        return "musics";
     }
 
     @RequestMapping(value = "/system")
@@ -43,8 +43,13 @@ public class Main {
 
 
     @RequestMapping(value = "/back_music")
-    public String back_MV() {
+    public String back_music() {
         return "back_system/back_music";
+    }
+
+    @RequestMapping(value = "/back_MV")
+    public String back_MV() {
+        return "back_system/back_MV";
     }
 
     @RequestMapping(value = "/Activities")
@@ -84,12 +89,34 @@ public class Main {
         return "back_system/order";
     }
 
- @RequestMapping(value = "/song_list")
+    @RequestMapping(value = "/artists")
+    public String artists() {
+        return "artists";
+    }
+
+    @RequestMapping(value = "/song_list")
     public String song_list() {
         return "back_system/song_list";
     }
 
+    @RequestMapping(value = "/collapse")
+    public String collapse() {
+        return "collapse";
+    }
 
+    @RequestMapping(value = "/musicLists")
+    public String musicLists() {
+        return "musicLists";
+    }
+
+    @RequestMapping(value = "/saveCenter")
+    public String saveCenter() {
+        return "saveCenter";
+    }
+    @RequestMapping(value = "/talking")
+    public String talking() {
+        return "back_system/talking";
+    }
 
 }
 

@@ -34,13 +34,13 @@ public class Mail implements Serializable {
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     private Date date=null;
     /**
-     * 0为普通邮件，1为管理员和客服看的邮件（为1时不用填接收方的id）
+     * 0为普通邮件，1为管理员和客服看的邮件（为1时不用填接收方的id）  2、为管理员看的
      */
     private int reply=0;
     /**
-     * 0表示未读，1表示已读，2表示标记
+     * 0表示未读，1表示已读，2表示标记, -1表示全部
      */
-    private int state=0;
+    private int state=-1;
 
     @Override
     public String toString() {

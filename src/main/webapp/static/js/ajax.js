@@ -399,29 +399,43 @@ window.onload = function () {
     });
 
     // 歌单专辑篇-------------------------------
-    // 显示歌单专辑信息，根据条件页数显示信息
-    function showUserInformation(page) {
-        //得到4个条件存成数组
-        var condition = new Array();
-        condition[0] = $("#registerUserName").val();
-        condition[1] = $("#registerUserName").val();
-        condition[2] = $("#registerUserName").val();
-        condition[3] = $("#registerUserName").val();
+    // 显示指的的歌单或专辑的详细信息
+    $(".songListInformation").on("click", function () {
+        //得到对应的id
+        var id = $(this).data("id");
+        alert(id);
         $.ajax({
             contentType: "application/x-www-form-urlencoded;charset=UTF-8",
             type: "post",
-            url: "administrators/showSongList",
+            url: "/administrators/showIdSongList",
             data: {
-                "condition": condition,
-                "pageNum": page
+                "id": id
             },
             dataType: "json",
             success: function (data, status) {
                 // 返回showSongList
+                // document.getElementById("songListIntroduce").innerHTML=data.introduction;
+                $('#songListIntroduce').html(data.introduction);
+                // document.getElementById("songListPicture").src=data.picture;
+                $("#songListInformationDeleteId").attr("src",data.picture);
             }
         });
-    }
+    });
 
+    // 点击编辑歌单或专辑按钮触发的事件
+    $(".songListInformationEdit").on("click", function () {
+        // 得到对应的id
+        var id = this.value;
+
+    });
+
+    // 点击删除歌单或专辑按钮触发的事件
+    $(".songListInformationDelete").on("click", function () {
+        // 得到对应的id
+        var ids= $(this).data("id");
+        // var id = this.getAttribute("value");
+        $("#songListInformationDeleteId").attr("value",ids);
+    });
     // 修改专辑信息（仅修改活动）
     $("#registerUser").on("click", function () {
         // id
@@ -436,20 +450,6 @@ window.onload = function () {
                 "id": id,
                 "activity": activity
             },
-            dataType: "json",
-            success: function (data, status) {
-                // 返回state
-            }
-        });
-    });
-
-    // 删除指定id的专辑或歌单
-    $("#registerUser").on("click", function () {
-        // id
-        var id = $("#registerUserName").val();
-        $.ajax({
-            type: "get",
-            url: "administrators/deleteSongList?id=" + id,
             dataType: "json",
             success: function (data, status) {
                 // 返回state
@@ -650,29 +650,33 @@ window.onload = function () {
     });
 
     // 邮箱篇-------------------------------------
-    //显示邮箱
-    function showUserInformation(page) {
-        //得到4个条件存成数组
-        var condition = new Array();
-        condition[0] = $("#registerUserName").val();
-        condition[1] = $("#registerUserName").val();
-        condition[2] = $("#registerUserName").val();
-        condition[3] = $("#registerUserName").val();
+
+    // 显示指定邮箱详细信息
+    $(".mailInformation").on("click", function () {
+        //得到对应的id
+        var id = $(this).data("id");
         $.ajax({
             contentType: "application/x-www-form-urlencoded;charset=UTF-8",
             type: "post",
-            url: "administrators/showMail",
+            url: "/administrators/showIdMail",
             data: {
-                "condition": condition,
-                "pageNum": page
+                "id": id
             },
             dataType: "json",
             success: function (data, status) {
-                // 返回PageInfo
+                // 返回Mail
+                $('#mailContent').html(data.content);
             }
         });
-    }
+    });
 
+    // 点击删除歌单或专辑按钮触发的事件
+    $(".mailInformationDelete").on("click", function () {
+        // 得到对应的id
+        var ids= $(this).data("id");
+        // var id = this.getAttribute("value");
+        $("#mailInformationDeleteId").attr("value",ids);
+    });
     // 添加邮箱
     $("#registerUser").on("click", function () {
         // 发送方的id

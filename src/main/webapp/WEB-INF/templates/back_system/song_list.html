@@ -7,35 +7,36 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>song_list</title>
     <link rel="stylesheet" href="css/bootstrap.css" th:href="@{/static/css/bootstrap.css}">
-    <link rel="stylesheet" href="css/back_system.css"th:href="@{/static/css/back_system.css}" >
-    <link rel="stylesheet" href="css/song_list.css"th:href="@{/static/css/song_list.css}" >
+    <link rel="stylesheet" href="css/back_system.css" th:href="@{/static/css/back_system.css}">
+    <link rel="stylesheet" href="css/song_list.css" th:href="@{/static/css/song_list.css}">
 </head>
 <body>
 <div class="total">
     <!--头部-->
-    <div th:replace="back_system/back_head::html" ></div>
+    <div th:replace="back_system/back_head::html"></div>
     <div class="main">
         <!--        侧边栏-->
-        <div   th:replace="back_system/back_side::html"></div>
+        <div th:replace="back_system/back_side::html"></div>
         <div class="main_right">
             <div class="main_right_header">
                 <div class="mrh">
-                    <form action="">
-                        <input type="text" placeholder="专辑id">
-                        <input type="text"placeholder="活动 id">
-                        <input type="text"placeholder="用户 id">
-                        <input type="text"placeholder="被收藏量">
-                        <select name="分类对象" style="margin: 0 8px;">
-                            <option value="已发送">音乐</option>
-                            <option value="未发送">vip</option>
-                            <option value="标记">专辑</option>
+                    <form action="/administrators/showSongList">
+                        <input type="text" name="condition" placeholder=" id">
+                        <input type="text" name="condition" placeholder="活动 id">
+                        <input type="text" name="condition" placeholder="分类 id">
+                        <input type="text" name="condition" placeholder="用户 id">
+                        <select name="condition" style="margin: 0 8px;">
+                            <option value="0">全部</option>
+                            <option value="1">歌单</option>
+                            <option value="2">专辑</option>
                         </select>
-                        <button type="submit" style="width:7%;" >
+                        <button type="submit" style="width:7%;">
                             <img src="img/搜索--1.png" th:src="@{/static/img/搜索--1.png}" alt=""></button>
                     </form>
                 </div>
             </div>
-            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+                 aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content" style="margin-top: 200px">
                         <div class="modal-header" style="text-align: center">
@@ -48,14 +49,14 @@
                         </div>
                         <div class="modal-body" style="height: 250px;">
                             <div class="activities_img2">
-                                插入图片
+                                <img id="songListPicture" src=""/>
                             </div>
-                            <div class="activities_introduse2">
-                                文字介绍
+                            <div id="songListIntroduce" class="activities_introduse2">
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <button type="button"  data-dismiss="modal" style="width:30%; height: 40px; background: #BA55D3;border:none;outline: none;box-shadow: none;">
+                            <button type="button" data-dismiss="modal"
+                                    style="width:30%; height: 40px; background: #BA55D3;border:none;outline: none;box-shadow: none;">
                                 确定
                             </button>
                         </div>
@@ -63,68 +64,32 @@
                 </div><!-- /.modal -->
             </div>
             <!--            modal_6新增信息-->
-            <div class="modal fade" id="myModal_6" tabindex="-1" role="dialog" aria-labelledby="myModalLabel-1" aria-hidden="true">
+            <div class="modal fade" id="myModal_6" tabindex="-1" role="dialog" aria-labelledby="myModalLabel-1"
+                 aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content" style="width:500px;">
-                        <div class="modal-header" style="color:#BA55D3;display: flex" >
+                        <div class="modal-header" style="color:#BA55D3;display: flex">
                             <h4>新增专辑</h4>
                             <p type="button" class="close" data-dismiss="modal" aria-hidden="true">
                                 &times;
                             </p>
                         </div>
-                        <div class="modal-body" style="width:100%;display: flex;flex-direction: row;align-items: center">
-                         <div class="modal_body_left">
-                             <input type="text"  placeholder="专辑">
-                             <input type="text"  placeholder="分类">
-                             <input type="text"  placeholder="活动">
-                             <input type="text"  placeholder="创建时间">
-                             <table  style="background:#000;"></table>
-                         </div>
-                         <div class="modal_body_right" style="display: flex;flex-direction: column">
-                                请插入专辑封面
-                             <div class="activities_img" id="image-wrap" >
-
-                             </div>
-                             <div class=""><input type="file" id="file" style="width: 230px;height: 30px;border: none;"></div>
-                             <div class="activities_introduse">
-                               <textarea rows="5" cols="15">请描述本专辑</textarea>
-
-                             </div>
-                        </div>
-                        </div>
-                            <div class="modal_footer">
-                                <input type="submit" data-toggle="modal" data-target="#myModal_5" style="width:54%; height: 40px; background: #BA55D3;border:none;outline: none;margin-left: 368px;box-shadow: none"  data-dismiss="modal" value="commit"/>
-                            </div>
-
-<!--                            </form>-->
-                        </div>
-                    </div><!-- /.modal-content -->
-                </div><!-- /.modal -->
-
-
-
-            <div class="modal fade" id="myModal_1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel-1" aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content" style="width:500px;">
-                        <div class="modal-header" style="color:#BA55D3;display: flex" >
-                            <h4>修改专辑</h4>
-                            <p type="button" class="close" data-dismiss="modal" aria-hidden="true">
-                                &times;
-                            </p>
-                        </div>
-                        <div class="modal-body" style="width:100%;display: flex;flex-direction: row;align-items: center">
+                        <div class="modal-body"
+                             style="width:100%;display: flex;flex-direction: row;align-items: center">
                             <div class="modal_body_left">
-                                <input type="text"  placeholder="专辑">
-                                <input type="text"  placeholder="分类">
-                                <input type="text"  placeholder="活动">
-                                <input type="text"  placeholder="创建时间">
-                                <table  style="background:#000;"></table>
+                                <input type="text" name="condition" placeholder="专辑">
+                                <input type="text" name="condition" placeholder="分类">
+                                <input type="text" name="condition" placeholder="活动">
+                                <input type="text" name="condition" placeholder="创建时间">
+                                <table style="background:#000;"></table>
                             </div>
                             <div class="modal_body_right" style="display: flex;flex-direction: column">
                                 请插入专辑封面
-                                <div class="activities_img" id="image-wrap2" >
+                                <div class="activities_img" id="image-wrap">
+
                                 </div>
-                                <div class=""><input type="file" id="file2" style="width: 230px;height: 30px;border: none;"></div>
+                                <div class=""><input type="file" id="file"
+                                                     style="width: 230px;height: 30px;border: none;"></div>
                                 <div class="activities_introduse">
                                     <textarea rows="5" cols="15">请描述本专辑</textarea>
 
@@ -132,7 +97,52 @@
                             </div>
                         </div>
                         <div class="modal_footer">
-                            <input type="submit" data-toggle="modal" data-target="#myModal_5" style="width:54%; height: 40px; background: #BA55D3;border:none;outline: none;margin-left: 368px;box-shadow: none"  data-dismiss="modal" value="commit"/>
+                            <input type="submit" data-toggle="modal" data-target="#myModal_5"
+                                   style="width:54%; height: 40px; background: #BA55D3;border:none;outline: none;margin-left: 368px;box-shadow: none"
+                                   data-dismiss="modal" value="commit"/>
+                        </div>
+
+                        <!--                            </form>-->
+                    </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal -->
+
+
+            <div class="modal fade" id="myModal_1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel-1"
+                 aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content" style="width:500px;">
+                        <div class="modal-header" style="color:#BA55D3;display: flex">
+                            <h4>修改专辑</h4>
+                            <p type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                                &times;
+                            </p>
+                        </div>
+                        <div class="modal-body"
+                             style="width:100%;display: flex;flex-direction: row;align-items: center">
+                            <div class="modal_body_left">
+                                <input type="text" placeholder="专辑">
+                                <input type="text" placeholder="分类">
+                                <input type="text" placeholder="活动">
+                                <input type="text" placeholder="创建时间">
+                                <table style="background:#000;"></table>
+                            </div>
+                            <div class="modal_body_right" style="display: flex;flex-direction: column">
+                                请插入专辑封面
+                                <div class="activities_img" id="image-wrap2">
+                                </div>
+                                <div class=""><input type="file" id="file2"
+                                                     style="width: 230px;height: 30px;border: none;"></div>
+                                <div class="activities_introduse">
+                                    <textarea rows="5" cols="15">请描述本专辑</textarea>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal_footer">
+                            <input type="submit" data-toggle="modal" data-target="#myModal_5"
+                                   style="width:54%; height: 40px; background: #BA55D3;border:none;outline: none;margin-left: 368px;box-shadow: none"
+                                   data-dismiss="modal" value="commit"/>
                         </div>
 
                         <!--                            </form>-->
@@ -141,7 +151,8 @@
             </div><!-- /.modal -->
 
             <!-- 模态框（Modal_2） -->
-            <div class="modal fade" id="myModal_2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel-2" aria-hidden="true">
+            <div class="modal fade" id="myModal_2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel-2"
+                 aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content" style="width:300px;margin-top:200px;">
                         <div class="modal-header">
@@ -153,17 +164,23 @@
                             确定要删除吗？
                         </div>
                         <div class="modal-footer">
-                            <button type="button"  data-dismiss="modal" data-toggle="modal" data-target="#myModal_3">
-                                commit
-                            </button>
-                            <button type="button"  data-dismiss="modal">cancel
+                            <form action="/administrators/deleteSongList" method="post">
+                                <!--用来存储id看不了-。- -->
+                                <input id="songListInformationDeleteId" name="id" style="display:none"/>
+                                <!--data-dismiss="modal" data-toggle="modal" data-target="#myModal_3"-->
+                                <button type="submit">
+                                    commit
+                                </button>
+                            </form>
+                            <button type="button" data-dismiss="modal">cancel
                             </button>
                         </div>
                     </div><!-- /.modal-content -->
                 </div><!-- /.modal -->
             </div>
             <!--            重置成功 modal——3-->
-            <div class="modal fade" id="myModal_3" tabindex="-1" role="dialog" aria-labelledby="myModalLabel_3" aria-hidden="true">
+            <div class="modal fade" id="myModal_3" tabindex="-1" role="dialog" aria-labelledby="myModalLabel_3"
+                 aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content" style="width: 200px;height: 200px;margin-top: 200px;">
                         <div class="modal-header">
@@ -176,14 +193,17 @@
                         </div>
                         <div class="modal-body" style="width:200px;height:65px;">
                             <p style="float:left;height: 50px;line-height: 50px;">
-                                <img src="img/对号.png" th:src="@{/static/img/对号.png}" style="width:40px;height: 40px;" alt="">
+                                <img src="img/对号.png" th:src="@{/static/img/对号.png}" style="width:40px;height: 40px;"
+                                     alt="">
                             </p>
                             <p style="float:left;height: 50px;line-height: 50px;">
                                 删除成功
                             </p>
                         </div>
                         <div class="modal-footer">
-                            <button type="button"  data-dismiss="modal" style=" width: 58px;background: #0099FF; height: 33px;border: none;border-radius: 3px;">确定
+                            <button type="button" data-dismiss="modal"
+                                    style=" width: 58px;background: #0099FF; height: 33px;border: none;border-radius: 3px;">
+                                确定
                             </button>
                         </div>
                     </div><!-- /.modal-content -->
@@ -191,7 +211,8 @@
             </div>
 
             <!--            修改成功 modal——4-->
-            <div class="modal fade" id="myModal_4" tabindex="-1" role="dialog" aria-labelledby="myModalLabel_4" aria-hidden="true">
+            <div class="modal fade" id="myModal_4" tabindex="-1" role="dialog" aria-labelledby="myModalLabel_4"
+                 aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content" style="width: 200px;height: 174px;margin-top: 200px;">
                         <div class="modal-header">
@@ -204,21 +225,25 @@
                         </div>
                         <div class="modal-body" style="width:200px;height:65px;">
                             <p style="float:left;height: 50px;line-height: 50px;">
-                                <img src="img/对号.png" th:src="@{/static/img/对号.png}" style="width:40px;height: 40px;" alt="">
+                                <img src="img/对号.png" th:src="@{/static/img/对号.png}" style="width:40px;height: 40px;"
+                                     alt="">
                             </p>
                             <p style="float:left;height: 50px;line-height: 50px;">
                                 修改成功
                             </p>
                         </div>
                         <div class="modal-footer">
-                            <button type="button"  data-dismiss="modal" style=" width: 58px;background: #0099FF; height: 33px;border: none;border-radius: 3px;">确定
+                            <button type="button" data-dismiss="modal"
+                                    style=" width: 58px;background: #0099FF; height: 33px;border: none;border-radius: 3px;">
+                                确定
                             </button>
                         </div>
                     </div><!-- /.modal-content -->
                 </div><!-- /.modal -->
             </div>
             <!--            modal_5添加成功-->
-            <div class="modal fade" id="myModal_5" tabindex="-1" role="dialog" aria-labelledby="myModalLabel_4" aria-hidden="true">
+            <div class="modal fade" id="myModal_5" tabindex="-1" role="dialog" aria-labelledby="myModalLabel_4"
+                 aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content" style="width: 200px;height: 174px;margin-top: 200px;">
                         <div class="modal-header">
@@ -231,14 +256,17 @@
                         </div>
                         <div class="modal-body" style="width:200px;height:65px;">
                             <p style="float:left;height: 50px;line-height: 50px;">
-                                <img src="img/对号.png" th:src="@{/static/img/对号.png}" style="width:40px;height: 40px;" alt="">
+                                <img src="img/对号.png" th:src="@{/static/img/对号.png}" style="width:40px;height: 40px;"
+                                     alt="">
                             </p>
                             <p style="float:left;height: 50px;line-height: 50px;">
                                 添加成功
                             </p>
                         </div>
                         <div class="modal-footer">
-                            <button type="button"  data-dismiss="modal" style=" width: 58px;background: #0099FF; height: 33px;border: none;border-radius: 3px;">确定
+                            <button type="button" data-dismiss="modal"
+                                    style=" width: 58px;background: #0099FF; height: 33px;border: none;border-radius: 3px;">
+                                确定
                             </button>
                         </div>
                     </div><!-- /.modal-content -->
@@ -252,229 +280,79 @@
                     添加
                 </button>
             </div>
-            <div class="main_rh_main" >
+            <div class="main_rh_main">
                 <table class="" style="overflow-x: auto;">
                     <!--                    content table table-hover-->
                     <thead>
                     <tr>
-                        <th>专辑</th>
-                        <th>用户</th>
+                        <th>id</th>
+                        <th>类型</th>
+                        <th>创建者</th>
                         <th>分类</th>
-                        <th>创建时间</th>
                         <th>活动</th>
+                        <th>创建时间</th>
                         <th>详情</th>
+                        <th>被收藏的次数</th>
+                        <th>包含的音乐</th>
                         <th></th>
                     </tr>
                     </thead>
-                    <tbody>
+                    <tbody th:each="list:${pageInfo.list}">
                     <tr>
-                        <td>Bangalore</td>
-                        <td>560001</td>
-                        <td>Tanmay</td>
-                        <td>Bangalore</td>
-                        <td>560001</td>
-                        <td> <button data-toggle="modal" data-target="#myModal">
-                            查看
-                        </button></td>
+                        <td th:text="${list.id}"></td>
+                        <td th:text="${list.type}"></td>
+                        <td><a th:text="${list.userId}"></a></td>
+                        <td><a th:text="${list.classificationId}"></a></td>
+                        <td><a th:text="${list.activity}"></a></td>
+                        <td th:text="${#dates.format(list.date, 'yyyy-MM-dd HH:mm:ss')}"></td>
                         <td>
-                            <i data-toggle="modal" data-target="#myModal_1" title="编辑">
-                                <span class="glyphicon glyphicon-edit"></span>
-                            </i>
-                            <i data-toggle="modal" data-target="#myModal_2" title="删除">
-                                <span class="glyphicon glyphicon-trash"></span>
-                            </i>
-
+                            <button class="songListInformation" th:data-id="${list.id}" data-toggle="modal"
+                                    data-target="#myModal">
+                                查看
+                            </button>
                         </td>
-                    </tr>
-                    <tr>
-                        <td>Bangalore</td>
-                        <td>560001</td>
-                        <td>Tanmay</td>
-                        <td>Bangalore</td>
-                        <td>560001</td>
-                        <td> <button data-toggle="modal" data-target="#myModal">
-                            查看
-                        </button></td>
                         <td>
-                            <i data-toggle="modal" data-target="#myModal_1" title="编辑">
-                                <span class="glyphicon glyphicon-edit"></span>
-                            </i>
-                            <i data-toggle="modal" data-target="#myModal_2" title="删除">
-                                <span class="glyphicon glyphicon-trash"></span>
-                            </i>
-
+                            <button class="songListInformation" th:data-id="${list.id}" data-toggle="modal"
+                                    data-target="#myModal">
+                                查看
+                            </button>
                         </td>
-                    </tr>
-                    <tr>
-                        <td>Bangalore</td>
-                        <td>560001</td>
-                        <td>Tanmay</td>
-                        <td>Bangalore</td>
-                        <td>560001</td>
-                        <td> <button data-toggle="modal" data-target="#myModal">
-                            查看
-                        </button></td>
                         <td>
-                            <i data-toggle="modal" data-target="#myModal_1" title="编辑">
-                                <span class="glyphicon glyphicon-edit"></span>
-                            </i>
-                            <i data-toggle="modal" data-target="#myModal_2" title="删除">
-                                <span class="glyphicon glyphicon-trash"></span>
-                            </i>
-
+                            <a>
+                                查看
+                            </a>
                         </td>
-                    </tr>
-                    <tr>
-                        <td>Bangalore</td>
-                        <td>560001</td>
-                        <td>Tanmay</td>
-                        <td>Bangalore</td>
-                        <td>560001</td>
-                        <td> <button data-toggle="modal" data-target="#myModal">
-                            查看
-                        </button></td>
                         <td>
-                            <i data-toggle="modal" data-target="#myModal_1" title="编辑">
+                            <i th:data-id="${list.id}" class="songListInformationEdit" data-toggle="modal"
+                               data-target="#myModal_1" title="编辑">
                                 <span class="glyphicon glyphicon-edit"></span>
                             </i>
-                            <i data-toggle="modal" data-target="#myModal_2" title="删除">
+                            <i th:data-id="${list.id}" class="songListInformationDelete" data-toggle="modal"
+                               data-target="#myModal_2" title="删除">
                                 <span class="glyphicon glyphicon-trash"></span>
                             </i>
-
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Bangalore</td>
-                        <td>560001</td>
-                        <td>Tanmay</td>
-                        <td>Bangalore</td>
-                        <td>560001</td>
-                        <td> <button data-toggle="modal" data-target="#myModal">
-                            查看
-                        </button></td>
-                        <td>
-                            <i data-toggle="modal" data-target="#myModal_1" title="编辑">
-                                <span class="glyphicon glyphicon-edit"></span>
-                            </i>
-                            <i data-toggle="modal" data-target="#myModal_2" title="删除">
-                                <span class="glyphicon glyphicon-trash"></span>
-                            </i>
-
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Bangalore</td>
-                        <td>560001</td>
-                        <td>Tanmay</td>
-                        <td>Bangalore</td>
-                        <td>560001</td>
-                        <td> <button data-toggle="modal" data-target="#myModal">
-                            查看
-                        </button></td>
-                        <td>
-                            <i data-toggle="modal" data-target="#myModal_1" title="编辑">
-                                <span class="glyphicon glyphicon-edit"></span>
-                            </i>
-                            <i data-toggle="modal" data-target="#myModal_2" title="删除">
-                                <span class="glyphicon glyphicon-trash"></span>
-                            </i>
-
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Bangalore</td>
-                        <td>560001</td>
-                        <td>Tanmay</td>
-                        <td>Bangalore</td>
-                        <td>560001</td>
-                        <td> <button data-toggle="modal" data-target="#myModal">
-                            查看
-                        </button></td>
-                        <td>
-                            <i data-toggle="modal" data-target="#myModal_1" title="编辑">
-                                <span class="glyphicon glyphicon-edit"></span>
-                            </i>
-                            <i data-toggle="modal" data-target="#myModal_2" title="删除">
-                                <span class="glyphicon glyphicon-trash"></span>
-                            </i>
-
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Bangalore</td>
-                        <td>560001</td>
-                        <td>Tanmay</td>
-                        <td>Bangalore</td>
-                        <td>560001</td>
-                        <td> <button data-toggle="modal" data-target="#myModal">
-                            查看
-                        </button></td>
-                        <td>
-                            <i data-toggle="modal" data-target="#myModal_1" title="编辑">
-                                <span class="glyphicon glyphicon-edit"></span>
-                            </i>
-                            <i data-toggle="modal" data-target="#myModal_2" title="删除">
-                                <span class="glyphicon glyphicon-trash"></span>
-                            </i>
-
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Bangalore</td>
-                        <td>560001</td>
-                        <td>Tanmay</td>
-                        <td>Bangalore</td>
-                        <td>560001</td>
-                        <td> <button data-toggle="modal" data-target="#myModal">
-                            查看
-                        </button></td>
-                        <td>
-                            <i data-toggle="modal" data-target="#myModal_1" title="编辑">
-                                <span class="glyphicon glyphicon-edit"></span>
-                            </i>
-                            <i data-toggle="modal" data-target="#myModal_2" title="删除">
-                                <span class="glyphicon glyphicon-trash"></span>
-                            </i>
-
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Bangalore</td>
-                        <td>560001</td>
-                        <td>Tanmay</td>
-                        <td>Bangalore</td>
-                        <td>560001</td>
-                        <td> <button data-toggle="modal" data-target="#myModal">
-                            查看
-                        </button></td>
-                        <td>
-                            <i data-toggle="modal" data-target="#myModal_1" title="编辑">
-                                <span class="glyphicon glyphicon-edit"></span>
-                            </i>
-                            <i data-toggle="modal" data-target="#myModal_2" title="删除">
-                                <span class="glyphicon glyphicon-trash"></span>
-                            </i>
-
                         </td>
                     </tr>
                     </tbody>
                 </table>
-
             </div>
             <div class="main_rh_footer">
-                <!--                分页-->
+                <!--分页-->
                 <div class="zzsc">
-                    <!--                currentpage="1" numbercount="**"-->
                     <ul class="page" id="page" pagelistcount="10" maxshowpageitem="5">
-                        <li class="pageItemDisable" page-rel="firstpage" page-data="1">首页</li>
-                        <li class="pageItemDisable" page-rel="prepage" page-data="0">&lt;上一页</li>
-                        <li class="pageItemActive" page-rel="itempage" page-data="1">1</li>
-                        <li class="pageItem" page-rel="itempage" page-data="2">2</li>
-                        <li class="pageItem" page-rel="itempage" page-data="3">3</li>
-                        <li class="pageItem" page-rel="itempage" page-data="4">4</li>
-                        <li class="pageItem" page-rel="itempage" page-data="5">5</li>
-                        <li class="pageItem" page-rel="nextpage" page-data="2">下一页&gt;</li>
-                        <li class="pageItem" page-rel="lastpage" page-data="8">尾页</li>
+                        <li class="pageItemDisable" page-rel="firstpage" page-data="1"><a
+                                th:href="@{/administrators/showSongList(condition=${conditionZero},condition=${conditionOne},condition=${conditionTwo},condition=${conditionThree},condition=${conditionFour},pageNum=1)}">首页</a>
+                        </li>
+                        <li class="pageItemDisable" page-rel="prepage" page-data="0" "><a
+                                th:href="@{/administrators/showSongList(condition=${conditionZero},condition=${conditionOne},condition=${conditionTwo},condition=${conditionThree},condition=${conditionFour},pageNum=${pageInfo.pageNum-1})}">上一页</a>
+                        </li>
+                        <li class="pageItemActive" page-rel="itempage" page-data="1"><a href="2">1</a></li>
+                        <li class="pageItem" page-rel="nextpage" page-data="2"><a
+                                th:href="@{/administrators/showSongList(condition=${conditionZero},condition=${conditionOne},condition=${conditionTwo},condition=${conditionThree},condition=${conditionFour},pageNum=${pageInfo.pageNum+1})}">下一页</a>
+                        </li>
+                        <li class="pageItem" page-rel="lastpage" page-data="8"><a
+                                th:href="@{/administrators/showSongList(condition=${conditionZero},condition=${conditionOne},condition=${conditionTwo},condition=${conditionThree},condition=${conditionFour},pageNum=${pageInfo.pages})}">尾页</a>
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -483,9 +361,10 @@
 </div>
 </body>
 <script src="js/jquery.js" th:src="@{/static/js/jquery.js}"></script>
-<script src="js/bootstrap.min.js"  th:src="@{/static/js/bootstrap.min.js}" ></script>
-<script src="js/jquery-1.9.1.js" th:src="@{/static/js/jquery-1.9.1.js}" ></script>
+<script src="js/bootstrap.min.js" th:src="@{/static/js/bootstrap.min.js}"></script>
+<script src="js/jquery-1.9.1.js" th:src="@{/static/js/jquery-1.9.1.js}"></script>
 <script src="js/back_system.js" th:src="@{/static/js/back_system.js}"></script>
-<script src="js/page.js" th:src="@{/static/js/page.js}" ></script>
-<script src="js/song_list.js" th:src="@{/static/js/song_list.js}" ></script>
+<script src="js/page.js" th:src="@{/static/js/page.js}"></script>
+<script src="js/chance.js" th:src="@{/static/js/chance.js}"></script>
+<script src="js/song_list.js" th:src="@{/static/js/ajax.js}"></script>
 </html>

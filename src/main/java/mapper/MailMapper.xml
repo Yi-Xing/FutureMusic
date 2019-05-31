@@ -6,6 +6,9 @@
     <select id="selectListMail" parameterType="Mail" resultMap="mail">
         select * from tb_mail
         <where>
+            <if test='id!=0'>
+                mail_id=#{id}
+            </if>
             <if test='senderId!=0'>
                 mail_sender_id=#{senderId}
             </if>
@@ -15,7 +18,7 @@
              <if test='reply!=0'>
                 and mail_reply >0 and mail_reply &lt;= #{reply}
             </if>
-            <if test='state!=0'>
+            <if test='state!=-1'>
                 and mail_state=#{state}
             </if>
         </where>

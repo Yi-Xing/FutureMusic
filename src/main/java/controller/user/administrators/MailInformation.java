@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import service.user.administrators.ActivityInformationService;
 import service.user.administrators.MailInformationService;
@@ -46,11 +47,18 @@ public class MailInformation {
      * @param session   用于判断等级
      */
     @RequestMapping(value = "/showMail")
-    @ResponseBody
-    public PageInfo showMail(String[] condition, Integer pageNum, HttpSession session) {
-        return mailInformationService.showMail(condition,pageNum,session);
+    public String  showMail(String[] condition, @RequestParam(defaultValue="1")Integer pageNum, HttpSession session, Model model) {
+        return mailInformationService.showMail(condition,pageNum,session,model);
     }
 
+    /**
+     * 显示指定id的邮箱信息
+     */
+    @RequestMapping(value = "/showIdMail")
+    @ResponseBody
+    public Mail showIdMail(Integer id){
+        return mailInformationService.showIdMail(id);
+    }
     /**
      * 添加邮箱信息
      */
@@ -72,7 +80,7 @@ public class MailInformation {
      * 删除指定邮箱
      */
     @RequestMapping(value = "/deleteMail")
-    public State deleteMail(Integer id) throws DataBaseException {
-        return mailInformationService.deleteMail(id);
+    public String  deleteMail(Integer id,Model model,HttpSession session) throws DataBaseException {
+        return mailInformationService.deleteMail(id,model,session);
     }
 }

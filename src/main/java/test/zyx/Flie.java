@@ -3,22 +3,13 @@ package test.zyx;
 import entity.User;
 import mapper.UserMapper;
 import org.springframework.stereotype.Controller;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Propagation;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.multipart.MultipartHttpServletRequest;
-import org.springframework.web.multipart.commons.CommonsMultipartResolver;
+import org.springframework.web.bind.annotation.ResponseBody;
+import util.SameUrlData;
 
 import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import java.io.File;
-import java.io.IOException;
-import java.util.Iterator;
 
-@Service(value = "Flie")
+@Controller
 public class Flie {
     @Resource(name = "UserMapper")
     UserMapper userMapper;
@@ -26,6 +17,22 @@ public class Flie {
     public String aa(){
         return zyx();
     }
+
+    @RequestMapping(value = "/token")
+    @ResponseBody
+    @SameUrlData
+    public String token(String value) throws InterruptedException {
+        Thread.sleep(4000);
+        System.out.println("我执行了");
+        System.out.println(value);
+        return "demo";
+    }
+    @RequestMapping(value = "/zyxa")
+    public String zyxa() {
+        System.out.println("我中了");
+        return "zyx";
+    }
+
     public String zyx() {
         System.out.println("开始");
         a();

@@ -2,6 +2,7 @@
 $('#myModal').on('shown.bs.modal', function () {
     $('#myInput').focus()
 });
+// $('#Recharge_click').modal($("#recharge_container"));
 //锁定个人中心
 var personalLock = 0;
 $(".color_2 nav .navbar-right .lock").on('click',function () {
@@ -61,7 +62,7 @@ $("#changeInformation").click(function () {
 });
 
 //我喜欢tab切换
-$("#iLike .btn-group button").hover(function () {
+$(".btn-group button").hover(function () {
     $(this).click(function () {
         let num = $(this).index();
         console.log($(this).index());
@@ -76,5 +77,7 @@ $("#iLike .btn-group button").hover(function () {
     })
 });
 
+
+// ajax
 
 

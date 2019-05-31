@@ -2,68 +2,94 @@
 window.onload = function () {
     //登录注册篇---------------------------
     // 用于发送验证码
+    var pp = $(".reg_hed_right")[0];
     $("#button4").on("click", function () {
         var registerMail = $("#registerMail").val();
         $.ajax({
             type: "get",
-            url: "registerVerificationCode?mailbox=" + registerMail,
+            url: "/registerVerificationCode?mailbox=" + registerMail,
             dataType: "json",
             success: function (data) {
-                alert(data);
-                // alert(data.registerMail);
-                if (data.state) {
-                    // alert("我调用了");
+                if (data.state !== 1) {
+                    pp.children[0].innerHTML = "";
+                    pp.children[1].innerHTML = data.information;
+                    pp.children[2].innerHTML = "";
+                    pp.children[3].innerHTML = "";
+                } else {
+                    pp.children[0].innerHTML = "";
+                    pp.children[1].innerHTML = "发送成功";
+                    pp.children[2].innerHTML = "";
+                    pp.children[3].innerHTML = "";
                 }
-                $("#wc").text(data);
-                document.getElementsByClassName('reg_hed_right')[0].children[1].innerHTML = data.information;
             }
         });
     });
 
     // 用于注册账号
-    $("#registerUser").on("click", function () {
-        var registerUserName = $("#registerUserName").val();
-        var registerMail = $("#registerMail").val();
-        var registerPassword = $("#registerPassword").val();
-        var registerPasswordAgain = $("#registerPasswordAgain").val();
-        var verificationCode = $("#verificationCode").val();
-        var agreement = $("#agreement").is(":checked");
+    $("#registerUserInformation").on("click", function () {
+        var userName = $("#registerName").val();
+        var sendMail = $("#registerMail").val();
+        var password = $("#registerPassword").val();
+        var passwordAgain = $("#registerPasswordAgain").val();
+        var verificationCode = $("#registerVerificationCode").val();
+        var agreement = $("#registerAgreement").is(":checked");
         $.ajax({
             contentType: "application/x-www-form-urlencoded;charset=UTF-8",
             type: "post",
-            url: "register",
+            url: "/register",
             data: {
-                "userName": registerUserName,
-                "sendMail": registerMail,
-                "password": registerPassword,
-                "passwordAgain": registerPasswordAgain,
+                "userName": userName,
+                "sendMail": sendMail,
+                "password": password,
+                "passwordAgain": passwordAgain,
                 "verificationCode": verificationCode,
                 "agreement": agreement
             },
             dataType: "json",
             success: function (data, status) {
-                $("#wc").text(data);
-                if (data.state <= 0) {
-                    document.getElementsByClassName('reg_hed_right')[0].children[1].innerHTML = data.information;
+                if (data.state === -1) {
+                    pp.children[0].innerHTML = data.information;
+                    pp.children[1].innerHTML = "";
+                    pp.children[2].innerHTML = "";
+                    pp.children[3].innerHTML = "";
+                } else if (data.state === -2) {
+                    pp.children[0].innerHTML = "";
+                    pp.children[1].innerHTML = data.information;
+                    pp.children[2].innerHTML = "";
+                    pp.children[3].innerHTML = "";
+                } else if (data.state === -3) {
+                    pp.children[0].innerHTML = "";
+                    pp.children[1].innerHTML = "";
+                    pp.children[2].innerHTML = data.information;
+                    pp.children[3].innerHTML = "";
+                } else if (data.state === -4) {
+                    pp.children[0].innerHTML = "";
+                    pp.children[1].innerHTML = "";
+                    pp.children[2].innerHTML = "";
+                    pp.children[3].innerHTML = data.information;
                 } else {
+                    // 刷新网页
                     alert("注册成功了");
+                    setTimeout(function () {
+                        location.reload();
+                    }, 1000); //指定1秒刷新一次
                 }
             }
         });
     });
 
     // 用于登录账号
-    $("#registerUser").on("click", function () {
+    $("#login").on("click", function () {
         // 账号
-        var mailbox = $("#registerUserName").val();
+        var mailbox = $("#loginMail").val();
         // 密码
-        var password = $("#registerUserName").val();
+        var password = $("#loginPassword").val();
         // 是否选中7天登录
-        var automatic = $("#agreement").is(":checked");
+        var automatic = $("#automatic").is(":checked");
         $.ajax({
             contentType: "application/x-www-form-urlencoded;charset=UTF-8",
             type: "post",
-            url: "loginAccount",
+            url: "/loginAccount",
             data: {
                 "mailbox": mailbox,
                 "password": password,
@@ -71,11 +97,15 @@ window.onload = function () {
             },
             dataType: "json",
             success: function (data, status) {
-                $("#wc").text(data);
-                if (data.state <= 0) {
-                    document.getElementsByClassName('reg_hed_right')[0].children[1].innerHTML = data.information;
+                if (data.state === 0) {
+                    $('#loginTips').html(data.information);
                 } else {
+                    $('#loginTips').html("");
+                    // 刷新网页
                     alert("登录成功了");
+                    setTimeout(function () {
+                        location.reload();
+                    }, 1000); //指定1秒刷新一次
                 }
             }
         });
@@ -273,7 +303,7 @@ window.onload = function () {
         var id = $("#registerUserName").val();
         $.ajax({
             type: "get",
-            url: "showSendMail?id="+id,
+            url: "showSendMail?id=" + id,
             dataType: "json",
             success: function (data, status) {
                 //返回List<Mail>
@@ -299,7 +329,7 @@ window.onload = function () {
         var id = $("#registerUserName").val();
         $.ajax({
             type: "get",
-            url: "showReceiveMail?id="+id,
+            url: "showReceiveMail?id=" + id,
             dataType: "json",
             success: function (data, status) {
                 //返回List<Mail>
@@ -413,7 +443,7 @@ window.onload = function () {
         var type = $("#registerUserName").val();
         $.ajax({
             type: "get",
-            url: "showMusicPlay?type="+type,
+            url: "showMusicPlay?type=" + type,
             dataType: "json",
             success: function (data, status) {
                 //返回 List<Music>或List<MusicVideo>
@@ -427,7 +457,7 @@ window.onload = function () {
         var id = $("#registerUserName").val();
         $.ajax({
             type: "get",
-            url: "playMusic?id="+id,
+            url: "playMusic?id=" + id,
             dataType: "json",
             success: function (data, status) {
                 //返回 Music
@@ -441,7 +471,7 @@ window.onload = function () {
         var id = $("#registerUserName").val();
         $.ajax({
             type: "get",
-            url: "playMusicVideo?id="+id,
+            url: "playMusicVideo?id=" + id,
             dataType: "MusicVideo",
             success: function (data, status) {
                 //返回 Music
@@ -487,7 +517,7 @@ window.onload = function () {
         var id = $("#registerUserName").val();
         $.ajax({
             type: "get",
-            url: "deleteComment?id="+id,
+            url: "deleteComment?id=" + id,
             dataType: "json",
             success: function (data, status) {
                 //返回State
@@ -501,7 +531,7 @@ window.onload = function () {
         var id = $("#registerUserName").val();
         $.ajax({
             type: "get",
-            url: "commentFabulous?id="+id,
+            url: "commentFabulous?id=" + id,
             dataType: "json",
             success: function (data, status) {
                 //返回State
@@ -517,7 +547,7 @@ window.onload = function () {
         var type = $("#registerUserName").val();
         $.ajax({
             type: "get",
-            url: "showUserSongList?type="+type,
+            url: "showUserSongList?type=" + type,
             dataType: "json",
             success: function (data, status) {
                 //返回 List<SongList>
@@ -531,7 +561,7 @@ window.onload = function () {
         var type = $("#registerUserName").val();
         $.ajax({
             type: "get",
-            url: "showUserCollectionSongList?type="+type,
+            url: "showUserCollectionSongList?type=" + type,
             dataType: "json",
             success: function (data, status) {
                 //返回 List<SongListCollect>
@@ -599,7 +629,7 @@ window.onload = function () {
         var id = $("#registerUserName").val();
         $.ajax({
             type: "get",
-            url: "editMusicSongListPicture?id="+id,
+            url: "editMusicSongListPicture?id=" + id,
             dataType: "json",
             success: function (data, status) {
                 //返回 State
@@ -613,7 +643,7 @@ window.onload = function () {
         var id = $("#registerUserName").val();
         $.ajax({
             type: "get",
-            url: "deleteMusicSongList?id="+id,
+            url: "deleteMusicSongList?id=" + id,
             dataType: "json",
             success: function (data, status) {
                 //返回 State
@@ -778,7 +808,7 @@ window.onload = function () {
     });
 
     // 用于发送验证码
-    $("#button4").on("click", function () {
+    $("#button24").on("click", function () {
         $.ajax({
             type: "get",
             url: "secretProtectionVerificationCode",
@@ -789,10 +819,10 @@ window.onload = function () {
     });
 
     // 找回密码第一步
-    $("#button4").on("click", function () {
+    $("#button42").on("click", function () {
         $.ajax({
             type: "get",
-            url: "verificationAccount",
+            url: "verificationAccount2",
             dataType: "json",
             success: function (data) {
             }

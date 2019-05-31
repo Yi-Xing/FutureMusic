@@ -17,15 +17,15 @@
        http://www.springframework.org/schema/mvc/spring-mvc.xsd"
 >
 
-<!--    &lt;!&ndash;配置事务拦截器&ndash;&gt;-->
-<!--    <tx:advice id="transactionInterceptor" />-->
-
-<!--    &lt;!&ndash;配置切面&ndash;&gt;-->
+<!--    &lt;!&ndash;配置aop&ndash;&gt;-->
 <!--    <aop:config>-->
-<!--        <aop:pointcut id="MusicSection" expression="execution(* service.User.consumer.AboutMusicService.commentFabulous(..))"/>-->
-<!--        <aop:advisor advice-ref="transactionInterceptor" pointcut-ref="MusicSection"/>-->
+<!--        &lt;!&ndash;配置给哪些方法增强&ndash;&gt;-->
+<!--        <aop:pointcut id="notice" expression="execution(* *.*(..))"/>-->
+<!--        &lt;!&ndash;配置切面&ndash;&gt;-->
+<!--        <aop:aspect ref="Notice">-->
+<!--            <aop:around method="surround" pointcut-ref="notice"/>-->
+<!--        </aop:aspect>-->
 <!--    </aop:config>-->
-
 
     <!--配置异常处理器-->
     <bean class="util.exception.ExceptionResolver" />
@@ -35,19 +35,20 @@
     <bean id="dataSourceTransactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
         <property name="dataSource" ref="source"/>
     </bean>
-    <!--配置事务-->
+    
+ <!--   &lt;!&ndash;配置事务&ndash;&gt;
     <tx:advice  transaction-manager="dataSourceTransactionManager" id="transactionInterceptor">
-        <!--配置事务传播性，隔离级别以及超时回滚等问题 -->
+        &lt;!&ndash;配置事务传播性，隔离级别以及超时回滚等问题 &ndash;&gt;
         <tx:attributes>
             <tx:method name="*" propagation="REQUIRED"   />
         </tx:attributes>
     </tx:advice>
 
-    <!--配置事务的切面-->
+    &lt;!&ndash;配置事务的切面&ndash;&gt;
     <aop:config>
         <aop:pointcut id="pointcut" expression="execution(* test.zyx.Flie.zyx(..))"/>
         <aop:advisor advice-ref="transactionInterceptor" pointcut-ref="pointcut"/>
-    </aop:config>
+    </aop:config>-->
 
     <!--注解事务-->
     <tx:annotation-driven transaction-manager="dataSourceTransactionManager"/>
@@ -60,11 +61,19 @@
 <!--    拦截器-->
     <mvc:interceptors>
         <mvc:interceptor>
+            <!--防止表单重复提交-->
+            <mvc:mapping path="/**"/>
+            <bean class="util.interceptor.SameUrlDataInterceptor"/>
+        </mvc:interceptor>
+        <mvc:interceptor>
+            <!--用于实现自动登录-->
             <mvc:mapping path="/**"/>
             <bean class="util.interceptor.LoginInterceptor"/>
         </mvc:interceptor>
-        <mvc:interceptor>
-            <!--管理员可以增删改-->
+
+
+   <!--     <mvc:interceptor>
+            &lt;!&ndash;管理员可以增删改&ndash;&gt;
             <mvc:mapping path="/administrators/add*"/>
             <bean class="util.interceptor.AddInterceptor"/>
         </mvc:interceptor>
@@ -77,15 +86,11 @@
             <bean class="util.interceptor.ModifyInterceptor"/>
         </mvc:interceptor>
         <mvc:interceptor>
-            <!--客服以上的权限可以查看-->
+            &lt;!&ndash;客服以上的权限可以查看&ndash;&gt;
             <mvc:mapping path="/administrators/Show*"/>
             <bean class="util.interceptor.ShowInterceptor"/>
-        </mvc:interceptor>
-<!--        <mvc:interceptor>-->
-<!--            &lt;!&ndash;防止表单重复提交&ndash;&gt;-->
-<!--            <mvc:mapping path="/**"/>-->
-<!--            <bean class="util.interceptor.TokenInterceptor"/>-->
-<!--        </mvc:interceptor>-->
+        </mvc:interceptor>-->
+
 
     </mvc:interceptors>
 </beans>
