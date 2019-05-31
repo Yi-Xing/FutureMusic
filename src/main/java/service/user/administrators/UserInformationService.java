@@ -35,6 +35,7 @@ public class UserInformationService {
     FocusMapper focusMapper;
     @Resource(name = "IdExistence")
     IdExistence idExistence;
+
     /**
      * 显示和按条件查询用户信息
      *
@@ -44,29 +45,44 @@ public class UserInformationService {
     public String showUser(String[] condition, Integer pageNum, Model model) {
         // 用来存储管理员输入的条件
         User user = new User();
-        if ((condition[0] != null) && !"".equals(condition[0])) {
-            user.setId(Integer.parseInt(condition[0]));
-        }
-        if ((condition[1] != null) && !"".equals(condition[1])) {
-            user.setMailbox(condition[1]);
-        }
-        if ((condition[2] != null) && !"".equals(condition[2])) {
-            user.setName(condition[2]);
-        }
-        if ((condition[3] != null) && !"".equals(condition[3])) {
-            user.setReport(Integer.parseInt(condition[3]));
-        }
-        if ((condition[4] != null) && !"".equals(condition[4])) {
-            user.setLevel(Integer.parseInt(condition[4]));
+        if (condition != null) {
+            if ((condition[0] != null) && !"".equals(condition[0])) {
+                user.setId(Integer.parseInt(condition[0]));
+            }
+            if ((condition[1] != null) && !"".equals(condition[1])) {
+                user.setMailbox(condition[1]);
+            }
+            if ((condition[2] != null) && !"".equals(condition[2])) {
+                user.setName(condition[2]);
+            }
+            if ((condition[3] != null) && !"".equals(condition[3])) {
+                user.setReport(Integer.parseInt(condition[3]));
+            }
+            if ((condition[4] != null) && !"".equals(condition[4])) {
+                user.setLevel(Integer.parseInt(condition[4]));
+            }
+            model.addAttribute("conditionZero", condition[0]);
+            model.addAttribute("conditionOne", condition[1]);
+            model.addAttribute("conditionTwo", condition[2]);
+            model.addAttribute("conditionThree", condition[3]);
+            model.addAttribute("conditionFour", condition[4]);
+        } else {
+            model.addAttribute("conditionZero", null);
+            model.addAttribute("conditionOne", null);
+            model.addAttribute("conditionTwo", null);
+            model.addAttribute("conditionThree", null);
+            model.addAttribute("conditionFour", null);
         }
         //在查询之前传入当前页，然后多少记录
         PageHelper.startPage(pageNum, 8);
         // 根据条件查找用户信息
         List<User> list = userMapper.selectUser(user);
-        PageInfo pageInfo = new PageInfo<>(list);
+        logger.debug("查找到的订单"+list);
         // 传入页面信息
+        PageInfo pageInfo = new PageInfo<>(list);
         model.addAttribute("pageInfo", pageInfo);
-        return null;
+        model.addAttribute("pages",new int[pageInfo.getPages()] );
+        return "back_system/back_system";
     }
 
     /**

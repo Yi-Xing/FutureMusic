@@ -44,7 +44,7 @@ public class SearchMusic {
     public PageInfo searchMusicByRegion(@RequestParam(required = false,value = "pn", defaultValue = "1") Integer pn,
                                                 @RequestParam(value = "region",defaultValue = "1")String region) {
         PageHelper.startPage(pn, 10);
-        List<Map<String, String[]>> musicList= musicService.selectListMusicByRegion(region);
+        List<Music> musicList= musicService.selectListMusicByRegion(region);
         return new PageInfo(musicList);
     }
     /**
@@ -55,7 +55,7 @@ public class SearchMusic {
     public PageInfo searchMusicByType(@RequestParam(required = false,value = "pn", defaultValue = "1") Integer pn,
                                       @RequestParam(value = "type",defaultValue = "1")String type) {
         PageHelper.startPage(pn, 10);
-        List<Map<String, String[]>> musicList= musicService.selectListMusicByRegion(type);
+        List<Music> musicList= musicService.selectListMusicByRegion(type);
         return new PageInfo(musicList);
     }
     /**
