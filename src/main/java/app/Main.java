@@ -73,6 +73,11 @@ public class Main {
         return "personal";
     }
 
+    @RequestMapping(value = "/talking")
+    public String talking() {
+        return "back_system/talking";
+    }
+
     @RequestMapping(value = "/Email")
     public String email() {
         return "back_system/Email";
@@ -113,10 +118,8 @@ public class Main {
     public String saveCenter() {
         return "saveCenter";
     }
-    @RequestMapping(value = "/talking")
-    public String talking() {
-        return "back_system/talking";
-    }
+
+
 
 }
 
