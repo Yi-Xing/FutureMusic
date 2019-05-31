@@ -23,7 +23,7 @@ import javax.annotation.Resource;
  *               4、等级
  *               5、被举报次数（查询到是大于输入的举报次数）
  *         关联查询，用户的粉丝量，创建的专辑，上传过的音乐，购买过的东西，评论过的信息
- * 可修改：  等级  VIP时间  余额  举报次数
+ * 可修改：  等级  VIP时间  余额 ，举报次数
  * @author 5月20日 张易兴创建
  */
 @Controller
@@ -32,6 +32,7 @@ public class UserInformation {
     private static final Logger logger = LoggerFactory.getLogger(UserInformation.class);
     @Resource(name = "UserInformationService")
     UserInformationService userInformationService;
+
 
     /**
      * 显示和按条件查询用户信息
