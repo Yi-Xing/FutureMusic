@@ -13,6 +13,7 @@ import sun.nio.ch.AbstractPollArrayWrapper;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -44,23 +45,24 @@ public class Exhibition {
 
     @RequestMapping("/indexExhibition")
     @ResponseBody
-    public Model indexExhibition(Model model){
+    public Map<String,Object> indexExhibition(){
+        Map<String,Object> model = new HashMap<>(16);
         //首页显示的活动
-        model.addAttribute("activities",activity());
+        model.put("activities",activity());
         //首页显示的音乐人
-        model.addAttribute("singerAddress1",singerService.exhibitionSingersByRegion(singerAddress1));
-        model.addAttribute("singerAddress2",singerService.exhibitionSingersByRegion(singerAddress2));
-        model.addAttribute("singerAddress3",singerService.exhibitionSingersByRegion(singerAddress3));
+        model.put("singerAddress1",singerService.exhibitionSingersByRegion(singerAddress1));
+        model.put("singerAddress2",singerService.exhibitionSingersByRegion(singerAddress2));
+        model.put("singerAddress3",singerService.exhibitionSingersByRegion(singerAddress3));
         //显示的MV显示15首
-        model.addAttribute("musicVideo",musicVideoService.exhibitionMusicVideo());
+        model.put("musicVideo",musicVideoService.exhibitionMusicVideo());
         //新歌前三首歌曲
-        model.addAttribute("rankingNewSong",rankingListByNewSong());
+        model.put("rankingNewSong",rankingListByNewSong());
         //电音前三歌曲
-        model.addAttribute("rankingByMusicType", rankingListByMusicType(musicType));
+        model.put("rankingByMusicType", rankingListByMusicType(musicType));
         //首页的歌曲地区排行榜(包括欧美、日韩、华语）
-        model.addAttribute("rankingByMusicRegion",rankingListByRegion(region1));
-        model.addAttribute("rankingByMusicRegion",rankingListByRegion(region2));
-        model.addAttribute("rankingByMusicRegion",rankingListByRegion(region3));
+//        model.put("rankingByMusicRegion",rankingListByRegion(region1));
+//        model.put("rankingByMusicRegion",rankingListByRegion(region2));
+//        model.put("rankingByMusicRegion",rankingListByRegion(region3));
         return model;
     }
     /**
@@ -70,8 +72,7 @@ public class Exhibition {
      */
     public List<Map<String, String[]>> rankingListByMusicType(String musicType){
         List<Map<String, String[]>> musicList = musicService.selectListMusicByMusicType(musicType);
-
-        return musicList;
+        return getThree(musicList);
     }
     /**
      *      功能：首页的新歌排行榜
@@ -81,7 +82,16 @@ public class Exhibition {
      */
     public List<Music> rankingListByNewSong(){
         List<Music> musicList = musicService.selectListMusicByNewSong();
-        return musicList;
+        int limit  = 0;
+        List<Music> rankingMusicList = new ArrayList<>();
+        for(Music m:musicList){
+            rankingMusicList.add(m);
+            limit++;
+            if(limit>2){
+                break;
+            }
+        }
+        return rankingMusicList;
     }
     /**
      *      功能：首页的地区排行榜
@@ -105,13 +115,13 @@ public class Exhibition {
      * 获取三条数据
      */
     public List<Map<String, String[]>> getThree(List<Map<String, String[]>> musicList) {
-        int limit = 1;
+        int limit = 0;
         List<Map<String, String[]>> rankingMusicList = new ArrayList<>();
         for (Map<String, String[]> threeMusic : musicList) {
             rankingMusicList.add(threeMusic);
             limit++;
-            if (limit > 3) {
-                break;
+            if (limit >2) {
+            break;
             }
         }
         return rankingMusicList;

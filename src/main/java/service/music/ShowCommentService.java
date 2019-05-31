@@ -23,10 +23,12 @@ public class ShowCommentService {
      * @return
      */
     public Map<Comment,Comment> commentByMusicId(int musicId){
+        System.out.println("cococococcoc");
         Comment comment =new Comment();
         comment.setMusicId(musicId);
         comment.setType(1);
         comment.setFabulous(1);
+        System.out.println("mmmmmmmmmmmmmmm");
         return selectComment(comment);
     }
     /**
@@ -140,9 +142,11 @@ public class ShowCommentService {
      * 如果评论不是独立评论，显示出来回复的是哪个评论
      */
     private Map<Comment,Comment> selectComment(Comment comment){
+        System.out.println("eeeeeeeeeeeeeeeeeeee");
         List<Comment> commentList = commentMapper.selectListComment(comment);
         Map<Comment,Comment> commentReplyMap = new HashMap<>(16);
         if(commentList.size()==0){
+            System.out.println("nullnullnull");
             return null;
         }
         for(Comment c:commentList){
