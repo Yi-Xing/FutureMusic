@@ -56,8 +56,7 @@ public class ExceptionResolver implements HandlerExceptionResolver {
             logger.debug("其他异常" + o);
             logger.debug("其他异常" + e);
             modelAndView.addObject("exception2", "其他异常");
-            httpServletResponse.setStatus(300);
-            return new ModelAndView("collapse");
+//            httpServletResponse.setStatus(300)
         }
         modelAndView.setViewName("collapse");
         return modelAndView;

@@ -41,7 +41,6 @@ public class LoginService {
      * @param session   获取当前会话
      */
     public State login(String mailbox, String password, boolean automatic, HttpServletResponse response, HttpSession session) {
-        int a=2/0;
         State state = new State();
         //先判断邮箱是否合法
         if (validationInformation.isMailbox(mailbox)) {
