@@ -21,6 +21,7 @@ public class AlipayService {
     private static final Logger logger = LoggerFactory.getLogger(AlipayService.class);
 
     public void ali(HttpServletRequest request, HttpServletResponse response, int type) throws AlipayApiException, IOException {
+        logger.debug("type"+type);
         //设置编码
         response.setContentType("text/html;charset=utf-8");
 

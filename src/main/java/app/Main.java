@@ -110,6 +110,10 @@ public class Main {
     public String saveCenter() {
         return "saveCenter";
     }
+    @RequestMapping(value = "/active")
+    public String active() {
+        return "back_system/Activities.html";
+    }
 
 
 
