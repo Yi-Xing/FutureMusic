@@ -34,12 +34,20 @@ public class SongListService {
     @Resource(name = "MusicMapper")
     MusicMapper musicMapper;
     /**
+     * 显示歌单某个的详细信息
+     */
+    public Map<String,Object> showSongListDetail(String songListId){
+        SongList songList = new SongList();
+        songList.setId(Integer.parseInt(songListId));
+        return showSongList(songListMapper.selectListSongList(songList).get(0));
+    }
+    /**
      *根据分类搜索歌单
      */
     public Map<String,Object> showSongListByClassification(String classification){
         Classification cl = new Classification();
         cl.setType(classification);
-        Map<String,Object> songListMap = new HashMap<>();
+        Map<String,Object> songListMap = new HashMap<>(16);
         List<Classification> classificationList = classificationMapper.selectListClassification(cl);
         for(Classification clf:classificationList){
             SongList songList = new SongList();
@@ -53,18 +61,20 @@ public class SongListService {
         return songListMap;
     }
     /**
-     * 显示歌单或专辑的详细信息
+     * 传入一个具体的歌单，显示歌单或专辑的详细信息
      *          分类、歌手、列表歌曲、评论
      * @param songList   将条件封装
      * @return  Map<String,Object> 返回和歌单关联的所有信息
      */
     public Map<String,Object> showSongList(SongList songList){
         Map<String,Object> songListMap  = new HashMap<>(10);
-        List<SongList> resultSongLists = songListMapper.selectListSongList(songList);
-        if(resultSongLists.size()==0){
-            return null;
-        }
-        SongList resultSongList = resultSongLists.get(0);
+//        System.out.println(songList);
+//        System.out.println(songListMapper);
+//        List<SongList> resultSongLists = songListMapper.selectListSongList(songList);
+//        if(resultSongLists.size()==0){
+//            return null;
+//        }
+        SongList resultSongList = songList;
         songListMap.put("songList",resultSongList);
         Classification classification  = new Classification();
         classification.setId(resultSongList.getClassificationId());

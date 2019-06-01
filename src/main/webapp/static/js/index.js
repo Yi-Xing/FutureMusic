@@ -49,17 +49,17 @@ $(document).ready(function () {
     });
 });
 
-// var like = 0;
-// $('.icon-like').on('click', function () {
-//     let obj = $(this)[0];
-//     if (like === 0){
-//         $(obj).addClass('like');
-//         like = 1;
-//     }else {
-//         $(obj).removeClass('like');
-//         like = 0;
-//     }
-// });
+var like = 0;
+$('.icon-like').on('click', function () {
+    let obj = $(this)[0];
+    if (like === 0){
+        $(obj).addClass('like');
+        like = 1;
+    }else {
+        $(obj).removeClass('like');
+        like = 0;
+    }
+});
 
 
 //头部

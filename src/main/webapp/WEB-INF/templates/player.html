@@ -18,10 +18,19 @@
                 </a>
             </div>
             <div class="user_information">
-                <h3>name</h3>
-                <a href="javascript:;">
-                    <p>关注：num</p>
-                </a>
+                <h3 th:text="${session.userInformation.name}">name</h3>
+                <h5 style="padding-left: 20px">
+                    <a href="javascript:;">
+                        <span class="iconfont icon-people1"></span>
+
+                    </a>
+                    <a href="javascript:;">
+                        <span class="iconfont icon-music"></span>
+                    </a>
+                    <a href="javascript:;">
+                        <span class="iconfont icon-iconvip"></span>
+                    </a>
+                </h5>
             </div>
         </div>
         <!--搜索框-->
@@ -39,32 +48,6 @@
                 </div>
             </form>
         </div>
-        <!--歌单切换-->
-        <!--        <div class="musicList">-->
-        <!--            <ul>-->
-        <!--                <li class="active">-->
-        <!--                    <a href="javascript:;">-->
-        <!--                        我喜欢-->
-        <!--                    </a>-->
-        <!--                </li>-->
-        <!--                <li>-->
-        <!--                    <a href="javascript:;">-->
-        <!--                        默认歌单-->
-        <!--                    </a>-->
-        <!--                </li>-->
-        <!--                <li>-->
-        <!--                    <a href="javascript:;">-->
-        <!--                        English-->
-        <!--                    </a>-->
-        <!--                </li>-->
-        <!--                <li>-->
-        <!--                    <a href="javascript:;">-->
-        <!--                        睡前歌单-->
-        <!--                    </a>-->
-        <!--                </li>-->
-        <!--            </ul>-->
-        <!--        </div>-->
-        <!--歌曲目录-->
         <div class="Catalog">
             <table class="table table-hover table-striped">
                 <thead>
@@ -79,8 +62,9 @@
                     <th scope="row">
                         <span class="iconfont icon-music"></span>
                     </th>
-                    <td>NAME</td>
-                    <td>name</td>
+                    <td>Ehrling</td>
+                    <td>Champagne</td>
+                    <div class="hide">music/Ehrling-ChampagneOcean.mp3</div>
                     <th class="dropdown">
                         <span class="iconfont icon-like"></span>
                         <span type="button" class="iconfont icon-more dropdown-toggle" data-toggle="dropdown"
@@ -118,8 +102,9 @@
                     <th scope="row">
                         <span class="iconfont icon-music"></span>
                     </th>
-                    <td>NAME</td>
-                    <td>name</td>
+                    <td>最近</td>
+                    <td>王小帅</td>
+                    <div class="hide">music/最近-王小帅.mp3</div>
                     <th class="dropdown">
                         <span class="iconfont icon-like"></span>
                         <span type="button" class="iconfont icon-more dropdown-toggle" data-toggle="dropdown"
@@ -157,8 +142,9 @@
                     <th scope="row">
                         <span class="iconfont icon-music"></span>
                     </th>
-                    <td>NAME</td>
-                    <td>name</td>
+                    <td>凌晨三点</td>
+                    <td>陈硕子</td>
+                    <div class="hide">music/凌晨三点.mp3</div>
                     <th class="dropdown">
                         <span class="iconfont icon-like"></span>
                         <span type="button" class="iconfont icon-more dropdown-toggle" data-toggle="dropdown"
@@ -196,8 +182,9 @@
                     <th scope="row">
                         <span class="iconfont icon-music"></span>
                     </th>
-                    <td>NAME</td>
-                    <td>name</td>
+                    <td>Lemon</td>
+                    <td>米津玄師</td>
+                    <div class="hide">music/米津玄師-Lemon.mp3</div>
                     <th class="dropdown">
                         <span class="iconfont icon-like"></span>
                         <span type="button" class="iconfont icon-more dropdown-toggle" data-toggle="dropdown"
@@ -235,8 +222,9 @@
                     <th scope="row">
                         <span class="iconfont icon-music"></span>
                     </th>
-                    <td>NAME</td>
-                    <td>name</td>
+                    <td>像我这样的人</td>
+                    <td>毛不易</td>
+                    <div class="hide">music/像我这样的人.mp3</div>
                     <th class="dropdown">
                         <span class="iconfont icon-like"></span>
                         <span type="button" class="iconfont icon-more dropdown-toggle" data-toggle="dropdown"
@@ -274,8 +262,9 @@
                     <th scope="row">
                         <span class="iconfont icon-music"></span>
                     </th>
-                    <td>NAME</td>
-                    <td>name</td>
+                    <td>心墙</td>
+                    <td>林俊杰</td>
+                    <div class="hide">music/心墙.mp3</div>
                     <th class="dropdown">
                         <span class="iconfont icon-like"></span>
                         <span type="button" class="iconfont icon-more dropdown-toggle" data-toggle="dropdown"
@@ -313,8 +302,9 @@
                     <th scope="row">
                         <span class="iconfont icon-music"></span>
                     </th>
-                    <td>NAME</td>
-                    <td>name</td>
+                    <td>离人愁</td>
+                    <td>李袁杰</td>
+                    <div class="hide">music/离人愁.mp3</div>
                     <th class="dropdown">
                         <span class="iconfont icon-like"></span>
                         <span type="button" class="iconfont icon-more dropdown-toggle" data-toggle="dropdown"
@@ -352,8 +342,9 @@
                     <th scope="row">
                         <span class="iconfont icon-music"></span>
                     </th>
-                    <td>NAME</td>
-                    <td>name</td>
+                    <td>PLANET</td>
+                    <td>ラムジ</td>
+                    <div class="hide">music/PLANET.mp3</div>
                     <th class="dropdown">
                         <span class="iconfont icon-like"></span>
                         <span type="button" class="iconfont icon-more dropdown-toggle" data-toggle="dropdown"
@@ -391,8 +382,9 @@
                     <th scope="row">
                         <span class="iconfont icon-music"></span>
                     </th>
-                    <td>NAME</td>
-                    <td>name</td>
+                    <td>说爱你</td>
+                    <td>蔡依林</td>
+                    <div class="hide">music/说爱你.mp3</div>
                     <th class="dropdown">
                         <span class="iconfont icon-like"></span>
                         <span type="button" class="iconfont icon-more dropdown-toggle" data-toggle="dropdown"
@@ -430,8 +422,9 @@
                     <th scope="row">
                         <span class="iconfont icon-music"></span>
                     </th>
-                    <td>NAME</td>
-                    <td>name</td>
+                    <td>往后余生</td>
+                    <td>马良</td>
+                    <div class="hide">music/往后余生.mp3</div>
                     <th class="dropdown">
                         <span class="iconfont icon-like"></span>
                         <span type="button" class="iconfont icon-more dropdown-toggle" data-toggle="dropdown"
@@ -484,73 +477,10 @@
                 <a href="javascript:;"><p>查看评论</p></a>
             </div>
             <div class="Lyric">
-                123132156 << 1<br>
-                155141541 <<2
-                123132156<br>
-                155141541
-                123132156<br>
-                155141541
-                123132156<br>
-                155141541
-                123132156<br>
-                155141541
-                123132156<br>
-                155141541
-                123132156<br>
-                155141541
-                123132156<br>
-                155141541
-                123132156<br>
-                155141541
-                123132156<br>
-                155141541
-                123132156<br>
-                155141541
-                123132156<br>
-                155141541
-                123132156<br>
-                155141541
-                123132156<br>
-                155141541
-                123132156<br>
-                155141541
-                123132156<br>
-                155141541
-                123132156<br>
-                155141541
-                123132156<br>
-                155141541
-                123132156<br>
-                155141541
-                123132156<br>
-                155141541
-                123132156<br>
-                155141541
-                123132156<br>
-                155141541
-                123132156<br>
-                155141541
-                123132156<br>
-                155141541
-                123132156<br>
-                155141541
-                123132156<br>
-                155141541
-                123132156<br>
-                155141541
-                123132156<br>
-                155141541
-                123132156<br>
-                155141541
-                123132156<br>
-                155141541
-                123132156<br>
-                155141541
-                123132156<br>
-                155141541
+                <!--               歌词---------------------------------------->
             </div>
             <div class="Play_control">
-                <audio src="music/Ehrling - Champagne Ocean.mp3" th:src="@{/static/music/Ehrling - Champagne Ocean.mp3}" id="audio"></audio>
+                <audio src="../../static/music/Ehrling-ChampagneOcean.mp3" id="audio"></audio>
                 <div class="foot">
                     <div class="control_left">
                         <i class="iconfont icon-yduishangyiqu" title="上一首"></i>
@@ -559,16 +489,15 @@
                     </div>
                     <div class="Progress">
                         <div class="current_time">00:00</div>
-<!--                        <div style="position: relative;">-->
-                            <div class="progress_range">
-                                <div class="range"></div>
-                                <div class="circle"></div>
-<!--                            </div>-->
+                        <div class="progress_range">
+                            <div class="range"></div>
+                            <div class="circle"></div>
                         </div>
                         <span class="total_time">00:00</span>
                     </div>
                     <div class="model">
-                        <div class="volume"><span class="iconfont icon-yinliangxiaoyinliangxiao" title="静音"></span></div>
+                        <div class="volume"><span class="iconfont icon-yinliangxiaoyinliangxiao" title="静音"></span>
+                        </div>
                         <div class="volume_range">
                             <div class="range"></div>
                             <div class="circle"></div>

@@ -12,3 +12,27 @@ $('.musicList ul li').on('click',function () {
     console.log(this);
     $(this).addClass('active');
 });
+
+//音乐切换
+$(".music_list").click(function () {
+    //获取角标
+    var index = $(this).index();
+    console.log(index);
+    //获取歌曲名
+    var musicName = $(this).children()[1];
+    musicName = musicName.innerHTML;
+    //获取歌曲路径
+    var musicSrc = $(".hide")[index].innerHTML;
+    musicSrc = "'" + "../../static/" + musicSrc + "'";
+    //获取audio
+    var autio = $("audio");
+    //获取歌曲显示
+    var displayMusicName = $(".Play .music_name h2")[0];
+    console.log(musicSrc);
+
+    //开始显示
+    displayMusicName.innerHTML = musicName;
+    $(autio).attr('src', musicSrc);
+
+    console.log($(autio).attr('src'));
+});
