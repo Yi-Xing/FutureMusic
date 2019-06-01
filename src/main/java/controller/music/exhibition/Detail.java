@@ -19,8 +19,6 @@ import java.util.Map;
  * */
 @Controller
 public class Detail {
-    @Resource(name = "DetailsService")
-    private DetailsService detailsService;
     @Resource(name = "ActivityService")
     private ActivityService activityService;
     @Resource(name = "MusicService")
