@@ -51,8 +51,6 @@ window.onload = function () {
         oAudio.play();
         oPlay.innerHTML = "<i class='iconfont icon-bofang' title='暂停'></i>";
         clickNum = 1;
-        // oNeedle.style.animation = "rotate-needle-resume 0.5s 1 normal linear forwards;";
-        // oDisk.animationPlayState = "running";
         setInterval(setProgress, 1000);
     }
 
@@ -63,14 +61,10 @@ window.onload = function () {
             setInterval(setProgress, 1000);
             oPlay.innerHTML = "<i class='iconfont icon-zanting' title='播放'></i>";
             clickNum = 1;
-            // oNeedle.style.transform = "rotate(0deg)";
-            // oDisk.style.animationPlayState = "running";
         } else {
             oAudio.pause();
             oPlay.innerHTML = "<i class='iconfont icon-bofang' title='暂停'></i>";
             clickNum = 0;
-            // oNeedle.style.transform = "rotate(-25deg)";
-            // oDisk.style.animationPlayState = "paused";
         }
     };
 
