@@ -61,9 +61,12 @@ public class AccountInformationService {
         userFollow.setUserType(1);
         // 去数据库查找关注用户的人数
         int followUserCount = focusMapper.selectUserFocusCount(followUser);
+        logger.debug("用户"+user);
+        logger.debug("用户的粉丝量"+userFollowCount);
+        logger.debug("用户的关注量"+followUserCount);
         model.addAttribute("user", user);
-        model.addAttribute("followCount", followUserCount);
-        model.addAttribute("userFollowCount", userFollowCount);
+        model.addAttribute("followCount",userFollowCount );
+        model.addAttribute("userFollowCount", followUserCount);
         // 用于查找用户喜欢的歌曲数量，未写完差一个方法调用
         return "personal";
     }
