@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import service.user.administrators.ActivityInformationService;
 import service.user.administrators.MailInformationService;
+import util.SameUrlData;
 import util.exception.DataBaseException;
 
 import javax.annotation.Resource;
@@ -46,6 +47,7 @@ public class MailInformation {
      * @param session   用于判断等级
      */
     @RequestMapping(value = "/showMail")
+    @SameUrlData
     public String  showMail(String[] condition, @RequestParam(defaultValue="1")Integer pageNum, HttpSession session, Model model) {
         return mailInformationService.showMail(condition,pageNum,session,model);
     }
@@ -79,6 +81,7 @@ public class MailInformation {
      * 删除指定邮箱
      */
     @RequestMapping(value = "/deleteMail")
+    @SameUrlData
     public String  deleteMail(Integer id,Model model,HttpSession session) throws DataBaseException {
         return mailInformationService.deleteMail(id,model,session);
     }

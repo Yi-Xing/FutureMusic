@@ -46,7 +46,7 @@ public class UserInformationService {
         // 用来存储管理员输入的条件
         User user = new User();
         if (condition != null) {
-        logger.debug("名字"+condition[2]);
+            logger.debug("名字" + condition[2]);
             if ((condition[0] != null) && !"".equals(condition[0])) {
                 user.setId(Integer.parseInt(condition[0]));
             }
@@ -75,14 +75,14 @@ public class UserInformationService {
             model.addAttribute("conditionFour", null);
         }
         //在查询之前传入当前页，然后多少记录
-        PageHelper.startPage(pageNum, 8);
+        PageHelper.startPage(pageNum, 9);
         // 根据条件查找用户信息
         List<User> list = userMapper.selectUser(user);
-        logger.debug("查找到的用户"+list);
+        logger.debug("查找到的用户" + list);
         // 传入页面信息
         PageInfo pageInfo = new PageInfo<>(list);
         model.addAttribute("pageInfo", pageInfo);
-        model.addAttribute("pages",new int[pageInfo.getPages()] );
+        model.addAttribute("pages", new int[pageInfo.getPages()]);
         return "back_system/back_system";
     }
 
@@ -118,8 +118,11 @@ public class UserInformationService {
             // 1表示关注
             focus.setUserType(1);
             // 该用户的粉丝量
-            return focusMapper.selectUserFocusCount(focus);
+            int count = focusMapper.selectUserFocusCount(focus);
+            logger.debug("id为" + id + "的用户粉丝量为" + count);
+            return count;
         }
+        logger.debug("id为" + id + "的用户不存在");
         // 用户不存在返回0
         return 0;
     }

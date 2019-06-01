@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import service.user.administrators.ActivityInformationService;
 import service.user.administrators.SongListInformationService;
+import util.SameUrlData;
 import util.exception.DataBaseException;
 
 import javax.annotation.Resource;
@@ -68,6 +69,7 @@ public class SongListInformation {
     /**
      * 删除指定id专辑或歌单
      */
+    @SameUrlData
     @RequestMapping(value = "/deleteSongList")
     public String  deleteSongList(Integer id, Model model) throws DataBaseException {
         return songListInformationService.deleteSongList(id,model);

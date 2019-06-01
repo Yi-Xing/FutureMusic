@@ -44,11 +44,11 @@ public class Order implements Serializable {
     /**
      * 购买前的原价
      */
-    private BigDecimal originalPrice=null;
+    private BigDecimal originalPrice=new BigDecimal("0");
     /**
      * 购买时候的价格
      */
-    private BigDecimal price=null;
+    private BigDecimal price=new BigDecimal("0");
     /**
      * 支付方式
      */

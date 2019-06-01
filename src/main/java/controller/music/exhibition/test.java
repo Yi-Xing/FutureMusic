@@ -1,13 +1,7 @@
 package controller.music.exhibition;
 
-import entity.Music;
-import entity.Play;
-import mapper.MusicMapper;
-import mapper.PlayMapper;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import service.music.DetailsService;
 import service.music.PlayService;
 
 import javax.annotation.Resource;
