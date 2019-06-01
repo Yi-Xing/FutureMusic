@@ -223,11 +223,11 @@ window.onload = function () {
     // 添加音乐
     $("#registerUser").on("click", function () {
         // 名字
-        var name = $("#registerUserName").val();
+        var name = $("#addName").val();
         // 等级
-        var level = $("#registerUserName").val();
+        var level = $("#addLevel").val();
         // 价格
-        var price = $("#registerUserName").val();
+        var price = $("#addPrice").val();
         // 歌手的id
         var singerId = $("#registerUserName").val();
         // 专辑的id
@@ -288,25 +288,25 @@ window.onload = function () {
     // 修改音乐
     $("#registerUser").on("click", function () {
         // id
-        var id = $("#registerUserName").val();
+        var id = $("#").val();
         // 名字
-        var name = $("#registerUserName").val();
+        var name = $("#modifyName").val();
         // 等级
-        var level = $("#registerUserName").val();
+        var level = $("#modifyLevel").val();
         // 价格
-        var price = $("#registerUserName").val();
+        var price = $("#modifyPrice").val();
         // 歌手的id
-        var singerId = $("#registerUserName").val();
+        var singerId = $("#modifySingerId").val();
         // 专辑的id
-        var albumId = $("#registerUserName").val();
+        var albumId = $("#modifyAlbumId").val();
         // 分类的id
-        var classificationId = $("#registerUserName").val();
+        var classificationId = $("#modifyClassificationId").val();
         // 对应的MV id
-        var musicVideoId = $("#registerUserName").val();
+        var musicVideoId = $("#modifyMusicVideoId").val();
         // 活动的id
-        var activity = $("#registerUserName").val();
+        var activity = $("#modifyActivity").val();
         // 是否可听
-        var available = $("#registerUserName").val();
+        var available = $("#modifyAvailable").val();
         $.ajax({
             contentType: "application/json;charset=UTF-8",
             type: "post",

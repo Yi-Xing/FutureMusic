@@ -344,6 +344,7 @@ ul li{
     width:200px;
     height: 40px;
     float: left;
+    line-height: 40px;
 }
 .kuang{
     width:200px;
@@ -587,4 +588,8 @@ ul li{
 .statement{
     text-align: center;
     margin: 30px auto;
+}
+
+#verificationCode{
+    cursor: pointer;
 }
