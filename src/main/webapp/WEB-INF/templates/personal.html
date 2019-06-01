@@ -443,13 +443,13 @@
                     </div>
                     <a class="btn btn-success pull-right" id="modifyUserName">确认更改</a>
                 </form>
-                <form style="margin: 50px 0 0 0">
+                <form style="margin: 50px 0 0 0" action="/user/setUpHeadPortrait">
                     <div class="form-group">
                         <label for="exampleInputFile">上传头像</label>
-                        <input type="file" id="exampleInputFile">
+                        <input type="file" name="file" id="exampleInputFile">
                         <p class="help-block">选择你的头像。</p>
                     </div>
-                    <a class="btn btn-success pull-right" id="modifyUserPortrait">确认更改</a>
+                    <button type="submit" class="btn btn-success pull-right" id="modifyUserPortrait">确认更改</button>
                 </form>
             </div>
         </div>
