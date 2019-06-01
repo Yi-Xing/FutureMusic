@@ -81,7 +81,7 @@ public class TransactionService {
                 user.setBalance(user.getBalance().add(new BigDecimal(money)));
                 logger.debug("充值后的余额" + user.getBalance());
                 userInformationService.modifyUser(user);
-                return "personal";
+                return "index";
             }
         } else {//验证失败
             logger.debug("验证失败");
