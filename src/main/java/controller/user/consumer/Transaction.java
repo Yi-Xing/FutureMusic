@@ -2,8 +2,11 @@ package controller.user.consumer;
 
 import com.alipay.api.AlipayApiException;
 import entity.State;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import service.user.LoginService;
 import service.user.consumer.AlipayService;
 import service.user.consumer.TransactionService;
 import util.exception.DataBaseException;
@@ -22,6 +25,7 @@ import java.io.IOException;
 @Controller
 @RequestMapping(value = "/user")
 public class Transaction {
+    private static final Logger logger = LoggerFactory.getLogger(Transaction.class);
     @Resource(name = "AlipayService")
     AlipayService alipayService;
     @Resource(name = "TransactionService")
@@ -29,11 +33,11 @@ public class Transaction {
     /**
      * 充值按钮执行此方法，输入充值的金额
      *
-     * @param money   需要充值的金额
+     * @param type   需要充值的金额
      */
     @RequestMapping(value = "/rechargeBalance")
-    public void rechargeBalance(HttpServletRequest request, HttpServletResponse response, String money) throws IOException, AlipayApiException {
-        alipayService.ali(request,response,money);
+    public void rechargeBalance(HttpServletRequest request, HttpServletResponse response, int type) throws IOException, AlipayApiException {
+        alipayService.ali(request,response,type);
     }
 
     /**
@@ -41,7 +45,7 @@ public class Transaction {
      *
      */
     @RequestMapping(value = "/rechargeCallback")
-    public State rechargeCallback(HttpServletRequest request, HttpSession session) throws IOException, AlipayApiException, DataBaseException {
+    public String rechargeCallback(HttpServletRequest request, HttpSession session) throws IOException, AlipayApiException, DataBaseException {
         return transactionService.rechargeBalance(request,session);
     }
     /**

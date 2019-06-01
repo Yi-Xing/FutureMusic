@@ -38,7 +38,7 @@
                             </div>
                             <div>
                                 <a href="javascript:;">
-                                    <h5 style="margin-top: 20px"><b>退出登录</b></h5>
+                                    <h5 id="signOutLogin" style="margin-top: 20px"><b>退出登录</b></h5>
                                 </a>
                             </div>
                         </div>
@@ -71,7 +71,7 @@
                                                         <a href="#">联系客服</a>
                                                     </div>
                                                 </div>
-                                                <input class="one_log" id="login" value="登录" style="background: red">
+                                                <input class="one_log pointer" id="login" value="登录" style="background: red">
                                             </form>
                                         </div>
 
@@ -100,7 +100,7 @@
                                                                placeholder="请输入验证码">
                                                     </div>
                                                     <div class="reg_main_right">
-                                                        <a id="button4">点击发送</a>
+                                                        <a id="verificationCode" class="pointer">点击发送</a>
                                                     </div>
                                                 </div>
                                                 <div class="reg_checkbox" style="overflow: hidden">
@@ -109,7 +109,7 @@
                                                     <a href="#" style="float: left">《用户协议》</a>
                                                 </div>
                                                 <div>
-                                                    <input id="registerUserInformation" class="reg_bom"
+                                                    <input id="registerUserInformation" class="pointer reg_bom"
                                                            style="background-color: red" value="注册">
                                                 </div>
                                             </form>
@@ -140,7 +140,7 @@
                 <a href="./musicLists.html">歌单</a>
             </li>
             <li>
-                <a href="./personal.html">个人中心</a>
+                <a href="./personal.html" th:href="@{/user/userPage}">个人中心</a>
             </li>
         </ul>
     </div>

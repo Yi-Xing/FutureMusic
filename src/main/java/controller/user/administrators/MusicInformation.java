@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import service.user.administrators.ActivityInformationService;
 import service.user.administrators.MusicInformationService;
@@ -55,7 +56,7 @@ public class MusicInformation {
      * @param pageNum 表示当前第几页
      */
     @RequestMapping(value = "/showMusic")
-    public String showMusic(String[] condition,Integer pageNum, Model model) throws ParseException {
+    public String showMusic(String[] condition, @RequestParam(defaultValue="1")Integer pageNum, Model model) throws ParseException {
         return musicInformationService.showMusic(condition,pageNum,model);
     }
 

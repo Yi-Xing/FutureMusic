@@ -3,27 +3,36 @@ window.onload = function () {
     //登录注册篇---------------------------
     // 用于发送验证码
     var pp = $(".reg_hed_right")[0];
-    $("#button4").on("click", function () {
+    var canSend = 0;
+    $("#verificationCode").on("click", function () {
         var registerMail = $("#registerMail").val();
-        $.ajax({
-            type: "get",
-            url: "/registerVerificationCode?mailbox=" + registerMail,
-            dataType: "json",
-            success: function (data) {
-                if (data.state !== 1) {
-                    pp.children[0].innerHTML = "";
-                    pp.children[1].innerHTML = data.information;
-                    pp.children[2].innerHTML = "";
-                    pp.children[3].innerHTML = "";
-                } else {
-                    pp.children[0].innerHTML = "";
-                    pp.children[1].innerHTML = "发送成功";
-                    pp.children[2].innerHTML = "";
-                    pp.children[3].innerHTML = "";
+
+        if (canSend === 0) {canSend = 1;
+            $.ajax({
+                type: "get",
+                url: "/registerVerificationCode?mailbox=" + registerMail,
+                dataType: "json",
+                success: function (data) {
+                    if (data.state !== 1) {
+                        pp.children[0].innerHTML = "";
+                        pp.children[1].innerHTML = data.information;
+                        pp.children[2].innerHTML = "";
+                        pp.children[3].innerHTML = "";
+                    } else {
+                        pp.children[0].innerHTML = "";
+                        pp.children[1].innerHTML = "发送成功";
+                        pp.children[2].innerHTML = "";
+                        pp.children[3].innerHTML = "";
+                    }
+                    $("#verificationCode").attr('disabled', 'true');
                 }
-            }
-        });
+            });
+        }
+        setTimeout(function () {
+            canSend = 0;
+        }, 30000);
     });
+
 
     // 用于注册账号
     $("#registerUserInformation").on("click", function () {
@@ -70,9 +79,9 @@ window.onload = function () {
                 } else {
                     // 刷新网页
                     alert("注册成功了");
-                    setTimeout(function () {
                         location.reload();
-                    }, 1000); //指定1秒刷新一次
+                    // setTimeout(function () {
+                    // }, 1000); //指定1秒刷新一次
                 }
             }
         });
@@ -99,39 +108,46 @@ window.onload = function () {
             success: function (data, status) {
                 if (data.state === 0) {
                     $('#loginTips').html(data.information);
-                } else {
+                } else if (data.state === 1) {
                     $('#loginTips').html("");
                     // 刷新网页
                     alert("登录成功了");
-                    setTimeout(function () {
+                    // setTimeout(function () {
+                    // }, 1000); //指定1秒刷新一次
                         location.reload();
-                    }, 1000); //指定1秒刷新一次
+                }else if(data.state === 2){
+                    window.location.href ="http://localhost:8080/administrators/showUser";
                 }
+            },error:function (msg) {
+                window.location.href ="http://localhost:8080/collapse";
             }
         });
     });
 
     // 用户退出登录
-    $("#registerUser").on("click", function () {
+    $("#signOutLogin").on("click", function () {
         $.ajax({
             type: "get",
-            url: "signOutLogin",
+            url: "/signOutLogin",
             dataType: "json",
             success: function (data, status) {
                 // 返回state
+                if(data.state===1){
+                    location.reload();
+                }
             }
         });
     });
 
     // 用户信息篇---------------------------
     // 修改用户名
-    $("#registerUser").on("click", function () {
+    $("#modifyUserName").on("click", function () {
         // 用户名
-        var userName = $("#registerUserName").val();
+        var userName = $("#exampleInputEmail1").val();
         $.ajax({
             contentType: "application/x-www-form-urlencoded;charset=UTF-8",
             type: "post",
-            url: "changeUserName",
+            url: "/user/changeUserName",
             data: {
                 "userName": userName
             },
@@ -143,13 +159,14 @@ window.onload = function () {
     });
 
     // 修改头像
-    $("#registerUser").on("click", function () {
+    $("#modifyUserPortrait").on("click", function () {
         $.ajax({
             type: "get",
-            url: "setUpHeadPortrait",
+            url: "/user/setUpHeadPortrait",
             dataType: "json",
             success: function (data, status) {
                 // 返回state
+                console.log(data);
             }
         });
     });
@@ -360,7 +377,7 @@ window.onload = function () {
 
     //音乐和MV篇-------------------------------------------
     //显示用户收藏的所有音乐，显示用户收藏的所有MV
-        // 1表示查找音乐收藏 2表示查找MV收藏
+    // 1表示查找音乐收藏 2表示查找MV收藏
     $(".MyFavoriteMusic").on("click", function () {
         var type = $(this).data("value");
         // alert(type);

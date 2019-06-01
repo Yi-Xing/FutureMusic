@@ -81,6 +81,7 @@ public class SongListInformationService {
         List<SongList> list = songListMapper.selectListSongList(songList);
         // 传入页面信息
         model.addAttribute("pageInfo", new PageInfo<>(list));
+
         return "back_system/song_list";
     }
 

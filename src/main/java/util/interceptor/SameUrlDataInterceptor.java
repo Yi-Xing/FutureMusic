@@ -5,6 +5,7 @@ import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -15,6 +16,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 import util.SameUrlData;
+import util.exception.ExceptionJump;
 
 //import com.thinkgem.jeesite.common.mapper.JsonMapper;
 
@@ -25,6 +27,8 @@ import util.SameUrlData;
  * @author Administrator
  */
 public class SameUrlDataInterceptor extends HandlerInterceptorAdapter {
+    @Resource(name = "ExceptionJump")
+    ExceptionJump exceptionJump;
     private static final Logger logger = LoggerFactory.getLogger(SameUrlDataInterceptor.class);
 
     @Override
@@ -37,7 +41,9 @@ public class SameUrlDataInterceptor extends HandlerInterceptorAdapter {
                 logger.debug("开始判断数据是否相同");
                 //如果重复相同数据
                 if (repeatDataValidator(request)) {
-                    logger.debug("唉~数据相同，老子不让你过去");
+                    logger.debug("唉~重复提交");
+                    request.setAttribute("exception","一次提交不要点多次，亲~");
+                    exceptionJump.pageJump(request,response);
                     return false;
                 } else {
                     logger.debug("走你┏ (゜ω゜)=☞");

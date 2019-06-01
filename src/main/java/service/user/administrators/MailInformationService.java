@@ -46,8 +46,7 @@ public class MailInformationService {
      * @param session   用于判断等级
      */
     public String  showMail(String[] condition, Integer pageNum, HttpSession session,Model model) {
-//        User user = specialFunctions.getUser(session);
-        System.out.println(condition);
+        User user = specialFunctions.getUser(session);
         Mail mail = new Mail();
         if (condition != null) {
             if ((condition[0] != null) && !"".equals(condition[0])) {
@@ -73,15 +72,16 @@ public class MailInformationService {
             model.addAttribute("conditionThree", null);
         }
 //        // 控制显示的邮箱等级
-//        if (user.getLevel() == 3) {
-//            mail.setReply(1);
-//        } else if (user.getLevel() >= 4) {
-//            mail.setReply(2);
-//        }
+        if (user.getLevel() == 3) {
+            mail.setReply(1);
+        } else if (user.getLevel() >= 4) {
+            mail.setReply(2);
+        }
         //在查询之前传入当前页，然后多少记录
         PageHelper.startPage(pageNum, 9);
         // 根据条件查找用户信息
         List<Mail> list = mailMapper.selectListMail(mail);
+        logger.debug("邮箱的信息"+list);
         // 传入页面信息
         model.addAttribute("pageInfo",new PageInfo<>(list));
         return "back_system/Email";

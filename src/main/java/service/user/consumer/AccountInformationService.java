@@ -55,7 +55,6 @@ public class AccountInformationService {
         userFollow.setUserType(1);
         // 去数据库查找用户关注的人数
         int userFollowCount = focusMapper.selectUserFocusCount(userFollow);
-        model.addAttribute("userFollowCount", userFollowCount);
         // 用于查找关注用户的人数
         Focus followUser = new Focus();
         followUser.setUserFocusId(user.getId());
@@ -63,9 +62,11 @@ public class AccountInformationService {
         userFollow.setUserType(1);
         // 去数据库查找关注用户的人数
         int followUserCount = focusMapper.selectUserFocusCount(followUser);
+        model.addAttribute("user", user);
         model.addAttribute("followCount", followUserCount);
+        model.addAttribute("userFollowCount", userFollowCount);
         // 用于查找用户喜欢的歌曲数量，未写完差一个方法调用
-        return null;
+        return "personal";
     }
 
 
@@ -98,14 +99,16 @@ public class AccountInformationService {
      * @param request 获取图片的路径
      * @param session 当前会话
      */
-    public State setUpHeadPortrait(HttpServletRequest request, HttpSession session) throws IOException, DataBaseException {
+    public String setUpHeadPortrait(HttpServletRequest request, HttpSession session, Model model) throws IOException, DataBaseException {
         User user = specialFunctions.getUser(session);
         String path = fileUpload.userHeadPortrait(request);
+        logger.debug(path);
+        logger.debug(""+user);
         // 修改用户头像
         user.setHeadPortrait(path);
         //修改数据库和会话上的用户信息，失败抛异常
         modifyUserInformation(user, session);
-        return new State(1);
+        return userPage(session,model);
     }
 
     /**

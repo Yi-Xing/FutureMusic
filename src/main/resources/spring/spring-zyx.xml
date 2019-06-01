@@ -55,8 +55,8 @@
 
 
 
-
-
+    <!--静态资源放行-->
+    <mvc:default-servlet-handler/>
 
 <!--    拦截器-->
     <mvc:interceptors>
@@ -71,9 +71,14 @@
             <bean class="util.interceptor.LoginInterceptor"/>
         </mvc:interceptor>
 
+        <mvc:interceptor>
+            <!--用于判断用户是否登录-->
+            <mvc:mapping path="/user/**"/>
+            <bean class="util.interceptor.UserInterceptor"/>
+        </mvc:interceptor>
 
-   <!--     <mvc:interceptor>
-            &lt;!&ndash;管理员可以增删改&ndash;&gt;
+        <mvc:interceptor>
+            <!--管理员可以增删改-->
             <mvc:mapping path="/administrators/add*"/>
             <bean class="util.interceptor.AddInterceptor"/>
         </mvc:interceptor>
@@ -86,11 +91,9 @@
             <bean class="util.interceptor.ModifyInterceptor"/>
         </mvc:interceptor>
         <mvc:interceptor>
-            &lt;!&ndash;客服以上的权限可以查看&ndash;&gt;
-            <mvc:mapping path="/administrators/Show*"/>
+            <!--客服以上的权限可以查看-->
+            <mvc:mapping path="/administrators/show*"/>
             <bean class="util.interceptor.ShowInterceptor"/>
-        </mvc:interceptor>-->
-
-
+        </mvc:interceptor>
     </mvc:interceptors>
 </beans>

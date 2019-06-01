@@ -3,6 +3,7 @@ package service.user.administrators;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import entity.Music;
+import entity.SongList;
 import entity.State;
 import entity.User;
 import mapper.MusicMapper;
@@ -23,6 +24,7 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 import java.text.ParseException;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -41,6 +43,7 @@ public class MusicInformationService {
     IdExistence idExistence;
     @Resource(name = "FileUpload")
     FileUpload fileUpload;
+
     /**
      * 添加音乐
      */
@@ -82,6 +85,7 @@ public class MusicInformationService {
                                 if (lyricPath != null && !"".equals(lyricPath)) {
                                     music.setLyricPath(lyricPath);
                                 }
+                                music.setDate(new Date());
                                 if (musicMapper.insertMusic(music) < 1) {
                                     // 如果失败是数据库错误
                                     logger.error(music + "添加音乐信息时，数据库出错");
@@ -118,41 +122,64 @@ public class MusicInformationService {
     public String showMusic(String[] condition, Integer pageNum, Model model) throws ParseException {
         // 用来存储管理员输入的条件
         Music music = new Music();
-        if ((condition[0] != null) && !"".equals(condition[0])) {
-            music.setId(Integer.parseInt(condition[0]));
-        }
-        if ((condition[1] != null) && !"".equals(condition[1])) {
-            music.setName(condition[1]);
-        }
-        if ((condition[2] != null) && !"".equals(condition[2])) {
-            music.setLevel(Integer.parseInt(condition[2]));
-        }
-        if ((condition[3] != null) && !"".equals(condition[3])) {
-            music.setDate(JudgeIsOverdueUtil.toDate(condition[3]));
-        }
-        if ((condition[4] != null) && !"".equals(condition[4])) {
-            music.setAvailable(Integer.parseInt(condition[4]));
-        }
-        if ((condition[5] != null) && !"".equals(condition[5])) {
-            music.setSingerId(Integer.parseInt(condition[5]));
-        }
-        if ((condition[6] != null) && !"".equals(condition[6])) {
-            music.setAlbumId(Integer.parseInt(condition[6]));
-        }
-        if ((condition[7] != null) && !"".equals(condition[7])) {
-            music.setActivity(Integer.parseInt(condition[7]));
-        }
-        if ((condition[8] != null) && !"".equals(condition[8])) {
-            music.setClassificationId(Integer.parseInt(condition[8]));
+        if (condition != null) {
+            if ((condition[0] != null) && !"".equals(condition[0])) {
+                music.setId(Integer.parseInt(condition[0]));
+            }
+            if ((condition[1] != null) && !"".equals(condition[1])) {
+                music.setName(condition[1]);
+            }
+            if ((condition[2] != null) && !"".equals(condition[2])) {
+                music.setLevel(Integer.parseInt(condition[2]));
+            }
+            if ((condition[3] != null) && !"".equals(condition[3])) {
+                music.setDate(JudgeIsOverdueUtil.toDate(condition[3]));
+            }
+            if ((condition[4] != null) && !"".equals(condition[4])) {
+                music.setAvailable(Integer.parseInt(condition[4]));
+            }
+            if ((condition[5] != null) && !"".equals(condition[5])) {
+                music.setSingerId(Integer.parseInt(condition[5]));
+            }
+            if ((condition[6] != null) && !"".equals(condition[6])) {
+                music.setAlbumId(Integer.parseInt(condition[6]));
+            }
+            if ((condition[7] != null) && !"".equals(condition[7])) {
+                music.setActivity(Integer.parseInt(condition[7]));
+            }
+            if ((condition[8] != null) && !"".equals(condition[8])) {
+                music.setClassificationId(Integer.parseInt(condition[8]));
+            }
+            model.addAttribute("conditionZero", condition[0]);
+            model.addAttribute("conditionOne", condition[1]);
+            model.addAttribute("conditionTwo", condition[2]);
+            model.addAttribute("conditionThree", condition[3]);
+            model.addAttribute("conditionFour", condition[4]);
+            model.addAttribute("conditionFive", condition[5]);
+            model.addAttribute("conditionSix", condition[6]);
+            model.addAttribute("conditionSeven", condition[7]);
+            model.addAttribute("conditionEight", condition[8]);
+        } else {
+            model.addAttribute("conditionZero", null);
+            model.addAttribute("conditionOne", null);
+            model.addAttribute("conditionTwo", null);
+            model.addAttribute("conditionThree", null);
+            model.addAttribute("conditionFour", null);
+            model.addAttribute("conditionFive", null);
+            model.addAttribute("conditionSix", null);
+            model.addAttribute("conditionSeven", null);
+            model.addAttribute("conditionEight", null);
         }
         //在查询之前传入当前页，然后多少记录
-        PageHelper.startPage(pageNum, 8);
+        PageHelper.startPage(pageNum, 9);
         // 根据条件查找用户信息
         List<Music> list = musicMapper.selectListMusic(music);
         PageInfo pageInfo = new PageInfo<>(list);
         // 传入页面信息
+        logger.debug("查找到的音乐" + list);
         model.addAttribute("pageInfo", pageInfo);
-        return null;
+        model.addAttribute("pages", new int[pageInfo.getPages()]);
+        return "back_system/back_music";
     }
 
     /**

@@ -16,7 +16,7 @@
                 and mail_recipient_id=#{recipientId}
             </if>
              <if test='reply!=0'>
-                and mail_reply >0 and mail_reply &lt;= #{reply}
+                and mail_reply >=0 and mail_reply &lt;= #{reply}
             </if>
             <if test='state!=-1'>
                 and mail_state=#{state}
