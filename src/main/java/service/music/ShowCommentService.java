@@ -80,6 +80,9 @@ public class ShowCommentService {
         comment.setMusicId(listSongId);
         comment.setFabulous(1);
         Map<Comment,Comment> commentCommentMap=selectComment(comment);
+        if(commentCommentMap.size()==0){
+            return null;
+        }
         List<Comment> comments = new ArrayList<>();
         for(Comment c:commentCommentMap.keySet()){
             comments.add(c);
@@ -104,8 +107,14 @@ public class ShowCommentService {
         return showComment(comments);
     }
 
-
+    /**
+     * @param comments 评论应该显示带所有信息
+     * @return
+     */
     public Map<User,Comment> showComment(List<Comment> comments){
+        if(comments.size()==0){
+            return null;
+        }
         Map<User,Comment> userCommentMap = new LinkedHashMap<>();
         for(Comment c:comments){
             User u = new User();
