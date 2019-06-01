@@ -1,6 +1,8 @@
 package service.music;
 
 import entity.Comment;
+import entity.Music;
+import entity.User;
 import mapper.*;
 import org.springframework.stereotype.Service;
 
@@ -15,7 +17,8 @@ import java.util.*;
 public class ShowCommentService {
     @Resource(name = "CommentMapper")
     CommentMapper  commentMapper;
-
+    @Resource(name = "UserMapper")
+        UserMapper userMapper;
     /**
      * 查找音乐对应的精彩评论即点赞最多的评论
      * 果评论不是独立评论，显示出来回复的是哪个评论
@@ -23,12 +26,10 @@ public class ShowCommentService {
      * @return
      */
     public Map<Comment,Comment> commentByMusicId(int musicId){
-        System.out.println("cococococcoc");
         Comment comment =new Comment();
         comment.setMusicId(musicId);
         comment.setType(1);
         comment.setFabulous(1);
-        System.out.println("mmmmmmmmmmmmmmm");
         return selectComment(comment);
     }
     /**
@@ -56,7 +57,6 @@ public class ShowCommentService {
         comment.setFabulous(1);
         return selectComment(comment);
     }
-
     /**
      * 查找MV的最新评论
      * @param musicVideoId
@@ -70,30 +70,54 @@ public class ShowCommentService {
         return selectComment(comment);
     }
     /**
-     * 查找MV对应的精彩评论即点赞最多的评论
+     * 查找歌单对应的精彩评论即点赞最多的评论
      * 果评论不是独立评论，显示出来回复的是哪个评论
      * @param listSongId
      * @return
      */
-    public Map<Comment,Comment> commentByListSongId(int listSongId){
+    public Map<User,Comment> commentByListSongId(int listSongId){
         Comment comment =new Comment();
         comment.setMusicId(listSongId);
-        comment.setType(3);
         comment.setFabulous(1);
-        return selectComment(comment);
+        Map<Comment,Comment> commentCommentMap=selectComment(comment);
+        List<Comment> comments = new ArrayList<>();
+        for(Comment c:commentCommentMap.keySet()){
+            comments.add(c);
+        }
+        return showComment(comments);
     }
-
     /**
-     * 查找MV的最新评论
+     * 查找歌单的最新评论
      * @param listSongId
      * @return  Map<Comment,Comment> 返回评论和回复的对应
      */
-    public Map<Comment,Comment> commentLastByListSongId(int listSongId){
+    public Map<User,Comment> commentLastByListSongId(int listSongId){
         Comment comment =new Comment();
         comment.setMusicId(listSongId);
         comment.setType(3);
         comment.setDate((new Date()));
-        return selectComment(comment);
+        Map<Comment,Comment> commentCommentMap=selectComment(comment);
+        List<Comment> comments = new ArrayList<>();
+        for(Comment c:commentCommentMap.keySet()){
+            comments.add(c);
+        }
+        return showComment(comments);
+    }
+
+
+    public Map<User,Comment> showComment(List<Comment> comments){
+        Map<User,Comment> userCommentMap = new LinkedHashMap<>();
+        for(Comment c:comments){
+            User u = new User();
+            u.setId(c.getUserId());
+            List<User> users = userMapper.selectUser(u);
+            if(users.size()!=0){
+                User user = users.get(0);
+                user.setPassword("111");
+                userCommentMap.put(user,c);
+            }
+        }
+        return userCommentMap;
     }
 
     /**
@@ -142,11 +166,9 @@ public class ShowCommentService {
      * 如果评论不是独立评论，显示出来回复的是哪个评论
      */
     private Map<Comment,Comment> selectComment(Comment comment){
-        System.out.println("eeeeeeeeeeeeeeeeeeee");
         List<Comment> commentList = commentMapper.selectListComment(comment);
         Map<Comment,Comment> commentReplyMap = new HashMap<>(16);
         if(commentList.size()==0){
-            System.out.println("nullnullnull");
             return null;
         }
         for(Comment c:commentList){

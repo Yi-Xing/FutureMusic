@@ -3,27 +3,37 @@ window.onload = function () {
     //登录注册篇---------------------------
     // 用于发送验证码
     var pp = $(".reg_hed_right")[0];
-    $("#button4").on("click", function () {
+    var canSend = 0;
+    $("#verificationCode").on("click", function () {
         var registerMail = $("#registerMail").val();
-        $.ajax({
-            type: "get",
-            url: "/registerVerificationCode?mailbox=" + registerMail,
-            dataType: "json",
-            success: function (data) {
-                if (data.state !== 1) {
-                    pp.children[0].innerHTML = "";
-                    pp.children[1].innerHTML = data.information;
-                    pp.children[2].innerHTML = "";
-                    pp.children[3].innerHTML = "";
-                } else {
-                    pp.children[0].innerHTML = "";
-                    pp.children[1].innerHTML = "发送成功";
-                    pp.children[2].innerHTML = "";
-                    pp.children[3].innerHTML = "";
+
+        if (canSend === 0) {canSend = 1;
+            $.ajax({
+                type: "get",
+                url: "/registerVerificationCode?mailbox=" + registerMail,
+                dataType: "json",
+                success: function (data) {
+                    if (data.state !== 1) {
+                        pp.children[0].innerHTML = "";
+                        pp.children[1].innerHTML = data.information;
+                        pp.children[2].innerHTML = "";
+                        pp.children[3].innerHTML = "";
+                    } else {
+                        pp.children[0].innerHTML = "";
+                        pp.children[1].innerHTML = "发送成功";
+                        pp.children[2].innerHTML = "";
+                        pp.children[3].innerHTML = "";
+                    }
+                    $("#verificationCode").attr('disabled', 'true');
+                    // pointer-events:none;
                 }
-            }
-        });
+            });
+        }
+        setTimeout(function () {
+            canSend = 0;
+        }, 30000);
     });
+
 
     // 用于注册账号
     $("#registerUserInformation").on("click", function () {
@@ -365,7 +375,7 @@ window.onload = function () {
 
     //音乐和MV篇-------------------------------------------
     //显示用户收藏的所有音乐，显示用户收藏的所有MV
-        // 1表示查找音乐收藏 2表示查找MV收藏
+    // 1表示查找音乐收藏 2表示查找MV收藏
     $(".MyFavoriteMusic").on("click", function () {
         var type = $(this).data("value");
         // alert(type);
