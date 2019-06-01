@@ -153,7 +153,7 @@ public class SpecialFunctions {
      * @param encryption 需要加密的字符串
      * @return String 返回加密后的字符串
      */
-    public String encryptionMD5(String encryption) {
+     String encryptionMD5(String encryption) {
         // 加密后的字符串
         String afterEncryption = null;
         try {

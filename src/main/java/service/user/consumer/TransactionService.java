@@ -16,9 +16,7 @@ import util.exception.DataBaseException;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.math.BigDecimal;
 import java.util.*;
@@ -45,6 +43,8 @@ public class TransactionService {
     AboutSongListService aboutSongListService;
     @Resource(name = "MusicSongListMapper")
     MusicSongListMapper musicSongListMapper;
+    @Resource(name = "UserMapper")
+    UserMapper userMapper;
 
 
     /**
@@ -247,14 +247,19 @@ public class TransactionService {
      */
     @Transactional
     public State rechargeVIP(Integer count, HttpSession session) throws DataBaseException {
+        logger.debug("充值的月数"+count);
         State state = new State();
         User user = specialFunctions.getUser(session);
+        // 去数据库查找用户信息
+         user =userMapper.selectUserMailbox(user.getMailbox());
         // 得到用户的余额
         BigDecimal balance = user.getBalance();
+        logger.debug("用户余额"+balance);
         // 计算得到vip的价格
         BigDecimal price = BigDecimal.valueOf(count * 10);
+        logger.debug("vip的价格"+price);
         // 得到用户是否买的起
-        if (price.compareTo(balance) > 0) {
+        if (balance.compareTo(price) > 0) {
             // 修改用户的余额
             user.setBalance(balance.subtract(price));
             // 修改用户的账号等级

@@ -11,8 +11,7 @@ public enum ConstantUtil {
     // 表示数字 200 用于表示内容的最大长度，以及举报最大限度
     Two_Hundred(200),
     // 表示数字 6 用于验证的个数
-    Six(6)
-    ;
+    Six(6);
     private String stringValue = null;
     private int intValue = 0;
 

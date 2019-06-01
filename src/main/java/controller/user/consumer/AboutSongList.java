@@ -10,7 +10,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import service.user.consumer.AboutMusicService;
 import service.user.consumer.AboutSongListService;
 import util.exception.DataBaseException;
 
@@ -52,9 +51,6 @@ public class AboutSongList {
         return aboutSongListService.showUserCollectionSongList(type,session);
     }
 
-    /**
-     * 显示指定专辑（jjy应该写了）
-     */
 
 
 

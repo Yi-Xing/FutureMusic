@@ -9,7 +9,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 import service.user.IdExistence;
-import util.JudgeIsOverdueUtil;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -24,8 +23,6 @@ public class CommentInformationService {
     private static final Logger logger = LoggerFactory.getLogger(ActivityInformationService.class);
     @Resource(name = "CommentMapper")
     CommentMapper commentMapper;
-    @Resource(name = "IdExistence")
-    IdExistence idExistence;
 
     /**
      * 显示评论信息

@@ -441,6 +441,7 @@ window.onload = function () {
         // var id = this.getAttribute("value");
         $("#songListInformationDeleteId").attr("value",ids);
     });
+
     // 修改专辑信息（仅修改活动）
     $("#registerUser").on("click", function () {
         // id

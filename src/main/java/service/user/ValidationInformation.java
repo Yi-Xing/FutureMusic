@@ -41,7 +41,7 @@ public class ValidationInformation {
      * @param verificationCode 接收邮箱的验证码
      * @return boolean 返回验证码是否正确
      */
-    public boolean isMailboxVerificationCode(HttpSession session, String verificationCode) {
+     boolean isMailboxVerificationCode(HttpSession session, String verificationCode) {
         if (verificationCode == null) {
             return false;
         }
@@ -54,7 +54,7 @@ public class ValidationInformation {
      * @param session 获取当前会话
      * @return boolean 返回验证码是否超时
      */
-    public boolean isMailboxVerificationCodeTime(HttpSession session) {
+     boolean isMailboxVerificationCodeTime(HttpSession session) {
         Date verificationCodeTime = (Date) session.getAttribute("verificationCodeTime");
         Calendar calendar = Calendar.getInstance();
         // 将日期封装
@@ -102,7 +102,7 @@ public class ValidationInformation {
      * @param password 需要验证的密码
      * @return boolean 返回密码是否合法
      */
-    public boolean isPassword(String password) {
+     boolean isPassword(String password) {
         if (password == null) {
             return false;
         }

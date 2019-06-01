@@ -3,15 +3,12 @@ package util.listener;
 import entity.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import service.user.LoginService;
 
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.HttpSessionEvent;
 import javax.servlet.http.HttpSessionListener;
-import java.util.Enumeration;
 import java.util.HashMap;
-import java.util.Map;
 
 /**
  * session监听器

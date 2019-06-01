@@ -134,7 +134,6 @@ public class MailInformationService {
         State state = new State(1);
         int mailState = mail.getState();
         if (mailState >= 0 && mailState <= 2) {
-            System.out.println(mail);
             if (mailMapper.updateMail(mail) < 1) {
                 // 如果失败是数据库错误
                 logger.error("修改邮箱信息时，数据库出错");

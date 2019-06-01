@@ -10,6 +10,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+/**
+ * @author HP
+ */
 public class ShowInterceptor implements HandlerInterceptor {
     @Resource(name = "SpecialFunctions")
     SpecialFunctions specialFunctions;
@@ -19,7 +22,6 @@ public class ShowInterceptor implements HandlerInterceptor {
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         HttpSession session = request.getSession();
         User user=specialFunctions.getUser(session);
-        System.out.println("我执行了-------------------------------------------------------------");
         // 会话中没有用户时候执行
         if ( user!= null) {
             // 判断用户等级,为客服才可以查看

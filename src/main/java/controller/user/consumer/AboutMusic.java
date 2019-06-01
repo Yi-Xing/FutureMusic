@@ -1,7 +1,6 @@
 package controller.user.consumer;
 
 import entity.*;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
 import util.exception.DataBaseException;
 import org.slf4j.Logger;

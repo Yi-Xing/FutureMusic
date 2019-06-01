@@ -18,7 +18,6 @@ import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 import util.SameUrlData;
 import util.exception.ExceptionJump;
 
-//import com.thinkgem.jeesite.common.mapper.JsonMapper;
 
 /**
  * 一个用户 相同url 同时提交 相同数据 验证

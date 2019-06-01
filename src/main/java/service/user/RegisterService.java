@@ -45,7 +45,6 @@ public class RegisterService {
         State state = new State();
         // 验证用户名是否合法
         if (validationInformation.isUserName(userName)) {
-            System.out.println("我执行了");
             //判断邮箱是否合法
             if (validationInformation.isMailbox(mailbox)) {
                 // 验证密码是否合法
@@ -118,14 +117,14 @@ public class RegisterService {
         State state = new State();
         //发邮箱前先判断邮箱是否合法
         if (validationInformation.isMailbox(mailbox)) {
-            System.out.println("开始验证邮箱");
+            logger.debug("开始验证邮箱");
             //判断邮箱是否已存在
             if (validationInformation.isMailboxExistence(mailbox)) {
                 logger.debug("邮箱：" + mailbox + "邮箱已存在");
                 state.setState(-2);
                 state.setInformation("邮箱已存在");
             } else {
-                System.out.println("发送邮箱");
+                logger.debug("发送邮箱");
                 // 发送邮箱
                 state = specialFunctions.sendVerificationCode(mailbox, session);
                 // 发送成功吗，将邮箱存入会话中

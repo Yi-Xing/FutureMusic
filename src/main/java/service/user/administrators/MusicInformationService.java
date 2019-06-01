@@ -204,6 +204,16 @@ public class MusicInformationService {
                                     return state;
                                 }
                             }
+
+                            String lyricPath = fileUpload.musicLyric(request);
+                            if (lyricPath != null && !"".equals(lyricPath)) {
+                                music.setLyricPath(lyricPath);
+                            }
+                            // 获取上传的文件路径
+                            String path = fileUpload.music(request);
+                            if (path != null && !"".equals(path)) {
+                                music.setPath(path);
+                            }
                             // 先判断是否设置了活动
                             if (music.getActivity() != 0) {
                                 // 判断活动id是否存在
@@ -211,15 +221,6 @@ public class MusicInformationService {
                                     state.setInformation("音乐的活动不存在");
                                     return state;
                                 }
-                            }
-                            // 获取上传的文件路径
-                            String path = fileUpload.music(request);
-                            if (path != null && !"".equals(path)) {
-                                music.setPath(path);
-                            }
-                            String lyricPath = fileUpload.musicLyric(request);
-                            if (lyricPath != null && !"".equals(lyricPath)) {
-                                music.setLyricPath(lyricPath);
                             }
                             if (musicMapper.updateMusic(music) < 1) {
                                 // 如果失败是数据库错误

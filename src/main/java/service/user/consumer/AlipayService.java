@@ -16,6 +16,9 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Random;
 
+/**
+ * @author HP
+ */
 @Service(value = "AlipayService")
 public class AlipayService {
     private static final Logger logger = LoggerFactory.getLogger(AlipayService.class);

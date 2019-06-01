@@ -36,7 +36,7 @@ public class FileUpload {
      * @return 返回该音乐的路径
      */
     public String music(HttpServletRequest request) throws IOException {
-        return fileUpload(request, "/static/file/music/");
+        return "/static/file/music/"+fileUpload(request, "/static/file/music/");
     }
 
     /**
@@ -45,7 +45,7 @@ public class FileUpload {
      * @return 返回该音乐的歌词的路径
      */
     public String musicLyric(HttpServletRequest request) throws IOException {
-        return fileUpload(request, "/static/file/musicLyric/");
+        return "/static/file/musicLyric/"+fileUpload(request, "/static/file/musicLyric/");
     }
 
     /**
@@ -54,7 +54,7 @@ public class FileUpload {
      * @return 返回该MV的路径
      */
     public String musicVideo(HttpServletRequest request) throws IOException {
-        return fileUpload(request, "/static/file/musicVideo/");
+        return "/static/file/musicVideo/"+fileUpload(request, "/static/file/musicVideo/");
     }
 
     /**
@@ -63,7 +63,7 @@ public class FileUpload {
      * @return 返回该用户图片的路径
      */
     public String songList(HttpServletRequest request) throws IOException {
-        return fileUpload(request, "/static/file/songList/");
+        return "/static/file/songList/"+fileUpload(request, "/static/file/songList/");
     }
 
     /**
@@ -72,10 +72,10 @@ public class FileUpload {
      * @return 返回该活动图片的路径
      */
     public String activityPicture(HttpServletRequest request) throws IOException {
-        return fileUpload(request, "/static/file/activityPicture/");
+        return "/static/file/activityPicture/"+fileUpload(request, "/static/file/activityPicture/");
     }
 
-    public String fileUpload(HttpServletRequest request, String uploadPath) throws IllegalStateException, IOException {
+    private String fileUpload(HttpServletRequest request, String uploadPath) throws IllegalStateException, IOException {
         String fileName = null;
         //创建一个通用的多部分解析器
         CommonsMultipartResolver multipartResolver = new CommonsMultipartResolver(request.getSession().getServletContext());
