@@ -126,6 +126,9 @@ body::-webkit-scrollbar {
 }
 
 /*歌单切换*/
+.music_list{
+    cursor: pointer;
+}
 .musicList {
     width: 100%;
     padding: 10px 20px;

@@ -12,3 +12,9 @@ $('.musicList ul li').on('click',function () {
     console.log(this);
     $(this).addClass('active');
 });
+
+//音乐切换
+$(".music_list").click(function () {
+    var musicName = $(this).children()[1];
+    console.log(musicName);
+});
