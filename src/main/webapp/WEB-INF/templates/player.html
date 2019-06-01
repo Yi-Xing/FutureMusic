@@ -18,9 +18,9 @@
                 </a>
             </div>
             <div class="user_information">
-                <h3>name</h3>
+                <h3 th:text="${session.userInformation.name}">name</h3>
                 <a href="javascript:;">
-                    <p>关注：num</p>
+                    <p th:text="'关注：'+${session.userInformation.name}">关注：num</p>
                 </a>
             </div>
         </div>
@@ -39,32 +39,6 @@
                 </div>
             </form>
         </div>
-        <!--歌单切换-->
-        <!--        <div class="musicList">-->
-        <!--            <ul>-->
-        <!--                <li class="active">-->
-        <!--                    <a href="javascript:;">-->
-        <!--                        我喜欢-->
-        <!--                    </a>-->
-        <!--                </li>-->
-        <!--                <li>-->
-        <!--                    <a href="javascript:;">-->
-        <!--                        默认歌单-->
-        <!--                    </a>-->
-        <!--                </li>-->
-        <!--                <li>-->
-        <!--                    <a href="javascript:;">-->
-        <!--                        English-->
-        <!--                    </a>-->
-        <!--                </li>-->
-        <!--                <li>-->
-        <!--                    <a href="javascript:;">-->
-        <!--                        睡前歌单-->
-        <!--                    </a>-->
-        <!--                </li>-->
-        <!--            </ul>-->
-        <!--        </div>-->
-        <!--歌曲目录-->
         <div class="Catalog">
             <table class="table table-hover table-striped">
                 <thead>
@@ -484,70 +458,7 @@
                 <a href="javascript:;"><p>查看评论</p></a>
             </div>
             <div class="Lyric">
-                123132156 << 1<br>
-                155141541 <<2
-                123132156<br>
-                155141541
-                123132156<br>
-                155141541
-                123132156<br>
-                155141541
-                123132156<br>
-                155141541
-                123132156<br>
-                155141541
-                123132156<br>
-                155141541
-                123132156<br>
-                155141541
-                123132156<br>
-                155141541
-                123132156<br>
-                155141541
-                123132156<br>
-                155141541
-                123132156<br>
-                155141541
-                123132156<br>
-                155141541
-                123132156<br>
-                155141541
-                123132156<br>
-                155141541
-                123132156<br>
-                155141541
-                123132156<br>
-                155141541
-                123132156<br>
-                155141541
-                123132156<br>
-                155141541
-                123132156<br>
-                155141541
-                123132156<br>
-                155141541
-                123132156<br>
-                155141541
-                123132156<br>
-                155141541
-                123132156<br>
-                155141541
-                123132156<br>
-                155141541
-                123132156<br>
-                155141541
-                123132156<br>
-                155141541
-                123132156<br>
-                155141541
-                123132156<br>
-                155141541
-                123132156<br>
-                155141541
-                123132156<br>
-                155141541
-                123132156<br>
-                155141541
+<!--               歌词---------------------------------------->
             </div>
             <div class="Play_control">
                 <audio src="music/Ehrling - Champagne Ocean.mp3" th:src="@{/static/music/Ehrling - Champagne Ocean.mp3}" id="audio"></audio>
@@ -559,11 +470,9 @@
                     </div>
                     <div class="Progress">
                         <div class="current_time">00:00</div>
-<!--                        <div style="position: relative;">-->
                             <div class="progress_range">
                                 <div class="range"></div>
                                 <div class="circle"></div>
-<!--                            </div>-->
                         </div>
                         <span class="total_time">00:00</span>
                     </div>
