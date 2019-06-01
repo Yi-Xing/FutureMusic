@@ -27,7 +27,11 @@ public class FileUpload {
      * @return 返回该用户头像的路径
      */
     public String userHeadPortrait(HttpServletRequest request) throws IOException {
-        return "/static/file/userHeadPortrait/"+fileUpload(request, "/static/file/userHeadPortrait/");
+        String path=fileUpload(request, "/static/file/userHeadPortrait/");
+        if(path==null || "".equals(path)){
+            return null;
+        }
+        return "/static/file/userHeadPortrait/"+path;
     }
 
     /**
@@ -36,7 +40,11 @@ public class FileUpload {
      * @return 返回该音乐的路径
      */
     public String music(HttpServletRequest request) throws IOException {
-        return "/static/file/music/"+fileUpload(request, "/static/file/music/");
+        String path=fileUpload(request, "/static/file/music/");
+        if(path==null || "".equals(path)){
+            return null;
+        }
+        return "/static/file/music/"+path;
     }
 
     /**
@@ -45,7 +53,11 @@ public class FileUpload {
      * @return 返回该音乐的歌词的路径
      */
     public String musicLyric(HttpServletRequest request) throws IOException {
-        return "/static/file/musicLyric/"+fileUpload(request, "/static/file/musicLyric/");
+        String path=fileUpload(request, "/static/file/musicLyric/");
+        if(path==null || "".equals(path)){
+            return null;
+        }
+        return "/static/file/musicLyric/"+path;
     }
 
     /**
@@ -54,7 +66,11 @@ public class FileUpload {
      * @return 返回该MV的路径
      */
     public String musicVideo(HttpServletRequest request) throws IOException {
-        return "/static/file/musicVideo/"+fileUpload(request, "/static/file/musicVideo/");
+        String path=fileUpload(request, "/static/file/musicVideo/");
+        if(path==null || "".equals(path)){
+            return null;
+        }
+        return "/static/file/musicVideo/"+path;
     }
 
     /**
@@ -63,7 +79,11 @@ public class FileUpload {
      * @return 返回该用户图片的路径
      */
     public String songList(HttpServletRequest request) throws IOException {
-        return "/static/file/songList/"+fileUpload(request, "/static/file/songList/");
+        String path=fileUpload(request, "/static/file/songList/");
+        if(path==null || "".equals(path)){
+            return null;
+        }
+        return "/static/file/songList/"+path;
     }
 
     /**
@@ -72,7 +92,11 @@ public class FileUpload {
      * @return 返回该活动图片的路径
      */
     public String activityPicture(HttpServletRequest request) throws IOException {
-        return "/static/file/activityPicture/"+fileUpload(request, "/static/file/activityPicture/");
+        String path=fileUpload(request, "/static/file/activityPicture/");
+        if(path==null || "".equals(path)){
+            return null;
+        }
+        return "/static/file/activityPicture/"+path;
     }
 
     private String fileUpload(HttpServletRequest request, String uploadPath) throws IllegalStateException, IOException {
