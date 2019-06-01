@@ -32,6 +32,7 @@ public class LoginInterceptor implements HandlerInterceptor {
      */
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) {
+        logger.debug("开始判断自动登录");
         HttpSession session = request.getSession();
         // 会话中没有用户时候执行
         if (specialFunctions.getUser(session) == null) {

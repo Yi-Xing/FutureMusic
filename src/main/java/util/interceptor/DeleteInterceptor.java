@@ -23,6 +23,7 @@ public class DeleteInterceptor implements HandlerInterceptor {
                 return true;
             }
         }
+        request.setAttribute("exception","用户没有删除的权限");
         // 跳转页面，表示没有权限访问
         return false;
     }

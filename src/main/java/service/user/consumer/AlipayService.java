@@ -16,7 +16,7 @@ import java.util.Random;
 @Service(value = "AlipayService")
 public class AlipayService {
 
-    public void ali(HttpServletRequest request, HttpServletResponse response, String money) throws AlipayApiException, IOException {
+    public void ali(HttpServletRequest request, HttpServletResponse response, int money) throws AlipayApiException, IOException {
         //设置编码
         response.setContentType("text/html;charset=utf-8");
 

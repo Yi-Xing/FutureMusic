@@ -23,6 +23,7 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 import java.text.ParseException;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -82,6 +83,7 @@ public class MusicInformationService {
                                 if (lyricPath != null && !"".equals(lyricPath)) {
                                     music.setLyricPath(lyricPath);
                                 }
+                                music.setDate(new Date());
                                 if (musicMapper.insertMusic(music) < 1) {
                                     // 如果失败是数据库错误
                                     logger.error(music + "添加音乐信息时，数据库出错");

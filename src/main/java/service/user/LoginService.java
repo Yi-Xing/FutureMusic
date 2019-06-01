@@ -41,6 +41,7 @@ public class LoginService {
      * @param session   获取当前会话
      */
     public State login(String mailbox, String password, boolean automatic, HttpServletResponse response, HttpSession session) {
+        int a=2/0;
         State state = new State();
         //先判断邮箱是否合法
         if (validationInformation.isMailbox(mailbox)) {
@@ -52,15 +53,19 @@ public class LoginService {
                 // 判断账号是否已经冻结
                 if (user.getReport() < ConstantUtil.Two_Hundred.getIntValue()) {
                     // 登录成功将信息存到会话中
-                    session.setAttribute("userInformation", user);
                     // 实现唯一登录
-                    isUserLogin(session);
+                    isUserLogin(session,user);
+                    session.setAttribute("userInformation", user);
                     //判断是否设置7天内自动登登录
                     if (automatic) {
                         // 将账号密码存到cookie中去
                         userInformationCookie(mailbox, password, response);
                     }
-                    state.setState(1);
+                    if (user.getLevel() >= 3) {
+                        state.setState(2);
+                    } else {
+                        state.setState(1);
+                    }
                     logger.info("邮箱：" + mailbox + "登录成功");
                 } else {
                     logger.debug("邮箱：" + mailbox + "登录失败，账号已被冻结");
@@ -87,8 +92,6 @@ public class LoginService {
      */
     public State signOutLogin(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
         User user = specialFunctions.getUser(session);
-        // 退出登录将信息从域对象中删除
-        session.removeAttribute("userInformation");
         // 删除监听器上的用户信息
         SessionListener.delSession(session);
         Cookie[] cookies = request.getCookies();
@@ -100,9 +103,7 @@ public class LoginService {
             logger.debug("邮箱：" + user.getMailbox() + "的7天自动登录撒好删除成功");
         }
         logger.info("邮箱：" + user.getMailbox() + "退出成功");
-        State state=new State();
-        state.setState(1);
-        return state;
+        return new State(1);
     }
 
     /**
@@ -142,17 +143,21 @@ public class LoginService {
      *
      * @param session 得到当前会话
      */
-    private void isUserLogin(HttpSession session) {
+    private void isUserLogin(HttpSession session,User user) {
+
         // 将会话中的用户信息取出来
-        User user =specialFunctions.getUser(session);
         HttpSession originalSession1 = SessionListener.sessionMap.get(user.getMailbox());
         // 判断该用户是否已经登录
         if (originalSession1 != null) {
             logger.debug(user.getMailbox() + "用户再次登录");
+            // 将原用户的信息删除
+            SessionListener.forceUserLogout(user.getMailbox());
             // 强制关掉会话，并删除会话上所有的绑定对象,会话被销毁后，执行监听器的销毁方法
-            originalSession1.invalidate();
+//            originalSession1.invalidate()
         }
         // 将用户的信息存储的session监听器中
         SessionListener.sessionMap.put(user.getMailbox(), session);
     }
+
+
 }

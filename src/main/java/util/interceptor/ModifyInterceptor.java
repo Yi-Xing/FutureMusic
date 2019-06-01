@@ -23,6 +23,7 @@ public class ModifyInterceptor implements HandlerInterceptor {
                 return true;
             }
         }
+        request.setAttribute("exception","用户没有修改的权限");
         // 跳转页面，表示没有权限访问
         return false;
     }

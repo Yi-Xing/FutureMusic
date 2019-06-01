@@ -20,6 +20,7 @@ public class UserInterceptor implements HandlerInterceptor {
         if ( user!= null) {
                 return true;
         }
+        request.setAttribute("exception","请先登录");
         // 跳转页面，表示没有登录
         return false;
     }

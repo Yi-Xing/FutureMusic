@@ -70,9 +70,9 @@ window.onload = function () {
                 } else {
                     // 刷新网页
                     alert("注册成功了");
-                    setTimeout(function () {
                         location.reload();
-                    }, 1000); //指定1秒刷新一次
+                    // setTimeout(function () {
+                    // }, 1000); //指定1秒刷新一次
                 }
             }
         });
@@ -99,26 +99,31 @@ window.onload = function () {
             success: function (data, status) {
                 if (data.state === 0) {
                     $('#loginTips').html(data.information);
-                } else {
+                } else if (data.state === 1) {
                     $('#loginTips').html("");
                     // 刷新网页
                     alert("登录成功了");
-                    setTimeout(function () {
+                    // setTimeout(function () {
+                    // }, 1000); //指定1秒刷新一次
                         location.reload();
-                    }, 1000); //指定1秒刷新一次
+                }else if(data.state === 2){
+                    window.location.href ="http://localhost:8080/administrators/showUser";
                 }
             }
         });
     });
 
     // 用户退出登录
-    $("#registerUser").on("click", function () {
+    $("#signOutLogin").on("click", function () {
         $.ajax({
             type: "get",
-            url: "signOutLogin",
+            url: "/signOutLogin",
             dataType: "json",
             success: function (data, status) {
                 // 返回state
+                if(data.state===1){
+                    location.reload();
+                }
             }
         });
     });

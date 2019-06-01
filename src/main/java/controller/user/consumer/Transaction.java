@@ -32,7 +32,7 @@ public class Transaction {
      * @param money   需要充值的金额
      */
     @RequestMapping(value = "/rechargeBalance")
-    public void rechargeBalance(HttpServletRequest request, HttpServletResponse response, String money) throws IOException, AlipayApiException {
+    public void rechargeBalance(HttpServletRequest request, HttpServletResponse response, int money) throws IOException, AlipayApiException {
         alipayService.ali(request,response,money);
     }
 

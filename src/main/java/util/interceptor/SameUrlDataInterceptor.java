@@ -37,7 +37,7 @@ public class SameUrlDataInterceptor extends HandlerInterceptorAdapter {
                 logger.debug("开始判断数据是否相同");
                 //如果重复相同数据
                 if (repeatDataValidator(request)) {
-                    logger.debug("唉~数据相同，老子不让你过去");
+                    logger.debug("唉~重复提交");
                     return false;
                 } else {
                     logger.debug("走你┏ (゜ω゜)=☞");
