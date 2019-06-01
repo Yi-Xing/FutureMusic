@@ -129,6 +129,10 @@ body::-webkit-scrollbar {
 .music_list{
     cursor: pointer;
 }
+/*隐藏音乐路径*/
+.hide{
+    display: none;
+}
 .musicList {
     width: 100%;
     padding: 10px 20px;
