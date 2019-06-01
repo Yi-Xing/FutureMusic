@@ -81,6 +81,7 @@ public class MailInformationService {
         PageHelper.startPage(pageNum, 9);
         // 根据条件查找用户信息
         List<Mail> list = mailMapper.selectListMail(mail);
+        logger.debug("邮箱的信息"+list);
         // 传入页面信息
         model.addAttribute("pageInfo",new PageInfo<>(list));
         return "back_system/Email";

@@ -2,6 +2,7 @@ package controller.user.consumer;
 
 import entity.State;
 import org.springframework.ui.Model;
+import util.SameUrlData;
 import util.exception.DataBaseException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -59,10 +60,9 @@ public class AccountInformation {
      * @param session 当前会话
      */
     @RequestMapping(value = "/setUpHeadPortrait")
-    @ResponseBody
-    public State setUpHeadPortrait(HttpServletRequest request, HttpSession session) throws IOException, DataBaseException {
+    public String setUpHeadPortrait(HttpServletRequest request, HttpSession session, Model model) throws IOException, DataBaseException {
         logger.trace("setUpHeadPortrait方法开始执行");
-        return accountInformationService.setUpHeadPortrait(request,session);
+        return accountInformationService.setUpHeadPortrait(request,session,model);
     }
 
     /**

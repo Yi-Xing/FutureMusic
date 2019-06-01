@@ -27,7 +27,7 @@ public class FileUpload {
      * @return 返回该用户头像的路径
      */
     public String userHeadPortrait(HttpServletRequest request) throws IOException {
-        return fileUpload(request, "/static/file/userHeadPortrait/");
+        return "/static/file/userHeadPortrait/"+fileUpload(request, "/static/file/userHeadPortrait/");
     }
 
     /**
@@ -80,6 +80,7 @@ public class FileUpload {
         //创建一个通用的多部分解析器
         CommonsMultipartResolver multipartResolver = new CommonsMultipartResolver(request.getSession().getServletContext());
         //判断 request 是否有文件上传,即多部分请求
+        logger.debug("multipartResolver"+multipartResolver.isMultipart(request));
         if (multipartResolver.isMultipart(request)) {
             //转换成多部分request
             MultipartHttpServletRequest multiRequest = (MultipartHttpServletRequest) request;

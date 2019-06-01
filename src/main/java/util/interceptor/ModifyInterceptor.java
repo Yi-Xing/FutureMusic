@@ -3,6 +3,7 @@ package util.interceptor;
 import entity.User;
 import org.springframework.web.servlet.HandlerInterceptor;
 import service.user.SpecialFunctions;
+import util.exception.ExceptionJump;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -12,6 +13,8 @@ import javax.servlet.http.HttpSession;
 public class ModifyInterceptor implements HandlerInterceptor {
     @Resource(name = "SpecialFunctions")
     SpecialFunctions specialFunctions;
+    @Resource(name = "ExceptionJump")
+    ExceptionJump exceptionJump;
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         HttpSession session = request.getSession();
@@ -24,6 +27,7 @@ public class ModifyInterceptor implements HandlerInterceptor {
             }
         }
         request.setAttribute("exception","用户没有修改的权限");
+        exceptionJump.pageJump(request,response);
         // 跳转页面，表示没有权限访问
         return false;
     }
