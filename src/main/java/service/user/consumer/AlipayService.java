@@ -16,7 +16,7 @@ import java.util.Random;
 @Service(value = "AlipayService")
 public class AlipayService {
 
-    public void ali(HttpServletRequest request, HttpServletResponse response, int money) throws AlipayApiException, IOException {
+    public void ali(HttpServletRequest request, HttpServletResponse response, int type) throws AlipayApiException, IOException {
         //设置编码
         response.setContentType("text/html;charset=utf-8");
 
@@ -34,6 +34,14 @@ public class AlipayService {
         String id = System.currentTimeMillis() + "" + randomInt;
         //订单名称，必填
         String subject = "未来音乐";
+        String money="0";
+        if(type==1){
+            money="10";
+        }else if(type==2){
+            money="25";
+        }else if(type==3){
+            money="100";
+        }
         aliPayRequest.setBizContent("{\"out_trade_no\":\"" + id + "\","
                 //付款金额，从前台获取，必填
                 + "\"total_amount\":\"" + money + "\","
