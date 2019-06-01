@@ -39,6 +39,5 @@ $(".music_list").click(function () {
     displayMusicName.innerHTML = musicName;
     displayMusicLyr.innerHTML = musicLyr;
     $(autio).attr('src', musicSrc);
-
     console.log($(autio).attr('src'));
 });
