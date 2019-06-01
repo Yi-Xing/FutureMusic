@@ -46,31 +46,24 @@ public class Exhibition {
     @RequestMapping("/indexExhibition")
     @ResponseBody
     public Map<String, Object> indexExhibition() {
-        Map<String, Object> model = new HashMap<>(16);
+        Map<String, Object> indexMessage = new HashMap<>(16);
         //首页显示的活动
-        model.put("activities", activity());
+        indexMessage.put("activities", activity());
         //首页显示的音乐人
-        System.out.println("----------------------------------");
-        model.put("singerAddress1", singerService.exhibitionSingersByRegion(singerAddress1));
-        System.out.println("----------------------------------");
-        model.put("singerAddress2", singerService.exhibitionSingersByRegion(singerAddress2));
-        model.put("singerAddress3", singerService.exhibitionSingersByRegion(singerAddress3));
+        indexMessage.put("singerAddress1", singerService.exhibitionSingersByRegion(singerAddress1));
+        indexMessage.put("singerAddress2", singerService.exhibitionSingersByRegion(singerAddress2));
+        indexMessage.put("singerAddress3", singerService.exhibitionSingersByRegion(singerAddress3));
         //显示的MV显示15首
-        System.out.println("好烦呐");
-        model.put("musicVideo", musicVideoService.exhibitionMusicVideo());
+        indexMessage.put("musicVideo", musicVideoService.exhibitionMusicVideo());
         //新歌前三首歌曲
-        model.put("rankingNewSong", rankingListByNewSong());
+        indexMessage.put("rankingNewSong", rankingListByNewSong());
         //电音前三歌曲
-        System.out.println(model);
-        System.out.println("开始检查");
-        model.put("rankingByMusicType", rankingListByMusicType(musicType));
-        System.out.println("第一个vabw");
+        indexMessage.put("rankingByMusicType", rankingListByMusicType(musicType));
         //首页的歌曲地区排行榜(包括欧美、日韩、华语）
-        model.put("rankingByMusicRegion", rankingListByRegion(region1));
-        System.out.println("33333");
-        model.put("rankingByMusicRegion", rankingListByRegion(region2));
-        model.put("rankingByMusicRegion", rankingListByRegion(region3));
-        return model;
+        indexMessage.put("rankingByMusicRegion", rankingListByRegion(region1));
+        indexMessage.put("rankingByMusicRegion", rankingListByRegion(region2));
+        indexMessage.put("rankingByMusicRegion", rankingListByRegion(region3));
+        return indexMessage;
     }
 
     /**
@@ -83,7 +76,6 @@ public class Exhibition {
         List<Music> musicList = musicService.selectListMusicByMusicType(musicType);
         return getThree(musicList);
     }
-
     /**
      * 功能：首页的新歌排行榜
      * 根据七天内上传的新歌曲的播放量算
