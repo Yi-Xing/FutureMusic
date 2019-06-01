@@ -50,7 +50,7 @@ public class TransactionService {
     /**
      * 充值完回调此方法
      */
-    public synchronized State rechargeBalance(HttpServletRequest request, HttpSession session) throws UnsupportedEncodingException, AlipayApiException, DataBaseException {
+    public synchronized String rechargeBalance(HttpServletRequest request, HttpSession session) throws UnsupportedEncodingException, AlipayApiException, DataBaseException {
         Map<String, String> params = new HashMap<>();
         Map<String, String[]> requestParams = request.getParameterMap();
         for (Iterator<String> iter = requestParams.keySet().iterator(); iter.hasNext(); ) {
@@ -68,20 +68,28 @@ public class TransactionService {
         //调用SDK验证签名
         boolean signVerified = AlipaySignature.rsaCheckV1(params, AlipayConfig.alipay_public_key, AlipayConfig.charset, AlipayConfig.sign_type);
         if (signVerified) {
-            // 获取充值金额
             String money = request.getParameter("total_amount");
-            User user = specialFunctions.getUser(session);
-            logger.debug("充值前的余额"+user.getBalance());
-            user.setBalance(user.getBalance().add(new BigDecimal(money)));
-            logger.debug("充值后的余额"+user.getBalance());
-            userInformationService.modifyUser(user);
-            return new State(1);
+            String token =(String)session.getAttribute("token");
+            logger.debug("token的值"+token);
+            logger.debug("money的值"+money);
+            logger.debug(""+money.equals(token));
+            if ( money.equals(token)){
+                session.removeAttribute("token");
+                // 获取充值金额
+                User user = specialFunctions.getUser(session);
+                logger.debug("充值前的余额" + user.getBalance());
+                user.setBalance(user.getBalance().add(new BigDecimal(money)));
+                logger.debug("充值后的余额" + user.getBalance());
+                userInformationService.modifyUser(user);
+                return "personal";
+            }
         } else {//验证失败
-            System.out.println("验证失败");
+            logger.debug("验证失败");
             State state = new State();
             state.setInformation("支付失败");
-            return state;
         }
+            logger.debug("抛异常");
+            throw new AlipayApiException();
     }
 
     /**

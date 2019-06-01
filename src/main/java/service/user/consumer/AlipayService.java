@@ -4,6 +4,9 @@ import com.alipay.api.AlipayApiException;
 import com.alipay.api.AlipayClient;
 import com.alipay.api.DefaultAlipayClient;
 import com.alipay.api.request.AlipayTradePagePayRequest;
+import controller.user.consumer.Transaction;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import util.AlipayConfig;
 
@@ -15,6 +18,7 @@ import java.util.Random;
 
 @Service(value = "AlipayService")
 public class AlipayService {
+    private static final Logger logger = LoggerFactory.getLogger(AlipayService.class);
 
     public void ali(HttpServletRequest request, HttpServletResponse response, int type) throws AlipayApiException, IOException {
         //设置编码
@@ -49,6 +53,9 @@ public class AlipayService {
                 + "\"product_code\":\"FAST_INSTANT_TRADE_PAY\"}");
         //请求
         String result = alipayClient.pageExecute(aliPayRequest).getBody();
+        logger.debug("准备充值"+money);
+        request.getSession().setAttribute("token",money+".00");
+
         //输出
         out.println(result);
     }
