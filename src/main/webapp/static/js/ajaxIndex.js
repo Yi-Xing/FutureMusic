@@ -147,7 +147,7 @@ window.onload = function () {
         $.ajax({
             contentType: "application/x-www-form-urlencoded;charset=UTF-8",
             type: "post",
-            url: "changeUserName",
+            url: "/user/changeUserName",
             data: {
                 "userName": userName
             },
@@ -162,7 +162,7 @@ window.onload = function () {
     $("#modifyUserPortrait").on("click", function () {
         $.ajax({
             type: "get",
-            url: "setUpHeadPortrait",
+            url: "/user/setUpHeadPortrait",
             dataType: "json",
             success: function (data, status) {
                 // 返回state
