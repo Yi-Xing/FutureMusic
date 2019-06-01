@@ -25,7 +25,6 @@ window.onload = function () {
                         pp.children[3].innerHTML = "";
                     }
                     $("#verificationCode").attr('disabled', 'true');
-                    // pointer-events:none;
                 }
             });
         }
@@ -140,9 +139,9 @@ window.onload = function () {
 
     // 用户信息篇---------------------------
     // 修改用户名
-    $("#registerUser").on("click", function () {
+    $("#modifyUserName").on("click", function () {
         // 用户名
-        var userName = $("#registerUserName").val();
+        var userName = $("#exampleInputEmail1").val();
         $.ajax({
             contentType: "application/x-www-form-urlencoded;charset=UTF-8",
             type: "post",
@@ -158,13 +157,14 @@ window.onload = function () {
     });
 
     // 修改头像
-    $("#registerUser").on("click", function () {
+    $("#modifyUserPortrait").on("click", function () {
         $.ajax({
             type: "get",
             url: "setUpHeadPortrait",
             dataType: "json",
             success: function (data, status) {
                 // 返回state
+                console.log(data);
             }
         });
     });
