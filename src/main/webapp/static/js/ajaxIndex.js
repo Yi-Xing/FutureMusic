@@ -119,6 +119,8 @@ window.onload = function () {
                 }else if(data.state === 2){
                     window.location.href ="http://localhost:8080/administrators/showUser";
                 }
+            },error:function (msg) {
+                window.location.href ="http://localhost:8080/collapse";
             }
         });
     });
