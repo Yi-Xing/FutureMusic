@@ -133,6 +133,9 @@ body::-webkit-scrollbar {
 .hide{
     display: none;
 }
+.hideLyr{
+    display: none;
+}
 .musicList {
     width: 100%;
     padding: 10px 20px;

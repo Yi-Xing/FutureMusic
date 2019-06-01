@@ -8,25 +8,24 @@
 &lt;!&ndash;    <td><a href="#" th:text="${musicList}">abcd</a></td>&ndash;&gt;
 </tr>-->
 <div th:object="${musicListPage}">
-    <p>Name: <span th:text="*{list[0]}">Sebastian</span>.</p>
     <p>Name: <span th:text="*{pageSize}">Sebastian</span>.</p>
     <p>Name: <span th:text="*{pageNum}">Sebastian</span>.</p>
     <p>Surname: <span th:text="*{startRow}">Pepper</span>.</p>
     <p>Surname: <span th:text="*{endRow}">Pepper</span>.</p>
     <p>Surname: <span th:text="*{total}">Pepper</span>.</p>
     <p>Surname: <span th:text="*{pages}">Pepper</span>.</p>
-    <div th:text="*{list[0]}">
+    <div th:each="*{list[0]}">
         <p>歌手遍历:</p>
-        <tr th:each="prod: *{singer}">
-            <td th:text="*{name}">Oranges</td>
-            <td th:text="*{headPortrait}">0.99</td>
+        <tr th:each="prod: *{singer}"><br>
+            <td th:text="*{name}">Oranges</td><br>
+            <td th:text="*{headPortrait}">0.99</td><br>
         </tr>
-        <p>: <span th:text="*{endRow}">Pepper</span>.</p>
-        <p>分类信息: <span th:text="*{classification}">Pepper</span>.</p>
+        <p>: <span th:text="*{endRow}">Pepper</span>.</p><br>
+        <p>分类信息: <span th:text="*{classification}">Pepper</span>.</p><br>
         <br>
         <br>
-        <p>歌曲: <span th:text="*{songList}">Pepper</span>.</p>
-        <p>播放次数: <span th:text="*{songListPlayCount}">Pepper</span>.</p>
+        <p>歌曲: <span th:text="*{songList}">Pepper</span>.</p><br>
+        <p>播放次数: <span th:text="*{songListPlayCount}">Pepper</span>.</p><br>
     </div>
 </div>
 </body>

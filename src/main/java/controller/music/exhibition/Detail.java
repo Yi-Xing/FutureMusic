@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import service.music.ActivityService;
-import service.music.DetailsService;
 import service.music.MusicService;
 import service.music.MusicVideoService;
 
