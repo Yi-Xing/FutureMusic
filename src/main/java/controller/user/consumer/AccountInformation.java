@@ -2,7 +2,6 @@ package controller.user.consumer;
 
 import entity.State;
 import org.springframework.ui.Model;
-import util.SameUrlData;
 import util.exception.DataBaseException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

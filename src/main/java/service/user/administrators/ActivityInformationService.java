@@ -8,7 +8,6 @@ import mapper.ActivityMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
-import org.springframework.ui.Model;
 import service.user.IdExistence;
 import service.user.ValidationInformation;
 import util.FileUpload;
@@ -33,8 +32,6 @@ public class ActivityInformationService {
     ActivityMapper activityMapper;
     @Resource(name = "ValidationInformation")
     ValidationInformation validationInformation;
-    @Resource(name = "IdExistence")
-    IdExistence idExistence;
     @Resource(name = "FileUpload")
     FileUpload fileUpload;
 
@@ -72,7 +69,7 @@ public class ActivityInformationService {
     }
 
     /**
-     * 上传活动的图片，或许被删！！！！！！！！！！！！！
+     * 上传活动的图片(可能没有用)
      */
     public State activityPicture(Integer id, HttpServletRequest request) throws DataBaseException, IOException {
         String path = fileUpload.activityPicture(request);

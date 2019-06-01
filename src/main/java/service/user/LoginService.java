@@ -112,7 +112,7 @@ public class LoginService {
      * @param password 需要验证的密码
      * @return boolean 返回是否登录成功
      */
-    public User isMailboxAndPassword(String mailbox, String password) {
+     User isMailboxAndPassword(String mailbox, String password) {
         // 从数据库中查找指定邮箱的用户
         User user = userMapper.selectUserMailbox(mailbox);
         // 再判断密码是否相同，密码再前面加过密了

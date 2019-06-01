@@ -67,7 +67,7 @@
                                                                style="width:13px;height:13px;margin-top: 15px;margin-right: 7px;">七天内自动登录
                                                     </div>
                                                     <div class="log_bom_flo">
-                                                        <a href="#">找回密码</a>|
+                                                        <a href="./saveCenter.html">找回密码</a>|
                                                         <a href="#">联系客服</a>
                                                     </div>
                                                 </div>
@@ -128,16 +128,16 @@
     <div class="TAB container inner">
         <ul>
             <li>
-                <a href="./index.html">首页</a>
+                <a th:href="@{/index}">首页</a>
             </li>
             <li>
-                <a href="./artist.html">音乐人</a>
+                <a href="./artist.html" th:href="@{/index}">音乐人</a>
             </li>
             <li>
-                <a href="./musicVideo.html">MV</a>
+                <a href="./musicVideo.html" th:href="@{/musicVideo}">MV</a>
             </li>
             <li>
-                <a href="./musicLists.html">歌单</a>
+                <a href="./musicLists.html" th:href="@{/musicLists}">歌单</a>
             </li>
             <li>
                 <a href="./personal.html" th:href="@{/user/userPage}">个人中心</a>

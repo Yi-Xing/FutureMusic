@@ -10,6 +10,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+/**
+ * @author HP
+ */
 public class DeleteInterceptor implements HandlerInterceptor {
     @Resource(name = "SpecialFunctions")
     SpecialFunctions specialFunctions;

@@ -739,18 +739,24 @@ window.onload = function () {
     });
 
     // 充值VIP
-    $("#registerUser").on("click", function () {
+    $(".recharge").on("click", function () {
         // 指定的充值几个月
-        var count = $("#registerUserName").val();
+        var count = $(this).data("count");
+        alert(count);
         $.ajax({
             contentType: "application/x-www-form-urlencoded;charset=UTF-8",
             type: "post",
-            url: "rechargeVIP",
+            url: "/user/rechargeVIP",
             data: {
                 "count": count,
             },
             dataType: "json",
             success: function (data, status) {
+                if(data.state===0){
+                    $("#information").html(data.information);
+                }else if(data.state===1){
+                    location.reload();
+                }
                 //返回 State
             }
         });

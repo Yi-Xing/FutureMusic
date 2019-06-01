@@ -19,9 +19,18 @@
             </div>
             <div class="user_information">
                 <h3 th:text="${session.userInformation.name}">name</h3>
-                <a href="javascript:;">
-                    <p th:text="'关注：'+${session.userInformation.name}">关注：num</p>
-                </a>
+                <h5 style="padding-left: 20px">
+                    <a href="javascript:;">
+                        <span class="iconfont icon-people1"></span>
+
+                    </a>
+                    <a href="javascript:;">
+                        <span class="iconfont icon-music"></span>
+                    </a>
+                    <a href="javascript:;">
+                        <span class="iconfont icon-iconvip"></span>
+                    </a>
+                </h5>
             </div>
         </div>
         <!--搜索框-->
@@ -53,8 +62,40 @@
                     <th scope="row">
                         <span class="iconfont icon-music"></span>
                     </th>
-                    <td>NAME</td>
-                    <td>name</td>
+                    <td>凌晨三点</td>
+                    <td>陈硕子</td>
+                    <div class="hide">music/凌晨三点.mp3</div>
+                    <div class="hideLyr">
+                        作曲 : 陈硕子<br>
+                        作词 : 陈硕子<br>
+                        我在凌晨三点<br>
+                        醒来的夜里<br>
+                        想起已失去的你<br>
+                        曾经说着永远一起<br>
+                        现在却不再联系<br>
+                        就算时间他模糊了很多的东西<br>
+                        我依然在深爱着你<br>
+                        如果当时的我们能少一些固执<br>
+                        是否会有更好的结局<br>
+                        我在凌晨三点<br>
+                        醒来的夜里<br>
+                        想起已失去的你<br>
+                        曾经说着永远一起<br>
+                        现在却不再联系<br>
+                        就算时间他模糊了很多的东西<br>
+                        我依然在深爱着你<br>
+                        如果当时的我们能少一些固执<br>
+                        是否会有更好的结局<br>
+                        我在凌晨三点<br>
+                        醒来的夜里<br>
+                        想起已失去的你<br>
+                        曾经说着永远一起<br>
+                        现在却不再联系<br>
+                        就算时间他模糊了很多的东西<br>
+                        我依然在深爱着你<br>
+                        如果当时的我们<br>
+                        是否会有更好的结局<br>
+                    </div>
                     <th class="dropdown">
                         <span class="iconfont icon-like"></span>
                         <span type="button" class="iconfont icon-more dropdown-toggle" data-toggle="dropdown"
@@ -92,8 +133,12 @@
                     <th scope="row">
                         <span class="iconfont icon-music"></span>
                     </th>
-                    <td>NAME</td>
-                    <td>name</td>
+                    <td>Ehrling</td>
+                    <td>Champagne</td>
+                    <div class="hide">music/Ehrling-ChampagneOcean.mp3</div>
+                    <div class="hideLyr">
+                        纯音乐，没有歌词显示
+                    </div>
                     <th class="dropdown">
                         <span class="iconfont icon-like"></span>
                         <span type="button" class="iconfont icon-more dropdown-toggle" data-toggle="dropdown"
@@ -131,8 +176,72 @@
                     <th scope="row">
                         <span class="iconfont icon-music"></span>
                     </th>
-                    <td>NAME</td>
-                    <td>name</td>
+                    <td>最近</td>
+                    <td>王小帅</td>
+                    <div class="hide">music/最近-王小帅.mp3</div>
+                    <div class="hideLyr">
+                        作曲 : 谭志华<br>
+                        作词 : 谭志华<br>
+                        你想要的我却不能够给你我全部<br>
+                        我能给的却又不是你想要拥有的<br>
+                        我们不适合也不想认输<br>
+                        好几次我们抱着彼此都是想要哭<br>
+                        你常解释这样的一切早就该结束<br>
+                        我觉得是我们的一切早就已结束<br>
+                        不要再约束<br>
+                        不想再痛苦<br>
+                        下一次会有更好的情路<br>
+                        爱我却不能够给你我全部<br>
+                        我能给的却又不是你想要拥有的<br>
+                        我们不适合也不想认输<br>
+                        好几次我们抱着彼此都是想要哭<br>
+                        你常解释这样的一切早就该结束<br>
+                        我觉得...<br>
+                    </div>
+                    <th class="dropdown">
+                        <span class="iconfont icon-like"></span>
+                        <span type="button" class="iconfont icon-more dropdown-toggle" data-toggle="dropdown"
+                              aria-haspopup="true" aria-expanded="false"></span>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="#">
+                                    <span class="iconfont icon-laji"></span>
+                                    删除
+                                </a>
+                            </li>
+                            <li role="separator" class="divider"></li>
+                            <li>
+                                <a href="#">
+                                    <span class="iconfont icon-tianjia"></span>
+                                    添加到...
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <span class="iconfont icon-tianjia"></span>
+                                    添加到...
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <span class="iconfont icon-tianjia"></span>
+                                    添加到...
+                                </a>
+                            </li>
+                        </ul>
+                    </th>
+                </tr>
+
+                <tr class="music_list">
+                    <th scope="row">
+                        <span class="iconfont icon-music"></span>
+                    </th>
+                    <td>Lemon</td>
+                    <td>米津玄師</td>
+                    <div class="hide">music/米津玄師-Lemon.mp3</div>
+                    <div class="hideLyr">
+                        纯音乐，没有歌词显示
+                    </div>
                     <th class="dropdown">
                         <span class="iconfont icon-like"></span>
                         <span type="button" class="iconfont icon-more dropdown-toggle" data-toggle="dropdown"
@@ -170,8 +279,12 @@
                     <th scope="row">
                         <span class="iconfont icon-music"></span>
                     </th>
-                    <td>NAME</td>
-                    <td>name</td>
+                    <td>像我这样的人</td>
+                    <td>毛不易</td>
+                    <div class="hide">music/像我这样的人.mp3</div>
+                    <div class="hideLyr">
+                        纯音乐，没有歌词显示
+                    </div>
                     <th class="dropdown">
                         <span class="iconfont icon-like"></span>
                         <span type="button" class="iconfont icon-more dropdown-toggle" data-toggle="dropdown"
@@ -209,8 +322,12 @@
                     <th scope="row">
                         <span class="iconfont icon-music"></span>
                     </th>
-                    <td>NAME</td>
-                    <td>name</td>
+                    <td>心墙</td>
+                    <td>林俊杰</td>
+                    <div class="hide">music/心墙.mp3</div>
+                    <div class="hideLyr">
+                        纯音乐，没有歌词显示
+                    </div>
                     <th class="dropdown">
                         <span class="iconfont icon-like"></span>
                         <span type="button" class="iconfont icon-more dropdown-toggle" data-toggle="dropdown"
@@ -248,8 +365,44 @@
                     <th scope="row">
                         <span class="iconfont icon-music"></span>
                     </th>
-                    <td>NAME</td>
-                    <td>name</td>
+                    <td>离人愁</td>
+                    <td>李袁杰</td>
+                    <div class="hide">music/离人愁.mp3</div>
+                    <div class="hideLyr">
+                        作曲 : 李袁杰<br>
+                        作词 : 李袁杰<br>
+                        编曲：筱筱雨沐<br>
+                        混录：Rown<br>
+                        企划：王烨扬<br>
+                        经纪人：方国庆<br>
+                        出品人：桑爱<br>
+                        出品方：看见音乐（北京）有限公司<br><br>
+                        春去白了华发落寞了思量<br>
+                        剪下一缕愁丝遮目让人盲<br>
+                        今人断了肠，今天各一方<br>
+                        今生与你相见无望<br>
+                        繁华落幕离人难敢诉衷肠<br>
+                        昨夜又见当年弃我不归郎<br>
+                        今夜太漫长，今两股痒痒<br>
+                        今人比枯叶瘦花黄<br>
+                        我应在江湖悠悠，饮一壶浊酒<br>
+                        醉里看百花深处愁<br>
+                        莫把那关外野游，留佳人等候<br>
+                        梦里殇此情高几楼<br>
+                        繁华落幕离人难敢诉衷肠<br>
+                        昨夜又见当年弃我不归郎<br>
+                        今夜太漫长，今两股痒痒<br>
+                        今人比枯叶瘦花黄<br>
+                        我应在江湖悠悠，饮一壶浊酒<br>
+                        醉里看百花深处愁<br>
+                        莫把那关外野游，留佳人等候<br>
+                        梦里殇此情高几楼<br>
+                        我应在江湖悠悠，饮一壶浊酒<br>
+                        醉里看百花深处愁<br>
+                        莫把那关外野游，留佳人等候<br>
+                        梦里殇此情高几楼<br>
+                        梦里殇此情高几楼<br>
+                    </div>
                     <th class="dropdown">
                         <span class="iconfont icon-like"></span>
                         <span type="button" class="iconfont icon-more dropdown-toggle" data-toggle="dropdown"
@@ -287,8 +440,77 @@
                     <th scope="row">
                         <span class="iconfont icon-music"></span>
                     </th>
-                    <td>NAME</td>
-                    <td>name</td>
+                    <td>PLANET</td>
+                    <td>ラムジ</td>
+                    <div class="hide">music/PLANET.mp3</div>
+                    <div class="hideLyr">
+                        作曲 : ラムジ<br>
+                        作词 : ラムジ<br>
+                        どうやって こうやって<br>
+                        要怎么做？就这么做<br>
+                        また ほら 君(きみ)と話(はな)そうか？<br>
+                        嗯...现在还能和你说话吧？<br>
+                        あれだって これだって<br>
+                        那样也好，这样也好<br>
+                        今(いま)すぐ気付(きづ)いてくれ<br>
+                        真希望现在你能快点觉察到我<br>
+                        僕(ぼく)は君(きみ)の惑星(プラネット)回(まわ)り続(つづ)けて<br>
+                        我是一颗不停地围绕你转动的行星<br>
+                        いつも君(きみ)のそばで<br>
+                        我本会一直在你的身边<br>
+                        黒点(ほくろ)数(かぞ)えてたけれど<br>
+                        即使只是细数你的小缺点<br>
+                        サヨナラなんてないよ...<br>
+                        不要说再见...<br>
+                        今日(きょう)から軌道(みち)を外(はず)れんだ<br>
+                        今天我要开始偏离你的轨道<br>
+                        最後(さいご)まで見(み)送(おく)ってよ<br>
+                        目送你，直到最后<br>
+                        永遠(えいえん)に離(はな)れてくんだ<br>
+                        因为我将要永远与你分离<br>
+                        ラララ...<br>
+                        啦啦啦<br>
+                        どうなって こうなって<br>
+                        为什么会变成这样<br>
+                        結局(けっきょく) 独(ひと)り佇(たたず)んで<br>
+                        最终仍旧是我独自一人伫立在这<br>
+                        失(うしな)って 勘(かん)づいて<br>
+                        失去之后 才意识到<br>
+                        今(いま)さら 戻(もど)れやしない<br>
+                        事到如今 再也回不去了<br>
+                        君(きみ)のいない場所(ばしょ)で<br>
+                        在没有你的场所<br>
+                        途方(とほう)に暮(く)れて<br>
+                        我完全不知所措<br>
+                        もう一度(いちど)引力(いんりょく)を<br>
+                        你对我的吸引力<br>
+                        感(かん)じたかったんだけれど<br>
+                        到现在都还想感受一下<br>
+                        神様(かみさま)なんていないよ<br>
+                        可是这世上并没有什么神明<br>
+                        いつまで待(ま)っても巡回中(じゅんかいちゅう)<br>
+                        无论期盼到何时都只能在自己的轨道中巡回<br>
+                        選(えら)ばれない悲(かな)しみを<br>
+                        没有被选择的悲伤<br>
+                        何度(なんど)でも噛(か)みしめるんだ<br>
+                        究竟还要再尝多少次？<br>
+                        君(きみ)は僕(ぼく)の太陽(たいよう)<br>
+                        你就是我的太阳<br>
+                        全(すべ)てを燃(も)やしたけれど<br>
+                        已将我的精力全部燃尽<br>
+                        サヨナラなんてないよ...<br>
+                        不要说再见...<br>
+                        今日(きょう)から軌道(みち)を外(はず)れんだ<br>
+                        从今天起就要偏离你的轨道<br>
+                        最後(さいご)まで見(み)送(おく)ってよ<br>
+                        目送你，直到最后<br>
+                        永遠(えいえん)に離(はな)れてくんだ<br>
+                        因为我将要永远与你分离<br>
+                        ラララ...<br>
+                        啦啦啦<br>
+                        ラララ...<br>
+                        啦啦啦<br>
+                    </div>
                     <th class="dropdown">
                         <span class="iconfont icon-like"></span>
                         <span type="button" class="iconfont icon-more dropdown-toggle" data-toggle="dropdown"
@@ -326,8 +548,88 @@
                     <th scope="row">
                         <span class="iconfont icon-music"></span>
                     </th>
-                    <td>NAME</td>
-                    <td>name</td>
+                    <td>说爱你</td>
+                    <td>蔡依林</td>
+                    <div class="hide">music/说爱你.mp3</div>
+                    <div class="hideLyr">
+                        作曲 : 周杰伦<br>
+                        作词 : 天天<br>
+                        编曲 : 吕绍淳<br>
+                        制作人：王治平<br>
+                        吉他：罗希<br>
+                        合声：马毓芬<br>
+                        Rap：吴聪贤<br>
+                        录音师：陈志翔/Johnny<br>
+                        录音室：M.E Studio/摩根录音室<br>
+                        混音师：杨大纬<br>
+                        混音室：丽风录音室<br>
+                        <br><br>
+
+                        我的世界变得奇妙<br>
+                        更难以言喻<br>
+                        还以为<br>
+                        是从天而降的梦境<br>
+                        直到确定<br>
+                        手的温度来自你心里<br>
+                        这一刻<br>
+                        我终于勇敢说爱你<br>
+                        一开始 我只顾着看你<br>
+                        装做不经意 心却飘过去<br>
+                        还窃喜你没发现我<br>
+                        躲在角落<br>
+                        忙着快乐忙着感动<br>
+                        从彼此陌生到熟<br>
+                        会是我们从没想过<br>
+                        真爱到现在 不敢期待<br>
+                        要证明自己<br>
+                        曾被你想起 REALLY<br>
+                        我胡思乱想<br>
+                        就从今天起 I WISH<br>
+                        像一个陷阱<br>
+                        却从未犹豫相信<br>
+                        你真的愿意<br>
+                        就请给我惊喜<br>
+                        关于爱情<br>
+                        过去没有异想的结局<br>
+                        那天起<br>
+                        却颠覆了自己逻辑<br>
+                        我的怀疑所有答案<br>
+                        因你而明白<br>
+                        转啊转<br>
+                        就真的遇见 MR.RIGHT<br>
+                        一开始 我只顾着看你<br>
+                        装做不经意 心却飘过去<br>
+                        还窃喜你没发现我<br>
+                        躲在角落<br>
+                        忙着快乐忙着感动<br>
+                        从彼此陌生到熟<br>
+                        会是我们从没想过<br>
+                        真爱到现在 不敢期待<br>
+                        要证明自己<br>
+                        曾被你想起 REALLY<br>
+                        我胡思乱想<br>
+                        就从今天起 I WISH<br>
+                        像一个陷阱<br>
+                        却从未犹豫相信<br>
+                        你真的愿意<br>
+                        就请给我惊喜<br>
+                        关于爱情<br>
+                        过去没有异想的结局<br>
+                        那天起<br>
+                        却颠覆了自己逻辑<br>
+                        我的怀疑所有答案<br>
+                        因你而明白<br>
+                        转啊转<br>
+                        就真的遇见 MR.RIGHT<br>
+                        我的世界变得奇妙<br>
+                        更难以言喻<br>
+                        还以为<br>
+                        是从天而降的梦境<br>
+                        直到确定<br>
+                        手的温度来自你心里<br>
+                        这一刻<br>
+                        也终于勇敢说爱你<br>
+                    </div>
                     <th class="dropdown">
                         <span class="iconfont icon-like"></span>
                         <span type="button" class="iconfont icon-more dropdown-toggle" data-toggle="dropdown"
@@ -365,47 +667,51 @@
                     <th scope="row">
                         <span class="iconfont icon-music"></span>
                     </th>
-                    <td>NAME</td>
-                    <td>name</td>
-                    <th class="dropdown">
-                        <span class="iconfont icon-like"></span>
-                        <span type="button" class="iconfont icon-more dropdown-toggle" data-toggle="dropdown"
-                              aria-haspopup="true" aria-expanded="false"></span>
-                        <ul class="dropdown-menu">
-                            <li>
-                                <a href="#">
-                                    <span class="iconfont icon-laji"></span>
-                                    删除
-                                </a>
-                            </li>
-                            <li role="separator" class="divider"></li>
-                            <li>
-                                <a href="#">
-                                    <span class="iconfont icon-tianjia"></span>
-                                    添加到...
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <span class="iconfont icon-tianjia"></span>
-                                    添加到...
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <span class="iconfont icon-tianjia"></span>
-                                    添加到...
-                                </a>
-                            </li>
-                        </ul>
-                    </th>
-                </tr>
-                <tr class="music_list">
-                    <th scope="row">
-                        <span class="iconfont icon-music"></span>
-                    </th>
-                    <td>NAME</td>
-                    <td>name</td>
+                    <td>往后余生</td>
+                    <td>马良</td>
+                    <div class="hide">music/往后余生.mp3</div>
+                    <div class="hideLyr">
+                        作曲 : 马良<br>
+                        作词 : 马良<br>
+                        编曲：郭扬、周成<br><br>
+                        在没风的地方找太阳<br>
+                        在你冷的地方做暖阳<br>
+                        人事纷纷<br>
+                        你总太天真<br>
+                        往后的余生<br>
+                        我只要你<br>
+                        往后余生<br>
+                        风雪是你<br>
+                        平淡是你<br>
+                        清贫也是你<br>
+                        荣华是你<br>
+                        心底温柔是你<br>
+                        目光所致<br>
+                        也是你<br><br>
+
+                        想带你去看晴空万里<br>
+                        想大声告诉你我为你着迷<br>
+                        往事匆匆<br>
+                        你总会被感动<br>
+                        往后的余生<br>
+                        我只要你<br>
+                        往后余生<br>
+                        冬雪是你<br>
+                        春华是你<br>
+                        夏雨也是你<br>
+                        秋黄是你<br>
+                        四季冷暖是你<br>
+                        目光所致<br>
+                        也是你<br>
+                        往后余生<br>
+                        风雪是你<br>
+                        平淡是你<br>
+                        清贫也是你<br>
+                        荣华是你<br>
+                        心底温柔是你<br>
+                        目光所致<br>
+                        也是你<br>
+                    </div>
                     <th class="dropdown">
                         <span class="iconfont icon-like"></span>
                         <span type="button" class="iconfont icon-more dropdown-toggle" data-toggle="dropdown"
@@ -442,26 +748,55 @@
                 </tbody>
             </table>
         </div>
-        <nav aria-label="...">
-            <ul class="pager">
-                <li class="previous"><a href="#"><span aria-hidden="true">&larr;</span> 上一页</a></li>
-                <li class="next"><a href="#">下一页 <span aria-hidden="true">&rarr;</span></a></li>
-            </ul>
-        </nav>
+<!--        <nav aria-label="...">-->
+<!--            <ul class="pager">-->
+<!--                <li class="previous"><a href="#"><span aria-hidden="true">&larr;</span> 上一页</a></li>-->
+<!--                <li class="next"><a href="#">下一页 <span aria-hidden="true">&rarr;</span></a></li>-->
+<!--            </ul>-->
+<!--        </nav>-->
     </div>
 
     <!--//右侧-->
     <div class="Play">
         <div class="drag">
             <div class="music_name">
-                <h2>MusicName</h2>
+                <h2>凌晨三点</h2>
                 <a href="javascript:;"><p>查看评论</p></a>
             </div>
             <div class="Lyric">
-<!--               歌词---------------------------------------->
+                <!--               歌词---------------------------------------->
+                作曲 : 陈硕子<br>
+                作词 : 陈硕子<br>
+                我在凌晨三点<br>
+                醒来的夜里<br>
+                想起已失去的你<br>
+                曾经说着永远一起<br>
+                现在却不再联系<br>
+                就算时间他模糊了很多的东西<br>
+                我依然在深爱着你<br>
+                如果当时的我们能少一些固执<br>
+                是否会有更好的结局<br>
+                我在凌晨三点<br>
+                醒来的夜里<br>
+                想起已失去的你<br>
+                曾经说着永远一起<br>
+                现在却不再联系<br>
+                就算时间他模糊了很多的东西<br>
+                我依然在深爱着你<br>
+                如果当时的我们能少一些固执<br>
+                是否会有更好的结局<br>
+                我在凌晨三点<br>
+                醒来的夜里<br>
+                想起已失去的你<br>
+                曾经说着永远一起<br>
+                现在却不再联系<br>
+                就算时间他模糊了很多的东西<br>
+                我依然在深爱着你<br>
+                如果当时的我们<br>
+                是否会有更好的结局<br>
             </div>
             <div class="Play_control">
-                <audio src="music/Ehrling - Champagne Ocean.mp3" th:src="@{/static/music/Ehrling - Champagne Ocean.mp3}" id="audio"></audio>
+                <audio src="../../static/music/凌晨三点.mp3" id="audio"></audio>
                 <div class="foot">
                     <div class="control_left">
                         <i class="iconfont icon-yduishangyiqu" title="上一首"></i>
@@ -470,14 +805,15 @@
                     </div>
                     <div class="Progress">
                         <div class="current_time">00:00</div>
-                            <div class="progress_range">
-                                <div class="range"></div>
-                                <div class="circle"></div>
+                        <div class="progress_range">
+                            <div class="range"></div>
+                            <div class="circle"></div>
                         </div>
                         <span class="total_time">00:00</span>
                     </div>
                     <div class="model">
-                        <div class="volume"><span class="iconfont icon-yinliangxiaoyinliangxiao" title="静音"></span></div>
+                        <div class="volume"><span class="iconfont icon-yinliangxiaoyinliangxiao" title="静音"></span>
+                        </div>
                         <div class="volume_range">
                             <div class="range"></div>
                             <div class="circle"></div>

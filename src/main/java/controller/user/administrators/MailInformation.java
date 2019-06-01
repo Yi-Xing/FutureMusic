@@ -1,6 +1,5 @@
 package controller.user.administrators;
 
-import com.github.pagehelper.PageInfo;
 import entity.Mail;
 import entity.State;
 import org.slf4j.Logger;

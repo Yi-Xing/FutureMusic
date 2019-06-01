@@ -120,32 +120,31 @@ public class MusicVideoInformationService {
         if ((condition[1] != null) && !"".equals(condition[1])) {
             musicVideo.setName(condition[1]);
         }
-        if ((condition[2] != null) && !"".equals(condition[2])) {
-            musicVideo.setLevel(Integer.parseInt(condition[2]));
-        }
         if ((condition[3] != null) && !"".equals(condition[3])) {
             musicVideo.setDate(JudgeIsOverdueUtil.toDate(condition[3]));
         }
-        if ((condition[4] != null) && !"".equals(condition[4])) {
-            musicVideo.setAvailable(Integer.parseInt(condition[4]));
+        if ((condition[2] != null) && !"".equals(condition[2])) {
+            musicVideo.setLevel(Integer.parseInt(condition[2]));
         }
         if ((condition[5] != null) && !"".equals(condition[5])) {
             musicVideo.setSingerId(Integer.parseInt(condition[5]));
         }
+        if ((condition[4] != null) && !"".equals(condition[4])) {
+            musicVideo.setAvailable(Integer.parseInt(condition[4]));
+        }
         if ((condition[6] != null) && !"".equals(condition[6])) {
             musicVideo.setMusicId(Integer.parseInt(condition[6]));
         }
-        if ((condition[7] != null) && !"".equals(condition[7])) {
-            musicVideo.setActivity(Integer.parseInt(condition[7]));
-        }
         if ((condition[8] != null) && !"".equals(condition[8])) {
             musicVideo.setClassificationId(Integer.parseInt(condition[8]));
+        }
+        if ((condition[7] != null) && !"".equals(condition[7])) {
+            musicVideo.setActivity(Integer.parseInt(condition[7]));
         }
         //在查询之前传入当前页，然后多少记录
         PageHelper.startPage(pageNum, 8);
         // 根据条件查找用户信息
         List<MusicVideo> list = musicVideoMapper.selectListMusicVideo(musicVideo);
-        System.out.println(list);
         PageInfo pageInfo = new PageInfo<>(list);
         // 传入页面信息
         model.addAttribute("pageInfo", pageInfo);

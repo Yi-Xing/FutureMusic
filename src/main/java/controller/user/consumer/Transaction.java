@@ -6,7 +6,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import service.user.LoginService;
+import org.springframework.web.bind.annotation.ResponseBody;
 import service.user.consumer.AlipayService;
 import service.user.consumer.TransactionService;
 import util.exception.DataBaseException;
@@ -64,6 +64,7 @@ public class Transaction {
      * @param count 表示充值几个月
      */
     @RequestMapping(value = "/rechargeVIP")
+    @ResponseBody
     public State rechargeVIP( Integer count,HttpSession session) throws DataBaseException {
        return transactionService.rechargeVIP(count,session);
     }

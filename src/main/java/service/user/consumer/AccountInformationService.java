@@ -5,7 +5,6 @@ import entity.State;
 import entity.User;
 import mapper.FocusMapper;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
 import service.user.SpecialFunctions;
 import util.FileUpload;
 import util.exception.DataBaseException;
@@ -70,7 +69,6 @@ public class AccountInformationService {
     }
 
 
-
     /**
      * 用于修改用户的用户名
      * 并修改会话上的用户名
@@ -102,13 +100,23 @@ public class AccountInformationService {
     public String setUpHeadPortrait(HttpServletRequest request, HttpSession session, Model model) throws IOException, DataBaseException {
         User user = specialFunctions.getUser(session);
         String path = fileUpload.userHeadPortrait(request);
-        logger.debug(path);
-        logger.debug(""+user);
-        // 修改用户头像
-        user.setHeadPortrait(path);
-        //修改数据库和会话上的用户信息，失败抛异常
-        modifyUserInformation(user, session);
-        return userPage(session,model);
+        logger.debug("头像路径"+path);
+        logger.debug("用户信息" + user);
+        if (path != null) {
+            String originalPath = user.getHeadPortrait();
+            logger.debug("我执行了");
+            // 修改用户头像
+            user.setHeadPortrait(path);
+            //修改数据库和会话上的用户信息，失败抛异常
+            modifyUserInformation(user, session);
+            model.addAttribute("information", "修改成功");
+            // 修改成功删除原文件
+            fileUpload.deleteFile(originalPath);
+        } else {
+            logger.debug("我也执行了");
+            model.addAttribute("information", "请先选择图片");
+        }
+        return userPage(session, model);
     }
 
     /**
@@ -136,7 +144,7 @@ public class AccountInformationService {
      */
     private void modifyUserInformation(User user, HttpSession session) throws DataBaseException {
         if (userMapper.updateUser(user) > 0) {
-            logger.info("邮箱：" + user.getMailbox() + "用户的空间状态修改成功");
+            logger.info("邮箱：" + user.getMailbox() + "用户的信息修改成功");
             // 修改会话上的用户信息
             session.setAttribute("userInformation", user);
         } else {
