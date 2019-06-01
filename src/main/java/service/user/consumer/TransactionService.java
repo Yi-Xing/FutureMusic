@@ -69,11 +69,11 @@ public class TransactionService {
         boolean signVerified = AlipaySignature.rsaCheckV1(params, AlipayConfig.alipay_public_key, AlipayConfig.charset, AlipayConfig.sign_type);
         if (signVerified) {
             String money = request.getParameter("total_amount");
-            String token =(String)session.getAttribute("token");
-            logger.debug("token的值"+token);
-            logger.debug("money的值"+money);
-            logger.debug(""+money.equals(token));
-            if ( money.equals(token)){
+            String token = (String) session.getAttribute("token");
+            logger.debug("token的值" + token);
+            logger.debug("money的值" + money);
+            logger.debug("" + money.equals(token));
+            if (money.equals(token)) {
                 session.removeAttribute("token");
                 // 获取充值金额
                 User user = specialFunctions.getUser(session);
@@ -88,8 +88,8 @@ public class TransactionService {
             State state = new State();
             state.setInformation("支付失败");
         }
-            logger.debug("抛异常");
-            throw new AlipayApiException();
+        logger.debug("抛异常");
+        throw new AlipayApiException();
     }
 
     /**
@@ -247,30 +247,38 @@ public class TransactionService {
      */
     @Transactional
     public State rechargeVIP(Integer count, HttpSession session) throws DataBaseException {
-        logger.debug("充值的月数"+count);
+        logger.debug("充值的月数" + count);
         State state = new State();
         User user = specialFunctions.getUser(session);
         // 去数据库查找用户信息
-         user =userMapper.selectUserMailbox(user.getMailbox());
+        user = userMapper.selectUserMailbox(user.getMailbox());
         // 得到用户的余额
         BigDecimal balance = user.getBalance();
-        logger.debug("用户余额"+balance);
+        logger.debug("用户余额" + balance);
         // 计算得到vip的价格
         BigDecimal price = BigDecimal.valueOf(count * 10);
-        logger.debug("vip的价格"+price);
+        logger.debug("vip的价格" + price);
         // 得到用户是否买的起
         if (balance.compareTo(price) > 0) {
             // 修改用户的余额
             user.setBalance(balance.subtract(price));
-            // 修改用户的账号等级
-            user.setLevel(1);
+            // 如果用户本来就是vip则续费
             Calendar calendar = Calendar.getInstance();
-            // 将日期封装
-            calendar.setTime(new Date());
+            if (user.getLevel() == 1) {
+                // 将原vip日期封装
+                calendar.setTime(user.getVipDate());
+                logger.debug("用户本来就是VIP，原vip时间" + user.getVipDate());
+            } else {
+                // 修改用户的账号等级
+                user.setLevel(1);
+                // 将日期封装
+                calendar.setTime(new Date());
+            }
             // 向后推移几个月
             calendar.add(Calendar.MONTH, count);
             // 设置用户vip到期日期
-            user.setVipDate(new Date());
+            user.setVipDate(calendar.getTime());
+            logger.debug("设置用户vip的时间" + user.getVipDate());
             // 更新用户信息失败抛异常
             state = userInformationService.modifyUser(user);
         } else {

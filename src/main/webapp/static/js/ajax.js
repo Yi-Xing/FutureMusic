@@ -52,11 +52,11 @@ window.onload = function () {
             }
         });
     });
-
     // 显示粉丝量
     $(".userInformation").on("click", function () {
         // 得到用户id
         var userId =  $(this).data("id");
+        alert(userId);
         $.ajax({
             type: "get",
             url: "/administrators/showFocus?id=" + userId,
@@ -408,7 +408,7 @@ window.onload = function () {
     $(".songListInformation").on("click", function () {
         //得到对应的id
         var id = $(this).data("id");
-        alert(id);
+        // alert(id);
         $.ajax({
             contentType: "application/x-www-form-urlencoded;charset=UTF-8",
             type: "post",

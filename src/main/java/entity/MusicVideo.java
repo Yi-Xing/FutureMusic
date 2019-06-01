@@ -43,7 +43,7 @@ public class MusicVideo implements Serializable {
     /**
      * 价格等级为3和4的可设置
      */
-    private BigDecimal price=null;
+    private BigDecimal price=new BigDecimal("0");
     /**
      * 该MV的音乐id
      */

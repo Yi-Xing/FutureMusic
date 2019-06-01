@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import service.user.administrators.ActivityInformationService;
 import service.user.administrators.OrderInformationService;
+import util.SameUrlData;
 import util.exception.DataBaseException;
 
 import javax.annotation.Resource;
@@ -41,6 +42,7 @@ public class OrderInformation {
      *  删除按id
      */
     @RequestMapping(value = "/deleteOrder")
+    @SameUrlData
     public String deleteOrder(Integer id, Model model) throws DataBaseException {
         return orderInformationService.deleteOrder(id,model);
     }

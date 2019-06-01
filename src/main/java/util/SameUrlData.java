@@ -11,9 +11,7 @@ import java.lang.annotation.Target;
  *
  * @author Administrator
  */
-// 表示该注解可用于方法上
 @Target(ElementType.METHOD)
-//他们能在运行时被JVM或其他使用反射机制的代码所读取和使用
 @Retention(RetentionPolicy.RUNTIME)
 public @interface SameUrlData {
 

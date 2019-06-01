@@ -57,7 +57,7 @@ public class Music implements Serializable {
     /**
      * 音乐的价格只有等级为3和4的才可以设置
      */
-    private BigDecimal price=null;
+    private BigDecimal price=new BigDecimal("0");
     /**
      * 歌手的id
      */
