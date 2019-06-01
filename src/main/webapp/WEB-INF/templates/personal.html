@@ -63,8 +63,8 @@
                                 </div>
                             </div>
                         </div>
-                        <h4>关注：</h4>
-                        <h4>粉丝：</h4>
+                        <h4 th:text="'关注：'+${session.userInformation.name}">关注：</h4>
+                        <h4 th:text="'粉丝：'+${session.userInformation.name}">粉丝：</h4>
                     </a>
                 </div>
             </div>
