@@ -102,7 +102,9 @@ body::-webkit-scrollbar {
 }
 
 .user_information h3, p {
-    margin: 0 20px 20px;
+    margin: 0 20px 8px;
+    color: #666A70;
+    transition: 0.2s;
 }
 
 /*搜索框部分*/
@@ -295,7 +297,4 @@ body::-webkit-scrollbar {
     background-color: red;
     border: 2px solid #fff;
     cursor: pointer;
-}
-.foot .bofangModel {
-
 }

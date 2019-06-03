@@ -8,8 +8,6 @@
 <body>
 <script>
     window.onload = function () {
-        var value = $("#title").val();
-        alert(value);
         $("#aa").on("click", function () {
             //得到4个条件存成数组
             $.ajax({
@@ -28,12 +26,9 @@
         });
     };
 </script>
-<form method="post" action="token">
-    <input type="text" name="formToken" th:value="${session.formToken}"/>
+<form method="post" action="/token">
     <input type="text" name="value"/>
     <input type="submit" value="提交">
 </form>
-<input type="text" id="title">
-<input type="submit" id="aa"/>
 </body>
 </html>

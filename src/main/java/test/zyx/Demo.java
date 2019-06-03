@@ -42,7 +42,7 @@ public class Demo {
     @RequestMapping(value = "/test")
     public String test() {
         System.out.println(flie);
-        flie.zyx();
+//        flie.zyx();
 //        System.out.println(text);
 //        fileUpload.userHeadPortrait(request);
         System.out.println("啊哈哈哈");
