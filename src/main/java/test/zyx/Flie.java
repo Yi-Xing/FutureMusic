@@ -13,48 +13,57 @@ import javax.annotation.Resource;
 public class Flie {
     @Resource(name = "UserMapper")
     UserMapper userMapper;
-    @RequestMapping(value = "/a")
-    public String aa(){
-        return zyx();
-    }
 
     @RequestMapping(value = "/token")
     @ResponseBody
     @SameUrlData
     public String token(String value) throws InterruptedException {
-        Thread.sleep(4000);
+        Thread.sleep(2000);
         System.out.println("我执行了");
         System.out.println(value);
         return "demo";
     }
     @RequestMapping(value = "/zyxa")
     public String zyxa() {
-        System.out.println("我中了");
         return "zyx";
     }
 
-    public String zyx() {
-        System.out.println("开始");
-        a();
-        System.out.println("异常准备开始");
-        int a=2/0;
-        b();
-//        System.out.println("我执行完了");
-        return "index";
-    }
-    private void a(){
-        User user=new User();
-        user.setId(1);
-        user.setName("我是你");
-        userMapper.updateUser(user);
-    }
-    private void b(){
-        User user=new User();
-        user.setId(1);
-        user.setName("aaaa");
-        userMapper.updateUser(user);
-    }
 
+
+
+
+
+
+
+
+
+
+
+
+
+//
+//    public String zyx() {
+//        System.out.println("开始");
+//        a();
+//        System.out.println("异常准备开始");
+//        int a=2/0;
+//        b();
+////        System.out.println("我执行完了");
+//        return "index";
+//    }
+//    private void a(){
+//        User user=new User();
+//        user.setId(1);
+//        user.setName("我是你");
+//        userMapper.updateUser(user);
+//    }
+//    private void b(){
+//        User user=new User();
+//        user.setId(1);
+//        user.setName("aaaa");
+//        userMapper.updateUser(user);
+//    }
+//
 
 
 
