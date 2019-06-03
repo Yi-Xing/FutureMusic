@@ -96,7 +96,6 @@ public class LoginAndRegister {
      */
     @RequestMapping(value = "/signOutLogin")
     @ResponseBody
-    @SameUrlData
     public State signOutLogin(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
         logger.trace("signOutLogin方法开始执行");
         return loginService.signOutLogin(request,response,session);
