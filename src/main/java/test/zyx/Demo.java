@@ -80,21 +80,19 @@ public class Demo {
     }
 
     public static void main(String[] args) {
+        System.out.println(zyx());
+    }
 
-//        SimpleDateFormat sdFormat = new SimpleDateFormat("yyyy年MM月dd日 HH时mm分ss秒");
-        Calendar calendar = Calendar.getInstance();
-        calendar.setTime(new Date());
-        System.out.println(new Date());
-//        System.out.println(sdFormat.format(calendar.getTime()));
-//        calendar.add(Calendar.MONTH, 1);
-        calendar.add(Calendar.MONTH, 1);
-//        System.out.println(sdFormat.format(calendar.getTime()));
-//        System.out.println("2860482971@qq.com".matches("[a-zA-z_0-9]+@[a-zA-z_0-9]{2,6}(\\.[a-zA-z_0-9]{2,3})+"));
-//        // 对密码进行加密
-//        System.out.println(ConstantUtil.Two_Hundred.getIntValue());
-//        System.out.println( EncryptionUtil.encryptionMD5("12346578"));
-//        System.out.println( EncryptionUtil.encryptionMD5("12346578"));
-        System.out.println(calendar.getTime());
+    static String zyx(){
+        try{
+//            int a=2/0;
+            return "我是try";
+        }catch (Exception e){
+            return "我是catch";
+
+        }finally {
+            System.out.println("aaa");
+        }
     }
 
 
