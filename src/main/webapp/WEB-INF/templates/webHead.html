@@ -1,147 +1,206 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <!--头部-->
-<div class="div">
-    <div class="header">
-        <div class="inner">
-            <div class="header_left">
-                <img src="img/logo.png" th:src="@{/static/img/logo.png}" alt="">
+<div class="header" style="height: 600px">
+    <img class="show_bg" src="../../static/img/首页背景.jpg" th:src="@{/static/img/首页背景.jpg}" alt="">
+    <nav class="navbar">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand iconfont icon-yinlemusic216" style="font-size: 25px;" href="#"></a>
             </div>
-            <div class="header_main">
-                <ul>
-                    <li style="background:lightgreen;"><a href="./index.html">音乐馆</a></li>
-                    <li><a href="./player.html" target="_blank">我的音乐</a></li>
-                    <li><a href="#">音乐号</a></li>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="#">音乐馆 <span class="sr-only">(current)</span></a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">你想要的？ <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">歌曲</a></li>
+                            <li><a href="#">MV</a></li>
+                            <li><a href="#">Something else here</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="#">歌手</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="#">One more separated link</a></li>
+                        </ul>
+                    </li>
                     <li><a href="#">VIP</a></li>
                 </ul>
-            </div>
-            <div class="header_right">
-                <div class="hed_rig_left">
-                    <div class="search_container">
-                        <input type="text" id="search">
-                        <ul class="search_tips">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="#">
+                        <img src="img/mv1.jpg" class="touxiang" th:src="@{/static/img/mv1.jpg}" alt="...">
+                    </a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">登录 <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">直接登录</a></li>
+                            <li><a href="#">注册</a></li>
+                            <li><a href="#">安全中心</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="#">退出登录</a></li>
                         </ul>
+                    </li>
+                </ul>
+                <form class="navbar-form navbar-right">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search">
                     </div>
-                    <button class="iconfont icon-search1"></button>
-                </div>
-                <div class="hed_rig_right">
-                    <div class="hed_rig_rig_left">
-                        <!-- Button trigger modal -->
-                        <button th:if="${session.userInformation==null}" type="button" id="button1" class="btn  btn-lg" data-toggle="modal"
-                                data-target="#myModal">
-                            登录
-                        </button>
-                        <div th:if="${session.userInformation!=null}" class="head">
-                            <div id="headImg">
-                                <a href="javascript:;">
-                                    <img src="img/mv1.jpg" th:src="@{/static/img/mv1.jpg}" alt="...">
-                                </a>
-                            </div>
-                            <div>
-                                <a href="javascript:;">
-                                    <h5 class="signOutLogin" style="margin-top: 20px"><b>退出登录</b></h5>
-                                </a>
-                            </div>
-                        </div>
-                        <!-- Modal -->
-                        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-                            <div class="modal-dialog" role="document">
-                                <div class="modal_content">
-                                    <div class="modal_header">
-                                        <a href="#">登录</a>
-                                        <a href="#">注册</a>
-                                    </div>
-                                    <div class="modal_main">
-                                        <div class="login">
-                                            <form method="post">
-                                                <div class="login_header">
-                                                    <input type="text" id="loginMail" name="fname"
-                                                           placeholder="please enter your e-mail">
-                                                    <div id="loginTips" class="tip1" style="color: red"></div>
-                                                    <input type="password" name="pwd" id="loginPassword"
-                                                           placeholder="please enter your password">
-                                                    <div class="tip2"></div>
-                                                </div>
-                                                <div class="login_bottom">
-                                                    <div class="log_bom_flo">
-                                                        <input id="automatic" type="checkbox"
-                                                               style="width:13px;height:13px;margin-top: 15px;margin-right: 7px;">七天内自动登录
-                                                    </div>
-                                                    <div class="log_bom_flo">
-                                                        <a href="./saveCenter.html">找回密码</a>|
-                                                        <a href="#">联系客服</a>
-                                                    </div>
-                                                </div>
-                                                <input class="one_log pointer" id="login" value="登录" style="background: red">
-                                            </form>
-                                        </div>
-
-
-                                        <div class="registered">
-                                            <form>
-                                                <div class="reg_header">
-                                                    <div class="reg_hed_left">
-                                                        <input id="registerName" type="text" placeholder="用户名">
-                                                        <input id="registerMail" type="text" placeholder="请输入邮箱">
-                                                        <input id="registerPassword" type="password" name="pw"
-                                                               placeholder="请输入密码">
-                                                        <input id="registerPasswordAgain" type="password" name="pw1"
-                                                               placeholder="请再次输入密码">
-                                                    </div>
-                                                    <div class="reg_hed_right">
-                                                        <p></p>
-                                                        <p></p>
-                                                        <p></p>
-                                                        <p></p>
-                                                    </div>
-                                                </div>
-                                                <div class="reg_main">
-                                                    <div class="reg_main_left">
-                                                        <input id="registerVerificationCode" type="text"
-                                                               placeholder="请输入验证码">
-                                                    </div>
-                                                    <div class="reg_main_right">
-                                                        <a id="verificationCode" class="pointer">点击发送</a>
-                                                    </div>
-                                                </div>
-                                                <div class="reg_checkbox" style="overflow: hidden">
-                                                    <input id="registerAgreement" type="checkbox"
-                                                           style="float: left; width:13px;height:13px;margin: 5px 5px;">同意
-                                                    <a href="#" style="float: left">《用户协议》</a>
-                                                </div>
-                                                <div>
-                                                    <input id="registerUserInformation" class="pointer reg_bom"
-                                                           style="background-color: red" value="注册">
-                                                </div>
-                                            </form>
-                                        </div>
-                                    </div>
-
-
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="TAB container inner">
-        <ul>
-            <li>
-                <a th:href="@{/index}">首页</a>
-            </li>
-            <li>
-                <a href="./artist.html" th:href="@{/artist}">音乐人</a>
-            </li>
-            <li>
-                <a href="./musicVideo.html" th:href="@{/musicVideo}">MV</a>
-            </li>
-            <li>
-                <a href="./musicLists.html" th:href="@{/musicLists}">歌单</a>
-            </li>
-            <li>
-                <a href="./personal.html" th:href="@{/user/userPage}">个人中心</a>
-            </li>
-        </ul>
-    </div>
+                    <button type="submit" class="btn btn-default">Submit</button>
+                </form>
+            </div><!-- /.navbar-collapse -->
+        </div><!-- /.container-fluid -->
+    </nav>
 </div>
+
+<!--<div class="div">-->
+<!--    <div class="header">-->
+<!--        <div class="inner">-->
+<!--            <div class="header_left">-->
+<!--                <img src="img/logo.png" th:src="@{/static/img/logo.png}" alt="">-->
+<!--            </div>-->
+<!--            <div class="header_main">-->
+<!--                <ul>-->
+<!--                    <li style="background:lightgreen;"><a href="./index.html">音乐馆</a></li>-->
+<!--                    <li><a href="./player.html" target="_blank">我的音乐</a></li>-->
+<!--                    <li><a href="#">音乐号</a></li>-->
+<!--                    <li><a href="#">VIP</a></li>-->
+<!--                </ul>-->
+<!--            </div>-->
+<!--            <div class="header_right">-->
+<!--                <div class="hed_rig_left">-->
+<!--                    <div class="search_container">-->
+<!--                        <input type="text" id="search">-->
+<!--                        <ul class="search_tips">-->
+<!--                        </ul>-->
+<!--                    </div>-->
+<!--                    <button class="iconfont icon-search1"></button>-->
+<!--                </div>-->
+<!--                <div class="hed_rig_right">-->
+<!--                    <div class="hed_rig_rig_left">-->
+<!--                        &lt;!&ndash; Button trigger modal &ndash;&gt;-->
+<!--                        <button th:if="${session.userInformation==null}" type="button" id="button1" class="btn  btn-lg" data-toggle="modal"-->
+<!--                                data-target="#myModal">-->
+<!--                            登录-->
+<!--                        </button>-->
+<!--                        <div th:if="${session.userInformation!=null}" class="head">-->
+<!--                            <div id="headImg">-->
+<!--                                <a href="javascript:;">-->
+<!--                                    <img src="img/mv1.jpg" th:src="@{/static/img/mv1.jpg}" alt="...">-->
+<!--                                </a>-->
+<!--                            </div>-->
+<!--                            <div>-->
+<!--                                <a href="javascript:;">-->
+<!--                                    <h5 class="signOutLogin" style="margin-top: 20px"><b>退出登录</b></h5>-->
+<!--                                </a>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                        &lt;!&ndash; Modal &ndash;&gt;-->
+<!--                        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">-->
+<!--                            <div class="modal-dialog" role="document">-->
+<!--                                <div class="modal_content">-->
+<!--                                    <div class="modal_header">-->
+<!--                                        <a href="#">登录</a>-->
+<!--                                        <a href="#">注册</a>-->
+<!--                                    </div>-->
+<!--                                    <div class="modal_main">-->
+<!--                                        <div class="login">-->
+<!--                                            <form method="post">-->
+<!--                                                <div class="login_header">-->
+<!--                                                    <input type="text" id="loginMail" name="fname"-->
+<!--                                                           placeholder="please enter your e-mail">-->
+<!--                                                    <div id="loginTips" class="tip1" style="color: red"></div>-->
+<!--                                                    <input type="password" name="pwd" id="loginPassword"-->
+<!--                                                           placeholder="please enter your password">-->
+<!--                                                    <div class="tip2"></div>-->
+<!--                                                </div>-->
+<!--                                                <div class="login_bottom">-->
+<!--                                                    <div class="log_bom_flo">-->
+<!--                                                        <input id="automatic" type="checkbox"-->
+<!--                                                               style="width:13px;height:13px;margin-top: 15px;margin-right: 7px;">七天内自动登录-->
+<!--                                                    </div>-->
+<!--                                                    <div class="log_bom_flo">-->
+<!--                                                        <a href="./saveCenter.html">找回密码</a>|-->
+<!--                                                        <a href="#">联系客服</a>-->
+<!--                                                    </div>-->
+<!--                                                </div>-->
+<!--                                                <input class="one_log pointer" id="login" value="登录" style="background: red">-->
+<!--                                            </form>-->
+<!--                                        </div>-->
+
+
+<!--                                        <div class="registered">-->
+<!--                                            <form>-->
+<!--                                                <div class="reg_header">-->
+<!--                                                    <div class="reg_hed_left">-->
+<!--                                                        <input id="registerName" type="text" placeholder="用户名">-->
+<!--                                                        <input id="registerMail" type="text" placeholder="请输入邮箱">-->
+<!--                                                        <input id="registerPassword" type="password" name="pw"-->
+<!--                                                               placeholder="请输入密码">-->
+<!--                                                        <input id="registerPasswordAgain" type="password" name="pw1"-->
+<!--                                                               placeholder="请再次输入密码">-->
+<!--                                                    </div>-->
+<!--                                                    <div class="reg_hed_right">-->
+<!--                                                        <p></p>-->
+<!--                                                        <p></p>-->
+<!--                                                        <p></p>-->
+<!--                                                        <p></p>-->
+<!--                                                    </div>-->
+<!--                                                </div>-->
+<!--                                                <div class="reg_main">-->
+<!--                                                    <div class="reg_main_left">-->
+<!--                                                        <input id="registerVerificationCode" type="text"-->
+<!--                                                               placeholder="请输入验证码">-->
+<!--                                                    </div>-->
+<!--                                                    <div class="reg_main_right">-->
+<!--                                                        <a id="verificationCode" class="pointer">点击发送</a>-->
+<!--                                                    </div>-->
+<!--                                                </div>-->
+<!--                                                <div class="reg_checkbox" style="overflow: hidden">-->
+<!--                                                    <input id="registerAgreement" type="checkbox"-->
+<!--                                                           style="float: left; width:13px;height:13px;margin: 5px 5px;">同意-->
+<!--                                                    <a href="#" style="float: left">《用户协议》</a>-->
+<!--                                                </div>-->
+<!--                                                <div>-->
+<!--                                                    <input id="registerUserInformation" class="pointer reg_bom"-->
+<!--                                                           style="background-color: red" value="注册">-->
+<!--                                                </div>-->
+<!--                                            </form>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+
+
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--    <div class="TAB container inner">-->
+<!--        <ul>-->
+<!--            <li>-->
+<!--                <a th:href="@{/index}">首页</a>-->
+<!--            </li>-->
+<!--            <li>-->
+<!--                <a href="./artist.html" th:href="@{/artist}">音乐人</a>-->
+<!--            </li>-->
+<!--            <li>-->
+<!--                <a href="./musicVideo.html" th:href="@{/musicVideo}">MV</a>-->
+<!--            </li>-->
+<!--            <li>-->
+<!--                <a href="./musicLists.html" th:href="@{/musicLists}">歌单</a>-->
+<!--            </li>-->
+<!--            <li>-->
+<!--                <a href="./personal.html" th:href="@{/user/userPage}">个人中心</a>-->
+<!--            </li>-->
+<!--        </ul>-->
+<!--    </div>-->
+<!--</div>-->

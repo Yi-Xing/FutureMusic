@@ -56,8 +56,8 @@ $(".music_list").click(function () {
         time2 = time[1];
         time = time1 * 60 + parseInt(time2);
 
-        console.log(time);
-        console.log(geci[1]);
+        // console.log(time);
+        // console.log(geci[1]);
         //undefined判断
         if (geci[1]) {
             str += '<p id = time' + time + '>' + geci[1] + '</p>';
@@ -73,8 +73,19 @@ $(".music_list").click(function () {
             document.getElementById('time' + Original).style.cssText = 'font-size: 18px;color: #666A70;';
             Original = cur;
             document.getElementById('time' + cur).style.cssText = 'font-size: 23px;color: #fff';
+            // console.log(document.getElementById('time' + cur));
+            let height = document.getElementById('time' + cur).offsetTop;
+            console.log(height);
+            if(height < 300){
+            }else {
+                $(".Lyric")[0].scrollTo(0,height-300);
+            }
         }
+        //歌词滚动
     }, false);
+
+
+
 });
 
 
