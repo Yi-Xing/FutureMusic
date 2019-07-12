@@ -61,13 +61,13 @@
         <property name="jdbcUrl" value="${jdbcUrl}"/>
         <property name="user" value="${user}"/>
         <property name="password" value="${password}"/>
-        <!--解决MySQL8小时问题-->
-        <property name="testConnectionOnCheckin" value="true"/>
-        <!--设置为true，所有的连接都将检测其有效性，会影响性能，所以将其设置为false；-->
-        <property name="testConnectionOnCheckout" value="false"/>
-        <!--设置为true，异步检测连接的有效性-->
-        <property name="idleConnectionTestPeriod " value="60"/>
-        <!--每隔多少秒c3p0检测连接的有效性，单位是秒，根据项目情况设定，比8小时小就好-->
+<!--        &lt;!&ndash;解决MySQL8小时问题&ndash;&gt;-->
+<!--        <property name="testConnectionOnCheckin" value="true"/>-->
+<!--        &lt;!&ndash;设置为true，所有的连接都将检测其有效性，会影响性能，所以将其设置为false；&ndash;&gt;-->
+<!--        <property name="testConnectionOnCheckout" value="false"/>-->
+<!--        &lt;!&ndash;设置为true，异步检测连接的有效性&ndash;&gt;-->
+<!--        <property name="idleConnectionTestPeriod " value="60"/>-->
+<!--        &lt;!&ndash;每隔多少秒c3p0检测连接的有效性，单位是秒，根据项目情况设定，比8小时小就好&ndash;&gt;-->
     </bean>
     <!--Mybatis的工厂-->
     <bean class="org.mybatis.spring.SqlSessionFactoryBean">
