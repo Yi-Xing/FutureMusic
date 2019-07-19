@@ -3,11 +3,14 @@ package entity;
 import java.util.List;
 
 public class SingerExt {
+    /**
+     * 歌手id、名字、头像、代表音乐、最热音乐、粉丝数
+     */
     private int singerId=0;
     private String singerName=null;
     private String portrait=null;
-    private String musicName=null;
     private int focus=0;
+    private String musicName=null;
     private List<Music> music=null;
 
     public SingerExt() {

@@ -114,7 +114,6 @@ public class Main {
         return "back_system/Activities.html";
     }
 
-
 }
 
 

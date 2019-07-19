@@ -14,6 +14,7 @@ import service.music.MusicVideoService;
 import service.music.SingerService;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 /**
@@ -24,23 +25,18 @@ public class SearchSinger {
 
     @Resource(name = "SingerService")
     SingerService singerService;
-    @Resource(name = "MusicVideoService")
-    MusicVideoService musicVideoService;
-    @Resource(name = "MusicService")
-    MusicService musicService;
-    @Resource(name = "ActivityService")
-    ActivityService activityService;
 
     /**
      * * 点击搜索歌手，ajax
-      *@param keyWord 接收请求
+      *@param request 接收请求
      * @return PageInfo 返回匹配到的专辑、歌曲、歌手、MV信息
      */
     @RequestMapping(value = "/searchListSingerByName")
     @ResponseBody
-    public PageInfo searchListSingerByName(@RequestParam(required = false,value = "pn", defaultValue = "1") Integer pn,
-                                     @RequestParam(value = "keyWord",defaultValue = "")String keyWord) {
-        PageHelper.startPage(pn, 10);
+    public PageInfo searchListSingerByName(HttpServletRequest request) {
+        String pn = request.getParameter("pn");
+        PageHelper.startPage(Integer.parseInt(pn), 10);
+        String keyWord = request.getParameter("keyWord");
         List<SingerExt> singerList = singerService.exhibitionSingersByName(keyWord);
         PageInfo page = new PageInfo(singerList, 5);
         return page;
@@ -50,7 +46,8 @@ public class SearchSinger {
      */
     @RequestMapping(value = "/exhibitionSingersByRegion")
     @ResponseBody
-    public List<SingerExt> exhibitionSingersByRegion(@RequestParam(value = "singerRegion") String  singerRegion){
+    public List<SingerExt> exhibitionSingersByRegion(HttpServletRequest request){
+        String  singerRegion = request.getParameter("singerRegion");
         return singerService.exhibitionSingersByRegion(singerRegion);
     }
 }
