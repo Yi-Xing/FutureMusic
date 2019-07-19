@@ -3,7 +3,7 @@ package controller.music.search;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import entity.ShowSinger;
+import entity.SingerExt;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -41,7 +41,7 @@ public class SearchSinger {
     public PageInfo searchListSingerByName(@RequestParam(required = false,value = "pn", defaultValue = "1") Integer pn,
                                      @RequestParam(value = "keyWord",defaultValue = "")String keyWord) {
         PageHelper.startPage(pn, 10);
-        List<ShowSinger> singerList = singerService.exhibitionSingersByName(keyWord);
+        List<SingerExt> singerList = singerService.exhibitionSingersByName(keyWord);
         PageInfo page = new PageInfo(singerList, 5);
         return page;
     }
@@ -50,7 +50,7 @@ public class SearchSinger {
      */
     @RequestMapping(value = "/exhibitionSingersByRegion")
     @ResponseBody
-    public List<ShowSinger> exhibitionSingersByRegion(@RequestParam(value = "singerRegion") String  singerRegion){
+    public List<SingerExt> exhibitionSingersByRegion(@RequestParam(value = "singerRegion") String  singerRegion){
         return singerService.exhibitionSingersByRegion(singerRegion);
     }
 }

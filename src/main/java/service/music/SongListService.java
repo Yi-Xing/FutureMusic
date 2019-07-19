@@ -68,12 +68,6 @@ public class SongListService {
      */
     public Map<String,Object> showSongList(SongList songList){
         Map<String,Object> songListMap  = new HashMap<>(10);
-//        System.out.println(songList);
-//        System.out.println(songListMapper);
-//        List<SongList> resultSongLists = songListMapper.selectListSongList(songList);
-//        if(resultSongLists.size()==0){
-//            return null;
-//        }
         SongList resultSongList = songList;
         songListMap.put("songList",resultSongList);
         Classification classification  = new Classification();

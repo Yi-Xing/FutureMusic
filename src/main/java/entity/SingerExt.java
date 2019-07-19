@@ -2,7 +2,7 @@ package entity;
 
 import java.util.List;
 
-public class ShowSinger {
+public class SingerExt {
     private int singerId=0;
     private String singerName=null;
     private String portrait=null;
@@ -10,10 +10,10 @@ public class ShowSinger {
     private int focus=0;
     private List<Music> music=null;
 
-    public ShowSinger() {
+    public SingerExt() {
     }
 
-    public ShowSinger(int singerId, String singerName, String portrait, String musicName, int focus, List<Music> music) {
+    public SingerExt(int singerId, String singerName, String portrait, String musicName, int focus, List<Music> music) {
         this.singerId = singerId;
         this.singerName = singerName;
         this.portrait = portrait;
@@ -24,7 +24,7 @@ public class ShowSinger {
 
     @Override
     public String toString() {
-        return "ShowSinger{" +
+        return "SingerExt{" +
                 "singerId=" + singerId +
                 ", singerName='" + singerName + '\'' +
                 ", portrait='" + portrait + '\'' +

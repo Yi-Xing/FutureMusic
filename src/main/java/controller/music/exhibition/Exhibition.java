@@ -111,7 +111,6 @@ public class Exhibition {
         List<Activity> activityList = activityService.selectActivity();
         return activityList;
     }
-
     /**
      * 获取三条数据音乐集合
      */
