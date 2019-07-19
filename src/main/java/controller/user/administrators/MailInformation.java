@@ -47,7 +47,6 @@ public class MailInformation {
      * @param session   用于判断等级
      */
     @RequestMapping(value = "/showMail")
-    @SameUrlData
     public String  showMail(String[] condition, @RequestParam(defaultValue="1")Integer pageNum, HttpSession session, Model model) {
         return mailInformationService.showMail(condition,pageNum,session,model);
     }

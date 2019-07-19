@@ -48,7 +48,6 @@ public class LoginAndRegister {
      */
     @RequestMapping(value = "/register")
     @ResponseBody
-    @SameUrlData
     public State register(String userName, String sendMail, String password, String passwordAgain, String verificationCode,
                           String agreement,HttpSession session) throws DataBaseException {
         logger.trace("register方法开始执行");
@@ -80,7 +79,6 @@ public class LoginAndRegister {
 
     @RequestMapping(value = "/loginAccount")
     @ResponseBody
-    @SameUrlData
     public State login(String mailbox, String password, boolean automatic, HttpServletResponse response, HttpSession session) {
         logger.trace("login方法开始执行");
         return loginService.login(mailbox,password,automatic,response,session);
@@ -96,7 +94,6 @@ public class LoginAndRegister {
      */
     @RequestMapping(value = "/signOutLogin")
     @ResponseBody
-    @SameUrlData
     public State signOutLogin(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
         logger.trace("signOutLogin方法开始执行");
         return loginService.signOutLogin(request,response,session);

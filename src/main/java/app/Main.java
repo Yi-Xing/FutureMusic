@@ -100,7 +100,6 @@ public class Main {
     }
 
 
-
     @RequestMapping(value = "/musicLists")
     public String musicLists() {
         return "musicLists";
