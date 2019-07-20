@@ -96,7 +96,7 @@ public class SongListService {
     /**
      * 将MusicSongList转化成显示的歌曲
      */
-    public  List<Map<String, String[]>> transformationMusic(List<MusicSongList> musicSongLists){
+    public  List<MusicExt> transformationMusic(List<MusicSongList> musicSongLists){
        List<Music> musicList = new ArrayList<>();
         for(MusicSongList musicSongList:musicSongLists){
             Music music = new Music();
@@ -104,6 +104,6 @@ public class SongListService {
             Music m = musicMapper.selectListMusic(music).get(0);
             musicList.add(m);
         }
-        return musicService.transformationMusic(musicList);
+        return musicService.transformMusics(musicList);
     }
 }

@@ -1,5 +1,7 @@
 package entity;
 
+import java.math.BigDecimal;
+
 /**
  * 音乐的扩展类
  * 歌名、id、歌手、id、专辑、id、mv、id、音乐等级
@@ -7,16 +9,19 @@ package entity;
 public class MusicExt {
     private  int musicId;
     private String MusicName;
-    private int singerId;
+    private int singerId = 0;
     private String singerName;
     private int albumId;
     private String albumName;
     private boolean hasMusicVideo;
-    private int musicVideoId;
+    private int musicVideoId = 0;
     private int musicLevel = 0;
-    private int musicPrice = 0;
+    private BigDecimal musicPrice;
 
-    public MusicExt(int musicId, String musicName, int singerId, String singerName, int albumId, String albumName, boolean hasMusicVideo, int musicVideoId, int musicLevel, int musicPrice) {
+    public MusicExt() {
+    }
+
+    public MusicExt(int musicId, String musicName, int singerId, String singerName, int albumId, String albumName, boolean hasMusicVideo, int musicVideoId, int musicLevel, BigDecimal musicPrice) {
         this.musicId = musicId;
         MusicName = musicName;
         this.singerId = singerId;
@@ -101,11 +106,11 @@ public class MusicExt {
         this.musicLevel = musicLevel;
     }
 
-    public int getMusicPrice() {
+    public BigDecimal getMusicPrice() {
         return musicPrice;
     }
 
-    public void setMusicPrice(int musicPrice) {
+    public void setMusicPrice(BigDecimal musicPrice) {
         this.musicPrice = musicPrice;
     }
 }

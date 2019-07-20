@@ -50,4 +50,8 @@ public class SearchSinger {
         String  singerRegion = request.getParameter("singerRegion");
         return singerService.exhibitionSingersByRegion(singerRegion);
     }
+    /**
+     * 根据id搜索音乐人的详细信息
+     * 名字、图片、粉丝量、歌曲、专辑、mv、分类的详细信息
+     */
 }
