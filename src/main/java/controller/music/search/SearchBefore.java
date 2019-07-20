@@ -27,8 +27,8 @@ public class SearchBefore {
 
     /**
      * 获取搜索记录 ajax
-     *
-     * @retutn String[] 返回搜索历史字符串
+     * @param request 页面发来的请求
+     * @return String[] 返回搜索历史字符串
      */
     @RequestMapping(value = "/searchMyRecord")
     @ResponseBody
@@ -36,8 +36,7 @@ public class SearchBefore {
         Cookie[] cookies = request.getCookies();
         Cookie cookie = CookieUtil.obtainCookie(cookies, "searchRecordCookie");
         String searchRecord = cookie.getValue();
-        String[] records = searchRecord.split("#");
-        return records;
+        return searchRecord.split("#");
     }
 
     /**
@@ -51,8 +50,7 @@ public class SearchBefore {
     public String addSearchRecord(HttpServletRequest request, HttpServletResponse response) {
         Cookie[] cookies = request.getCookies();
         String keyWord = request.getParameter("keyWord");
-        String searchRecord = searchService.addSearchRecord(keyWord, cookies, response);
-        return searchRecord;
+        return searchService.addSearchRecord(keyWord, cookies, response);
     }
 
     /**

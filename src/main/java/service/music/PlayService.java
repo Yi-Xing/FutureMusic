@@ -3,7 +3,6 @@ package service.music;
 import entity.*;
 import mapper.*;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.annotation.Resource;
 import java.util.*;
@@ -59,6 +58,27 @@ public class PlayService {
         }
         return musicPlay;
     }
+
+    /**
+     * 传入一个音乐的集合，并获取各自的浏览量，指定是音乐集合
+     */
+    public Map<Integer,Integer> getMusicPlayCount(List<Music> musicList){
+        if(musicList.size()==0) {
+            return null;
+        }else {
+            Map<Integer,Integer> musicCount = new HashMap<>(16);
+            for (Music m : musicList) {
+                Play play = new Play();
+                play.setMusicId(m.getId());
+                play.setType(1);
+                List<Play> plays = playMapper.selectListPlay(play);
+                musicCount.put(m.getId(), plays.size());
+            }
+            System.out.println("获取浏览量"+musicCount);
+            return musicCount;
+        }
+    }
+    //下面两个都是辅助方法
     /**
      * 将map按照value的值降序排列 仅用于Map<Integer,Integer>
      * @param map 要排序的map
@@ -89,35 +109,8 @@ public class PlayService {
                 }
             }
         }
+        System.out.println("排序浏览量"+integerIntegerMap);
         return integerIntegerMap;
-    }
-    /**
-     * 传入一个音乐的集合，并获取各自的浏览量，指定是音乐集合
-     */
-    public Map<Integer,Integer> getMusicPlayCount(List<Music> musicList){
-        System.out.println(userMapper);
-        System.out.println(musicMapper);
-        System.out.println(playMapper);
-        if(musicList.size()==0) {
-            return null;
-        }else {
-        Map<Integer,Integer> musicCount = new HashMap<>(16);
-            System.out.println("musicList----------------"+musicList);
-            for (Music m : musicList) {
-                Play play = new Play();
-                play.setMusicId(m.getId());
-                play.setType(1);
-                System.out.println(playMapper);
-                System.out.println(musicMapper);
-                System.out.println("play数据库开始查询"+play);
-                List<Play> playss = playMapper.selectListPlay(new Play());
-                System.out.println("我执行完了");
-                List<Play> plays =new ArrayList<>();
-                        System.out.println("数据库查询成功"+plays);
-                musicCount.put(m.getId(), plays.size());
-            }
-            return musicCount;
-        }
     }
 
     /**
@@ -125,15 +118,15 @@ public class PlayService {
      */
     public List<Music> sortMusicByPlay(List<Music> musicList){
         if(musicList.size()==0){
-            System.out.println("我要啊返回null");
-            return new  ArrayList<Music>();
+            System.out.println("没有歌曲");
+            return null;
         }
-            System.out.println("我准备执行了");
-        System.out.println(userMapper);
+        System.out.println("有个去");
         System.out.println(musicMapper);
         System.out.println(playMapper);
+        System.out.println(userMapper);
+        System.out.println("有对象");
         Map<Integer,Integer> musicPlay = sortByValueDescending(getMusicPlayCount(musicList));
-        System.out.println("musicPlay"+musicPlay);
         List<Integer> musicIds = new ArrayList<>();
         for(Integer musicId:musicPlay.keySet()){
             musicIds.add(musicId);

@@ -114,10 +114,7 @@ public class Main {
         return "back_system/Activities.html";
     }
 
-    @RequestMapping(value = "/wmj")
-    public String zyx() {
-        return "system/backgroundSystem";
-    }
+
 }
 
 

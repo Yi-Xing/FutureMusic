@@ -14,6 +14,7 @@ import service.music.SearchService;
 import service.music.SingerService;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -24,17 +25,14 @@ import java.util.Map;
  * */
 @Controller
 public class SearchMusicVideo {
-    @Resource(name = "SearchService")
-    private SearchService searchService;
     @Resource(name = "MusicVideoService")
     MusicVideoService musicVideoService;
-    @Resource(name = "SingerService")
-    private SingerService singerService;
     /**
      * 显示MV的详细信息
      */
     @RequestMapping(value = "/showMusicVideoDetail")
-    public  String showMusicVideoDetail(@RequestParam(value = "musicVideoId",defaultValue = "1") String musicVideoId,Model model){
+    public  String showMusicVideoDetail(HttpServletRequest request, Model model){
+        String musicVideoId = request.getParameter("musicVideoId");
         MusicVideo musicVideo = new MusicVideo();
         musicVideo.setId(Integer.parseInt(musicVideoId));
         Map<String,Object> musicVideoDetail = musicVideoService.showMusicVideo(musicVideo);
