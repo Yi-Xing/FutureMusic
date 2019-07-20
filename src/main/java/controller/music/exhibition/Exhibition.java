@@ -24,8 +24,8 @@ import java.util.Map;
  * */
 @Controller
 public class Exhibition {
-    @Resource(name = "MusicVideoService")
-    MusicVideoService musicVideoService;
+//    @Resource(name = "MusicVideoService")
+//    MusicVideoService musicVideoService;
     @Resource(name = "MusicService")
     MusicService musicService;
     @Resource(name = "ActivityService")
@@ -52,7 +52,7 @@ public class Exhibition {
 //        indexMessage.put(singerAddress2, singerService.exhibitionSingersByRegion(singerAddress2));
 //        indexMessage.put(singerAddress3, singerService.exhibitionSingersByRegion(singerAddress3));
         //显示的MV显示15首
-        indexMessage.put("musicVideo", musicVideoService.exhibitionMusicVideo());
+//        indexMessage.put("musicVideo", musicVideoService.exhibitionMusicVideo());
         //新歌前三首歌曲，这是个bug
 //        indexMessage.put("rankingNewSong", rankingListByNewSong());
         //电音前三歌曲
