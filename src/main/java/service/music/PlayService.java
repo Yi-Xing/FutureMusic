@@ -45,7 +45,7 @@ public class PlayService {
     }
 
     /**
-     * 传入一个play集合，并查询浏览量 这个查询的是所有的
+     * 传入一个play集合，并查询浏览量  用于MV
      */
     public Map<Integer,Integer> getMostPlayMusic(List<Play> playList){
         Map<Integer,Integer> musicPlay = new HashMap<>();

@@ -24,8 +24,6 @@ import java.util.Map;
  * */
 @Controller
 public class Exhibition {
-    @Resource(name = "SingerService")
-    SingerService singerService;
     @Resource(name = "MusicVideoService")
     MusicVideoService musicVideoService;
     @Resource(name = "MusicService")
@@ -50,19 +48,19 @@ public class Exhibition {
         //首页显示的活动
 //        indexMessage.put("activities", activity());
 //        //首页显示的音乐人
-//        indexMessage.put("singerAddress1", singerService.exhibitionSingersByRegion(singerAddress1));
-//        indexMessage.put("singerAddress2", singerService.exhibitionSingersByRegion(singerAddress2));
-//        indexMessage.put("singerAddress3", singerService.exhibitionSingersByRegion(singerAddress3));
-//        //显示的MV显示15首
-//        indexMessage.put("musicVideo", musicVideoService.exhibitionMusicVideo());
+//        indexMessage.put(singerAddress1, singerService.exhibitionSingersByRegion(singerAddress1));
+//        indexMessage.put(singerAddress2, singerService.exhibitionSingersByRegion(singerAddress2));
+//        indexMessage.put(singerAddress3, singerService.exhibitionSingersByRegion(singerAddress3));
+        //显示的MV显示15首
+        indexMessage.put("musicVideo", musicVideoService.exhibitionMusicVideo());
         //新歌前三首歌曲，这是个bug
 //        indexMessage.put("rankingNewSong", rankingListByNewSong());
         //电音前三歌曲
-        indexMessage.put("rankingByMusicType", rankingListByMusicType(musicType));
+//        indexMessage.put("rankingByMusicType", rankingListByMusicType(musicType));
         //首页的歌曲地区排行榜(包括欧美、日韩、华语）
-        indexMessage.put("rankingByMusicRegion", rankingListByRegion(region1));
-        indexMessage.put("rankingByMusicRegion", rankingListByRegion(region2));
-        indexMessage.put("rankingByMusicRegion", rankingListByRegion(region3));
+//        indexMessage.put("rankingByMusicRegion", rankingListByRegion(region1));
+//        indexMessage.put("rankingByMusicRegion", rankingListByRegion(region2));
+//        indexMessage.put("rankingByMusicRegion", rankingListByRegion(region3));
         return indexMessage;
     }
 

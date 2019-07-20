@@ -1,3 +1,4 @@
+/*
 package service.music;
 
 import entity.*;
@@ -10,9 +11,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+*/
 /**
  * @author 蒋靓峣
- */
+ *//*
+
 @Service(value = "MusicVideoService")
 public class MusicVideoService {
     @Resource(name = "ClassificationMapper")
@@ -27,14 +30,18 @@ public class MusicVideoService {
     PlayMapper playMapper;
     @Resource(name = "ShowCommentService")
     ShowCommentService showCommentService;
+    @Resource(name =  "PlayService")
+    PlayService playService;
 
 
-    /**
+    */
+/**
      * 点击显示MV的详细信息
      *      MV、歌手、评论
      * @param musicVideo 封装要搜索的MVid
      * @return  Map<String,Object> 各类信息
-     */
+     *//*
+
     public Map<String,Object> showMusicVideo(MusicVideo musicVideo){
         Map<String,Object> musicVideoMap = new HashMap<>(10);
         List<MusicVideo> musicVideos = musicVideoMapper.selectListMusicVideo(musicVideo);
@@ -48,20 +55,23 @@ public class MusicVideoService {
         return musicVideoMap;
     }
 
-    /**
+    */
+/**
      * 展示主页的MV
      * 排行榜前15
      * MV的id、播放量、MV的图片、name、歌手的name、歌手id
      * MV的id
-     */
-    public List<String[]> exhibitionMusicVideo(){
-        List<String[]> showMusicVideoList = new ArrayList<>();
-        MusicVideo musicVideo = new MusicVideo();
+     *//*
+
+    public List<MusicVideoExt> exhibitionMusicVideo(){
+        List<MusicVideoExt> musicVideoExts = new ArrayList<>();
+        //查找出所MV的播放记录
         Play play = new Play();
         play.setType(2);
         List<Play> playList = playMapper.selectListPlay(play);
-        //查找播放最多的MV对应的MVid和播放量
-        Map<Integer,Integer> rankingMusicVideo = (new PlayService()).getMostPlayMusic(playList);
+        //查找播放最多的MV对应的MV id和播放量 排好序
+        Map<Integer,Integer> allMusicVideo = playService.getMostPlayMusic(playList);
+        Map<Integer,Integer> rankingMusicVideo = playService.sortByValueDescending(allMusicVideo);
         for(Integer musicId:rankingMusicVideo.keySet()){
             String[] showMusicVideo = new String[6];
             //MV的id
@@ -84,19 +94,23 @@ public class MusicVideoService {
     }
         return showMusicVideoList;
     }
-    /**
+    */
+/**
      * @return List<MusicVideo>  返回查找到的MV
      *                       设置显示条数，也可用于智搜索框能提示，只显示名字
-     */
+     *//*
+
     public List<String[]> selectListMusicVideoByVideoName(MusicVideo musicVideo){
         List<MusicVideo> musicVideoList = musicVideoMapper.selectListMusicVideo(musicVideo);
         return searchMusicVideo(musicVideoList);
     }
-    /**
+    */
+/**
      * 通过分类查找MV
      * mv 的 id 、播放量、name、歌手图片、歌手名字
      * 需要play、user、mv三个类的信息
-     * */
+     * *//*
+
     public List<String[]> searchMusicVideoByClassification(Classification classification){
         List<Classification> classificationList =
                 classificationMapper.selectListClassification(classification);
@@ -109,9 +123,9 @@ public class MusicVideoService {
         return searchMusicVideo(musicVideoList);
     }
 
-    /**
+    */
+/**
      *  传入音乐或mv的id，获得mv或音乐的id 播放量
-     */
     public Map<Integer,Integer> singerMusicVideo(List<Integer> musicVideos){
         Map<Integer,Integer> musicCounts = new HashMap<>(16);
         for(Integer musicId:musicVideos){
@@ -120,10 +134,13 @@ public class MusicVideoService {
             musicCounts.put(musicId,playMapper.selectListPlay(play).size());
         }
         return musicCounts;
-    }
-    /**
+    }*//*
+
+    */
+/**
      * 传入音乐id，获取对应歌手
-     */
+     *//*
+
     public Map<Integer,User> musicSinger(List<Integer> musicVideos){
         Map<Integer,User> musicSinger = new HashMap<>(16);
         System.out.println(musicVideos);
@@ -149,17 +166,13 @@ public class MusicVideoService {
         }
         return musicSinger;
     }
-    /**
-     * 传入MV获得需要显示的信息
-     */
-    public List<String[]> searchMusicVideo(List<MusicVideo> musicVideos){
-        List<Integer> musicVideoList = new ArrayList<>();
-        for(MusicVideo m:musicVideos){
-            musicVideoList.add(m.getId());
-        }
+    */
+/**
+     * 传入MV返回需要显示的信息，扩展类
+     *//*
+
+    public MusicVideoExt searchMusicVideo(int musicVideoId){
         //mv的id和播放量
-        Map<Integer,Integer> musicVideoCount = singerMusicVideo(musicVideoList);
-        Map<Integer,User> musicSinger = musicSinger(musicVideoList);
         List<String[]> allMusicVideo = new ArrayList<>();
         for(Integer musicVideoId:musicSinger.keySet()){
             MusicVideo temp = new MusicVideo();
@@ -190,3 +203,4 @@ public class MusicVideoService {
         return allMusicVideo;
     }
 }
+*/

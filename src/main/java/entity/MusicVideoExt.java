@@ -41,6 +41,9 @@ public class MusicVideoExt {
      */
     private int available=0;
 
+    public MusicVideoExt() {
+    }
+
     public MusicVideoExt(int musicVideoId, String musicVideoName, String musicVideoPhoto, String singerName, int singerId, int playCount, int level, int available) {
         this.musicVideoId = musicVideoId;
         this.musicVideoName = musicVideoName;

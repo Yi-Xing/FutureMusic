@@ -26,4 +26,7 @@ public class Test {
             (new SearchService()).selectListMusicByName("1");
     System.out.println(musicList);
     }
+    /**
+     * 歌曲NewSong有bug，其余的正常，歌手正常
+     */
 }
