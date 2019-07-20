@@ -10,19 +10,24 @@ import java.util.Objects;
 
 /**
  * 音乐表用于存储音乐的信息
+ *
  * @author 5月10日 张易兴创建
- *         5月18日 张易兴修改 将价钱的类型转为BigDecimal，添加字段playCount音乐的播放次数
+ * 5月18日 张易兴修改 将价钱的类型转为BigDecimal，添加字段playCount音乐的播放次数
  */
 public class Music implements Serializable {
     /**
      * 主键
      */
-    private int id=0;
+    private int id = 0;
 
     @Override
     public boolean equals(Object o) {
-        if (this == o){ return true;}
-        if (o == null || getClass() != o.getClass()) {return false;}
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         Music music = (Music) o;
         return id == music.id &&
                 level == music.level &&
@@ -48,59 +53,62 @@ public class Music implements Serializable {
     /**
      * 音乐的名字
      */
-    private String name=null;
+    private String name = null;
     /**
-     * 音乐的等级 0免费听免费下载   1免费听vip免费下载 2为vip免费听vip免费下载
-     * 3为vip免费听下载收费 4为无论听还是下载都要收费
+     * 音乐的等级 0免费 1vip 2收费
      */
-    private int level=0;
+    private int level = 0;
     /**
-     * 音乐的价格只有等级为3和4的才可以设置
+     * 音乐的价格只有等级为3的才可以设置
      */
-    private BigDecimal price=new BigDecimal("0");
+    private BigDecimal price = new BigDecimal("0");
     /**
      * 歌手的id
      */
-    private int singerId=0;
+    private int singerId = 0;
     /**
      * 专辑的id
      */
-    private int albumId=0;
+    private int albumId = 0;
     /**
      * 分类的id
      */
-    private int classificationId=0;
+    private int classificationId = 0;
     /**
      * 音乐上传日期 年月日
      */
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
-    private Date date=null;
+    private Date date = null;
     /**
      * 音乐的存放的路径
      */
-    private String path=null;
+    private String path = null;
     /**
      * 音乐歌词的存放的路径
      */
-    private String lyricPath=null;
+    private String lyricPath = null;
     /**
      * 音乐是否有MV,如果没MV则是0，如果有则是本歌最好的MV的id
      */
-    private int musicVideoId=0;
+    private int musicVideoId = 0;
     /**
      * 活动的id
      */
-    private int activity=0;
+    private int activity = 0;
     /**
      * 该音乐是否可听，0为可听
      */
-    private int available=0;
+    private int available = 0;
     /**
      * 音乐的播放次数
      */
-    private int playCount=0;
+    private int playCount = 0;
 
+    /**
+     * 音乐图片的存放路径
+     */
+    private String picture = null;
 
     @Override
     public String toString() {
@@ -119,13 +127,14 @@ public class Music implements Serializable {
                 ", activity=" + activity +
                 ", available=" + available +
                 ", playCount=" + playCount +
+                ", picture='" + picture + '\'' +
                 '}';
     }
 
     public Music() {
     }
 
-    public Music(int id, String name, int level, BigDecimal price, int singerId, int albumId, int classificationId, Date date, String path, String lyricPath, int musicVideoId, int activity, int available, int playCount) {
+    public Music(int id, String name, int level, BigDecimal price, int singerId, int albumId, int classificationId, Date date, String path, String lyricPath, int musicVideoId, int activity, int available, int playCount, String picture) {
         this.id = id;
         this.name = name;
         this.level = level;
@@ -140,6 +149,15 @@ public class Music implements Serializable {
         this.activity = activity;
         this.available = available;
         this.playCount = playCount;
+        this.picture = picture;
+    }
+
+    public String getPicture() {
+        return picture;
+    }
+
+    public void setPicture(String picture) {
+        this.picture = picture;
     }
 
     public String getLyricPath() {

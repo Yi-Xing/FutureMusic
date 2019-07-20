@@ -3,7 +3,9 @@ package service.user.administrators;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import entity.Order;
+import entity.State;
 import mapper.OrderMapper;
+import org.aspectj.weaver.ast.Or;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -15,6 +17,7 @@ import java.util.List;
 
 /**
  * 订单
+ *
  * @author 5月22日 张易兴创建
  */
 @Service(value = "OrderInformationService")
@@ -22,28 +25,46 @@ public class OrderInformationService {
     private static final Logger logger = LoggerFactory.getLogger(OrderInformationService.class);
     @Resource(name = "OrderMapper")
     OrderMapper orderMapper;
+
     /**
      * 返回指定指定用户的所有订单或关于指定音乐或MV的订单
+     * 类型-音乐/MVid-用户id-id
+     *
      * @param condition 音乐或MVid或用户的id
      *                  1表示是音乐  2表示MV 3表示用户
      */
-    public String showOrder(String[] condition,Integer pageNum, Model model){
-        Order order=new Order();
+    public String showOrder(String[] condition, Integer pageNum, Model model) {
+        Order order = new Order();
         if (condition != null) {
-            logger.debug("condition[0]"+condition[0]);
             if ((condition[0] != null) && !"".equals(condition[0])) {
-                order.setId(Integer.parseInt(condition[0]));
-            }
-            if ((condition[1] != null) && !"".equals(condition[1])) {
-                order.setType(1);
-                order.setMusicId(Integer.parseInt(condition[1]));
+                // 1表示是音乐 2表示是MV 3表示充值 4表示用户 5表示订单
+                switch (condition[0]) {
+                    case "1":
+                    case "2":
+                        order.setType(Integer.parseInt(condition[0]));
+                        if ((condition[1] != null) && !"".equals(condition[1])) {
+                            order.setMusicId(Integer.parseInt(condition[1]));
+                        }
+                        break;
+                    case "3":
+                        order.setType(3);
+                        break;
+                    case "4":
+                        condition[2] = condition[1];
+                        condition[1] = null;
+                        break;
+                    case "5":
+                        condition[3] = condition[1];
+                        condition[1] = null;
+                        break;
+                    default:
+                }
             }
             if ((condition[2] != null) && !"".equals(condition[2])) {
-                order.setType(2);
-                order.setMusicId(Integer.parseInt(condition[2]));
+                order.setUserId(Integer.parseInt(condition[2]));
             }
             if ((condition[3] != null) && !"".equals(condition[3])) {
-                order.setUserId(Integer.parseInt(condition[3]));
+                order.setId(Integer.parseInt(condition[3]));
             }
             model.addAttribute("conditionZero", condition[0]);
             model.addAttribute("conditionOne", condition[1]);
@@ -53,29 +74,40 @@ public class OrderInformationService {
             model.addAttribute("conditionZero", null);
             model.addAttribute("conditionOne", null);
             model.addAttribute("conditionTwo", null);
-            model.addAttribute("conditionThree",null);
+            model.addAttribute("conditionThree", null);
         }
         //在查询之前传入当前页，然后多少记录
-        PageHelper.startPage(pageNum, 9);
+        PageHelper.startPage(pageNum, 7);
         // 根据条件查找订单信息
         List<Order> list = orderMapper.selectListOrder(order);
-        PageInfo pageInfo=new PageInfo<>(list);
+        PageInfo pageInfo = new PageInfo<>(list);
         // 传入页面信息
-        logger.debug("查找到的订单"+list);
+        logger.debug("查找到的订单" + list);
         model.addAttribute("pageInfo", pageInfo);
-        model.addAttribute("pages",new int[pageInfo.getPages()] );
-        return  "back_system/order";
+//        model.addAttribute("pages", new int[pageInfo.getPages()]);
+        return "system/backgroundSystem";
     }
 
     /**
-     *  删除按id
+     * 删除按id
      */
-    public String deleteOrder(Integer id, Model model) throws DataBaseException {
-        if(orderMapper.deleteOrder(id)<1){
-            // 如果失败是数据库错误
-            logger.error("删除订单信息时，数据库出错");
-            throw new DataBaseException("删除订单信息时，数据库出错");
+    public State deleteOrder(Integer id) throws DataBaseException {
+        State state = new State();
+        // 先判断id是否存在
+        // 根据条件查找订单信息
+        Order order = new Order();
+        order.setId(id);
+        List<Order> list = orderMapper.selectListOrder(order);
+        if (list.size() != 0) {
+            if (orderMapper.deleteOrder(id) < 1) {
+                // 如果失败是数据库错误
+                logger.error("删除订单信息时，数据库出错");
+                throw new DataBaseException("删除订单信息时，数据库出错");
+            }
+            state.setState(1);
+        } else {
+            state.setInformation("id不存在");
         }
-        return showOrder(null,1,model);
+        return state;
     }
 }

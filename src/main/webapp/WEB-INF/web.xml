@@ -52,8 +52,8 @@
     <location>/noFind</location>
   </error-page>
   <!-- 替换500页面 start -->
-  <error-page>
-    <error-code>500</error-code>
-    <location>/collapse</location>
-  </error-page>
+<!--  <error-page>-->
+<!--    <error-code>500</error-code>-->
+<!--    <location>/collapse</location>-->
+<!--  </error-page>-->
 </web-app>

@@ -18,6 +18,7 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 import java.text.ParseException;
+import java.util.List;
 
 /**
  * 音乐：
@@ -67,5 +68,14 @@ public class MusicInformation {
     @ResponseBody
     public State modifyMusic(@RequestBody Music music, HttpServletRequest request) throws DataBaseException , IOException{
         return musicInformationService.modifyMusic(music,request);
+    }
+
+    /**
+     * 查找指定id的音乐
+     */
+    @RequestMapping(value = "/showIdMusic")
+    @ResponseBody
+    public Music showIdMusic(Integer id){
+        return musicInformationService.showIdMusic(id);
     }
 }

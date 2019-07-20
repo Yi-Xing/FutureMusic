@@ -80,7 +80,8 @@ public class TransactionService {
                 logger.debug("充值前的余额" + user.getBalance());
                 user.setBalance(user.getBalance().add(new BigDecimal(money)));
                 logger.debug("充值后的余额" + user.getBalance());
-                userInformationService.modifyUser(user);
+                // 该方法更改了需要更改相应的参数
+//                userInformationService.modifyUser(user);
                 return "index";
             }
         } else {//验证失败
@@ -152,7 +153,8 @@ public class TransactionService {
                 // 修改用户的余额
                 user.setBalance((user.getBalance().subtract(price)));
                 // 更新用户信息失败抛异常
-                state = userInformationService.modifyUser(user);
+                // 该方法更改了需要更改相应的参数
+//                state = userInformationService.modifyUser(user);
                 // 添加订单信息,失败抛异常
                 addOrder(user.getId(), id, type, singerId, albumId, classificationId, originalPrice, price);
                 // 用户购买音乐完成，开始修改用户收藏的音乐或MV的是否购买状态
@@ -280,7 +282,8 @@ public class TransactionService {
             user.setVipDate(calendar.getTime());
             logger.debug("设置用户vip的时间" + user.getVipDate());
             // 更新用户信息失败抛异常
-            state = userInformationService.modifyUser(user);
+            // 该方法更改了需要更改相应的参数
+//            state = userInformationService.modifyUser(user);
         } else {
             state.setInformation("余额不足，请立即充值");
         }

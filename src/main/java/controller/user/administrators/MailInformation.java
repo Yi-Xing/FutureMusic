@@ -59,29 +59,13 @@ public class MailInformation {
     public Mail showIdMail(Integer id){
         return mailInformationService.showIdMail(id);
     }
-    /**
-     * 添加邮箱信息
-     */
-    @RequestMapping(value = "/addMail")
-    @ResponseBody
-    public State addMail(@RequestBody Mail mail) throws DataBaseException {
-        return mailInformationService.addMail(mail);
-    }
-    /**
-     * 修改邮箱信息,只修改状态，ajax
-     */
-    @RequestMapping(value = "/modifyMail")
-    @ResponseBody
-    public State modifyMail(@RequestBody Mail mail) throws DataBaseException {
-        return mailInformationService.modifyMail(mail);
-    }
 
     /**
      * 删除指定邮箱
      */
     @RequestMapping(value = "/deleteMail")
-    @SameUrlData
-    public String  deleteMail(Integer id,Model model,HttpSession session) throws DataBaseException {
-        return mailInformationService.deleteMail(id,model,session);
+    @ResponseBody
+    public State  deleteMail(Integer id) throws DataBaseException {
+        return mailInformationService.deleteMail(id);
     }
 }

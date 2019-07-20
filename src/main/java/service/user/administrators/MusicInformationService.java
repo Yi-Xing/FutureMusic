@@ -171,17 +171,24 @@ public class MusicInformationService {
             model.addAttribute("conditionEight", null);
         }
         //在查询之前传入当前页，然后多少记录
-        PageHelper.startPage(pageNum, 9);
+        PageHelper.startPage(pageNum, 7);
         // 根据条件查找用户信息
         List<Music> list = musicMapper.selectListMusic(music);
         PageInfo pageInfo = new PageInfo<>(list);
         // 传入页面信息
         logger.debug("查找到的音乐" + list);
         model.addAttribute("pageInfo", pageInfo);
-        model.addAttribute("pages", new int[pageInfo.getPages()]);
-        return "back_system/back_music";
+        return "system/backgroundSystem";
     }
-
+    /**
+     * 查找指定id的音乐
+     */
+    public Music showIdMusic(Integer id) {
+        Music music = new Music();
+        music.setId(id);
+        List<Music> list = musicMapper.selectListMusic(music);
+        return list.get(0);
+    }
     /**
      * 修改音乐信息，ajax
      */

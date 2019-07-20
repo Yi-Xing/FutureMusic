@@ -53,9 +53,9 @@
     </select>
     <insert id="insertMusic" parameterType="Music">
          insert into tb_music (music_name,music_level,music_price,music_singer_id,music_album_id,music_classification_id,
-         music_date,music_path,music_lyric_path,music_music_video_id,music_activity,music_available,music_play_count)values(#{name},#{level},
-         #{price},#{singerId},#{albumId},#{classificationId},#{date},#{path},#{lyricPath},#{musicVideoId},#{activity},#{available}
-         ,#{playCount})
+         music_date,music_path,music_lyric_path,music_music_video_id,music_activity,music_available,music_play_count,music_picture)
+         values(#{name},#{level},#{price},#{singerId},#{albumId},#{classificationId},#{date},#{path},#{lyricPath},#{musicVideoId},
+         #{activity},#{available},#{playCount},#{picture})
     </insert>
     <update id="updateMusic" parameterType="Music">
         update tb_music
@@ -99,6 +99,9 @@
             <if test='playCount!=0'>
                 ,music_play_count=#{playCount}
             </if>
+            <if test='picture!=0'>
+                ,music_picture=#{picture}
+            </if>
         </set>
         where music_id=#{id}
     </update>
@@ -119,5 +122,6 @@
         <result column="music_activity" property="activity"/>
         <result column="music_available" property="available"/>
         <result column="music_play_count" property="playCount"/>
+        <result column="music_picture" property="picture"/>
     </resultMap>
 </mapper>
