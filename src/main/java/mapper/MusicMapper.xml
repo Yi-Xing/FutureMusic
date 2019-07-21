@@ -24,8 +24,11 @@
             <if test='classificationId!=0'>
                 and music_classification_id=#{classificationId}
             </if>
-            <if test='activity!=0'>
+            <if test='activity!=0 and activity!=-1 '>
                 and music_activity=#{activity}
+            </if>
+            <if test='activity==-1 '>
+                and music_activity=0
             </if>
             <if test='available!=0'>
                 and music_available=#{available}

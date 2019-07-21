@@ -238,4 +238,13 @@ public class MusicVideoInformationService {
         List<Play> list = playMapper.selectListPlay(play);
         return list.size();
     }
+    /**
+     * 查找指定id的MV
+     */
+    public MusicVideo showIdMusicVideo(Integer id) {
+        MusicVideo music = new MusicVideo();
+        music.setId(id);
+        List<MusicVideo> list = musicVideoMapper.selectListMusicVideo(music);
+        return list.get(0);
+    }
 }

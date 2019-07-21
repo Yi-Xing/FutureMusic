@@ -92,4 +92,13 @@ public class MusicVideoInformation {
     public int showPlay(Integer id,Integer type) {
         return musicVideoInformationService.showPlay(id,type);
     }
+
+    /**
+     * 查找指定id的MV
+     */
+    @RequestMapping(value = "/showIdMusicVideo")
+    @ResponseBody
+    public MusicVideo showIdMusicVideo(Integer id){
+        return musicVideoInformationService.showIdMusicVideo(id);
+    }
 }

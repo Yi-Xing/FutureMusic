@@ -55,7 +55,7 @@ public class Music implements Serializable {
      */
     private String name = null;
     /**
-     * 音乐的等级 0免费 1vip 2收费
+     * 音乐的等级 1免费 2vip 3收费
      */
     private int level = 0;
     /**
@@ -97,7 +97,7 @@ public class Music implements Serializable {
      */
     private int activity = 0;
     /**
-     * 该音乐是否可听，0为可听
+     * 该音乐是否可听，0为可听 1为不可听
      */
     private int available = 0;
     /**
@@ -150,6 +150,18 @@ public class Music implements Serializable {
         this.available = available;
         this.playCount = playCount;
         this.picture = picture;
+    }
+
+    public Music(int id, String name, int level, BigDecimal price, int singerId, int albumId, int classificationId, int activity, int available) {
+        this.id = id;
+        this.name = name;
+        this.level = level;
+        this.price = price;
+        this.singerId = singerId;
+        this.albumId = albumId;
+        this.classificationId = classificationId;
+        this.activity = activity;
+        this.available = available;
     }
 
     public String getPicture() {
