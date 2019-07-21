@@ -5,6 +5,7 @@ import mapper.*;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -28,6 +29,8 @@ public class IdExistence {
     CommentMapper commentMapper;
     @Resource(name = "ActivityMapper")
     ActivityMapper activityMapper;
+    @Resource(name = "IdExistence")
+    IdExistence idExistence;
 
     /**
      * 用于判断指定用户id是否存在,存在返回信息，不存在返回null
@@ -35,12 +38,25 @@ public class IdExistence {
     public User isUserId(Integer id) {
         User user=new User();
         user.setId(id);
+        List<Integer> listId=new ArrayList<>();
+        listId.add(id);
         // 查找数据库是否有该用户
-        List<User> list=userMapper.selectUser(user);
+        List<User> list=userMapper.listIdSelectListUser(listId);
         if(list.size()==0){
             return null;
         }
         return list.get(0);
+    }
+
+    /**
+     * 用于判断指定String的用户id合法且是否存在,存在返回信息，不存在返回null
+     */
+    public User isUserIdExist(String id){
+        //先判断id是否合法
+        if (id.matches("([1-9][0-9]*)")) {
+            return idExistence.isUserId(Integer.valueOf(id));
+        }
+        return null;
     }
 
     /**
@@ -118,4 +134,6 @@ public class IdExistence {
         }
         return list.get(0);
     }
+
+
 }

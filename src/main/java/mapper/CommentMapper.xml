@@ -18,8 +18,11 @@
             <if test='userId!=0'>
                 and comment_user_id=#{userId}
             </if>
-            <if test='reply!=0'>
+            <if test='reply!=0 and reply!=-1'>
                 and comment_reply=#{reply}
+            </if>
+            <if test='reply==-1'>
+                and comment_reply=0
             </if>
             <if test="date!=null">
                 order by comment_date	DESC

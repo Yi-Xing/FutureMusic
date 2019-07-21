@@ -14,6 +14,8 @@ import service.user.administrators.UserInformationService;
 import util.exception.DataBaseException;
 
 import javax.annotation.Resource;
+import javax.mail.Session;
+import javax.servlet.http.HttpSession;
 
 /**
  * 用户：
@@ -39,10 +41,11 @@ public class UserInformation {
      * 显示和按条件查询用户信息
      * @param condition 条件可以有多个
      * @param pageNum 表示当前第几页
+     * @param session 获取会话用于得到当前用户的账号等级
      */
     @RequestMapping(value = "/showUser")
-    public String showUser(String[] condition, @RequestParam(defaultValue="1")Integer pageNum, Model model) {
-        return userInformationService.showUser(condition,pageNum,model);
+    public String showUser(HttpSession session ,String[] condition, @RequestParam(defaultValue="1")Integer pageNum, Model model) {
+        return userInformationService.showUser(session,condition,pageNum,model);
     }
 
     /**
@@ -50,17 +53,27 @@ public class UserInformation {
      */
     @RequestMapping(value = "/modifyUser")
     @ResponseBody
-    public State modifyUser(@RequestBody User user) throws DataBaseException {
-        return userInformationService.modifyUser(user);
+    public State modifyUser(String id ,String level,String balance,String report ) throws DataBaseException {
+        return userInformationService.modifyUser(id,level,balance,report);
+    }
+    /**
+     * 修改用户的vip到期时间
+     */
+    @RequestMapping(value = "/modifyUserVipDate")
+    @ResponseBody
+    public State modifyUserVipDate(String id ,String vipDate) throws DataBaseException {
+        return userInformationService.modifyUserVipDate(id,vipDate);
     }
 
+
+
     /**
-     * 返回指定用户的粉丝量
+     * 返回指定用户的所有信息+粉丝量
      * @param id 用户的id
      */
-    @RequestMapping(value = "/showFocus")
+    @RequestMapping(value = "/showUserInformatics")
     @ResponseBody
-    public Integer showFocus(Integer id) {
-        return userInformationService.showFocus(id);
+    public User showUserInformatics(Integer id) {
+        return userInformationService.showUserInformatics(id);
     }
 }

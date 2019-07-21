@@ -37,23 +37,23 @@ public class Main {
     }
 
     @RequestMapping(value = "/system")
-    public String back_system() {
+    public String backSystem() {
         return "back_system/back_system";
     }
 
 
     @RequestMapping(value = "/back_music")
-    public String back_music() {
+    public String backMusic() {
         return "back_system/back_music";
     }
 
     @RequestMapping(value = "/back_MV")
-    public String back_MV() {
+    public String backMv() {
         return "back_system/back_MV";
     }
 
     @RequestMapping(value = "/Activities")
-    public String Activities() {
+    public String activities() {
         return "back_system/Activities";
     }
 
@@ -95,7 +95,7 @@ public class Main {
     }
 
     @RequestMapping(value = "/song_list")
-    public String song_list() {
+    public String songList() {
         return "back_system/song_list";
     }
 
@@ -113,6 +113,7 @@ public class Main {
     public String active() {
         return "back_system/Activities.html";
     }
+
 
 }
 

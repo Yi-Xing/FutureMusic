@@ -15,8 +15,17 @@
             <if test='recipientId!=0'>
                 and mail_recipient_id=#{recipientId}
             </if>
-             <if test='reply!=0'>
+             <if test='reply!=0 and reply!=9 and reply!=10 and reply!=11 and reply!=12 '>
                 and mail_reply >=0 and mail_reply &lt;= #{reply}
+            </if>
+            <if test='reply==10'>
+                and mail_reply =0
+            </if>
+            <if test='reply==11'>
+                and mail_reply =1
+            </if>
+            <if test='reply==12'>
+                and mail_reply =2
             </if>
             <if test='state!=-1'>
                 and mail_state=#{state}

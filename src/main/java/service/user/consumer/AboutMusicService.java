@@ -305,23 +305,23 @@ public class AboutMusicService {
      * @param id 获取要删除评论的id
      */
     public State deleteComment(Integer id) throws DataBaseException {
-        // 判断是否有子评论，返回0
         State state = new State();
-        int replyId = existenceService.isComment(id);
-        if (replyId == 0) {
-            state.setState(1);
-            return state;
-        } else {
-            // 删除指定id的评论
-            if (commentMapper.deleteComment(replyId) < 1) {
-                // 如果失败是数据库错误
-                logger.error("删除评论时，数据库出错");
-                throw new DataBaseException("删除评论时，数据库出错");
-            }
-            // 递归删除该评论的所有子评论
-            deleteComment(replyId);
+        // 判断是否有子评论，没有返回null
+        int[] replyId = existenceService.isComment(id);
+        // 先将自己删除
+        if (commentMapper.deleteComment(id) < 1) {
+            // 如果失败是数据库错误
+            logger.error("删除评论时，数据库出错");
+            throw new DataBaseException("删除评论时，数据库出错");
         }
-        state.setInformation("删除失败");
+        // 如果有子评论继续删除
+        if (replyId != null) {
+            // 递归删除该评论的所有子评论
+            for (int i : replyId) {
+                deleteComment(i);
+            }
+        }
+        state.setState(1);
         return state;
     }
 

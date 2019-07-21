@@ -18,6 +18,7 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 import java.text.ParseException;
+import java.util.List;
 
 /**
  * 音乐：
@@ -56,16 +57,33 @@ public class MusicInformation {
      * @param pageNum 表示当前第几页
      */
     @RequestMapping(value = "/showMusic")
-    public String showMusic(String[] condition, @RequestParam(defaultValue="1")Integer pageNum, Model model) throws ParseException {
+    public String showMusic(String[] condition, @RequestParam(defaultValue="1")Integer pageNum, Model model) {
         return musicInformationService.showMusic(condition,pageNum,model);
     }
 
     /**
-     * 修改音乐信息，ajax
+     * 修改编辑音乐信息，ajax
      */
-    @RequestMapping(value = "/modifyMusic")
+    @RequestMapping(value = "/modifyEditMusic")
     @ResponseBody
-    public State modifyMusic(@RequestBody Music music, HttpServletRequest request) throws DataBaseException , IOException{
-        return musicInformationService.modifyMusic(music,request);
+    public State modifyEditMusic(String id,String name,String singerId,String albumId,String classificationId,String level,String price,String activity,String available) throws DataBaseException{
+        return musicInformationService.modifyEditMusic(id,name,singerId,albumId,classificationId,level,price,activity,available);
+    }
+
+    /**
+     * 修改更多音乐信息，ajax
+     */
+    @RequestMapping(value = "/modifyMoreMusic")
+    @ResponseBody
+    public State modifyMoreMusic(String id,String musicVideoId,HttpServletRequest request){
+        return musicInformationService.modifyMoreMusic(id,musicVideoId,request);
+    }
+    /**
+     * 查找指定id的音乐+音乐的播放次数
+     */
+    @RequestMapping(value = "/showIdMusic")
+    @ResponseBody
+    public Music showIdMusic(Integer id){
+        return musicInformationService.showIdMusic(id);
     }
 }

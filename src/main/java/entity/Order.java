@@ -26,7 +26,7 @@ public class Order implements Serializable {
      */
     private int musicId=0;
     /**
-     * 1表示是音乐 2表示是MV
+     * 1表示是音乐 2表示是MV 3表示充值
      */
     private int type=0;
     /**
@@ -50,7 +50,7 @@ public class Order implements Serializable {
      */
     private BigDecimal price=new BigDecimal("0");
     /**
-     * 支付方式
+     * 支付方式 0表示其他 1表示支付宝
      */
     private String mode=null;
     /**

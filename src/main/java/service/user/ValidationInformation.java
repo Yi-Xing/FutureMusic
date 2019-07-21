@@ -152,4 +152,12 @@ public class ValidationInformation {
         }
         return string.matches("(^[1-9]\\d*|^0)(\\.\\d{1,2}|)$");
     }
+
+    /**
+     * 用于判断字符串能不能转成(非零数字)数字
+     */
+    public boolean isInt(String string){
+        return string.matches("([1-9][0-9]*)");
+    }
+
 }

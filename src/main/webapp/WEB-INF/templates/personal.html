@@ -8,24 +8,25 @@
 <!--头部-->
 <div th:replace="webHead::html"></div>
 
-<div th:if="${session.userInformation==null}" class="container-fluid  color_2">
-    <div class="row inner">
-        <div class="container-fluid">
-            <h1 class="text-center" style="margin: 60px auto">对不起！请先登录。</h1>
-        </div>
-    </div>
-</div>
-<div th:if="${session.userInformation!=null}" class="container-fluid  color_2">
+<!--<div  class="container-fluid  color_2">-->
+<!--    <div class="row inner">-->
+<!--        <div class="container-fluid">-->
+<!--            <h1 class="text-center" style="margin: 60px auto">对不起！请先登录。</h1>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
+<div class="container-fluid  color_2">
     <div class="row inner">
         <div class="container-fluid">
             <div class="personal_information">
                 <a href="javascript:;" class="pull-left">
-                    <img src="/static/img/头像_邓紫棋.jpg" th:src="@{${user.headPortrait}}" alt="">
+<!--                    th:src="@{${user.headPortrait}}"-->
+                    <img src="/static/img/头像_邓紫棋.jpg"  alt="">
                 </a>
                 <div class="pull-left name">
                     <a href="javascript:;">
                         <div>
-                            <h2 th:text="${user.name}">name </h2>
+                            <h2 text="">name </h2>
                             <span class="iconfont icon-iconvip" data-toggle="modal" data-target="#vip"></span> <span style="color:red;" th:text="${information}"></span>
                             <div class="modal fade" id="vip" tabindex="-1" role="dialog" aria-labelledby="vip">
                                 <div class="modal-dialog" role="document">
@@ -63,8 +64,8 @@
                                 </div>
                             </div>
                         </div>
-                        <h4 th:text="'关注：'+${followCount}">关注：</h4>
-                        <h4 th:text="'粉丝：'+${userFollowCount}">粉丝：</h4>
+                        <h4 text="'关注：'">关注：</h4>
+                        <h4 text="'粉丝：'">粉丝：</h4>
                     </a>
                 </div>
             </div>
@@ -400,7 +401,7 @@
                         账户余额
                         <span class="iconfont icon-iconvip"></span>
                     </h2>
-                    <h3 th:text="'￥ '+${user.balance}">￥6.00</h3>
+                    <h3 th:text="'￥ '">￥6.00</h3>
                     <button class="btn btn-danger pull-right" id="Recharge" data-toggle="modal" data-target="#recharge_container" data-whatever="Recharge">充值余额</button>
                     <div class="modal fade" id="recharge_container" tabindex="-1" role="dialog" aria-labelledby="recharge_container">
                         <div class="modal-dialog" role="document">
