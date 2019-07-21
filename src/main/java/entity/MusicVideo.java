@@ -70,6 +70,19 @@ public class MusicVideo implements Serializable {
      */
     private int playCount=0;
 
+    /**
+     * MV的图片
+     */
+    private String musicVideoPhoto;
+
+    public String getMusicVideoPhoto() {
+        return musicVideoPhoto;
+    }
+
+    public void setMusicVideoPhoto(String musicVideoPhoto) {
+        this.musicVideoPhoto = musicVideoPhoto;
+    }
+
     @Override
     public String toString() {
         return "MusicVideo{" +

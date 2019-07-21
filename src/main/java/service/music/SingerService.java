@@ -29,7 +29,7 @@ public class SingerService {
     public List<SingerExt> exhibitionSingersByName(String singerName) {
         User user = new User();
         user.setName(singerName);
-//        user.setLevel(2);
+        user.setLevel(2);
         List<User> singerList = userMapper.selectUser(user);
         List<SingerExt> showSingerList = transformSingers(singerList);
         return showSingerList;

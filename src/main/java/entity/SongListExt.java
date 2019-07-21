@@ -1,6 +1,4 @@
 package entity;
-
-import java.util.ArrayList;
 import java.util.List;
 
 public class SongListExt {
@@ -27,7 +25,7 @@ public class SongListExt {
     /**
      *包含的歌曲列表
      */
-    private List<MusicExt> musicExtList = new ArrayList<>();
+    private List<MusicExt> musicExtList;
     /**
      *播放次数
      */

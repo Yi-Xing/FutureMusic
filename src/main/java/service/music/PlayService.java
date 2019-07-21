@@ -121,11 +121,7 @@ public class PlayService {
             System.out.println("没有歌曲");
             return null;
         }
-        System.out.println("有个去");
-        System.out.println(musicMapper);
-        System.out.println(playMapper);
-        System.out.println(userMapper);
-        System.out.println("有对象");
+        System.out.println("有个去----");
         Map<Integer,Integer> musicPlay = sortByValueDescending(getMusicPlayCount(musicList));
         List<Integer> musicIds = new ArrayList<>();
         for(Integer musicId:musicPlay.keySet()){
