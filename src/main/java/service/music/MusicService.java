@@ -165,22 +165,22 @@ public class MusicService {
      */
     public List<MusicExt> selectListMusicByNewSong() {
         Music music = new Music();
-        List tempMusicList = new ArrayList();
+        List<Music> tempMusicList = new ArrayList<>();
         //获取符合条件的音乐集合，播放次数最多
         //先获取所有音乐七天内上架的音乐，tempMusicList
         List<Music> musicList = musicMapper.selectListMusic(music);
-        for(int i = 0;i < musicList.size();i++){
-            Music m = musicList.get(i);
+        System.out.println(musicList);
+        for (Music m : musicList) {
             Date musicDate = m.getDate();
             if (JudgeIsOverdueUtil.reduceDay(JudgeIsOverdueUtil.toDateSting(musicDate)) <= 70) {
                 tempMusicList.add(m);
-                System.out.println(m);
             }
-             //一直数不出来是不是因为数据库使用的问题
+            //一直数不出来是不是因为数据库使用的问题
             //向不管了
-            System.out.println(123+""+tempMusicList.size());
-            System.out.println("看看有没有歌曲");
         }
+            System.out.println("个数"+""+tempMusicList.size());
+            System.out.println("信息"+""+tempMusicList);
+            System.out.println("看看有没有歌曲");
         List<Music> sortMusicByPlayCount = playService.sortMusicByPlay(tempMusicList);
         List<MusicExt> musicExts = transformMusics(sortMusicByPlayCount);
       /*  //获取所有歌曲的播放量，存放到Map集合中（第一个元素存放音乐id，第二个元素存放播放量）
@@ -201,6 +201,7 @@ public class MusicService {
             temp.setId(musicId);
             musics.add(musicMapper.selectListMusic(temp).get(0));
         }*/
+        System.out.println("---------------------"+musicExts);
         return musicExts;
     }
     /**
@@ -217,7 +218,7 @@ public class MusicService {
      * 传入一个音乐集合，返回音乐需要展示的信息
      */
     public List<MusicExt> transformMusics(List<Music> musics) {
-        if(musics.size()==0){
+        if(musics==null || musics.size()==0){
             return null;
         }
         List<MusicExt> musicExts = new ArrayList<>();

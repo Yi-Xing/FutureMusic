@@ -29,31 +29,32 @@ public class SingerService {
     public List<SingerExt> exhibitionSingersByName(String singerName) {
         User user = new User();
         user.setName(singerName);
+        user.setLevel(2);
         List<User> singerList = userMapper.selectUser(user);
-        List<SingerExt> showSingerList = searchSingersListBySinger(singerList);
+        List<SingerExt> showSingerList = transformSingers(singerList);
         return showSingerList;
     }
 
     /**
-     * 通过地区查找歌手
+     * 通过地区查找歌手  bug查不到歌手名字
      * 也用这个分类查找歌手
      */
     public List<SingerExt> exhibitionSingersByRegion(String region) {
         User user = new User();
         user.setAddress(region);
         List<User> singerList = userMapper.selectUser(user);
-        System.out.println("userMapper"+userMapper);
-        List<SingerExt> showSingerList = searchSingersListBySinger(singerList);
+        System.out.println(singerList);
+        List<SingerExt> showSingerList = transformSingers(singerList);
         return showSingerList;
     }
 
     /**
      * 封装list歌手查找对应的信息
      */
-    public List<SingerExt> searchSingersListBySinger(List<User> singerList){
+    public List<SingerExt> transformSingers(List<User> singerList){
         List<SingerExt> showSingerList = new ArrayList<>();
         for(User u:singerList){
-            SingerExt showSinger = searchSingersBySinger(u);
+            SingerExt showSinger = transformSingerExt(u);
             showSingerList.add(showSinger);
         }
         return showSingerList;
@@ -63,10 +64,11 @@ public class SingerService {
     /**
      * 封装歌手信息查找歌手
      */
-    public SingerExt searchSingersBySinger(User user) {
+    public SingerExt transformSingerExt(User user) {
         SingerExt showSinger = new SingerExt();
         showSinger.setSingerId(user.getId());
-        showSinger.setMusicName(user.getName());
+        String userName =user.getName();
+        showSinger.setSingerName(userName);
         showSinger.setPortrait(user.getHeadPortrait());
         //查找歌手的热门音乐5首
         List<Music> hotMusic = popularMusicBySinger(user);
@@ -127,8 +129,5 @@ public class SingerService {
         }
     }
 
-    /**
-     * 显示歌手的详细信息
-     */
 
 }
