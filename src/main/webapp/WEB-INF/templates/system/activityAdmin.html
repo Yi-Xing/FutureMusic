@@ -2,30 +2,30 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head></head>
 <body>
-<ul class="headul" th:fragment="musicHead">
+<ul class="headul" th:fragment="activityHead">
     <li class="headli">
-        <a th:href="@{/administrators/showMusic(condition=0,condition=${conditionOne},condition=${conditionTwo},condition=${conditionThree},pageNum=${pageInfo.pageNum})}">
+        <a th:href="@{/administrators/showActivity(condition=0,condition=${conditionOne},condition=${conditionTwo},condition=${conditionThree},pageNum=${pageInfo.pageNum})}">
             全部</a>
     </li>
     <li class="headli">
-        <a th:href="@{/administrators/showMusic(condition=1,condition=${conditionOne},condition=${conditionTwo},condition=${conditionThree},pageNum=${pageInfo.pageNum})}">
-            免费</a>
+        <a th:href="@{/administrators/showActivity(condition=1,condition=${conditionOne},condition=${conditionTwo},condition=${conditionThree},pageNum=${pageInfo.pageNum})}">
+            音乐</a>
     </li>
     <li class="headli">
-        <a th:href="@{/administrators/showMusic(condition=2,condition=${conditionOne},condition=${conditionTwo},condition=${conditionThree},pageNum=${pageInfo.pageNum})}">
+        <a th:href="@{/administrators/showActivity(condition=2,condition=${conditionOne},condition=${conditionTwo},condition=${conditionThree},pageNum=${pageInfo.pageNum})}">
             vip</a>
     </li>
     <li class="headli">
-        <a th:href="@{/administrators/showMusic(condition=3,condition=${conditionOne},condition=${conditionTwo},condition=${conditionThree},pageNum=${pageInfo.pageNum})}">
-            收费</a>
+        <a th:href="@{/administrators/showActivity(condition=3,condition=${conditionOne},condition=${conditionTwo},condition=${conditionThree},pageNum=${pageInfo.pageNum})}">
+            专辑</a>
     </li>
 </ul>
-<div class="Allbody peobody " th:fragment="music">
+<div class="Allbody peobody " th:fragment="activity">
     <!-- 导入 JS -->
-    <script th:src="@{/static/js/system/musicAdmin.js}"></script>
+    <script th:src="@{/static/js/system/activityAdmin.js}"></script>
     <div class="headFrame dropdown">
-        <a th:href="@{/administrators/showMusic(condition=${conditionZero},condition=1,condition=${conditionTwo},condition=${conditionThree},pageNum=${pageInfo.pageNum})}">
-            <button type="button" class="btn btn-primary btn-sm">查找没版权音乐</button>
+        <a th:href="@{/administrators/showActivity(condition=${conditionZero},condition=1,condition=${conditionTwo},condition=${conditionThree},pageNum=${pageInfo.pageNum})}">
+            <button type="button" class="btn btn-primary btn-sm">查找没结束活动</button>
         </a>
         <button class="btn btn-default dropdown-toggle left20" type="button" id="dropdownMenu1" data-toggle="dropdown"
                 aria-haspopup="true" aria-expanded="true">
@@ -34,11 +34,7 @@
         </button>
         <ul class="dropdown-menu " aria-labelledby="dropdownMenu1" style="left: 125px;">
             <li data-value="1" class="select"><a href="#"> ID </a></li>
-            <li data-value="2" class="select"><a href="#">名字</a></li>
-            <li data-value="3" class="select"><a href="#">歌手</a></li>
-            <li data-value="4" class="select"><a href="#">专辑</a></li>
-            <li data-value="5" class="select"><a href="#">分类</a></li>
-            <li data-value="6" class="select"><a href="#">活动</a></li>
+            <li data-value="2" class="select"><a href="#">标题</a></li>
         </ul>
         <form th:action="@{/administrators/showMusic}" method="get">
             <div class="col-sm-2">
@@ -50,84 +46,62 @@
             <button type="submit" class="btn btn-primary">搜索</button>
         </form>
         <button type="button" class="btn btn-primary btn-sm left35" data-toggle="modal"
-                data-target="#addMusic">添加音乐
+                data-target="#addMusic">添加活动
         </button>
         <div style="clear: both;"></div>
-        <!--添加音乐信息-->
+        <!--添加活动信息-->
         <div class="modal fade" id="addMusic" tabindex="-1"
              role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h4 class="modal-title">添加音乐<span class="promptInformation" style="color: red"></span></h4>
+                        <h4 class="modal-title">添加活动<span class="promptInformation" style="color: red"></span></h4>
                     </div>
                     <div class="modal-body">
                         <!--存放添加用户的信息-->
                         <div class="form-group">
                             <label
-                                    class="col-sm-2 control-label">音乐名</label>
+                                    class="col-sm-2 control-label">标题</label>
                             <div class="col-sm-9">
                                 <input id="nameAdd" class="form-control "
                                        placeholder="只能是(1-4)的数字相对于普通用户，普通vip，高级vip,管理员">
                             </div>
                             <br> <br> <br> <label
-                                class="col-sm-2 control-label">歌手ID</label>
+                                class="col-sm-2 control-label">打折对象</label>
                             <div class="col-sm-9">
                                 <input id="singerIdAdd" class="form-control "
                                        placeholder="必须是数字且最多有两位小数">
                             </div>
                             <br> <br> <br>
-                            <label class="col-sm-2 control-label">专辑ID</label>
+                            <label class="col-sm-2 control-label">折扣</label>
                             <div class="col-sm-9">
                                 <input id="albumIdAdd" class="form-control " placeholder="6-8个数字">
                             </div>
                             <br> <br> <br>
-                            <label class="col-sm-2 control-label">分类ID</label>
+                            <label class="col-sm-2 control-label">介绍</label>
                             <div class="col-sm-9">
                                 <input id="classificationIdAdd" class="form-control " placeholder="6-8个数字">
                             </div>
                             <br> <br> <br>
-                            <label class="col-sm-2 control-label">等级</label>
+                            <label class="col-sm-2 control-label">网站地址</label>
                             <div class="col-sm-9">
                                 <input id="levelAdd" class="form-control " placeholder="6-8个数字">
                             </div>
                             <br> <br> <br>
-                            <label class="col-sm-2 control-label">价格</label>
+                            <label class="col-sm-2 control-label">开始时间</label>
                             <div class="col-sm-9">
                                 <input id="priceAdd" class="form-control " placeholder="6-8个数字">
                             </div>
                             <br> <br> <br>
-                            <label class="col-sm-2 control-label">活动ID</label>
+                            <label class="col-sm-2 control-label">结束时间</label>
                             <div class="col-sm-9">
                                 <input id="activityAdd" class="form-control " placeholder="6-8个数字">
                             </div>
-                            <br> <br> <br>
-                            <label class="col-sm-2 control-label">版权</label>
-                            <div class="col-sm-9">
-                                <input id="availableAdd" class="form-control " placeholder="6-8个数字">
-                            </div>
-                            <br> <br> <br> <label
-                                class="col-sm-2 control-label">MV的ID</label>
-                            <div class="col-sm-9">
-                                <input id="mvIdAdd" class="form-control " placeholder="请输入年龄(1-100)">
-                            </div>
                             <form action="#"  id="selectFileAdd" enctype="multipart/form-data">
                                 <br> <br> <br> <label
-                                    class="col-sm-2 control-label">音乐图片</label>
+                                    class="col-sm-2 control-label">活动图片</label>
                                 <div class="col-sm-9">
                                     <input name="pictureFile" type="file" class="form-control "
-                                           placeholder="请输入年龄(1-100)">
-                                </div>
-                                <br> <br> <br> <label
-                                    class="col-sm-2 control-label">音乐文件</label>
-                                <div class="col-sm-9">
-                                    <input name="filePath" type="file" class="form-control "
-                                           placeholder="请输入年龄(1-100)">
-                                </div>
-                                <br> <br> <br> <label
-                                    class="col-sm-2 control-label">歌词文件</label>
-                                <div class="col-sm-9">
-                                    <input name="lyricFilePath" type="file" class="form-control "
                                            placeholder="请输入年龄(1-100)">
                                 </div>
                                 <br> <br> <br>
@@ -150,29 +124,26 @@
         <table class="table table-hover table-bordered">
             <!--列表单的宽-->
             <colgroup>
-                <col width="8%">
+                <col width="6%">
                 <col width="10%">
-                <col width="8%">
-                <col width="8%">
-                <col width="8%">
+                <col width="7%">
+                <col width="6%">
                 <col width="10%">
-                <col width="10%">
-                <col width="8%">
-                <col width="10%">
+                <col width="15%">
+                <col width="15%">
+                <col width="15%">
                 <col width="20%">
             </colgroup>
             <!--列的标题-->
             <thead>
             <tr>
                 <th>ID</th>
-                <th>音乐名</th>
-                <th>歌手</th>
-                <th>专辑</th>
-                <th>分类</th>
-                <th>等级</th>
-                <th>价格</th>
-                <th>活动</th>
-                <th>有无版权</th>
+                <th>标题</th>
+                <th>打折对象</th>
+                <th>折扣</th>
+                <th>活动网站</th>
+                <th>开始时间</th>
+                <th>结束时间</th>
                 <th>操作</th>
             </tr>
             </thead>
@@ -182,25 +153,15 @@
                 <td th:text="${list.id}"></td>
                 <td th:text="${list.name}" class="textSpot" data-toggle="tooltip" data-placement="right"
                     th:title="${list.name}"></td>
-                <td th:text="${list.singerId}"></td>
-                <td th:text="${list.albumId}"></td>
-                <td th:text="${list.classificationId}"></td>
-                <td th:switch="${list.level}">
-                    <span th:case="1">免费</span>
+                <td th:switch="${list.type}">
+                    <span th:case="1">音乐</span>
                     <span th:case="2">vip</span>
-                    <span th:case="3">收费</span>
+                    <span th:case="3">专辑</span>
                 </td>
-                <td th:text="${list.price}"></td>
-                <span th:if="${list.activity!=0}">
-                    <td th:text="${list.activity}"></td>
-                </span>
-                <td th:if="${list.activity==0}">无</td>
-                <td th:if="${list.available==0}">
-                    <span>有</span>
-                </td>
-                <td th:if="${list.available!=0}">
-                    <span style="color: red;font-weight: 600">无</span>
-                </td>
+                <td th:text="${list.discount}"></td>
+                <td th:text="${list.website}"></td>
+                <td th:text="${#dates.format(list.startDate, 'yyyy-MM-dd HH:mm:ss')}"></td>
+                <td th:text="${#dates.format(list.endDate, 'yyyy-MM-dd HH:mm:ss')}"></td>
                 <td>
                     <button type="button" th:data-id="${list.id}"
                             class="btn btn-warning btnAcc btn-sm  edit" data-toggle="modal"

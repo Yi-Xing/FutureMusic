@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head></head>
+<body>
+<ul class="headul" th:fragment="songListHead">
+    <li class="headli">
+        <a th:href="@{/administrators/showSongList(condition=0,condition=${conditionOne},condition=${conditionTwo},pageNum=${pageInfo.pageNum})}">
+            全部</a>
+    </li>
+    <li class="headli">
+        <a th:href="@{/administrators/showSongList(condition=1,condition=${conditionOne},condition=${conditionTwo},pageNum=${pageInfo.pageNum})}">
+            歌单</a>
+    </li>
+    <li class="headli">
+        <a th:href="@{/administrators/showSongList(condition=2,condition=${conditionOne},condition=${conditionTwo},pageNum=${pageInfo.pageNum})}">
+            专辑</a>
+    </li>
+</ul>
+<div class="Allbody peobody " th:fragment="songList">
+    <!-- 导入 JS -->
+    <script th:src="@{/static/js/system/songListAdmin.js}"></script>
+    <div class="headFrame dropdown">
+        <button class="btn btn-default dropdown-toggle " type="button" id="dropdownMenu1" data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="true">
+            ID
+            <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu " aria-labelledby="dropdownMenu1">
+            <li data-value="1" class="select"><a href="#"> ID </a></li>
+            <li data-value="2" class="select"><a href="#">标题</a></li>
+            <li data-value="3" class="select"><a href="#">用户</a></li>
+            <li data-value="4" class="select"><a href="#">分类</a></li>
+            <li data-value="5" class="select"><a href="#">活动</a></li>
+        </ul>
+        <form th:action="@{/administrators/showSongList}" method="get">
+            <div class="col-sm-2">
+                <input type="text" name="condition" th:value="${conditionZero}" style="display: none"/>
+                <input type="text" name="condition" id="type" value="1" style="display: none"/>
+                <input type="text" name="condition" class="form-control" placeholder="请输入" style="height: 37px;"/>
+            </div>
+            <button type="submit" class="btn btn-primary">搜索</button>
+        </form>
+        <div style="clear: both;"></div>
+    </div>
+    <div class="peolt">
+        <table class="table table-hover table-bordered">
+            <!--列表单的宽-->
+            <colgroup>
+                <col width="8%">
+                <col width="18%">
+                <col width="10%">
+                <col width="8%">
+                <col width="8%">
+                <col width="8%">
+                <col width="18%">
+                <col width="20%">
+            </colgroup>
+            <!--列的标题-->
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>标题</th>
+                <th>用户ID</th>
+                <th>类型</th>
+                <th>分类</th>
+                <th>活动</th>
+                <th>创建时间</th>
+                <th>操作</th>
+            </tr>
+            </thead>
+            <!--行内容-->
+            <tbody th:each="list:${pageInfo.list}">
+            <tr>
+                <td th:text="${list.id}"></td>
+                <td th:text="${list.name}"></td>
+                <td th:text="${list.userId}"></td>
+                <td th:switch="${list.type}">
+                    <span th:case="1" style="color:#009966">歌单</span>
+                    <span th:case="2" style="color:#0018c6">专辑</span>
+                </td>
+                <td th:text="${list.classificationId}"></td>
+                <span th:if="${list.activity!=0}">
+                    <td th:text="${list.activity}"></td>
+                </span>
+                <td th:if="${list.activity==0}">无</td>
+                <td th:text="${#dates.format(list.date, 'yyyy-MM-dd HH:mm:ss')}"></td>
+                <td>
+                    <span th:if="${list.type!=2}">
+                        <button type="button" class="btn btn-warning btnAcc btn-sm  " data-toggle="modal" disabled="disabled" >编辑
+                        </button>
+                    </span>
+                    <span th:if="${list.type==2}">
+                        <button type="button" th:data-id="${list.id}"
+                                class="btn btn-warning btnAcc btn-sm  edit" data-toggle="modal"
+                                data-target="#edit">编辑
+                        </button>
+                        </span>
+                    <button type="button" th:data-id="${list.id}"
+                            class="btn btnAcc btn-success btn-sm more" data-toggle="modal"
+                            data-target="#more">更多
+                    </button>
+                    <button type="button" th:data-id="${list.id}" class="btn btnAcc btn-danger btn-sm delete"
+                            data-toggle="modal" data-target="#delete">删除
+                    </button>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div>
+        共 <span th:text="${pageInfo.pages}"></span>页 当前 第<span th:text="${pageInfo.pageNum}"></span>页
+        <span th:if="${pageInfo.hasPreviousPage}">
+            <a th:href="@{/administrators/showSongList(condition=${conditionZero},condition=${conditionOne},condition=${conditionTwo},pageNum=${pageInfo.pageNum-1})}">
+                <button type="button" class="btn btn-default btn-lg font-size10">上一页</button>
+            </a>
+        </span>
+        <span th:if="${!pageInfo.hasPreviousPage}">
+            <button type="button" class="btn btn-default btn-lg font-size10" disabled="disabled">上一页</button>
+        </span>
+        <span th:if="${pageInfo.hasNextPage}">
+            <a th:href="@{/administrators/showSongList(condition=${conditionZero},condition=${conditionOne},condition=${conditionTwo},pageNum=${pageInfo.pageNum+1})}">
+                <button class="btn btn-default btn-lg font-size10" type="button">下一页</button>
+            </a>
+        </span>
+        <span th:if="${!pageInfo.hasNextPage}">
+            <button type="button" class="btn btn-default btn-lg font-size10" disabled="disabled">下一页</button>
+        </span>
+    </div>
+    <!--编辑专辑信息-->
+    <div class="modal fade " id="edit" tabindex="-1" role="dialog"
+         aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">专辑信息<span class="promptInformation" style="color: red"></span></h4>
+                </div>
+                <div class="modal-body">
+                    <input id="editId" class="form-control " style="display: none"/>
+                    <!--存放需要更改的信息-->
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">活动ID</label>
+                        <div class="col-sm-9">
+                            <input id="activity" class="form-control " placeholder="6-8个数字">
+                        </div>
+                        <br> <br> <br>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default"
+                                data-dismiss="modal">关闭
+                        </button>
+                        <input type="submit" id="determineEdit" class="btn btn-primary" value="保存"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--更多专辑信息-->
+    <div class="modal fade" id="more" tabindex="-1" role="dialog"
+         aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">歌单/专辑更多信息——歌单/专辑ID：<span id="id"></span>——收藏量：<span id="play"></span><span
+                            class="promptInformation" style="color: red"></span></h4>
+                </div>
+                <div class="modal-body">
+                    <!--存放需要更改的信息-->
+                    <div class="form-group">
+                        <div class="mailContent">
+                        </div>
+                            <br> <br> <br>
+                            <button type="button" id="picture" class="btn btn-primary left135">查看图片</button>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">关闭
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--    删除用户的邮件信息-->
+    <div class="modal fade" id="delete" tabindex="-1" role="dialog"
+         aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4>提示 <span class="promptInformation" style="color: red"></span></h4>
+                </div>
+                <div class="modal-body">
+                    <h3 style="text-align: center;">您确定删除id：<span id="deleteId"></span>的歌单/专辑吗？</h3>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default"
+                                data-dismiss="modal">关闭
+                        </button>
+                        <button type="submit" class="btn btn-primary" id="determineDelete">确定
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

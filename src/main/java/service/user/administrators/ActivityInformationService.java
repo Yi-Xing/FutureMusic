@@ -8,6 +8,7 @@ import mapper.ActivityMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
 import service.user.IdExistence;
 import service.user.ValidationInformation;
 import util.FileUpload;
@@ -46,7 +47,7 @@ public class ActivityInformationService {
                 if (validationInformation.isPrice(String.valueOf(activity.getDiscount()))) {
                     if (activityMapper.insertActivity(activity) < 1) {
                         // 获取上传的文件路径
-                        String path = fileUpload.activityPicture(request);
+                        String path = fileUpload.activityPicture(null);
                         if (path != null && !"".equals(path)) {
                             activity.setPicture(path);
                         }
@@ -72,7 +73,7 @@ public class ActivityInformationService {
      * 上传活动的图片(可能没有用)
      */
     public State activityPicture(Integer id, HttpServletRequest request) throws DataBaseException, IOException {
-        String path = fileUpload.activityPicture(request);
+        String path = fileUpload.activityPicture(null);
         Activity activity = new Activity();
         activity.setId(id);
         // 获取上传的文件路径
@@ -93,7 +94,7 @@ public class ActivityInformationService {
      * @param condition 条件可以有多个
      * @param pageNum   表示当前第几页
      */
-    public PageInfo showActivity(String[] condition, Integer pageNum) throws ParseException {
+    public String showActivity(String[] condition, Integer pageNum, Model model) throws ParseException {
         // 用来存储管理员输入的条件
         Activity activity = new Activity();
         if (condition != null) {
@@ -110,12 +111,25 @@ public class ActivityInformationService {
             if ((condition[3] != null) && !"".equals(condition[3])) {
                 activity.setType(Integer.parseInt(condition[3]));
             }
+            model.addAttribute("conditionZero", condition[0]);
+            model.addAttribute("conditionOne", condition[1]);
+            model.addAttribute("conditionTwo", condition[2]);
+            model.addAttribute("conditionThree", condition[3]);
+        } else {
+            model.addAttribute("conditionZero", null);
+            model.addAttribute("conditionOne", null);
+            model.addAttribute("conditionTwo", null);
+            model.addAttribute("conditionThree", null);
         }
         //在查询之前传入当前页，然后多少记录
-        PageHelper.startPage(pageNum, 8);
-        // 根据条件查找信息
+        PageHelper.startPage(pageNum, 7);
+        // 根据条件查找音乐信息
         List<Activity> list = activityMapper.selectListActivity(activity);
-        return new PageInfo<>(list);
+        PageInfo pageInfo = new PageInfo<>(list);
+        // 传入页面信息
+        logger.debug("查找到的活动" + list);
+        model.addAttribute("pageInfo", pageInfo);
+        return "system/backgroundSystem";
     }
 
     /**
@@ -128,7 +142,7 @@ public class ActivityInformationService {
                 // 判断活动的折扣是否符合要求
                 if (validationInformation.isPrice(String.valueOf(activity.getDiscount()))) {
                     // 获取上传的文件路径
-                    String path = fileUpload.activityPicture(request);
+                    String path = fileUpload.activityPicture(null);
                     if (path != null && !"".equals(path)) {
                         activity.setPicture(path);
                     }

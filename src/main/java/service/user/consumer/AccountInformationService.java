@@ -102,7 +102,7 @@ public class AccountInformationService {
      */
     public String setUpHeadPortrait(HttpServletRequest request, HttpSession session, Model model) throws IOException, DataBaseException {
         User user = specialFunctions.getUser(session);
-        String path = fileUpload.userHeadPortrait(request);
+        String path = fileUpload.userHeadPortrait(null);
         logger.debug("头像路径"+path);
         logger.debug("用户信息" + user);
         if (path != null) {

@@ -15,7 +15,7 @@
             $("#btn_add1").click(function(){
                 document.getElementById("newUpload1").innerHTML+='<div id="div_'+i+'"><input  name="file" type="file"  /><input type="button" value="删除"  onclick="del_1('+i+')"/></div>';
                 i = i + 1;
-            });宿舍
+            });
 
             $("#btn_add2").click(function(){
                 document.getElementById("newUpload2").innerHTML+='<div id="div_'+j+'"><input  name="file_'+j+'" type="file"  /><input type="button" value="删除"  onclick="del_2('+j+')"/></div>';
