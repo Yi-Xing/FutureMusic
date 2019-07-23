@@ -2,30 +2,30 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head></head>
 <body>
-<ul class="headul" th:fragment="musicHead">
+<ul class="headul" th:fragment="musicVideoHead">
     <li class="headli">
-        <a th:href="@{/administrators/showMusic(condition=0,condition=${conditionOne},condition=${conditionTwo},condition=${conditionThree},pageNum=${pageInfo.pageNum})}">
+        <a th:href="@{/administrators/showMusicVideo(condition=0,condition=${conditionOne},condition=${conditionTwo},condition=${conditionThree},pageNum=${pageInfo.pageNum})}">
             全部</a>
     </li>
     <li class="headli">
-        <a th:href="@{/administrators/showMusic(condition=1,condition=${conditionOne},condition=${conditionTwo},condition=${conditionThree},pageNum=${pageInfo.pageNum})}">
+        <a th:href="@{/administrators/showMusicVideo(condition=1,condition=${conditionOne},condition=${conditionTwo},condition=${conditionThree},pageNum=${pageInfo.pageNum})}">
             免费</a>
     </li>
     <li class="headli">
-        <a th:href="@{/administrators/showMusic(condition=2,condition=${conditionOne},condition=${conditionTwo},condition=${conditionThree},pageNum=${pageInfo.pageNum})}">
+        <a th:href="@{/administrators/showMusicVideo(condition=2,condition=${conditionOne},condition=${conditionTwo},condition=${conditionThree},pageNum=${pageInfo.pageNum})}">
             vip</a>
     </li>
     <li class="headli">
-        <a th:href="@{/administrators/showMusic(condition=3,condition=${conditionOne},condition=${conditionTwo},condition=${conditionThree},pageNum=${pageInfo.pageNum})}">
+        <a th:href="@{/administrators/showMusicVideo(condition=3,condition=${conditionOne},condition=${conditionTwo},condition=${conditionThree},pageNum=${pageInfo.pageNum})}">
             收费</a>
     </li>
 </ul>
-<div class="Allbody peobody " th:fragment="music">
+<div class="Allbody peobody " th:fragment="musicVideo">
     <!-- 导入 JS -->
-    <script th:src="@{/static/js/system/musicAdmin.js}"></script>
+    <script th:src="@{/static/js/system/musicVideoAdmin.js}"></script>
     <div class="headFrame dropdown">
-        <a th:href="@{/administrators/showMusic(condition=${conditionZero},condition=1,condition=${conditionTwo},condition=${conditionThree},pageNum=${pageInfo.pageNum})}">
-            <button type="button" class="btn btn-primary btn-sm">查找没版权音乐</button>
+        <a th:href="@{/administrators/showMusicVideo(condition=${conditionZero},condition=1,condition=${conditionTwo},condition=${conditionThree},pageNum=${pageInfo.pageNum})}">
+            <button type="button" class="btn btn-primary btn-sm">查找没版权MV</button>
         </a>
         <button class="btn btn-default dropdown-toggle left20" type="button" id="dropdownMenu1" data-toggle="dropdown"
                 aria-haspopup="true" aria-expanded="true">
@@ -36,11 +36,11 @@
             <li data-value="1" class="select"><a href="#"> ID </a></li>
             <li data-value="2" class="select"><a href="#">名字</a></li>
             <li data-value="3" class="select"><a href="#">歌手</a></li>
-            <li data-value="4" class="select"><a href="#">专辑</a></li>
+            <li data-value="4" class="select"><a href="#">音乐</a></li>
             <li data-value="5" class="select"><a href="#">分类</a></li>
             <li data-value="6" class="select"><a href="#">活动</a></li>
         </ul>
-        <form th:action="@{/administrators/showMusic}" method="get">
+        <form th:action="@{/administrators/showMusicVideo}" method="get">
             <div class="col-sm-2">
                 <input type="text" name="condition" th:value="${conditionZero}" style="display: none"/>
                 <input type="text" name="condition" th:value="${conditionOne}" style="display: none"/>
@@ -50,22 +50,22 @@
             <button type="submit" class="btn btn-primary">搜索</button>
         </form>
         <button type="button" class="btn btn-primary btn-sm left35" data-toggle="modal"
-                data-target="#addMusic">添加音乐
+                data-target="#addMusic">添加MV
         </button>
         <div style="clear: both;"></div>
-        <!--添加音乐信息-->
+        <!--添加MV信息-->
         <div class="modal fade" id="addMusic" tabindex="-1"
              role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h4 class="modal-title">添加音乐<span class="promptInformation" style="color: red"></span></h4>
+                        <h4 class="modal-title">添加MV<span class="promptInformation" style="color: red"></span></h4>
                     </div>
                     <div class="modal-body">
-                        <!--存放添加用户的信息-->
+                        <!--存放添加MV的信息-->
                         <div class="form-group">
                             <label
-                                    class="col-sm-2 control-label">音乐名</label>
+                                    class="col-sm-2 control-label">MV名</label>
                             <div class="col-sm-9">
                                 <input id="nameAdd" class="form-control "
                                        placeholder="只能是(1-4)的数字相对于普通用户，普通vip，高级vip,管理员">
@@ -77,7 +77,7 @@
                                        placeholder="必须是数字且最多有两位小数">
                             </div>
                             <br> <br> <br>
-                            <label class="col-sm-2 control-label">专辑ID</label>
+                            <label class="col-sm-2 control-label">对应音乐</label>
                             <div class="col-sm-9">
                                 <input id="albumIdAdd" class="form-control " placeholder="6-8个数字">
                             </div>
@@ -107,27 +107,21 @@
                                 <input id="availableAdd" class="form-control " placeholder="6-8个数字">
                             </div>
                             <br> <br> <br> <label
-                                class="col-sm-2 control-label">MV的ID</label>
+                                class="col-sm-2 control-label">MV的简介</label>
                             <div class="col-sm-9">
                                 <input id="mvIdAdd" class="form-control " placeholder="请输入年龄(1-100)">
                             </div>
                             <form action="#"  id="selectFileAdd" enctype="multipart/form-data">
                                 <br> <br> <br> <label
-                                    class="col-sm-2 control-label">音乐图片</label>
+                                    class="col-sm-2 control-label">MV图片</label>
                                 <div class="col-sm-9">
                                     <input name="pictureFile" type="file" class="form-control "
                                            placeholder="请输入年龄(1-100)">
                                 </div>
                                 <br> <br> <br> <label
-                                    class="col-sm-2 control-label">音乐文件</label>
+                                    class="col-sm-2 control-label">MV视频</label>
                                 <div class="col-sm-9">
                                     <input name="filePath" type="file" class="form-control "
-                                           placeholder="请输入年龄(1-100)">
-                                </div>
-                                <br> <br> <br> <label
-                                    class="col-sm-2 control-label">歌词文件</label>
-                                <div class="col-sm-9">
-                                    <input name="lyricFilePath" type="file" class="form-control "
                                            placeholder="请输入年龄(1-100)">
                                 </div>
                                 <br> <br> <br>
@@ -165,9 +159,9 @@
             <thead>
             <tr>
                 <th>ID</th>
-                <th>音乐名</th>
+                <th>MV名</th>
                 <th>歌手</th>
-                <th>专辑</th>
+                <th>对应音乐</th>
                 <th>分类</th>
                 <th>等级</th>
                 <th>价格</th>
@@ -183,7 +177,7 @@
                 <td th:text="${list.name}" class="textSpot" data-toggle="tooltip" data-placement="right"
                     th:title="${list.name}"></td>
                 <td th:text="${list.singerId}"></td>
-                <td th:text="${list.albumId}"></td>
+                <td th:text="${list.musicId}"></td>
                 <td th:text="${list.classificationId}"></td>
                 <td th:switch="${list.level}">
                     <span th:case="1">免费</span>
@@ -221,7 +215,7 @@
     <div>
         共 <span th:text="${pageInfo.pages}"></span>页 当前 第<span th:text="${pageInfo.pageNum}"></span>页
         <span th:if="${pageInfo.hasPreviousPage}">
-            <a th:href="@{/administrators/showMusic(condition=${conditionZero},condition=${conditionOne},condition=${conditionTwo},condition=${conditionThree},pageNum=${pageInfo.pageNum-1})}">
+            <a th:href="@{/administrators/showMusicVideo(condition=${conditionZero},condition=${conditionOne},condition=${conditionTwo},condition=${conditionThree},pageNum=${pageInfo.pageNum-1})}">
                 <button type="button" class="btn btn-default btn-lg font-size10">上一页</button>
             </a>
         </span>
@@ -229,7 +223,7 @@
             <button type="button" class="btn btn-default btn-lg font-size10" disabled="disabled">上一页</button>
         </span>
         <span th:if="${pageInfo.hasNextPage}">
-            <a th:href="@{/administrators/showMusic(condition=${conditionZero},condition=${conditionOne},condition=${conditionTwo},condition=${conditionThree},pageNum=${pageInfo.pageNum+1})}">
+            <a th:href="@{/administrators/showMusicVideo(condition=${conditionZero},condition=${conditionOne},condition=${conditionTwo},condition=${conditionThree},pageNum=${pageInfo.pageNum+1})}">
                 <button class="btn btn-default btn-lg font-size10" type="button">下一页</button>
             </a>
         </span>
@@ -239,20 +233,20 @@
     </div>
 
 
-    <!--编辑音乐信息-->
+    <!--编辑MV信息-->
     <div class="modal fade " id="edit" tabindex="-1" role="dialog"
          aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h4 class="modal-title">音乐信息<span class="promptInformation" style="color: red"></span></h4>
+                    <h4 class="modal-title">MV信息<span class="promptInformation" style="color: red"></span></h4>
                 </div>
                 <div class="modal-body">
                     <input id="editId" class="form-control " style="display: none"/>
                     <!--存放需要更改的信息-->
                     <div class="form-group">
                         <label
-                                class="col-sm-2 control-label">音乐名</label>
+                                class="col-sm-2 control-label">MV名</label>
                         <div class="col-sm-9">
                             <input id="name" class="form-control "
                                    placeholder="只能是(1-4)的数字相对于普通用户，普通vip，高级vip,管理员">
@@ -264,7 +258,7 @@
                                    placeholder="必须是数字且最多有两位小数">
                         </div>
                         <br> <br> <br>
-                        <label class="col-sm-2 control-label">专辑ID</label>
+                        <label class="col-sm-2 control-label">对应音乐</label>
                         <div class="col-sm-9">
                             <input id="albumId" class="form-control " placeholder="6-8个数字">
                         </div>
@@ -305,13 +299,13 @@
             </div>
         </div>
     </div>
-    <!--音乐更多信息-->
+    <!--更多MV信息-->
     <div class="modal fade" id="more" tabindex="-1" role="dialog"
          aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h4 class="modal-title">音乐更多信息——音乐ID：<span id="id"></span>——播放量：<span id="play"></span><span
+                    <h4 class="modal-title">MV更多信息——MV ID：<span id="id"></span>——播放量：<span id="play"></span><span
                             class="promptInformation" style="color: red"></span></h4>
                 </div>
                 <div class="modal-body">
@@ -324,34 +318,26 @@
                             <input id="uploadDate" class="form-control btn" disabled="disabled">
                         </div>
                         <br> <br> <br> <label
-                            class="col-sm-2 control-label">MV的ID</label>
+                            class="col-sm-2 control-label">MV的简介</label>
                         <div class="col-sm-9">
                             <input id="mvId" class="form-control " placeholder="请输入年龄(1-100)">
                         </div>
                         <form action="#" id="selectFile" enctype="multipart/form-data">
                             <br> <br> <br> <label
-                                class="col-sm-2 control-label">音乐图片</label>
+                                class="col-sm-2 control-label">MV图片</label>
                             <div class="col-sm-9">
                                 <input name="pictureFile" type="file" class="form-control " placeholder="请输入年龄(1-100)">
                                 <input type="checkbox" id="musicPicture" value="1">
                             </div>
                             <br> <br> <br> <label
-                                class="col-sm-2 control-label">音乐文件</label>
+                                class="col-sm-2 control-label">MV视频</label>
                             <div class="col-sm-9">
                                 <input name="filePath" type="file" class="form-control " placeholder="请输入年龄(1-100)">
                                 <input type="checkbox" id="musicFile" value="2">
                             </div>
-                            <br> <br> <br> <label
-                                class="col-sm-2 control-label">歌词文件</label>
-                            <div class="col-sm-9">
-                                <input name="lyricFilePath" type="file" class="form-control "
-                                       placeholder="请输入年龄(1-100)">
-                                <input type="checkbox" id="musicLyric" value="3">
-                            </div>
                             <br> <br> <br>
                             <button type="button" id="picture" class="btn btn-primary left135">查看图片</button>
-                            <button type="button" id="path" class="btn btn-primary left35">听音乐</button>
-                            <button type="button" id="lyricPath" class="btn btn-primary left35">查看歌词</button>
+                            <button type="button" id="path" class="btn btn-primary left35">观看MV</button>
                             <div class="form-group ">
                                 <div class="mailContent">
                                 </div>

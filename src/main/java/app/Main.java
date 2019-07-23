@@ -114,7 +114,10 @@ public class Main {
         return "back_system/Activities.html";
     }
 
-
+    @RequestMapping(value = "/zyx")
+    public String zyx() {
+        return "zyx";
+    }
 }
 
 

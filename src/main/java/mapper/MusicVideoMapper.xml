@@ -18,11 +18,17 @@
             <if test='singerId!=0'>
                 and music_video_singer_id=#{singerId}
             </if>
+            <if test='musicId!=0'>
+                and music_video_music_id=#{musicId}
+            </if>
             <if test='classificationId!=0'>
                 and music_video_classification_id=#{classificationId}
             </if>
-            <if test='activity!=0'>
+            <if test='activity!=0 and activity!=-1 '>
                 and music_video_activity=#{activity}
+            </if>
+            <if test='activity==-1 '>
+                and music_video_activity=0
             </if>
             <if test='available!=0'>
                 and music_video_available=#{available}

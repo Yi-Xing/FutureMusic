@@ -18,8 +18,11 @@
             <if test='type!=0'>
                 and song_list_type=#{type}
             </if>
-            <if test='activity!=0'>
+            <if test='activity!=0 and activity!=-1 '>
                 and song_list_activity=#{activity}
+            </if>
+            <if test='activity==-1 '>
+                and song_list_activity=0
             </if>
             <if test='classificationId!=0'>
                 and song_list_classification_id=#{classificationId}

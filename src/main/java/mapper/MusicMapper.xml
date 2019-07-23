@@ -102,7 +102,7 @@
             <if test='playCount!=0'>
                 ,music_play_count=#{playCount}
             </if>
-            <if test='picture!=0'>
+            <if test='lyricPath!=null and lyricPath!=""'>
                 ,music_picture=#{picture}
             </if>
         </set>

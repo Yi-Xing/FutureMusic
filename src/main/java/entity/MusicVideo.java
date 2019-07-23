@@ -37,8 +37,7 @@ public class MusicVideo implements Serializable {
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     private Date date = null;
     /**
-     * 等级 0免费听免费下载   1免费听vip免费下载	2为vip免费听vip免费下载
-     * 3为vip免费听下载收费 4为无论听还是下载都要收费
+     * MV的等级 1免费 2vip 3收费
      */
     private int level = 0;
     /**
@@ -62,7 +61,7 @@ public class MusicVideo implements Serializable {
      */
     private int activity = 0;
     /**
-     * MV是否可听
+     * MV是否可听 0为可听 1为不可听
      */
     private int available = 0;
 
@@ -126,6 +125,18 @@ public class MusicVideo implements Serializable {
         this.available = available;
         this.playCount = playCount;
         this.picture = picture;
+    }
+
+    public MusicVideo(int id, String name, int level, BigDecimal price, int musicId, int singerId, int classificationId, int activity, int available) {
+        this.id = id;
+        this.name = name;
+        this.level = level;
+        this.price = price;
+        this.musicId = musicId;
+        this.singerId = singerId;
+        this.classificationId = classificationId;
+        this.activity = activity;
+        this.available = available;
     }
 
     public String getPicture() {
