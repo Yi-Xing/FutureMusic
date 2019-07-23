@@ -8,11 +8,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import service.user.administrators.ClassificationInformationService;
 import util.exception.DataBaseException;
 
 import javax.annotation.Resource;
+import java.util.Set;
 
 /**
  * 分类：
@@ -33,32 +35,45 @@ public class ClassificationInformation {
      * 显示现在所有的分类
      */
     @RequestMapping(value = "/showClassification")
-    public String showClassification(Model model) {
-        return classificationInformationService.showClassification(model);
+    public String showClassification( @RequestParam(defaultValue = "1") Integer pageNum, Model model) {
+        return classificationInformationService.showClassification(pageNum,model);
     }
 
     /**
      * 显示指定id的分类信息
      * @param id 分类的id
      */
-    @RequestMapping(value = "/showSelectClassification")
-    public String showSelectClassification(Integer id,Model model){
-        return classificationInformationService.showSelectClassification(id,model);
+    @RequestMapping(value = "/showIdClassification")
+    public String showIdClassification(Integer id,Model model){
+        return classificationInformationService.showIdClassification(id,model);
     }
+
+
+    /**
+     *  查找指定分类的子分类
+     */
+    @RequestMapping(value = "/showClassificationValue")
+    @ResponseBody
+    public Set<String> showClassificationValue(String key){
+        return classificationInformationService.showClassificationValue(key);
+    }
+
     /**
      * 添加分类
      */
     @RequestMapping(value = "/addClassification")
     @ResponseBody
-    public State addClassification(@RequestBody Classification classification) throws DataBaseException {
-        return classificationInformationService.addClassification(classification);
+    public State addClassification(String key, String value)throws DataBaseException {
+        return classificationInformationService.addClassification(key,value);
     }
 
     /**
      * 删除分类
      */
     @RequestMapping(value = "/deleteClassification")
-    public String deleteClassification(@RequestBody Classification classification,Model model) throws DataBaseException {
-        return classificationInformationService.deleteClassification(classification,model);
+    @ResponseBody
+    public State deleteClassification(String key, String value) throws DataBaseException {
+        return classificationInformationService.deleteClassification(key,value);
     }
+
 }

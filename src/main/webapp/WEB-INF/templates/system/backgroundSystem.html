@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>music</title>
     <!-- 导入 css -->
-    <link rel="stylesheet" type="text/css" th:href="@{/static/css/backstage.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/static/css/sysytem/backstage.css}">
     <!-- 导入 JQ -->
     <script th:src="@{/static/js/jquery.js}"></script>
     <!-- 新 Bootstrap 核心 CSS 文件 -->
@@ -53,8 +53,8 @@
         <ul th:replace="system/activityAdmin::activityHead"></ul>
     </span>
     <!--分类的标头-->
-    <span th:if="${#httpServletRequest.getRequestURI()=='/administrators/showClassificationInformation'}">
-        <ul th:replace="system/classificationInformationAdmin::classificationInformationHead"></ul>
+    <span th:if="${#httpServletRequest.getRequestURI()=='/administrators/classification'|| #httpServletRequest.getRequestURI()=='/administrators/showIdClassification'}">
+        <ul th:replace="system/classificationAdmin::classificationHead"></ul>
     </span>
     <div class="welcome">
         欢迎XXXXX—您的权限为：管理员
@@ -66,7 +66,7 @@
 <!--左边的按钮-->
 <div>
     <ul class="fixedleft">
-        <li><a id="ord1erPage" href="AdministratorHomePage?jump=homePage">首页</a></li>
+        <li><a id="homePage" th:href="@{/administrators/showHome}">首页</a></li>
         <li><a id="userPage" th:href="@{/administrators/showUser}">用户</a></li>
         <li><a id="orderPage" th:href="@{/administrators/showOrder}">订单</a></li>
         <li><a id="mailPage" th:href="@{/administrators/showMail}">邮箱</a></li>
@@ -75,7 +75,7 @@
         <li><a id="musicVideoPage" th:href="@{/administrators/showMusicVideo}" >MV</a></li>
         <li><a id="songListPage" th:href="@{/administrators/showSongList}">歌单/专辑</a></li>
         <li><a id="activityPage" th:href="@{/administrators/showActivity}">活动</a></li>
-        <li><a id="classificationInformationPage"th:href="@{/administrators/showClassificationInformation}">分类</a></li>
+        <li><a id="classificationPage" th:href="@{/administrators/showClassification}">分类</a></li>
     </ul>
 </div>
 <!--用户表格-->
@@ -111,8 +111,8 @@
     <div th:replace="system/activityAdmin::activity"></div>
 </span>
 <!--分类表格-->
-<span th:if="${#httpServletRequest.getRequestURI()=='/administrators/showClassificationInformation'}">
-    <div th:replace="system/classificationInformationAdmin::classificationInformation"></div>
+<span th:if="${#httpServletRequest.getRequestURI()=='/administrators/showClassification' || #httpServletRequest.getRequestURI()=='/administrators/showIdClassification'}">
+    <div th:replace="system/classificationAdmin::classification"></div>
 </span>
 
 </body>

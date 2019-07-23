@@ -42,6 +42,14 @@ public class SafetyCenter {
         return safetyCenterService.safetyCenterPage(session);
     }
 
+
+    /**
+     * 进入输入密码页面如果没有绑定邮箱，则跳转到绑定邮箱页面
+     */
+    @RequestMapping(value = "/passwordVerification")
+    public String passwordVerification(HttpSession session) {
+        return safetyCenterService.passwordVerification(session);
+    }
     /**
      * 绑定邮箱，如果成功进行页面跳转否则还是本页，ajax
      * @param mailbox 用户需要绑定的邮箱

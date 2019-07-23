@@ -118,6 +118,26 @@ public class Main {
     public String zyx() {
         return "zyx";
     }
+
+
+    @RequestMapping(value = "/security1")
+    public String musicLists1() {
+        return "security/bindingAccount";
+    }
+
+    @RequestMapping(value = "/security2")
+    public String saveCenter1() {
+        return "security/passwordVerification";
+    }
+    @RequestMapping(value = "/security3")
+    public String active1() {
+        return "security/mailboxVerification";
+    }
+
+    @RequestMapping(value = "/security4")
+    public String zyx1() {
+        return "security/newPassword";
+    }
 }
 
 

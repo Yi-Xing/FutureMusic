@@ -4,6 +4,7 @@ import entity.Classification;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Set;
 
 /**
  * 对分类表操作的Mapper
@@ -22,6 +23,15 @@ public interface ClassificationMapper {
      * @return List<Classification> 返回查找到的类型
      */
     public List<Classification> selectListClassification(Classification classification);
+
+
+    /**
+     * 查找符合指定规则的类型信息
+     *
+     * @param classification 查找指定分类的所有的值
+     * @return String[]  返回查找到的类型
+     */
+    public Set<String> selectClassificationValue(Classification classification);
 
     /**
      * 添加指定活动的信息

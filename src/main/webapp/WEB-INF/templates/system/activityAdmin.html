@@ -36,7 +36,7 @@
             <li data-value="1" class="select"><a href="#"> ID </a></li>
             <li data-value="2" class="select"><a href="#">标题</a></li>
         </ul>
-        <form th:action="@{/administrators/showMusic}" method="get">
+        <form th:action="@{/administrators/showActivity}" method="get">
             <div class="col-sm-2">
                 <input type="text" name="condition" th:value="${conditionZero}" style="display: none"/>
                 <input type="text" name="condition" th:value="${conditionOne}" style="display: none"/>
@@ -58,7 +58,7 @@
                         <h4 class="modal-title">添加活动<span class="promptInformation" style="color: red"></span></h4>
                     </div>
                     <div class="modal-body">
-                        <!--存放添加用户的信息-->
+                        <!--存放添加音乐的信息-->
                         <div class="form-group">
                             <label
                                     class="col-sm-2 control-label">标题</label>
@@ -78,22 +78,22 @@
                                 <input id="albumIdAdd" class="form-control " placeholder="6-8个数字">
                             </div>
                             <br> <br> <br>
-                            <label class="col-sm-2 control-label">介绍</label>
+                            <label class="col-sm-2 control-label">网站地址</label>
                             <div class="col-sm-9">
                                 <input id="classificationIdAdd" class="form-control " placeholder="6-8个数字">
                             </div>
                             <br> <br> <br>
-                            <label class="col-sm-2 control-label">网站地址</label>
+                            <label class="col-sm-2 control-label">开始时间</label>
                             <div class="col-sm-9">
                                 <input id="levelAdd" class="form-control " placeholder="6-8个数字">
                             </div>
                             <br> <br> <br>
-                            <label class="col-sm-2 control-label">开始时间</label>
+                            <label class="col-sm-2 control-label">结束时间</label>
                             <div class="col-sm-9">
                                 <input id="priceAdd" class="form-control " placeholder="6-8个数字">
                             </div>
                             <br> <br> <br>
-                            <label class="col-sm-2 control-label">结束时间</label>
+                            <label class="col-sm-2 control-label">介绍</label>
                             <div class="col-sm-9">
                                 <input id="activityAdd" class="form-control " placeholder="6-8个数字">
                             </div>
@@ -182,7 +182,7 @@
     <div>
         共 <span th:text="${pageInfo.pages}"></span>页 当前 第<span th:text="${pageInfo.pageNum}"></span>页
         <span th:if="${pageInfo.hasPreviousPage}">
-            <a th:href="@{/administrators/showMusic(condition=${conditionZero},condition=${conditionOne},condition=${conditionTwo},condition=${conditionThree},pageNum=${pageInfo.pageNum-1})}">
+            <a th:href="@{/administrators/showActivity(condition=${conditionZero},condition=${conditionOne},condition=${conditionTwo},condition=${conditionThree},pageNum=${pageInfo.pageNum-1})}">
                 <button type="button" class="btn btn-default btn-lg font-size10">上一页</button>
             </a>
         </span>
@@ -190,7 +190,7 @@
             <button type="button" class="btn btn-default btn-lg font-size10" disabled="disabled">上一页</button>
         </span>
         <span th:if="${pageInfo.hasNextPage}">
-            <a th:href="@{/administrators/showMusic(condition=${conditionZero},condition=${conditionOne},condition=${conditionTwo},condition=${conditionThree},pageNum=${pageInfo.pageNum+1})}">
+            <a th:href="@{/administrators/showActivity(condition=${conditionZero},condition=${conditionOne},condition=${conditionTwo},condition=${conditionThree},pageNum=${pageInfo.pageNum+1})}">
                 <button class="btn btn-default btn-lg font-size10" type="button">下一页</button>
             </a>
         </span>
@@ -200,59 +200,49 @@
     </div>
 
 
-    <!--编辑音乐信息-->
+    <!--编辑活动信息-->
     <div class="modal fade " id="edit" tabindex="-1" role="dialog"
          aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h4 class="modal-title">音乐信息<span class="promptInformation" style="color: red"></span></h4>
+                    <h4 class="modal-title">活动信息<span class="promptInformation" style="color: red"></span></h4>
                 </div>
                 <div class="modal-body">
                     <input id="editId" class="form-control " style="display: none"/>
                     <!--存放需要更改的信息-->
                     <div class="form-group">
                         <label
-                                class="col-sm-2 control-label">音乐名</label>
+                                class="col-sm-2 control-label">标题</label>
                         <div class="col-sm-9">
                             <input id="name" class="form-control "
                                    placeholder="只能是(1-4)的数字相对于普通用户，普通vip，高级vip,管理员">
                         </div>
                         <br> <br> <br> <label
-                            class="col-sm-2 control-label">歌手ID</label>
+                            class="col-sm-2 control-label">打折对象</label>
                         <div class="col-sm-9">
                             <input id="singerId" class="form-control "
                                    placeholder="必须是数字且最多有两位小数">
                         </div>
                         <br> <br> <br>
-                        <label class="col-sm-2 control-label">专辑ID</label>
+                        <label class="col-sm-2 control-label">折扣</label>
                         <div class="col-sm-9">
                             <input id="albumId" class="form-control " placeholder="6-8个数字">
                         </div>
                         <br> <br> <br>
-                        <label class="col-sm-2 control-label">分类ID</label>
+                        <label class="col-sm-2 control-label">活动网站</label>
                         <div class="col-sm-9">
                             <input id="classificationId" class="form-control " placeholder="6-8个数字">
                         </div>
                         <br> <br> <br>
-                        <label class="col-sm-2 control-label">等级</label>
+                        <label class="col-sm-2 control-label">开始时间</label>
                         <div class="col-sm-9">
                             <input id="level" class="form-control " placeholder="6-8个数字">
                         </div>
                         <br> <br> <br>
-                        <label class="col-sm-2 control-label">价格</label>
+                        <label class="col-sm-2 control-label">结束时间</label>
                         <div class="col-sm-9">
                             <input id="price" class="form-control " placeholder="6-8个数字">
-                        </div>
-                        <br> <br> <br>
-                        <label class="col-sm-2 control-label">活动ID</label>
-                        <div class="col-sm-9">
-                            <input id="activity" class="form-control " placeholder="6-8个数字">
-                        </div>
-                        <br> <br> <br>
-                        <label class="col-sm-2 control-label">版权</label>
-                        <div class="col-sm-9">
-                            <input id="available" class="form-control " placeholder="6-8个数字">
                         </div>
                         <br> <br> <br>
                     </div>
@@ -266,13 +256,13 @@
             </div>
         </div>
     </div>
-    <!--音乐更多信息-->
+    <!--活动更多信息-->
     <div class="modal fade" id="more" tabindex="-1" role="dialog"
          aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h4 class="modal-title">音乐更多信息——音乐ID：<span id="id"></span>——播放量：<span id="play"></span><span
+                    <h4 class="modal-title">活动更多信息——活动ID：<span id="id"></span><span
                             class="promptInformation" style="color: red"></span></h4>
                 </div>
                 <div class="modal-body">
@@ -280,39 +270,20 @@
                            style="display: none"/>
                     <!--存放需要更改的信息-->
                     <div class="form-group">
-                        <label class="col-sm-2 control-label"> 上传时间</label>
+                        <label class="col-sm-2 control-label"> 详细信息</label>
                         <div class="col-sm-9">
-                            <input id="uploadDate" class="form-control btn" disabled="disabled">
+                            <input id="uploadDate" class="form-control " >
                         </div>
-                        <br> <br> <br> <label
-                            class="col-sm-2 control-label">MV的ID</label>
-                        <div class="col-sm-9">
-                            <input id="mvId" class="form-control " placeholder="请输入年龄(1-100)">
-                        </div>
+                        <br> <br> <br>
                         <form action="#" id="selectFile" enctype="multipart/form-data">
                             <br> <br> <br> <label
-                                class="col-sm-2 control-label">音乐图片</label>
+                                class="col-sm-2 control-label">活动图片</label>
                             <div class="col-sm-9">
                                 <input name="pictureFile" type="file" class="form-control " placeholder="请输入年龄(1-100)">
                                 <input type="checkbox" id="musicPicture" value="1">
                             </div>
-                            <br> <br> <br> <label
-                                class="col-sm-2 control-label">音乐文件</label>
-                            <div class="col-sm-9">
-                                <input name="filePath" type="file" class="form-control " placeholder="请输入年龄(1-100)">
-                                <input type="checkbox" id="musicFile" value="2">
-                            </div>
-                            <br> <br> <br> <label
-                                class="col-sm-2 control-label">歌词文件</label>
-                            <div class="col-sm-9">
-                                <input name="lyricFilePath" type="file" class="form-control "
-                                       placeholder="请输入年龄(1-100)">
-                                <input type="checkbox" id="musicLyric" value="3">
-                            </div>
                             <br> <br> <br>
                             <button type="button" id="picture" class="btn btn-primary left135">查看图片</button>
-                            <button type="button" id="path" class="btn btn-primary left35">听音乐</button>
-                            <button type="button" id="lyricPath" class="btn btn-primary left35">查看歌词</button>
                             <div class="form-group ">
                                 <div class="mailContent">
                                 </div>

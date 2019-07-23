@@ -84,6 +84,14 @@ public class Activity implements Serializable {
         this.endDate = endDate;
     }
 
+    public Activity(int id, String name, float discount, int type, String website) {
+        this.id = id;
+        this.name = name;
+        this.discount = discount;
+        this.type = type;
+        this.website = website;
+    }
+
     public int getId() {
         return id;
     }
