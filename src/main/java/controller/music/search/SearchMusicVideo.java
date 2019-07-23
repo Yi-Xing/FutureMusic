@@ -6,12 +6,8 @@ import entity.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import service.music.MusicService;
 import service.music.MusicVideoService;
-import service.music.SearchService;
-import service.music.SingerService;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;

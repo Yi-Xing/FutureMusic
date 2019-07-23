@@ -24,12 +24,8 @@ public class MusicVideoService {
     UserMapper userMapper;
     @Resource(name = "MusicVideoMapper")
     MusicVideoMapper musicVideoMapper;
-    @Resource(name = "MusicMapper")
-    MusicMapper musicMapper;
     @Resource(name = "PlayMapper")
     PlayMapper playMapper;
-    @Resource(name = "ShowCommentService")
-    ShowCommentService showCommentService;
     @Resource(name = "PlayService")
     PlayService playService;
 
@@ -46,8 +42,6 @@ public class MusicVideoService {
         User user = new User();
         user.setId(singerId);
         musicVideoMap.put("singer", userMapper.selectUser(user).get(0));
-        musicVideoMap.put("goodComment", showCommentService.commentByMusicVideoId(musicVideo.getId()));
-        musicVideoMap.put("lastComment", showCommentService.commentLastByMusicVideoId(musicVideo.getId()));
         return musicVideoMap;
     }
 
@@ -98,7 +92,6 @@ public class MusicVideoService {
         return transformMusicVideoExts(musicVideoList);
     }
 
-
     /**
      *  传入音乐或mv的id，获得mv或音乐的id 播放量
      * */
@@ -113,7 +106,7 @@ public class MusicVideoService {
     }
 
     /**
-     * 传入MVId返回需要显示的信息 除了播放量
+     * 传入MVId返回需要显示的信息 包括播放量
      */
     public MusicVideoExt transformMusicVideoExt(int musicVideoId) {
         MusicVideoExt musicVideoExt = new MusicVideoExt();
@@ -157,11 +150,11 @@ public class MusicVideoService {
         Map<Integer,Integer> musicVideoAndPlayCount = musicVideoAndPlayCount(musicVideoList);
         List<MusicVideoExt> musicVideoExts = new ArrayList<>();
         //排好序
-        Map<Integer, Integer> rankingMusicVideo = playService.sortByValueDescending(musicVideoAndPlayCount);
+        List<Map.Entry<Integer,Integer>> rankingMusicVideo = playService.sortByValueDescending(musicVideoAndPlayCount);
         //将排好序的mvId和播放次数整理得到需要展示的信息
-        for (Integer musicId : rankingMusicVideo.keySet()) {
-            MusicVideoExt musicVideoExt = transformMusicVideoExt(musicId);
-            musicVideoExt.setPlayCount(rankingMusicVideo.get(musicId));
+        for (Map.Entry<Integer,Integer> musicId : rankingMusicVideo) {
+            MusicVideoExt musicVideoExt = transformMusicVideoExt(musicId.getKey());
+            musicVideoExt.setPlayCount(musicId.getValue());
             musicVideoExts.add(musicVideoExt);
         }
         return musicVideoExts;

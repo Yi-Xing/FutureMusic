@@ -1,14 +1,30 @@
 package entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import org.springframework.format.annotation.DateTimeFormat;
+
+import java.util.Date;
 import java.util.List;
 
+/**
+ * @author 蒋靓峣 7/23
+ */
 public class CommentExt {
 
     /**
-     * 评论的信息，与Comment类中的信息一致
-     * 可以从这里获得点赞次数、时间等
+     *评论的点赞次数
      */
-    private Comment comment;
+    private int fabulous;
+    /**
+     * 评论的内容
+     */
+    private String content;
+    /**
+     * 评论的时间
+     */
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
+    private Date date;
     /**
      * 评论的用户的id
      */
@@ -16,16 +32,15 @@ public class CommentExt {
     /**
      *评论的用户的头像
      */
-    private int commentPhoto;
+    private String commentPhoto;
     /**
      * 评论的用户的name
      */
-    private int commentUserName;
+    private String commentUserName;
     /**
      * 判断是否有回复，有设为1，没有，设为0
      */
     private int hasReply;
-
     /**
      *回复的那个人的id
      */
@@ -43,24 +58,31 @@ public class CommentExt {
      */
     private List<CommentExt> allSubCommentExtList = null;
 
-    public CommentExt(Comment comment, int commentId, int commentPhoto, int commentUserName, int hasReply, int replyId, String replyPhoto, String replyName, List<CommentExt> allSubCommentExtList) {
-        this.comment = comment;
-        this.commentId = commentId;
-        this.commentPhoto = commentPhoto;
-        this.commentUserName = commentUserName;
-        this.hasReply = hasReply;
-        this.replyId = replyId;
-        this.replyPhoto = replyPhoto;
-        this.replyName = replyName;
-        this.allSubCommentExtList = allSubCommentExtList;
+    public CommentExt() {
     }
 
-    public Comment getComment() {
-        return comment;
+    public int getFabulous() {
+        return fabulous;
     }
 
-    public void setComment(Comment comment) {
-        this.comment = comment;
+    public void setFabulous(int fabulous) {
+        this.fabulous = fabulous;
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
     }
 
     public int getCommentId() {
@@ -71,19 +93,19 @@ public class CommentExt {
         this.commentId = commentId;
     }
 
-    public int getCommentPhoto() {
+    public String getCommentPhoto() {
         return commentPhoto;
     }
 
-    public void setCommentPhoto(int commentPhoto) {
+    public void setCommentPhoto(String commentPhoto) {
         this.commentPhoto = commentPhoto;
     }
 
-    public int getCommentUserName() {
+    public String getCommentUserName() {
         return commentUserName;
     }
 
-    public void setCommentUserName(int commentUserName) {
+    public void setCommentUserName(String commentUserName) {
         this.commentUserName = commentUserName;
     }
 

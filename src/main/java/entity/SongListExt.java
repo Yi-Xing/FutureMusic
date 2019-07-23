@@ -39,6 +39,9 @@ public class SongListExt {
      */
     private List<CommentExt> commentExts;
 
+    public SongListExt() {
+    }
+
     public SongListExt(SongList songList, String songListPhoto, int userId, String usersName, Classification classification, List<MusicExt> musicExtList, int playCount, int collectCount, List<CommentExt> commentExts) {
         this.songList = songList;
         this.songListPhoto = songListPhoto;
@@ -49,6 +52,21 @@ public class SongListExt {
         this.playCount = playCount;
         this.collectCount = collectCount;
         this.commentExts = commentExts;
+    }
+
+    @Override
+    public String toString() {
+        return "SongListExt{" +
+                "songList=" + songList +
+                ", songListPhoto='" + songListPhoto + '\'' +
+                ", userId=" + userId +
+                ", usersName='" + usersName + '\'' +
+                ", classification=" + classification +
+                ", musicExtList=" + musicExtList +
+                ", playCount=" + playCount +
+                ", collectCount=" + collectCount +
+                ", commentExts=" + commentExts +
+                '}';
     }
 
     public SongList getSongList() {

@@ -30,6 +30,7 @@ public class SearchMusic {
      * @return Map<String,Object>
      */
     @RequestMapping(value = "/showMusicDetail")
+    @ResponseBody
     public Map<String,Object> showMusicDetail(HttpServletRequest request){
         String musicId = request.getParameter("musicId");
         Music music = new Music();

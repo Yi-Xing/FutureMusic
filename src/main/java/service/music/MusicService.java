@@ -100,12 +100,6 @@ public class MusicService {
         }else{
             musicAllInformationMap.put("musicVideo",null);
         }
-        //获取精彩评论详细信息
-        musicAllInformationMap.put("goodComment",
-                new ShowCommentService().commentByMusicId(resultMusic.getId()));
-        //获取最新评论
-        musicAllInformationMap.put("lastComment",
-                new ShowCommentService().commentLastByMusicId(resultMusic.getId()));
         return musicAllInformationMap;
     }
 
@@ -247,7 +241,7 @@ public class MusicService {
         User user = new User();
         user.setId(singerId);
         User singer = userMapper.selectUser(user).get(0);
-        String singerNsame = singer.getName();
+        String singerName = singer.getName();
         //专辑名字
         SongList songList = new SongList();
         songList.setId(albumId);
@@ -261,7 +255,7 @@ public class MusicService {
         musicExt.setAlbumId(albumId);
         musicExt.setAlbumName(albumName);
         musicExt.setSingerId(singerId);
-        musicExt.setSingerName(singerNsame);
+        musicExt.setSingerName(singerName);
         musicExt.setHasMusicVideo(hasMusicVideo);
         return musicExt;
     }

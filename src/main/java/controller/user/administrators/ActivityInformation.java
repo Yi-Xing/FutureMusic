@@ -60,7 +60,7 @@ public class ActivityInformation {
      *                  4、根据针对象查询
      * @param pageNum   表示当前第几页
      */
-    @RequestMapping(value = "/showActivity")
+    @RequestMapping(value = "/ ")
     @ResponseBody
     public PageInfo showActivity(String[] condition, Integer pageNum) throws ParseException {
         logger.trace("showActivity方法开始执行");

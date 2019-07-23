@@ -115,11 +115,11 @@ public class SingerService {
         if(playCount==null||playCount.size()==0){
             return null;
         }else {
-            Map<Integer, Integer> sortPlayCount = playService.sortByValueDescending(playCount);
+            List<Map.Entry<Integer,Integer>> sortPlayCount = playService.sortByValueDescending(playCount);
             List<Music> hotMusic = new ArrayList<>();
-            for (Integer musicId : sortPlayCount.keySet()) {
+            for (Map.Entry<Integer,Integer> musicId : sortPlayCount) {
                 Music musicCondition = new Music();
-                musicCondition.setId(musicId);
+                musicCondition.setId(musicId.getKey());
                 List<Music> musicList = musicMapper.selectListMusic(musicCondition);
                 if (musicList.size() != 0) {
                     hotMusic.add(musicList.get(0));
