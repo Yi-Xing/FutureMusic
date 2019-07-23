@@ -83,6 +83,11 @@ public class Main {
         return "musicList";
     }
 
+    @RequestMapping(value = "/toEmail")
+    public String toEmail() {
+        return "toEmail";
+    }
+
 
     @RequestMapping(value = "/order")
     public String order() {

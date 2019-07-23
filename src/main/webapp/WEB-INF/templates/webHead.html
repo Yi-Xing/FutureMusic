@@ -1,7 +1,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <!--头部-->
-<div class="header" style="height: 600px;overflow: hidden">
-    <img class="show_bg" src="../../static/img/首页背景.jpg" th:src="@{/static/img/首页背景.jpg}" alt="">
+<div class="header" style="height: 650px;overflow: hidden">
+<!--    <img class="show_bg" src="../../static/img/首页背景.jpg" th:src="@{/static/img/首页背景.jpg}" alt="">-->
+    <video class="show_bg" src="../../static/video/首页.mp4" th:src="@{/static/video/首页.mp4}" autoplay="autoplay" loop="loop" width="100%" alt=""></video>
     <nav class="navbar">
         <div class="container-fluid">
             <!-- Brand and toggle get grouped for better mobile display -->
@@ -53,7 +54,6 @@
                         <!--                            </div>-->
                         <ul class="dropdown-menu">
                             <li><a href="#" id="button1" data-toggle="modal" data-target="#myModal">直接登录</a></li>
-                            <li><a href="#">注册</a></li>
                             <li><a href="#">安全中心</a></li>
                             <li role="separator" class="divider"></li>
                             <li><a href="#" class="signOutLogin">退出登录</a></li>
@@ -76,6 +76,28 @@
             </div>
         </div>
     </nav>
+    <div class="show_text">
+        <div class="music active">
+            <i></i>
+            <i></i>
+            <i></i>
+            <i></i>
+            <i></i>
+            <i></i>
+        </div>
+        <div>
+            <h1>想你所想</h1>
+            <h1>听你所听</h1>
+        </div>
+        <div class="music active">
+            <i></i>
+            <i></i>
+            <i></i>
+            <i></i>
+            <i></i>
+            <i></i>
+        </div>
+    </div>
 </div>
 <script src="js/jquery.js" th:src="@{/static/js/jquery.js}"></script>
 <script>
