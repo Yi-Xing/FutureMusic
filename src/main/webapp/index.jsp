@@ -13,7 +13,7 @@
     <div id="body1" class="show" name="divcontent">
         <dl class="content">
             <dt>商户订单号 ：</dt>
-            <dd>
+            <dd>s
                 <input id="WIDout_trade_no" name="WIDout_trade_no"/>
             </dd>
             <hr class="one_line">

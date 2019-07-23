@@ -50,52 +50,30 @@ public class SongListInformation {
         return songListInformationService.showSongList(condition, pageNum,model);
     }
     /**
-     * 显示指定id的歌单或专辑信息
+     * 得到指定id的歌单或专辑信息+收藏量
      */
     @RequestMapping(value = "/showIdSongList")
     @ResponseBody
     public SongList showIdSongList(Integer id){
         return songListInformationService.showIdSongList(id);
     }
+
+
     /**
      * 修改专辑的活动，ajax
      */
     @RequestMapping(value = "/modifySongList")
     @ResponseBody
-    public State modifySongList(@RequestBody SongList songList) throws DataBaseException {
-        return songListInformationService.modifySongList(songList);
+    public State modifySongList(String id,String activity ) throws DataBaseException {
+        return songListInformationService.modifySongList(id,activity);
     }
 
     /**
      * 删除指定id专辑或歌单
      */
-    @SameUrlData
     @RequestMapping(value = "/deleteSongList")
-    public String  deleteSongList(Integer id, Model model) throws DataBaseException {
-        return songListInformationService.deleteSongList(id,model);
-    }
-
-    /**
-     * 指定歌单或专辑被收藏的次数
-     *
-     * @param id   歌单或专辑的id
-     * @param type 1表示是歌单 2表示是专辑
-     */
-    @RequestMapping(value = "/showSongListCollect")
     @ResponseBody
-    public int showSongListCollect(Integer id, Integer type) {
-        return songListInformationService.showSongListCollect(id, type);
-    }
-
-    /**
-     * 查找指定专辑或歌单中的所有音乐，分页显示
-     *
-     * @param id   专辑或歌单的id
-     * @param type 1是歌单2是专辑
-     */
-    @RequestMapping(value = "/showMusicSongList")
-    @ResponseBody
-    public PageInfo showMusicSongList(Integer id, Integer type, Integer pageNum) {
-        return songListInformationService.showMusicSongList(id, type, pageNum);
+    public State  deleteSongList(String id) throws DataBaseException {
+        return songListInformationService.deleteSongList(id);
     }
 }

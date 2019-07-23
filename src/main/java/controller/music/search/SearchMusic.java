@@ -3,6 +3,7 @@ package controller.music.search;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import entity.Music;
+import entity.MusicExt;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -10,13 +11,14 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import service.music.MusicService;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 import java.util.Map;
 
 /**
  * 根据分类搜索
  * 歌曲、歌单、MV
- * @author 蒋靓峣 5.21
+ * @author 蒋靓峣 5.21  7.19修改
  */
 @Controller
 public class SearchMusic {
@@ -24,27 +26,26 @@ public class SearchMusic {
     private MusicService musicService;
 
     /**
-     * 显示歌曲的详细信息
-     * @param musicId 传入歌曲的id
+     * 显示歌曲的详细信息,包括歌词，
      * @return Map<String,Object>
      */
     @RequestMapping(value = "/showMusicDetail")
-    @ResponseBody
-    public Map<String,Object> showMusicDetail(@RequestParam(value = "musicId",defaultValue = "1")String musicId){
+    public Map<String,Object> showMusicDetail(HttpServletRequest request){
+        String musicId = request.getParameter("musicId");
         Music music = new Music();
         music.setId(Integer.parseInt(musicId));
         return musicService.showMusic(music);
     }
-
     /**
      * 根据分类中的地区查找歌曲 排行榜
      */
     @RequestMapping("/searchMusicByRegion")
     @ResponseBody
-    public PageInfo searchMusicByRegion(@RequestParam(required = false,value = "pn", defaultValue = "1") Integer pn,
-                                                @RequestParam(value = "region",defaultValue = "1")String region) {
+    public PageInfo searchMusicByRegion(HttpServletRequest request) {
+        int pn = Integer.parseInt(request.getParameter("pn"));
+        String musicRegion = request.getParameter("musicRegion");
         PageHelper.startPage(pn, 10);
-        List<Music> musicList= musicService.selectListMusicByRegion(region);
+        List<MusicExt> musicList= musicService.selectListMusicByRegion(musicRegion);
         return new PageInfo(musicList);
     }
     /**
@@ -55,7 +56,7 @@ public class SearchMusic {
     public PageInfo searchMusicByType(@RequestParam(required = false,value = "pn", defaultValue = "1") Integer pn,
                                       @RequestParam(value = "type",defaultValue = "1")String type) {
         PageHelper.startPage(pn, 10);
-        List<Music> musicList= musicService.selectListMusicByRegion(type);
+        List<MusicExt> musicList= musicService.selectListMusicByRegion(type);
         return new PageInfo(musicList);
     }
     /**
@@ -63,10 +64,11 @@ public class SearchMusic {
      */
     @RequestMapping("/searchMusicByLanguage")
     @ResponseBody
-    public PageInfo searchMusicByLanguage(@RequestParam(required = false,value = "pn", defaultValue = "1") Integer pn,
-                                      @RequestParam(value = "language",defaultValue = "1")String language) {
+    public PageInfo searchMusicByLanguage(HttpServletRequest request) {
+        int pn = Integer.parseInt(request.getParameter("pn"));
         PageHelper.startPage(pn, 10);
-        List<Map<String, String[]>> musicList= musicService.selectListMusicByLanguage(language);
+        String musicLanguage = request.getParameter("musicLanguage");
+        List<MusicExt> musicList= musicService.selectListMusicByLanguage(musicLanguage);
         return new PageInfo(musicList);
     }
 
@@ -75,10 +77,11 @@ public class SearchMusic {
      */
     @RequestMapping("/searchMusicByName")
     @ResponseBody
-    public PageInfo searchSingerByRegion(@RequestParam(required = false,value = "pn", defaultValue = "1") Integer pn,@RequestParam(value = "keyWord")String keyWord){
-        PageHelper.startPage(pn,10);
-        List<Map<String, String[]>> musics = musicService.searchMusicByName(keyWord);
+    public PageInfo searchSingerByRegion(HttpServletRequest request) {
+        int pn = Integer.parseInt(request.getParameter("pn"));
+        PageHelper.startPage(pn, 10);
+        String keyWord = request.getParameter("keyWord");
+        List<MusicExt> musics = musicService.searchMusicByName(keyWord);
         return new PageInfo(musics);
     }
-
 }

@@ -1,11 +1,13 @@
 package controller.user.administrators;
 
+import entity.State;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import service.user.administrators.ActivityInformationService;
 import service.user.administrators.OrderInformationService;
 import util.SameUrlData;
@@ -42,8 +44,8 @@ public class OrderInformation {
      *  删除按id
      */
     @RequestMapping(value = "/deleteOrder")
-    @SameUrlData
-    public String deleteOrder(Integer id, Model model) throws DataBaseException {
-        return orderInformationService.deleteOrder(id,model);
+    @ResponseBody
+    public State deleteOrder(Integer id) throws DataBaseException {
+        return orderInformationService.deleteOrder(id);
     }
 }

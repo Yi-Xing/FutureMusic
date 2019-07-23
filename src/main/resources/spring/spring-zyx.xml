@@ -28,7 +28,7 @@
 <!--    </aop:config>-->
 
     <!--配置异常处理器-->
-    <bean class="util.exception.ExceptionResolver" />
+<!--    <bean class="util.exception.ExceptionResolver" />-->
 
 
     <!--配置平台事务管理器-->
@@ -59,41 +59,41 @@
     <mvc:default-servlet-handler/>
 
 <!--    拦截器-->
-    <mvc:interceptors>
-        <mvc:interceptor>
-            <!--防止表单重复提交-->
-            <mvc:mapping path="/**"/>
-            <bean class="util.interceptor.SameUrlDataInterceptor"/>
-        </mvc:interceptor>
-        <mvc:interceptor>
-            <!--用于实现自动登录-->
-            <mvc:mapping path="/**"/>
-            <bean class="util.interceptor.LoginInterceptor"/>
-        </mvc:interceptor>
+<!--    <mvc:interceptors>-->
+<!--        <mvc:interceptor>-->
+<!--            &lt;!&ndash;防止表单重复提交&ndash;&gt;-->
+<!--            <mvc:mapping path="/**"/>-->
+<!--            <bean class="util.interceptor.SameUrlDataInterceptor"/>-->
+<!--        </mvc:interceptor>-->
+<!--        <mvc:interceptor>-->
+<!--            &lt;!&ndash;用于实现自动登录&ndash;&gt;-->
+<!--            <mvc:mapping path="/**"/>-->
+<!--            <bean class="util.interceptor.LoginInterceptor"/>-->
+<!--        </mvc:interceptor>-->
 
-        <mvc:interceptor>
-            <!--用于判断用户是否登录-->
-            <mvc:mapping path="/user/**"/>
-            <bean class="util.interceptor.UserInterceptor"/>
-        </mvc:interceptor>
+<!--        <mvc:interceptor>-->
+<!--            &lt;!&ndash;用于判断用户是否登录&ndash;&gt;-->
+<!--            <mvc:mapping path="/user/**"/>-->
+<!--            <bean class="util.interceptor.UserInterceptor"/>-->
+<!--        </mvc:interceptor>-->
 
-        <mvc:interceptor>
-            <!--管理员可以增删改-->
-            <mvc:mapping path="/administrators/add*"/>
-            <bean class="util.interceptor.AddInterceptor"/>
-        </mvc:interceptor>
-        <mvc:interceptor>
-            <mvc:mapping path="/administrators/delete*"/>
-            <bean class="util.interceptor.DeleteInterceptor"/>
-        </mvc:interceptor>
-        <mvc:interceptor>
-            <mvc:mapping path="/administrators/modify*"/>
-            <bean class="util.interceptor.ModifyInterceptor"/>
-        </mvc:interceptor>
-        <mvc:interceptor>
-            <!--客服以上的权限可以查看-->
-            <mvc:mapping path="/administrators/show*"/>
-            <bean class="util.interceptor.ShowInterceptor"/>
-        </mvc:interceptor>
-    </mvc:interceptors>
+<!--        <mvc:interceptor>-->
+<!--            &lt;!&ndash;管理员可以增删改&ndash;&gt;-->
+<!--            <mvc:mapping path="/administrators/add*"/>-->
+<!--            <bean class="util.interceptor.AddInterceptor"/>-->
+<!--        </mvc:interceptor>-->
+<!--        <mvc:interceptor>-->
+<!--            <mvc:mapping path="/administrators/delete*"/>-->
+<!--            <bean class="util.interceptor.DeleteInterceptor"/>-->
+<!--        </mvc:interceptor>-->
+<!--        <mvc:interceptor>-->
+<!--            <mvc:mapping path="/administrators/modify*"/>-->
+<!--            <bean class="util.interceptor.ModifyInterceptor"/>-->
+<!--        </mvc:interceptor>-->
+<!--        <mvc:interceptor>-->
+<!--            &lt;!&ndash;客服以上的权限可以查看&ndash;&gt;-->
+<!--            <mvc:mapping path="/administrators/show*"/>-->
+<!--            <bean class="util.interceptor.ShowInterceptor"/>-->
+<!--        </mvc:interceptor>-->
+<!--    </mvc:interceptors>-->
 </beans>

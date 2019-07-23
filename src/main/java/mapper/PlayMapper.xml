@@ -17,7 +17,26 @@
             </if>
         </where>
     </select>
-
+    <select id="selectPlays" parameterType="Play" resultType="Integer">
+        select count(*) from tb_play
+        <where>
+            <if test='userId!=0'>
+                play_user_id=#{userId}
+            </if>
+            <if test='singerId!=0'>
+                and play_singer_id=#{singerId}
+            </if>
+            <if test='type!=0'>
+                and play_type=#{type}
+            </if>
+            <if test='musicId!=0'>
+                and play_music_id=#{musicId}
+            </if>
+            <if test='albumId!=0'>
+                and play_album_id=#{albumId}
+            </if>
+        </where>
+    </select>
     <insert id="insertPlay" parameterType="Play">
          insert into tb_play (play_user_id,play_music_id,play_type,play_singer_id,play_album_id,play_classification_id,
          play_date)

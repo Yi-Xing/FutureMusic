@@ -18,11 +18,17 @@
             <if test='singerId!=0'>
                 and music_video_singer_id=#{singerId}
             </if>
+            <if test='musicId!=0'>
+                and music_video_music_id=#{musicId}
+            </if>
             <if test='classificationId!=0'>
                 and music_video_classification_id=#{classificationId}
             </if>
-            <if test='activity!=0'>
+            <if test='activity!=0 and activity!=-1 '>
                 and music_video_activity=#{activity}
+            </if>
+            <if test='activity==-1 '>
+                and music_video_activity=0
             </if>
             <if test='available!=0'>
                 and music_video_available=#{available}
@@ -44,9 +50,9 @@
     <insert id="insertMusicVideo" parameterType="MusicVideo">
          insert into tb_music_video (music_video_name,music_video_path,music_video_introduction,music_video_date,
          music_video_level,music_video_price,music_video_music_id,music_video_singer_id,music_video_classification_id,
-         music_video_activity,music_video_available,music_video_play_count)
+         music_video_activity,music_video_available,music_video_play_count,music_video_picture)
          values(#{name},#{path},#{introduction},#{date},#{level},#{price},#{musicId},
-         #{singerId},#{classificationId},#{activity},#{available},#{playCount})
+         #{singerId},#{classificationId},#{activity},#{available},#{playCount},#{picture})
     </insert>
     <update id="updateMusicVideo" parameterType="MusicVideo">
         update tb_music_video
@@ -87,6 +93,9 @@
             <if test='playCount!=0'>
                 ,music_video_play_count=#{playCount}
             </if>
+            <if test='picture!=0'>
+                ,music_video_picture=#{picture}
+            </if>
         </set>
         where music_video_id=#{id}
     </update>
@@ -106,5 +115,6 @@
         <result column="music_video_activity" property="activity"/>
         <result column="music_video_available" property="available"/>
         <result column="music_video_play_count" property="playCount"/>
+        <result column="music_video_picture" property="picture"/>
     </resultMap>
 </mapper>

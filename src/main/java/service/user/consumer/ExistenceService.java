@@ -31,6 +31,7 @@ public class ExistenceService {
     SongListMapper songListMapper;
     @Resource(name = "CommentMapper")
     CommentMapper commentMapper;
+
     /**
      * 判断用户是否已经关注或访问过该用户，如果有返回信息，没有返回null
      */
@@ -107,17 +108,25 @@ public class ExistenceService {
         }
         return null;
     }
+
     /**
      * 判断指定是否有子评论，有返回子评论的id，没有返回0
      */
-    public int isComment(int id) {
-        Comment comment=new Comment();
+    public int[] isComment(int id) {
+        // 用于存储子评论的id
+        int[] ids=null;
+        Comment comment = new Comment();
         comment.setReply(id);
         // 查找指定评论的子评论
-        List<Comment> list=commentMapper.selectListComment(comment);
-        if(list.size()!=0){
-            return list.get(0).getId();
+        List<Comment> list = commentMapper.selectListComment(comment);
+        if (list.size() != 0) {
+            ids = new int[list.size()];
+            int index=0;
+            for(Comment c:list){
+                ids[index]=c.getId();
+                index++;
+            }
         }
-        return 0;
+        return ids;
     }
 }

@@ -6,8 +6,10 @@ import entity.State;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import service.user.administrators.ActivityInformationService;
 import util.exception.DataBaseException;
@@ -61,10 +63,9 @@ public class ActivityInformation {
      * @param pageNum   表示当前第几页
      */
     @RequestMapping(value = "/showActivity")
-    @ResponseBody
-    public PageInfo showActivity(String[] condition, Integer pageNum) throws ParseException {
+    public String showActivity(String[] condition, @RequestParam(defaultValue = "1")  Integer pageNum, Model model) throws ParseException {
         logger.trace("showActivity方法开始执行");
-        return activityInformationService.showActivity(condition, pageNum);
+        return activityInformationService.showActivity(condition, pageNum,model);
     }
 
     /**

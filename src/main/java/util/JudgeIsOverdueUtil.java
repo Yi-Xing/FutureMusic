@@ -14,7 +14,7 @@ import java.util.Date;
  */
 public class JudgeIsOverdueUtil {
     /**
-     * @param date 传入要比价的日期，从数据库获取的数据
+     * @param date 传入要比较的日期，从数据库获取的数据
      * @return result
      * 返回true则是过期
      * 返回false则是
@@ -39,8 +39,7 @@ public class JudgeIsOverdueUtil {
     /**
      * 计算给定时间-系统时间
      * @param date 传入一个字符串代表时间，格式为 “yyyy-MM-dd HH:mm:ss”
-     * @return String 返回多的时间的为秒数
-     *
+     * @return String 返回数据库中的时间里现在的秒数，结果为正
      */
     public static long reduceSecond(String date){
         try{
@@ -48,8 +47,7 @@ public class JudgeIsOverdueUtil {
             long time = simpleDateFormat.parse(date).getTime();
             String date1 = simpleDateFormat.format(new Date());
             long time1 = simpleDateFormat.parse(date1).getTime();
-            long reduceSecond = (time-time1)/1000;
-            return -reduceSecond;
+            return (time1-time)/1000;
         }catch (Exception e){
             e.printStackTrace();
             return 0;
@@ -61,7 +59,6 @@ public class JudgeIsOverdueUtil {
      * @param date 要比较的时间，从数据库中获取多的数据
      * @return  long 相差天数
      *                  传入的时间-系统时间
-     * @throws Exception
      */
     public static long reduceDay(String date){
 //        long time = reduceSecond(date);
@@ -83,6 +80,10 @@ public class JudgeIsOverdueUtil {
         String reduce = hours+":"+minute+":"+second;
         return reduce;
     }
+
+    /**
+     * 将Data转换成需要的字符串格式
+     */
     public static String toDateSting(Date theDate){
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         String date  = simpleDateFormat.format(theDate);

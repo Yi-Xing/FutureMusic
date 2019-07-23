@@ -14,6 +14,7 @@ import service.music.SearchService;
 import service.music.SingerService;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -24,17 +25,14 @@ import java.util.Map;
  * */
 @Controller
 public class SearchMusicVideo {
-    @Resource(name = "SearchService")
-    private SearchService searchService;
     @Resource(name = "MusicVideoService")
     MusicVideoService musicVideoService;
-    @Resource(name = "SingerService")
-    private SingerService singerService;
     /**
      * 显示MV的详细信息
      */
     @RequestMapping(value = "/showMusicVideoDetail")
-    public  String showMusicVideoDetail(@RequestParam(value = "musicVideoId",defaultValue = "1") String musicVideoId,Model model){
+    public  String showMusicVideoDetail(HttpServletRequest request, Model model){
+        String musicVideoId = request.getParameter("musicVideoId");
         MusicVideo musicVideo = new MusicVideo();
         musicVideo.setId(Integer.parseInt(musicVideoId));
         Map<String,Object> musicVideoDetail = musicVideoService.showMusicVideo(musicVideo);
@@ -43,25 +41,34 @@ public class SearchMusicVideo {
     }
    /**
      * 根据分类查找MV
-     * @param pn 分页
-     * @param region 地区
-     * @param type 流派
      * @return  展示mv的信息
      */
     @RequestMapping("/searchMusicVideoByClassification")
     @ResponseBody
-    public PageInfo searchMusicVideoByClassification(@RequestParam(required = false,value = "pn", defaultValue = "1") Integer pn,
-                                                     @RequestParam(value = "region",defaultValue = "1")String region,
-                                                     @RequestParam(value = "type",defaultValue = "1")String type) {
+    public PageInfo searchMusicVideoByClassification(HttpServletRequest request){
+        int pn = Integer.parseInt(request.getParameter("pn"));
         PageHelper.startPage(pn, 10);
+        String musicVideoType =request.getParameter("musicVideoType");
         Classification classification = new Classification();
-        if(type!=null){
-            classification.setType(type);
+        String musicVideoRegion = request.getParameter("musicVideoRegion");
+        if(musicVideoType!=null){
+            classification.setType(musicVideoType);
         }
-        if(region!=null){
-            classification.setRegion(region);
+        if(musicVideoRegion!=null){
+            classification.setRegion(musicVideoRegion);
         }
-        List<String[]> musicVideoList = musicVideoService.searchMusicVideoByClassification(classification);
+        List<MusicVideoExt> musicVideoList = musicVideoService.searchMusicVideoByClassification(classification);
         return new PageInfo(musicVideoList);
+    }
+    @RequestMapping("/selectMusicVideoByName")
+    @ResponseBody
+    public PageInfo selectListMusicVideoByVideoName(HttpServletRequest request){
+        int pn = Integer.parseInt(request.getParameter("pn"));
+        PageHelper.startPage(pn, 10);
+        String keyWord = request.getParameter("keyWord");
+        MusicVideo musicVideo = new MusicVideo();
+        musicVideo.setName(keyWord);
+        List<MusicVideoExt> musicVideoExts = musicVideoService.selectListMusicVideoByVideoName(musicVideo);
+        return new PageInfo(musicVideoExts);
     }
 }

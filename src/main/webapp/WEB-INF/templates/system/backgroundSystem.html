@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>music</title>
+    <!-- 导入 css -->
+    <link rel="stylesheet" type="text/css" th:href="@{/static/css/backstage.css}">
+    <!-- 导入 JQ -->
+    <script th:src="@{/static/js/jquery.js}"></script>
+    <!-- 新 Bootstrap 核心 CSS 文件 -->
+    <link rel="stylesheet" th:href="@{/static/css/bootstrap.css}">
+    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+    <script th:src="@{/static/js/bootstrap.min.js}"></script>
+    <!--导入js-->
+    <script th:src="@{/static/js/system/backgroundSystem.js}"></script>
+</head>
+<body>
+
+<!--上面的标题框-->
+<div class="Allhead">
+    <!--上面的标题-->
+    <div class="headleft">音乐管理系统</div>
+    <!--用户信息的标头-->
+    <span th:if="${#httpServletRequest.getRequestURI()=='/administrators/showUser'}">
+        <ul  th:replace="system/userAdmin::userHead"></ul>
+    </span>
+    <!--订单的标头-->
+    <span th:if="${#httpServletRequest.getRequestURI()=='/administrators/showOrder'}">
+        <ul th:replace="system/orderAdmin::orderHead"></ul>
+    </span>
+    <!--邮箱的标头-->
+    <span th:if="${#httpServletRequest.getRequestURI()=='/administrators/showMail'}">
+        <ul th:replace="system/mailAdmin::mailHead"></ul>
+    </span>
+    <!--评论的标头-->
+    <span th:if="${#httpServletRequest.getRequestURI()=='/administrators/showComment'}">
+        <ul th:replace="system/commentAdmin::commentHead"></ul>
+    </span>
+    <!--音乐的标头-->
+    <span th:if="${#httpServletRequest.getRequestURI()=='/administrators/showMusic'}">
+        <ul th:replace="system/musicAdmin::musicHead"></ul>
+    </span>
+    <!--MV的标头-->
+    <span th:if="${#httpServletRequest.getRequestURI()=='/administrators/showMusicVideo'}">
+        <ul th:replace="system/musicVideoAdmin::musicVideoHead"></ul>
+    </span>
+    <!--歌单和专辑的标头-->
+    <span th:if="${#httpServletRequest.getRequestURI()=='/administrators/showSongList'}">
+        <ul th:replace="system/songListAdmin::songListHead"></ul>
+    </span>
+    <!--活动的标头-->
+    <span th:if="${#httpServletRequest.getRequestURI()=='/administrators/showActivity'}">
+        <ul th:replace="system/activityAdmin::activityHead"></ul>
+    </span>
+    <!--分类的标头-->
+    <span th:if="${#httpServletRequest.getRequestURI()=='/administrators/showClassificationInformation'}">
+        <ul th:replace="system/classificationInformationAdmin::classificationInformationHead"></ul>
+    </span>
+    <div class="welcome">
+        欢迎XXXXX—您的权限为：管理员
+    </div>
+    <div class="headright">
+        <a href="UserPersonalInformation?jump=loginOut">退出</a>
+    </div>
+</div>
+<!--左边的按钮-->
+<div>
+    <ul class="fixedleft">
+        <li><a id="ord1erPage" href="AdministratorHomePage?jump=homePage">首页</a></li>
+        <li><a id="userPage" th:href="@{/administrators/showUser}">用户</a></li>
+        <li><a id="orderPage" th:href="@{/administrators/showOrder}">订单</a></li>
+        <li><a id="mailPage" th:href="@{/administrators/showMail}">邮箱</a></li>
+        <li><a id="commentPage" th:href="@{/administrators/showComment}">评论</a></li>
+        <li><a id="musicPage" th:href="@{/administrators/showMusic}">音乐</a></li>
+        <li><a id="musicVideoPage" th:href="@{/administrators/showMusicVideo}" >MV</a></li>
+        <li><a id="songListPage" th:href="@{/administrators/showSongList}">歌单/专辑</a></li>
+        <li><a id="activityPage" th:href="@{/administrators/showActivity}">活动</a></li>
+        <li><a id="classificationInformationPage"th:href="@{/administrators/showClassificationInformation}">分类</a></li>
+    </ul>
+</div>
+<!--用户表格-->
+<span th:if="${#httpServletRequest.getRequestURI()=='/administrators/showUser'}">
+    <div th:replace="system/userAdmin::user"></div>
+</span>
+<!--订单表格-->
+<span th:if="${#httpServletRequest.getRequestURI()=='/administrators/showOrder'}">
+    <div th:replace="system/orderAdmin::order"></div>
+</span>
+<!--邮箱表格-->
+<span th:if="${#httpServletRequest.getRequestURI()=='/administrators/showMail'}">
+    <div th:replace="system/mailAdmin::mail"></div>
+</span>
+<!--评论表格-->
+<span th:if="${#httpServletRequest.getRequestURI()=='/administrators/showComment'}">
+    <div th:replace="system/commentAdmin::comment"></div>
+</span>
+<!--音乐表格-->
+<span th:if="${#httpServletRequest.getRequestURI()=='/administrators/showMusic'}">
+    <div th:replace="system/musicAdmin::music"></div>
+</span>
+<!--MV表格-->
+<span th:if="${#httpServletRequest.getRequestURI()=='/administrators/showMusicVideo'}">
+    <div th:replace="system/musicVideoAdmin::musicVideo"></div>
+</span>
+<!--歌单和专辑表格-->
+<span th:if="${#httpServletRequest.getRequestURI()=='/administrators/showSongList'}">
+    <div th:replace="system/songListAdmin::songList"></div>
+</span>
+<!--活动表格-->
+<span th:if="${#httpServletRequest.getRequestURI()=='/administrators/showActivity'}">
+    <div th:replace="system/activityAdmin::activity"></div>
+</span>
+<!--分类表格-->
+<span th:if="${#httpServletRequest.getRequestURI()=='/administrators/showClassificationInformation'}">
+    <div th:replace="system/classificationInformationAdmin::classificationInformation"></div>
+</span>
+
+</body>
+</html>

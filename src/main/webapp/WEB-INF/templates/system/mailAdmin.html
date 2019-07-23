@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head></head>
+<body>
+<ul class="headul" th:fragment="mailHead">
+    <li class="headli">
+        <a th:href="@{/administrators/showMail(condition=${conditionZero},condition=${conditionOne},condition=${conditionTwo},condition=${conditionThree},condition=9,pageNum=${pageInfo.pageNum})}">
+            全部</a>
+    </li>
+    <li class="headli">
+        <a th:href="@{/administrators/showMail(condition=${conditionZero},condition=${conditionOne},condition=${conditionTwo},condition=${conditionThree},condition=10,pageNum=${pageInfo.pageNum})}">
+            普通</a>
+    </li>
+    <li class="headli">
+        <a th:href="@{/administrators/showMail(condition=${conditionZero},condition=${conditionOne},condition=${conditionTwo},condition=${conditionThree},condition=11,pageNum=${pageInfo.pageNum})}">
+            客服</a>
+    </li>
+    <li class="headli">
+        <a th:href="@{/administrators/showMail(condition=${conditionZero},condition=${conditionOne},condition=${conditionTwo},condition=${conditionThree},condition=12,pageNum=${pageInfo.pageNum})}">
+            管理员</a>
+    </li>
+</ul>
+<div class="Allbody peobody " th:fragment="mail">
+    <!-- 导入 JS -->
+    <script th:src="@{/static/js/system/mailAdmin.js}"></script>
+    <div class="headFrame dropdown">
+        <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="true">
+            邮件
+            <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+            <li data-value="1" class="select"><a href="#">邮件</a></li>
+            <li data-value="3" class="select"><a href="#">发件人</a></li>
+            <li data-value="2" class="select"><a href="#">收件人</a></li>
+        </ul>
+        <form th:action="@{/administrators/showMail}" method="get">
+            <div class="col-sm-2">
+                <input type="text" name="condition" id="type" value="1" style="display: none"/>
+                <input type="text" name="condition" class="form-control" placeholder="根据ID搜索" style="height: 37px;"/>
+                <input type="text" name="condition" th:value="${conditionTwo}" style="display: none"/>
+                <input type="text" name="condition" th:value="${conditionThree}" style="display: none"/>
+                <input type="text" name="condition" th:value="${conditionFour}" style="display: none"/>
+            </div>
+            <button type="submit" class="btn btn-primary">搜索</button>
+        </form>
+        <div style="clear: both;"></div>
+    </div>
+
+    <div class="peolt">
+        <table class="table table-hover table-bordered">
+            <!--列表单的宽-->
+            <colgroup>
+                <col width="8%">
+                <col width="10%">
+                <col width="10%">
+                <col width="10%">
+                <col width="10%">
+                <col width="20%">
+                <col width="20%">
+            </colgroup>
+            <!--列的标题-->
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>发件人</th>
+                <th>收件人</th>
+                <th>状态</th>
+                <th>等级</th>
+                <th>发送时间</th>
+                <th>操作</th>
+            </tr>
+            </thead>
+            <!--行内容-->
+            <tbody th:each="list:${pageInfo.list}">
+            <tr>
+                <td th:text="${list.id}"></td>
+                <td th:text="${list.senderId}"></td>
+                <td th:text="${list.recipientId}"></td>
+                <td th:switch="${list.state}">
+                    <span th:case="0" style="color:red">未读</span>
+                    <span th:case="1" style="color:#009966">已读</span>
+                    <span th:case="2" style="color:#0018c6">标记</span>
+                </td>
+                <td th:switch="${list.reply}">
+                    <span th:case="0" style="color:#009966">普通</span>
+                    <span th:case="1" style="color:#0018c6">客服</span>
+                    <span th:case="2" style="color:red">管理员</span>
+                </td>
+                <td th:text="${#dates.format(list.date, 'yyyy-MM-dd HH:mm:ss')}"></td>
+                <td>
+                    <button type="button"
+                            class="btn btn-warning btnAcc btn-sm  " data-toggle="modal"
+                            disabled="disabled">编辑
+                    </button>
+                    <button type="button" th:data-id="${list.id}"
+                            class="btn btnAcc btn-success btn-sm moreMail" data-toggle="modal"
+                            data-target="#moreMail">更多
+                    </button>
+                    </button>
+                    <button type="button" th:data-id="${list.id}" class="btn btnAcc btn-danger btn-sm deleteMail"
+                            data-toggle="modal" data-target="#deleteMail">删除
+                    </button>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div>
+        共 <span th:text="${pageInfo.pages}"></span>页 当前 第<span th:text="${pageInfo.pageNum}"></span>页
+        <span th:if="${pageInfo.hasPreviousPage}">
+            <a th:href="@{/administrators/showMail(condition=${conditionZero},condition=${conditionOne},condition=${conditionTwo},condition=${conditionThree},condition=${conditionFour},pageNum=${pageInfo.pageNum-1})}">
+                <button type="button" class="btn btn-default btn-lg font-size10">上一页</button>
+            </a>
+        </span>
+        <span th:if="${!pageInfo.hasPreviousPage}">
+            <button type="button" class="btn btn-default btn-lg font-size10" disabled="disabled">上一页</button>
+        </span>
+        <span th:if="${pageInfo.hasNextPage}">
+            <a th:href="@{/administrators/showMail(condition=${conditionZero},condition=${conditionOne},condition=${conditionTwo},condition=${conditionThree},condition=${conditionFour},pageNum=${pageInfo.pageNum+1})}">
+                <button class="btn btn-default btn-lg font-size10" type="button">下一页</button>
+            </a>
+        </span>
+        <span th:if="${!pageInfo.hasNextPage}">
+            <button type="button" class="btn btn-default btn-lg font-size10" disabled="disabled">下一页</button>
+        </span>
+    </div>
+    <!--邮件的更多信息-->
+    <div class="modal fade" id="moreMail" tabindex="-1" role="dialog"
+         aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">邮件内容——邮件ID：<span id="mailId"></span></h4>
+                </div>
+                <div class="modal-body">
+                    <!--存放邮件信息的信息-->
+                    <div class="form-group ">
+                        <div class="mailContent">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">关闭
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--    删除用户的邮件信息-->
+    <div class="modal fade" id="deleteMail" tabindex="-1" role="dialog"
+         aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4>提示 <span class="promptInformation" style="color: red"></span></h4>
+                </div>
+                <div class="modal-body">
+                    <h3 style="text-align: center;">您确定删除id：<span id="deleteMailId"></span>的邮件吗？</h3>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default"
+                                data-dismiss="modal">关闭
+                        </button>
+                        <button type="submit" class="btn btn-primary" id="determineDeleteMail">确定
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

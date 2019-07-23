@@ -95,7 +95,7 @@ public class AboutSongListService {
                 // 判断分类是否存在
                 if (idExistence.isClassificationId(songList.getClassificationId()) != null) {
                     // 将上传的图片存入硬盘上去
-                    String path = fileUpload.songList(request);
+                    String path = fileUpload.songList(null);
                     // 存储图片路径
                     songList.setPicture(path);
                     // 存储创建者的id
@@ -173,7 +173,7 @@ public class AboutSongListService {
         SongList songList = new SongList();
         songList.setId(id);
         // 将上传的图片存入硬盘上去，并得到路径
-        path = fileUpload.songList(request);
+        path = fileUpload.songList(null);
         // 存储图片路径
         songList.setPicture(path);
         // 更新数据库中的数据

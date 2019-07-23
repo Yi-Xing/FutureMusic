@@ -1,5 +1,3 @@
-
-
 package service.music;
 
 import entity.*;
@@ -10,6 +8,7 @@ import org.springframework.stereotype.Service;
 import util.JudgeIsOverdueUtil;
 
 import javax.annotation.Resource;
+import java.math.BigDecimal;
 import java.util.*;
 
 /**
@@ -44,7 +43,7 @@ public class MusicService {
     public Map<String,Object> showMusic(Music music) {
         Map<String, Object> musicAllInformationMap = new HashMap<>(5);
         Music resultMusic = musicMapper.selectListMusic(music).get(0);
-        ///获取音乐的信息
+        //获取音乐的信息
         musicAllInformationMap.put("music", resultMusic);
         int musicAlbumId = resultMusic.getAlbumId();
         int classificationId = resultMusic.getClassificationId();
@@ -111,16 +110,16 @@ public class MusicService {
     }
 
     /**
-     * 音乐的流派榜
+     * 流派榜
      *
      * @param type 根据音乐的流派分类查找信息
      * @return Map<Music, User>
      */
-    public List<Music> selectListMusicByMusicType(String type) {
+    public List<MusicExt> selectListMusicByMusicType(String type) {
         Classification classification = new Classification();
         classification.setType(type);
         List<Music> musicList = selectListMusicByClassification(classification);
-        return musicList;
+        return transformMusics(musicList);
     }
     /**
      * 地区榜
@@ -129,14 +128,12 @@ public class MusicService {
      * @return Map<Music, User> 音乐和对应的
      * 歌手集合
      */
-    public List<Music> selectListMusicByRegion(String region) {
+    public List<MusicExt> selectListMusicByRegion(String region) {
         Classification classification = new Classification();
         classification.setRegion(region);
         List<Music> musicList = selectListMusicByClassification(classification);
-        System.out.println("selectListMusicByRegion方法1"+musicList);
         List<Music> resultMusic = playService.sortMusicByPlay(musicList);
-        System.out.println("selectListMusicByRegion方法2"+resultMusic);
-        return resultMusic;
+        return transformMusics(musicList);
     }
     /**
      * 语言榜
@@ -144,117 +141,130 @@ public class MusicService {
      * @param language 根据音乐的分类的地区查找信息
      * @return Map<Music, User> 音乐和对应的歌手集合
      */
-    public List<Map<String, String[]>> selectListMusicByLanguage(String language) {
+    public List<MusicExt> selectListMusicByLanguage(String language) {
         Classification classification = new Classification();
         classification.setRegion(language);
         List<Music> musicList = selectListMusicByClassification(classification);
-        List<Music> resultMusic = (new PlayService()).sortMusicByPlay(musicList);
-        return transformationMusic(resultMusic);
+        List<Music> resultMusic = playService.sortMusicByPlay(musicList);
+        return transformMusics(resultMusic);
     }
     /**
+     * 合唱榜
+     * 男声、女声、合唱
+     */
+    public List<MusicExt> selectListMusicByGender(String gender){
+        Classification classification = new Classification();
+        classification.setGender(gender);
+        List<Music> musicList = selectListMusicByClassification(classification);
+        List<Music> resultMusic = playService.sortMusicByPlay(musicList);
+        return transformMusics(resultMusic);
+    }
+    /**
+     * 新歌榜
      * 查找7天内上架且播放量最高的歌曲
      */
-    public List<Music> selectListMusicByNewSong() {
+    public List<MusicExt> selectListMusicByNewSong() {
         Music music = new Music();
+        List<Music> tempMusicList = new ArrayList<>();
         //获取符合条件的音乐集合，播放次数最多
-        //先获取所有音乐七天内上架的音乐
+        //先获取所有音乐七天内上架的音乐，tempMusicList
         List<Music> musicList = musicMapper.selectListMusic(music);
-        Date musicDate;
-        for (int i = 0; i < musicList.size(); i++) {
-            music = musicList.get(i);
-            musicDate = music.getDate();
-            if (JudgeIsOverdueUtil.reduceDay(JudgeIsOverdueUtil.toDateSting(musicDate)) < 7) {
-                musicList.remove(i);
-                i = i - 1;
-            }
-        }
-        Play play = new Play();
-        Map<Integer, Integer> musicCount = new HashMap<>();
+        System.out.println(musicList);
         for (Music m : musicList) {
+            Date musicDate = m.getDate();
+            if (JudgeIsOverdueUtil.reduceDay(JudgeIsOverdueUtil.toDateSting(musicDate)) <= 70) {
+                tempMusicList.add(m);
+            }
+            //一直数不出来是不是因为数据库使用的问题
+            //向不管了
+        }
+            System.out.println("个数"+""+tempMusicList.size());
+            System.out.println("信息"+""+tempMusicList);
+            System.out.println("看看有没有歌曲");
+        List<Music> sortMusicByPlayCount = playService.sortMusicByPlay(tempMusicList);
+        List<MusicExt> musicExts = transformMusics(sortMusicByPlayCount);
+      /*  //获取所有歌曲的播放量，存放到Map集合中（第一个元素存放音乐id，第二个元素存放播放量）
+        //用HashMap存放，则会按照放入的顺序来存储数据
+        Map<Integer, Integer> musicIdAndPlayCount = new HashMap<>();
+        for (Music m : musicList) {
+            Play play = new Play();
             play.setMusicId(m.getId());
             List<Play> plays = playMapper.selectListPlay(play);
             int count = plays.size();
-            musicCount.put(m.getId(), count);
+            musicIdAndPlayCount.put(m.getId(), count);
         }
+        //Map怎么根据value将key排序？
         //歌曲id、播放量
         List<Music> musics = new ArrayList<>();
-        for (Integer musicId : musicCount.keySet()) {
+        for (Integer musicId : musicIdAndPlayCount.keySet()) {
             Music temp = new Music();
             temp.setId(musicId);
             musics.add(musicMapper.selectListMusic(temp).get(0));
-        }
-        //获取符合条件得分类对象
-        return musics;
+        }*/
+        System.out.println("---------------------"+musicExts);
+        return musicExts;
     }
-
     /**
      * 搜索音乐
      */
-    public List<Map<String, String[]>> searchMusicByName(String musicName) {
+    public List<MusicExt> searchMusicByName(String musicName) {
         Music music = new Music();
         music.setName(musicName);
         List<Music> musicList = musicMapper.selectListMusic(music);
-        return transformationMusic(musicList);
-    }
+        return transformMusics(musicList);
+}
 
     /**
-     * 传入一个音乐集合，返回歌名、id、歌手、id、专辑、id、mv、id
+     * 传入一个音乐集合，返回音乐需要展示的信息
      */
-    public List<Map<String, String[]>> transformationMusic(List<Music> musics) {
-        if(musics.size()==0){
+    public List<MusicExt> transformMusics(List<Music> musics) {
+        if(musics==null || musics.size()==0){
             return null;
         }
-        List<Map<String, String[]>> musicList = new ArrayList<>();
+        List<MusicExt> musicExts = new ArrayList<>();
         for (Music music : musics) {
-            int musicId = music.getId();
-            int singerId = music.getSingerId();
-            int albumId = music.getAlbumId();
-            int musicVideoId = music.getMusicVideoId();
-            Map<String, String[]> m = new HashMap<>(16);
-            String[] musicMessage = new String[2];
-            musicMessage[0] = musicId + "";
-            musicMessage[1] = music.getName();
-            m.put("musicMessage", musicMessage);
-            User user = new User();
-            user.setId(singerId);
-            User singer = userMapper.selectUser(user).get(0);
-            String[] singerMessage = new String[2];
-            singerMessage[0] = singer.getId() + "";
-            singerMessage[1] = singer.getName();
-            m.put("singerMessage", singerMessage);
-            SongList songList = new SongList();
-            songList.setId(albumId);
-            List<SongList> songLists = songListMapper.selectListSongList(songList);
-            if(songLists.size()!=0) {
-                SongList album = songLists.get(0);
-                String[] albumMessage = new String[2];
-                albumMessage[0] = album.getId() + "";
-                albumMessage[1] = album.getName();
-                m.put("albumMessage", albumMessage);
-            }else{
-                m.put("albumMessage", null);
-            }
-            if (musicVideoId == 0) {
-                m.put("musicVideoMessage", null);
-            } else {
-                MusicVideo tempMusicVideo = new MusicVideo();
-                tempMusicVideo.setId(musicVideoId);
-                List<MusicVideo> musicVideoList = musicVideoMapper.selectListMusicVideo(tempMusicVideo);
-                if(musicVideoList.size()!=0) {
-                    MusicVideo musicVideo = musicVideoList.get(0);
-                    String[] musicVideoMessage = new String[2];
-                    musicMessage[0] = musicVideoId + "";
-                    musicMessage[1] = musicVideo.getName();
-                    m.put("musicVideoMessage", musicVideoMessage);
-                }else{
-                    m.put("musicVideoMessage", null);
-                }
-            }
-            musicList.add(m);
+            MusicExt musicExt = transformMusic(music);
+            musicExts.add(musicExt);
         }
-        return musicList;
+        return musicExts;
     }
-
+    /**
+     * 传入入一个音乐，返回需要显示的信息
+     * 歌名、id、歌手、id、专辑、id、mv、id
+     *
+     */
+    public MusicExt transformMusic(Music music){
+        MusicExt musicExt = new MusicExt();
+        int musicId = music.getId();
+        int singerId = music.getSingerId();
+        int albumId = music.getAlbumId();
+        int musicVideoId = music.getMusicVideoId();
+        String musicName = music.getName();
+        boolean hasMusicVideo = music.getMusicVideoId()!=0;
+        BigDecimal musicPrice = music.getPrice();
+        int musicLevel = music.getLevel();
+        //歌手名字
+        User user = new User();
+        user.setId(singerId);
+        User singer = userMapper.selectUser(user).get(0);
+        String singerNsame = singer.getName();
+        //专辑名字
+        SongList songList = new SongList();
+        songList.setId(albumId);
+        SongList album = songListMapper.selectListSongList(songList).get(0);
+        String albumName = album.getName();
+        musicExt.setMusicId(musicId);
+        musicExt.setMusicName(musicName);
+        musicExt.setMusicLevel(musicLevel);
+        musicExt.setMusicPrice(musicPrice);
+        musicExt.setMusicVideoId(musicVideoId);
+        musicExt.setAlbumId(albumId);
+        musicExt.setAlbumName(albumName);
+        musicExt.setSingerId(singerId);
+        musicExt.setSingerName(singerNsame);
+        musicExt.setHasMusicVideo(hasMusicVideo);
+        return musicExt;
+    }
     /**
      * 根据分类查找音乐集合
      */

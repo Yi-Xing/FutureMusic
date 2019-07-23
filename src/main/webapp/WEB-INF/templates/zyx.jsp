@@ -11,6 +11,7 @@
         j = 1;
         $(document).ready(function(){
 
+
             $("#btn_add1").click(function(){
                 document.getElementById("newUpload1").innerHTML+='<div id="div_'+i+'"><input  name="file" type="file"  /><input type="button" value="删除"  onclick="del_1('+i+')"/></div>';
                 i = i + 1;
