@@ -103,6 +103,20 @@ public class MusicVideoExt {
         this.playCount = playCount;
     }
 
+    @Override
+    public String toString() {
+        return "MusicVideoExt{" +
+                "musicVideoId=" + musicVideoId +
+                ", musicVideoName='" + musicVideoName + '\'' +
+                ", musicVideoPhoto='" + musicVideoPhoto + '\'' +
+                ", singerName='" + singerName + '\'' +
+                ", singerId=" + singerId +
+                ", playCount=" + playCount +
+                ", level=" + level +
+                ", available=" + available +
+                '}';
+    }
+
     public int getLevel() {
         return level;
     }
