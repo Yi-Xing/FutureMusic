@@ -3,8 +3,10 @@ package controller.music.search;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import entity.Classification;
 import entity.SingerExt;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -54,4 +56,6 @@ public class SearchSinger {
      * 根据id搜索音乐人的详细信息
      * 名字、图片、粉丝量、歌曲、专辑、mv、分类的详细信息
      */
+
+
 }

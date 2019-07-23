@@ -48,7 +48,7 @@ public class SpecialFunctions {
 
     /**
      * 给指定邮箱发送验证码，发送验证码
-     * 用于注册，找回密保
+     * 用于注册，找回密码
      *
      * @param mailbox 给该邮箱号发送验证码
      * @param session 获取当前会话的对象

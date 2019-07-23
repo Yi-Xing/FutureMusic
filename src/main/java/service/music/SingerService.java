@@ -22,6 +22,8 @@ public class SingerService {
     FocusMapper focusMapper;
     @Resource(name = "PlayService")
     PlayService playService;
+    @Resource(name = "ClassificationMapper")
+    ClassificationMapper classificationMapper;
 
     /**
      * 通过名字查找歌手
@@ -43,7 +45,6 @@ public class SingerService {
         User user = new User();
         user.setAddress(region);
         List<User> singerList = userMapper.selectUser(user);
-        System.out.println(singerList);
         List<SingerExt> showSingerList = transformSingers(singerList);
         return showSingerList;
     }
@@ -115,11 +116,11 @@ public class SingerService {
         if(playCount==null||playCount.size()==0){
             return null;
         }else {
-            Map<Integer, Integer> sortPlayCount = playService.sortByValueDescending(playCount);
+            List<Map.Entry<Integer,Integer>> sortPlayCount = playService.sortByValueDescending(playCount);
             List<Music> hotMusic = new ArrayList<>();
-            for (Integer musicId : sortPlayCount.keySet()) {
+            for (Map.Entry<Integer,Integer> musicId : sortPlayCount) {
                 Music musicCondition = new Music();
-                musicCondition.setId(musicId);
+                musicCondition.setId(musicId.getKey());
                 List<Music> musicList = musicMapper.selectListMusic(musicCondition);
                 if (musicList.size() != 0) {
                     hotMusic.add(musicList.get(0));
@@ -129,5 +130,21 @@ public class SingerService {
         }
     }
 
+    /**
+     * 按照分类查找歌手
+     * @param classification 歌手的分类
+     * @return List<SingerExt> 符合条件的歌手
+     */
+    public List<SingerExt> searchSingerByClassification(Classification classification) {
+        List<SingerExt> singerExts = new ArrayList<>();
+        List<Classification> classificationList = classificationMapper.selectListClassification(classification);
+        if(classification==null||classificationList.size()==0){
+            return null;
+        }
+        for(Classification cl:classificationList){
 
+
+        }
+        return singerExts;
+    }
 }

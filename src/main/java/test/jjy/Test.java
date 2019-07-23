@@ -1,14 +1,10 @@
 package test.jjy;
 
 import entity.Music;
-import entity.User;
 import mapper.MusicMapper;
-import mapper.UserMapper;
-import service.music.MusicService;
 import service.music.SearchService;
 
 import javax.annotation.Resource;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 

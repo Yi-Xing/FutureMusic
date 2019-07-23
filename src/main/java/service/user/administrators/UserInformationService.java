@@ -115,7 +115,7 @@ public class UserInformationService {
     }
 
     /**
-     * 修改用户信息，ajax * 可修改： 等级  VIP时间  余额  举报次数
+     * 修改用户信息，ajax * 可修改： 等级    余额  举报次数
      */
     public State modifyUser(String id, String level, String balance, String report) throws DataBaseException {
         // 状态码 1成功 0失败

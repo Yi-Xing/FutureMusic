@@ -2,6 +2,7 @@ package service.user;
 
 import entity.State;
 import entity.User;
+import org.springframework.web.bind.annotation.RequestMapping;
 import util.exception.DataBaseException;
 import mapper.UserMapper;
 import org.slf4j.Logger;
@@ -44,11 +45,18 @@ public class SafetyCenterService {
         }
         String userMailbox = specialFunctions.getUserMailbox(session);
         if (userMailbox != null) {
-            return null;
+            return "";
         }
-        return null;
+        return "";
     }
 
+
+    /**
+     * 进入输入密码页面如果没有绑定邮箱，则跳转到绑定邮箱页面
+     */
+    public String passwordVerification(HttpSession session) {
+    return null;
+    }
     /**
      * 绑定邮箱，如果成功进行页面跳转否则还是本页
      */

@@ -113,4 +113,20 @@ public class MusicExt {
     public void setMusicPrice(BigDecimal musicPrice) {
         this.musicPrice = musicPrice;
     }
+
+    @Override
+    public String toString() {
+        return "MusicExt{" +
+                "musicId=" + musicId +
+                ", MusicName='" + MusicName + '\'' +
+                ", singerId=" + singerId +
+                ", singerName='" + singerName + '\'' +
+                ", albumId=" + albumId +
+                ", albumName='" + albumName + '\'' +
+                ", hasMusicVideo=" + hasMusicVideo +
+                ", musicVideoId=" + musicVideoId +
+                ", musicLevel=" + musicLevel +
+                ", musicPrice=" + musicPrice +
+                '}';
+    }
 }
