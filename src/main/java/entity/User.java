@@ -28,7 +28,7 @@ public class User implements Serializable {
      */
     private String password=null;
     /**
-     * 名字
+     * 名字 2-6个字符
      */
     private String name=null;
     /**

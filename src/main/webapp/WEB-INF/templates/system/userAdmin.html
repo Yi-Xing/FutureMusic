@@ -57,59 +57,6 @@
         <h3 style="display: inline; color: red" class="left20">提示信息</h3>
         <div style="clear: both;"></div>
 
-        <!--添加用户的账号信息-->
-        <div class="modal fade" id="tianjiayonghu" tabindex="-1"
-             role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h4 class="modal-title">账号信息</h4>
-                    </div>
-                    <div class="modal-body">
-                        <form name="adduserInformation"
-                              onsubmit="return adduserInformations()" class="form-horizontal"
-                              action="AdministratorUserInformation?jump=addUserInformation" method="post">
-                            <!--存放添加用户的信息-->
-                            <div class="form-group">
-                                <label class="col-sm-2 control-label">用户名</label>
-                                <div class="col-sm-9">
-                                    <input name="userName" class="form-control " placeholder="1-4个字符">
-                                </div>
-                                <br> <br> <br>
-                                <label class="col-sm-2 control-label">账号</label>
-                                <div class="col-sm-9">
-                                    <input name="account" class="form-control " placeholder="6-8个数字">
-                                </div>
-                                <br> <br> <br> <label
-                                    class="col-sm-2 control-label">密码</label>
-                                <div class="col-sm-9">
-                                    <input name="password" class="form-control " placeholder="6-8个数字或字母">
-                                </div>
-                                <br> <br> <br> <label
-                                    class="col-sm-2 control-label">账号等级</label>
-                                <div class="col-sm-9">
-                                    <input name="grade" class="form-control "
-                                           placeholder="只能是(1-4)的数字相对于普通用户，普通vip，高级vip,管理员">
-                                </div>
-                                <br> <br> <br> <label
-                                    class="col-sm-2 control-label">余额</label>
-                                <div class="col-sm-9">
-                                    <input name="balance" class="form-control "
-                                           placeholder="必须是数字且最多有两位小数">
-                                </div>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-default"
-                                        data-dismiss="modal">关闭
-                                </button>
-                                <input type="submit" name="submit" class="btn btn-primary"
-                                       value="保存"/>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
     </div>
 
 
@@ -212,7 +159,7 @@
                                 class="col-sm-2 control-label">账号等级</label>
                         <div class="col-sm-9">
                             <input id="vip" class="form-control "
-                                   placeholder="只能是(1-4)的数字相对于普通用户，普通vip，高级vip,管理员">
+                                   placeholder="只能是(0-3)的数字相对于普通用户，普通vip，高级vip,管理员">
                         </div>
                         <br> <br> <br> <label
                             class="col-sm-2 control-label">余额</label>
@@ -223,7 +170,7 @@
                         <br> <br> <br>
                         <label class="col-sm-2 control-label">举报次数</label>
                         <div class="col-sm-9">
-                            <input id="report" class="form-control " placeholder="6-8个数字">
+                            <input id="report" class="form-control " placeholder="正整数">
                         </div>
                         <br> <br> <br>
                     </div>
@@ -258,13 +205,13 @@
                         <br> <br> <br> <label
                             class="col-sm-2 control-label">vip时间</label>
                         <div class="col-sm-9">
-                            <input id="vipTime" class="form-control " placeholder="请输入年龄(1-100)">
+                            <input id="vipTime" class="form-control " placeholder="yyyy-MM-dd HH:mm:ss">
                         </div>
                         <br> <br> <br>
-                        <button type="button" class="btn btn-primary left35">用户的订单</button>
-                        <button type="button" class="btn btn-primary left35">用户的歌单/专辑</button>
-                        <button type="button" class="btn btn-primary left35">用户的音乐</button>
-                        <button type="button" class="btn btn-primary left35">参与评论</button>
+                        <button type="button" class="btn btn-primary left35"><a  id="order">用户的订单</a></button>
+                        <button type="button" class="btn btn-primary left35"><a id="album">用户的歌单/专辑</a></button>
+                        <button type="button" class="btn btn-primary left35"><a id="music">用户的音乐</a></button>
+                        <button type="button" class="btn btn-primary left35"><a id="comment">参与评论</a></button>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">关闭

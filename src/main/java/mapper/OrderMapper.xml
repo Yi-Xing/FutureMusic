@@ -7,10 +7,10 @@
         select * from tb_order
         <where>
             <if test='id!=0'>
-                order_id=#{id}
+                and  order_id=#{id}
             </if>
             <if test='userId!=0'>
-                order_user_id=#{userId}
+                and order_user_id=#{userId}
             </if>
             <if test='type!=0'>
                 and order_type=#{type}

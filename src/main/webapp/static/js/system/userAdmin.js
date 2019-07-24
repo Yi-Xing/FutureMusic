@@ -17,6 +17,10 @@ window.onload = function () {
                 $('#vip').val(data.level);
                 $('#balance').val(data.balance);
                 $('#report').val(data.report);
+                $("#order").attr("href","/administrators/showOrder?condition=4&condition=1&condition=&condition=");
+                $("#album").attr("href","/");
+                $("#music").attr("href","/");
+                $("#comment").attr("href","/");
             }
         });
     });
