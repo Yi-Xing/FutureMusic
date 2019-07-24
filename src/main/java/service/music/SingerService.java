@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -38,7 +39,7 @@ public class SingerService {
     }
 
     /**
-     * 通过地区查找歌手  bug查不到歌手名字
+     * 通过地区查找歌手
      * 也用这个分类查找歌手
      */
     public List<SingerExt> exhibitionSingersByRegion(String region) {
@@ -87,7 +88,7 @@ public class SingerService {
                 }
             }
             showSinger.setMusic(limitHotMusic);
-            if (hotMusic.size() != 0) {
+            if (hotMusic==null||hotMusic.size() != 0) {
                 showSinger.setMusicName(hotMusic.get(0).getName());
             }else{
                 showSinger.setMusicName(null);
@@ -139,12 +140,22 @@ public class SingerService {
         List<SingerExt> singerExts = new ArrayList<>();
         List<Classification> classificationList = classificationMapper.selectListClassification(classification);
         if(classification==null||classificationList.size()==0){
-            return null;
-        }
-        for(Classification cl:classificationList){
-
-
+            User user = new User();
+            user.setLevel(2);
+            return transformSingers(userMapper.selectUser(user));
         }
         return singerExts;
+    }
+
+    public Map<String,Object> searchSingerInformation(int singerId) {
+        Map<String,Object> singerInformation = new HashMap<>();
+
+        return singerInformation;
+    }
+
+    public List<SingerExt> searchAllSinger() {
+        User user = new User();
+        user.setLevel(2);
+        return transformSingers(userMapper.selectUser(user));
     }
 }

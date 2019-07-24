@@ -18,7 +18,7 @@ import java.util.List;
  * @author 5.16 蒋靓峣创建
  * */
 @Controller
-public class Exhibition {
+public class MusicIndex {
     @Resource(name = "MusicVideoService")
     MusicVideoService musicVideoService;
     @Resource(name ="SingerService")
@@ -35,6 +35,7 @@ public class Exhibition {
     @RequestMapping("/indexExhibition")
     public String indexExhibition(HttpServletRequest request, Model model) {
 
+        //显示的MV显示15首
         String musicType = request.getParameter("musicType");
         String region1 = request.getParameter("musicRegion1");
         String region2 = request.getParameter("musicRegion2");
@@ -49,8 +50,6 @@ public class Exhibition {
         model.addAttribute(singerAddress1, singerService.exhibitionSingersByRegion(singerAddress1));
         model.addAttribute(singerAddress2, singerService.exhibitionSingersByRegion(singerAddress2));
         model.addAttribute(singerAddress3, singerService.exhibitionSingersByRegion(singerAddress3));
-        //显示的MV显示15首
-        model.addAttribute("musicVideo", musicVideoService.exhibitionMusicVideo());
         //音乐排行榜的歌曲
         model.addAttribute("newSong", rankingListByNewSong());
         model.addAttribute(musicType, rankingListByMusicType(musicType));
@@ -59,7 +58,14 @@ public class Exhibition {
         model.addAttribute(region3, rankingListByRegion(region3));
         return "index";
     }
-
+    /**
+     * 显示MV
+     */
+    @RequestMapping("/musicVideoIndex")
+    @ResponseBody
+    public List<MusicVideoExt> musicVideoIndex(){
+        return musicVideoService.exhibitionMusicVideo();
+    }
     /**
      * 功能：首页的流派排行榜 供总方法调用
      * 只显示3条数据
@@ -79,7 +85,6 @@ public class Exhibition {
     @RequestMapping("/newSong")
     @ResponseBody
     public List<MusicExt> rankingListByNewSong() {
-        System.out.println("我执行力");
         List<MusicExt> musicList = musicService.selectListMusicByNewSong();
         return getThreeMusic(musicList);
     }

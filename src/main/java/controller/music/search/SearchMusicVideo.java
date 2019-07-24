@@ -4,7 +4,6 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import entity.*;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import service.music.MusicVideoService;
@@ -12,7 +11,6 @@ import service.music.MusicVideoService;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
-import java.util.Map;
 
 /**
  *  根据名字搜索
@@ -22,19 +20,6 @@ import java.util.Map;
 public class SearchMusicVideo {
     @Resource(name = "MusicVideoService")
     MusicVideoService musicVideoService;
-    /**
-     * 显示MV的详细信息
-     */
-    @RequestMapping(value = "/showMusicVideoDetail")
-    public  String showMusicVideoDetail(HttpServletRequest request, Model model){
-        String musicVideoId = request.getParameter("musicVideoId");
-        MusicVideo musicVideo = new MusicVideo();
-        musicVideo.setId(Integer.parseInt(musicVideoId));
-        Map<String,Object> musicVideoInformation = musicVideoService.showMusicVideo(musicVideo);
-        model.addAttribute("musicVideoInfo",musicVideoInformation);
-        return "musicVideoInfo";
-    }
-
     /**
      *分类查找MV
      * @param request 页面请求
@@ -71,6 +56,9 @@ public class SearchMusicVideo {
         MusicVideo musicVideo = new MusicVideo();
         musicVideo.setName(keyWord);
         List<MusicVideoExt> musicVideoExts = musicVideoService.selectListMusicVideoByVideoName(musicVideo);
+       if(musicVideoExts==null||musicVideoExts.size()==0){
+           return null;
+       }
         return new PageInfo(musicVideoExts);
     }
 }

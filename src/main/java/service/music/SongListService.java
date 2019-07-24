@@ -74,10 +74,8 @@ public class SongListService {
      *根据分类搜索歌单
      * type
      */
-    public List<String[]> showSongListByClassification(String type){
+    public List<String[]> showSongListByClassification(Classification classification){
         List<String[]> showSongLists = new ArrayList<>();
-        Classification classification = new Classification();
-        classification.setType(type);
         List<Classification> classificationList = classificationMapper.selectListClassification(classification);
         for(Classification clf:classificationList){
             SongList songList = new SongList();
