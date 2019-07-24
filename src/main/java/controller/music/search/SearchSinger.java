@@ -32,7 +32,13 @@ public class SearchSinger {
     /**
      * 搜索歌手的详细信息
      */
-//    public Map<String,Object> searchSin
+    public Map<String,Object> searchSingerInformation(int singerId){
+        User user = new User();
+        user.setId(singerId);
+        user.setLevel(2);
+
+        return null;
+    }
     /**
      * 点击搜索歌手，ajax
       *@param request 接收请求
@@ -63,8 +69,6 @@ public class SearchSinger {
     @RequestMapping(value = "/allSinger")
     @ResponseBody
     public List<SingerExt> allSinger(HttpServletRequest request){
-        User user = new User();
-        user.setLevel(2);
         return singerService.searchAllSinger();
     }
 }

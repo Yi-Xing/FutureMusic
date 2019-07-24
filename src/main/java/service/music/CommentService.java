@@ -7,6 +7,7 @@ import entity.User;
 import mapper.CommentMapper;
 import mapper.UserMapper;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.annotation.Resource;
 import java.util.ArrayList;
@@ -22,6 +23,17 @@ public class CommentService {
     CommentMapper commentMapper;
     @Resource(name = "UserMapper")
     UserMapper userMapper;
+    /**
+     * 查找评论音乐、专辑、MV通用
+     * type= 0
+     */
+    @RequestMapping("/searchCommentByMusicId")
+    public List<CommentExt> searchCommentByMusicId(int musicId,int type){
+        Comment comment = new Comment();
+        comment.setMusicId(musicId);
+        comment.setType(type);
+        return getCommentExt(comment);
+    }
     /**
      * 查找评论的内容
      */
@@ -98,7 +110,7 @@ public class CommentService {
         return commentExts2;
     }
     /**
-     * 传入评论，将评论按照日期排序
+     * 传入评论，将评论按照日期排序 暂未实现
      */
     public List<CommentExt> sortComment(List<CommentExt> commentExts){
         List<CommentExt> sortCommentExts = new ArrayList<>();

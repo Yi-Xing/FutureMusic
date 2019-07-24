@@ -5,6 +5,7 @@ import mapper.*;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
+import service.user.administrators.MusicVideoInformationService;
 
 import javax.annotation.Resource;
 import java.util.ArrayList;
@@ -29,31 +30,8 @@ public class MusicVideoService {
     PlayMapper playMapper;
     @Resource(name = "PlayService")
     PlayService playService;
-
-    /**
-     *MV的详细信息
-     * @param musicVideo 需要查找的MV的条件
-     * @return Map<String,Object> 对应的歌曲的详细信息
-     */
-    public Map<String,Object> showMusicVideo(MusicVideo musicVideo) {
-        Map<String, Object> musicVideoMap = new HashMap<>(10);
-        List<MusicVideo> musicVideos = musicVideoMapper.selectListMusicVideo(musicVideo);
-        if(musicVideos==null||musicVideos.size()==0) {
-            MusicVideo musicVideo1 = musicVideos.get(0);
-            musicVideoMap.put("musicVideo",musicVideo1);
-            Play play = new Play();
-            play.setType(2);
-            play.setMusicId(musicVideo1.getMusicId());
-            int playCount = playMapper.selectPlays(play);
-            musicVideoMap.put("playCount",playCount);
-            int singerId = musicVideos.get(0).getSingerId();
-            User user = new User();
-            user.setId(singerId);
-            musicVideoMap.put("singer", userMapper.selectUser(user).get(0));
-            return musicVideoMap;
-        }
-        return null;
-    }
+    @Resource(name = "CommentService")
+    CommentService commentService;
 
     /**
      * 展示主页的MV
@@ -61,7 +39,6 @@ public class MusicVideoService {
      * MV的id、播放量、MV的图片、name、歌手的name、歌手id
      * MV的id
      */
-
     public List<MusicVideoExt> exhibitionMusicVideo() {
         //查找出所有的MV
         List<MusicVideo> musicVideoList = musicVideoMapper.selectListMusicVideo(new MusicVideo());
@@ -70,6 +47,13 @@ public class MusicVideoService {
             return null;
         }
         List<MusicVideoExt> musicVideoExts = transformMusicVideoExts(musicVideoList);
+        List<MusicVideoExt> limitMusicVideos = new ArrayList<>();
+        if(musicVideoExts.size()>15) {
+            for (int i = 0; i < 15; i++) {
+                limitMusicVideos.add(musicVideoExts.get(i));
+            }
+            return limitMusicVideos;
+        }
         return musicVideoExts;
     }
     /**
@@ -77,7 +61,6 @@ public class MusicVideoService {
      */
     public List<MusicVideoExt> selectListMusicVideoByVideoName(MusicVideo musicVideo) {
         List<MusicVideo> musicVideoList = musicVideoMapper.selectListMusicVideo(musicVideo);
-        System.out.println(musicVideoList);
         return transformMusicVideoExts(musicVideoList);
     }
 
@@ -103,13 +86,11 @@ public class MusicVideoService {
         Map<Integer, Integer> musicCounts = new HashMap<>(16);
         int i = 0;
         for (MusicVideo musicVideo : musicVideos) {
-            System.out.println("=================="+i++);
             Play play = new Play();
             play.setMusicId(musicVideo.getMusicId());
             play.setType(2);
             int playCount = playMapper.selectPlays(play);
             musicCounts.put(musicVideo.getMusicId(),playCount);
-            System.out.println(musicCounts+"777777777777777");
         }
         return musicCounts;
     }
@@ -144,7 +125,7 @@ public class MusicVideoService {
     }
     /**
      * 根据浏览量找播放量最高的mv
-     * 这个事音乐对应的MV
+     * 这个是音乐对应的MV
      */
     public  MusicVideoExt theMusicVideo(int musicId){
        List<MusicVideoExt> musicVideoList = playMostVideo(musicId);
@@ -169,31 +150,58 @@ public class MusicVideoService {
         musicVideo.setMusicId(musicId);
         List<MusicVideo> musicVideoList = musicVideoMapper.selectListMusicVideo(musicVideo);
         List<MusicVideoExt> musicVideoExts = transformMusicVideoExts(musicVideoList);
+        return descendingMusicVideo(musicVideoExts);
+    }
+    /**
+     * 传入一个mv集合，转成需要显示的信息
+     */
+    public List<MusicVideoExt> transformMusicVideoExts(List<MusicVideo> musicVideoList){
+        List<MusicVideoExt> musicVideoExts = new ArrayList<>();
+        for(MusicVideo musicVideo:musicVideoList){
+            musicVideoExts.add(transformMusicVideoExt(musicVideo.getId()));
+        }
         return musicVideoExts;
     }
     /**
-     * 传入一个mv集合，转成需要显示的信息,按浏览量排好序
+     *按浏览量从多到少排序MV
      */
-    public List<MusicVideoExt> transformMusicVideoExts(List<MusicVideo> musicVideoList){
-        if (musicVideoList == null || musicVideoList.size() == 0) {
-            return null;
+    public List<MusicVideoExt> descendingMusicVideo(List<MusicVideoExt> musicVideoExts){
+        List<MusicVideoExt> descendingMusicVideo = new ArrayList<>();
+        // 用冒泡排序将List集合中的元素按播放量从大到小排序
+        //临时对象
+        MusicVideoExt musicVideoExt;
+         //遍历排序
+        for (int i = 0; i < musicVideoExts.size() - 1; i++) {
+            // 从后向前依次的比较相邻两个数的大小，遍历一次后，把数组中第i小的数放在第i个位置上
+            for (int j =  musicVideoExts.size() - 1; j > i; j--) {
+                // 比较相邻的元素，如果前面的数大于后面的数，则交换
+                if (musicVideoExts.get(j - 1).getPlayCount() < musicVideoExts.get(j).getPlayCount()) {
+                    musicVideoExt = musicVideoExts.get(j - 1);
+                    musicVideoExts.set(j - 1,musicVideoExts.get(j));
+                    musicVideoExts.set(j,musicVideoExt);
+                }
+            }
         }
-        System.out.println(musicVideoList+"pppppppppppppppppppppppppppppppppppppp");
-        Map<Integer,Integer> musicVideoAndPlayCount = musicVideoAndPlayCount(musicVideoList);
-        List<MusicVideoExt> musicVideoExts = new ArrayList<>();
-        //排好序
-        List<Map.Entry<Integer,Integer>> rankingMusicVideo = playService.sortByValueDescending(musicVideoAndPlayCount);
-        //将排好序的mvId和播放次数整理得到需要展示的信息
-        if(musicVideoAndPlayCount==null||musicVideoAndPlayCount.size()==0){
-            return null;
-        }
-        for (Map.Entry<Integer,Integer> musicId : rankingMusicVideo) {
-            MusicVideoExt musicVideoExt = transformMusicVideoExt(musicId.getKey());
-            musicVideoExt.setPlayCount(musicId.getValue());
-            musicVideoExts.add(musicVideoExt);
-        }
-        System.out.println(musicVideoAndPlayCount);
-        System.out.println(musicVideoExts);
-        return musicVideoExts;
+        return descendingMusicVideo;
+    }
+    /**
+     * 显示MV的详细信息
+     */
+    public List<Object> getMusicVideoInformation(int musicVideoId){
+        List<Object> musicVideoInformation = new ArrayList<>();
+        MusicVideo tempMusicVideo = new MusicVideo();
+        tempMusicVideo.setId(musicVideoId);
+        List<MusicVideo> musicVideoList = musicVideoMapper.selectListMusicVideo(tempMusicVideo);
+       if(musicVideoList==null||musicVideoList.size()==0){
+           return null;
+       }
+       MusicVideo musicVideo = musicVideoList.get(0);
+        MusicVideoExt musicVideoExt = transformMusicVideoExt(musicVideo.getId());
+        musicVideoInformation.add(musicVideoExt);
+        musicVideoInformation.add(musicVideo.getPicture());
+        List<CommentExt> commentExts = commentService.searchCommentByMusicId(musicVideoId,2);
+        //评论
+        musicVideoInformation.add(commentExts);
+        return musicVideoInformation;
     }
 }

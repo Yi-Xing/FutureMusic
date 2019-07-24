@@ -62,28 +62,6 @@ public class SearchMusic {
         return new PageInfo(musicList);
     }
     /**
-     * 根据分类中的语言查找歌曲
-     */
-    @RequestMapping("/searchMusicByLanguage")
-    @ResponseBody
-    public PageInfo searchMusicByLanguage(HttpServletRequest request) {
-        String gender = request.getParameter("gender");
-        String type = request.getParameter("type");
-        String region = request.getParameter("region");
-        String language = request.getParameter("language");
-        Classification classification = new Classification();
-        classification.setLanguages(language);
-        classification.setGender(gender);
-        classification.setRegion(region);
-        classification.setType(type);
-        int pn = Integer.parseInt(request.getParameter("pn"));
-        PageHelper.startPage(pn, 10);
-        String musicLanguage = request.getParameter("musicLanguage");
-        List<MusicExt> musicList= musicService.selectListMusicByLanguage(musicLanguage);
-        return new PageInfo(musicList);
-    }
-
-    /**
      * 根据名字模糊搜索歌曲
      */
     @RequestMapping("/searchMusicByName")

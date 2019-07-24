@@ -6,9 +6,7 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 /**
  * @author 蒋靓峣
@@ -31,6 +29,8 @@ public class SongListService {
     MusicService musicService;
     @Resource(name = "MusicMapper")
     MusicMapper musicMapper;
+    @Resource(name = "CommentService")
+    CommentService commentService;
     /**
      * 显示歌单的详细信息
      */
@@ -51,7 +51,7 @@ public class SongListService {
         classification.setId(songList2.getClassificationId());
         Classification resultClassification = classificationMapper.selectListClassification(classification).get(0);
         songListExt.setClassification(resultClassification);
-        //查找歌单中的所有歌曲
+        //查找歌单中的歌曲列表
         MusicSongList musicSongList = new MusicSongList();
         musicSongList.setBelongId(songList2.getId());
         List<MusicSongList> musicSongLists = musicSongListMapper.selectListMusicSongList(musicSongList);
@@ -68,6 +68,10 @@ public class SongListService {
         int collectCount = songListCollectMapper.selectListSongListCollect(songListCollect).size();
         songListExt.setCollectCount(collectCount);
         //显示专辑的评论
+        Comment comment = new Comment();
+        comment.setId(songListId);
+        comment.setType(3);
+        songListExt.setCommentExts(commentService.getCommentExt(comment));
         return songListExt;
     }
     /**
@@ -81,9 +85,10 @@ public class SongListService {
             SongList songList = new SongList();
             songList.setClassificationId(clf.getId());
             List<SongList> songLists = songListMapper.selectListSongList(songList);
-            if(songLists!=null&&songLists.size()!=0){
-                showSongLists.addAll(transformShowSongLists(songLists));
+            if(songLists==null&&songLists.size()==0){
+                return null;
             }
+            showSongLists.addAll(transformShowSongLists(songLists));
         }
         return showSongLists;
     }
@@ -95,7 +100,6 @@ public class SongListService {
         songList.setName(keyWord);
         List<SongList> songLists = songListMapper.selectListSongList(songList);
         List<String[]> showSongList = transformShowSongLists(songLists);
-        System.out.println("============");
         return showSongList;
     }
     /**
@@ -115,23 +119,27 @@ public class SongListService {
      */
     public String[] transformShowSongList(SongList songList){
         String[] showSongList = new String[5];
+        //专辑id
         showSongList[0] = songList.getId()+"";
+        //专辑名字
         showSongList[1] = songList.getName();
+        //专辑图片
         showSongList[2] = songList.getPicture();
         //查找专辑音乐数
         MusicSongList musicSongList = new MusicSongList();
         musicSongList.setBelongId(songList.getId());
         int musicCount = musicSongListMapper.selectListMusicSongList(musicSongList).size();
         showSongList[3] = musicCount+"";
-        //查找专辑的播放次数
+        //查找专辑的播放量
         Play play = new Play();
         play.setAlbumId(songList.getId());
+        play.setType(3);
         int playCount = playMapper.selectPlays(play);
         showSongList[4] = playCount + "";
         return showSongList;
     }
      /**
-     * 将MusicSongList转化成显示的歌曲
+     * 查找专辑或者歌单中的歌曲
      */
     public  List<MusicExt> transformMusics(List<MusicSongList> musicSongLists){
        List<Music> musicList = new ArrayList<>();

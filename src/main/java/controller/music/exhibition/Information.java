@@ -24,14 +24,13 @@ import java.util.Map;
 @Controller
 public class Information {
     @Resource(name = "ActivityService")
-    private ActivityService activityService;
+    ActivityService activityService;
     @Resource(name = "MusicVideoService")
     MusicVideoService musicVideoService;
     @Resource(name="SingerService")
     SingerService singerService;
     /**
      * 显示活动的详细信息
-     * @return 相关信息
      */
     @RequestMapping(value = "/showActivityInformation")
     public String showActivityInformation(HttpServletRequest request,Model model){
@@ -48,9 +47,7 @@ public class Information {
     @RequestMapping(value = "/showMusicVideoDetail")
     public  String showMusicVideoDetail(HttpServletRequest request, Model model){
         String musicVideoId = request.getParameter("musicVideoId");
-        MusicVideo musicVideo = new MusicVideo();
-        musicVideo.setId(Integer.parseInt(musicVideoId));
-        Map<String,Object> musicVideoInformation = musicVideoService.showMusicVideo(musicVideo);
+        List<Object> musicVideoInformation = musicVideoService.getMusicVideoInformation(Integer.parseInt(musicVideoId));
         model.addAttribute("musicVideoInfo",musicVideoInformation);
         return "musicVideoInfo";
     }
@@ -69,6 +66,7 @@ public class Information {
     /**
      * 显示歌单的详细信息
      */
+    
     /**
      * 显示音乐得详细信息
      */
