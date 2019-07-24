@@ -107,6 +107,7 @@ public class LoginService {
 
     /**
      * 用于验证密码是否正确,用于登录和修改密码
+     * 也用修改密码
      *
      * @param mailbox  需要验证的邮箱
      * @param password 需要验证的密码
