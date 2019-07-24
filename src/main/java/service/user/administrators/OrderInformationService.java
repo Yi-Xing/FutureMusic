@@ -34,6 +34,7 @@ public class OrderInformationService {
      *                  1表示是音乐  2表示MV 3表示用户
      */
     public String showOrder(String[] condition, Integer pageNum, Model model) {
+        System.out.println(condition);
         Order order = new Order();
         if (condition != null) {
             if ((condition[0] != null) && !"".equals(condition[0])) {

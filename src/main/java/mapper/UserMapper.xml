@@ -6,20 +6,20 @@
     <select id="selectUser" parameterType="User" resultMap="user">
         select * from tb_user
         <where>
-            <if test='id!=null and id!=""'>
-                and user_id=#{id}
-            </if>
             <if test='name!=null and name!=""'>
                 and user_name like "%"#{name}"%"
             </if>
             <if test='mailbox!=null and mailbox!=""'>
                 and user_mailbox like "%"#{mailbox}"%"
             </if>
-            <if test='level!=0 and level!=-1 '>
-                and user_level=#{level} and user_level>#{id}
+            <if test='level!=0 and level!=-1  and level!=-2'>
+                and user_level=#{level} and #{id}>user_level
             </if>
-            <if test='level==-1'>
+            <if test='level==-1 and level!=-2'>
                 and user_level=0
+            </if>
+             <if test='level==-2'>
+                 and #{id}>user_level
             </if>
             <if test='report!=0'>
                 and user_report>=#{report}

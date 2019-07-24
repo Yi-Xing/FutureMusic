@@ -35,6 +35,7 @@ public class MusicIndex {
     @RequestMapping("/indexExhibition")
     public String indexExhibition(HttpServletRequest request, Model model) {
 
+        //显示的MV显示15首
         String musicType = request.getParameter("musicType");
         String region1 = request.getParameter("musicRegion1");
         String region2 = request.getParameter("musicRegion2");

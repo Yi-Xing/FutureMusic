@@ -5,4 +5,18 @@ $(document).ready(function () {
         $("#dropdownMenu1").text($(this).text()).append(" <span class=\"caret\"></span>");
         $("#type").val($(this).data("value"));
     });
+    // 用户退出登录
+    $(".signOutLogin").on("click", function () {
+        $.ajax({
+            type: "get",
+            url: "/signOutLogin",
+            dataType: "json",
+            success: function (data, status) {
+                // 返回state
+                if(data.state===1){
+                    window.location.href ="http://localhost:8080/index";
+                }
+            }
+        });
+    });
 });

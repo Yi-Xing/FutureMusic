@@ -34,6 +34,7 @@ public class CommentInformationService {
     public String showComment(String[] condition, Integer pageNum, Model model) {
         Comment comment = new Comment();
         if (condition != null) {
+            // 0类型 1值 2id类型（4音乐 5MV 6专辑 7用户 8id 9回复）
             System.out.println(Arrays.toString(condition));
             if((condition[0] != null) && !"".equals(condition[0])) {
                     comment.setType(Integer.valueOf(condition[0]));
