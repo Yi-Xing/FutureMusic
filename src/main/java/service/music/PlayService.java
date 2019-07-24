@@ -63,8 +63,6 @@ public class PlayService {
         if (map == null || map.size() == 0) {
             return null;
         }
-        System.out.println(map);
-        System.out.println(map.size()+"555555555555");
         // 逆序
         List<Map.Entry<Integer, Integer>> list = new ArrayList<>(map.entrySet());
         Collections.sort(list, new Comparator<Map.Entry<Integer, Integer>>() {

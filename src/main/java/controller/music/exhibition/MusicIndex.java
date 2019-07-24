@@ -49,7 +49,6 @@ public class MusicIndex {
         model.addAttribute(singerAddress1, singerService.exhibitionSingersByRegion(singerAddress1));
         model.addAttribute(singerAddress2, singerService.exhibitionSingersByRegion(singerAddress2));
         model.addAttribute(singerAddress3, singerService.exhibitionSingersByRegion(singerAddress3));
-        //显示的MV显示15首
         //音乐排行榜的歌曲
         model.addAttribute("newSong", rankingListByNewSong());
         model.addAttribute(musicType, rankingListByMusicType(musicType));
