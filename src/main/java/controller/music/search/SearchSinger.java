@@ -18,6 +18,7 @@ import service.music.SingerService;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author 蒋靓峣 5.30 修改
@@ -27,9 +28,12 @@ public class SearchSinger {
 
     @Resource(name = "SingerService")
     SingerService singerService;
-
     /**
-     * * 点击搜索歌手，ajax
+     * 搜索歌手的详细信息
+     */
+//    public Map<String,Object> searchSin
+    /**
+     * 点击搜索歌手，ajax
       *@param request 接收请求
      * @return PageInfo 返回匹配到的专辑、歌曲、歌手、MV信息
      */
@@ -52,10 +56,5 @@ public class SearchSinger {
         String  singerRegion = request.getParameter("singerRegion");
         return singerService.exhibitionSingersByRegion(singerRegion);
     }
-    /**
-     * 根据id搜索音乐人的详细信息
-     * 名字、图片、粉丝量、歌曲、专辑、mv、分类的详细信息
-     */
-
 
 }

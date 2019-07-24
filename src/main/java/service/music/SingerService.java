@@ -38,7 +38,7 @@ public class SingerService {
     }
 
     /**
-     * 通过地区查找歌手  bug查不到歌手名字
+     * 通过地区查找歌手
      * 也用这个分类查找歌手
      */
     public List<SingerExt> exhibitionSingersByRegion(String region) {
@@ -87,7 +87,7 @@ public class SingerService {
                 }
             }
             showSinger.setMusic(limitHotMusic);
-            if (hotMusic.size() != 0) {
+            if (hotMusic==null||hotMusic.size() != 0) {
                 showSinger.setMusicName(hotMusic.get(0).getName());
             }else{
                 showSinger.setMusicName(null);

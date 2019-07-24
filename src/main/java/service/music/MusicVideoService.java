@@ -82,6 +82,7 @@ public class MusicVideoService {
      */
     public List<MusicVideoExt> selectListMusicVideoByVideoName(MusicVideo musicVideo) {
         List<MusicVideo> musicVideoList = musicVideoMapper.selectListMusicVideo(musicVideo);
+        System.out.println(musicVideoList);
         return transformMusicVideoExts(musicVideoList);
     }
 
@@ -108,7 +109,7 @@ public class MusicVideoService {
         for (MusicVideo musicVideo : musicVideos) {
             Play play = new Play();
             play.setMusicId(musicVideo.getMusicId());
-            musicCounts.put(musicVideo.getMusicId(), playMapper.selectListPlay(play).size());
+            musicCounts.put(musicVideo.getMusicId(), playMapper.selectPlays(play));
         }
         return musicCounts;
     }
@@ -182,6 +183,9 @@ public class MusicVideoService {
         //排好序
         List<Map.Entry<Integer,Integer>> rankingMusicVideo = playService.sortByValueDescending(musicVideoAndPlayCount);
         //将排好序的mvId和播放次数整理得到需要展示的信息
+        if(musicVideoAndPlayCount==null||musicVideoAndPlayCount.size()==0){
+            return null;
+        }
         for (Map.Entry<Integer,Integer> musicId : rankingMusicVideo) {
             MusicVideoExt musicVideoExt = transformMusicVideoExt(musicId.getKey());
             musicVideoExt.setPlayCount(musicId.getValue());
