@@ -63,18 +63,27 @@ public class MusicVideoService {
      */
 
     public List<MusicVideoExt> exhibitionMusicVideo() {
-        //查找出所MV的播放记录
-        Play play = new Play();
-        play.setType(2);
-        List<Play> playList = playMapper.selectListPlay(play);
-        //查找播放最多的MV 对应的MVid和播放量
-        Map<Integer, Integer> allMusicVideo = playService.getMostPlayMusic(playList);
-        List<MusicVideo> musicVideoList =  new ArrayList<>();
-        MusicVideo musicVideo = new MusicVideo();
-        for(Integer musicVideoId : allMusicVideo.keySet()){
-            musicVideo.setId(musicVideoId);
-            musicVideoList.add(musicVideoMapper.selectListMusicVideo(musicVideo).get(0));
+        //查找出所有的MV
+        List<MusicVideo> musicVideoList = musicVideoMapper.selectListMusicVideo(new MusicVideo());
+        //获取对应的信息
+        if(musicVideoList==null||musicVideoList.size()==0){
+            return null;
         }
+        List<MusicVideoExt> musicVideoExts = transformMusicVideoExts(musicVideoList);
+//        //查找播放最多的MV 对应的MVid和播放量
+//        Map<Integer, Integer> allMusicVideo = playService.getMostPlayMusic(playList);
+//        List<MusicVideo> musicVideoList =  new ArrayList<>();
+//        MusicVideo musicVideo = new MusicVideo();
+//        for(Integer musicVideoId : allMusicVideo.keySet()){
+//            musicVideo.setId(musicVideoId);
+//            musicVideoList.add(musicVideoMapper.selectListMusicVideo(musicVideo).get(0));
+//        }
+//        System.out.println(musicVideoList.size()+")))))))))))))");
+//        if(musicVideoList.size()<15){
+//            List<MusicVideo> musicVideos = musicVideoMapper.selectListMusicVideo(new MusicVideo());
+//            musicVideoList.addAll(musicVideos);
+//        }
+//        System.out.println(musicVideoList.size()+"\\\\\\\\\\\\\\\\");
         return transformMusicVideoExts(musicVideoList);
     }
     /**
@@ -191,6 +200,8 @@ public class MusicVideoService {
             musicVideoExt.setPlayCount(musicId.getValue());
             musicVideoExts.add(musicVideoExt);
         }
+        System.out.println(musicVideoAndPlayCount);
+        System.out.println(musicVideoExts);
         return musicVideoExts;
     }
 }

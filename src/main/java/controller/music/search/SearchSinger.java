@@ -5,6 +5,7 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import entity.Classification;
 import entity.SingerExt;
+import entity.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -56,5 +57,14 @@ public class SearchSinger {
         String  singerRegion = request.getParameter("singerRegion");
         return singerService.exhibitionSingersByRegion(singerRegion);
     }
-
+    /**
+     * 搜索全部
+     */
+    @RequestMapping(value = "/allSinger")
+    @ResponseBody
+    public List<SingerExt> allSinger(HttpServletRequest request){
+        User user = new User();
+        user.setLevel(2);
+        return singerService.searchAllSinger();
+    }
 }

@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -139,12 +140,22 @@ public class SingerService {
         List<SingerExt> singerExts = new ArrayList<>();
         List<Classification> classificationList = classificationMapper.selectListClassification(classification);
         if(classification==null||classificationList.size()==0){
-            return null;
-        }
-        for(Classification cl:classificationList){
-
-
+            User user = new User();
+            user.setLevel(2);
+            return transformSingers(userMapper.selectUser(user));
         }
         return singerExts;
+    }
+
+    public Map<String,Object> searchSingerInformation(int singerId) {
+        Map<String,Object> singerInformation = new HashMap<>();
+
+        return singerInformation;
+    }
+
+    public List<SingerExt> searchAllSinger() {
+        User user = new User();
+        user.setLevel(2);
+        return transformSingers(userMapper.selectUser(user));
     }
 }

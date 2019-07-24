@@ -11,9 +11,11 @@ import org.springframework.web.servlet.ModelAndView;
 import service.music.ActivityService;
 import service.music.MusicService;
 import service.music.MusicVideoService;
+import service.music.SingerService;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -25,6 +27,8 @@ public class Information {
     private ActivityService activityService;
     @Resource(name = "MusicVideoService")
     MusicVideoService musicVideoService;
+    @Resource(name="SingerService")
+    SingerService singerService;
     /**
      * 显示活动的详细信息
      * @return 相关信息
@@ -54,7 +58,10 @@ public class Information {
     /**
      * 显示歌手的详细信息
      */
-
+    public Map<String,Object> singerInformation(HttpServletRequest request){
+        int singerId = Integer.parseInt(request.getParameter("singerId"));
+        return singerService.searchSingerInformation(singerId);
+    }
     /**
      * 显示专辑的详细信息
      */

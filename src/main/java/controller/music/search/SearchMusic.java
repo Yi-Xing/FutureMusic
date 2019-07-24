@@ -2,6 +2,7 @@ package controller.music.search;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import entity.Classification;
 import entity.Music;
 import entity.MusicExt;
 import org.springframework.stereotype.Controller;
@@ -66,6 +67,15 @@ public class SearchMusic {
     @RequestMapping("/searchMusicByLanguage")
     @ResponseBody
     public PageInfo searchMusicByLanguage(HttpServletRequest request) {
+        String gender = request.getParameter("gender");
+        String type = request.getParameter("type");
+        String region = request.getParameter("region");
+        String language = request.getParameter("language");
+        Classification classification = new Classification();
+        classification.setLanguages(language);
+        classification.setGender(gender);
+        classification.setRegion(region);
+        classification.setType(type);
         int pn = Integer.parseInt(request.getParameter("pn"));
         PageHelper.startPage(pn, 10);
         String musicLanguage = request.getParameter("musicLanguage");
