@@ -13,4 +13,4 @@ window.onload = function () {
             console.log("ajax启动");
         }
     })
-}
+};

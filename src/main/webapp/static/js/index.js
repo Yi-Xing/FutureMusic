@@ -134,11 +134,11 @@ $("#search").keyup(function () {
 });
 //搜索框历史记录
 $("#search").click(function () {
-    // alert(22);
-    // var search_tips = $('.search_tips')[0];
-    // var tips_head = "<li><a href='./musics.html?musicId='>";
-    // var tips_last = "</a></li>";
-    // var tips = "";
+    alert(22);
+    var search_tips = $('.search_tips')[0];
+    var tips_head = "<li><a href='./musics.html?musicId='>";
+    var tips_last = "</a></li>";
+    var tips = "";
     $.ajax({
         contentType: "application/x-www-form-urlencoded",
         type: "post",
