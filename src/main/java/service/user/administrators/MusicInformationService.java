@@ -174,6 +174,9 @@ public class MusicInformationService {
         if (validationInformation.isInt(id) && idExistence.isMusicId(Integer.valueOf(id)) != null) {
             state = isModifyEdit(name, singerId, albumId, classificationId, level, price, activity, available);
             if (state.getState() == 1) {
+                if("0".equals(available)){
+                    available="-1";
+                }
                 Music music = new Music(Integer.valueOf(id), name, Integer.valueOf(level), new BigDecimal(price), Integer.valueOf(singerId), Integer.valueOf(albumId), Integer.valueOf(classificationId), Integer.valueOf(activity), Integer.valueOf(available));
                 if (musicMapper.updateMusic(music) < 1) {
                     // 如果失败是数据库错误
@@ -285,7 +288,7 @@ public class MusicInformationService {
     private State isModifyMore(String musicVideoId, boolean[] checkbox, HttpServletRequest request, Music music) {
         State state = new State();
         // 判断MV的id
-        if (validationInformation.isInt(musicVideoId) && idExistence.isMusicVideoId(Integer.valueOf(musicVideoId)) != null) {
+        if (musicVideoId.matches("([1-9][0-9]*|-1)") && ("-1".equals(musicVideoId)  || idExistence.isMusicVideoId(Integer.valueOf(musicVideoId)) != null)) {
             // 先得到3个文件input的name名称 判断接收到的3个文件是否合法
             if (checkbox != null && checkbox.length == 3) {
                 // 音乐图片路径

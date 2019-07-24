@@ -17,10 +17,6 @@ window.onload = function () {
                 $('#vip').val(data.level);
                 $('#balance').val(data.balance);
                 $('#report').val(data.report);
-                $("#order").attr("href","/administrators/showOrder?condition=4&condition=1&condition=&condition=");
-                $("#album").attr("href","/");
-                $("#music").attr("href","/");
-                $("#comment").attr("href","/");
             }
         });
     });
@@ -71,6 +67,10 @@ window.onload = function () {
                 $('#fans').text(data.id);
                 $('#creationNumber').attr("placeholder", data.date);
                 $('#vipTime').val(data.vipDate);
+                $("#order").attr("href","/administrators/showOrder?condition=&condition=&condition="+userId+"&condition=");
+                $("#album").attr("href","/administrators/showSongList?condition=2&condition=3&condition="+userId);
+                $("#music").attr("href","/administrators/showMusic?condition=&condition=&condition=3&condition="+userId);
+                $("#comment").attr("href","/administrators/showComment?condition=&condition="+userId+"&condition=7&condition=");
             }
         });
     });

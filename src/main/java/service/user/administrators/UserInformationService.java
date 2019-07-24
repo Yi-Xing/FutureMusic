@@ -55,7 +55,8 @@ public class UserInformationService {
         // 用来存储管理员输入的条件
         User user = new User();
         // 使用id字段存储当前用户等级来判断该用户是否有权限查找其他用户,先从会话上得到用户信息，然后得到该用户的等级
-//        user.setId(specialFunctions.getUser(session).getLevel());
+        user.setId(specialFunctions.getUser(session).getLevel());
+        user.setLevel(-2);
         if (condition != null) {
             logger.debug("查找到的用户名字" + condition[2]);
             if ((condition[0] != null) && !"".equals(condition[0]) && (condition[1] != null) && !"".equals(condition[1])) {
@@ -110,7 +111,6 @@ public class UserInformationService {
         // 传入页面信息
         PageInfo pageInfo = new PageInfo<>(list);
         model.addAttribute("pageInfo", pageInfo);
-//        model.addAttribute("pages", new int[pageInfo.getPages()]);
         return "system/backgroundSystem";
     }
 

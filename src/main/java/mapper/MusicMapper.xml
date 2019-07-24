@@ -90,14 +90,20 @@
             <if test='lyricPath!=null and lyricPath!=""'>
                 , music_lyric_path=#{lyricPath}
             </if>
-            <if test='musicVideoId!=0'>
+            <if test='musicVideoId!=0 and musicVideoId!=-1'>
                 ,music_music_video_id=#{musicVideoId}
+            </if>
+            <if test=' musicVideoId==-1'>
+                ,music_music_video_id=0
             </if>
             <if test='activity!=0'>
                 ,music_activity=#{activity}
             </if>
-            <if test='available!=0'>
+            <if test='available!=0 and available!=-1'>
                 ,music_available=#{available}
+            </if>
+            <if test=' available==-1'>
+                ,music_available=0
             </if>
             <if test='playCount!=0'>
                 ,music_play_count=#{playCount}

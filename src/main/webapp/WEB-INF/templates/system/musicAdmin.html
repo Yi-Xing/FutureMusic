@@ -68,67 +68,67 @@
                                     class="col-sm-2 control-label">音乐名</label>
                             <div class="col-sm-9">
                                 <input id="nameAdd" class="form-control "
-                                       placeholder="只能是(1-4)的数字相对于普通用户，普通vip，高级vip,管理员">
+                                       placeholder="1-15个字符">
                             </div>
                             <br> <br> <br> <label
                                 class="col-sm-2 control-label">歌手ID</label>
                             <div class="col-sm-9">
                                 <input id="singerIdAdd" class="form-control "
-                                       placeholder="必须是数字且最多有两位小数">
+                                       placeholder="对应歌手的ID">
                             </div>
                             <br> <br> <br>
                             <label class="col-sm-2 control-label">专辑ID</label>
                             <div class="col-sm-9">
-                                <input id="albumIdAdd" class="form-control " placeholder="6-8个数字">
+                                <input id="albumIdAdd" class="form-control " placeholder="对应专辑的ID">
                             </div>
                             <br> <br> <br>
                             <label class="col-sm-2 control-label">分类ID</label>
                             <div class="col-sm-9">
-                                <input id="classificationIdAdd" class="form-control " placeholder="6-8个数字">
+                                <input id="classificationIdAdd" class="form-control " placeholder="对应分类的ID">
                             </div>
                             <br> <br> <br>
                             <label class="col-sm-2 control-label">等级</label>
                             <div class="col-sm-9">
-                                <input id="levelAdd" class="form-control " placeholder="6-8个数字">
+                                <input id="levelAdd" class="form-control " placeholder="1免费 2vip 3收费">
                             </div>
                             <br> <br> <br>
                             <label class="col-sm-2 control-label">价格</label>
                             <div class="col-sm-9">
-                                <input id="priceAdd" class="form-control " placeholder="6-8个数字">
+                                <input id="priceAdd" class="form-control " placeholder="最多两位小数">
                             </div>
                             <br> <br> <br>
                             <label class="col-sm-2 control-label">活动ID</label>
                             <div class="col-sm-9">
-                                <input id="activityAdd" class="form-control " placeholder="6-8个数字">
+                                <input id="activityAdd" class="form-control " placeholder="对应活动的ID 没有输入0">
                             </div>
                             <br> <br> <br>
                             <label class="col-sm-2 control-label">版权</label>
                             <div class="col-sm-9">
-                                <input id="availableAdd" class="form-control " placeholder="6-8个数字">
+                                <input id="availableAdd" class="form-control " placeholder="0有版权 1无版权">
                             </div>
                             <br> <br> <br> <label
                                 class="col-sm-2 control-label">MV的ID</label>
                             <div class="col-sm-9">
-                                <input id="mvIdAdd" class="form-control " placeholder="请输入年龄(1-100)">
+                                <input id="mvIdAdd" class="form-control " placeholder="对应MV的ID，没有输入0">
                             </div>
                             <form action="#"  id="selectFileAdd" enctype="multipart/form-data">
                                 <br> <br> <br> <label
                                     class="col-sm-2 control-label">音乐图片</label>
                                 <div class="col-sm-9">
                                     <input name="pictureFile" type="file" class="form-control "
-                                           placeholder="请输入年龄(1-100)">
+                                          >
                                 </div>
                                 <br> <br> <br> <label
                                     class="col-sm-2 control-label">音乐文件</label>
                                 <div class="col-sm-9">
                                     <input name="filePath" type="file" class="form-control "
-                                           placeholder="请输入年龄(1-100)">
+                                          >
                                 </div>
                                 <br> <br> <br> <label
                                     class="col-sm-2 control-label">歌词文件</label>
                                 <div class="col-sm-9">
                                     <input name="lyricFilePath" type="file" class="form-control "
-                                           placeholder="请输入年龄(1-100)">
+                                           >
                                 </div>
                                 <br> <br> <br>
                             </form>
@@ -195,6 +195,7 @@
                     <td th:text="${list.activity}"></td>
                 </span>
                 <td th:if="${list.activity==0}">无</td>
+
                 <td th:if="${list.available==0}">
                     <span>有</span>
                 </td>
@@ -255,43 +256,43 @@
                                 class="col-sm-2 control-label">音乐名</label>
                         <div class="col-sm-9">
                             <input id="name" class="form-control "
-                                   placeholder="只能是(1-4)的数字相对于普通用户，普通vip，高级vip,管理员">
+                                   placeholder="1-15个字符">
                         </div>
                         <br> <br> <br> <label
                             class="col-sm-2 control-label">歌手ID</label>
                         <div class="col-sm-9">
                             <input id="singerId" class="form-control "
-                                   placeholder="必须是数字且最多有两位小数">
+                                   placeholder="对应歌手的ID">
                         </div>
                         <br> <br> <br>
                         <label class="col-sm-2 control-label">专辑ID</label>
                         <div class="col-sm-9">
-                            <input id="albumId" class="form-control " placeholder="6-8个数字">
+                            <input id="albumId" class="form-control " placeholder="对应专辑的ID">
                         </div>
                         <br> <br> <br>
                         <label class="col-sm-2 control-label">分类ID</label>
                         <div class="col-sm-9">
-                            <input id="classificationId" class="form-control " placeholder="6-8个数字">
+                            <input id="classificationId" class="form-control " placeholder="对应分类的ID">
                         </div>
                         <br> <br> <br>
                         <label class="col-sm-2 control-label">等级</label>
                         <div class="col-sm-9">
-                            <input id="level" class="form-control " placeholder="6-8个数字">
+                            <input id="level" class="form-control " placeholder="1免费 2vip 3收费">
                         </div>
                         <br> <br> <br>
                         <label class="col-sm-2 control-label">价格</label>
                         <div class="col-sm-9">
-                            <input id="price" class="form-control " placeholder="6-8个数字">
+                            <input id="price" class="form-control " placeholder="最多两位小数">
                         </div>
                         <br> <br> <br>
                         <label class="col-sm-2 control-label">活动ID</label>
                         <div class="col-sm-9">
-                            <input id="activity" class="form-control " placeholder="6-8个数字">
+                            <input id="activity" class="form-control " placeholder="对应活动的ID 没有输入0">
                         </div>
                         <br> <br> <br>
                         <label class="col-sm-2 control-label">版权</label>
                         <div class="col-sm-9">
-                            <input id="available" class="form-control " placeholder="6-8个数字">
+                            <input id="available" class="form-control " placeholder="0有版权 1无版权">
                         </div>
                         <br> <br> <br>
                     </div>
@@ -326,36 +327,33 @@
                         <br> <br> <br> <label
                             class="col-sm-2 control-label">MV的ID</label>
                         <div class="col-sm-9">
-                            <input id="mvId" class="form-control " placeholder="请输入年龄(1-100)">
+                            <input id="mvId" class="form-control " placeholder="对应MV的ID，没有输入0">
                         </div>
                         <form action="#" id="selectFile" enctype="multipart/form-data">
                             <br> <br> <br> <label
                                 class="col-sm-2 control-label">音乐图片</label>
                             <div class="col-sm-9">
-                                <input name="pictureFile" type="file" class="form-control " placeholder="请输入年龄(1-100)">
+                                <input name="pictureFile" type="file" class="form-control " >
                                 <input type="checkbox" id="musicPicture" value="1">
                             </div>
                             <br> <br> <br> <label
                                 class="col-sm-2 control-label">音乐文件</label>
                             <div class="col-sm-9">
-                                <input name="filePath" type="file" class="form-control " placeholder="请输入年龄(1-100)">
+                                <input name="filePath" type="file" class="form-control " >
                                 <input type="checkbox" id="musicFile" value="2">
                             </div>
                             <br> <br> <br> <label
                                 class="col-sm-2 control-label">歌词文件</label>
                             <div class="col-sm-9">
                                 <input name="lyricFilePath" type="file" class="form-control "
-                                       placeholder="请输入年龄(1-100)">
+                                       >
                                 <input type="checkbox" id="musicLyric" value="3">
                             </div>
                             <br> <br> <br>
                             <button type="button" id="picture" class="btn btn-primary left135">查看图片</button>
                             <button type="button" id="path" class="btn btn-primary left35">听音乐</button>
                             <button type="button" id="lyricPath" class="btn btn-primary left35">查看歌词</button>
-                            <div class="form-group ">
-                                <div class="mailContent">
-                                </div>
-                            </div>
+
                         </form>
                     </div>
                     <div class="modal-footer">

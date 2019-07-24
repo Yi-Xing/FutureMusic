@@ -57,10 +57,15 @@
         <ul th:replace="system/classificationAdmin::classificationHead"></ul>
     </span>
     <div class="welcome">
-        欢迎XXXXX—您的权限为：管理员
+        欢迎：<span th:text="${#httpSession.getAttribute('userInformation').getName()}"></span>——您的权限为：
+        <td th:switch="${#httpSession.getAttribute('userInformation').getLevel()}">
+            <span th:case="3">客服</span>
+            <span th:case="4">管理员</span>
+            <span th:case="5">总管理员</span>
+        </td>
     </div>
     <div class="headright">
-        <a href="UserPersonalInformation?jump=loginOut">退出</a>
+        <a class="signOutLogin" href="#">退出</a>
     </div>
 </div>
 <!--左边的按钮-->

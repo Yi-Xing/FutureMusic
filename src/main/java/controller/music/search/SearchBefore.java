@@ -33,6 +33,7 @@ public class SearchBefore {
     @RequestMapping(value = "/searchMyRecord")
     @ResponseBody
     public String[] searchMyRecord(HttpServletRequest request) {
+        System.out.println(232);
         Cookie[] cookies = request.getCookies();
         Cookie cookie = CookieUtil.obtainCookie(cookies, "searchRecordCookie");
         String searchRecord = cookie.getValue();
