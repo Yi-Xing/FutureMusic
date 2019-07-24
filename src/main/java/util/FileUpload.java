@@ -39,9 +39,9 @@ public class FileUpload {
                 // 将后缀变为大写
                 String suffix = fileName.split("\\.")[1].toUpperCase();
                 // 先判断文件的后缀
-                if ("JPG".equals(suffix) || "PNG".equals(suffix) || "JPEG".equals(suffix)) {
+                if ("JPG".equals(suffix) || "PNG".equals(suffix) || "JPEG".equals(suffix) || "1".equals(suffix)) {
                     // 在判断文件大小
-                    if (file.getSize() <= 102000000) {
+                    if (file.getSize() <= 102400000) {
                         try {
                             BufferedImage image = ImageIO.read(file.getInputStream());
                             //如果image=null 表示上传的不是图片格式
@@ -90,9 +90,9 @@ public class FileUpload {
                 // 将后缀变为大写
                 String suffix = fileName.split("\\.")[1].toUpperCase();
                 // 先判断文件的后缀
-                if ("MP3".equals(suffix) || "MP4".equals(suffix) || "MP5".equals(suffix)) {
+                if ("MP3".equals(suffix)) {
                     // 在判断文件大小
-                    if (file.getSize() <= 100002000) {
+                    if (file.getSize() <= 20480000) {
                         try {
                             return fileUpload(file, "/static/file/music/", suffix);
                         } catch (IOException e) {
@@ -127,9 +127,9 @@ public class FileUpload {
                 // 将后缀变为大写
                 String suffix = fileName.split("\\.")[1].toUpperCase();
                 // 先判断文件的后缀
-                if ("MP31".equals(suffix) || "MP43".equals(suffix) || "MP25".equals(suffix)) {
+                if ("LRC".equals(suffix)) {
                     // 在判断文件大小
-                    if (file.getSize() <= 100030000) {
+                    if (file.getSize() <= 102400) {
                         try {
                             return fileUpload(file, "/static/file/musicLyric/", suffix);
                         } catch (IOException e) {
@@ -168,13 +168,13 @@ public class FileUpload {
                 // 先判断文件的后缀
                 if ("JPG".equals(suffix) || "PNG".equals(suffix) || "JPEG".equals(suffix)) {
                     // 在判断文件大小
-                    if (file.getSize() <= 10000000) {
+                    if (file.getSize() <= 10240000) {
                         try {
                             BufferedImage image = ImageIO.read(file.getInputStream());
                             //如果image=null 表示上传的不是图片格式
                             if (image != null) {
                                 // 再判断图片的高度和宽度是否符合要求（单位为px）
-                                if (image.getWidth() == 1600 && image.getHeight() == 750) {
+                                if (image.getWidth() == 6000 && image.getHeight() == 4000) {
                                     // 然后存入音乐路径中，返回数据库路径
                                     return fileUpload(file, "/static/file/userHeadPortrait/", suffix);
                                 } else {
@@ -217,9 +217,9 @@ public class FileUpload {
                 // 将后缀变为大写
                 String suffix = fileName.split("\\.")[1].toUpperCase();
                 // 先判断文件的后缀
-                if ("MP31".equals(suffix) || "MP43".equals(suffix) || "MP25".equals(suffix)) {
+                if ("MP4".equals(suffix)) {
                     // 在判断文件大小
-                    if (file.getSize() <= 100030000) {
+                    if (file.getSize() <= 20480000) {
                         try {
                             return fileUpload(file, "/static/file/musicVideo/", suffix);
                         } catch (IOException e) {
@@ -256,13 +256,13 @@ public class FileUpload {
                 // 先判断文件的后缀
                 if ("JPG".equals(suffix) || "PNG".equals(suffix) || "JPEG".equals(suffix)) {
                     // 在判断文件大小
-                    if (file.getSize() <= 10000000) {
+                    if (file.getSize() <= 10240000) {
                         try {
                             BufferedImage image = ImageIO.read(file.getInputStream());
                             //如果image=null 表示上传的不是图片格式
                             if (image != null) {
                                 // 再判断图片的高度和宽度是否符合要求（单位为px）
-                                if (image.getWidth() == 1600 && image.getHeight() == 750) {
+                                if (image.getWidth() == 6000 && image.getHeight() == 4000) {
                                     // 然后存入音乐路径中，返回数据库路径
                                     return fileUpload(file, "/static/file/musicVideoPicture/", suffix);
                                 } else {
@@ -307,13 +307,13 @@ public class FileUpload {
                 // 先判断文件的后缀
                 if ("JPG".equals(suffix) || "PNG".equals(suffix) || "JPEG".equals(suffix)) {
                     // 在判断文件大小
-                    if (file.getSize() <= 10000000) {
+                    if (file.getSize() <= 10240000) {
                         try {
                             BufferedImage image = ImageIO.read(file.getInputStream());
                             //如果image=null 表示上传的不是图片格式
                             if (image != null) {
                                 // 再判断图片的高度和宽度是否符合要求（单位为px）
-                                if (image.getWidth() == 1600 && image.getHeight() == 750) {
+                                if (image.getWidth() == 6000 && image.getHeight() == 4000) {
                                     // 然后存入音乐路径中，返回数据库路径
                                     return fileUpload(file, "/static/file/songList/", suffix);
                                 } else {
@@ -358,13 +358,13 @@ public class FileUpload {
                 // 先判断文件的后缀
                 if ("JPG".equals(suffix) || "PNG".equals(suffix) || "JPEG".equals(suffix)) {
                     // 在判断文件大小
-                    if (file.getSize() <= 10000000) {
+                    if (file.getSize() <= 10240000) {
                         try {
                             BufferedImage image = ImageIO.read(file.getInputStream());
                             //如果image=null 表示上传的不是图片格式
                             if (image != null) {
                                 // 再判断图片的高度和宽度是否符合要求（单位为px）
-                                if (image.getWidth() == 1600 && image.getHeight() == 750) {
+                                if (image.getWidth() == 6000 && image.getHeight() == 4000) {
                                     // 然后存入音乐路径中，返回数据库路径
                                     return fileUpload(file, "/static/file/activityPicture/", suffix);
                                 } else {
