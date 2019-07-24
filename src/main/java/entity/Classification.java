@@ -50,6 +50,13 @@ public class Classification implements Serializable {
         this.type = type;
     }
 
+    public Classification(String languages, String region, String gender, String type) {
+        this.languages = languages;
+        this.region = region;
+        this.gender = gender;
+        this.type = type;
+    }
+
     public int getId() {
         return id;
     }

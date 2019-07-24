@@ -83,6 +83,21 @@ public class Main {
         return "musicList";
     }
 
+    @RequestMapping(value = "/toEmail")
+    public String toEmail() {
+        return "toEmail";
+    }
+
+    @RequestMapping(value = "/notice")
+    public String notice() {
+        return "notice";
+    }
+
+    @RequestMapping(value = "/comment")
+    public String comment() {
+        return "comment";
+    }
+
 
     @RequestMapping(value = "/order")
     public String order() {
@@ -117,6 +132,26 @@ public class Main {
     @RequestMapping(value = "/zyx")
     public String zyx() {
         return "zyx";
+    }
+
+
+    @RequestMapping(value = "/security1")
+    public String musicLists1() {
+        return "security/bindingAccount";
+    }
+
+    @RequestMapping(value = "/security2")
+    public String saveCenter1() {
+        return "security/passwordVerification";
+    }
+    @RequestMapping(value = "/security3")
+    public String active1() {
+        return "security/mailboxVerification";
+    }
+
+    @RequestMapping(value = "/security4")
+    public String zyx1() {
+        return "security/newPassword";
     }
 }
 

@@ -23,6 +23,23 @@
             </if>
         </where>
     </select>
+
+    <select id="selectClassificationValue"  parameterType="Classification" resultType="String" >
+        select
+            <if test='languages!=null and languages!=""'>
+                 classification_languages
+            </if>
+            <if test='region!=null and region!=""'>
+                 classification_region
+            </if>
+            <if test='gender!=null and gender!=""'>
+                 classification_gender
+            </if>
+            <if test='type!=null and type!=""'>
+                 classification_type
+            </if>
+        from tb_classification
+    </select>
     <insert id="insertClassification" parameterType="Classification">
          insert into tb_classification(classification_languages,classification_region,classification_gender,classification_type)
           values(#{languages},#{region},#{gender},#{type})

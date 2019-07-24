@@ -119,11 +119,11 @@ $("#search").keyup(function () {
             if (searchVal === '') {
                 search_tips.innerHTML = '';
             } else {
-                console.log(music);
+                // console.log(music);
                 for (let i in music) {
                     var musicName = music[i].name;
                     tips_head = "<li><a href='./musics.html?musicId="+ music[i].id +"'>";
-                    console.log(tips_head);
+                    // console.log(tips_head);
                     tips = tips + tips_head + musicName + tips_last;
                 }
                 search_tips.innerHTML = tips;
@@ -132,67 +132,32 @@ $("#search").keyup(function () {
         }
     })
 });
-
-// 用于注册账号
-// $("#registerUser").on("click", function () {
-//     var registerUserName = $("#registerUserName").val();
-//     var registerMail = $("#registerMail").val();
-//     var registerPassword = $("#registerPassword").val();
-//     var registerPasswordAgain = $("#registerPasswordAgain").val();
-//     var verificationCode = $("#verificationCode").val();
-//     var agreement = $("#agreement").is(":checked");
-//     $.ajax({
-//         contentType: "application/x-www-form-urlencoded;charset=UTF-8",
-//         type: "post",
-//         url: "register",
-//         data: {
-//             "userName": registerUserName,
-//             "sendMail": registerMail,
-//             "password": registerPassword,
-//             "passwordAgain": registerPasswordAgain,
-//             "verificationCode": verificationCode,
-//             "agreement": agreement
-//         },
-//         dataType: "json",
-//         success: function (data, status) {
-//             // alert(data.state);
-//             // alert(data.information);
-//             if (data.state) {
-//                 // alert("我调用了");
-//             }
-//             $("#wc").text(data);
-//             if (data.state == 0) {
-//                 document.getElementsByClassName('reg_hed_right')[0].children[1].innerHTML = data.information;
-//             } else {
-//                 alert("注册成功了");
-//             }
-//         }
-//     });
-// });
-
-
-//AJAX
-// $.ajax({
-//     contentType: "application/x-www-form-urlencoded;charset=UTF-8",
-//     url: "indexExhibition",
-//     type: 'post',
-//     // dataType: "json",
-//     success:function (data) {
-//         console.log(data);
-//         console.log(data.rankingNewSong);
-//         var dianyin = data.rankingByMusicType;
-//         var xinge = data.rankingNewSong;
-//         for (i = 0; i < dianyin.length; i++) {
-//             console.log(dianyin[i]);
-//         }
-//         for (j = 0; j < xinge.length; j++) {
-//             console.log(xinge[j]);
-//         }
-//     },
-//     error:function () {
-//         console.log("错误!")
-//     }
-// });
+//搜索框历史记录
+$("#search").click(function () {
+    // alert(22);
+    // var search_tips = $('.search_tips')[0];
+    // var tips_head = "<li><a href='./musics.html?musicId='>";
+    // var tips_last = "</a></li>";
+    // var tips = "";
+    $.ajax({
+        contentType: "application/x-www-form-urlencoded",
+        type: "post",
+        url: "searchMyRecord",
+        dataType: "json",
+        success:function (data) {
+            alert(22);
+            var history = data[1];
+            console.log(history);
+            for (let i in history) {
+                var musicName = history[i].name;
+                tips_head = "<li><a href='./musics.html?musicId="+ history[i].id +"'>";
+                console.log(tips_head);
+                tips = tips + tips_head + musicName + tips_last;
+            }
+            search_tips.innerHTML = tips;
+        }
+    })
+});
 
 var like = 0;
 $(".thumbnail .icon-like").click(function () {
@@ -224,3 +189,4 @@ $(".thumbnail .icon-like").click(function () {
         }
     })
 });
+

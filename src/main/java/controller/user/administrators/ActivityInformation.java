@@ -47,9 +47,9 @@ public class ActivityInformation {
      */
     @RequestMapping(value = "/addActivity")
     @ResponseBody
-    public State addActivity(@RequestBody Activity activity, HttpServletRequest request) throws DataBaseException, IOException {
+    public State addActivity(String name, String type, String discount, String website, String startDate, String endDate, String content, HttpServletRequest request) throws DataBaseException, IOException {
         logger.trace("addActivity方法开始执行");
-        return activityInformationService.addActivity(activity, request);
+        return activityInformationService.addActivity(name, type, discount, website, startDate, endDate, content, request);
     }
 
     /**
@@ -63,19 +63,38 @@ public class ActivityInformation {
      * @param pageNum   表示当前第几页
      */
     @RequestMapping(value = "/showActivity")
-    public String showActivity(String[] condition, @RequestParam(defaultValue = "1")  Integer pageNum, Model model) throws ParseException {
+    public String showActivity(String[] condition, @RequestParam(defaultValue = "1") Integer pageNum, Model model) throws ParseException {
         logger.trace("showActivity方法开始执行");
-        return activityInformationService.showActivity(condition, pageNum,model);
+        return activityInformationService.showActivity(condition, pageNum, model);
+    }
+
+//    /**
+//     * 修改活动信息，ajax
+//     */
+//    @RequestMapping(value = "/modifyActivity")
+//    @ResponseBody
+//    public State modifyActivity(@RequestBody Activity activity, HttpServletRequest request) throws DataBaseException, IOException {
+//        logger.trace("modifyActivity方法开始执行");
+//        return activityInformationService.modifyActivity(activity,request);
+//    }
+
+
+    /**
+     * 修改编辑音乐信息，ajax
+     */
+    @RequestMapping(value = "/modifyEditActivity")
+    @ResponseBody
+    public State modifyEditActivity(String id, String name, String type, String discount, String website, String startDate, String endDate) throws DataBaseException {
+        return activityInformationService.modifyEditActivity(id, name, type, discount, website, startDate, endDate);
     }
 
     /**
-     * 修改活动信息，ajax
+     * 修改更多音乐信息，ajax
      */
-    @RequestMapping(value = "/modifyActivity")
+    @RequestMapping(value = "/modifyMoreActivity")
     @ResponseBody
-    public State modifyActivity(@RequestBody Activity activity, HttpServletRequest request) throws DataBaseException, IOException {
-        logger.trace("modifyActivity方法开始执行");
-        return activityInformationService.modifyActivity(activity,request);
+    public State modifyMoreActivity(String id, String content, boolean checkbox, HttpServletRequest request) throws DataBaseException {
+        return activityInformationService.modifyMoreActivity(id, content, checkbox, request);
     }
 
     /**
@@ -86,5 +105,14 @@ public class ActivityInformation {
     public State deleteActivity(Integer id) throws DataBaseException {
         logger.trace("deleteActivity方法开始执行");
         return activityInformationService.deleteActivity(id);
+    }
+
+    /**
+     * 查找指定id的活动信息
+     */
+    @RequestMapping(value = "/showIdActivity")
+    @ResponseBody
+    public Activity showIdActivity(Integer id) {
+        return activityInformationService.showIdActivity(id);
     }
 }
