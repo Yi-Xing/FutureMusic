@@ -35,28 +35,28 @@ public class Exhibition {
     @RequestMapping("/indexExhibition")
     public String indexExhibition(HttpServletRequest request, Model model) {
 
-        String musicType = request.getParameter("musicType");
-        String region1 = request.getParameter("musicRegion1");
-        String region2 = request.getParameter("musicRegion2");
-        String region3 = request.getParameter("musicRegion3");
-
-        String singerAddress1 = request.getParameter("singerAddress1");
-        String singerAddress2 = request.getParameter("singerAddress2");
-        String singerAddress3 = request.getParameter("singerAddress3");
-        //首页显示的活动
-        model.addAttribute("activities", activity());
-        //首页显示的音乐人
-        model.addAttribute(singerAddress1, singerService.exhibitionSingersByRegion(singerAddress1));
-        model.addAttribute(singerAddress2, singerService.exhibitionSingersByRegion(singerAddress2));
-        model.addAttribute(singerAddress3, singerService.exhibitionSingersByRegion(singerAddress3));
+//        String musicType = request.getParameter("musicType");
+//        String region1 = request.getParameter("musicRegion1");
+//        String region2 = request.getParameter("musicRegion2");
+//        String region3 = request.getParameter("musicRegion3");
+//
+//        String singerAddress1 = request.getParameter("singerAddress1");
+//        String singerAddress2 = request.getParameter("singerAddress2");
+//        String singerAddress3 = request.getParameter("singerAddress3");
+//        //首页显示的活动
+//        model.addAttribute("activities", activity());
+//        //首页显示的音乐人
+//        model.addAttribute(singerAddress1, singerService.exhibitionSingersByRegion(singerAddress1));
+//        model.addAttribute(singerAddress2, singerService.exhibitionSingersByRegion(singerAddress2));
+//        model.addAttribute(singerAddress3, singerService.exhibitionSingersByRegion(singerAddress3));
         //显示的MV显示15首
         model.addAttribute("musicVideo", musicVideoService.exhibitionMusicVideo());
         //音乐排行榜的歌曲
-        model.addAttribute("newSong", rankingListByNewSong());
-        model.addAttribute(musicType, rankingListByMusicType(musicType));
-        model.addAttribute(region1, rankingListByRegion(region1));
-        model.addAttribute(region2, rankingListByRegion(region2));
-        model.addAttribute(region3, rankingListByRegion(region3));
+//        model.addAttribute("newSong", rankingListByNewSong());
+//        model.addAttribute(musicType, rankingListByMusicType(musicType));
+//        model.addAttribute(region1, rankingListByRegion(region1));
+//        model.addAttribute(region2, rankingListByRegion(region2));
+//        model.addAttribute(region3, rankingListByRegion(region3));
         return "index";
     }
 
