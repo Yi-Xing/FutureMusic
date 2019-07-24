@@ -32,7 +32,8 @@ public class MailboxBinding implements HandlerInterceptor {
         logger.debug("开始验证用户是否绑定邮箱");
         if (specialFunctions.getUserMailbox(session) == null) {
             logger.debug("用户没有绑定邮箱");
-            request.getRequestDispatcher("/safetyCenterPage").forward(request, response);
+            response.sendRedirect("/safetyCenterPage");
+            return false;
         }
         return true;
     }
