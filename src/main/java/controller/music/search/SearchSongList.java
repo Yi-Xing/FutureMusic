@@ -3,6 +3,7 @@ package controller.music.search;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import entity.Classification;
 import entity.SongListExt;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -54,10 +55,18 @@ public class SearchSongList {
 
     @RequestMapping(value = "/showSongListByClassification")
     @ResponseBody
-    public PageInfo showSongListByClassification(HttpServletRequest request, Model model) {
-        String classification = request.getParameter("classification");
+    public PageInfo showSongListByClassification(HttpServletRequest request) {
         String pn = request.getParameter("pn");
         PageHelper.startPage(Integer.parseInt(pn), 10);
+        String gender = request.getParameter("gender");
+        String type = request.getParameter("type");
+        String language = request.getParameter("language");
+        String region = request.getParameter("region");
+        Classification classification = new Classification();
+        classification.setLanguages(language);
+        classification.setRegion(region);
+        classification.setGender(gender);
+        classification.setType(type);
        List<String[]> showSongList = songListService.showSongListByClassification(classification);
         List <List<String[]>> resultSongListMap = new ArrayList <>();
         resultSongListMap.add(showSongList);

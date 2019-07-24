@@ -88,7 +88,7 @@ window.onload = function () {
     });
 
     // 用于登录账号
-    $("#login").on("click", function () {
+    $("#login").on("click", function (){
         // 账号
         var mailbox = $("#loginMail").val();
         // 密码

@@ -174,6 +174,9 @@ public class MusicInformationService {
         if (validationInformation.isInt(id) && idExistence.isMusicId(Integer.valueOf(id)) != null) {
             state = isModifyEdit(name, singerId, albumId, classificationId, level, price, activity, available);
             if (state.getState() == 1) {
+                if("0".equals(available)){
+                    available="-1";
+                }
                 Music music = new Music(Integer.valueOf(id), name, Integer.valueOf(level), new BigDecimal(price), Integer.valueOf(singerId), Integer.valueOf(albumId), Integer.valueOf(classificationId), Integer.valueOf(activity), Integer.valueOf(available));
                 if (musicMapper.updateMusic(music) < 1) {
                     // 如果失败是数据库错误
