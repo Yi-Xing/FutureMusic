@@ -73,10 +73,10 @@ public class Main {
         return "back_system/talking";
     }
 
-    @RequestMapping(value = "/Email")
-    public String email() {
-        return "back_system/Email";
-    }
+//    @RequestMapping(value = "/Email")
+//    public String email() {
+//        return "back_system/Email";
+//    }
 
     @RequestMapping(value = "/musicList")
     public String musicList() {
@@ -84,16 +84,22 @@ public class Main {
     }
 
 
-
-    @RequestMapping(value = "/notice")
-    public String notice() {
-        return "notice";
+    @RequestMapping(value = "/aaa")
+    public String aaa() {
+        return "sendEmail";
     }
 
-    @RequestMapping(value = "/comment")
-    public String comment() {
-        return "comment";
-    }
+
+//
+//    @RequestMapping(value = "/notice")
+//    public String notice() {
+//        return "notice";
+//    }
+//
+//    @RequestMapping(value = "/comment")
+//    public String comment() {
+//        return "comment";
+//    }
 
 
     @RequestMapping(value = "/order")
