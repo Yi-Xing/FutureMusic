@@ -17,7 +17,7 @@
     </li>
     <li class="headli">
         <a th:href="@{/administrators/showMail(condition=${conditionZero},condition=${conditionOne},condition=${conditionTwo},condition=${conditionThree},condition=12,pageNum=${pageInfo.pageNum})}">
-            管理员</a>
+            通知</a>
     </li>
 </ul>
 <div class="Allbody peobody " th:fragment="mail">
@@ -85,7 +85,7 @@
                 <td th:switch="${list.reply}">
                     <span th:case="0" style="color:#009966">普通</span>
                     <span th:case="1" style="color:#0018c6">客服</span>
-                    <span th:case="2" style="color:red">管理员</span>
+                    <span th:case="2" style="color:red">通知</span>
                 </td>
                 <td th:text="${#dates.format(list.date, 'yyyy-MM-dd HH:mm:ss')}"></td>
                 <td>

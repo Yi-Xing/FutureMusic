@@ -27,12 +27,18 @@
         <div th:if="${page=='receiveEmail'}">
             <div th:replace="userInformation/receiveEmail::receiveEmailHead"></div>
         </div>
+        <div th:if="${page=='noticeEmail'}">
+            <div th:replace="userInformation/noticeEmail::noticeEmailHead"></div>
+        </div>
 
         <div th:if="${page=='sendEmail'}">
             <div th:replace="userInformation/sendEmail::sendEmail"></div>
         </div>
         <div th:if="${page=='receiveEmail'}">
             <div th:replace="userInformation/receiveEmail::receiveEmail"></div>
+        </div>
+        <div th:if="${page=='noticeEmail'}">
+            <div th:replace="userInformation/noticeEmail::noticeEmail"></div>
         </div>
     </div>
 </div>
