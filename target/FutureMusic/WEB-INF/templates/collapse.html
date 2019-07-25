@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head th:include="head::head"></head>
+<link rel="stylesheet" href="/static/css/collapse.css" th:href="@{/static/css/collapse.css}">
+<body>
+<div class="Collapse">
+    <a class="btn btn-primary" href="javascript:history.go(-1);" role="button">返回上一页</a>
+    <a class="btn btn-primary" th:href="@{/index}" role="button">返回主页</a>
+</div>
+<div class="Collapse" style="top: 40vh">
+    <h3 th:text="${exception}"></h3>
+</div>
+</body>
+</html>

@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head></head>
+<body>
+<ul class="headul" th:fragment="orderHead">
+    <li class="headli">
+        <a th:href="@{/administrators/showOrder(condition=null,condition=${conditionOne},condition=${conditionTwo},condition=${conditionThree},pageNum=${pageInfo.pageNum})}">
+            全部</a>
+    </li>
+    <li class="headli">
+        <a th:href="@{/administrators/showOrder(condition=1,condition=${conditionOne},condition=${conditionTwo},condition=${conditionThree},pageNum=${pageInfo.pageNum})}">
+            音乐</a>
+    </li>
+    <li class="headli">
+        <a th:href="@{/administrators/showOrder(condition=2,condition=${conditionOne},condition=${conditionTwo},condition=${conditionThree},pageNum=${pageInfo.pageNum})}">
+            MV</a>
+    </li>
+    <li class="headli">
+        <a th:href="@{/administrators/showOrder(condition=3,condition=${conditionOne},condition=${conditionTwo},condition=${conditionThree},pageNum=${pageInfo.pageNum})}">
+            充值</a>
+    </li>
+</ul>
+<div class="Allbody peobody" th:fragment="order">
+    <!-- 导入 JS -->
+    <script th:src="@{/static/js/system/orderAdmin.js}"></script>
+    <div class="headFrame dropdown">
+        <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="true">
+            订单
+            <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+            <li data-value="5" class="select"><a href="#">订单</a></li>
+            <li data-value="4" class="select"><a href="#">用户</a></li>
+            <li data-value="1" class="select"><a href="#">音乐</a></li>
+            <li data-value="2" class="select"><a href="#"> MV </a></li>
+        </ul>
+        <form th:action="@{/administrators/showOrder}" method="get">
+            <div class="col-sm-2">
+                <input type="text" name="condition" id="type" value="5" style="display: none"/>
+                <input type="text" name="condition" class="form-control" placeholder="根据ID搜索" style="height: 37px;"/>
+                <input type="text" name="condition" th:value="${conditionTwo}" style="display: none"/>
+                <input type="text" name="condition" th:value="${conditionThree}" style="display: none"/>
+            </div>
+            <button type="submit" class="btn btn-primary">搜索</button>
+        </form>
+        <div style="clear: both;"></div>
+    </div>
+
+
+    <div class="peolt">
+        <table class="table table-hover table-bordered">
+            <!--列表单的宽-->
+            <colgroup>
+                <col width="7%">
+                <col width="8%">
+                <col width="10%">
+                <col width="8%">
+                <col width="8%">
+                <col width="8%">
+                <col width="10%">
+                <col width="15%">
+                <col width="20%">
+            </colgroup>
+            <!--列的标题-->
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>用户ID</th>
+                <th>音乐/MV的ID</th>
+                <th>类型</th>
+                <th>原价</th>
+                <th>现价</th>
+                <th>支付方式</th>
+                <th>时间</th>
+                <th>操作</th>
+            </tr>
+            </thead>
+            <!--行内容-->
+            <tbody th:each="list:${pageInfo.list}">
+            <tr>
+                <td href="#" th:text="${list.id}"></td>
+                <td href="#" th:text="${list.userId}"></td>
+                <td th:text="${list.musicId}"></td>
+                <td th:switch="${list.type}">
+                    <span th:case="1" style="color:#FFFF00">音乐</span>
+                    <span th:case="2" style="color:#009966">MV</span>
+                    <span th:case="3">充值</span>
+                </td>
+                <td th:text="${list.originalPrice}"></td>
+                <td th:text="${list.price}"></td>
+                <td th:switch="${list.mode}">
+                    <span th:case="0">其他</span>
+                    <span th:case="1" style="color:#0018c6">支付宝</span>
+                </td>
+                <td th:text="${#dates.format(list.date, 'yyyy-MM-dd HH:mm:ss')}"></td>
+                <td>
+                    <button type="button"
+                            class="btn btn-warning btnAcc btn-sm  " data-toggle="modal"
+                            disabled="disabled">编辑
+                    </button>
+                    <button type="button" class="btn btnAcc btn-success btn-sm  " data-toggle="modal"
+                            disabled="disabled">更多
+                    </button>
+                    <button type="button" th:data-id="${list.id}" class="btn btnAcc btn-danger btn-sm deleteOrder"
+                            data-toggle="modal" data-target="#deleteOrder">删除
+                    </button>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div>
+        共 <span th:text="${pageInfo.pages}"></span>页 当前 第<span th:text="${pageInfo.pageNum}"></span>页
+        <span th:if="${pageInfo.hasPreviousPage}">
+            <a th:href="@{/administrators/showOrder(condition=${conditionZero},condition=${conditionOne},condition=${conditionTwo},condition=${conditionThree},pageNum=${pageInfo.pageNum-1})}">
+                <button type="button" class="btn btn-default btn-lg font-size10">上一页</button>
+            </a>
+        </span>
+        <span th:if="${!pageInfo.hasPreviousPage}">
+            <button type="button" class="btn btn-default btn-lg font-size10" disabled="disabled">上一页</button>
+        </span>
+        <span th:if="${pageInfo.hasNextPage}">
+            <a th:href="@{/administrators/showOrder(condition=${conditionZero},condition=${conditionOne},condition=${conditionTwo},condition=${conditionThree},pageNum=${pageInfo.pageNum+1})}">
+                <button class="btn btn-default btn-lg font-size10" type="button">下一页</button>
+            </a>
+        </span>
+        <span th:if="${!pageInfo.hasNextPage}">
+            <button type="button" class="btn btn-default btn-lg font-size10" disabled="disabled">下一页</button>
+        </span>
+    </div>
+    <!--    删除用户的订单信息-->
+    <div class="modal fade" id="deleteOrder" tabindex="-1" role="dialog"
+         aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4>提示 <span class="promptInformation" style="color: red"></span></h4>
+                </div>
+                <div class="modal-body">
+                    <h3 style="text-align: center;">您确定删除id：<span id="deleteOrderId"></span>的订单吗？</h3>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default"
+                                data-dismiss="modal">关闭
+                        </button>
+                        <button type="submit" class="btn btn-primary" id="determineDeleteOrder">确定
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

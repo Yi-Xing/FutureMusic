@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//ED"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.FocusMapper">
+    <select id="selectListFocus" parameterType="Focus" resultMap="focus">
+        select * from tb_focus
+        <where>
+            <if test='userId!=0'>
+                focus_user_id=#{userId}
+            </if>
+            <if test='userFocusId!=0'>
+                and focus_user_focus_id=#{userFocusId}
+            </if>
+            <if test='userType!=0'>
+                and focus_user_type=#{userType}
+            </if>
+        </where>
+    </select>
+    <select id="selectUserFocusCount" parameterType="Focus" resultType="Integer">
+        select count(*) from tb_focus
+        <where>
+            <if test='userId!=0'>
+                focus_user_id=#{userId}
+            </if>
+            <if test='userFocusId!=0'>
+                and focus_user_focus_id=#{userFocusId}
+            </if>
+            <if test='userType!=0'>
+                and focus_user_type=#{userType}
+            </if>
+        </where>
+    </select>
+    <update id="updateFocus" parameterType="Focus">
+        update tb_focus
+        <set>
+            <if test='date!=null '>
+                focus_date=#{date}
+            </if>
+        </set>
+        where focus_user_id=#{id}
+    </update>
+    <insert id="insertFocus" parameterType="Focus">
+        insert into tb_focus(focus_user_id,focus_user_focus_id,focus_user_type,focus_date)
+        value(#{userId},#{userFocusId},#{userType},#{date})
+    </insert>
+    <delete id="deleteFocus" parameterType="Focus">
+        delete from tb_focus
+        <where>
+            <if test='userId!=0'>
+                focus_user_id=#{userId}
+            </if>
+            <if test='userFocusId!=0'>
+                and focus_user_focus_id=#{userFocusId}
+            </if>
+            <if test='userType!=0'>
+                and focus_user_type=#{userType}
+            </if>
+        </where>
+    </delete>
+    <resultMap id="focus" type="Focus">
+        <id column="focus_id" property="id"/>
+        <result column="focus_user_id" property="userId"/>
+        <result column="focus_user_focus_id" property="userFocusId"/>
+        <result column="focus_user_type" property="userType"/>
+        <result column="focus_date" property="date"/>
+    </resultMap>
+</mapper>
