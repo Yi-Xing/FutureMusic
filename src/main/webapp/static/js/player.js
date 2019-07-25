@@ -123,5 +123,18 @@ var musicLyric = [
     }
 ];
 
+//歌曲localStorage
+// 判断浏览器是否支持
+var local = 0;
+var num = 10;
+for(i;i<5;i++) {
+    if (typeof (Storage) !== "undefined") {
+        // 存储
+        localStorage.setItem("local", "num");
+        // 检索
+        console.log(localStorage.getItem("local"));
+    } else {
+        console.log("Sorry, your browser does not support Web Storage...");
+    }
 
-
+}

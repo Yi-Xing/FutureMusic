@@ -66,8 +66,11 @@
             <if test='type!=0'>
                 ,song_list_type=#{type}
             </if>
-            <if test='activity!=0'>
+            <if test='activity!=0 and activity!=-1'>
                 ,song_list_activity=#{activity}
+            </if>
+            <if test=' activity==-1'>
+                ,song_list_activity=0
             </if>
         </set>
         where song_list_id=#{id}

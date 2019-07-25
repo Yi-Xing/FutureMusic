@@ -18,8 +18,8 @@
             <if test='level==-1 and level!=-2'>
                 and user_level=0
             </if>
-             <if test='level==-2'>
-                 and #{id}>user_level
+            <if test='level==-2'>
+                and #{id}>user_level
             </if>
             <if test='report!=0'>
                 and user_report>=#{report}
@@ -70,11 +70,17 @@
             <if test='address!=null and address!=""'>
                 ,user_address=#{address}
             </if>
-            <if test='level!=0'>
+            <if test='level!=0 and level!=-1 '>
                 ,user_level=#{level}
             </if>
-            <if test='balance!=null and balance !=""'>
+            <if test='level==-1'>
+                ,user_level=0
+            </if>
+            <if test='balance!=null and balance !="" and balance!="-1" '>
                 ,user_balance=#{balance}
+            </if>
+            <if test='balance=="-1" '>
+                ,user_balance="0"
             </if>
             <if test='date!=null'>
                 ,user_date=#{date}
@@ -91,8 +97,11 @@
             <if test='fabulous!=null and fabulous!=""'>
                 ,user_fabulous=#{fabulous}
             </if>
-            <if test='report!=0'>
+            <if test='report!=0  and report!=-1'>
                 ,user_report=#{report}
+            </if>
+            <if test='report==-1'>
+                ,user_report=0
             </if>
         </set>
         where user_id=#{id}

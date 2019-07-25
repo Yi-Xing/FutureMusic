@@ -84,11 +84,17 @@
             <if test='classificationId!=0'>
                 ,music_video_classification_id=#{classificationId}
             </if>
-            <if test='activity!=0'>
+            <if test='activity!=0 and activity!=-1'>
                 ,music_video_activity=#{activity}
             </if>
-            <if test='available!=0'>
+            <if test='activity==-1'>
+                ,music_video_activity=0
+            </if>
+            <if test='available!=0 and available!=-1'>
                 , music_video_available=#{available}
+            </if>
+            <if test='available==-1'>
+                , music_video_available=0
             </if>
             <if test='playCount!=0'>
                 ,music_video_play_count=#{playCount}

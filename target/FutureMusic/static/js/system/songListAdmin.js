@@ -13,6 +13,7 @@ window.onload = function () {
             url: "/administrators/showIdSongList?id=" + id,
             success: function (data, status) {
                 $("#activity").val(data.activity);
+                $("#editId").val(id);
             }
         });
     });
