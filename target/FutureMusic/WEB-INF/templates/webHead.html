@@ -1,16 +1,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <!--头部-->
 <div class="header">
-<<<<<<< HEAD
     <nav class="navbar">
         <div class="container-fluid">
-=======
-    <img class="show_bg" src="../../static/img/首页背景.jpg" th:src="@{/static/img/首页背景.jpg}" alt="">
-<!--    <video class="show_bg" src="../../static/video/首页.mp4" th:src="@{/static/video/首页.mp4}" autoplay="autoplay" loop="loop" width="100%" alt=""></video>-->
-    <nav class="navbar">
-        <div class="container-fluid">
-            <!-- Brand and toggle get grouped for better mobile display -->
->>>>>>> 0ca05eefec8f2220ae7247ab5c20916769c5f895
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
                         data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
@@ -22,36 +14,20 @@
                 <a class="navbar-brand iconfont icon-yinlemusic216" style="font-size: 25px;" href="#"></a>
             </div>
 
-<<<<<<< HEAD
-=======
-            <!-- Collect the nav links, forms, and other content for toggling -->
->>>>>>> 0ca05eefec8f2220ae7247ab5c20916769c5f895
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
                     <li class="active"><a href="./index.html" th:href="@{/index}">音乐馆 <span
                             class="sr-only">(current)</span></a></li>
-<<<<<<< HEAD
                     <li class="dropdown" style="color: #fff">
-=======
-                    <li class="dropdown">
->>>>>>> 0ca05eefec8f2220ae7247ab5c20916769c5f895
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                            aria-expanded="false">发现 <span class="caret"></span></a>
                         <ul class="dropdown-menu">
                             <li><a href="#">歌曲</a></li>
                             <li><a href="#" th:href="@{/musicLists}">歌单</a></li>
                             <li><a href="#" th:href="@{/artist}">歌手</a></li>
-<<<<<<< HEAD
                             <li role="separator" class="divider"></li>
                             <li><a href="#" th:href="@{/musicVideo}">MV</a></li>
                             <li role="separator" class="divider"></li>
-=======
-                            <!--                            <li><a href="#"></a></li>-->
-                            <li role="separator" class="divider"></li>
-                            <li><a href="#" th:href="@{/musicVideo}">MV</a></li>
-                            <li role="separator" class="divider"></li>
-                            <!--                            <li><a href="#">One more separated link</a></li>-->
->>>>>>> 0ca05eefec8f2220ae7247ab5c20916769c5f895
                         </ul>
                     </li>
                     <li><a href="./player.html">听见</a></li>
@@ -65,14 +41,6 @@
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                            aria-expanded="false">登录 <span class="caret"></span></a>
-<<<<<<< HEAD
-=======
-                        <!--                            <div id="headImg">-->
-                        <!--                                <a href="javascript:;">-->
-                        <!--                                    <img src="img/mv1.jpg" th:src="@{/static/img/mv1.jpg}" alt="...">-->
-                        <!--                                </a>-->
-                        <!--                            </div>-->
->>>>>>> 0ca05eefec8f2220ae7247ab5c20916769c5f895
                         <ul class="dropdown-menu">
                             <li><a href="#" id="button1" data-toggle="modal" data-target="#myModal">直接登录</a></li>
                             <li><a href="#">安全中心</a></li>
@@ -87,14 +55,6 @@
                         <ul class="search_tips" id="search_tips">
                         </ul>
                     </div>
-<<<<<<< HEAD
-=======
-                        <!--                        <input type="text" id="search">-->
-                        <!--                        <ul class="search_tips">-->
-                        <!--                        </ul>-->
-                        <!--                    </div>-->
-                        <!--                    <button class="iconfont icon-search1"></button>-->
->>>>>>> 0ca05eefec8f2220ae7247ab5c20916769c5f895
                         <button type="submit" class="btn btn-default">搜索</button>
                 </form>
             </div>
@@ -124,7 +84,6 @@
     </div>
 </div>
 <script src="js/jquery.js" th:src="@{/static/js/jquery.js}"></script>
-<<<<<<< HEAD
 <script>
     let nav_container = $(".header .navbar");
     window.onmousewheel = document.onmousewheel = function () {
@@ -140,56 +99,6 @@
         }
     };
 </script>
-=======
-<!--<script>-->
-<!--    var sousuokuan = $("#search").Width();-->
-<!--    console.log(sousuokuan);-->
-<!--    $("#search_tips").animate({width:sousuokuan+"px"},4000)-->
-<!--</script>-->
-<!--<div class="div">-->
-<!--    <div class="header">-->
-<!--        <div class="inner">-->
-<!--            <div class="header_left">-->
-<!--                <img src="img/logo.png" th:src="@{/static/img/logo.png}" alt="">-->
-<!--            </div>-->
-<!--            <div class="header_main">-->
-<!--                <ul>-->
-<!--                    <li style="background:lightgreen;"><a href="./index.html">音乐馆</a></li>-->
-<!--                    <li><a href="./player.html" target="_blank">我的音乐</a></li>-->
-<!--                    <li><a href="#">音乐号</a></li>-->
-<!--                    <li><a href="#">VIP</a></li>-->
-<!--                </ul>-->
-<!--            </div>-->
-<!--            <div class="header_right">-->
-<!--                <div class="hed_rig_left">-->
-<!--                    <div class="search_container">-->
-<!--                        <input type="text" id="search">-->
-<!--                        <ul class="search_tips">-->
-<!--                        </ul>-->
-<!--                    </div>-->
-<!--                    <button class="iconfont icon-search1"></button>-->
-<!--                </div>-->
-<!--                <div class="hed_rig_right">-->
-<!--                    <div class="hed_rig_rig_left">-->
-<!--                        &lt;!&ndash; Button trigger modal &ndash;&gt;-->
-<!--                        <button th:if="${session.userInformation==null}" type="button" id="button1" class="btn  btn-lg" data-toggle="modal"-->
-<!--                                data-target="#myModal">-->
-<!--                            登录-->
-<!--                        </button>-->
-<!--                        <div th:if="${session.userInformation!=null}" class="head">-->
-<!--                            <div id="headImg">-->
-<!--                                <a href="javascript:;">-->
-<!--                                    <img src="img/mv1.jpg" th:src="@{/static/img/mv1.jpg}" alt="...">-->
-<!--                                </a>-->
-<!--                            </div>-->
-<!--                            <div>-->
-<!--                                <a href="javascript:;">-->
-<!--                                    <h5 class="signOutLogin" style="margin-top: 20px"><b>退出登录</b></h5>-->
-<!--                                </a>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                        &lt;!&ndash; Modal &ndash;&gt;-->
->>>>>>> 0ca05eefec8f2220ae7247ab5c20916769c5f895
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
         <div class="modal_content">
@@ -266,33 +175,4 @@
 
         </div>
     </div>
-<<<<<<< HEAD
 </div>
-=======
-</div>
-<!--                    </div>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--    </div>-->
-<!--    <div class="TAB container inner">-->
-<!--        <ul>-->
-<!--            <li>-->
-<!--                <a th:href="@{/index}">首页</a>-->
-<!--            </li>-->
-<!--            <li>-->
-<!--                <a href="./artist.html" th:href="@{/artist}">音乐人</a>-->
-<!--            </li>-->
-<!--            <li>-->
-<!--                <a href="./musicVideo.html" th:href="@{/musicVideo}">MV</a>-->
-<!--            </li>-->
-<!--            <li>-->
-<!--                <a href="./musicLists.html" th:href="@{/musicLists}">歌单</a>-->
-<!--            </li>-->
-<!--            <li>-->
-<!--                <a href="./personal.html" th:href="@{/user/userPage}">个人中心</a>-->
-<!--            </li>-->
-<!--        </ul>-->
-<!--    </div>-->
-<!--</div>-->
->>>>>>> 0ca05eefec8f2220ae7247ab5c20916769c5f895
