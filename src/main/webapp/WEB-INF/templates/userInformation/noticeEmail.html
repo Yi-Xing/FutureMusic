@@ -7,6 +7,7 @@
 <body>
 
 
+
 <div class="col-lg-2" th:fragment="noticeEmailHead">
     <h3 class="pointer" style="text-align: center">我的邮件</h3>
     <ul class="toEmail_tab">
@@ -33,7 +34,7 @@
         </li>
     </ul>
 </div>
-<div class="col-lg-9" th:fragment="noticeEmail">
+<div class="col-lg-9" th:fragment="noticeEmail" style="height: 800px;overflow: auto">
     <h4 id="tabName">通知</h4>
     <div class="redLine"></div>
     <table class="table table-hover PrivateLetter">
@@ -51,7 +52,6 @@
         </tr>
     </table>
 </div>
-
 
 </body>
 </html>
