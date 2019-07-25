@@ -53,7 +53,7 @@ public class SearchMusicVideo {
         String keyWord = request.getParameter("keyWord");
         MusicVideo musicVideo = new MusicVideo();
         musicVideo.setName(keyWord);
-        List<MusicVideoExt> musicVideoExts = musicVideoService.selectListMusicVideoByVideoName(musicVideo);
+        List<MusicVideoExt> musicVideoExts = musicVideoService.selectListMusicVideoByVideoName(keyWord);
        if(musicVideoExts==null||musicVideoExts.size()==0){
            return null;
        }
