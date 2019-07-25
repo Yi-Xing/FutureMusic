@@ -26,6 +26,26 @@
             </if>
         </where>
     </select>
+    <select id="selectUsers" parameterType="User" resultMap="user">
+        select * from tb_user
+        <where>
+            <if test='id!=0'>
+                and user_id =#{id}
+            </if>
+             <if test='name!=null and name!=""'>
+                and user_name like "%"#{name}"%"
+            </if>
+            <if test='mailbox!=null and mailbox!=""'>
+                and user_mailbox like "%"#{mailbox}"%"
+            </if>
+            <if test='level!=0 '>
+                and user_level=#{level}
+            </if>
+            <if test='report!=0'>
+                and user_report>=#{report}
+            </if>
+        </where>
+    </select>
     <select id="selectUserMailbox" parameterType="String" resultMap="user">
         select * from tb_user where user_mailbox=#{value}
     </select>
