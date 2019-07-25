@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context.xsd
+       http://www.springframework.org/schema/aop
+       http://www.springframework.org/schema/aop/spring-aop.xsd
+       http://www.springframework.org/schema/tx
+       http://www.springframework.org/schema/tx/spring-tx.xsd
+       http://www.springframework.org/schema/mvc
+       http://www.springframework.org/schema/mvc/spring-mvc.xsd"
+>
+
+    <!--    &lt;!&ndash;配置aop&ndash;&gt;-->
+    <!--    <aop:config>-->
+    <!--        &lt;!&ndash;配置给哪些方法增强&ndash;&gt;-->
+    <!--        <aop:pointcut id="notice" expression="execution(* *.*(..))"/>-->
+    <!--        &lt;!&ndash;配置切面&ndash;&gt;-->
+    <!--        <aop:aspect ref="Notice">-->
+    <!--            <aop:around method="surround" pointcut-ref="notice"/>-->
+    <!--        </aop:aspect>-->
+    <!--    </aop:config>-->
+
+    <!--配置异常处理器-->
+    <!--    <bean class="util.exception.ExceptionResolver" />-->
+
+
+    <!--配置平台事务管理器-->
+    <bean id="dataSourceTransactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="source"/>
+    </bean>
+
+    <!--   &lt;!&ndash;配置事务&ndash;&gt;
+       <tx:advice  transaction-manager="dataSourceTransactionManager" id="transactionInterceptor">
+           &lt;!&ndash;配置事务传播性，隔离级别以及超时回滚等问题 &ndash;&gt;
+           <tx:attributes>
+               <tx:method name="*" propagation="REQUIRED"   />
+           </tx:attributes>
+       </tx:advice>
+
+       &lt;!&ndash;配置事务的切面&ndash;&gt;
+       <aop:config>
+           <aop:pointcut id="pointcut" expression="execution(* test.zyx.Flie.zyx(..))"/>
+           <aop:advisor advice-ref="transactionInterceptor" pointcut-ref="pointcut"/>
+       </aop:config>-->
+
+    <!--注解事务-->
+    <tx:annotation-driven transaction-manager="dataSourceTransactionManager"/>
+
+
+    <!--静态资源放行-->
+    <mvc:default-servlet-handler/>
+
+    <!--    拦截器-->
+    <mvc:interceptors>
+<!--        <mvc:interceptor>-->
+<!--            &lt;!&ndash;防止表单重复提交&ndash;&gt;-->
+<!--            <mvc:mapping path="/**"/>-->
+<!--            <bean class="util.interceptor.SameUrlDataInterceptor"/>-->
+<!--        </mvc:interceptor>-->
+<!--        <mvc:interceptor>-->
+<!--            &lt;!&ndash;用于实现自动登录&ndash;&gt;-->
+<!--            <mvc:mapping path="/**"/>-->
+<!--            <bean class="util.interceptor.LoginInterceptor"/>-->
+<!--        </mvc:interceptor>-->
+
+<!--        <mvc:interceptor>-->
+<!--            &lt;!&ndash;用于判断用户是否登录&ndash;&gt;-->
+<!--            <mvc:mapping path="/user/**"/>-->
+<!--            <bean class="util.interceptor.UserInterceptor"/>-->
+<!--        </mvc:interceptor>-->
+
+<!--        <mvc:interceptor>-->
+<!--            &lt;!&ndash;管理员可以增删改&ndash;&gt;-->
+<!--            <mvc:mapping path="/administrators/add*"/>-->
+<!--            <bean class="util.interceptor.AddInterceptor"/>-->
+<!--        </mvc:interceptor>-->
+<!--        <mvc:interceptor>-->
+<!--            <mvc:mapping path="/administrators/delete*"/>-->
+<!--            <bean class="util.interceptor.DeleteInterceptor"/>-->
+<!--        </mvc:interceptor>-->
+<!--        <mvc:interceptor>-->
+<!--            <mvc:mapping path="/administrators/modify*"/>-->
+<!--            <bean class="util.interceptor.ModifyInterceptor"/>-->
+<!--        </mvc:interceptor>-->
+<!--        <mvc:interceptor>-->
+<!--            &lt;!&ndash;客服以上的权限可以查看&ndash;&gt;-->
+<!--            <mvc:mapping path="/administrators/show*"/>-->
+<!--            <bean class="util.interceptor.ShowInterceptor "/>-->
+<!--        </mvc:interceptor>-->
+        <mvc:interceptor>
+            <!--用来进行安全中心的绑定邮箱验证-->
+            <mvc:mapping path="/mailboxBinding*"/>
+            <bean class="util.interceptor.MailboxBinding "/>
+        </mvc:interceptor>
+    </mvc:interceptors>
+</beans>

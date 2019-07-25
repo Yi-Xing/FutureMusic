@@ -1,0 +1,23 @@
+.form_col{
+    width: 800px;
+    height: 82px;
+    margin-top: 20px;
+    background: white;
+    border-radius: 7px;
+    padding: 0 10px;
+    overflow-x: auto;
+}
+.form_col:hover{
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+}
+.form_col table{
+    width:750px;
+    height: 40px;
+}
+.form_col table td{
+    width:100px;
+}
+.demo{width:80%; margin:20px auto}
+.demo h3{height:32px; line-height:32px}
+.demo p{line-height:24px}
+pre{margin-top:10px; padding:6px; background:#f7f7f7}

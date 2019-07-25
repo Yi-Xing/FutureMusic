@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//ED"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.PlayMapper">
+    <select id="selectListPlay" parameterType="Play" resultMap="play">
+        select * from tb_play
+        <where>
+            <if test='userId!=0'>
+                play_user_id=#{userId}
+            </if>
+            <if test='type!=0'>
+                and play_type=#{type}
+            </if>
+            <if test='musicId!=0'>
+                and play_music_id=#{musicId}
+            </if>
+        </where>
+    </select>
+    <select id="selectPlays" parameterType="Play" resultType="Integer">
+        select count(*) from tb_play
+        <where>
+            <if test='userId!=0'>
+                play_user_id=#{userId}
+            </if>
+            <if test='singerId!=0'>
+                and play_singer_id=#{singerId}
+            </if>
+            <if test='type!=0'>
+                and play_type=#{type}
+            </if>
+            <if test='musicId!=0'>
+                and play_music_id=#{musicId}
+            </if>
+            <if test='albumId!=0'>
+                and play_album_id=#{albumId}
+            </if>
+        </where>
+    </select>
+    <insert id="insertPlay" parameterType="Play">
+         insert into tb_play (play_user_id,play_music_id,play_type,play_singer_id,play_album_id,play_classification_id,
+         play_date)
+         values(#{userId},#{musicId},#{type},#{singerId},#{albumId},#{classificationId},#{date})
+    </insert>
+    <update id="updatePlay" parameterType="Play">
+        update tb_play
+        <set>
+            <if test='date!=null '>
+                play_date=#{date}
+            </if>
+        </set>
+        where play_id=#{id}
+    </update>
+    <delete id="deletePlay" parameterType="Integer">
+        delete from tb_play where play_id=#{value}
+    </delete>
+
+
+    <resultMap id="play" type="Play">
+        <id column="play_id" property="id"/>
+        <result column="play_user_id" property="userId"/>
+        <result column="play_music_id" property="musicId"/>
+        <result column="play_type" property="type"/>
+        <result column="play_singer_id" property="singerId"/>
+        <result column="play_album_id" property="albumId"/>
+        <result column="play_classification_id" property="classificationId"/>
+        <result column="play_date" property="date"/>
+    </resultMap>
+</mapper>
