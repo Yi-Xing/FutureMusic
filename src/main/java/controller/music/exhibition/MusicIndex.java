@@ -27,10 +27,31 @@ public class MusicIndex {
     MusicService musicService;
     @Resource(name = "ActivityService")
     ActivityService activityService;
-//    @RequestMapping("/indexInformation")
-//    public String indexInformation(HttpServletRequest request,Model model){
-//
-//    }
+    @RequestMapping("/indexInformation")
+    public String indexInformation(HttpServletRequest request,Model model){
+        //活动
+        model.addAttribute("activities",activity());
+        //歌手
+        String singerRegion1 = request.getParameter("singerRegion1");
+        String singerRegion2 = request.getParameter("singerRegion2");
+        String singerRegion3 = request.getParameter("singerRegion3");
+        model.addAttribute("singers",singerIndex(singerRegion1));
+        model.addAttribute("singers",singerIndex(singerRegion2));
+        model.addAttribute("singers",singerIndex(singerRegion3));
+        //MV
+        model.addAttribute("musicVideo",musicVideoIndex());
+        //音乐
+        model.addAttribute("newSong",rankingListByNewSong());
+        String musicType1 = request.getParameter("musicType1");
+        String musicRegion1 = request.getParameter("musicRegion1");
+        String musicRegion2 = request.getParameter("musicRegion2");
+        String musicRegion3 = request.getParameter("musicRegion3");
+        model.addAttribute("musicType1",rankingListByMusicType(musicType1));
+        model.addAttribute("musicRegion1",rankingListByRegion(musicRegion1));
+        model.addAttribute("musicRegion2",rankingListByRegion(musicRegion2));
+        model.addAttribute("musicRegion3",rankingListByRegion(musicRegion3));
+        return "index";
+    }
     /**
      * 首页推荐活动的显示
      *不传参
@@ -45,13 +66,11 @@ public class MusicIndex {
 
     /**
      * 首页显示音乐人
-     * @param request 页面请求传入一个歌手region参数
      * @return List<SingerExt> 歌手列表
      */
     @RequestMapping("/singerIndex")
     @ResponseBody
-    public List<SingerExt> singerIndex(HttpServletRequest request){
-        String region = request.getParameter("region");
+    public List<SingerExt> singerIndex(String region){
         return singerService.exhibitionSingersByRegion(region);
     }
 
@@ -68,13 +87,11 @@ public class MusicIndex {
 
     /**
      * 功能：首页的流派排行榜
-     * @param request 接收一个musicType 音乐类别
      * @return List<Music> 返回符合条件的歌曲集合
      */
     @RequestMapping("/musicType")
     @ResponseBody
-    public List<MusicExt> rankingListByMusicType(HttpServletRequest request) {
-        String musicType = request.getParameter("musicType");
+    public List<MusicExt> rankingListByMusicType(String musicType) {
         List<MusicExt> musicList = musicService.selectListMusicByMusicType(musicType);
         return getThreeMusic(musicList);
     }
@@ -93,13 +110,11 @@ public class MusicIndex {
 
     /**
      * 功能：首页的地区排行榜
-     * @param request 接受一个region 地区
      * @return List<Music> 返回符合条件的歌曲集合
      */
-    @RequestMapping("/musicRegion")
+    @RequestMapping("/musicRegionmusicRegion")
     @ResponseBody
-    public List<MusicExt> rankingListByRegion(HttpServletRequest request) {
-        String region = request.getParameter("region");
+    public List<MusicExt> rankingListByRegion(String region) {
         List<MusicExt> musicList = musicService.selectListMusicByRegion(region);
         return getThreeMusic(musicList);
     }
