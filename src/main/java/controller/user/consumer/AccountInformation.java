@@ -41,6 +41,13 @@ public class AccountInformation {
     }
 
     /**
+     * 用于访问其他用户的页面
+     */
+    @RequestMapping(value = "/otherUserPage")
+    public String otherUserPage(String id,HttpSession session, Model model){
+        return accountInformationService.otherUserPage(id,session,model);
+    }
+    /**
      * 点击修改用户名执行此方法，ajax
      *
      * @param userName 修改后的用户名

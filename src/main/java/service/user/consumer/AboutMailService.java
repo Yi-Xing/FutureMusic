@@ -34,36 +34,51 @@ public class AboutMailService {
     SpecialFunctions specialFunctions;
     @Resource(name = "MailMapper")
     MailMapper mailMapper;
-    @Resource(name ="IdExistence")
+    @Resource(name = "IdExistence")
     IdExistence idExistence;
+
     /**
      * 显示发送页面
      */
     public String sendEmail(HttpSession session, Model model) {
-        User user=specialFunctions.getUser(session);
-        Mail mail=new Mail();
+        User user = specialFunctions.getUser(session);
+        Mail mail = new Mail();
         mail.setSenderId(user.getId());
-        List<Mail> list=mailMapper.selectListMail(mail);
+        List<Mail> list = mailMapper.selectListMail(mail);
         // 使用有存储顺序的map集合
-        Map<Mail,User> mailMap=new LinkedHashMap<>();
-        for(Mail m:list){
+        Map<Mail, User> mailMap = new LinkedHashMap<>();
+        for (Mail m : list) {
             // 一个邮箱对应一个接收者
-            mailMap.put(m,idExistence.isUserId(m.getRecipientId()));
+            mailMap.put(m, idExistence.isUserId(m.getRecipientId()));
         }
-        model.addAttribute("mailMap",mailMap);
-        System.out.println(list);
-        System.out.println(mailMap);
-        return "userInformation/sendEmail";
+        model.addAttribute("mailMap", mailMap);
+        model.addAttribute("page", "sendEmail");
+        return "userInformation/mailPage";
     }
 
     /**
      * 显示接收页面
      */
-    public String receiveEmail(HttpSession session) {
-        User user=specialFunctions.getUser(session);
-        return "userInformation/sendEmail";
-    }
+    public String receiveEmail(HttpSession session, Model model) {
+        User user = specialFunctions.getUser(session);
+        Mail mail = new Mail();
+        mail.setRecipientId(user.getId());
+        List<Mail> list = mailMapper.selectListMail(mail);
+        // 使用有存储顺序的map集合
+        Map<Mail, User> mailMap = new LinkedHashMap<>();
+        for (Mail m : list) {
+            // 一个邮箱对应一个接收者
+            if (m.getReply() == 1) {
+                mailMap.put(m, idExistence.isUserId(1));
+            } else {
+                mailMap.put(m, idExistence.isUserId(m.getSenderId()));
 
+            }
+        }
+        model.addAttribute("mailMap", mailMap);
+        model.addAttribute("page", "receiveEmail");
+        return "userInformation/receiveEmail";
+    }
 
 
     /**
@@ -118,6 +133,8 @@ public class AboutMailService {
             Mail mail = new Mail();
             // 发送邮件的用户id
             mail.setSenderId(id);
+            // 收件人客服
+            mail.setRecipientId(1);
             // 发送给客服
             mail.setReply(1);
             mail.setContent(content);
@@ -132,6 +149,27 @@ public class AboutMailService {
         }
         return state;
     }
+
+
+    //下面代码无效
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     /**
      * 查看给那些用户发送过邮件
@@ -160,7 +198,7 @@ public class AboutMailService {
      *
      * @param id 接收者的id
      */
-    public List<Mail> showSendMail(Integer id, HttpSession session){
+    public List<Mail> showSendMail(Integer id, HttpSession session) {
         // 用户信息
         User user = specialFunctions.getUser(session);
         Mail mail = new Mail();
