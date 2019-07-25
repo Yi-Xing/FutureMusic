@@ -32,6 +32,12 @@ public interface UserMapper {
     public List<User> selectUser(User user);
 
     /**
+     *
+     *
+     */
+    public List<User> selectUsers(User user);
+
+    /**
      * 查找符合指定规则的用户信息
      *
      * @param mailbox 按照mailbox查询用户

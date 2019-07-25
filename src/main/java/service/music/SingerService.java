@@ -185,7 +185,6 @@ public class SingerService {
     public List<SingerExt> searchAllSinger() {
         User user = new User();
         user.setLevel(2);
-        user.setId(0);
-        return transformSingers(userMapper.selectUser(user));
+        return transformSingers(userMapper.selectUsers(user));
     }
 }

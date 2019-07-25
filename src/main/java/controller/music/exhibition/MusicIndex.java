@@ -27,7 +27,10 @@ public class MusicIndex {
     MusicService musicService;
     @Resource(name = "ActivityService")
     ActivityService activityService;
-
+//    @RequestMapping("/indexInformation")
+//    public String indexInformation(HttpServletRequest request,Model model){
+//
+//    }
     /**
      * 首页推荐活动的显示
      *不传参
