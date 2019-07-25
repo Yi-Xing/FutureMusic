@@ -1,0 +1,13 @@
+body{
+    background-image: url("../img/noFind.jpg");
+    background-size: cover;
+}
+.no_find{
+    position: absolute;
+    top: 72vh;
+    left: 50%;
+    transform: translateX(-50%);
+}
+.no_find a{
+    margin: 0 20px;
+}

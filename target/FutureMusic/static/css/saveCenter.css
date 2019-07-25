@@ -1,0 +1,17 @@
+.saveCenter_tab{
+    display: flex;
+    justify-content: space-between;
+}
+.saveCenter_tab .saveTab{
+    padding: 10px 50px;
+    margin-bottom: 30px;
+}
+.active{
+    background-color: #5CB85C;
+}
+.pleaseEmail{
+    margin: 150px auto;
+}
+#changePassword,#mibao{
+    display: none;
+}
