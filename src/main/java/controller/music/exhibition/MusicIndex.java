@@ -44,6 +44,8 @@ public class MusicIndex {
      * @param request 页面请求
      * @return List<SingerExt> 歌手列表
      */
+    @RequestMapping("/singerIndex")
+    @ResponseBody
     public List<SingerExt> singerIndex(HttpServletRequest request){
         String region = request.getParameter("region");
         return singerService.exhibitionSingersByRegion(region);
