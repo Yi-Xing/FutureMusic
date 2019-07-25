@@ -67,21 +67,13 @@ $(".music_list").click(function () {
 
     var Original = 0;
     document.getElementById('audio').addEventListener('timeupdate', function () {
-<<<<<<< HEAD
         console.log(this.currentTime);
-=======
-        // console.log(this.currentTime);
->>>>>>> 0ca05eefec8f2220ae7247ab5c20916769c5f895
         var cur = parseInt(this.currentTime);
         if(document.getElementById('time' + cur)){
             document.getElementById('time' + Original).style.cssText = 'font-size: 18px;color: #666A70;';
             Original = cur;
             document.getElementById('time' + cur).style.cssText = 'font-size: 23px;color: #fff';
-<<<<<<< HEAD
             console.log(document.getElementById('time' + cur));
-=======
-            // console.log(document.getElementById('time' + cur));
->>>>>>> 0ca05eefec8f2220ae7247ab5c20916769c5f895
             let height = document.getElementById('time' + cur).offsetTop;
             console.log(height);
             if(height < 300){
@@ -101,11 +93,7 @@ $(".music_list").click(function () {
 var musicLyric = [
     {
         lyric: "[00:00.05]陈硕子 - 凌晨三点 (Demo)\n" +
-<<<<<<< HEAD
                 "[00:01.98]我在凌晨三点\n" +
-=======
-            "[00:01.98]我在凌晨三点\n" +
->>>>>>> 0ca05eefec8f2220ae7247ab5c20916769c5f895
             "[00:02.81]醒来的夜里\n" +
             "[00:04.70]想起了失去的你\n" +
             "[00:08.47]曾经说着永远一起\n" +

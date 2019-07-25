@@ -1,6 +1,5 @@
 //全部音乐人
 window.onload = function () {
-<<<<<<< HEAD
     // var artist_name = $(".artist .artist_bottom h4");   //音乐人姓名
     // var artist_img = $(".artists .artist_top img");   //音乐人头像
     // var artist_works = $(".artists .artist_top ol li a");   //音乐人作品*5
@@ -32,19 +31,12 @@ window.onload = function () {
         "</div>\n" +
         "</div>\n" +
         "</li>";
-=======
-    var artist_name = $(".artist .artist_bottom h4");   //音乐人姓名
-    var artist_img = $(".artists .artist_top img");   //音乐人头像
-    var artist_works = $(".artists .artist_top ol li a");   //音乐人作品*5
-    console.log(artist_name);
->>>>>>> 0ca05eefec8f2220ae7247ab5c20916769c5f895
     $.ajax({
         contentType: "application/x-www-form-urlencoded;charset=UTF-8",
         type: "post",
         url: "/allSinger",
         dataType: "json",
         success: function (data) {
-<<<<<<< HEAD
             console.log(data);
             for (var i = 0; i < data.length; i++) {
                 artist_img_url = data[i].portrait;
@@ -65,9 +57,6 @@ window.onload = function () {
             }
             $(".artistS ul").innerHTML = str;
 
-=======
-            console.log("ajax启动");
->>>>>>> 0ca05eefec8f2220ae7247ab5c20916769c5f895
         }
     })
 };

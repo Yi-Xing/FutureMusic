@@ -137,6 +137,9 @@ window.onload = function () {
         var activity=$("#activityAdd").val();
         var available=$("#availableAdd").val();
         var musicVideoId = $("#mvIdAdd").val();
+        if(musicVideoId==-1){
+            musicVideoId=0;
+        }
         // 封装文件
         var selectFile = new FormData($('#selectFileAdd')[0]);
         selectFile.append("name",name);

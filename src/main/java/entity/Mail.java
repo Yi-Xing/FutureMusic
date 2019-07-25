@@ -5,6 +5,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.Objects;
 
 /**
  * 邮件表 存储用户之间的邮件信息
@@ -41,6 +42,23 @@ public class Mail implements Serializable {
      * 0表示未读，1表示已读，2表示标记,   -1表示全部
      */
     private int state=-1;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o){
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        Mail mail = (Mail) o;
+        return id == mail.id;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
+    }
 
     @Override
     public String toString() {
