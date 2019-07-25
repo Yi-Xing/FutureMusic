@@ -5,6 +5,7 @@ import entity.State;
 import entity.User;
 import mapper.FocusMapper;
 import org.springframework.ui.Model;
+import service.user.IdExistence;
 import service.user.SpecialFunctions;
 import util.FileUpload;
 import util.exception.DataBaseException;
@@ -38,7 +39,8 @@ public class AccountInformationService {
     FocusMapper focusMapper;
     @Resource(name = "FileUpload")
     FileUpload fileUpload;
-
+    @Resource(name ="IdExistence")
+    IdExistence idExistence;
     /**
      * 显示用户页面
      * Model封装：
@@ -47,9 +49,11 @@ public class AccountInformationService {
      */
     public String userPage(HttpSession session, Model model) {
         // 判断用户是否去访问
-        User user = (User)session.getAttribute("");
+        User user = (User)session.getAttribute("otherUser");
         if(user==null){
          user = specialFunctions.getUser(session);
+        }else{
+            session.removeAttribute("otherUser");
         }
         // 用于查找用户关注的人数
         Focus userFollow = new Focus();
@@ -76,6 +80,16 @@ public class AccountInformationService {
     }
 
 
+    /**
+     * 用于访问其他用户的页面
+     */
+    public String otherUserPage(String id,HttpSession session, Model model){
+        User user=idExistence.isUserIdExist(id);
+        if(user!=null){
+            session.setAttribute("otherUser",user);
+        }
+        return userPage(session,model);
+    }
     /**
      * 用于修改用户的用户名
      * 并修改会话上的用户名

@@ -31,6 +31,7 @@
                 and mail_state=#{state}
             </if>
         </where>
+        order by mail_date desc
     </select>
     <insert id="insertMail" parameterType="Mail">
          insert into tb_mail(mail_sender_id,mail_recipient_id,mail_content,mail_date,mail_reply,mail_state)

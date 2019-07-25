@@ -6,6 +6,7 @@ import entity.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -34,34 +35,29 @@ public class AboutMail {
     MailInformationService mailInformationService;
     private static final Logger logger = LoggerFactory.getLogger(AboutUser.class);
 
-//    /**
-//     * 显示发送页面
-//     */
-//    @RequestMapping(value = "/sendEmail")
-//    public String sendEmail(HttpSession session) {
-//        return aboutMailService.toEmail(session);
-//    }
-//    /**
-//     * 显示接收页面
-//     */
-//    @RequestMapping(value = "/receiveEmail")
-//    public String receiveEmail(HttpSession session) {
-//        return aboutMailService.toEmail(session);
-//    }
-//    /**
-//     * 显示评论页面
-//     */
-//    @RequestMapping(value = "/comment")
-//    public String comment() {
-//        return "userInformation/comment";
-//    }
-//    /**
-//     * 显示通知页面
-//     */
-//    @RequestMapping(value = "/notice")
-//    public String notice() {
-//        return "userInformation/notice";
-//    }
+    /**
+     * 显示发送页面
+     */
+    @RequestMapping(value = "/sendEmail")
+    public String sendEmail(HttpSession session, Model model) {
+        return aboutMailService.sendEmail(session, model);
+    }
+
+    /**
+     * 显示接收页面
+     */
+    @RequestMapping(value = "/receiveEmail")
+    public String receiveEmail(HttpSession session, Model model) {
+        return aboutMailService.receiveEmail(session, model);
+    }
+
+    /**
+     * 显示评论页面
+     */
+    @RequestMapping(value = "/receiveComment")
+    public String comment() {
+        return "userInformation/comment";
+    }
 
 
     /**
@@ -87,7 +83,7 @@ public class AboutMail {
     @ResponseBody
     public State feedback(String content, HttpSession session) throws DataBaseException {
         logger.trace("feedback方法开始执行");
-        return aboutMailService.feedback( specialFunctions.getUser(session).getId(),content);
+        return aboutMailService.feedback(specialFunctions.getUser(session).getId(), content);
     }
 
     /**
@@ -95,20 +91,21 @@ public class AboutMail {
      */
     @RequestMapping(value = "/showSendMailUser")
     @ResponseBody
-    public List<User> showSendMailUser( HttpSession session)  {
+    public List<User> showSendMailUser(HttpSession session) {
         logger.trace("showSendMailUser方法开始执行");
         return aboutMailService.showSendMailUser(session);
     }
 
     /**
      * 查看给指定用户发过那些邮件
+     *
      * @param id 接收者的id
      */
     @RequestMapping(value = "/showSendMail")
     @ResponseBody
-    public List<Mail> showSendMail(Integer id,HttpSession session) {
+    public List<Mail> showSendMail(Integer id, HttpSession session) {
         logger.trace("showSendMail方法开始执行");
-        return aboutMailService.showSendMail(id,session);
+        return aboutMailService.showSendMail(id, session);
     }
 
     /**
@@ -116,20 +113,21 @@ public class AboutMail {
      */
     @RequestMapping(value = "/showReceiveMailUser")
     @ResponseBody
-    public List<User> showReceiveMailUser(HttpSession session)  {
+    public List<User> showReceiveMailUser(HttpSession session) {
         logger.trace("showReceiveMailUser方法开始执行");
         return aboutMailService.showReceiveMailUser(session);
     }
 
     /**
      * 查看收到过指定用户的那些邮件
+     *
      * @param id 指定 发送者的id
      */
     @RequestMapping(value = "/showReceiveMail")
     @ResponseBody
-    public List<Mail> showReceiveMail(Integer id, HttpSession session)  {
+    public List<Mail> showReceiveMail(Integer id, HttpSession session) {
         logger.trace("showReceiveMail方法开始执行");
-        return aboutMailService.showReceiveMail(id,session);
+        return aboutMailService.showReceiveMail(id, session);
     }
 
 
