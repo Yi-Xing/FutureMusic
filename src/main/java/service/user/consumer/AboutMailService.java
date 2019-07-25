@@ -77,9 +77,27 @@ public class AboutMailService {
         }
         model.addAttribute("mailMap", mailMap);
         model.addAttribute("page", "receiveEmail");
-        return "userInformation/receiveEmail";
+        return "userInformation/mailPage";
     }
 
+    /**
+     * 显示用户通知页面
+     */
+    public String noticeEmail(Model model) {
+        Mail mail = new Mail();
+        mail.setReply(12);
+        List<Mail> list = mailMapper.selectListMail(mail);
+        // 使用有存储顺序的map集合
+        Map<Mail, User> mailMap = new LinkedHashMap<>();
+        User user=idExistence.isUserId(1);
+        for (Mail m : list) {
+            // 一个邮箱对应一个接收者
+            mailMap.put(m, user);
+        }
+        model.addAttribute("mailMap", mailMap);
+        model.addAttribute("page", "noticeEmail");
+        return "userInformation/mailPage";
+    }
 
     /**
      * 用户之间发送邮件
@@ -152,23 +170,6 @@ public class AboutMailService {
 
 
     //下面代码无效
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
     /**

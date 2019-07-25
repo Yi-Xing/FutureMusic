@@ -52,11 +52,11 @@ public class AboutMail {
     }
 
     /**
-     * 显示评论页面
+     * 显示通知页面
      */
-    @RequestMapping(value = "/receiveComment")
-    public String comment() {
-        return "userInformation/comment";
+    @RequestMapping(value = "/noticeEmail")
+    public String noticeEmail(Model model) {
+        return aboutMailService.noticeEmail( model);
     }
 
 

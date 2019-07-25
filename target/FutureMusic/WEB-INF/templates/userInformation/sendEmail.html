@@ -4,7 +4,7 @@
 </head>
 <body>
 <div class="col-lg-2" th:fragment="sendEmailHead">
-    <h3 class="pointer" style="text-align: center">我的消息</h3>
+    <h3 class="pointer" style="text-align: center">我的邮件</h3>
     <ul class="toEmail_tab">
         <li class="active">
             <a th:href="@{/user/sendEmail}">
@@ -21,14 +21,7 @@
             </a>
         </li>
         <li>
-            <a href="#">
-                <h4>
-                    <i class="iconfont icon-comment"></i> 评论
-                </h4>
-            </a>
-        </li>
-        <li>
-            <a href="#">
+            <a th:href="@{/user/noticeEmail}">
                 <h4>
                     <i class="iconfont icon-music"></i> 通知
                 </h4>

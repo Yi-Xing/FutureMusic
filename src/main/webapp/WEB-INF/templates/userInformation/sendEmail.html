@@ -3,8 +3,9 @@
 <head>
 </head>
 <body>
+
 <div class="col-lg-2" th:fragment="sendEmailHead">
-    <h3 class="pointer" style="text-align: center">我的消息</h3>
+    <h3 class="pointer" style="text-align: center">我的邮件</h3>
     <ul class="toEmail_tab">
         <li class="active">
             <a th:href="@{/user/sendEmail}">
@@ -21,14 +22,7 @@
             </a>
         </li>
         <li>
-            <a href="#">
-                <h4>
-                    <i class="iconfont icon-comment"></i> 评论
-                </h4>
-            </a>
-        </li>
-        <li>
-            <a href="#">
+            <a th:href="@{/user/noticeEmail}">
                 <h4>
                     <i class="iconfont icon-music"></i> 通知
                 </h4>
@@ -37,7 +31,7 @@
     </ul>
 </div>
 
-<div class="col-lg-9" th:fragment="sendEmail">
+<div class="col-lg-9" th:fragment="sendEmail" style="height: 800px;overflow: auto">
     <h4 id="tabName">发送的邮箱
         <a href="javascript:" type="button" data-toggle="modal" data-target="#edit" data-whatever="@mdo">
             <i class="iconfont icon-youxiang-kong"></i>
@@ -119,7 +113,6 @@
         </div>
     </div>
 </div>
-
 
 </body>
 </html>

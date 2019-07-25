@@ -35,7 +35,7 @@ public class Mail implements Serializable {
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     private Date date=null;
     /**
-     * 0为普通邮件，1为管理员和客服看的邮件（为1和2时不用填接收方的id）  3、全体用户看的
+     * 0(10)为普通邮件，1(11)为管理员和客服看的邮件  2(12)是给全体看的   无条件0
      */
     private int reply=0;
     /**
