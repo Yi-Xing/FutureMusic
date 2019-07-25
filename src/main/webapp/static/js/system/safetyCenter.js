@@ -95,6 +95,8 @@ $(document).ready(function () {
     $("#submitNewPassword").on("click", function () {
         var password=$(".password").val();
         var passwordAgain=$(".passwordAgain").val();
+        alert(password)
+        alert(passwordAgain)
         $.ajax({
             contentType: "application/x-www-form-urlencoded",
             type: "post",
@@ -110,8 +112,9 @@ $(document).ready(function () {
                     alert(data.information)
                     // $(".promptInformation").text(data.information);
                 }else {
+                    alert("密码修改成功")
                     // 密码正确进行页面跳转
-                    window.location.href="/mailboxBindingPasswordChangePasswordPage";
+                    window.location.href="/index";
                 }
             }
         });

@@ -19,6 +19,26 @@ div.top_nav{
     font-size: 20px;
     color: rgb(255, 255, 255);
 }
+<<<<<<< HEAD
+=======
+.back_index{
+    background-color: #fff;
+    color: rgb(0, 94, 202);
+    float: right;
+    height: 40px;
+    width: 85px;
+    top: 11px;
+    position: relative;
+    line-height: 40px;
+    text-align: center;
+    font-size: 17px;
+    border-radius: 5px;
+}
+.back_index:after{
+    content: " ";
+    clear: both;
+}
+>>>>>>> 0ca05eefec8f2220ae7247ab5c20916769c5f895
 .top_nav .top .retrieve_password{
     font-size: 15px;
     color:rgb(224, 224, 224);

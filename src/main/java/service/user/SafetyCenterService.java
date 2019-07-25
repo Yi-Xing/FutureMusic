@@ -202,31 +202,34 @@ public class SafetyCenterService {
      * @param session       获取当前会话的对象
      */
     public State changePassword(String password, String passwordAgain, HttpSession session, HttpServletRequest request, HttpServletResponse response) throws DataBaseException {
+        System.out.println("我执行了");
         State state = new State();
-        User user = (User) session.getAttribute("userInformation");
+        String  mailbox = specialFunctions.getUserMailbox(session);
         // 先判断用户有没 setPassword的秘钥
         if (specialFunctions.getUserMailbox(session).equals(session.getAttribute("setPassword"))) {
+            session.removeAttribute("setPassword");
             // 判断修改后的密码格式是否正确
             if (validationInformation.isPassword(password)) {
                 // 判断两次密码是否相同
                 if (password.equals(passwordAgain)) {
                     // 判断用户密码是否正确，如果正确则修改数据库中的密码以及cookie的密码
-                    if (isMailboxAndPassword(user.getMailbox(), password, request, response)) {
-                        logger.info(user.getMailbox(), "的密码修改成功");
+                    if (isMailboxAndPassword(mailbox, password, request, response)) {
+                        logger.info(mailbox, "的密码修改成功");
                         state.setState(1);
                     } else {
-                        logger.debug(user.getMailbox(), "密码错误");
+                        logger.debug(mailbox, "密码错误");
                         state.setInformation("密码错误");
                     }
                 } else {
-                    logger.debug(user.getMailbox(), "两次输入的密码不相同");
+                    logger.debug(mailbox, "两次输入的密码不相同");
                     state.setInformation("两次输入的密码不相同");
                 }
             } else {
-                logger.debug(user.getMailbox(), "密码格式有误");
+                logger.debug(mailbox, "密码格式有误");
                 state.setInformation("密码格式有误");
             }
         }else{
+            logger.debug(mailbox, "请重新绑定邮箱");
             state.setInformation("请重新绑定邮箱");
         }
         return state;

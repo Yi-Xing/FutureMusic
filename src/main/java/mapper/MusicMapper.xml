@@ -90,8 +90,11 @@
             <if test='lyricPath!=null and lyricPath!=""'>
                 , music_lyric_path=#{lyricPath}
             </if>
-            <if test='musicVideoId!=0'>
+            <if test='musicVideoId!=0 and musicVideoId!=-1'>
                 ,music_music_video_id=#{musicVideoId}
+            </if>
+            <if test=' musicVideoId==-1'>
+                ,music_music_video_id=0
             </if>
             <if test='activity!=0'>
                 ,music_activity=#{activity}

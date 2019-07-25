@@ -7,10 +7,17 @@
         select * from tb_order
         <where>
             <if test='id!=0'>
+<<<<<<< HEAD
                 order_id=#{id}
             </if>
             <if test='userId!=0'>
                 order_user_id=#{userId}
+=======
+                and  order_id=#{id}
+            </if>
+            <if test='userId!=0'>
+                and order_user_id=#{userId}
+>>>>>>> 0ca05eefec8f2220ae7247ab5c20916769c5f895
             </if>
             <if test='type!=0'>
                 and order_type=#{type}

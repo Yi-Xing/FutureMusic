@@ -29,6 +29,7 @@ public class OrderInformation {
     private static final Logger logger = LoggerFactory.getLogger(ActivityInformationService.class);
     @Resource(name = "OrderInformationService")
     OrderInformationService orderInformationService;
+
     /**
      * 返回指定指定用户的所有订单或关于指定音乐或MV的订单
      * @param condition 音乐或MVid或用户的id

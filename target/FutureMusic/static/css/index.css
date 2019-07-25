@@ -37,9 +37,12 @@ ul li{
     margin-right: auto;
     margin-left: auto;
 }
+<<<<<<< HEAD
 .header a{
     color: #fff;
 }
+=======
+>>>>>>> 0ca05eefec8f2220ae7247ab5c20916769c5f895
 .header .show_bg{
     width: 100%;
     /*position: absolute;*/
@@ -47,10 +50,15 @@ ul li{
 }
 .header .navbar{
     width: 100%;
+<<<<<<< HEAD
     position: fixed;
     top: 0;
     z-index: 99999;
     background-color: #2f2f2f;
+=======
+    position: absolute;
+    top: 0;
+>>>>>>> 0ca05eefec8f2220ae7247ab5c20916769c5f895
 }
 .header .show_text{
     width: 400px;
@@ -119,7 +127,11 @@ ul li{
 }
 .header{
     width:100%;
+<<<<<<< HEAD
     height: 60px;
+=======
+    height: 65px;
+>>>>>>> 0ca05eefec8f2220ae7247ab5c20916769c5f895
 }
 .inner1{
     width:1200px;

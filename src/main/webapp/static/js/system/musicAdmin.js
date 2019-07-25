@@ -95,6 +95,9 @@ window.onload = function () {
         var id = $("#moreEditId").val();
         var musicVideoId = $("#mvId").val();
         var selectFile = new FormData($('#selectFile')[0]);
+        if(musicVideoId==0){
+            musicVideoId=-1;
+        }
         selectFile.append('id', id);
         selectFile.append("musicVideoId",musicVideoId);
         selectFile.append("fileCheckbox",$("#musicPicture").is(':checked'));

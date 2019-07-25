@@ -12,12 +12,24 @@
             <if test='mailbox!=null and mailbox!=""'>
                 and user_mailbox like "%"#{mailbox}"%"
             </if>
+<<<<<<< HEAD
             <if test='level!=0 and level!=-1 '>
                 and user_level=#{level} and user_level>#{id}
             </if>
             <if test='level==-1'>
                 and user_level=0
             </if>
+=======
+            <if test='level!=0 and level!=-1  and level!=-2'>
+                and user_level=#{level} and #{id}>user_level
+            </if>
+            <if test='level==-1 and level!=-2'>
+                and user_level=0
+            </if>
+             <if test='level==-2'>
+                 and #{id}>user_level
+            </if>
+>>>>>>> 0ca05eefec8f2220ae7247ab5c20916769c5f895
             <if test='report!=0'>
                 and user_report>=#{report}
             </if>
