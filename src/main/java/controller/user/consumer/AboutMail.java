@@ -34,34 +34,34 @@ public class AboutMail {
     MailInformationService mailInformationService;
     private static final Logger logger = LoggerFactory.getLogger(AboutUser.class);
 
-    /**
-     * 显示发送页面
-     */
-    @RequestMapping(value = "/sendEmail")
-    public String sendEmail(HttpSession session) {
-        return aboutMailService.toEmail(session);
-    }
-    /**
-     * 显示接收页面
-     */
-    @RequestMapping(value = "/receiveEmail")
-    public String receiveEmail(HttpSession session) {
-        return aboutMailService.toEmail(session);
-    }
-    /**
-     * 显示评论页面
-     */
-    @RequestMapping(value = "/comment")
-    public String comment() {
-        return "userInformation/comment";
-    }
-    /**
-     * 显示通知页面
-     */
-    @RequestMapping(value = "/notice")
-    public String notice() {
-        return "userInformation/notice";
-    }
+//    /**
+//     * 显示发送页面
+//     */
+//    @RequestMapping(value = "/sendEmail")
+//    public String sendEmail(HttpSession session) {
+//        return aboutMailService.toEmail(session);
+//    }
+//    /**
+//     * 显示接收页面
+//     */
+//    @RequestMapping(value = "/receiveEmail")
+//    public String receiveEmail(HttpSession session) {
+//        return aboutMailService.toEmail(session);
+//    }
+//    /**
+//     * 显示评论页面
+//     */
+//    @RequestMapping(value = "/comment")
+//    public String comment() {
+//        return "userInformation/comment";
+//    }
+//    /**
+//     * 显示通知页面
+//     */
+//    @RequestMapping(value = "/notice")
+//    public String notice() {
+//        return "userInformation/notice";
+//    }
 
 
     /**

@@ -30,18 +30,6 @@ public class SearchSinger {
 
     @Resource(name = "SingerService")
     SingerService singerService;
-    @Resource(name ="UserMapper")
-    UserMapper userMapper;
-    /**
-     * 搜索歌手的详细信息
-     */
-    public Map<String,Object> searchSingerInformation(int singerId){
-        User user = new User();
-        user.setId(singerId);
-        user.setLevel(2);
-
-        return null;
-    }
     /**
      * 点击搜索歌手，ajax
       *@param request 接收请求

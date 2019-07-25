@@ -33,6 +33,8 @@ public class SongListService {
     CommentService commentService;
     /**
      * 显示歌单的详细信息
+     * @param songListId 传入参数songListId
+     * @return SongListExt 要显示的详细信息
      */
     public SongListExt songListDetail(int songListId){
         SongListExt songListExt = new SongListExt();
@@ -76,7 +78,8 @@ public class SongListService {
     }
     /**
      *根据分类搜索歌单
-     * type
+     * @param classification 分类信息
+     * @return  List<String[]> 返回歌单信息的集合
      */
     public List<String[]> showSongListByClassification(Classification classification){
         List<String[]> showSongLists = new ArrayList<>();
@@ -94,16 +97,19 @@ public class SongListService {
     }
     /**
      * 根据名字搜索歌单
+     * @param keyWord 搜索的关键字
+     * @return List<String[]> 歌单信息的集合
      */
     public List<String[]> searchSongListByName(String keyWord){
         SongList songList = new SongList();
         songList.setName(keyWord);
         List<SongList> songLists = songListMapper.selectListSongList(songList);
-        List<String[]> showSongList = transformShowSongLists(songLists);
-        return showSongList;
+        return transformShowSongLists(songLists);
     }
     /**
      * 将歌单集合转化为要显示的信息
+     * @param songLists 要转换信息的集合
+     * @return List<String[]> 歌单信息的集合
      */
      public List<String[]> transformShowSongLists(List<SongList> songLists){
          List<String[]> showSongLists = new ArrayList<>();
@@ -115,7 +121,13 @@ public class SongListService {
     }
     /**
      * 将一个歌单对象转化为要显示的信息
-     * 专歌单或专辑的id、名字、图片、音乐数、收听次数
+     * @param songList 歌单对象
+     * @return String[] 要显示的信息，用数组存放
+     *                          专辑id String[0]
+     *                          专辑名字 String[1]
+     *                          专辑图片 String[2]
+     *                          查找专辑音乐数 String[3]
+     *                          专辑播放量 String[4]
      */
     public String[] transformShowSongList(SongList songList){
         String[] showSongList = new String[5];
@@ -140,6 +152,8 @@ public class SongListService {
     }
      /**
      * 查找专辑或者歌单中的歌曲
+      * @param musicSongLists
+      * @return List<MusicExt> 歌单中的音乐列表
      */
     public  List<MusicExt> transformMusics(List<MusicSongList> musicSongLists){
        List<Music> musicList = new ArrayList<>();
