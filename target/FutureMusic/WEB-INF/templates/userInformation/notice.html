@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="head::html"></head>
+<head>
+    <link rel="stylesheet" href="/static/css/toEmail.css" th:href="@{/static/css/toEmail.css}">
+</head>
+<body>
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-offset-2"></div>
+        <div class="col-lg-2">
+            <h3 class="pointer" style="text-align: center">我的消息</h3>
+            <ul class="toEmail_tab">
+                <li><a href="#" th:href="@{/WEB-INF/templates/userInformation/receiveEmail.html}"><h4><i class="iconfont icon-xinfeng"></i> 私信</h4></a></li>
+                <li><a href="#" th:href="@{/WEB-INF/templates/userInformation/comment.html}"><h4><i class="iconfont icon-comment"></i> 评论</h4></a></li>
+                <li class="active" th:href="@{/WEB-INF/templates/userInformation/notice.html}"><a href="#"><h4><i class="iconfont icon-music"></i> 通知</h4></a></li>
+            </ul>
+        </div>
+        <div class="col-lg-9">
+            <h4 id="tabName">通知</h4>
+            <div class="redLine"></div>
+            <table class="table table-hover PrivateLetter">
+                <tr>
+                    <th>
+                        <div class="pull-left"><a href="#"><img src="" th:src="@{/static/img/mv1.jpg}" alt=""></a></div>
+                        <div class="pull-left">
+                            <b class="emailName">123</b>
+                            <i class="iconfont icon-59"></i>
+                            <font>time</font>
+                            <h5>connet</h5>
+                        </div>
+                    </th>
+                </tr>
+            </table>
+        </div>
+        <!--        <div class="col-lg-offset-1"></div>-->
+    </div>
+</div>
+
+</body>
+</html>
