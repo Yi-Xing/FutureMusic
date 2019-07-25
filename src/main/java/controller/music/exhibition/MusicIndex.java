@@ -30,7 +30,7 @@ public class MusicIndex {
     @RequestMapping("/indexInformation")
     public String indexInformation(HttpServletRequest request,Model model){
         //活动
-        model.addAttribute("activitys",activity());
+        model.addAttribute("activities",activity());
         //歌手
         String singerRegion1 = request.getParameter("singerRegion1");
         String singerRegion2 = request.getParameter("singerRegion2");
