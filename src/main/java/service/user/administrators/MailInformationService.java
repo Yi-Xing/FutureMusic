@@ -40,13 +40,12 @@ public class MailInformationService {
 
     /**
      * 显示邮件信息
-     *  类型-id-接收方-发送方—接收者
+     * 类型-id-接收方-发送方—接收者
+     *
      * @param condition 条件可以有多个 1、按id查询 2、按接收方id查询 3、按发送方id查询  4、按指定邮件等级
      * @param pageNum   表示当前第几页
-     * @param session   用于判断用户等级权限
      */
-    public String showMail(String[] condition, Integer pageNum, HttpSession session, Model model) {
-        User user = specialFunctions.getUser(session);
+    public String showMail(String[] condition, Integer pageNum, Model model) {
         Mail mail = new Mail();
         if (condition != null) {
             if ((condition[0] != null) && !"".equals(condition[0])) {
@@ -54,28 +53,45 @@ public class MailInformationService {
                 switch (condition[0]) {
                     case "1":
                         if ((condition[1] != null) && !"".equals(condition[1])) {
-                            mail.setId(Integer.parseInt(condition[1]));
+                            if (validationInformation.isInt(condition[1])) {
+                                mail.setId(Integer.parseInt(condition[1]));
+                            } else {
+                                mail.setId(-1);
+                            }
                         }
                         break;
                     case "2":
-                        condition[2]=condition[1];
-                        condition[1]=null;
+                        condition[2] = condition[1];
+                        condition[1] = null;
                         break;
                     case "3":
-                        condition[3]=condition[1];
-                        condition[1]=null;
+                        condition[3] = condition[1];
+                        condition[1] = null;
                         break;
                     default:
                 }
             }
             if ((condition[2] != null) && !"".equals(condition[2])) {
-                mail.setRecipientId(Integer.parseInt(condition[2]));
+                if (validationInformation.isInt(condition[2])) {
+                    mail.setRecipientId(Integer.parseInt(condition[2]));
+                } else {
+                    mail.setRecipientId(-1);
+                }
             }
             if ((condition[3] != null) && !"".equals(condition[3])) {
-                mail.setSenderId(Integer.parseInt(condition[3]));
+                if (validationInformation.isInt(condition[3])) {
+                    mail.setSenderId(Integer.parseInt(condition[3]));
+                } else {
+                    mail.setSenderId(-1);
+                }
             }
             if ((condition[4] != null) && !"".equals(condition[4])) {
-                mail.setReply(Integer.parseInt(condition[4]));
+                if (validationInformation.isInt(condition[4])) {
+                    mail.setReply(Integer.parseInt(condition[4]));
+                } else {
+                    mail.setReply(-1);
+                }
+
             }
             model.addAttribute("conditionZero", condition[0]);
             model.addAttribute("conditionOne", condition[1]);
@@ -89,12 +105,6 @@ public class MailInformationService {
             model.addAttribute("conditionThree", null);
             model.addAttribute("conditionFour", null);
         }
-//        // 控制显示的邮箱等级,邮件查看权限认证
-//        if (user.getLevel() == 3) {
-//            mail.setReply(1);
-//        } else if (user.getLevel() >= 4) {
-//            mail.setReply(2);
-//        }
         //在查询之前传入当前页，然后多少记录
         PageHelper.startPage(pageNum, 7);
         // 根据条件查找用户信息

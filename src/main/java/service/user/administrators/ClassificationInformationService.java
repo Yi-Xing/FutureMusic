@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
 import service.user.IdExistence;
+import service.user.ValidationInformation;
 import util.exception.DataBaseException;
 
 import javax.annotation.Resource;
@@ -36,6 +37,8 @@ public class ClassificationInformationService {
     SongListMapper songListMapper;
     @Resource(name = "IdExistence")
     IdExistence idExistence;
+    @Resource(name ="ValidationInformation")
+    ValidationInformation validationInformation;
     /**
      * 用于存储语种
      */
@@ -101,10 +104,19 @@ public class ClassificationInformationService {
     /**
      * 显示指定id的分类信息
      *
-     * @param id 分类的id
+     * @param string 分类的id
      */
-    public String showIdClassification(Integer id, Model model) {
+    public String showIdClassification(String string, Model model) {
+        int id;
+        if(validationInformation.isInt(string)){
+            id=Integer.valueOf(string);
+        }else{
+            id=-1;
+        }
         Classification classification = idExistence.isClassificationId(id);
+        if(classification==null){
+            classification=new Classification();
+        }
         List<Classification> list = new ArrayList<>();
         list.add(classification);
         //在查询之前传入当前页，然后多少记录

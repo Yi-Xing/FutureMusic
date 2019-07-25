@@ -44,11 +44,10 @@ public class MailInformation {
      *
      * @param condition 条件可以有多个 1、按id查询 2、按接收方id查询 3、按发送方id查询  4、按指定状态
      * @param pageNum   表示当前第几页
-     * @param session   用于判断等级
      */
     @RequestMapping(value = "/showMail")
-    public String  showMail(String[] condition, @RequestParam(defaultValue="1")Integer pageNum, HttpSession session, Model model) {
-        return mailInformationService.showMail(condition,pageNum,session,model);
+    public String  showMail(String[] condition, @RequestParam(defaultValue="1")Integer pageNum, Model model) {
+        return mailInformationService.showMail(condition,pageNum,model);
     }
 
     /**

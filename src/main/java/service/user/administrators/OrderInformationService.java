@@ -10,6 +10,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
+import service.user.ValidationInformation;
 import util.exception.DataBaseException;
 
 import javax.annotation.Resource;
@@ -25,6 +26,8 @@ public class OrderInformationService {
     private static final Logger logger = LoggerFactory.getLogger(OrderInformationService.class);
     @Resource(name = "OrderMapper")
     OrderMapper orderMapper;
+    @Resource(name = "ValidationInformation")
+    ValidationInformation validationInformation;
 
     /**
      * 返回指定指定用户的所有订单或关于指定音乐或MV的订单
@@ -34,7 +37,6 @@ public class OrderInformationService {
      *                  1表示是音乐  2表示MV 3表示用户
      */
     public String showOrder(String[] condition, Integer pageNum, Model model) {
-        System.out.println(condition);
         Order order = new Order();
         if (condition != null) {
             if ((condition[0] != null) && !"".equals(condition[0])) {
@@ -44,7 +46,11 @@ public class OrderInformationService {
                     case "2":
                         order.setType(Integer.parseInt(condition[0]));
                         if ((condition[1] != null) && !"".equals(condition[1])) {
-                            order.setMusicId(Integer.parseInt(condition[1]));
+                            if (validationInformation.isInt(condition[1])) {
+                                order.setMusicId(Integer.parseInt(condition[1]));
+                            } else {
+                                order.setMusicId(-1);
+                            }
                         }
                         break;
                     case "3":
@@ -62,10 +68,18 @@ public class OrderInformationService {
                 }
             }
             if ((condition[2] != null) && !"".equals(condition[2])) {
-                order.setUserId(Integer.parseInt(condition[2]));
+                if (validationInformation.isInt(condition[2])) {
+                    order.setUserId(Integer.parseInt(condition[2]));
+                } else {
+                    order.setUserId(-1);
+                }
             }
             if ((condition[3] != null) && !"".equals(condition[3])) {
-                order.setId(Integer.parseInt(condition[3]));
+                if (validationInformation.isInt(condition[3])) {
+                    order.setId(Integer.parseInt(condition[3]));
+                } else {
+                    order.setId(-1);
+                }
             }
             model.addAttribute("conditionZero", condition[0]);
             model.addAttribute("conditionOne", condition[1]);
@@ -85,7 +99,6 @@ public class OrderInformationService {
         // 传入页面信息
         logger.debug("查找到的订单" + list);
         model.addAttribute("pageInfo", pageInfo);
-//        model.addAttribute("pages", new int[pageInfo.getPages()]);
         return "system/backgroundSystem";
     }
 

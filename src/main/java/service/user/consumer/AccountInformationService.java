@@ -46,7 +46,11 @@ public class AccountInformationService {
      * followUserCount关注用户的个数
      */
     public String userPage(HttpSession session, Model model) {
-        User user = specialFunctions.getUser(session);
+        // 判断用户是否去访问
+        User user = (User)session.getAttribute("");
+        if(user==null){
+         user = specialFunctions.getUser(session);
+        }
         // 用于查找用户关注的人数
         Focus userFollow = new Focus();
         userFollow.setUserId(user.getId());

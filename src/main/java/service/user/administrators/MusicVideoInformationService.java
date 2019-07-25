@@ -91,31 +91,59 @@ public class MusicVideoInformationService {
         MusicVideo musicVideo = new MusicVideo();
         if (condition != null) {
             if ((condition[0] != null) && !"".equals(condition[0])) {
-                musicVideo.setLevel(Integer.parseInt(condition[0]));
+                if (validationInformation.isInt(condition[0])) {
+                    musicVideo.setLevel(Integer.parseInt(condition[0]));
+                } else {
+                    musicVideo.setLevel(-1);
+                }
             }
             if ((condition[1] != null) && !"".equals(condition[1])) {
-                musicVideo.setAvailable(Integer.parseInt(condition[1]));
+                if (validationInformation.isInt(condition[1])) {
+                    musicVideo.setAvailable(Integer.parseInt(condition[1]));
+                } else {
+                    musicVideo.setAvailable(-1);
+                }
             }
             if ((condition[2] != null) && !"".equals(condition[2]) && (condition[3] != null) && !"".equals(condition[3])) {
                 // 1-ID，2-名字 3-歌手 4-对应音乐 5-分类 6-活动
                 switch (condition[2]) {
                     case "1":
-                        musicVideo.setId(Integer.parseInt(condition[3]));
+                        if (validationInformation.isInt(condition[3])) {
+                            musicVideo.setId(Integer.parseInt(condition[3]));
+                        } else {
+                            musicVideo.setId((-1));
+                        }
                         break;
                     case "2":
                         musicVideo.setName(condition[3]);
                         break;
                     case "3":
-                        musicVideo.setSingerId(Integer.parseInt(condition[3]));
+                        if (validationInformation.isInt(condition[3])) {
+                            musicVideo.setSingerId(Integer.parseInt(condition[3]));
+                        } else {
+                            musicVideo.setSingerId(-1);
+                        }
                         break;
                     case "4":
-                        musicVideo.setMusicId(Integer.parseInt(condition[3]));
+                        if (validationInformation.isInt(condition[3])) {
+                            musicVideo.setMusicId(Integer.parseInt(condition[3]));
+                        } else {
+                            musicVideo.setMusicId(-1);
+                        }
                         break;
                     case "5":
-                        musicVideo.setClassificationId(Integer.parseInt(condition[3]));
+                        if (validationInformation.isInt(condition[3])) {
+                            musicVideo.setClassificationId(Integer.parseInt(condition[3]));
+                        } else {
+                            musicVideo.setClassificationId(-1);
+                        }
                         break;
                     case "6":
-                        musicVideo.setActivity(Integer.parseInt(condition[3]));
+                        if (validationInformation.isInt(condition[3])) {
+                            musicVideo.setActivity(Integer.parseInt(condition[3]));
+                        } else {
+                            musicVideo.setActivity(-1);
+                        }
                         break;
                     default:
                 }
@@ -152,6 +180,12 @@ public class MusicVideoInformationService {
         if (validationInformation.isInt(id) && idExistence.isMusicVideoId(Integer.valueOf(id)) != null) {
             state = isModifyEdit(name, singerId, musicId, classificationId, level, price, activity, available);
             if (state.getState() == 1) {
+                if ("0".equals(available)) {
+                    available = "-1";
+                }
+                if("0".equals(activity)){
+                    activity = "-1";
+                }
                 MusicVideo musicVideo = new MusicVideo(Integer.valueOf(id), name, Integer.valueOf(level), new BigDecimal(price), Integer.valueOf(musicId), Integer.valueOf(singerId), Integer.valueOf(classificationId), Integer.valueOf(activity), Integer.valueOf(available));
                 if (musicVideoMapper.updateMusicVideo(musicVideo) < 1) {
                     // 如果失败是数据库错误

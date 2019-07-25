@@ -63,9 +63,12 @@ public class UserInformationService {
                 // 1用户id 2邮箱 3用户名
                 switch (condition[0]) {
                     case "1":
+                        if(!validationInformation.isInt(condition[1])){
+                            condition[1]="-1";
+                        }
+                        User selectUser = idExistence.isUserIdExist(condition[1]);
                         PageHelper.startPage(pageNum, 7);
                         // 查找指定id的用户
-                        User selectUser = idExistence.isUserIdExist(condition[1]);
                         List<User> list = new ArrayList<>();
                         if (selectUser != null) {
                             list.add(selectUser);
@@ -88,10 +91,18 @@ public class UserInformationService {
                 }
             }
             if ((condition[2] != null) && !"".equals(condition[2])) {
-                user.setReport(Integer.parseInt(condition[2]));
+                if(validationInformation.isInt(condition[2])){
+                    user.setReport(Integer.parseInt(condition[2]));
+                }else{
+                    user.setReport(-1);
+                }
             }
             if ((condition[3] != null) && !"".equals(condition[3])) {
-                user.setLevel(Integer.parseInt(condition[3]));
+                if(validationInformation.isInt(condition[3])){
+                    user.setLevel(Integer.parseInt(condition[3]));
+                }else{
+                    user.setLevel(-1);
+                }
             }
             model.addAttribute("conditionZero", condition[0]);
             model.addAttribute("conditionOne", condition[1]);
@@ -132,17 +143,26 @@ public class UserInformationService {
             state.setInformation("用户等级不合法");
             return state;
         }
+        if("0".equals(level)){
+            level="-1";
+        }
         user.setLevel(Integer.valueOf(level));
         // 判断余额是否合法
         if (!validationInformation.isPrice(balance)) {
             state.setInformation("余额不合法");
             return state;
         }
+        if("0".equals(balance)){
+            balance="-1";
+        }
         user.setBalance(new BigDecimal(balance));
         // 举报次数是否合法
         if (!report.matches("([1-9][0-9]*|0)")) {
             state.setInformation("举报次数不合法");
             return state;
+        }
+        if("0".equals(report)){
+            report="-1";
         }
         user.setReport(Integer.valueOf(report));
         if (userMapper.updateUser(user) < 1) {

@@ -67,13 +67,13 @@ $(".music_list").click(function () {
 
     var Original = 0;
     document.getElementById('audio').addEventListener('timeupdate', function () {
-        // console.log(this.currentTime);
+        console.log(this.currentTime);
         var cur = parseInt(this.currentTime);
         if(document.getElementById('time' + cur)){
             document.getElementById('time' + Original).style.cssText = 'font-size: 18px;color: #666A70;';
             Original = cur;
             document.getElementById('time' + cur).style.cssText = 'font-size: 23px;color: #fff';
-            // console.log(document.getElementById('time' + cur));
+            console.log(document.getElementById('time' + cur));
             let height = document.getElementById('time' + cur).offsetTop;
             console.log(height);
             if(height < 300){
@@ -93,7 +93,7 @@ $(".music_list").click(function () {
 var musicLyric = [
     {
         lyric: "[00:00.05]陈硕子 - 凌晨三点 (Demo)\n" +
-            "[00:01.98]我在凌晨三点\n" +
+                "[00:01.98]我在凌晨三点\n" +
             "[00:02.81]醒来的夜里\n" +
             "[00:04.70]想起了失去的你\n" +
             "[00:08.47]曾经说着永远一起\n" +
@@ -123,5 +123,18 @@ var musicLyric = [
     }
 ];
 
+//歌曲localStorage
+// 判断浏览器是否支持
+var local = 0;
+var num = 10;
+for(i;i<5;i++) {
+    if (typeof (Storage) !== "undefined") {
+        // 存储
+        localStorage.setItem("local", "num");
+        // 检索
+        console.log(localStorage.getItem("local"));
+    } else {
+        console.log("Sorry, your browser does not support Web Storage...");
+    }
 
-
+}

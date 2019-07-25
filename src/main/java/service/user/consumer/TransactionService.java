@@ -22,6 +22,7 @@ import java.math.BigDecimal;
 import java.util.*;
 
 /**
+ * 支付与购买
  * @author HP
  */
 @Service(value = "TransactionService")

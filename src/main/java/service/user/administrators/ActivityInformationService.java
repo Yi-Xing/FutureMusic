@@ -92,7 +92,11 @@ public class ActivityInformationService {
         Activity activity = new Activity();
         if (condition != null) {
             if ((condition[0] != null) && !"".equals(condition[0])) {
-                activity.setType(Integer.parseInt(condition[0]));
+                if (validationInformation.isInt(condition[0])) {
+                    activity.setType(Integer.parseInt(condition[0]));
+                }else{
+                    activity.setType(-1);
+                }
             }
             if ((condition[1] != null) && !"".equals(condition[1])) {
                 activity.setStartDate(new Date());
@@ -101,7 +105,11 @@ public class ActivityInformationService {
                 // 1-ID，2-标题
                 switch (condition[2]) {
                     case "1":
-                        activity.setId(Integer.parseInt(condition[3]));
+                        if (validationInformation.isInt(condition[3])) {
+                            activity.setId(Integer.parseInt(condition[3]));
+                        }else{
+                            activity.setId(-1);
+                        }
                         break;
                     case "2":
                         activity.setName(condition[3]);

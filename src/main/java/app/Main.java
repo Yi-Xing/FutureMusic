@@ -83,10 +83,7 @@ public class Main {
         return "musicList";
     }
 
-    @RequestMapping(value = "/toEmail")
-    public String toEmail() {
-        return "toEmail";
-    }
+
 
     @RequestMapping(value = "/notice")
     public String notice() {

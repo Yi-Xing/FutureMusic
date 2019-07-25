@@ -63,10 +63,13 @@ public class SingerService {
      */
     public List<SingerExt> transformSingers(List<User> singerList){
         List<SingerExt> showSingerList = new ArrayList<>();
+        System.out.println(singerList);
+        System.out.println("3");
         for(User u:singerList){
             SingerExt showSinger = transformSingerExt(u);
             showSingerList.add(showSinger);
         }
+        System.out.println("4");
         return showSingerList;
 
     }
@@ -187,6 +190,7 @@ public class SingerService {
     public List<SingerExt> searchAllSinger() {
         User user = new User();
         user.setLevel(2);
+        user.setId(0);
         return transformSingers(userMapper.selectUser(user));
     }
 }

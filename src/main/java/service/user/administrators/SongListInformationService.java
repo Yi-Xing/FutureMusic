@@ -51,25 +51,45 @@ public class SongListInformationService {
         SongList songList = new SongList();
         if (condition != null) {
             if ((condition[0] != null) && !"".equals(condition[0])) {
-                songList.setType(Integer.parseInt(condition[0]));
+                if (validationInformation.isInt(condition[0])){
+                    songList.setType(Integer.parseInt(condition[0]));
+                }else{
+                    songList.setType(-1);
+                }
             }
             if ((condition[1] != null) && !"".equals(condition[1]) && (condition[2] != null) && !"".equals(condition[2])) {
                 // 1-ID，2-标题 3-用户  4-分类 5-活动
                 switch (condition[1]) {
                     case "1":
-                        songList.setId(Integer.parseInt(condition[2]));
+                        if (validationInformation.isInt(condition[2])){
+                            songList.setId(Integer.parseInt(condition[2]));
+                        }else{
+                            songList.setId(-1);
+                        }
                         break;
                     case "2":
                         songList.setName(condition[2]);
                         break;
                     case "3":
-                        songList.setUserId(Integer.parseInt(condition[2]));
+                        if (validationInformation.isInt(condition[2])){
+                            songList.setUserId(Integer.parseInt(condition[2]));
+                        }else{
+                            songList.setUserId(-1);
+                        }
                         break;
                     case "4":
-                        songList.setClassificationId(Integer.parseInt(condition[2]));
+                        if (validationInformation.isInt(condition[2])){
+                            songList.setClassificationId(Integer.parseInt(condition[2]));
+                        }else{
+                            songList.setClassificationId(-1);
+                        }
                         break;
                     case "5":
-                        songList.setActivity(Integer.parseInt(condition[2]));
+                        if (validationInformation.isInt(condition[2])){
+                            songList.setActivity(Integer.parseInt(condition[2]));
+                        }else{
+                            songList.setActivity(-1);
+                        }
                         break;
                     default:
                 }
@@ -121,14 +141,18 @@ public class SongListInformationService {
     public State modifySongList(String id, String activity) throws DataBaseException {
         State state = new State();
         // 验证id是否合法
+        System.out.println(id);
         if (validationInformation.isInt(id)) {
             SongList songList;
             // 验证id是否存在
             if ((songList = idExistence.isSongListId(Integer.valueOf(id))) != null) {
                 // 验证是不是专辑，歌单不能设置为活动
-                if ( songList.getType() == 2) {
+                if (songList.getType() == 2) {
                     // 判断活动是否存在
-                    if (validationInformation.isInt(activity) && idExistence.isActivityId(Integer.valueOf(activity)) != null) {
+                    if ("0".equals(activity)||(validationInformation.isInt(activity) && idExistence.isActivityId(Integer.valueOf(activity)) != null)) {
+                        if("0".equals(activity)){
+                            activity="-1";
+                        }
                         songList.setActivity(Integer.valueOf(activity));
                         if (songListMapper.updateSongList(songList) < 1) {
                             // 如果失败是数据库错误

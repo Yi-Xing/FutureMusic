@@ -7,9 +7,8 @@
 <body>
 <!--头部-->
 <div class="header" style="height: 650px;overflow: hidden">
-    <!--    <img class="show_bg" src="../../static/img/首页背景.jpg" th:src="@{/static/img/首页背景.jpg}" alt="">-->
     <video class="show_bg" src="../../static/video/首页.mp4" th:src="@{/static/video/首页.mp4}" autoplay="autoplay" loop="loop" width="100%" alt=""></video>
-    <nav class="navbar">
+    <nav class="navbar" style="background-color: rgba(47,47,47,0.6)">
         <div class="container-fluid">
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
@@ -93,6 +92,21 @@
     </div>
 </div>
 <script src="js/jquery.js" th:src="@{/static/js/jquery.js}"></script>
+<script>
+    let nav_container = $(".header .navbar");
+    window.onmousewheel = document.onmousewheel = function () {
+        if(window.event.wheelDelta){
+            if(window.event.wheelDelta<0){
+                nav_container.slideUp(0);
+                $("#nav_container").hide();
+            }
+            else if(window.event.wheelDelta>0){
+                nav_container.slideDown(0);
+                nav_container.css("top","0px");
+            }
+        }
+    };
+</script>
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
         <div class="modal_content">
@@ -916,7 +930,7 @@
             <h2>排行榜</h2>
         </div>
         <div class="Ranking_container">
-            <div class="container text-center" style="background-color:#A8E755 ">
+            <div class="container text-center" style="background-color:#A8E755 " th:each="MusicExt:${type}">
                 <h4>巅峰榜</h4>
                 <h3><a href="javascript:;">新歌</a></h3>
                 <div style="height: 50px">
