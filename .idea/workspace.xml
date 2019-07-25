@@ -6,432 +6,7 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="00f34b6d-162d-4228-80f5-f6692a05b882" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/.idea/encodings.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/.idea/webapp.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/.idea/workspace.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/META-INF/MANIFEST.MF" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/classes/META-INF/FutureMusic.kotlin_module" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/classes/app/Main.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/classes/controller/View.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/classes/controller/music/exhibition/Information.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/classes/controller/music/exhibition/MusicIndex.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/classes/controller/music/search/SearchBefore.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/classes/controller/music/search/SearchComment.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/classes/controller/music/search/SearchMusic.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/classes/controller/music/search/SearchMusicVideo.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/classes/controller/music/search/SearchSinger.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/classes/controller/music/search/SearchSongList.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/classes/controller/user/LoginAndRegister.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/classes/controller/user/SafetyCenter.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/classes/controller/user/administrators/ActivityInformation.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/classes/controller/user/administrators/ClassificationInformation.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/classes/controller/user/administrators/CommentInformation.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/classes/controller/user/administrators/MailInformation.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/classes/controller/user/administrators/MusicInformation.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/classes/controller/user/administrators/MusicVideoInformation.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/classes/controller/user/administrators/OrderInformation.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/classes/controller/user/administrators/SongListInformation.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/classes/controller/user/administrators/UserInformation.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/classes/controller/user/consumer/AboutMail.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/classes/controller/user/consumer/AboutMusic.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/classes/controller/user/consumer/AboutSongList.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/classes/controller/user/consumer/AboutUser.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/classes/controller/user/consumer/AccountInformation.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/classes/controller/user/consumer/Transaction.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/classes/entity/Activity.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/classes/entity/Classification.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/classes/entity/Comment.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/classes/entity/CommentExt.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/classes/entity/Focus.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/classes/entity/Mail.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/classes/entity/Music.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/classes/entity/MusicCollect.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/classes/entity/MusicExt.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/classes/entity/MusicSongList.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/classes/entity/MusicVideo.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/classes/entity/MusicVideoExt.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/classes/entity/Order.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/classes/entity/Play.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/classes/entity/SingerExt.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/classes/entity/SongList.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/classes/entity/SongListCollect.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/classes/entity/SongListExt.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/classes/entity/State.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/classes/entity/User.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/classes/jdbc.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/classes/log4j2.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/classes/mapper/ActivityMapper.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/classes/mapper/ActivityMapper.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/classes/mapper/ClassificationMapper.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/classes/mapper/ClassificationMapper.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/classes/mapper/CommentMapper.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/classes/mapper/CommentMapper.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/classes/mapper/FocusMapper.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/classes/mapper/FocusMapper.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/classes/mapper/MailMapper.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/classes/mapper/MailMapper.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/classes/mapper/MusicCollectMapper.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/classes/mapper/MusicCollectMapper.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/classes/mapper/MusicMapper.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/classes/mapper/MusicMapper.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/classes/mapper/MusicSongListMapper.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/classes/mapper/MusicSongListMapper.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/classes/mapper/MusicVideoMapper.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/classes/mapper/MusicVideoMapper.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/classes/mapper/OrderMapper.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/classes/mapper/OrderMapper.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/classes/mapper/PlayMapper.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/classes/mapper/PlayMapper.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/classes/mapper/SongListCollectMapper.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/classes/mapper/SongListCollectMapper.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/classes/mapper/SongListMapper.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/classes/mapper/SongListMapper.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/classes/mapper/UserMapper.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/classes/mapper/UserMapper.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/classes/service/music/ActivityService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/classes/service/music/CommentService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/classes/service/music/MusicService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/classes/service/music/MusicVideoService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/classes/service/music/PlayService$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/classes/service/music/PlayService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/classes/service/music/SearchService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/classes/service/music/SingerService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/classes/service/music/SongListService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/classes/service/user/IdExistence.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/classes/service/user/LoginService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/classes/service/user/RegisterService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/classes/service/user/SafetyCenterService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/classes/service/user/SecretProtectionService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/classes/service/user/SpecialFunctions$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/classes/service/user/SpecialFunctions.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/classes/service/user/ValidationInformation.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/classes/service/user/administrators/ActivityInformationService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/classes/service/user/administrators/ClassificationInformationService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/classes/service/user/administrators/CommentInformationService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/classes/service/user/administrators/MailInformationService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/classes/service/user/administrators/MusicInformationService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/classes/service/user/administrators/MusicVideoInformationService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/classes/service/user/administrators/OrderInformationService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/classes/service/user/administrators/SongListInformationService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/classes/service/user/administrators/UserInformationService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/classes/service/user/consumer/AboutMailService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/classes/service/user/consumer/AboutMusicService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/classes/service/user/consumer/AboutSongListService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/classes/service/user/consumer/AboutUserService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/classes/service/user/consumer/AccountInformationService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/classes/service/user/consumer/AlipayService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/classes/service/user/consumer/ExistenceService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/classes/service/user/consumer/TransactionService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/classes/spring-mvc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/classes/spring/spring-config.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/classes/spring/spring-jjy.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/classes/spring/spring-zyx.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/classes/sqlMapConfig.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/classes/test/jjy/Test.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/classes/test/zyx/Demo.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/classes/test/zyx/DemoHbRunner.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/classes/test/zyx/Flie.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/classes/test/zyx/Mail163Test$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/classes/test/zyx/Mail163Test.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/classes/util/AlipayConfig.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/classes/util/ConstantUtil.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/classes/util/CookieUtil.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/classes/util/FileUpload.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/classes/util/JudgeIsOverdueUtil.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/classes/util/Notice.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/classes/util/SameUrlData.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/classes/util/exception/DataBaseException.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/classes/util/exception/ExceptionJump.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/classes/util/interceptor/AddInterceptor.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/classes/util/interceptor/DeleteInterceptor.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/classes/util/interceptor/LoginInterceptor.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/classes/util/interceptor/MailboxBinding.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/classes/util/interceptor/ModifyInterceptor.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/classes/util/interceptor/SameUrlDataInterceptor.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/classes/util/interceptor/ShowInterceptor.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/classes/util/interceptor/UserInterceptor.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/classes/util/listener/SessionListener.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/lib/activation-1.1.1.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/lib/alipay-sdk-java-3.3.0-source.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/lib/alipay-sdk-java-3.3.0.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/lib/alipay-trade-sdk-20161215-source.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/lib/alipay-trade-sdk-20161215.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/lib/annotations-java5-17.0.0.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/lib/aopalliance-repackaged-2.5.0-b59.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/lib/aspectjweaver-1.8.6.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/lib/attoparser-2.0.4.RELEASE.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/lib/c3p0-0.9.5.4.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/lib/commons-codec-1.10.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/lib/commons-configuration-1.10.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/lib/commons-fileupload-1.3.2.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/lib/commons-io-2.6.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/lib/commons-lang-2.6.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/lib/commons-logging-1.1.1.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/lib/core-2.1.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/lib/disruptor-3.4.2.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/lib/gson-2.3.1.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/lib/hamcrest-core-1.3.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/lib/jackson-annotations-2.9.8.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/lib/jackson-core-2.9.8.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/lib/jackson-databind-2.9.8.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/lib/javax.mail-1.6.2.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/lib/jsqlparser-1.2.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/lib/log4j-api-2.7.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/lib/log4j-core-2.7.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/lib/log4j-slf4j-impl-2.7.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/lib/log4j-web-2.7.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/lib/mchange-commons-java-0.2.15.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/lib/mybatis-3.5.1.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/lib/mybatis-spring-2.0.1.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/lib/mysql-connector-java-8.0.16.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/lib/pagehelper-5.1.8.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/lib/protobuf-java-3.6.1.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/lib/slf4j-api-1.7.25.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/lib/spring-aop-5.0.0.RELEASE.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/lib/spring-aspects-5.0.0.RELEASE.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/lib/spring-beans-5.0.0.RELEASE.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/lib/spring-context-5.0.0.RELEASE.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/lib/spring-core-5.0.0.RELEASE.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/lib/spring-expression-5.0.0.RELEASE.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/lib/spring-jcl-5.0.0.RELEASE.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/lib/spring-jdbc-5.0.0.RELEASE.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/lib/spring-jms-5.0.0.RELEASE.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/lib/spring-messaging-5.0.0.RELEASE.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/lib/spring-tx-5.0.0.RELEASE.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/lib/spring-web-5.0.0.RELEASE.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/lib/spring-webmvc-5.0.0.RELEASE.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/lib/thymeleaf-3.0.9.RELEASE.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/lib/thymeleaf-spring5-3.0.9.RELEASE.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/lib/tomcat-annotations-api-8.5.38.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/lib/tomcat-api-8.5.38.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/lib/tomcat-catalina-8.5.38.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/lib/tomcat-coyote-8.5.38.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/lib/tomcat-el-api-8.5.38.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/lib/tomcat-jaspic-api-8.5.38.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/lib/tomcat-jni-8.5.38.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/lib/tomcat-jsp-api-8.5.38.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/lib/tomcat-juli-8.5.38.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/lib/tomcat-servlet-api-8.5.38.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/lib/tomcat-util-8.5.38.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/lib/tomcat-util-scan-8.5.38.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/lib/unbescape-1.1.5.RELEASE.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/templates/Account_to_fill_in.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/templates/Encrypted_authentication.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/templates/Set_a_new_password.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/templates/artist.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/templates/artists.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/templates/back_system/Activities.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/templates/back_system/Calendar.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/templates/back_system/Email.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/templates/back_system/back_MV.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/templates/back_system/back_head.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/templates/back_system/back_music.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/templates/back_system/back_side.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/templates/back_system/back_system.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/templates/back_system/classification.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/templates/back_system/order.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/templates/back_system/song_list.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/templates/back_system/talking.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/templates/collapse.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/templates/head.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/templates/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/templates/mailbox_verification.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/templates/musicList.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/templates/musicLists.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/templates/musicVideo.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/templates/musics.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/templates/mvPlayer.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/templates/noFind.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/templates/on-load-js.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/templates/personal.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/templates/player.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/templates/saveCenter.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/templates/security/bindingAccount.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/templates/security/mailboxVerification.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/templates/security/newPassword.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/templates/security/passwordVerification.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/templates/security/safetyCenter.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/templates/system/activityAdmin.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/templates/system/backgroundSystem.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/templates/system/classificationAdmin.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/templates/system/commentAdmin.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/templates/system/mailAdmin.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/templates/system/musicAdmin.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/templates/system/musicVideoAdmin.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/templates/system/orderAdmin.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/templates/system/songListAdmin.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/templates/system/userAdmin.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/templates/testjjy.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/templates/userInformation/comment.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/templates/userInformation/notice.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/templates/userInformation/receiveEmail.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/templates/userInformation/sendEmail.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/templates/webComment.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/templates/webFoot.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/templates/webHead.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/templates/zyx.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/templates/zyx.jsp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/web.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/index.jsp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/static/css/Activities.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/static/css/Comment.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/static/css/Email.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/static/css/RotationChart.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/static/css/artist.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/static/css/back_MV.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/static/css/back_system.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/static/css/bootstrap-datetimepicker.min.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/static/css/bootstrap.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/static/css/classification.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/static/css/collapse.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/static/css/fenYe.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/static/css/index.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/static/css/main.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/static/css/musicList.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/static/css/musicVideo.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/static/css/mvPlayer.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/static/css/noFind.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/static/css/order.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/static/css/personal.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/static/css/player.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/static/css/saveCenter.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/static/css/security_center.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/static/css/song_list.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/static/css/sysytem/backstage.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/static/css/sysytem/security_center.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/static/css/toEmail.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/static/file/activityPicture/1" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/static/file/music/1563937432839.MP3" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/static/file/music/1563937432900.MP3" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/static/file/music/1563937432943.MP3" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/static/file/music/1563937432967.MP3" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/static/file/musicLyric/1563937432848.LRC" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/static/file/musicLyric/1563937432922.LRC" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/static/file/musicLyric/1563937432954.LRC" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/static/file/musicLyric/1563937432980.LRC" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/static/file/musicPicture/1563756948334.JPG" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/static/file/musicPicture/1563756956300.JPG" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/static/file/musicPicture/1563756979469.JPG" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/static/file/musicPicture/1563757479631.JPG" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/static/file/musicPicture/1563865797483.JPG" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/static/file/musicPicture/1563865843762.JPG" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/static/file/musicPicture/1563937432761.JPG" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/static/file/musicPicture/1563937432815.JPG" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/static/file/musicPicture/1563937432835.JPG" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/static/file/musicPicture/1563937432852.JPG" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/static/file/musicVideo/1" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/static/file/songList/1" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/static/file/userHeadPortrait/1" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/static/file/userHeadPortrait/1559375681746logo.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/static/file/userHeadPortrait/邓紫棋的头像.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/static/file/userHeadPortrait/陈奕迅的头像.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/static/file/userHeadPortrait/陈粒的头像.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/static/font/iconfont.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/static/img/CamilaCabello.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/static/img/JustinTimberlake.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/static/img/background.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/static/img/collapse.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/static/img/head1.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/static/img/logo.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/static/img/mv1.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/static/img/mv2.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/static/img/mv3.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/static/img/mv4.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/static/img/mv5.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/static/img/mv_Milo.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/static/img/mv_OnMyWay.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/static/img/mv_燃烧我的卡路里.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/static/img/noFind.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/static/img/删 除.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/static/img/加号（添加）.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/static/img/吴亦凡.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/static/img/多项经营汇总统计.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/static/img/头像_邓紫棋.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/static/img/对号.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/static/img/张艺兴.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/static/img/搜索 (1).png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/static/img/搜索--1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/static/img/播放量.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/static/img/田馥甄.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/static/img/精彩推荐1.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/static/img/精彩推荐2.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/static/img/精彩推荐3.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/static/img/陈奕迅.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/static/img/音乐.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/static/img/首页背景.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/static/img/鹿晗.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/static/js/Email.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/static/js/RotationChart.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/static/js/ajax.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/static/js/ajaxIndex.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/static/js/ajaxMusic.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/static/js/artist.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/static/js/audio.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/static/js/back_MV.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/static/js/back_system.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/static/js/bootstrap-datetimepicker.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/static/js/bootstrap-datetimepicker.zh-CN.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/static/js/bootstrap.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/static/js/chance.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/static/js/classification.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/static/js/index.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/static/js/jquery-1.9.1.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/static/js/jquery.cityselect.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/static/js/jquery.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/static/js/moment.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/static/js/musicList.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/static/js/musicVideo.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/static/js/mvPlayer.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/static/js/page.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/static/js/personal.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/static/js/player.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/static/js/saveCenter.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/static/js/song_list.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/static/js/system/activityAdmin.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/static/js/system/backgroundSystem.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/static/js/system/classificationAdmin.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/static/js/system/commentAdmin.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/static/js/system/mailAdmin.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/static/js/system/musicAdmin.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/static/js/system/musicVideoAdmin.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/static/js/system/orderAdmin.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/static/js/system/safetyCenter.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/static/js/system/songListAdmin.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/static/js/system/userAdmin.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/static/js/webComment.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/static/music/Ehrling-ChampagneOcean.mp3" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/static/music/Lyric/PLANET.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/static/music/Lyric/像我这样的人.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/static/music/Lyric/凌晨三点.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/static/music/Lyric/咖喱咖喱.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/static/music/Lyric/往后余生.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/static/music/Lyric/心墙.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/static/music/Lyric/最近-王小帅.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/static/music/Lyric/离人愁.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/static/music/Lyric/米津玄師-Lemon.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/static/music/Lyric/认真地老去.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/static/music/Lyric/说爱你.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/static/music/PLANET.mp3" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/static/music/像我这样的人.mp3" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/static/music/凌晨三点.mp3" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/static/music/咖喱咖喱.mp3" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/static/music/往后余生.mp3" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/static/music/心墙.mp3" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/static/music/最近-王小帅.mp3" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/static/music/离人愁.mp3" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/static/music/米津玄師-Lemon.mp3" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/static/music/认真地老去.mp3" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/static/music/说爱你.mp3" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/static/video/火箭少女101-卡路里(《西虹市首富》电影插曲).mp4" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/static/video/首页.mp4" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/META-INF/FutureMusic.kotlin_module" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/service/user/SecretProtectionService.class" beforeDir="false" />
-    </list>
+    <list default="true" id="00f34b6d-162d-4228-80f5-f6692a05b882" name="Default Changelist" comment="" />
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -507,7 +82,7 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/main/webapp/static/js/player.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="214">
+                <state relative-caret-position="215">
                   <caret line="124" selection-start-line="124" selection-end-line="124" />
                 </state>
               </provider>
@@ -516,8 +91,8 @@
           <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/main/java/controller/user/consumer/AboutMail.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="252">
-                  <caret line="45" column="7" lean-forward="true" selection-start-line="45" selection-start-column="7" selection-end-line="45" selection-end-column="7" />
+                <state relative-caret-position="386">
+                  <caret line="53" column="39" lean-forward="true" selection-start-line="53" selection-start-column="39" selection-end-line="53" selection-end-column="39" />
                 </state>
               </provider>
             </entry>
@@ -997,11 +572,10 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="3440000" />
+    <option name="totallyTimeSpent" value="3716000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.27815014" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -1296,15 +870,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/static/js/player.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="214">
+        <state relative-caret-position="215">
           <caret line="124" selection-start-line="124" selection-end-line="124" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/controller/user/consumer/AboutMail.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="252">
-          <caret line="45" column="7" lean-forward="true" selection-start-line="45" selection-start-column="7" selection-end-line="45" selection-end-column="7" />
+        <state relative-caret-position="386">
+          <caret line="53" column="39" lean-forward="true" selection-start-line="53" selection-start-column="39" selection-end-line="53" selection-end-column="39" />
         </state>
       </provider>
     </entry>
