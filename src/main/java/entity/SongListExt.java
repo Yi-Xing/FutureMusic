@@ -42,18 +42,6 @@ public class SongListExt {
     public SongListExt() {
     }
 
-    public SongListExt(SongList songList, String songListPhoto, int userId, String usersName, Classification classification, List<MusicExt> musicExtList, int playCount, int collectCount, List<CommentExt> commentExts) {
-        this.songList = songList;
-        this.songListPhoto = songListPhoto;
-        this.userId = userId;
-        this.usersName = usersName;
-        this.classification = classification;
-        this.musicExtList = musicExtList;
-        this.playCount = playCount;
-        this.collectCount = collectCount;
-        this.commentExts = commentExts;
-    }
-
     @Override
     public String toString() {
         return "SongListExt{" +

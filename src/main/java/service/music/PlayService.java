@@ -25,17 +25,6 @@ public class PlayService {
     UserMapper userMapper;
 
     /**
-     * 传入一个play集合，并查询浏览量  用于MV
-     */
-    public Map<Integer,Integer> getMostPlayMusic(List<Play> playList){
-        Map<Integer,Integer> musicPlay = new HashMap<>();
-        for(Play play:playList){
-                musicPlay.put(play.getMusicId(), playMapper.selectPlays(play));
-        }
-        return musicPlay;
-    }
-
-    /**
      * 传入一个音乐的集合，并获取各自的浏览量，指定是音乐集合
      */
     public Map<Integer,Integer> getMusicPlayCount(List<Music> musicList){

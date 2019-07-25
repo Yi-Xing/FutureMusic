@@ -23,7 +23,7 @@ private ActivityMapper activityMapper;
     SongListMapper songListMapper;
 
     /**
-     * 在首页中展示活动
+     * 在首页中展示活动 图片和id
      * @return List<Activity>  返回查找到的活动
      */
     public List<Activity> selectActivity() {

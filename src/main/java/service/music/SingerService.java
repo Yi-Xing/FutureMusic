@@ -23,8 +23,14 @@ public class SingerService {
     FocusMapper focusMapper;
     @Resource(name = "PlayService")
     PlayService playService;
-    @Resource(name = "ClassificationMapper")
-    ClassificationMapper classificationMapper;
+    @Resource(name = "MusicService")
+    MusicService musicService;
+    @Resource(name = "MusicVideoService")
+    MusicVideoService musicVideoService;
+    @Resource(name = "SongListService")
+    SongListService songListService;
+    @Resource(name = "SongListMapper")
+    SongListMapper songListMapper;
 
     /**
      * 通过名字查找歌手
@@ -135,27 +141,47 @@ public class SingerService {
     }
 
     /**
-     * 按照分类查找歌手
-     * @param classification 歌手的分类
-     * @return List<SingerExt> 符合条件的歌手
+     * 查找歌手的详细信息
+     * @param singerId 歌手id
+     * @return Map<String,Object> 包含歌手的各种信息
+     *                              个人信息 图片、id、name
+     *                              歌曲列表
+     *                              MV列表
+     *                              专辑列表
      */
-    public List<SingerExt> searchSingerByClassification(Classification classification) {
-        List<SingerExt> singerExts = new ArrayList<>();
-        List<Classification> classificationList = classificationMapper.selectListClassification(classification);
-        if(classification==null||classificationList.size()==0){
-            User user = new User();
-            user.setLevel(2);
-            return transformSingers(userMapper.selectUser(user));
-        }
-        return singerExts;
-    }
-
     public Map<String,Object> searchSingerInformation(int singerId) {
         Map<String,Object> singerInformation = new HashMap<>();
-
+        //歌手个人信息
+        User user = new User();
+        user.setId(singerId);
+        user.setLevel(2);
+        List<User> singers = userMapper.selectUser(user);
+        if(singers!=null&&singers.size()!=0){
+            singerInformation.put("singer",transformSingerExt(singers.get(0)));
+        }
+        Music m = new Music();
+        //搜索歌曲
+        m.setSingerId(singerId);
+        List<MusicExt> musicExts = musicService.transformMusics(musicMapper.selectListMusic(m));
+        singerInformation.put("music",musicExts);
+        //所有MV
+        MusicVideo musicVideo = new MusicVideo();
+        musicVideo.setSingerId(singerId);
+        List <MusicVideoExt> musicVideoExts = musicVideoService.selectListMusicVideo(musicVideo);
+        singerInformation.put("musicVideo",musicVideoExts);
+        //专辑
+        SongList songList = new SongList();
+        songList.setUserId(singerId);
+        songList.setType(2);
+        List<String[]> albums = songListService.transformShowSongLists(songListMapper.selectListSongList(songList));
+        singerInformation.put("album",albums);
         return singerInformation;
     }
 
+    /**
+     * 搜索所有歌手
+     * @return List<SingerExt> 返回所有歌手信息列表
+     */
     public List<SingerExt> searchAllSinger() {
         User user = new User();
         user.setLevel(2);

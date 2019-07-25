@@ -33,6 +33,8 @@ public class MusicService {
     MusicCollectMapper musicCollectMapper;
     @Resource(name = "PlayService")
     PlayService playService;
+    @Resource(name = "CommentService")
+    CommentService commentService;
     /**
      * 显示歌曲的详细信息
      *     音乐、专辑图片、歌手信息、分类信息、评论（精彩评论、最新评论）、MV(如果有，显示mv的信息，如果无，显示其他相关歌单）
@@ -49,7 +51,6 @@ public class MusicService {
         int classificationId = resultMusic.getClassificationId();
         int singerId = resultMusic.getSingerId();
         int musicVideoId = resultMusic.getMusicVideoId();
-        //获取评论的方法，直接调用
         //获取专辑的信息
         SongList songList = new SongList();
         songList.setId(musicAlbumId);
@@ -101,6 +102,12 @@ public class MusicService {
             musicAllInformationMap.put("musicVideo",null);
         }
         return musicAllInformationMap;
+    }
+    /**
+     * 获取歌曲的评论
+     */
+    public List<CommentExt> getMusicComment(int musicId){
+        return commentService.searchCommentByMusicId(musicId,1);
     }
 
     /**
@@ -161,7 +168,6 @@ public class MusicService {
         Music music = new Music();
         List<Music> tempMusicList = new ArrayList<>();
         //获取符合条件的音乐集合，播放次数最多
-        //先获取所有音乐七天内上架的音乐，tempMusicList
         List<Music> musicList = musicMapper.selectListMusic(music);
         System.out.println(musicList);
         for (Music m : musicList) {
@@ -169,33 +175,9 @@ public class MusicService {
             if (JudgeIsOverdueUtil.reduceDay(JudgeIsOverdueUtil.toDateSting(musicDate)) <= 70) {
                 tempMusicList.add(m);
             }
-            //一直数不出来是不是因为数据库使用的问题
-            //向不管了
         }
-            System.out.println("个数"+""+tempMusicList.size());
-            System.out.println("信息"+""+tempMusicList);
-            System.out.println("看看有没有歌曲");
         List<Music> sortMusicByPlayCount = playService.sortMusicByPlay(tempMusicList);
         List<MusicExt> musicExts = transformMusics(sortMusicByPlayCount);
-      /*  //获取所有歌曲的播放量，存放到Map集合中（第一个元素存放音乐id，第二个元素存放播放量）
-        //用HashMap存放，则会按照放入的顺序来存储数据
-        Map<Integer, Integer> musicIdAndPlayCount = new HashMap<>();
-        for (Music m : musicList) {
-            Play play = new Play();
-            play.setMusicId(m.getId());
-            List<Play> plays = playMapper.selectListPlay(play);
-            int count = plays.size();
-            musicIdAndPlayCount.put(m.getId(), count);
-        }
-        //Map怎么根据value将key排序？
-        //歌曲id、播放量
-        List<Music> musics = new ArrayList<>();
-        for (Integer musicId : musicIdAndPlayCount.keySet()) {
-            Music temp = new Music();
-            temp.setId(musicId);
-            musics.add(musicMapper.selectListMusic(temp).get(0));
-        }*/
-        System.out.println("---------------------"+musicExts);
         return musicExts;
     }
     /**
