@@ -5,8 +5,6 @@ $(document).ready(function () {
         $("#dropdownMenu1").text($(this).text()).append(" <span class=\"caret\"></span>");
         $("#type").val($(this).data("value"));
     });
-<<<<<<< HEAD
-=======
     // 用户退出登录
     $(".signOutLogin").on("click", function () {
         $.ajax({
@@ -21,5 +19,4 @@ $(document).ready(function () {
             }
         });
     });
->>>>>>> 0ca05eefec8f2220ae7247ab5c20916769c5f895
 });

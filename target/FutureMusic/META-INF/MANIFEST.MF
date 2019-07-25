@@ -1,11 +1,5 @@
 Manifest-Version: 1.0
-<<<<<<< HEAD
 Built-By: lenovo
 Created-By: IntelliJ IDEA
 Build-Jdk: 1.8.0_181
-=======
-Built-By: 86189
-Created-By: IntelliJ IDEA
-Build-Jdk: 1.8.0_161
->>>>>>> 0ca05eefec8f2220ae7247ab5c20916769c5f895
 

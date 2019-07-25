@@ -67,13 +67,10 @@ window.onload = function () {
                 $('#fans').text(data.id);
                 $('#creationNumber').attr("placeholder", data.date);
                 $('#vipTime').val(data.vipDate);
-<<<<<<< HEAD
-=======
                 $("#order").attr("href","/administrators/showOrder?condition=&condition=&condition="+userId+"&condition=");
                 $("#album").attr("href","/administrators/showSongList?condition=2&condition=3&condition="+userId);
                 $("#music").attr("href","/administrators/showMusic?condition=&condition=&condition=3&condition="+userId);
                 $("#comment").attr("href","/administrators/showComment?condition=&condition="+userId+"&condition=7&condition=");
->>>>>>> 0ca05eefec8f2220ae7247ab5c20916769c5f895
             }
         });
     });

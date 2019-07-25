@@ -95,11 +95,8 @@ $(document).ready(function () {
     $("#submitNewPassword").on("click", function () {
         var password=$(".password").val();
         var passwordAgain=$(".passwordAgain").val();
-<<<<<<< HEAD
-=======
         alert(password)
         alert(passwordAgain)
->>>>>>> 0ca05eefec8f2220ae7247ab5c20916769c5f895
         $.ajax({
             contentType: "application/x-www-form-urlencoded",
             type: "post",
@@ -115,14 +112,9 @@ $(document).ready(function () {
                     alert(data.information)
                     // $(".promptInformation").text(data.information);
                 }else {
-<<<<<<< HEAD
-                    // 密码正确进行页面跳转
-                    window.location.href="/mailboxBindingPasswordChangePasswordPage";
-=======
                     alert("密码修改成功")
                     // 密码正确进行页面跳转
                     window.location.href="/index";
->>>>>>> 0ca05eefec8f2220ae7247ab5c20916769c5f895
                 }
             }
         });
