@@ -189,3 +189,17 @@ $(".thumbnail .icon-like").click(function () {
     })
 });
 
+
+//音乐人遍历
+$(".artist_container").hover(function () {
+    $.ajax({
+        contentType: "application/x-www-form-urlencoded;charset=UTF-8",
+        type: "post",
+        url: "/allSinger",
+        dataType: "json",
+        success: function (data) {
+            console.log(data)
+        }
+    })
+});
+
