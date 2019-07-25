@@ -16,10 +16,8 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.List;
 /**
- * @author 蒋靓峣
+ * @author 蒋靓峣 7/23创建
 */
-
-
 
 @Controller
 public class SearchSongList {
@@ -27,19 +25,9 @@ public class SearchSongList {
     SongListService songListService;
 
     /**
-     * 显示歌单的详细信息
-    */
-    @RequestMapping(value = "/showSongListDetail")
-    @ResponseBody
-    public SongListExt showSongListDetail(HttpServletRequest request,Model model) {
-        String songListId = request.getParameter("songListId");
-        SongListExt songListDetail = songListService.songListDetail(Integer.parseInt(songListId));
-        model.addAttribute("songListDetail", songListDetail);
-        return songListDetail;
-    }
-    /**
      * 通过名字点击搜索歌单或专辑，返回扩展类
-     * 专歌单或专辑的id、名字、图片、音乐数、收听次数
+     * @param request 页面请求，接收参数页数、关键字
+     * @return PageInfo 包含分页的歌单列表
     */
     @RequestMapping("/searchSongListByName")
     @ResponseBody
@@ -54,6 +42,7 @@ public class SearchSongList {
 
     /**
      * 分类搜索歌单
+     * @param request 页面请求，接收参数
      */
     @RequestMapping(value = "/showSongListByClassification")
     @ResponseBody
@@ -73,6 +62,4 @@ public class SearchSongList {
         PageInfo page = new PageInfo(showSongList, 5);
         return page;
     }
-
-
 }

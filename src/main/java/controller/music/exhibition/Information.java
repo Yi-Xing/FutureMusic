@@ -2,16 +2,15 @@ package controller.music.exhibition;
 
 import entity.Activity;
 import entity.MusicVideo;
+import entity.SongList;
+import entity.SongListExt;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
-import service.music.ActivityService;
-import service.music.MusicService;
-import service.music.MusicVideoService;
-import service.music.SingerService;
+import service.music.*;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -29,6 +28,8 @@ public class Information {
     MusicVideoService musicVideoService;
     @Resource(name="SingerService")
     SingerService singerService;
+    @Resource(name= "SongListService")
+    SongListService songListService;
     /**
      * 显示活动的详细信息
      */
@@ -44,7 +45,7 @@ public class Information {
     /**
      * 显示MV的详细信息
      */
-    @RequestMapping(value = "/showMusicVideoInformation")
+    @RequestMapping(value = "/musicVideoInformation")
     public  String showMusicVideoInformation(HttpServletRequest request, Model model){
         String musicVideoId = request.getParameter("musicVideoId");
         List<Object> musicVideoInformation = musicVideoService.getMusicVideoInformation(Integer.parseInt(musicVideoId));
@@ -54,20 +55,16 @@ public class Information {
 
     /**
      * 显示歌手的详细信息
+     * @return Map<String,Object> 歌手对应的详细信息
      */
-    public Map<String,Object> singerInformation(HttpServletRequest request){
+    @RequestMapping("/singerInformation")
+    public String singerInformation(HttpServletRequest request,Model model){
         int singerId = Integer.parseInt(request.getParameter("singerId"));
-        return singerService.searchSingerInformation(singerId);
+        Map<String,Object> singerInformation = singerService.searchSingerInformation(singerId);
+        model.addAttribute("information",singerInformation);
+        return "singerInformation";
     }
     /**
-     * 显示专辑的详细信息
-     */
-
-    /**
-     * 显示歌单的详细信息
-     */
-    
-    /**
-     * 显示音乐得详细信息
+     * 显示音乐的详细信息
      */
 }
