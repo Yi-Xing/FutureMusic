@@ -3,9 +3,6 @@ package service.music;
 import entity.*;
 import mapper.*;
 import org.springframework.stereotype.Service;
-import org.springframework.ui.Model;
-import org.springframework.ui.ModelMap;
-import service.user.administrators.MusicVideoInformationService;
 
 import javax.annotation.Resource;
 import java.util.ArrayList;
@@ -63,7 +60,13 @@ public class MusicVideoService {
         List<MusicVideo> musicVideoList = musicVideoMapper.selectListMusicVideo(musicVideo);
         return transformMusicVideoExts(musicVideoList);
     }
-
+    /**
+     * 根据MusicVideo对象查找MV
+     */
+    public List<MusicVideoExt> selectListMusicVideo(MusicVideo musicVideo) {
+        List<MusicVideo> musicVideoList = musicVideoMapper.selectListMusicVideo(musicVideo);
+        return transformMusicVideoExts(musicVideoList);
+    }
     /**
      * 通过分类查找MV
      **/
@@ -72,7 +75,7 @@ public class MusicVideoService {
                 classificationMapper.selectListClassification(classification);
         List<MusicVideo> musicVideoList = new ArrayList<>();
         MusicVideo musicVideo = new MusicVideo();
-        for (Classification c : classificationList) {
+        for (Classification c : classificationList ) {
             musicVideo.setClassificationId(c.getId());
             musicVideoList.addAll(musicVideoMapper.selectListMusicVideo(musicVideo));
         }

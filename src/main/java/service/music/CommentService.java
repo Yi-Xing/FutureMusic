@@ -10,8 +10,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.annotation.Resource;
-import java.util.ArrayList;
-import java.util.List;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 /**
  * @author 蒋靓峣 7.23 创建
@@ -85,35 +86,65 @@ public class CommentService {
         comment.setReply(commentId);
         List<Comment> comments = commentMapper.selectListComment(comment);
         System.out.println(comments);
-        if(comment!=null||comments.size()!=0) {
-            for (Comment c : comments) {
-                commentExts.add(transform(c));
-                getAllReply(c.getId(),commentExts);
-            }
-            return commentExts;
+        if(comment==null||comments.size()==0) {
+            return null;
         }
-        return null;
+        for (Comment c : comments) {
+            commentExts.add(transform(c));
+            getAllReply(c.getId(),commentExts);
+        }
+        return commentExts;
     }
 
     /**
-     * 第一个传入评论，第二个辅助传值
+     * 传入所有子评论和后代评论，全部保存到一个集合中
      */
-    public List<CommentExt> getCommentExtsList(List<CommentExt> commentExts1,List<CommentExt> commentExts2) {
+    public List<CommentExt> getCommentExtsList(List<CommentExt> c1,List<CommentExt> c2) {
         //先将这些评论全部取出来
-        for(CommentExt ce:commentExts1){
+        for(CommentExt ce:c1){
             if(ce.getAllSubCommentExtList()!=null){
-                commentExts2.add(ce);
-                getCommentExtsList(ce.getAllSubCommentExtList(),commentExts2);
+                c2.add(ce);
+                getCommentExtsList(ce.getAllSubCommentExtList(),c2);
             }
-            commentExts2.add(ce);
+            c2.add(ce);
         }
-        return commentExts2;
+        return c2;
     }
     /**
-     * 传入评论，将评论按照日期排序 暂未实现
+     * 传入评论，将评论按照日期排序
      */
     public List<CommentExt> sortComment(List<CommentExt> commentExts){
-        List<CommentExt> sortCommentExts = new ArrayList<>();
-        return sortCommentExts;
+        listSortByTime(commentExts);
+        return commentExts;
+    }
+    /**
+     * 将评论集合按照时间的先后顺序排序，排序后放入原来的集合中
+     * @param list 需要排序的集合
+     */
+    private static void listSortByTime(List<CommentExt> list) {
+            //排序方法
+            Collections.sort(list, new Comparator<CommentExt>() {
+                @Override
+                public int compare(CommentExt c1, CommentExt c2) {
+                    SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+                    // format.format(o1.getTime()) 表示 date转string类型 如果是string类型就不要转换了
+                    Date dt1 = null;
+                    try {
+                        dt1 = format.parse(format.format(c1.getDate()));
+                        Date dt2 = format.parse(format.format(c2.getDate()));
+                        // 这是由向小向大排序
+                        if (dt1.getTime() > dt2.getTime()) {
+                            return 1;
+                        } else if (dt1.getTime() < dt2.getTime()) {
+                            return -1;
+                        } else {
+                            return 0;
+                        }
+                    } catch (ParseException e) {
+                        e.printStackTrace();
+                        return -1;
+                    }
+                }
+            });
     }
 }

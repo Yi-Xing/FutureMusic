@@ -22,8 +22,6 @@ public class SearchMusicVideo {
     MusicVideoService musicVideoService;
     /**
      *分类查找MV 根据名字查找MV
-     * @param request 页面请求
-     * @return PageInfo 分页显示所有的信息
      */
     @RequestMapping("/searchMusicVideoByClassification")
     @ResponseBody

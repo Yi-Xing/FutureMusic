@@ -33,6 +33,8 @@ public class MusicService {
     MusicCollectMapper musicCollectMapper;
     @Resource(name = "PlayService")
     PlayService playService;
+    @Resource(name = "CommentService")
+    CommentService commentService;
     /**
      * 显示歌曲的详细信息
      *     音乐、专辑图片、歌手信息、分类信息、评论（精彩评论、最新评论）、MV(如果有，显示mv的信息，如果无，显示其他相关歌单）
@@ -100,6 +102,12 @@ public class MusicService {
             musicAllInformationMap.put("musicVideo",null);
         }
         return musicAllInformationMap;
+    }
+    /**
+     * 获取歌曲的评论
+     */
+    public List<CommentExt> getMusicComment(int musicId){
+        return commentService.searchCommentByMusicId(musicId,1);
     }
 
     /**

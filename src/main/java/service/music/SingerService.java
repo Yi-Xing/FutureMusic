@@ -25,6 +25,14 @@ public class SingerService {
     PlayService playService;
     @Resource(name = "ClassificationMapper")
     ClassificationMapper classificationMapper;
+    @Resource(name = "MusicService")
+    MusicService musicService;
+    @Resource(name = "MusicVideoService")
+    MusicVideoService musicVideoService;
+    @Resource(name = "SongListService")
+    SongListService songListService;
+    @Resource(name = "SongListMapper")
+    SongListMapper songListMapper;
 
     /**
      * 通过名字查找歌手
@@ -149,7 +157,30 @@ public class SingerService {
 
     public Map<String,Object> searchSingerInformation(int singerId) {
         Map<String,Object> singerInformation = new HashMap<>();
-
+        //歌手个人信息
+        User user = new User();
+        user.setId(singerId);
+        user.setLevel(2);
+        List<User> singers = userMapper.selectUser(user);
+        if(singers!=null&&singers.size()!=0){
+            singerInformation.put("singer",singers.get(0));
+        }
+        Music m = new Music();
+        //搜索歌曲
+        m.setSingerId(singerId);
+        List<MusicExt> musicExts = musicService.transformMusics(musicMapper.selectListMusic(m));
+        singerInformation.put("music",musicExts);
+        //所有MV
+        MusicVideo musicVideo = new MusicVideo();
+        musicVideo.setSingerId(singerId);
+        List <MusicVideoExt> muiscVideoExts = musicVideoService.selectListMusicVideo(musicVideo);
+        singerInformation.put("musicVideo",muiscVideoExts);
+        //专辑
+        SongList songList = new SongList();
+        songList.setUserId(singerId);
+        songList.setType(2);
+        List<String[]> albums = songListService.transformShowSongLists(songListMapper.selectListSongList(songList));
+        singerInformation.put("album",albums);
         return singerInformation;
     }
 

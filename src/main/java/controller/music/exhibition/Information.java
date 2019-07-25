@@ -44,8 +44,8 @@ public class Information {
     /**
      * 显示MV的详细信息
      */
-    @RequestMapping(value = "/showMusicVideoDetail")
-    public  String showMusicVideoDetail(HttpServletRequest request, Model model){
+    @RequestMapping(value = "/showMusicVideoInformation")
+    public  String showMusicVideoInformation(HttpServletRequest request, Model model){
         String musicVideoId = request.getParameter("musicVideoId");
         List<Object> musicVideoInformation = musicVideoService.getMusicVideoInformation(Integer.parseInt(musicVideoId));
         model.addAttribute("musicVideoInfo",musicVideoInformation);
