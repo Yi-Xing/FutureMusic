@@ -42,7 +42,8 @@ public class SearchSongList {
 
     /**
      * 分类搜索歌单
-     * @param request 页面请求，接收参数
+     * @param request 页面请求，接收参数 类别，四个分类
+     * @return PageInfo 带页数的歌单列表
      */
     @RequestMapping(value = "/showSongListByClassification")
     @ResponseBody

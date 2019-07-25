@@ -32,6 +32,8 @@ public class Information {
     SongListService songListService;
     /**
      * 显示活动的详细信息
+     * @param request  页面请求，activityId
+     * @return String 返回包含详细信息的页面
      */
     @RequestMapping(value = "/showActivityInformation")
     public String showActivityInformation(HttpServletRequest request,Model model){
@@ -40,10 +42,12 @@ public class Information {
         activity.setId(activityId);
         Map<String,Object> activityInformation = activityService.showActivity(activity);
         model.addAttribute("activity",activityInformation);
-        return "activityInformation";
+        return "activityInfo";
     }
     /**
      * 显示MV的详细信息
+     * @param request  页面请求，接收参数musicVideoId
+     * @return String 返回包含详细信息的页面
      */
     @RequestMapping(value = "/musicVideoInformation")
     public  String showMusicVideoInformation(HttpServletRequest request, Model model){
@@ -55,16 +59,29 @@ public class Information {
 
     /**
      * 显示歌手的详细信息
-     * @return Map<String,Object> 歌手对应的详细信息
+     * @param request  页面请求，接收参数singerId
+     * @return String 返回包含详细信息的页面
      */
     @RequestMapping("/singerInformation")
     public String singerInformation(HttpServletRequest request,Model model){
         int singerId = Integer.parseInt(request.getParameter("singerId"));
         Map<String,Object> singerInformation = singerService.searchSingerInformation(singerId);
         model.addAttribute("information",singerInformation);
-        return "singerInformation";
+        return "singerInfo";
     }
     /**
-     * 显示音乐的详细信息
+     * 显示歌单的详细信息
+     * @param request  页面请求，接收参数songListId
+     * @return String 返回包含详细信息的页面
+     */
+    @RequestMapping("/songListInformation")
+    public String songListInformation(HttpServletRequest request,Model model){
+        int songListId = Integer.parseInt(request.getParameter("songListId"));
+        SongListExt songListExt = songListService.songListDetail(songListId);
+        model.addAttribute("songList",songListExt);
+        return "songListInfo";
+    }
+    /**
+     * 显示歌曲的详细信息
      */
 }
