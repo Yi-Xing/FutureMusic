@@ -6,6 +6,7 @@ import entity.Classification;
 import entity.Music;
 import entity.MusicExt;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -32,11 +33,8 @@ public class SearchMusic {
      */
     @RequestMapping(value = "/showMusicDetail")
     @ResponseBody
-    public Map<String,Object> showMusicDetail(HttpServletRequest request){
-        String musicId = request.getParameter("musicId");
-        Music music = new Music();
-        music.setId(Integer.parseInt(musicId));
-        return musicService.showMusic(music);
+    public String showMusicDetail(@RequestParam(value = "musicId")Integer musicId, Model model){
+        return musicService.showMusic(musicId,model);
     }
     /**
      * 根据分类中的地区查找歌曲 排行榜

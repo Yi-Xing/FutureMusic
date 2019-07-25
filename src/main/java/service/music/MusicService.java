@@ -5,6 +5,7 @@ import mapper.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
 import util.JudgeIsOverdueUtil;
 
 import javax.annotation.Resource;
@@ -25,8 +26,8 @@ public class MusicService {
     UserMapper userMapper;
     @Resource(name = "SongListMapper")
     SongListMapper songListMapper;
-    @Resource(name = "MusicVideoMapper")
-    MusicVideoMapper musicVideoMapper;
+    @Resource(name = "MusicVideoService")
+    MusicVideoService musicVideoService;
     @Resource(name = "PlayMapper")
     PlayMapper playMapper;
     @Resource(name = "MusicCollectMapper")
@@ -35,73 +36,41 @@ public class MusicService {
     PlayService playService;
     @Resource(name = "CommentService")
     CommentService commentService;
+    @Resource(name = "MusicVideoMapper")
+    MusicVideoMapper musicVideoMapper;
     /**
      * 显示歌曲的详细信息
      *     音乐、专辑图片、歌手信息、分类信息、评论（精彩评论、最新评论）、MV(如果有，显示mv的信息，如果无，显示其他相关歌单）
-     * @param music 封装音乐id
-     * @return Map<String,Object>
+     * @param musicId 封装音乐id
+     * @param model model
+     * @return String
      *     音乐、专辑图片、歌手信息、分类信息、评论的详细信息的Map集合
      */
-    public Map<String,Object> showMusic(Music music) {
-        Map<String, Object> musicAllInformationMap = new HashMap<>(5);
+    public String showMusic(Integer musicId, Model model) {
+        Music music = new Music();
+        music.setId(musicId);
         Music resultMusic = musicMapper.selectListMusic(music).get(0);
         //获取音乐的信息
-        musicAllInformationMap.put("music", resultMusic);
+        model.addAttribute("music", resultMusic);
         int musicAlbumId = resultMusic.getAlbumId();
         int classificationId = resultMusic.getClassificationId();
         int singerId = resultMusic.getSingerId();
         int musicVideoId = resultMusic.getMusicVideoId();
         //获取专辑的信息
-        SongList songList = new SongList();
-        songList.setId(musicAlbumId);
-        List<SongList> albums = songListMapper.selectListSongList(songList);
-        if (albums.size()!=0) {
-            musicAllInformationMap.put("album", albums.get(0));
-        } else {
-            musicAllInformationMap.put("album", null);
-        }
+        model.addAttribute("album", getAlbum(musicAlbumId));
         //获取歌手的详细信息
-        User user = new User();
-        user.setId(singerId);
-        user.setLevel(2);
-        List<User> singerList = userMapper.selectUser(user);
-        if(singerList.size()!=0) {
-            musicAllInformationMap.put("singer", singerList.get(0));
-        }else{
-            musicAllInformationMap.put("singer",null);
-            logger.error("音乐"+music.getId()+"缺少歌手信息");
-        }
+        model.addAttribute("singer", getSinger(singerId));
         //获取分类的详细信息
-        Classification classification = new Classification();
-        classification.setId(classificationId);
-        List<Classification> classificationList = classificationMapper.selectListClassification(classification);
-        if(classificationList.size()!=0){
-            musicAllInformationMap.put("classification",
-                    classificationList.get(0));
-        }else if(classificationList.size()==0){
-            musicAllInformationMap.put("classification",classificationList.get(0));
-        }
+        model.addAttribute("classification",getClassification(classificationId));
         //获取歌曲的播放量
-        Play p = new Play();
-        p.setMusicId(resultMusic.getId());
-        p.setType(1);
-        List<Play> plays = playMapper.selectListPlay(p);
-        musicAllInformationMap.put("musicPlayCount",plays.size());
+        model.addAttribute("musicPlayCount",getPlayCount(musicId));
         //获取歌曲的收藏量
-        MusicCollect musicCollect = new MusicCollect();
-        musicCollect.setMusicId(resultMusic.getId());
-        List<MusicCollect> musicCollects = musicCollectMapper.selectListMusicCollect(musicCollect);
-        musicAllInformationMap.put("musicCollectCount",musicCollects.size());
+        model.addAttribute("musicCollectCount",getCollectCount(musicId));
         //获取mv的详细信息
-        MusicVideo musicVideo = new MusicVideo();
-        musicVideo.setId(musicVideoId);
-        List<MusicVideo> musicVideos = musicVideoMapper.selectListMusicVideo(musicVideo);
-        if(musicVideos.size()!=0){
-            musicAllInformationMap.put("musicVideo",musicVideos.get(0));
-        }else{
-            musicAllInformationMap.put("musicVideo",null);
-        }
-        return musicAllInformationMap;
+        model.addAttribute("musicVideo",getMusicVideo(musicVideoId));
+        //获取评论
+        model.addAttribute("comment",getMusicComment(musicId));
+        return "music";
     }
     /**
      * 获取歌曲的评论
@@ -109,10 +78,75 @@ public class MusicService {
     public List<CommentExt> getMusicComment(int musicId){
         return commentService.searchCommentByMusicId(musicId,1);
     }
+    /**
+     * 获取歌曲的MV
+     */
+    public MusicVideo getMusicVideo(int musicVideoId){
+        MusicVideo musicVideo = new MusicVideo();
+        musicVideo.setId(musicVideoId);
+        List<MusicVideo> musicVideoList = musicVideoMapper.selectListMusicVideo(musicVideo);
+        if(musicVideoList==null||musicVideoList.size()==0){
+            return null;
+        }
+        return musicVideoList.get(0);
+    }
+    /**
+     * 获取歌曲的播放量
+     */
+    public int getPlayCount(int musicId){
+        Play p = new Play();
+        p.setMusicId(musicId);
+        p.setType(1);
+        return playMapper.selectPlays(p);
+    }
+    /**
+     * 获取歌曲的收藏量
+     */
+    public int getCollectCount(int musicId){
+        MusicCollect musicCollect = new MusicCollect();
+        musicCollect.setMusicId(musicId);
+        List<MusicCollect> musicCollects = musicCollectMapper.selectListMusicCollect(musicCollect);
+        return musicCollects.size();
+    }
+    /**
+     * 获取歌曲的分类信息
+     */
+    public Classification getClassification(int classificationId){
+        Classification classification = new Classification();
+        classification.setId(classificationId);
+        List<Classification> classificationList = classificationMapper.selectListClassification(classification);
+        if(classificationList.size()==0){
+            return null;
+        }
+        return classificationList.get(0);
+    }
+    /**
+     * 获取歌手的详细信息
+     */
+    public User getSinger(int singerId){
+        User user = new User();
+        user.setId(singerId);
+        user.setLevel(2);
+        List<User> singerList = userMapper.selectUser(user);
+        if(singerList==null||singerList.size()==0){
+            return null;
+        }
+        return singerList.get(0);
+    }
+    /**
+     * 获取专辑的详细信息
+     */
+    public SongList getAlbum(int musicAlbumId){
+        SongList songList = new SongList();
+        songList.setId(musicAlbumId);
+        List<SongList> albums = songListMapper.selectListSongList(songList);
+        if(albums==null||albums.size()==0){
+            return null;
+        }        return  albums.get(0);
 
+    }
     /**
      * 流派榜
-     *
      * @param type 根据音乐的流派分类查找信息
      * @return Map<Music, User>
      */
@@ -134,7 +168,7 @@ public class MusicService {
         classification.setRegion(region);
         List<Music> musicList = selectListMusicByClassification(classification);
         List<Music> resultMusic = playService.sortMusicByPlay(musicList);
-        return transformMusics(musicList);
+        return transformMusics(resultMusic);
     }
     /**
      * 语言榜
