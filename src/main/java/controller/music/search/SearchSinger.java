@@ -6,6 +6,7 @@ import com.github.pagehelper.PageInfo;
 import entity.Classification;
 import entity.SingerExt;
 import entity.User;
+import mapper.UserMapper;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -29,6 +30,8 @@ public class SearchSinger {
 
     @Resource(name = "SingerService")
     SingerService singerService;
+    @Resource(name ="UserMapper")
+    UserMapper userMapper;
     /**
      * 搜索歌手的详细信息
      */
@@ -67,4 +70,5 @@ public class SearchSinger {
         user.setLevel(2);
         return singerService.searchAllSinger();
     }
+
 }

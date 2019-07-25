@@ -6,9 +6,6 @@
     <select id="selectUser" parameterType="User" resultMap="user">
         select * from tb_user
         <where>
-            <if test='id!=null and id!=""'>
-                and user_id=#{id}
-            </if>
             <if test='name!=null and name!=""'>
                 and user_name like "%"#{name}"%"
             </if>

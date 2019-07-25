@@ -1,8 +1,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <!--头部-->
 <div class="header">
-    <img class="show_bg" src="../../static/img/首页背景.jpg" th:src="@{/static/img/首页背景.jpg}" alt="">
-<!--    <video class="show_bg" src="../../static/video/首页.mp4" th:src="@{/static/video/首页.mp4}" autoplay="autoplay" loop="loop" width="100%" alt=""></video>-->
+<!--    <img class="show_bg" src="../../static/img/首页背景.jpg" th:src="@{/static/img/首页背景.jpg}" alt="">-->
     <nav class="navbar">
         <div class="container-fluid">
             <!-- Brand and toggle get grouped for better mobile display -->
@@ -22,7 +21,7 @@
                 <ul class="nav navbar-nav">
                     <li class="active"><a href="./index.html" th:href="@{/index}">音乐馆 <span
                             class="sr-only">(current)</span></a></li>
-                    <li class="dropdown">
+                    <li class="dropdown" style="color: #fff">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                            aria-expanded="false">发现 <span class="caret"></span></a>
                         <ul class="dropdown-menu">
@@ -100,11 +99,21 @@
     </div>
 </div>
 <script src="js/jquery.js" th:src="@{/static/js/jquery.js}"></script>
-<!--<script>-->
-<!--    var sousuokuan = $("#search").Width();-->
-<!--    console.log(sousuokuan);-->
-<!--    $("#search_tips").animate({width:sousuokuan+"px"},4000)-->
-<!--</script>-->
+<script>
+    let nav_container = $(".header .navbar");
+    window.onmousewheel = document.onmousewheel = function () {
+        if(window.event.wheelDelta){
+            if(window.event.wheelDelta<0){
+                nav_container.slideUp(0);
+                $("#nav_container").hide();
+            }
+            else if(window.event.wheelDelta>0){
+                nav_container.slideDown(0);
+                nav_container.css("top","0px");
+            }
+        }
+    };
+</script>
 <!--<div class="div">-->
 <!--    <div class="header">-->
 <!--        <div class="inner">-->
