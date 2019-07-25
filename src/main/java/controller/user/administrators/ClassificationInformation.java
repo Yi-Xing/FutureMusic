@@ -44,7 +44,7 @@ public class ClassificationInformation {
      * @param id 分类的id
      */
     @RequestMapping(value = "/showIdClassification")
-    public String showIdClassification(Integer id,Model model){
+    public String showIdClassification(String id,Model model){
         return classificationInformationService.showIdClassification(id,model);
     }
 

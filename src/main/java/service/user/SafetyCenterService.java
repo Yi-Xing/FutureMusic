@@ -18,7 +18,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 /**
- * 修改密码，设置密保，找回密保，修改密保（原密保修改，邮箱修改）
+ * 绑定邮箱，修改密码，找回密码，安全中心的页面跳转的保护机制
  *
  * @author 5月17日 张易兴创建
  */

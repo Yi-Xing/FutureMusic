@@ -8,6 +8,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
+import service.user.ValidationInformation;
 
 import javax.annotation.Resource;
 import java.util.Arrays;
@@ -23,7 +24,8 @@ public class CommentInformationService {
     private static final Logger logger = LoggerFactory.getLogger(ActivityInformationService.class);
     @Resource(name = "CommentMapper")
     CommentMapper commentMapper;
-
+    @Resource(name = "ValidationInformation")
+    ValidationInformation validationInformation;
     /**
      * 显示评论信息
      *
@@ -37,10 +39,16 @@ public class CommentInformationService {
             // 0类型 1值 2id类型（4音乐 5MV 6专辑 7用户 8id 9回复）
             System.out.println(Arrays.toString(condition));
             if((condition[0] != null) && !"".equals(condition[0])) {
+                if (validationInformation.isInt(condition[0])) {
                     comment.setType(Integer.valueOf(condition[0]));
+                }else{
+                    comment.setType(-1);
+                }
             }
             if ((condition[2] != null) && !"".equals(condition[2])&& condition[1] != null && !"".equals(condition[1])) {
-                // 1表示是id 2表示是接收方 3表示发送方
+                if (!validationInformation.isInt(condition[3])) {
+                    condition[1]="-1";
+                }
                 switch (condition[2]) {
                     case "4":
                             comment.setType(1);

@@ -5,61 +5,43 @@
       <artifact name="FutureMusic:war exploded" />
     </artifacts-to-build>
   </component>
+  <component name="BookmarkManager">
+    <bookmark url="file://$PROJECT_DIR$/src/main/java/controller/user/consumer/AboutMail.java" line="38" />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="00f34b6d-162d-4228-80f5-f6692a05b882" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/controller/music/exhibition/Information.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/templates/comment.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/templates/notice.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/templates/toEmail.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/css/toEmail.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/img/首页背景.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/templates/userInformation/sendEmail.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/app/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/music/exhibition/Detail.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/music/exhibition/Exhibition.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/music/exhibition/MusicIndex.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/music/search/SearchBefore.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/music/search/SearchBefore.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/music/search/SearchMusic.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/music/search/SearchMusic.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/music/search/SearchMusicVideo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/music/search/SearchMusicVideo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/music/search/SearchSinger.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/music/search/SearchSinger.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/music/search/SearchSongList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/music/search/SearchSongList.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/user/SafetyCenter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/user/SafetyCenter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/user/administrators/ClassificationInformation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/user/administrators/ClassificationInformation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/user/administrators/MailInformation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/user/administrators/MailInformation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/user/consumer/AboutMail.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/user/consumer/AboutMail.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/mapper/MusicMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mapper/MusicMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mapper/MusicVideoMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mapper/MusicVideoMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mapper/SongListMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mapper/SongListMapper.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/mapper/UserMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mapper/UserMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/service/music/CommentService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/service/music/CommentService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/service/music/MusicVideoService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/service/music/MusicVideoService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/service/music/SingerService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/service/music/SingerService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/service/music/SongListService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/service/music/SongListService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/service/user/IdExistence.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/service/user/IdExistence.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/service/user/SafetyCenterService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/service/user/SafetyCenterService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/service/user/SecretProtectionService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/service/user/administrators/ActivityInformationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/service/user/administrators/ActivityInformationService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/service/user/administrators/ClassificationInformationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/service/user/administrators/ClassificationInformationService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/service/user/administrators/CommentInformationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/service/user/administrators/CommentInformationService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/service/user/administrators/MailInformationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/service/user/administrators/MailInformationService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/service/user/administrators/MusicInformationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/service/user/administrators/MusicInformationService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/service/user/administrators/MusicVideoInformationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/service/user/administrators/MusicVideoInformationService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/service/user/administrators/OrderInformationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/service/user/administrators/OrderInformationService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/service/user/administrators/SongListInformationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/service/user/administrators/SongListInformationService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/service/user/administrators/UserInformationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/service/user/administrators/UserInformationService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/test/zyx/Mail163Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/test/zyx/Mail163Test.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/util/FileUpload.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/util/FileUpload.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/spring/spring-zyx.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/spring/spring-zyx.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/templates/artist.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/templates/artist.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/templates/head.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/templates/head.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/templates/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/templates/musicLists.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/templates/musicLists.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/templates/musics.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/templates/musics.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/templates/player.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/templates/player.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/templates/system/activityAdmin.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/templates/system/activityAdmin.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/templates/system/backgroundSystem.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/templates/system/backgroundSystem.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/templates/system/musicAdmin.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/templates/system/musicAdmin.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/templates/system/musicVideoAdmin.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/templates/system/musicVideoAdmin.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/templates/system/songListAdmin.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/templates/system/songListAdmin.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/templates/system/userAdmin.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/templates/system/userAdmin.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/templates/webHead.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/templates/webHead.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/jjy.jsp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/static/css/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/static/css/index.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/static/js/ajaxIndex.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/static/js/ajaxIndex.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/static/js/ajaxMusic.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/static/js/ajaxMusic.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/static/js/artist.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/static/js/artist.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/static/js/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/static/js/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/static/js/musicList.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/static/js/musicList.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/static/js/system/backgroundSystem.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/static/js/system/backgroundSystem.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/service/user/consumer/AboutMailService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/service/user/consumer/AboutMailService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/service/user/consumer/AccountInformationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/service/user/consumer/AccountInformationService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/service/user/consumer/AlipayService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/service/user/consumer/AlipayService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/service/user/consumer/TransactionService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/service/user/consumer/TransactionService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/templates/comment.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/templates/userInformation/comment.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/templates/notice.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/templates/userInformation/notice.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/templates/toEmail.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/templates/userInformation/receiveEmail.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/static/js/system/musicAdmin.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/static/js/system/musicAdmin.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/static/js/system/userAdmin.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/static/js/system/userAdmin.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/static/video/AlanWalker-OnMyWay(Sabrina'sEdit).mp4" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/static/video/Shinedown-I'm Alive(《复仇者联盟》电影主题曲).mp4" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/static/video/首页.mp4" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/static/js/system/songListAdmin.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/static/js/system/songListAdmin.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -72,103 +54,88 @@
   <component name="DefaultGradleProjectSettings">
     <option name="isMigrated" value="true" />
   </component>
+  <component name="DockManager">
+    <window id="2">
+      <content type="file-editors">
+        <state>
+          <leaf>
+            <file pinned="false" current-in-tab="true">
+              <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/templates/userInformation/sendEmail.html">
+                <provider selected="true" editor-type-id="text-editor">
+                  <state relative-caret-position="300">
+                    <caret line="15" column="144" selection-start-line="15" selection-start-column="144" selection-end-line="15" selection-end-column="144" />
+                  </state>
+                </provider>
+              </entry>
+            </file>
+            <file pinned="false" current-in-tab="false">
+              <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/templates/userInformation/comment.html">
+                <provider selected="true" editor-type-id="text-editor">
+                  <state relative-caret-position="324">
+                    <caret line="33" column="55" lean-forward="true" selection-start-line="33" selection-start-column="55" selection-end-line="33" selection-end-column="55" />
+                  </state>
+                </provider>
+              </entry>
+            </file>
+            <file pinned="false" current-in-tab="false">
+              <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/templates/userInformation/notice.html">
+                <provider selected="true" editor-type-id="text-editor" />
+              </entry>
+            </file>
+            <file pinned="false" current-in-tab="false">
+              <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/templates/userInformation/receiveEmail.html">
+                <provider selected="true" editor-type-id="text-editor">
+                  <state relative-caret-position="67">
+                    <caret line="9" column="21" lean-forward="true" selection-start-line="9" selection-start-column="21" selection-end-line="9" selection-end-column="21" />
+                  </state>
+                </provider>
+              </entry>
+            </file>
+          </leaf>
+        </state>
+      </content>
+    </window>
+  </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/templates/system/musicAdmin.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="267">
-              <caret line="355" selection-start-line="355" selection-end-line="355" />
-              <folding>
-                <element signature="n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" />
-                <element signature="n#div#2;n#div#0;n#body#0;n#html#0;n#!!top" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/templates/system/musicVideoAdmin.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="154">
-              <caret line="340" selection-start-line="340" selection-end-line="340" />
-              <folding>
-                <element signature="n#form#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" />
-                <element signature="n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" />
-                <element signature="n#div#2;n#div#0;n#body#0;n#html#0;n#!!top" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/service/user/administrators/CommentInformationService.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="256">
-              <caret line="36" column="51" selection-start-line="36" selection-start-column="51" selection-end-line="36" selection-end-column="51" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/templates/system/activityAdmin.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="178">
-              <caret line="275" selection-start-line="275" selection-end-line="275" />
-              <folding>
-                <element signature="n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" />
-                <element signature="n#div#2;n#div#0;n#body#0;n#html#0;n#!!top" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/service/user/administrators/ActivityInformationService.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="4643">
-              <caret line="264" column="36" lean-forward="true" selection-start-line="264" selection-start-column="36" selection-end-line="264" selection-end-column="36" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/service/user/administrators/ClassificationInformationService.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="302">
-              <caret line="58" column="44" selection-start-line="58" selection-start-column="37" selection-end-line="58" selection-end-column="44" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/templates/mailbox_verification.html">
-          <provider selected="true" editor-type-id="text-editor" />
-        </entry>
-      </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/templates/index.html">
+        <entry file="file://$PROJECT_DIR$/src/main/java/controller/user/consumer/AboutMail.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="225">
-              <caret line="54" column="58" selection-start-line="54" selection-start-column="58" selection-end-line="54" selection-end-column="58" />
+            <state relative-caret-position="132">
+              <caret line="39" column="39" selection-start-line="39" selection-start-column="30" selection-end-line="39" selection-end-column="39" />
+              <folding>
+                <element signature="e#1284#1285#0" expanded="true" />
+                <element signature="e#1323#1324#0" expanded="true" />
+                <element signature="e#1458#1459#0" expanded="true" />
+                <element signature="e#1514#1515#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/controller/user/SafetyCenter.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/service/user/consumer/AboutMailService.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="202">
-              <caret line="39" column="46" selection-start-line="39" selection-start-column="30" selection-end-line="39" selection-end-column="46" />
+            <state relative-caret-position="282">
+              <caret line="42" column="41" selection-start-line="42" selection-start-column="41" selection-end-line="42" selection-end-column="41" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/entity/Activity.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/service/user/SpecialFunctions.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="252">
-              <caret line="45" column="50" selection-start-line="45" selection-start-column="31" selection-end-line="45" selection-end-column="50" />
+            <state relative-caret-position="3227">
+              <caret line="157" column="35" selection-start-line="157" selection-start-column="35" selection-end-line="157" selection-end-column="35" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/entity/Mail.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="227">
+              <caret line="20" column="22" selection-start-line="20" selection-start-column="22" selection-end-line="20" selection-end-column="22" />
             </state>
           </provider>
         </entry>
@@ -180,6 +147,8 @@
       <find>showSongList</find>
       <find>signOutLogin</find>
       <find>sys</find>
+      <find>toEmail</find>
+      <find>userPage</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -188,24 +157,47 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/service/user/administrators/CommentInformationService.java" />
-        <option value="$PROJECT_DIR$/src/main/java/service/user/administrators/OrderInformationService.java" />
         <option value="$PROJECT_DIR$/src/main/webapp/static/js/system/userAdmin.js" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/templates/system/userAdmin.html" />
-        <option value="$PROJECT_DIR$/src/main/java/mapper/UserMapper.xml" />
-        <option value="$PROJECT_DIR$/src/main/java/service/user/administrators/UserInformationService.java" />
         <option value="$PROJECT_DIR$/src/main/webapp/static/js/ajaxIndex.js" />
         <option value="$PROJECT_DIR$/src/main/webapp/static/js/system/backgroundSystem.js" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/templates/system/backgroundSystem.html" />
         <option value="$PROJECT_DIR$/src/main/resources/spring/spring-zyx.xml" />
-        <option value="$PROJECT_DIR$/src/main/java/mapper/MusicMapper.xml" />
-        <option value="$PROJECT_DIR$/src/main/java/service/user/administrators/MusicInformationService.java" />
-        <option value="$PROJECT_DIR$/src/main/webapp/static/js/system/musicAdmin.js" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/templates/system/songListAdmin.html" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/templates/system/musicAdmin.html" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/templates/system/musicVideoAdmin.html" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/templates/system/activityAdmin.html" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/templates/index.html" />
+        <option value="$PROJECT_DIR$/src/main/java/service/user/consumer/AccountInformationService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/service/user/administrators/ActivityInformationService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/controller/user/administrators/ClassificationInformation.java" />
+        <option value="$PROJECT_DIR$/src/main/java/service/user/administrators/ClassificationInformationService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/service/user/administrators/CommentInformationService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/mapper/MailMapper.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/controller/user/administrators/MailInformation.java" />
+        <option value="$PROJECT_DIR$/src/main/java/service/user/administrators/MailInformationService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/service/user/IdExistence.java" />
+        <option value="$PROJECT_DIR$/src/main/java/mapper/MusicMapper.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/service/user/administrators/MusicInformationService.java" />
+        <option value="$PROJECT_DIR$/src/main/webapp/static/js/system/musicAdmin.js" />
+        <option value="$PROJECT_DIR$/src/main/java/service/user/administrators/MusicVideoInformationService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/mapper/MusicVideoMapper.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/service/user/administrators/OrderInformationService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/mapper/SongListMapper.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/service/user/administrators/SongListInformationService.java" />
+        <option value="$PROJECT_DIR$/src/main/webapp/static/js/system/songListAdmin.js" />
+        <option value="$PROJECT_DIR$/src/main/java/service/user/administrators/UserInformationService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/mapper/UserMapper.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/controller/user/SafetyCenter.java" />
+        <option value="$PROJECT_DIR$/src/main/java/service/user/SafetyCenterService.java" />
+        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/templates/userInformation/toEmail.html" />
+        <option value="$PROJECT_DIR$/src/main/java/app/Main.java" />
+        <option value="$PROJECT_DIR$/src/main/java/service/user/consumer/TransactionService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/service/user/consumer/AlipayService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/controller/user/consumer/AboutMail.java" />
+        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/templates/userInformation/receiveEmail.html" />
+        <option value="$PROJECT_DIR$/src/main/java/service/user/consumer/AboutMailService.java" />
+        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/templates/userInformation/sendEmail.html" />
       </list>
     </option>
   </component>
@@ -217,17 +209,16 @@
     <option name="CUSTOM_FILTER" />
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="51" />
-    <option name="y" value="34" />
-    <option name="width" value="1751" />
-    <option name="height" value="1031" />
+    <option name="x" value="3" />
+    <option name="width" value="1752" />
+    <option name="height" value="1032" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -259,6 +250,14 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="FutureMusic" type="b2602c69:ProjectViewProjectNode" />
+              <item name="FutureMusic" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="controller" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -269,6 +268,14 @@
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="controller" type="462c0819:PsiDirectoryNode" />
               <item name="user" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="FutureMusic" type="b2602c69:ProjectViewProjectNode" />
+              <item name="FutureMusic" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="entity" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="FutureMusic" type="b2602c69:ProjectViewProjectNode" />
@@ -309,6 +316,14 @@
               <item name="FutureMusic" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="spring" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="FutureMusic" type="b2602c69:ProjectViewProjectNode" />
+              <item name="FutureMusic" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="webapp" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -318,25 +333,6 @@
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="webapp" type="462c0819:PsiDirectoryNode" />
               <item name="static" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="FutureMusic" type="b2602c69:ProjectViewProjectNode" />
-              <item name="FutureMusic" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="webapp" type="462c0819:PsiDirectoryNode" />
-              <item name="static" type="462c0819:PsiDirectoryNode" />
-              <item name="js" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="FutureMusic" type="b2602c69:ProjectViewProjectNode" />
-              <item name="FutureMusic" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="webapp" type="462c0819:PsiDirectoryNode" />
-              <item name="static" type="462c0819:PsiDirectoryNode" />
-              <item name="js" type="462c0819:PsiDirectoryNode" />
-              <item name="system" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="FutureMusic" type="b2602c69:ProjectViewProjectNode" />
@@ -363,20 +359,29 @@
               <item name="webapp" type="462c0819:PsiDirectoryNode" />
               <item name="WEB-INF" type="462c0819:PsiDirectoryNode" />
               <item name="templates" type="462c0819:PsiDirectoryNode" />
-              <item name="system" type="462c0819:PsiDirectoryNode" />
+              <item name="userInformation" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/webapp/WEB-INF/templates/userInformation" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\first\FutureMusic\src\main\webapp\WEB-INF\templates\userInformation" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\first\FutureMusic\src\main\webapp\WEB-INF\templates\userInformation" />
+      <recent name="C:\first\FutureMusic\src\main\webapp\WEB-INF\templates\security" />
+    </key>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -512,7 +517,8 @@
       <workItem from="1563765217609" duration="107000" />
       <workItem from="1563765350028" duration="159000" />
       <workItem from="1563926467408" duration="307000" />
-      <workItem from="1563971385296" duration="5446000" />
+      <workItem from="1563971385296" duration="7126000" />
+      <workItem from="1564012214955" duration="8119000" />
     </task>
     <task id="LOCAL-00001" summary="Merge branch 'master' of https://github.com/1160589090/FutureMusic&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml">
       <created>1563970249816</created>
@@ -521,11 +527,18 @@
       <option name="project" value="LOCAL" />
       <updated>1563970249816</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Merge branch 'master' of https://github.com/1160589090/FutureMusic&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml">
+      <created>1563977022606</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1563977022606</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="7266000" />
+    <option name="totallyTimeSpent" value="17065000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -539,9 +552,8 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1295" height="695" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25871858" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.26358476" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="JRebel" order="2" side_tool="true" />
       <window_info id="Image Layers" order="3" />
@@ -550,9 +562,6 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info id="Designer" order="7" />
       <window_info id="Web" order="8" side_tool="true" />
-      <window_info anchor="bottom" id="FindBugs-IDEA" />
-      <window_info anchor="bottom" id="Messages" weight="0.3297491" />
-      <window_info anchor="bottom" id="JRebel Executor" weight="0.60573477" />
       <window_info anchor="bottom" id="Application Servers" order="0" weight="0.3297491" />
       <window_info anchor="bottom" id="Message" order="1" />
       <window_info anchor="bottom" id="Find" order="2" />
@@ -568,7 +577,10 @@
       <window_info anchor="bottom" id="Version Control" order="12" />
       <window_info anchor="bottom" id="JRebel Console" order="13" sideWeight="0.5004055" side_tool="true" weight="0.3297491" />
       <window_info anchor="bottom" id="Java Enterprise" order="14" weight="0.3297491" />
-      <window_info anchor="bottom" id="Spring" order="15" weight="0.32616487" />
+      <window_info anchor="bottom" id="JRebel Executor" order="15" weight="0.9283154" />
+      <window_info anchor="bottom" id="Spring" order="16" weight="0.32616487" />
+      <window_info anchor="bottom" id="FindBugs-IDEA" order="17" />
+      <window_info anchor="bottom" id="Messages" order="18" weight="0.3297491" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -581,7 +593,7 @@
       <window_info anchor="right" id="JRebel Setup Guide" order="9" weight="0.32935917" />
     </layout>
     <layout-to-restore>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25871858" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.26358476" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="JRebel" order="2" side_tool="true" />
       <window_info id="Image Layers" order="3" />
@@ -590,25 +602,25 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info id="Designer" order="7" />
       <window_info id="Web" order="8" side_tool="true" />
-      <window_info anchor="bottom" id="FindBugs-IDEA" order="0" />
-      <window_info anchor="bottom" id="Messages" order="1" weight="0.3297491" />
-      <window_info anchor="bottom" id="JRebel Executor" order="2" weight="0.60573477" />
-      <window_info anchor="bottom" id="Application Servers" order="3" weight="0.3297491" />
-      <window_info anchor="bottom" id="Message" order="4" />
-      <window_info anchor="bottom" id="Find" order="5" />
-      <window_info anchor="bottom" id="Run" order="6" />
-      <window_info anchor="bottom" id="Debug" order="7" weight="0.39964157" />
-      <window_info anchor="bottom" id="Cvs" order="8" weight="0.25" />
-      <window_info anchor="bottom" id="Inspection" order="9" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="10" sideWeight="0.49959448" weight="0.3297491" />
-      <window_info anchor="bottom" id="Event Log" order="11" sideWeight="0.5004055" side_tool="true" weight="0.3297491" />
-      <window_info anchor="bottom" id="Terminal" order="12" weight="0.3297491" />
-      <window_info anchor="bottom" id="Docker" order="13" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Database Changes" order="14" />
-      <window_info anchor="bottom" id="Version Control" order="15" />
-      <window_info anchor="bottom" id="JRebel Console" order="16" sideWeight="0.5004055" side_tool="true" weight="0.3297491" />
-      <window_info anchor="bottom" id="Java Enterprise" order="17" weight="0.3297491" />
-      <window_info anchor="bottom" id="Spring" order="18" weight="0.32616487" />
+      <window_info anchor="bottom" id="Application Servers" order="0" weight="0.3297491" />
+      <window_info anchor="bottom" id="Message" order="1" />
+      <window_info anchor="bottom" id="Find" order="2" />
+      <window_info anchor="bottom" id="Run" order="3" />
+      <window_info anchor="bottom" id="Debug" order="4" weight="0.39964157" />
+      <window_info anchor="bottom" id="Cvs" order="5" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="6" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="7" sideWeight="0.49959448" weight="0.3297491" />
+      <window_info anchor="bottom" id="Event Log" order="8" sideWeight="0.5004055" side_tool="true" weight="0.3297491" />
+      <window_info anchor="bottom" id="Terminal" order="9" weight="0.3297491" />
+      <window_info anchor="bottom" id="Docker" order="10" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Database Changes" order="11" />
+      <window_info anchor="bottom" id="Version Control" order="12" />
+      <window_info anchor="bottom" id="JRebel Console" order="13" sideWeight="0.5004055" side_tool="true" weight="0.3297491" />
+      <window_info anchor="bottom" id="Java Enterprise" order="14" weight="0.3297491" />
+      <window_info anchor="bottom" id="JRebel Executor" order="15" weight="0.9283154" />
+      <window_info anchor="bottom" id="Spring" order="16" weight="0.32616487" />
+      <window_info anchor="bottom" id="FindBugs-IDEA" order="17" />
+      <window_info anchor="bottom" id="Messages" order="18" weight="0.3297491" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -629,251 +641,272 @@
     <option name="LAST_COMMIT_MESSAGE" value="Merge branch 'master' of https://github.com/1160589090/FutureMusic&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/templates/artists.html">
+    <entry file="file://$PROJECT_DIR$/src/main/resources/spring/spring-zyx.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1575" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/templates/artist.html">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/static/js/jquery.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="776" lean-forward="true" selection-start-line="776" selection-end-line="776" />
+        <state relative-caret-position="1925">
+          <caret line="77" selection-start-line="77" selection-end-line="77" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/mapper/OrderMapper.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/service/user/administrators/ClassificationInformationService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="168">
-          <caret line="24" selection-start-line="24" selection-end-line="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/templates/system/orderAdmin.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1050">
-          <caret line="42" column="69" selection-start-line="42" selection-start-column="69" selection-end-line="42" selection-end-column="69" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/entity/Comment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="500">
-          <caret line="25" column="20" selection-start-line="25" selection-start-column="20" selection-end-line="25" selection-end-column="20" />
+        <state relative-caret-position="-3695">
+          <caret line="112" column="14" lean-forward="true" selection-start-line="112" selection-start-column="14" selection-end-line="112" selection-end-column="14" />
           <folding>
-            <element signature="e#1916#1917#0" expanded="true" />
-            <element signature="e#1954#1955#0" expanded="true" />
+            <element signature="e#15203#15204#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/service/user/administrators/SongListInformationService.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/controller/user/administrators/ClassificationInformation.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1100">
-          <caret line="65" column="38" selection-start-line="65" selection-start-column="38" selection-end-line="65" selection-end-column="38" />
+        <state relative-caret-position="202">
+          <caret line="47" column="57" selection-start-line="47" selection-start-column="57" selection-end-line="47" selection-end-column="57" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/controller/user/administrators/OrderInformation.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/controller/user/administrators/CommentInformation.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="675">
-          <caret line="40" column="44" selection-start-line="40" selection-start-column="44" selection-end-line="40" selection-end-column="44" />
+        <state relative-caret-position="352">
+          <caret line="47" column="46" lean-forward="true" selection-start-line="47" selection-start-column="46" selection-end-line="47" selection-end-column="46" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/entity/User.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/controller/user/administrators/ActivityInformation.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1625">
-          <caret line="70" column="50" selection-start-line="70" selection-start-column="31" selection-end-line="70" selection-end-column="50" />
+        <state relative-caret-position="306">
+          <caret line="67" column="47" lean-forward="true" selection-start-line="67" selection-start-column="47" selection-end-line="67" selection-end-column="47" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/service/user/administrators/OrderInformationService.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/service/user/administrators/ActivityInformationService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="24">
-          <caret line="37" column="34" selection-start-line="37" selection-start-column="34" selection-end-line="37" selection-end-column="34" />
+        <state relative-caret-position="302">
+          <caret line="94" column="16" selection-start-line="94" selection-start-column="16" selection-end-line="98" selection-end-column="17" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/static/js/system/userAdmin.js">
+    <entry file="file://$PROJECT_DIR$/src/main/java/service/user/administrators/CommentInformationService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="375">
-          <caret line="72" column="128" selection-start-line="72" selection-start-column="128" selection-end-line="72" selection-end-column="128" />
+        <state relative-caret-position="117">
+          <caret line="100" column="7" lean-forward="true" selection-start-line="100" selection-start-column="7" selection-end-line="100" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/mapper/MailMapper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="177">
+          <caret line="27" column="22" selection-start-line="27" selection-start-column="22" selection-end-line="27" selection-end-column="22" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/service/user/administrators/MailInformationService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="177">
-          <caret line="29" column="13" selection-start-line="29" selection-start-column="13" selection-end-line="29" selection-end-column="13" />
+        <state relative-caret-position="118">
+          <caret line="46" selection-start-line="46" selection-end-line="46" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/service/user/administrators/UserInformationService.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/mapper/MailMapper.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="174">
-          <caret line="58" column="26" lean-forward="true" selection-start-line="58" selection-start-column="26" selection-end-line="58" selection-end-column="26" />
+        <state relative-caret-position="117">
+          <caret line="18" column="64" lean-forward="true" selection-start-line="18" selection-start-column="64" selection-end-line="18" selection-end-column="64" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/mapper/UserMapper.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/controller/user/administrators/MailInformation.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="177">
-          <caret line="31" column="22" selection-start-line="31" selection-start-column="22" selection-end-line="31" selection-end-column="22" />
+        <state relative-caret-position="202">
+          <caret line="49" column="44" selection-start-line="49" selection-start-column="44" selection-end-line="49" selection-end-column="44" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/controller/user/LoginAndRegister.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/controller/user/administrators/MusicInformation.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="327">
-          <caret line="83" column="31" lean-forward="true" selection-start-line="83" selection-start-column="31" selection-end-line="83" selection-end-column="31" />
+        <state relative-caret-position="277">
+          <caret line="65" column="43" selection-start-line="65" selection-start-column="43" selection-end-line="65" selection-end-column="43" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/controller/user/administrators/UserInformation.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/mapper/MusicCollectMapper.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="32">
-          <caret line="47" column="38" selection-start-line="47" selection-start-column="38" selection-end-line="47" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/mapper/UserMapper.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="242">
-          <caret line="110" column="51" selection-start-line="110" selection-start-column="46" selection-end-line="110" selection-end-column="51" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/templates/webHead.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-5932" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/static/js/ajaxIndex.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="117" column="43" lean-forward="true" selection-start-line="117" selection-start-column="43" selection-end-line="117" selection-end-column="43" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/service/user/LoginService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="152">
-          <caret line="62" column="47" lean-forward="true" selection-start-line="62" selection-start-column="47" selection-end-line="62" selection-end-column="47" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/static/js/system/backgroundSystem.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="400">
-          <caret line="16" column="70" selection-start-line="16" selection-start-column="70" selection-end-line="16" selection-end-column="70" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/templates/system/backgroundSystem.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="199">
-          <caret line="64" column="13" lean-forward="true" selection-start-line="64" selection-start-column="13" selection-end-line="64" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/spring-mvc.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1800" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/spring/spring-zyx.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="200">
-          <caret line="94" column="49" selection-start-line="94" selection-start-column="49" selection-end-line="94" selection-end-column="49" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/util/interceptor/ShowInterceptor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="200">
-          <caret line="25" column="27" lean-forward="true" selection-start-line="25" selection-start-column="27" selection-end-line="25" selection-end-column="27" />
+        <state relative-caret-position="250">
+          <caret line="10" column="17" lean-forward="true" selection-start-line="10" selection-start-column="17" selection-end-line="10" selection-end-column="17" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/entity/Music.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="302">
-          <caret line="99" column="25" selection-start-line="99" selection-start-column="15" selection-end-line="99" selection-end-column="25" />
+        <state relative-caret-position="252">
+          <caret line="97" column="20" lean-forward="true" selection-start-line="97" selection-start-column="20" selection-end-line="97" selection-end-column="20" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/service/user/IdExistence.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/mapper/ActivityMapper.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1133">
+          <caret line="5" column="4" selection-start-line="5" selection-start-column="4" selection-end-line="5" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/mapper/ActivityMapper.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="177">
-          <caret line="90" column="22" selection-start-line="90" selection-start-column="22" selection-end-line="90" selection-end-column="22" />
+          <caret line="28" column="26" selection-start-line="28" selection-start-column="26" selection-end-line="28" selection-end-column="26" />
         </state>
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/mapper/MusicMapper.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="327">
-          <caret line="92" column="41" selection-start-line="92" selection-start-column="38" selection-end-line="92" selection-end-column="41" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/mapper/MusicMapper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="281">
-          <caret line="65" column="15" selection-start-line="65" selection-start-column="15" selection-end-line="65" selection-end-column="15" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/static/js/system/musicVideoAdmin.js">
-      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/static/js/system/musicAdmin.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="250">
-          <caret line="100" selection-start-line="100" selection-end-line="100" />
+        <state relative-caret-position="331">
+          <caret line="139" column="29" lean-forward="true" selection-start-line="139" selection-start-column="29" selection-end-line="139" selection-end-column="29" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/service/user/administrators/MusicInformationService.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/controller/user/administrators/MusicVideoInformation.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="45">
-          <caret line="290" column="60" selection-start-line="290" selection-start-column="60" selection-end-line="290" selection-end-column="60" />
+        <state relative-caret-position="277">
+          <caret line="66" column="49" selection-start-line="66" selection-start-column="49" selection-end-line="66" selection-end-column="49" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/templates/system/userAdmin.html">
+    <entry file="file://$PROJECT_DIR$/src/main/java/mapper/MusicVideoMapper.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="342">
-          <caret line="205" column="70" selection-start-line="205" selection-start-column="70" selection-end-line="205" selection-end-column="70" />
-          <folding>
-            <element signature="n#div#3;n#div#0;n#body#0;n#html#0;n#!!top" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/templates/system/songListAdmin.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2475">
-          <caret line="42" column="20" lean-forward="true" selection-start-line="42" selection-start-column="20" selection-end-line="42" selection-end-column="20" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
+        <state relative-caret-position="175">
+          <caret line="91" column="17" lean-forward="true" selection-start-line="91" selection-start-column="17" selection-end-line="91" selection-end-column="17" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/service/user/administrators/MusicVideoInformationService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="218">
-          <caret line="310" column="18" lean-forward="true" selection-start-line="310" selection-start-column="18" selection-end-line="310" selection-end-column="18" />
+        <state relative-caret-position="417">
+          <caret line="187" column="17" selection-start-line="187" selection-start-column="17" selection-end-line="187" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/controller/user/administrators/OrderInformation.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="277">
+          <caret line="40" column="44" lean-forward="true" selection-start-line="40" selection-start-column="44" selection-end-line="40" selection-end-column="44" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/service/user/administrators/OrderInformationService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="100">
+          <caret line="102" column="5" lean-forward="true" selection-start-line="102" selection-start-column="5" selection-end-line="102" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/mapper/MusicMapper.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="177">
+          <caret line="26" column="50" selection-start-line="26" selection-start-column="34" selection-end-line="26" selection-end-column="50" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/mapper/SongListMapper.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="200">
+          <caret line="62" column="43" lean-forward="true" selection-start-line="62" selection-start-column="43" selection-end-line="62" selection-end-column="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/static/js/system/songListAdmin.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="275">
+          <caret line="14" column="50" lean-forward="true" selection-start-line="14" selection-start-column="50" selection-end-line="14" selection-end-column="50" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/service/user/administrators/SongListInformationService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="18">
+          <caret line="143" column="31" lean-forward="true" selection-start-line="143" selection-start-column="31" selection-end-line="143" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/controller/user/administrators/SongListInformation.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="352">
+          <caret line="67" column="48" selection-start-line="67" selection-start-column="48" selection-end-line="67" selection-end-column="48" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/mapper/UserMapper.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="78" column="55" selection-start-line="78" selection-start-column="55" selection-end-line="78" selection-end-column="55" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/entity/User.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1548">
+          <caret line="16" column="13" selection-start-line="16" selection-start-column="13" selection-end-line="16" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/controller/user/administrators/UserInformation.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="302">
+          <caret line="56" column="43" lean-forward="true" selection-start-line="56" selection-start-column="43" selection-end-line="56" selection-end-column="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/service/user/administrators/MusicInformationService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="293">
+          <caret line="108" column="24" lean-forward="true" selection-start-line="108" selection-start-column="24" selection-end-line="108" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/service/user/SecretProtectionService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="250">
+          <caret line="19" column="13" selection-start-line="19" selection-start-column="13" selection-end-line="19" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/controller/user/SafetyCenter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="367">
+          <caret line="39" column="44" selection-start-line="39" selection-start-column="44" selection-end-line="39" selection-end-column="44" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/controller/user/consumer/AccountInformation.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="481">
+          <caret line="39" column="46" selection-start-line="39" selection-start-column="46" selection-end-line="39" selection-end-column="46" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/service/user/consumer/AlipayService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="125">
+          <caret line="19" column="7" selection-start-line="19" selection-start-column="7" selection-end-line="19" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/service/user/consumer/TransactionService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="125">
+          <caret line="24" column="8" selection-start-line="24" selection-start-column="8" selection-end-line="24" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/service/user/SafetyCenterService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4581">
+          <caret line="241" column="31" selection-start-line="241" selection-start-column="31" selection-end-line="241" selection-end-column="31" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/service/user/ValidationInformation.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="112" column="24" lean-forward="true" selection-start-line="112" selection-start-column="17" selection-end-line="112" selection-end-column="24" />
+        <state relative-caret-position="-2575">
+          <caret line="14" column="11" selection-start-line="14" selection-start-column="11" selection-end-line="14" selection-end-column="11" />
           <folding>
             <element signature="e#3933#3934#0" expanded="true" />
             <element signature="e#3987#3988#0" expanded="true" />
@@ -881,82 +914,96 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/entity/Activity.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/service/user/consumer/ExistenceService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="252">
-          <caret line="45" column="50" selection-start-line="45" selection-start-column="31" selection-end-line="45" selection-end-column="50" />
+        <state relative-caret-position="375">
+          <caret line="20" column="13" selection-start-line="20" selection-start-column="13" selection-end-line="20" selection-end-column="13" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/templates/system/musicAdmin.html">
+    <entry file="file://$PROJECT_DIR$/src/main/java/service/user/consumer/AccountInformationService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="267">
-          <caret line="355" selection-start-line="355" selection-end-line="355" />
-          <folding>
-            <element signature="n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" />
-            <element signature="n#div#2;n#div#0;n#body#0;n#html#0;n#!!top" />
-          </folding>
+        <state relative-caret-position="-1357">
+          <caret line="43" column="15" lean-forward="true" selection-start-line="43" selection-start-column="15" selection-end-line="43" selection-end-column="15" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/templates/system/musicVideoAdmin.html">
+    <entry file="file://$PROJECT_DIR$/src/main/java/service/user/IdExistence.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="154">
-          <caret line="340" selection-start-line="340" selection-end-line="340" />
-          <folding>
-            <element signature="n#form#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" />
-            <element signature="n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" />
-            <element signature="n#div#2;n#div#0;n#body#0;n#html#0;n#!!top" />
-          </folding>
+        <state relative-caret-position="2356">
+          <caret line="103" column="20" selection-start-line="103" selection-start-column="20" selection-end-line="103" selection-end-column="20" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/templates/system/activityAdmin.html">
+    <entry file="file://$PROJECT_DIR$/src/main/java/service/user/administrators/UserInformationService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="178">
-          <caret line="275" selection-start-line="275" selection-end-line="275" />
-          <folding>
-            <element signature="n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" />
-            <element signature="n#div#2;n#div#0;n#body#0;n#html#0;n#!!top" />
-          </folding>
+        <state relative-caret-position="218">
+          <caret line="57" column="35" selection-start-line="57" selection-start-column="19" selection-end-line="57" selection-end-column="35" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/service/user/administrators/CommentInformationService.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/app/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="256">
-          <caret line="36" column="51" selection-start-line="36" selection-start-column="51" selection-end-line="36" selection-end-column="51" />
+        <state relative-caret-position="257">
+          <caret line="85" selection-start-line="85" selection-end-line="85" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/service/user/administrators/ActivityInformationService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4643">
-          <caret line="264" column="36" lean-forward="true" selection-start-line="264" selection-start-column="36" selection-end-line="264" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/controller/user/SafetyCenter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="202">
-          <caret line="39" column="46" selection-start-line="39" selection-start-column="30" selection-end-line="39" selection-end-column="46" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/templates/mailbox_verification.html">
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/templates/userInformation/notice.html">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/service/user/administrators/ClassificationInformationService.java">
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/templates/userInformation/receiveEmail.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="302">
-          <caret line="58" column="44" selection-start-line="58" selection-start-column="37" selection-end-line="58" selection-end-column="44" />
+        <state relative-caret-position="67">
+          <caret line="9" column="21" lean-forward="true" selection-start-line="9" selection-start-column="21" selection-end-line="9" selection-end-column="21" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/templates/index.html">
+    <entry file="file://$PROJECT_DIR$/src/main/java/entity/Mail.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="54" column="58" selection-start-line="54" selection-start-column="58" selection-end-line="54" selection-end-column="58" />
+        <state relative-caret-position="227">
+          <caret line="20" column="22" selection-start-line="20" selection-start-column="22" selection-end-line="20" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/service/user/SpecialFunctions.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3227">
+          <caret line="157" column="35" selection-start-line="157" selection-start-column="35" selection-end-line="157" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/service/user/consumer/AboutMailService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="282">
+          <caret line="42" column="41" selection-start-line="42" selection-start-column="41" selection-end-line="42" selection-end-column="41" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/controller/user/consumer/AboutMail.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="132">
+          <caret line="39" column="39" selection-start-line="39" selection-start-column="30" selection-end-line="39" selection-end-column="39" />
+          <folding>
+            <element signature="e#1284#1285#0" expanded="true" />
+            <element signature="e#1323#1324#0" expanded="true" />
+            <element signature="e#1458#1459#0" expanded="true" />
+            <element signature="e#1514#1515#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/templates/userInformation/comment.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="324">
+          <caret line="33" column="55" lean-forward="true" selection-start-line="33" selection-start-column="55" selection-end-line="33" selection-end-column="55" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/templates/userInformation/sendEmail.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="15" column="144" selection-start-line="15" selection-start-column="144" selection-end-line="15" selection-end-column="144" />
         </state>
       </provider>
     </entry>

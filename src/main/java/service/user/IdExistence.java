@@ -129,6 +129,7 @@ public class IdExistence {
         Activity activity=new Activity();
         activity.setId(id);
         List<Activity> list=activityMapper.selectListActivity(activity);
+        System.out.println(list);
         if(list.size()==0){
             return null;
         }

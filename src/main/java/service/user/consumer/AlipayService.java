@@ -17,6 +17,7 @@ import java.io.PrintWriter;
 import java.util.Random;
 
 /**
+ * 沙箱接口
  * @author HP
  */
 @Service(value = "AlipayService")

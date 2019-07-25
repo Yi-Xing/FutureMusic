@@ -36,6 +36,16 @@ public class AboutMailService {
     MailMapper mailMapper;
 
     /**
+     * 显示发送页面
+     */
+    public String toEmail(HttpSession session) {
+        User user=specialFunctions.getUser(session);
+        return "userInformation/sendEmail";
+    }
+
+
+
+    /**
      * 用户之间发送邮件
      *
      * @param mailbox 获取接收邮件的用户邮箱
