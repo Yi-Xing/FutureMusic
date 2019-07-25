@@ -8,15 +8,15 @@ import mapper.UserMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
+import service.user.IdExistence;
 import service.user.SpecialFunctions;
 import service.user.ValidationInformation;
 import util.exception.DataBaseException;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 /**
  * 用户之间发邮件，给客服发邮件（申请音乐人等），更改邮件状态的，查看收到的邮件，查看发送过的邮件
@@ -34,16 +34,70 @@ public class AboutMailService {
     SpecialFunctions specialFunctions;
     @Resource(name = "MailMapper")
     MailMapper mailMapper;
+    @Resource(name = "IdExistence")
+    IdExistence idExistence;
 
     /**
      * 显示发送页面
      */
-    public String toEmail(HttpSession session) {
-        User user=specialFunctions.getUser(session);
-        return "userInformation/sendEmail";
+    public String sendEmail(HttpSession session, Model model) {
+        User user = specialFunctions.getUser(session);
+        Mail mail = new Mail();
+        mail.setSenderId(user.getId());
+        List<Mail> list = mailMapper.selectListMail(mail);
+        // 使用有存储顺序的map集合
+        Map<Mail, User> mailMap = new LinkedHashMap<>();
+        for (Mail m : list) {
+            // 一个邮箱对应一个接收者
+            mailMap.put(m, idExistence.isUserId(m.getRecipientId()));
+        }
+        model.addAttribute("mailMap", mailMap);
+        model.addAttribute("page", "sendEmail");
+        return "userInformation/mailPage";
     }
 
+    /**
+     * 显示接收页面
+     */
+    public String receiveEmail(HttpSession session, Model model) {
+        User user = specialFunctions.getUser(session);
+        Mail mail = new Mail();
+        mail.setRecipientId(user.getId());
+        List<Mail> list = mailMapper.selectListMail(mail);
+        // 使用有存储顺序的map集合
+        Map<Mail, User> mailMap = new LinkedHashMap<>();
+        for (Mail m : list) {
+            // 一个邮箱对应一个接收者
+            if (m.getReply() == 1) {
+                mailMap.put(m, idExistence.isUserId(1));
+            } else {
+                mailMap.put(m, idExistence.isUserId(m.getSenderId()));
 
+            }
+        }
+        model.addAttribute("mailMap", mailMap);
+        model.addAttribute("page", "receiveEmail");
+        return "userInformation/mailPage";
+    }
+
+    /**
+     * 显示用户通知页面
+     */
+    public String noticeEmail(Model model) {
+        Mail mail = new Mail();
+        mail.setReply(12);
+        List<Mail> list = mailMapper.selectListMail(mail);
+        // 使用有存储顺序的map集合
+        Map<Mail, User> mailMap = new LinkedHashMap<>();
+        User user=idExistence.isUserId(1);
+        for (Mail m : list) {
+            // 一个邮箱对应一个接收者
+            mailMap.put(m, user);
+        }
+        model.addAttribute("mailMap", mailMap);
+        model.addAttribute("page", "noticeEmail");
+        return "userInformation/mailPage";
+    }
 
     /**
      * 用户之间发送邮件
@@ -97,6 +151,8 @@ public class AboutMailService {
             Mail mail = new Mail();
             // 发送邮件的用户id
             mail.setSenderId(id);
+            // 收件人客服
+            mail.setRecipientId(1);
             // 发送给客服
             mail.setReply(1);
             mail.setContent(content);
@@ -111,6 +167,10 @@ public class AboutMailService {
         }
         return state;
     }
+
+
+    //下面代码无效
+
 
     /**
      * 查看给那些用户发送过邮件
@@ -139,7 +199,7 @@ public class AboutMailService {
      *
      * @param id 接收者的id
      */
-    public List<Mail> showSendMail(Integer id, HttpSession session){
+    public List<Mail> showSendMail(Integer id, HttpSession session) {
         // 用户信息
         User user = specialFunctions.getUser(session);
         Mail mail = new Mail();

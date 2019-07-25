@@ -129,7 +129,7 @@ public class ValidationInformation {
         State state = new State();
         if (content != null) {
             if (content.length() != 0) {
-                if (content.length() <= ConstantUtil.Two_Hundred.getIntValue()) {
+                if (content.length() <= 300) {
                     state.setState(1);
                 } else {
                     state.setInformation("内容过长");

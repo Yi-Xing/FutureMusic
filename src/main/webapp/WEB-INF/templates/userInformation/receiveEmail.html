@@ -6,37 +6,53 @@
 </head>
 <body>
 
-<div class="container">
-    <div class="row">
-        <div class="col-lg-offset-2"></div>
-        <div class="col-lg-2">
-            <h3 class="pointer" style="text-align: center">我的消息</h3>
-            <ul class="toEmail_tab">
-                <li class="active" th:href="@{/WEB-INF/templates/userInformation/receiveEmail.html}"><a href="#"><h4><i class="iconfont icon-xinfeng"></i> 私信</h4></a></li>
-                <li><a href="#" th:href="@{/WEB-INF/templates/userInformation/comment.html}"><h4><i class="iconfont icon-comment"></i> 评论</h4></a></li>
-                <li><a href="#" th:href="@{/WEB-INF/templates/userInformation/notice.html}"><h4><i class="iconfont icon-music"></i> 通知</h4></a></li>
-            </ul>
-        </div>
-        <div class="col-lg-9">
-            <h4 id="tabName">接收的邮箱</h4>
-            <div class="redLine"></div>
-            <table class="table table-hover PrivateLetter">
-                <tr>
-                    <th>
-                        <div class="pull-left"><a href="#"><img src="" th:src="@{/static/img/mv1.jpg}" alt=""></a></div>
-                        <div class="pull-left">
-                            <b class="emailName">123</b>
-                            <i class="iconfont icon-59"></i>
-                            <font>time</font>
-                            <h5>connet</h5>
-                        </div>
-                    </th>
-                </tr>
-            </table>
-        </div>
-<!--        <div class="col-lg-offset-1"></div>-->
-    </div>
+
+<div class="col-lg-2" th:fragment="receiveEmailHead">
+    <h3 class="pointer" style="text-align: center">我的邮件</h3>
+    <ul class="toEmail_tab">
+        <li>
+            <a th:href="@{/user/sendEmail}">
+                <h4>
+                    <i class="iconfont icon-xinfeng"></i> 发送
+                </h4>
+            </a>
+        </li>
+        <li class="active">
+            <a th:href="@{/user/receiveEmail}">
+                <h4>
+                    <i class="iconfont icon-xinfeng"></i> 接收
+                </h4>
+            </a>
+        </li>
+        <li>
+            <a th:href="@{/user/noticeEmail}">
+                <h4>
+                    <i class="iconfont icon-music"></i> 通知
+                </h4>
+            </a>
+        </li>
+    </ul>
 </div>
+<div class="col-lg-9" th:fragment="receiveEmail">
+    <h4 id="tabName">接收的邮箱</h4>
+    <div class="redLine"></div>
+    <table class="table table-hover PrivateLetter">
+        <tr th:each="map:${mailMap}">
+            <th class="container row">
+                <div class="col-lg-1" style="width: 60px"><a href="#"><img src="" th:src="${map.value.headPortrait}"
+                                                                           alt=""></a></div>
+                <div class="col-lg-11">
+                    <b class="emailName" th:text="${map.value.name}">123</b>
+                    <i class="iconfont icon-59"></i>
+                    <font th:text=" ${#dates.format(map.key.date, 'yyyy-MM-dd HH:mm:ss')}">time</font>
+                    <h5 th:text="${map.key.content}">connet</h5>
+                </div>
+            </th>
+        </tr>
+    </table>
+</div>
+<!--        <div class="col-lg-offset-1"></div>-->
+
 
 </body>
 </html>

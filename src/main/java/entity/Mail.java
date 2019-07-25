@@ -5,6 +5,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.Objects;
 
 /**
  * 邮件表 存储用户之间的邮件信息
@@ -34,13 +35,30 @@ public class Mail implements Serializable {
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     private Date date=null;
     /**
-     * 0为普通邮件，1为管理员和客服看的邮件（为1和2时不用填接收方的id）  2、为管理员看的
+     * 0(10)为普通邮件，1(11)为管理员和客服看的邮件  2(12)是给全体看的   无条件0
      */
     private int reply=0;
     /**
      * 0表示未读，1表示已读，2表示标记,   -1表示全部
      */
     private int state=-1;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o){
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        Mail mail = (Mail) o;
+        return id == mail.id;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
+    }
 
     @Override
     public String toString() {
