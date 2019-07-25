@@ -38,6 +38,31 @@ public class MusicService {
     CommentService commentService;
     @Resource(name = "MusicVideoMapper")
     MusicVideoMapper musicVideoMapper;
+    public Map<String,Object> showMusic(Integer musicId) {
+        Map<String,Object> model = new HashMap<>();
+        Music music = new Music();
+        music.setId(musicId);
+        Music resultMusic = musicMapper.selectListMusic(music).get(0);
+        //获取音乐的信息
+        model.put("music", resultMusic);
+        int musicAlbumId = resultMusic.getAlbumId();
+        int classificationId = resultMusic.getClassificationId();
+        int singerId = resultMusic.getSingerId();
+        int musicVideoId = resultMusic.getMusicVideoId();
+        //获取专辑的信息
+        model.put("album", getAlbum(musicAlbumId));
+        //获取歌手的详细信息
+        model.put("singer", getSinger(singerId));
+        //获取分类的详细信息
+        model.put("classification",getClassification(classificationId));
+        //获取歌曲的播放量
+        model.put("musicPlayCount",getPlayCount(musicId));
+        //获取歌曲的收藏量
+        model.put("musicCollectCount",getCollectCount(musicId));
+        //获取mv的详细信息
+        model.put("musicVideo",getMusicVideo(musicVideoId));
+        return model;
+    }
     /**
      * 显示歌曲的详细信息
      *     音乐、专辑图片、歌手信息、分类信息、评论（精彩评论、最新评论）、MV(如果有，显示mv的信息，如果无，显示其他相关歌单）
@@ -46,7 +71,7 @@ public class MusicService {
      * @return String
      *     音乐、专辑图片、歌手信息、分类信息、评论的详细信息的Map集合
      */
-    public String showMusic(Integer musicId, Model model) {
+    public String showMusicth(Integer musicId, Model model) {
         Music music = new Music();
         music.setId(musicId);
         Music resultMusic = musicMapper.selectListMusic(music).get(0);
@@ -56,18 +81,6 @@ public class MusicService {
         int classificationId = resultMusic.getClassificationId();
         int singerId = resultMusic.getSingerId();
         int musicVideoId = resultMusic.getMusicVideoId();
-        //获取专辑的信息
-        model.addAttribute("album", getAlbum(musicAlbumId));
-        //获取歌手的详细信息
-        model.addAttribute("singer", getSinger(singerId));
-        //获取分类的详细信息
-        model.addAttribute("classification",getClassification(classificationId));
-        //获取歌曲的播放量
-        model.addAttribute("musicPlayCount",getPlayCount(musicId));
-        //获取歌曲的收藏量
-        model.addAttribute("musicCollectCount",getCollectCount(musicId));
-        //获取mv的详细信息
-        model.addAttribute("musicVideo",getMusicVideo(musicVideoId));
         //获取评论
         model.addAttribute("comment",getMusicComment(musicId));
         return "music";

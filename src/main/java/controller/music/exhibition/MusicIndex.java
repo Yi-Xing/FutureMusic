@@ -117,7 +117,7 @@ public class MusicIndex {
      * 功能：首页的地区排行榜
      * @return List<Music> 返回符合条件的歌曲集合
      */
-    @RequestMapping("/musicRegionmusicRegion")
+    @RequestMapping("/musicRegion")
     @ResponseBody
     public List<MusicExt> rankingListByRegion(String region) {
         List<MusicExt> musicList = musicService.selectListMusicByRegion(region);

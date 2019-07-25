@@ -1,15 +1,10 @@
 package controller.music.exhibition;
 
 import entity.Activity;
-import entity.MusicVideo;
-import entity.SongList;
 import entity.SongListExt;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.ModelAndView;
 import service.music.*;
 
 import javax.annotation.Resource;
@@ -81,7 +76,4 @@ public class Information {
         model.addAttribute("songList",songListExt);
         return "songListInfo";
     }
-    /**
-     * 显示歌曲的详细信息
-     */
 }

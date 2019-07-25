@@ -156,6 +156,13 @@ public class Main {
     public String zyx1() {
         return "security/newPassword";
     }
+
+    @RequestMapping(value = "/jjy")
+    public String jjytest() {
+        return "jjy";
+    }
+
+
 }
 
 
