@@ -28,6 +28,11 @@ public class MusicIndex {
     @Resource(name = "ActivityService")
     ActivityService activityService;
     @RequestMapping("/indexInformation")
+    /**
+     * 传入7个参数，三个音乐人的分类，四个音乐得分类
+     * 变量名singerRegion1、singerRegion2、singerRegion3
+     * musicType1、musicRegion1、musicRegion2、musicRegion3
+     */
     public String indexInformation(HttpServletRequest request,Model model){
         //活动
         model.addAttribute("activities",activity());

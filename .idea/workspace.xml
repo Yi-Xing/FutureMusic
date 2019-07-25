@@ -6,32 +6,13 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d3a12b5c-c040-4367-a888-9c33957ffa19" name="Default Changelist" comment="e">
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/templates/userInformation/mailPage.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/js/userInformation/mail.js" afterDir="false" />
+    <list default="true" id="00f34b6d-162d-4228-80f5-f6692a05b882" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/user/consumer/AboutMail.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/user/consumer/AboutMail.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/user/consumer/AccountInformation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/user/consumer/AccountInformation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/entity/Mail.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entity/Mail.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/service/user/ValidationInformation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/service/user/ValidationInformation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/service/user/consumer/AboutMailService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/service/user/consumer/AboutMailService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/service/user/consumer/AccountInformationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/service/user/consumer/AccountInformationService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/templates/userInformation/notice.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/templates/userInformation/receiveEmail.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/templates/userInformation/receiveEmail.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/templates/userInformation/sendEmail.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/templates/userInformation/sendEmail.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/classes/controller/user/consumer/AboutMail.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/classes/controller/user/consumer/AboutMail.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/classes/controller/user/consumer/AccountInformation.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/classes/controller/user/consumer/AccountInformation.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/classes/service/user/ValidationInformation.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/classes/service/user/ValidationInformation.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/classes/service/user/consumer/AboutMailService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/classes/service/user/consumer/AboutMailService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/classes/service/user/consumer/AccountInformationService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/classes/service/user/consumer/AccountInformationService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/music/exhibition/MusicIndex.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/music/exhibition/MusicIndex.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/FutureMusic/META-INF/MANIFEST.MF" beforeDir="false" afterPath="$PROJECT_DIR$/target/FutureMusic/META-INF/MANIFEST.MF" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/classes/controller/music/exhibition/MusicIndex.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/classes/controller/music/exhibition/MusicIndex.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/templates/userInformation/notice.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/templates/userInformation/receiveEmail.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/templates/userInformation/receiveEmail.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/templates/userInformation/sendEmail.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/templates/userInformation/sendEmail.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/controller/user/consumer/AboutMail.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/controller/user/consumer/AboutMail.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/controller/user/consumer/AccountInformation.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/controller/user/consumer/AccountInformation.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/service/user/ValidationInformation.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/service/user/ValidationInformation.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/service/user/consumer/AboutMailService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/service/user/consumer/AboutMailService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/service/user/consumer/AccountInformationService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/service/user/consumer/AccountInformationService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/controller/music/exhibition/MusicIndex.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/controller/music/exhibition/MusicIndex.class" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -58,147 +39,125 @@
   <component name="DefaultGradleProjectSettings">
     <option name="isMigrated" value="true" />
   </component>
-  <component name="DockManager">
-    <window id="2">
-      <content type="file-editors">
-        <state>
-          <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-            <file pinned="false" current-in-tab="false">
-              <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/templates/userInformation/mailPage.html">
-                <provider selected="true" editor-type-id="text-editor">
-                  <state relative-caret-position="-195">
-                    <caret line="16" column="66" selection-start-line="16" selection-start-column="66" selection-end-line="16" selection-end-column="66" />
-                  </state>
-                </provider>
-              </entry>
-            </file>
-            <file pinned="false" current-in-tab="true">
-              <entry file="file://$PROJECT_DIR$/src/main/webapp/static/js/userInformation/mail.js">
-                <provider selected="true" editor-type-id="text-editor">
-                  <state relative-caret-position="50">
-                    <caret line="30" column="20" selection-start-line="30" selection-start-column="20" selection-end-line="30" selection-end-column="20" />
-                    <folding>
-                      <element signature="e#96#112#0" />
-                    </folding>
-                  </state>
-                </provider>
-              </entry>
-            </file>
-            <file pinned="false" current-in-tab="false">
-              <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/templates/userInformation/sendEmail.html">
-                <provider selected="true" editor-type-id="text-editor">
-                  <state relative-caret-position="360">
-                    <caret line="115" column="82" selection-start-line="115" selection-start-column="70" selection-end-line="115" selection-end-column="82" />
-                    <folding>
-                      <element signature="n#div#1;n#div#1;n#body#0;n#html#0;n#!!top" />
-                      <element signature="e#3921#3928#1" expanded="true" />
-                    </folding>
-                  </state>
-                </provider>
-              </entry>
-            </file>
-            <file pinned="false" current-in-tab="false">
-              <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/templates/userInformation/receiveEmail.html">
-                <provider selected="true" editor-type-id="text-editor">
-                  <state relative-caret-position="-75">
-                    <caret line="21" column="30" lean-forward="true" selection-start-line="21" selection-start-column="30" selection-end-line="21" selection-end-column="30" />
-                    <folding>
-                      <element signature="n#style#0;n#div#0;n#th#0;n#tr#0;n#table#0;n#div#2;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                    </folding>
-                  </state>
-                </provider>
-              </entry>
-            </file>
-          </leaf>
-        </state>
-      </content>
-    </window>
-  </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/controller/user/consumer/AboutMail.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/controller/music/search/SearchSinger.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="329">
-              <caret line="40" column="41" lean-forward="true" selection-start-line="40" selection-start-column="41" selection-end-line="40" selection-end-column="41" />
+            <state relative-caret-position="273">
+              <caret line="62" column="37" selection-start-line="62" selection-start-column="37" selection-end-line="62" selection-end-column="37" />
+              <folding>
+                <element signature="e#1970#1971#0" expanded="true" />
+                <element signature="e#2024#2025#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/service/music/MusicVideoService.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1293">
+              <caret line="172" column="19" selection-start-line="172" selection-start-column="19" selection-end-line="172" selection-end-column="19" />
+              <folding>
+                <element signature="docComment;method#exhibitionMusicVideo#0;class#MusicVideoService#0" />
+                <element signature="method#exhibitionMusicVideo#0;class#MusicVideoService#0" />
+                <element signature="docComment;method#selectListMusicVideoByVideoName#0;class#MusicVideoService#0" />
+                <element signature="method#selectListMusicVideoByVideoName#0;class#MusicVideoService#0" />
+                <element signature="docComment;method#selectListMusicVideo#0;class#MusicVideoService#0" />
+                <element signature="method#selectListMusicVideo#0;class#MusicVideoService#0" />
+                <element signature="docComment;method#searchMusicVideoByClassification#0;class#MusicVideoService#0" />
+                <element signature="method#searchMusicVideoByClassification#0;class#MusicVideoService#0" />
+                <element signature="docComment;method#transformMusicVideoExt#0;class#MusicVideoService#0" />
+                <element signature="method#transformMusicVideoExt#0;class#MusicVideoService#0" />
+                <element signature="docComment;method#theMusicVideo#0;class#MusicVideoService#0" />
+                <element signature="method#theMusicVideo#0;class#MusicVideoService#0" />
+                <element signature="method#playMostVideo#0;class#MusicVideoService#0" />
+                <element signature="docComment;method#getMusicVideoInformation#0;class#MusicVideoService#0" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/service/music/MusicService.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="262">
+              <caret line="28" column="41" selection-start-line="28" selection-start-column="41" selection-end-line="28" selection-end-column="41" />
+              <folding>
+                <element signature="e#2754#2755#0" expanded="true" />
+                <element signature="e#2825#2826#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/controller/music/search/SearchMusicVideo.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="375">
+              <caret line="25" column="31" selection-start-line="25" selection-start-column="31" selection-end-line="25" selection-end-column="31" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/service/user/consumer/AboutMailService.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/controller/music/exhibition/MusicIndex.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="156">
-              <caret line="153" column="12" selection-start-line="153" selection-start-column="12" selection-end-line="153" selection-end-column="12" />
+            <state relative-caret-position="125">
+              <caret line="33" column="56" selection-start-line="33" selection-start-column="56" selection-end-line="33" selection-end-column="56" />
               <folding>
-                <element signature="method#feedback#0;class#AboutMailService#0" />
-                <element signature="method#showSendMailUser#0;class#AboutMailService#0" />
-                <element signature="method#showSendMail#0;class#AboutMailService#0" />
-                <element signature="method#showReceiveMailUser#0;class#AboutMailService#0" />
-                <element signature="method#showReceiveMail#0;class#AboutMailService#0" />
+                <element signature="docComment;method#rankingListByNewSong#0;class#MusicIndex#0" />
+                <element signature="method#rankingListByNewSong#0;class#MusicIndex#0" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/service/user/ValidationInformation.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/service/music/SingerService.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-883">
-              <caret line="94" column="58" selection-start-line="94" selection-start-column="58" selection-end-line="94" selection-end-column="58" />
+            <state relative-caret-position="4475">
+              <caret line="187" column="33" selection-start-line="187" selection-start-column="33" selection-end-line="187" selection-end-column="33" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/entity/Mail.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/mapper/UserMapper.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="350">
-              <caret line="37" column="52" selection-start-line="37" selection-start-column="52" selection-end-line="37" selection-end-column="52" />
+            <state relative-caret-position="387">
+              <caret line="37" column="33" selection-start-line="37" selection-start-column="33" selection-end-line="37" selection-end-column="33" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/mapper/UserMapper.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="200">
+              <caret line="33" column="17" selection-start-line="33" selection-start-column="17" selection-end-line="33" selection-end-column="17" />
               <folding>
-                <element signature="e#2259#2260#0" expanded="true" />
-                <element signature="e#2293#2294#0" expanded="true" />
-                <element signature="e#2344#2345#0" expanded="true" />
-                <element signature="e#2390#2391#0" expanded="true" />
-                <element signature="e#2760#2761#0" expanded="true" />
-                <element signature="e#2794#2795#0" expanded="true" />
+                <element signature="n#select#0;n#mapper#0;n#!!top" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/webapp/static/js/system/userAdmin.js">
+        <entry file="file://$PROJECT_DIR$/src/main/java/controller/music/search/SearchSongList.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="350">
-              <caret line="48" selection-start-line="48" selection-end-line="48" selection-end-column="38" />
+            <state relative-caret-position="164">
+              <caret line="24" column="13" selection-start-line="24" selection-start-column="13" selection-end-line="24" selection-end-column="13" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/service/user/administrators/UserInformationService.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/controller/music/exhibition/Information.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="343">
-              <caret line="123" column="47" selection-start-line="123" selection-start-column="39" selection-end-line="123" selection-end-column="47" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/controller/user/administrators/UserInformation.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="152">
-              <caret line="47" column="41" selection-start-line="47" selection-start-column="41" selection-end-line="47" selection-end-column="41" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/controller/user/consumer/AccountInformation.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="225">
-              <caret line="36" column="7" selection-start-line="36" selection-start-column="7" selection-end-line="36" selection-end-column="7" />
+            <state relative-caret-position="162">
+              <caret line="23" column="13" selection-start-line="23" selection-start-column="13" selection-end-line="23" selection-end-column="13" />
             </state>
           </provider>
         </entry>
@@ -239,6 +198,7 @@
         <option value="$PROJECT_DIR$/src/main/webapp/static/js/userInformation/mail.js" />
         <option value="$PROJECT_DIR$/src/main/java/entity/Mail.java" />
         <option value="$PROJECT_DIR$/src/main/java/service/user/consumer/AboutMailService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/controller/music/exhibition/MusicIndex.java" />
       </list>
     </option>
   </component>
@@ -261,8 +221,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -339,43 +297,6 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="controller" type="462c0819:PsiDirectoryNode" />
-              <item name="user" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="FutureMusic" type="b2602c69:ProjectViewProjectNode" />
-              <item name="FutureMusic" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="controller" type="462c0819:PsiDirectoryNode" />
-              <item name="user" type="462c0819:PsiDirectoryNode" />
-              <item name="administrators" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="FutureMusic" type="b2602c69:ProjectViewProjectNode" />
-              <item name="FutureMusic" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="controller" type="462c0819:PsiDirectoryNode" />
-              <item name="user" type="462c0819:PsiDirectoryNode" />
-              <item name="consumer" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="FutureMusic" type="b2602c69:ProjectViewProjectNode" />
-              <item name="FutureMusic" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="mapper" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="FutureMusic" type="b2602c69:ProjectViewProjectNode" />
-              <item name="FutureMusic" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="service" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -393,8 +314,7 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="service" type="462c0819:PsiDirectoryNode" />
-              <item name="user" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="FutureMusic" type="b2602c69:ProjectViewProjectNode" />
@@ -402,75 +322,15 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="service" type="462c0819:PsiDirectoryNode" />
-              <item name="user" type="462c0819:PsiDirectoryNode" />
-              <item name="administrators" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="FutureMusic" type="b2602c69:ProjectViewProjectNode" />
-              <item name="FutureMusic" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="service" type="462c0819:PsiDirectoryNode" />
-              <item name="user" type="462c0819:PsiDirectoryNode" />
-              <item name="consumer" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="FutureMusic" type="b2602c69:ProjectViewProjectNode" />
-              <item name="FutureMusic" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="webapp" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="FutureMusic" type="b2602c69:ProjectViewProjectNode" />
-              <item name="FutureMusic" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="webapp" type="462c0819:PsiDirectoryNode" />
-              <item name="static" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="FutureMusic" type="b2602c69:ProjectViewProjectNode" />
-              <item name="FutureMusic" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="webapp" type="462c0819:PsiDirectoryNode" />
-              <item name="static" type="462c0819:PsiDirectoryNode" />
-              <item name="js" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="FutureMusic" type="b2602c69:ProjectViewProjectNode" />
-              <item name="FutureMusic" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="webapp" type="462c0819:PsiDirectoryNode" />
-              <item name="static" type="462c0819:PsiDirectoryNode" />
-              <item name="js" type="462c0819:PsiDirectoryNode" />
-              <item name="system" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="FutureMusic" type="b2602c69:ProjectViewProjectNode" />
-              <item name="FutureMusic" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="webapp" type="462c0819:PsiDirectoryNode" />
-              <item name="WEB-INF" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="FutureMusic" type="b2602c69:ProjectViewProjectNode" />
-              <item name="FutureMusic" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="webapp" type="462c0819:PsiDirectoryNode" />
-              <item name="WEB-INF" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+              <item name="zyx" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -630,13 +490,13 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="19030000" />
+    <option name="totallyTimeSpent" value="19189000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1295" height="695" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.27818328" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.27530363" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="JRebel" order="2" side_tool="true" />
       <window_info id="Image Layers" order="3" />
@@ -796,17 +656,14 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/controller/music/exhibition/MusicIndex.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1698">
-          <caret line="20" column="13" selection-start-line="20" selection-start-column="13" selection-end-line="20" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/service/music/MusicService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="177">
-          <caret line="17" column="13" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="13" />
+        <state relative-caret-position="262">
+          <caret line="28" column="41" selection-start-line="28" selection-start-column="41" selection-end-line="28" selection-end-column="41" />
+          <folding>
+            <element signature="e#2754#2755#0" expanded="true" />
+            <element signature="e#2825#2826#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -838,9 +695,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/templates/userInformation/notice.html">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/templates/userInformation/notice.html" />
     <entry file="file://$PROJECT_DIR$/src/main/java/entity/User.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="143">
@@ -1096,15 +951,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/mapper/UserMapper.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="168">
-          <caret line="31" column="22" selection-start-line="31" selection-start-column="22" selection-end-line="31" selection-end-column="22" />
+        <state relative-caret-position="387">
+          <caret line="37" column="33" selection-start-line="37" selection-start-column="33" selection-end-line="37" selection-end-column="33" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/mapper/UserMapper.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="375">
-          <caret line="15" column="48" selection-start-line="15" selection-start-column="48" selection-end-line="15" selection-end-column="48" />
+        <state relative-caret-position="200">
+          <caret line="33" column="17" selection-start-line="33" selection-start-column="17" selection-end-line="33" selection-end-column="17" />
+          <folding>
+            <element signature="n#select#0;n#mapper#0;n#!!top" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1118,6 +976,47 @@
             <element signature="method#showSendMail#0;class#AboutMailService#0" />
             <element signature="method#showReceiveMailUser#0;class#AboutMailService#0" />
             <element signature="method#showReceiveMail#0;class#AboutMailService#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/service/music/MusicVideoService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1293">
+          <caret line="172" column="19" selection-start-line="172" selection-start-column="19" selection-end-line="172" selection-end-column="19" />
+          <folding>
+            <element signature="docComment;method#exhibitionMusicVideo#0;class#MusicVideoService#0" />
+            <element signature="method#exhibitionMusicVideo#0;class#MusicVideoService#0" />
+            <element signature="docComment;method#selectListMusicVideoByVideoName#0;class#MusicVideoService#0" />
+            <element signature="method#selectListMusicVideoByVideoName#0;class#MusicVideoService#0" />
+            <element signature="docComment;method#selectListMusicVideo#0;class#MusicVideoService#0" />
+            <element signature="method#selectListMusicVideo#0;class#MusicVideoService#0" />
+            <element signature="docComment;method#searchMusicVideoByClassification#0;class#MusicVideoService#0" />
+            <element signature="method#searchMusicVideoByClassification#0;class#MusicVideoService#0" />
+            <element signature="docComment;method#transformMusicVideoExt#0;class#MusicVideoService#0" />
+            <element signature="method#transformMusicVideoExt#0;class#MusicVideoService#0" />
+            <element signature="docComment;method#theMusicVideo#0;class#MusicVideoService#0" />
+            <element signature="method#theMusicVideo#0;class#MusicVideoService#0" />
+            <element signature="method#playMostVideo#0;class#MusicVideoService#0" />
+            <element signature="docComment;method#getMusicVideoInformation#0;class#MusicVideoService#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/controller/music/exhibition/Information.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="162">
+          <caret line="23" column="13" selection-start-line="23" selection-start-column="13" selection-end-line="23" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/controller/music/exhibition/MusicIndex.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="125">
+          <caret line="33" column="56" selection-start-line="33" selection-start-column="56" selection-end-line="33" selection-end-column="56" />
+          <folding>
+            <element signature="docComment;method#rankingListByNewSong#0;class#MusicIndex#0" />
+            <element signature="method#rankingListByNewSong#0;class#MusicIndex#0" />
           </folding>
         </state>
       </provider>
