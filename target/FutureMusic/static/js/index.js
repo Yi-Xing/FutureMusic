@@ -134,7 +134,6 @@ $("#search").keyup(function () {
 });
 //搜索框历史记录
 $("#search").click(function () {
-    alert(22);
     var search_tips = $('.search_tips')[0];
     var tips_head = "<li><a href='./musics.html?musicId='>";
     var tips_last = "</a></li>";
@@ -186,6 +185,20 @@ $(".thumbnail .icon-like").click(function () {
         },
         error:function () {
             console.log("错误")
+        }
+    })
+});
+
+
+//音乐人遍历
+$(".artist_container").hover(function () {
+    $.ajax({
+        contentType: "application/x-www-form-urlencoded;charset=UTF-8",
+        type: "post",
+        url: "/allSinger",
+        dataType: "json",
+        success: function (data) {
+            console.log(data)
         }
     })
 });

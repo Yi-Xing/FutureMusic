@@ -42,13 +42,13 @@
                     <li><a href="#">VIP</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="#" style="background: transparent" th:href="@{/user/userPage}">
+                    <li><a href="#" style="background: transparent;padding: 5px" th:href="@{/user/userPage}">
                         <img src="img/mv1.jpg" class="touxiang"  th:src="@{/static/img/mv1.jpg}"
                              th:if="${session.userInformation!=null}" alt="...">
                     </a></li>
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-                           aria-expanded="false">登录 <span class="caret"></span></a>
+                           aria-expanded="false">账户 <span class="caret"></span></a>
                         <ul class="dropdown-menu">
                             <li><a href="#" id="button1" data-toggle="modal" data-target="#myModal">直接登录</a></li>
                             <li><a href="/safetyCenterPage">安全中心</a></li>
@@ -930,7 +930,7 @@
             <h2>排行榜</h2>
         </div>
         <div class="Ranking_container">
-            <div class="container text-center" style="background-color:#A8E755 " th:each="MusicExt:${type}">
+            <div class="container text-center" style="background-color:#A8E755 ">
                 <h4>巅峰榜</h4>
                 <h3><a href="javascript:;">新歌</a></h3>
                 <div style="height: 50px">

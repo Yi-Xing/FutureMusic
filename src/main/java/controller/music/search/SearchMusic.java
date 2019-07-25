@@ -6,6 +6,7 @@ import entity.Classification;
 import entity.Music;
 import entity.MusicExt;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -32,11 +33,8 @@ public class SearchMusic {
      */
     @RequestMapping(value = "/showMusicDetail")
     @ResponseBody
-    public Map<String,Object> showMusicDetail(HttpServletRequest request){
-        String musicId = request.getParameter("musicId");
-        Music music = new Music();
-        music.setId(Integer.parseInt(musicId));
-        return musicService.showMusic(music);
+    public String showMusicDetail(@RequestParam(value = "musicId")Integer musicId, Model model){
+        return musicService.showMusic(musicId,model);
     }
     /**
      * 根据分类中的地区查找歌曲 排行榜
@@ -61,28 +59,6 @@ public class SearchMusic {
         List<MusicExt> musicList= musicService.selectListMusicByRegion(type);
         return new PageInfo(musicList);
     }
-    /**
-     * 根据分类中的语言查找歌曲
-     */
-    @RequestMapping("/searchMusicByLanguage")
-    @ResponseBody
-    public PageInfo searchMusicByLanguage(HttpServletRequest request) {
-        String gender = request.getParameter("gender");
-        String type = request.getParameter("type");
-        String region = request.getParameter("region");
-        String language = request.getParameter("language");
-        Classification classification = new Classification();
-        classification.setLanguages(language);
-        classification.setGender(gender);
-        classification.setRegion(region);
-        classification.setType(type);
-        int pn = Integer.parseInt(request.getParameter("pn"));
-        PageHelper.startPage(pn, 10);
-        String musicLanguage = request.getParameter("musicLanguage");
-        List<MusicExt> musicList= musicService.selectListMusicByLanguage(musicLanguage);
-        return new PageInfo(musicList);
-    }
-
     /**
      * 根据名字模糊搜索歌曲
      */

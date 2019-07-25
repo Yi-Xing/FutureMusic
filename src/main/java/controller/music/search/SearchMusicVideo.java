@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 /**
- *  根据名字搜索
+ *  MV的相关搜索
  * @author 5.21 蒋靓峣创建
  * */
 @Controller
@@ -21,9 +21,7 @@ public class SearchMusicVideo {
     @Resource(name = "MusicVideoService")
     MusicVideoService musicVideoService;
     /**
-     *分类查找MV
-     * @param request 页面请求
-     * @return PageInfo 分页显示所有的信息
+     *分类查找MV 根据名字查找MV
      */
     @RequestMapping("/searchMusicVideoByClassification")
     @ResponseBody
@@ -55,7 +53,7 @@ public class SearchMusicVideo {
         String keyWord = request.getParameter("keyWord");
         MusicVideo musicVideo = new MusicVideo();
         musicVideo.setName(keyWord);
-        List<MusicVideoExt> musicVideoExts = musicVideoService.selectListMusicVideoByVideoName(musicVideo);
+        List<MusicVideoExt> musicVideoExts = musicVideoService.selectListMusicVideoByVideoName(keyWord);
        if(musicVideoExts==null||musicVideoExts.size()==0){
            return null;
        }
