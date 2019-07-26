@@ -4,7 +4,9 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import entity.*;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import service.music.MusicVideoService;
 
@@ -24,21 +26,23 @@ public class SearchMusicVideo {
      *分类查找MV 根据名字查找MV
      */
     @RequestMapping("/searchMusicVideoByClassification")
-    @ResponseBody
-    public PageInfo searchMusicVideoByClassification(HttpServletRequest request){
-        int pn = Integer.parseInt(request.getParameter("pn"));
+    public String searchMusicVideoByClassification(@RequestParam(value = "pn",defaultValue = "1")Integer pn,
+                                                     @RequestParam(value = "language",defaultValue = "")String language ,
+                                                     @RequestParam(value = "region",defaultValue = "")String region ,
+                                                     @RequestParam(value = "type",defaultValue = "")String type,
+                                                     @RequestParam(value = "gender",defaultValue = "")String gender,
+                                                     Model model)  {
         PageHelper.startPage(pn, 10);
-        String language = request.getParameter("language");
-        String region = request.getParameter("region");
-        String gender = request.getParameter("gender");
-        String type = request.getParameter("type");
         Classification classification = new Classification();
         classification.setLanguages(language);
         classification.setRegion(region);
         classification.setGender(gender);
         classification.setType(type);
         List<MusicVideoExt> musicVideoList = musicVideoService.searchMusicVideoByClassification(classification);
-        return new PageInfo(musicVideoList);
+        model.addAttribute("musicVideoList",musicVideoList);
+        PageInfo page = new PageInfo(musicVideoList);
+        model.addAttribute("pageNum",page.getPageNum());
+        return "musicVideo";
     }
     /**
      *根据名字搜索MV
