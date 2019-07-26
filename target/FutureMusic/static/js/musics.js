@@ -1,5 +1,5 @@
 var url = window.location.search;
-var musicId = url.substring(url.lastIndexOf('=') + 1, url.length);
+var musicId = url.substring(url.lastIndexOf('musicId=') + 8, url.length);
 console.log('音乐ID='+musicId);
 var Name = $(".name a h1")[0];
 var Artist = $(".name a h5 b")[0];
@@ -45,3 +45,7 @@ $.ajax({
 
     }
 });
+
+$(Tname).click(function () {
+    window.location.href = "player.html?musicId=" + musicId;
+})

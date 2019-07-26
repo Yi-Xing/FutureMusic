@@ -17,7 +17,7 @@
         <h1>单曲</h1>
         <div class="container-fluid">
             <div class="personal_information">
-                <a href="javascript:;" class="pull-left">
+                <a href="javascript:;" class="pull-left" style="width: 250px">
                     <img src="img/头像_邓紫棋.jpg" th:src="@{/static/img/头像_邓紫棋.jpg}" alt="">
                 </a>
                 <div class="pull-left name">
@@ -84,7 +84,7 @@
 </div>
 
 <!--评论-->
-<div th:replace="webComment.html"></div>
+<div th:replace="webComment::webComment"></div>
 
 <!--尾部-->
 <div th:replace="webFoot.html"></div>

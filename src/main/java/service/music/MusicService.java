@@ -82,6 +82,7 @@ public class MusicService {
         int singerId = resultMusic.getSingerId();
         int musicVideoId = resultMusic.getMusicVideoId();
         //获取评论
+        System.out.println(getMusicComment(musicId));
         model.addAttribute("comment",getMusicComment(musicId));
         return "music";
     }
