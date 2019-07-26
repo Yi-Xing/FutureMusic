@@ -8,24 +8,8 @@
   <component name="ChangeListManager">
     <list default="true" id="00f34b6d-162d-4228-80f5-f6692a05b882" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/music/exhibition/Information.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/music/exhibition/Information.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/music/search/SearchSinger.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/music/search/SearchSinger.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/templates/artist.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/templates/artist.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/templates/artists.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/templates/artists.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/templates/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/templates/musicList.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/templates/musicList.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/templates/musicLists.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/templates/musicLists.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/templates/webHead.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/templates/webHead.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/classes/entity/CommentExt.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/classes/entity/CommentExt.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/classes/service/music/CommentService$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/classes/service/music/CommentService$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/classes/service/music/CommentService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/classes/service/music/CommentService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/templates/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/templates/mvPlayer.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/templates/mvPlayer.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/templates/webComment.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/templates/webComment.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/templates/webHead.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/templates/webHead.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/entity/CommentExt.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/entity/CommentExt.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/service/music/CommentService$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/service/music/CommentService$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/service/music/CommentService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/service/music/CommentService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/templates/artist.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/templates/artist.html" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -48,8 +32,8 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/templates/musicVideo.html">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="231">
-                  <caret line="48" column="41" lean-forward="true" selection-start-line="48" selection-start-column="41" selection-end-line="48" selection-end-column="41" />
+                <state relative-caret-position="1008">
+                  <caret line="48" column="41" selection-start-line="48" selection-start-column="41" selection-end-line="48" selection-end-column="41" />
                 </state>
               </provider>
             </entry>
@@ -58,7 +42,7 @@
             <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/templates/mvPlayer.html">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="294">
-                  <caret line="14" column="77" lean-forward="true" selection-start-line="14" selection-start-column="77" selection-end-line="14" selection-end-column="77" />
+                  <caret line="14" column="77" selection-start-line="14" selection-start-column="77" selection-end-line="14" selection-end-column="77" />
                   <folding>
                     <element signature="n#style#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
                   </folding>
@@ -66,11 +50,11 @@
               </provider>
             </entry>
           </file>
-          <file pinned="false" current-in-tab="false">
+          <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/main/java/controller/music/exhibition/Information.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="383">
-                  <caret line="66" column="62" lean-forward="true" selection-start-line="66" selection-start-column="62" selection-end-line="66" selection-end-column="62" />
+                <state relative-caret-position="257">
+                  <caret line="68" column="23" selection-start-line="68" selection-start-column="23" selection-end-line="68" selection-end-column="23" />
                 </state>
               </provider>
             </entry>
@@ -78,17 +62,8 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/main/java/service/music/SingerService.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="218">
-                  <caret line="50" column="38" lean-forward="true" selection-start-line="50" selection-start-column="38" selection-end-line="50" selection-end-column="38" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/src/main/java/controller/music/search/SearchSinger.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="201">
-                  <caret line="54" column="53" lean-forward="true" selection-start-line="54" selection-start-column="53" selection-end-line="54" selection-end-column="53" />
+                <state relative-caret-position="1596">
+                  <caret line="84" column="39" selection-start-line="84" selection-start-column="39" selection-end-line="84" selection-end-column="39" />
                 </state>
               </provider>
             </entry>
@@ -96,8 +71,8 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/main/java/entity/SingerExt.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="193">
-                  <caret line="18" column="31" lean-forward="true" selection-start-line="18" selection-start-column="31" selection-end-line="18" selection-end-column="31" />
+                <state relative-caret-position="273">
+                  <caret line="13" column="35" selection-start-line="13" selection-start-column="35" selection-end-line="13" selection-end-column="35" />
                 </state>
               </provider>
             </entry>
@@ -118,12 +93,12 @@
         </leaf>
       </split-first>
       <split-second>
-        <leaf>
+        <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/templates/musicList.html">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="655">
-                  <caret line="42" column="35" lean-forward="true" selection-start-line="42" selection-start-column="35" selection-end-line="42" selection-end-column="35" />
+                <state relative-caret-position="882">
+                  <caret line="42" column="35" selection-start-line="42" selection-start-column="35" selection-end-line="42" selection-end-column="35" />
                 </state>
               </provider>
             </entry>
@@ -131,7 +106,7 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/templates/musicLists.html">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="382">
+                <state relative-caret-position="1386">
                   <caret line="66" column="12" selection-start-line="66" selection-start-column="12" selection-end-line="66" selection-end-column="12" />
                 </state>
               </provider>
@@ -140,8 +115,8 @@
           <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/templates/artist.html">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="319">
-                  <caret line="59" column="56" selection-start-line="59" selection-start-column="56" selection-end-line="59" selection-end-column="56" />
+                <state relative-caret-position="256">
+                  <caret line="54" column="68" selection-start-line="54" selection-start-column="68" selection-end-line="54" selection-end-column="68" />
                 </state>
               </provider>
             </entry>
@@ -149,7 +124,7 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/templates/artists.html">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="-420">
+                <state relative-caret-position="399">
                   <caret line="19" column="50" selection-start-line="19" selection-start-column="50" selection-end-line="19" selection-end-column="50" />
                   <folding>
                     <element signature="n#style#0;n#h4#1;n#div#1;n#div#0;n#li#0;n#ul#0;n#div#3;n#div#2;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -210,11 +185,11 @@
         <option value="$PROJECT_DIR$/src/main/java/entity/SongListExt.java" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/templates/musicList.html" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/templates/musicLists.html" />
-        <option value="$PROJECT_DIR$/src/main/java/controller/music/exhibition/Information.java" />
-        <option value="$PROJECT_DIR$/src/main/java/service/music/SingerService.java" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/templates/artists.html" />
         <option value="$PROJECT_DIR$/src/main/java/controller/music/search/SearchSinger.java" />
+        <option value="$PROJECT_DIR$/src/main/java/service/music/SingerService.java" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/templates/artist.html" />
+        <option value="$PROJECT_DIR$/src/main/java/controller/music/exhibition/Information.java" />
       </list>
     </option>
   </component>
@@ -228,7 +203,7 @@
     <option name="FILTER_DEBUG" value="true" />
     <option name="CUSTOM_FILTER" />
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds" extendedState="7">
     <option name="x" value="55" />
     <option name="y" value="-25" />
     <option name="width" value="1750" />
@@ -545,7 +520,8 @@
       <workItem from="1564036114604" duration="695000" />
       <workItem from="1564065743728" duration="3593000" />
       <workItem from="1564099133598" duration="25226000" />
-      <workItem from="1564144463372" duration="6760000" />
+      <workItem from="1564144463372" duration="8894000" />
+      <workItem from="1564185197315" duration="233000" />
     </task>
     <task id="LOCAL-00002" summary="e">
       <created>1564040668652</created>
@@ -603,11 +579,18 @@
       <option name="project" value="LOCAL" />
       <updated>1564143741694</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="-部分页面的交互">
+      <created>1564151349866</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1564151349866</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="48488000" />
+    <option name="totallyTimeSpent" value="50855000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
@@ -630,14 +613,14 @@
       <window_info anchor="bottom" id="Cvs" order="5" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="6" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="7" sideWeight="0.49959448" weight="0.3297491" />
-      <window_info anchor="bottom" id="Event Log" order="8" sideWeight="0.5004055" side_tool="true" weight="0.3297491" />
+      <window_info anchor="bottom" id="Event Log" order="8" sideWeight="0.5004055" side_tool="true" weight="0.3286119" />
       <window_info anchor="bottom" id="Terminal" order="9" weight="0.3297491" />
       <window_info anchor="bottom" id="Docker" order="10" show_stripe_button="false" />
       <window_info anchor="bottom" id="Database Changes" order="11" />
       <window_info anchor="bottom" id="JRebel Console" order="12" sideWeight="0.5004055" side_tool="true" weight="0.3286119" />
       <window_info anchor="bottom" id="Version Control" order="13" weight="0.3286119" />
       <window_info anchor="bottom" id="Java Enterprise" order="14" weight="0.3297491" />
-      <window_info anchor="bottom" id="JRebel Executor" order="15" weight="0.7322946" />
+      <window_info anchor="bottom" id="JRebel Executor" order="15" weight="0.65014166" />
       <window_info anchor="bottom" id="Spring" order="16" weight="0.32616487" />
       <window_info anchor="bottom" id="FindBugs-IDEA" order="17" />
       <window_info anchor="bottom" id="Messages" order="18" weight="0.04249292" />
@@ -1057,13 +1040,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/templates/musicList.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="655">
-          <caret line="42" column="35" lean-forward="true" selection-start-line="42" selection-start-column="35" selection-end-line="42" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/entity/MusicVideoExt.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="105">
@@ -1112,20 +1088,41 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/controller/music/search/SearchSinger.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="201">
+          <caret line="54" column="53" lean-forward="true" selection-start-line="54" selection-start-column="53" selection-end-line="54" selection-end-column="53" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/templates/musicVideo.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="231">
-          <caret line="48" column="41" lean-forward="true" selection-start-line="48" selection-start-column="41" selection-end-line="48" selection-end-column="41" />
+        <state relative-caret-position="1008">
+          <caret line="48" column="41" selection-start-line="48" selection-start-column="41" selection-end-line="48" selection-end-column="41" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/templates/mvPlayer.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="294">
-          <caret line="14" column="77" lean-forward="true" selection-start-line="14" selection-start-column="77" selection-end-line="14" selection-end-column="77" />
+          <caret line="14" column="77" selection-start-line="14" selection-start-column="77" selection-end-line="14" selection-end-column="77" />
           <folding>
             <element signature="n#style#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/service/music/SingerService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1596">
+          <caret line="84" column="39" selection-start-line="84" selection-start-column="39" selection-end-line="84" selection-end-column="39" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/entity/SingerExt.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="273">
+          <caret line="13" column="35" selection-start-line="13" selection-start-column="35" selection-end-line="13" selection-end-column="35" />
         </state>
       </provider>
     </entry>
@@ -1140,44 +1137,30 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/entity/SingerExt.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="193">
-          <caret line="18" column="31" lean-forward="true" selection-start-line="18" selection-start-column="31" selection-end-line="18" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/controller/music/exhibition/Information.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="383">
-          <caret line="66" column="62" lean-forward="true" selection-start-line="66" selection-start-column="62" selection-end-line="66" selection-end-column="62" />
+        <state relative-caret-position="257">
+          <caret line="68" column="23" selection-start-line="68" selection-start-column="23" selection-end-line="68" selection-end-column="23" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/service/music/SingerService.java">
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/templates/musicList.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="218">
-          <caret line="50" column="38" lean-forward="true" selection-start-line="50" selection-start-column="38" selection-end-line="50" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/controller/music/search/SearchSinger.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="201">
-          <caret line="54" column="53" lean-forward="true" selection-start-line="54" selection-start-column="53" selection-end-line="54" selection-end-column="53" />
+        <state relative-caret-position="882">
+          <caret line="42" column="35" selection-start-line="42" selection-start-column="35" selection-end-line="42" selection-end-column="35" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/templates/musicLists.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="382">
+        <state relative-caret-position="1386">
           <caret line="66" column="12" selection-start-line="66" selection-start-column="12" selection-end-line="66" selection-end-column="12" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/templates/artists.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-420">
+        <state relative-caret-position="399">
           <caret line="19" column="50" selection-start-line="19" selection-start-column="50" selection-end-line="19" selection-end-column="50" />
           <folding>
             <element signature="n#style#0;n#h4#1;n#div#1;n#div#0;n#li#0;n#ul#0;n#div#3;n#div#2;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -1188,8 +1171,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/templates/artist.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="319">
-          <caret line="59" column="56" selection-start-line="59" selection-start-column="56" selection-end-line="59" selection-end-column="56" />
+        <state relative-caret-position="256">
+          <caret line="54" column="68" selection-start-line="54" selection-start-column="68" selection-end-line="54" selection-end-column="68" />
         </state>
       </provider>
     </entry>
