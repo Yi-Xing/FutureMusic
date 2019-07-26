@@ -195,21 +195,25 @@ public class MusicVideoService {
      * @param musicVideoId MV的id
      * @return List<Object> MV的详细信息
      */
-    public List<Object> getMusicVideoInformation(int musicVideoId){
-        List<Object> musicVideoInformation = new ArrayList<>();
+    public Map<String,Object> getMusicVideoInformation(int musicVideoId){
+        Map<String,Object> musicVideoInformation = new HashMap<>();
         MusicVideo tempMusicVideo = new MusicVideo();
         tempMusicVideo.setId(musicVideoId);
         List<MusicVideo> musicVideoList = musicVideoMapper.selectListMusicVideo(tempMusicVideo);
+        System.out.println(2);
        if(musicVideoList==null||musicVideoList.size()==0){
            return null;
        }
+        System.out.println(3);
        MusicVideo musicVideo = musicVideoList.get(0);
         MusicVideoExt musicVideoExt = transformMusicVideoExt(musicVideo.getId());
-        musicVideoInformation.add(musicVideoExt);
-        musicVideoInformation.add(musicVideo.getPath());
+        musicVideoInformation.put("musicVideo",musicVideoExt);
         List<CommentExt> commentExts = commentService.searchCommentByMusicId(musicVideoId,2);
+        System.out.println(4);
         //评论
-        musicVideoInformation.add(commentExts);
+        musicVideoInformation.put("comment",commentExts);
+        System.out.println(5);
+        System.out.println(musicVideoInformation);
         return musicVideoInformation;
     }
 }

@@ -47,9 +47,9 @@ public class Information {
      */
     @RequestMapping(value = "/musicVideoInformation")
     @ResponseBody
-    public  List<Object> showMusicVideoInformation(HttpServletRequest request){
+    public  Map<String,Object> showMusicVideoInformation(HttpServletRequest request){
         String musicVideoId = request.getParameter("musicVideoId");
-        List<Object> musicVideoInformation = musicVideoService.getMusicVideoInformation(Integer.parseInt(musicVideoId));
+        Map<String,Object> musicVideoInformation = musicVideoService.getMusicVideoInformation(Integer.parseInt(musicVideoId));
         return musicVideoInformation;
     }
 
