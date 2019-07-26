@@ -14,25 +14,6 @@
   <component name="ChangeListManager">
     <list default="true" id="d3a12b5c-c040-4367-a888-9c33957ffa19" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/user/consumer/AboutMail.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/user/consumer/AboutMail.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/user/consumer/AboutMusic.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/user/consumer/AboutMusic.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/user/consumer/AboutSongList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/user/consumer/AboutSongList.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/user/consumer/AboutUser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/user/consumer/AboutUser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/entity/Mail.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entity/Mail.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mapper/ActivityMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mapper/ActivityMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/service/user/IdExistence.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/service/user/IdExistence.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/service/user/LoginService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/service/user/LoginService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/service/user/consumer/AboutMailService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/service/user/consumer/AboutMailService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/service/user/consumer/AboutMusicService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/service/user/consumer/AboutMusicService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/service/user/consumer/AboutSongListService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/service/user/consumer/AboutSongListService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/service/user/consumer/AccountInformationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/service/user/consumer/AccountInformationService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/service/user/consumer/TransactionService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/service/user/consumer/TransactionService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/util/exception/ExceptionJump.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/util/exception/ExceptionJump.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/util/interceptor/LoginInterceptor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/util/interceptor/LoginInterceptor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/util/interceptor/UserInterceptor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/util/interceptor/UserInterceptor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/util/listener/SessionListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/util/listener/SessionListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/spring/spring-zyx.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/spring/spring-zyx.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/static/js/ajaxIndex.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/static/js/ajaxIndex.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/classes/controller/music/exhibition/MusicIndex.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/classes/controller/music/exhibition/MusicIndex.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/classes/util/interceptor/UserInterceptor.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/classes/util/interceptor/UserInterceptor.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/templates/system/mailAdmin.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/templates/system/mailAdmin.html" afterDir="false" />
@@ -116,29 +97,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/util/interceptor/LoginInterceptor.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="114">
               <caret line="43" column="47" selection-start-line="43" selection-start-column="47" selection-end-line="43" selection-end-column="47" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/service/user/LoginService.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2542">
-              <caret line="162" column="31" lean-forward="true" selection-start-line="162" selection-start-column="31" selection-end-line="162" selection-end-column="31" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/util/listener/SessionListener.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="456">
-              <caret line="73" column="9" lean-forward="true" selection-start-line="73" selection-start-column="9" selection-end-line="73" selection-end-column="9" />
             </state>
           </provider>
         </entry>
@@ -684,7 +647,7 @@
       <updated>1564035946684</updated>
       <workItem from="1564035957730" duration="121000" />
       <workItem from="1564036114604" duration="22389000" />
-      <workItem from="1564099269844" duration="26922000" />
+      <workItem from="1564099269844" duration="27239000" />
     </task>
     <task id="LOCAL-00002" summary="e1">
       <created>1564059382880</created>
@@ -700,11 +663,18 @@
       <option name="project" value="LOCAL" />
       <updated>1564060827290</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="邮箱完毕">
+      <created>1564145367789</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1564145367790</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="49739000" />
+    <option name="totallyTimeSpent" value="50056000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1295" height="695" extended-state="6" />
@@ -734,7 +704,7 @@
       <window_info anchor="bottom" id="Version Control" order="12" weight="0.3297491" />
       <window_info anchor="bottom" id="JRebel Console" order="13" sideWeight="0.5004055" side_tool="true" weight="0.3297491" />
       <window_info anchor="bottom" id="Java Enterprise" order="14" weight="0.3297491" />
-      <window_info active="true" anchor="bottom" id="JRebel Executor" order="15" visible="true" weight="0.94623655" />
+      <window_info anchor="bottom" id="JRebel Executor" order="15" weight="0.94623655" />
       <window_info anchor="bottom" id="Spring" order="16" weight="0.32616487" />
       <window_info anchor="bottom" id="FindBugs-IDEA" order="17" />
       <window_info anchor="bottom" id="Messages" order="18" weight="0.3297491" />
@@ -1165,13 +1135,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/util/interceptor/LoginInterceptor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="114">
-          <caret line="43" column="47" selection-start-line="43" selection-start-column="47" selection-end-line="43" selection-end-column="47" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/templates/userInformation/mailPage.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="630">
@@ -1211,13 +1174,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/service/user/LoginService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2542">
-          <caret line="162" column="31" lean-forward="true" selection-start-line="162" selection-start-column="31" selection-end-line="162" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$MAVEN_REPOSITORY$/org/apache/tomcat/tomcat-servlet-api/8.5.38/tomcat-servlet-api-8.5.38.jar!/javax/servlet/http/HttpSession.class">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="177">
@@ -1238,8 +1194,22 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/util/listener/SessionListener.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="456">
+        <state relative-caret-position="906">
           <caret line="73" column="9" lean-forward="true" selection-start-line="73" selection-start-column="9" selection-end-line="73" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/service/user/LoginService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2542">
+          <caret line="162" column="31" lean-forward="true" selection-start-line="162" selection-start-column="31" selection-end-line="162" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/util/interceptor/LoginInterceptor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="114">
+          <caret line="43" column="47" selection-start-line="43" selection-start-column="47" selection-end-line="43" selection-end-column="47" />
         </state>
       </provider>
     </entry>

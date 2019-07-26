@@ -7,7 +7,7 @@
         select * from tb_activity
         <where>
             <if test='id!=0'>
-                activity_id=#{id}
+                and activity_id=#{id}
             </if>
             <if test='name!=null and name!=""'>
                 and activity_name like "%"#{name}"%"
@@ -15,11 +15,11 @@
             <if test='type!=0'>
                 and activity_type=#{type}
             </if>
-            <if test='endDate!=null and endDate!=""' >
+            <if test='endDate!=null ' >
                 and activity_end_date &lt;= #{endDate}
             </if>
-            <if test='startDate!=null and startDate!=""' >
-                and activity_end_date &gt;= #{endDate}
+            <if test='startDate!=null ' >
+                and activity_end_date >= #{startDate}
             </if>
         </where>
     </select>
