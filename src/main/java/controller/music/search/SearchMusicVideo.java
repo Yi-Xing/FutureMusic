@@ -42,6 +42,10 @@ public class SearchMusicVideo {
         model.addAttribute("musicVideoList",musicVideoList);
         PageInfo page = new PageInfo(musicVideoList);
         model.addAttribute("pageNum",page.getPageNum());
+        model.addAttribute("region",region);
+        model.addAttribute("language",language);
+        model.addAttribute("type",type);
+        model.addAttribute("gender",gender);
         return "musicVideo";
     }
     /**
