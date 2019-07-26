@@ -7,6 +7,7 @@ import entity.Classification;
 import entity.SingerExt;
 import entity.User;
 import mapper.UserMapper;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -49,10 +50,14 @@ public class SearchSinger {
      * 搜索音乐人
      */
     @RequestMapping(value = "/exhibitionSingersByRegion")
-    @ResponseBody
-    public List<SingerExt> exhibitionSingersByRegion(HttpServletRequest request){
-        String  singerRegion = request.getParameter("singerRegion");
-        return singerService.exhibitionSingersByRegion(singerRegion);
+    public String exhibitionSingersByRegion(@RequestParam(value = "region")String region,
+                                            @RequestParam(value = "pn")Integer pn, Model model){
+        List<SingerExt> artists = singerService.exhibitionSingersByRegion(region);
+        model.addAttribute("artists",artists);
+        PageInfo page = new PageInfo(artists, 5);
+        model.addAttribute("page",page);
+        model.addAttribute("region",region);
+        return "artist";
     }
     /**
      * 搜索全部

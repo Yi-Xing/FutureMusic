@@ -59,6 +59,10 @@ public class SearchSongList {
         PageInfo page = new PageInfo(showSongList, 5);
         model.addAttribute("page",page);
         model.addAttribute("songList",showSongList);
-        return "songList";
+        model.addAttribute("region",region);
+        model.addAttribute("language",language);
+        model.addAttribute("type",type);
+        model.addAttribute("gender",gender);
+        return "musicLists";
     }
 }
