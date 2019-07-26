@@ -17,13 +17,15 @@ $('.musicList ul li').on('click', function () {
 $(".music_list").click(function () {
     //获取角标
     var index = $(this).index();
-    console.log(index);
+    // console.log("歌曲下标" + index);
     //获取歌曲名
     var musicName = $(this).children()[1];
     musicName = musicName.innerHTML;
     //获取歌曲路径
+    // console.log($(".hide"));
     var musicSrc = $(".hide")[index].innerHTML;
-    musicSrc = "../../static/" + musicSrc;
+    // console.log(musicSrc);
+    // musicSrc = "../../static/" + musicSrc;
     //获取歌词
     var musicLyr = $(".hideLyr")[index].innerHTML;
     // musicLyr = musicLyr;
@@ -31,7 +33,7 @@ $(".music_list").click(function () {
     var autio = $("audio");
     //获取歌曲显示
     var displayMusicName = $(".Play .music_name h2")[0];
-    console.log(musicSrc);
+    // console.log("歌曲SRC" + musicSrc);
     //获取歌词显示
     var displayMusicLyr = $(".Play .Lyric")[0];
 
@@ -39,7 +41,7 @@ $(".music_list").click(function () {
     displayMusicName.innerHTML = musicName;
     displayMusicLyr.innerHTML = musicLyr;
     $(autio).attr('src', musicSrc);
-    console.log($(autio).attr('src'));
+    // console.log($(autio).attr('src'));
 
 
 //歌词同步--------------------------------------------------------
@@ -67,23 +69,22 @@ $(".music_list").click(function () {
 
     var Original = 0;
     document.getElementById('audio').addEventListener('timeupdate', function () {
-        console.log(this.currentTime);
+        // console.log(this.currentTime);
         var cur = parseInt(this.currentTime);
-        if(document.getElementById('time' + cur)){
+        if (document.getElementById('time' + cur)) {
             document.getElementById('time' + Original).style.cssText = 'font-size: 18px;color: #666A70;';
             Original = cur;
             document.getElementById('time' + cur).style.cssText = 'font-size: 23px;color: #fff';
-            console.log(document.getElementById('time' + cur));
+            // console.log(document.getElementById('time' + cur));
             let height = document.getElementById('time' + cur).offsetTop;
-            console.log(height);
-            if(height < 300){
-            }else {
-                $(".Lyric")[0].scrollTo(0,height-300);
+            // console.log(height);
+            if (height < 300) {
+            } else {
+                $(".Lyric")[0].scrollTo(0, height - 300);
             }
         }
         //歌词滚动
     }, false);
-
 
 
 });
@@ -93,7 +94,7 @@ $(".music_list").click(function () {
 var musicLyric = [
     {
         lyric: "[00:00.05]陈硕子 - 凌晨三点 (Demo)\n" +
-                "[00:01.98]我在凌晨三点\n" +
+            "[00:01.98]我在凌晨三点\n" +
             "[00:02.81]醒来的夜里\n" +
             "[00:04.70]想起了失去的你\n" +
             "[00:08.47]曾经说着永远一起\n" +
@@ -125,16 +126,59 @@ var musicLyric = [
 
 //歌曲localStorage
 // 判断浏览器是否支持
-var local = 0;
-var num = 10;
-for(i;i<5;i++) {
-    if (typeof (Storage) !== "undefined") {
-        // 存储
-        localStorage.setItem("local", "num");
-        // 检索
-        console.log(localStorage.getItem("local"));
-    } else {
-        console.log("Sorry, your browser does not support Web Storage...");
-    }
+// var local = 0;
+// var num = 10;
+// for(i;i<5;i++) {
+//     if (typeof (Storage) !== "undefined") {
+//         // 存储
+//         localStorage.setItem("local", "num");
+//         // 检索
+//         console.log(localStorage.getItem("local"));
+//     } else {
+//         console.log("Sorry, your browser does not support Web Storage...");
+//     }
+//
+// }
 
-}
+var url = window.location.search;
+var musicId = url.substring(url.lastIndexOf('musicId=') + 8, url.length);
+console.log('音乐ID=' + musicId);
+
+var userImg = $(".user_img a img")[0];
+var userName = $(".user_information h4")[0];
+var musicName = $(".music_list td")[0];
+var musicUserName = $(".music_list td")[1];
+var musicUrl = $(".hide")[0];
+console.log(userImg);
+console.log(userName);
+console.log(musicName);
+console.log(musicUserName);
+console.log(musicUrl);
+
+$.ajax({
+    contentType: "application/x-www-form-urlencoded;charset=UTF-8",
+    url: "showMusicDetail",
+    type: 'post',
+    // dataType: "json",
+    data: {musicId: musicId},
+    success: function (data) {
+        console.log(data);
+        console.log(data.music.lyricPath);
+        //歌名
+        var name = data.music.name;
+        userName.innerText = name;
+        musicName.innerHTML = name;
+        //    作者
+        var artist = data.singer.name;
+        musicUserName.innerHTML = artist;
+        //    头像
+        var touxiang = data.music.picture;
+        console.log(touxiang);
+        userImg.src = touxiang;
+        //    歌曲地址
+        var gequdizhi = data.music.path;
+        musicUrl.innerHTML = gequdizhi;
+        //        歌词地址
+        var lyric = data.music.lyricPath;
+    }
+});
