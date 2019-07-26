@@ -48,7 +48,7 @@
                     <li th:each="list:${page.list}">
                         <div class="mv" >
                             <div class="mv_top">
-                                <a th:href="@{/mvPlayer.html(musicVideoId=${list.musicVideoId})}">
+                                <a th:href="@{/musicVideoInformation(musicVideoId=${list.musicVideoId})}">
                                     <img th:src="@{${list.musicVideoPhoto}}"  src="/static/img/mv_燃烧我的卡路里.jpg" alt="">
                                 </a>
                             </div>

@@ -1,6 +1,8 @@
 package controller.music.exhibition;
 
 import entity.Activity;
+import entity.CommentExt;
+import entity.MusicVideoExt;
 import entity.SongListExt;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -46,11 +48,12 @@ public class Information {
      * @return String 返回包含详细信息的页面
      */
     @RequestMapping(value = "/musicVideoInformation")
-    @ResponseBody
-    public  Map<String,Object> showMusicVideoInformation(HttpServletRequest request){
+    public  String showMusicVideoInformation(HttpServletRequest request,Model model){
         String musicVideoId = request.getParameter("musicVideoId");
-        Map<String,Object> musicVideoInformation = musicVideoService.getMusicVideoInformation(Integer.parseInt(musicVideoId));
-        return musicVideoInformation;
+        Map<MusicVideoExt,List<CommentExt>> musicVideoInformation = musicVideoService.getMusicVideoInformation(Integer.parseInt(musicVideoId));
+        model.addAttribute("musicVideoInformation",musicVideoInformation);
+        System.out.println(musicVideoInformation);
+        return "mvPlayer";
     }
 
     /**
