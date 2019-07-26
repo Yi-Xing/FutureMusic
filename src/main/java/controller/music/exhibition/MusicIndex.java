@@ -28,6 +28,11 @@ public class MusicIndex {
     @Resource(name = "ActivityService")
     ActivityService activityService;
     @RequestMapping("/indexInformation")
+    /**
+     * 传入7个参数，三个音乐人的分类，四个音乐得分类
+     * 变量名singerRegion1、singerRegion2、singerRegion3
+     * musicType1、musicRegion1、musicRegion2、musicRegion3
+     */
     public String indexInformation(HttpServletRequest request,Model model){
         //活动
         model.addAttribute("activities",activity());
@@ -112,7 +117,7 @@ public class MusicIndex {
      * 功能：首页的地区排行榜
      * @return List<Music> 返回符合条件的歌曲集合
      */
-    @RequestMapping("/musicRegionmusicRegion")
+    @RequestMapping("/musicRegion")
     @ResponseBody
     public List<MusicExt> rankingListByRegion(String region) {
         List<MusicExt> musicList = musicService.selectListMusicByRegion(region);

@@ -14,11 +14,11 @@ public class CommentExt {
     /**
      *评论的点赞次数
      */
-    private int fabulous;
+    private int fabulous=0;
     /**
      * 评论的内容
      */
-    private String content;
+    private String content="";
     /**
      * 评论的时间
      */
@@ -28,31 +28,31 @@ public class CommentExt {
     /**
      * 评论的用户的id
      */
-    private int commentId;
+    private int commentId=0;
     /**
      *评论的用户的头像
      */
-    private String commentPhoto;
+    private String commentPhoto="";
     /**
      * 评论的用户的name
      */
-    private String commentUserName;
+    private String commentUserName="";
     /**
      * 判断是否有回复，有设为1，没有，设为0
      */
-    private int hasReply;
+    private int hasReply=0;
     /**
      *回复的那个人的id
      */
-    private int replyId;
+    private int replyId=0;
     /**
      *回复的那个人的头像
      */
-    private String replyPhoto;
+    private String replyPhoto="";
     /**
      *回复的那个人的name；
      */
-    private String replyName;
+    private String replyName="";
     /**
      *这个评论下带的所有回复
      */
@@ -147,5 +147,22 @@ public class CommentExt {
 
     public void setAllSubCommentExtList(List<CommentExt> allSubCommentExtList) {
         this.allSubCommentExtList = allSubCommentExtList;
+    }
+
+    @Override
+    public String toString() {
+        return "CommentExt{" +
+                "fabulous=" + fabulous +
+                ", content='" + content + '\'' +
+                ", date=" + date +
+                ", commentId=" + commentId +
+                ", commentPhoto='" + commentPhoto + '\'' +
+                ", commentUserName='" + commentUserName + '\'' +
+                ", hasReply=" + hasReply +
+                ", replyId=" + replyId +
+                ", replyPhoto='" + replyPhoto + '\'' +
+                ", replyName='" + replyName + '\'' +
+                ", allSubCommentExtList=" + allSubCommentExtList +
+                '}';
     }
 }

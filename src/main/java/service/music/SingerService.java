@@ -154,7 +154,6 @@ public class SingerService {
         //歌手个人信息
         User user = new User();
         user.setId(singerId);
-        user.setLevel(2);
         List<User> singers = userMapper.selectUser(user);
         if(singers!=null&&singers.size()!=0){
             singerInformation.put("singer",transformSingerExt(singers.get(0)));

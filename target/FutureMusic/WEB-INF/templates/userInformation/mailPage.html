@@ -18,6 +18,8 @@
     <link rel="stylesheet" href="//at.alicdn.com/t/font_1195775_v073aw5575.css">
 </head>
 <body>
+<!--头部-->
+<div th:replace="webHead.html"></div>
 <div class="container">
     <div class="row">
         <div class="col-lg-offset-2"></div>
@@ -31,6 +33,8 @@
             <div th:replace="userInformation/noticeEmail::noticeEmailHead"></div>
         </div>
 
+
+
         <div th:if="${page=='sendEmail'}">
             <div th:replace="userInformation/sendEmail::sendEmail"></div>
         </div>
@@ -42,6 +46,8 @@
         </div>
     </div>
 </div>
+<!--尾部-->
+<div th:replace="webFoot.html"></div>
 </body>
-</body>
+<div th:replace="on-load-js.html"></div>
 </html>

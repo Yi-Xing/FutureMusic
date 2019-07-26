@@ -3,6 +3,7 @@ package service.music;
 import entity.*;
 import mapper.*;
 import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
 
 import javax.annotation.Resource;
 import java.util.ArrayList;
@@ -97,7 +98,7 @@ public class MusicVideoService {
         MusicVideo musicVideo = musicVideoMapper.selectListMusicVideo(temp).get(0);
         musicVideoExt.setMusicVideoId(musicVideoId);
         musicVideoExt.setMusicVideoName(musicVideo.getName());
-        musicVideoExt.setMusicVideoPhoto(musicVideo.getMusicVideoPhoto());
+        musicVideoExt.setMusicVideoPhoto(musicVideo.getPicture());
         musicVideoExt.setLevel(musicVideo.getLevel());
         musicVideoExt.setAvailable(musicVideo.getAvailable());
         //根据歌手id显示歌手名字
@@ -106,12 +107,15 @@ public class MusicVideoService {
         User singer = userMapper.selectUser(user).get(0);
         musicVideoExt.setSingerId(musicVideo.getSingerId());
         musicVideoExt.setSingerName(singer.getName());
+        musicVideoExt.setPath(musicVideo.getPath());
         //播放量
         Play play = new Play();
         play.setMusicId(musicVideoId);
         play.setType(2);
         int playCount = playMapper.selectPlays(play);
         musicVideoExt.setPlayCount(playCount);
+        //评论
+        commentService.searchCommentByMusicId(musicVideoId,2);
         return musicVideoExt;
     }
     /**
@@ -192,8 +196,8 @@ public class MusicVideoService {
      * @param musicVideoId MV的id
      * @return List<Object> MV的详细信息
      */
-    public List<Object> getMusicVideoInformation(int musicVideoId){
-        List<Object> musicVideoInformation = new ArrayList<>();
+    public Map<MusicVideoExt,List<CommentExt>> getMusicVideoInformation(int musicVideoId){
+        Map<MusicVideoExt,List<CommentExt>> musicVideoInformation = new HashMap<>();
         MusicVideo tempMusicVideo = new MusicVideo();
         tempMusicVideo.setId(musicVideoId);
         List<MusicVideo> musicVideoList = musicVideoMapper.selectListMusicVideo(tempMusicVideo);
@@ -202,11 +206,11 @@ public class MusicVideoService {
        }
        MusicVideo musicVideo = musicVideoList.get(0);
         MusicVideoExt musicVideoExt = transformMusicVideoExt(musicVideo.getId());
-        musicVideoInformation.add(musicVideoExt);
-        musicVideoInformation.add(musicVideo.getPicture());
+//        musicVideoInformation.put("musicVideo",musicVideoExt);
         List<CommentExt> commentExts = commentService.searchCommentByMusicId(musicVideoId,2);
         //评论
-        musicVideoInformation.add(commentExts);
+        musicVideoInformation.put(musicVideoExt,commentExts);
+        System.out.println(musicVideoInformation);
         return musicVideoInformation;
     }
 }

@@ -33,8 +33,13 @@ public class SearchMusic {
      */
     @RequestMapping(value = "/showMusicDetail")
     @ResponseBody
-    public String showMusicDetail(@RequestParam(value = "musicId")Integer musicId, Model model){
-        return musicService.showMusic(musicId,model);
+    public Map<String,Object> showMusicDetail(@RequestParam(value = "musicId")Integer musicId, Model model){
+        return musicService.showMusic(musicId);
+    }
+
+    @RequestMapping(value = "/showMusicDetailth")
+    public String showMusicDetailth(@RequestParam(value = "musicId")Integer musicId, Model model){
+        return musicService.showMusicth(musicId,model);
     }
     /**
      * 根据分类中的地区查找歌曲 排行榜

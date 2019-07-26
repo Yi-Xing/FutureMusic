@@ -198,7 +198,7 @@ $(".artist_container").hover(function () {
         url: "/allSinger",
         dataType: "json",
         success: function (data) {
-            console.log(data)
+            console.log(data);
         }
     })
 });

@@ -34,7 +34,7 @@
                             <li><a href="#" th:href="@{/musicLists}">歌单</a></li>
                             <li><a href="#" th:href="@{/artist}">歌手</a></li>
                             <li role="separator" class="divider"></li>
-                            <li><a href="#" th:href="@{/musicVideo}">MV</a></li>
+                            <li><a href="#" th:href="@{/searchMusicVideoByClassification}">MV</a></li>
                             <li role="separator" class="divider"></li>
                         </ul>
                     </li>
@@ -893,15 +893,15 @@
             <ul class="carousel">
                 <li>
                     <div class="mv_container" >
-                        <div class="thumbnail" th:each="MusicVideoExt:${musicVideo}">
+                        <div class="thumbnail" >
                             <div class="img_container">
                                 <a href="javascript:;">
-                                    <img src="img/mv1.jpg" th:src="@{/static/img/mv1.jpg}" alt="...">
+                                    <img src="img/mv1.jpg" alt="...">
                                 </a>
                             </div>
                             <div class="caption" >
-                                <h3 th:text="${MusicVideoExt.musicVideoName}">name</h3>
-                                <p th:text="${MusicVideoExt.playCount}">播放量</p>
+                                <h3 >name</h3>
+                                <p >播放量</p>
                                 <p>
                                     <a href="./artists.html" class="btn btn-success" role="button">歌手专区</a>
                                     <a href="javascript:;">
@@ -914,12 +914,12 @@
                 </li>
             </ul> 
         </div>
-        <a class="arrow arrow-left" href="">
-            <i class="iconfont icon-icon-bold-arrow-left1"></i>
-        </a>
-        <a class="arrow arrow-right" href="">
-            <i class="iconfont icon-icon-bold-arrow-left"></i>
-        </a>
+<!--        <a class="arrow arrow-left" href="">-->
+<!--            <i class="iconfont icon-icon-bold-arrow-left1"></i>-->
+<!--        </a>-->
+<!--        <a class="arrow arrow-right" href="">-->
+<!--            <i class="iconfont icon-icon-bold-arrow-left"></i>-->
+<!--        </a>-->
     </div>
 </div>
 

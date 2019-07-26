@@ -99,7 +99,7 @@
             <if test='playCount!=0'>
                 ,music_video_play_count=#{playCount}
             </if>
-            <if test='picture!=0'>
+            <if test='picture!=null'>
                 ,music_video_picture=#{picture}
             </if>
         </set>

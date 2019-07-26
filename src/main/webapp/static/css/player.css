@@ -89,6 +89,7 @@ body::-webkit-scrollbar {
     border-radius: 50%;
     display: inline-block;
     float: left;
+    overflow: hidden;
 }
 
 .player_container .user .user_img img {
@@ -101,7 +102,7 @@ body::-webkit-scrollbar {
     float: left;
 }
 
-.user_information h3, p {
+.user_information h4, p {
     margin: 0 20px 8px;
     color: #666A70;
     transition: 0.2s;

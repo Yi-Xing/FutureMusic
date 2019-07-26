@@ -26,8 +26,6 @@ public class MusicService {
     UserMapper userMapper;
     @Resource(name = "SongListMapper")
     SongListMapper songListMapper;
-    @Resource(name = "MusicVideoService")
-    MusicVideoService musicVideoService;
     @Resource(name = "PlayMapper")
     PlayMapper playMapper;
     @Resource(name = "MusicCollectMapper")
@@ -38,39 +36,41 @@ public class MusicService {
     CommentService commentService;
     @Resource(name = "MusicVideoMapper")
     MusicVideoMapper musicVideoMapper;
-    /**
-     * 显示歌曲的详细信息
-     *     音乐、专辑图片、歌手信息、分类信息、评论（精彩评论、最新评论）、MV(如果有，显示mv的信息，如果无，显示其他相关歌单）
-     * @param musicId 封装音乐id
-     * @param model model
-     * @return String
-     *     音乐、专辑图片、歌手信息、分类信息、评论的详细信息的Map集合
-     */
-    public String showMusic(Integer musicId, Model model) {
+    public Map<String,Object> showMusic(Integer musicId) {
+        Map<String,Object> model = new HashMap<>();
         Music music = new Music();
         music.setId(musicId);
         Music resultMusic = musicMapper.selectListMusic(music).get(0);
         //获取音乐的信息
-        model.addAttribute("music", resultMusic);
+        model.put("music", resultMusic);
         int musicAlbumId = resultMusic.getAlbumId();
         int classificationId = resultMusic.getClassificationId();
         int singerId = resultMusic.getSingerId();
         int musicVideoId = resultMusic.getMusicVideoId();
         //获取专辑的信息
-        model.addAttribute("album", getAlbum(musicAlbumId));
+        model.put("album", getAlbum(musicAlbumId));
         //获取歌手的详细信息
-        model.addAttribute("singer", getSinger(singerId));
+        model.put("singer", getSinger(singerId));
         //获取分类的详细信息
-        model.addAttribute("classification",getClassification(classificationId));
+        model.put("classification",getClassification(classificationId));
         //获取歌曲的播放量
-        model.addAttribute("musicPlayCount",getPlayCount(musicId));
+        model.put("musicPlayCount",getPlayCount(musicId));
         //获取歌曲的收藏量
-        model.addAttribute("musicCollectCount",getCollectCount(musicId));
+        model.put("musicCollectCount",getCollectCount(musicId));
         //获取mv的详细信息
-        model.addAttribute("musicVideo",getMusicVideo(musicVideoId));
+        model.put("musicVideo",getMusicVideo(musicVideoId));
+        return model;
+    }
+    /**
+     * 显示歌曲的详细信息
+     *     音乐、专辑图片、歌手信息、分类信息、评论（精彩评论、最新评论）、MV(如果有，显示mv的信息，如果无，显示其他相关歌单）
+
+     */
+    public String showMusicth(Integer musicId, Model model) {
         //获取评论
+        System.out.println(getMusicComment(musicId));
         model.addAttribute("comment",getMusicComment(musicId));
-        return "music";
+        return "musics";
     }
     /**
      * 获取歌曲的评论
