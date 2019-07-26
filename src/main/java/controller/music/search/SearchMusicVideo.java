@@ -41,9 +41,12 @@ public class SearchMusicVideo {
         List<MusicVideoExt> musicVideoList = musicVideoService.searchMusicVideoByClassification(classification);
         model.addAttribute("musicVideoList",musicVideoList);
         PageInfo page = new PageInfo(musicVideoList);
-        model.addAttribute("pageNum",page.getPageNum());
+        //page分页的各种信息
         model.addAttribute("page",page);
-        System.out.println(page.getList());
+        model.addAttribute("region",region);
+        model.addAttribute("language",language);
+        model.addAttribute("type",type);
+        model.addAttribute("gender",gender);
         return "musicVideo";
     }
     /**

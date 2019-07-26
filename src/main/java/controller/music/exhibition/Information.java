@@ -49,7 +49,7 @@ public class Information {
         String musicVideoId = request.getParameter("musicVideoId");
         List<Object> musicVideoInformation = musicVideoService.getMusicVideoInformation(Integer.parseInt(musicVideoId));
         model.addAttribute("musicVideoInfo",musicVideoInformation);
-        return "musicVideoInfo";
+        return "mvPlayer";
     }
 
     /**
