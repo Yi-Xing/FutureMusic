@@ -98,7 +98,7 @@ public class MusicVideoService {
         MusicVideo musicVideo = musicVideoMapper.selectListMusicVideo(temp).get(0);
         musicVideoExt.setMusicVideoId(musicVideoId);
         musicVideoExt.setMusicVideoName(musicVideo.getName());
-        musicVideoExt.setMusicVideoPhoto(musicVideo.getMusicVideoPhoto());
+        musicVideoExt.setMusicVideoPhoto(musicVideo.getPicture());
         musicVideoExt.setLevel(musicVideo.getLevel());
         musicVideoExt.setAvailable(musicVideo.getAvailable());
         //根据歌手id显示歌手名字
