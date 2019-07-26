@@ -68,6 +68,7 @@ public class MusicService {
      */
     public String showMusicth(Integer musicId, Model model) {
         //获取评论
+        System.out.println(getMusicComment(musicId));
         model.addAttribute("comment",getMusicComment(musicId));
         return "musics";
     }

@@ -2,26 +2,26 @@
 <!--评论-->
 <link rel="stylesheet" href="../../static/css/Comment.css" th:href="@{/static/css/Comment.css}">
 
-<div class="container-fluid color_1" style="position: relative">
+<div class="container-fluid color_1" th:fragment="webComment" style="position: relative">
     <div class="row inner Comment">
         <h2>评论</h2>
         <form action="" method="get">
             <textarea name="Comment" class="CommentForm" cols="30" rows="7" placeholder="请输入你的评论！"></textarea>
             <button type="submit" class="btn btn-primary pull-right">提交评论</button>
         </form>
-        <div class="comment_container row">
+        <div class="comment_container row" th:each="CommentExt:${comment}">
             <div class="col-lg-1 header_container">
                 <a href="javascript:;">
-                    <img src="../../static/img/头像_邓紫棋.jpg" th:src="@{/static/img/头像_邓紫棋.jpg}" alt="">
+                    <img src="../../static/img/头像_邓紫棋.jpg" th:text="${CommentExt.commentPhoto}" alt="">
                 </a>
             </div>
             <div class="col-lg-11 comment_content">
                 <div class="panel panel-success">
                     <div class="panel-heading">
-                        <h3 class="panel-title">啦啦啦</h3>
+                        <h3 class="panel-title" th:text="${CommentExt.commentUserName}">啦啦啦</h3>
                     </div>
                     <div class="panel-body">
-                        <p>1316546</p>
+                        <p th:text="${CommentExt.content}">1316546</p>
                         <div class="good pull-right">
                             <a href="javascript:;" class="dianzan">
                                 <span class="iconfont icon-dianzan"></span>
