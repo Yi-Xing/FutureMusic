@@ -42,6 +42,8 @@ public class SearchMusicVideo {
         model.addAttribute("musicVideoList",musicVideoList);
         PageInfo page = new PageInfo(musicVideoList);
         model.addAttribute("pageNum",page.getPageNum());
+        model.addAttribute("page",page);
+        System.out.println(page.getList());
         return "musicVideo";
     }
     /**

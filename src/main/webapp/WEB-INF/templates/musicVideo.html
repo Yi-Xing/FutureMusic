@@ -42,220 +42,220 @@
                 </li>
             </ul>
         </div>
-        <div class="col-lg-10" id="mv_list">
-            <div class="mvS">
-                <ul>
-                    <li>
-                        <div class="mv">
+        <div class="col-lg-10" id="mv_list" >
+            <div class="mvS" >
+                <ul >
+                    <li th:each="list:${page.list}">
+                        <div class="mv" >
                             <div class="mv_top">
-                                <a href="./mvPlayer.html">
-                                    <img src="../../static/img/mv_燃烧我的卡路里.jpg" th:src="@{/static/img/mv_燃烧我的卡路里.jpg}" alt="">
+                                <a th:href="@{/musicVideoInformation(id=${list.musicVideoId})}">
+                                    <img th:src="@{${list.musicVideoPhoto}}"  src="/static/img/mv_燃烧我的卡路里.jpg" alt="">
                                 </a>
                             </div>
                             <div class="mv_bottom">
-                                <h4>music name</h4>
-                                <h4 style="color: #999999">artist name</h4>
-                                <h4 style="color: #999999" class="mv_playTimes">播放：num</h4>
-                            </div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="mv">
-                            <div class="mv_top">
-                                <a href="./mvPlayer.html">
-                                    <img src="../../static/img/mv_燃烧我的卡路里.jpg" th:src="@{/static/img/mv_燃烧我的卡路里.jpg}" alt="">
-                                </a>
-                            </div>
-                            <div class="mv_bottom">
-                                <h4>music name</h4>
-                                <h4 style="color: #999999">artist name</h4>
-                                <h4 style="color: #999999" class="mv_playTimes">播放：num</h4>
-                            </div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="mv">
-                            <div class="mv_top">
-                                <a href="./mvPlayer.html">
-                                    <img src="../../static/img/mv_燃烧我的卡路里.jpg" th:src="@{/static/img/mv_燃烧我的卡路里.jpg}" alt="">
-                                </a>
-                            </div>
-                            <div class="mv_bottom">
-                                <h4>music name</h4>
-                                <h4 style="color: #999999">artist name</h4>
-                                <h4 style="color: #999999" class="mv_playTimes">播放：num</h4>
-                            </div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="mv">
-                            <div class="mv_top">
-                                <a href="./mvPlayer.html">
-                                    <img src="../../static/img/mv_燃烧我的卡路里.jpg" th:src="@{/static/img/mv_燃烧我的卡路里.jpg}" alt="">
-                                </a>
-                            </div>
-                            <div class="mv_bottom">
-                                <h4>music name</h4>
-                                <h4 style="color: #999999">artist name</h4>
-                                <h4 style="color: #999999" class="mv_playTimes">播放：num</h4>
-                            </div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="mv">
-                            <div class="mv_top">
-                                <a href="./mvPlayer.html">
-                                    <img src="../../static/img/mv_燃烧我的卡路里.jpg" th:src="@{/static/img/mv_燃烧我的卡路里.jpg}" alt="">
-                                </a>
-                            </div>
-                            <div class="mv_bottom">
-                                <h4>music name</h4>
-                                <h4 style="color: #999999">artist name</h4>
-                                <h4 style="color: #999999" class="mv_playTimes">播放：num</h4>
-                            </div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="mv">
-                            <div class="mv_top">
-                                <a href="./mvPlayer.html">
-                                    <img src="../../static/img/mv_燃烧我的卡路里.jpg" th:src="@{/static/img/mv_燃烧我的卡路里.jpg}" alt="">
-                                </a>
-                            </div>
-                            <div class="mv_bottom">
-                                <h4>music name</h4>
-                                <h4 style="color: #999999">artist name</h4>
-                                <h4 style="color: #999999" class="mv_playTimes">播放：num</h4>
-                            </div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="mv">
-                            <div class="mv_top">
-                                <a href="javascript:;">
-                                    <img src="img/mv_Milo.jpg" th:src="@{/static/img/mv_Milo.jpg}" alt="">
-                                </a>
-                            </div>
-                            <div class="mv_bottom">
-                                <h4>music name</h4>
-                                <h4 style="color: #999999">artist name</h4>
-                                <h4 style="color: #999999" class="mv_playTimes">播放：num</h4>
-                            </div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="mv">
-                            <div class="mv_top">
-                                <a href="javascript:;">
-                                    <img src="img/mv_Milo.jpg" th:src="@{/static/img/mv_Milo.jpg}" alt="">
-                                </a>
-                            </div>
-                            <div class="mv_bottom">
-                                <h4>music name</h4>
-                                <h4 style="color: #999999">artist name</h4>
-                                <h4 style="color: #999999" class="mv_playTimes">播放：num</h4>
-                            </div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="mv">
-                            <div class="mv_top">
-                                <a href="javascript:;">
-                                    <img src="img/mv_Milo.jpg" th:src="@{/static/img/mv_Milo.jpg}" alt="">
-                                </a>
-                            </div>
-                            <div class="mv_bottom">
-                                <h4>music name</h4>
-                                <h4 style="color: #999999">artist name</h4>
-                                <h4 style="color: #999999" class="mv_playTimes">播放：num</h4>
-                            </div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="mv">
-                            <div class="mv_top">
-                                <a href="javascript:;">
-                                    <img src="img/mv_Milo.jpg" th:src="@{/static/img/mv_Milo.jpg}" alt="">
-                                </a>
-                            </div>
-                            <div class="mv_bottom">
-                                <h4>music name</h4>
-                                <h4 style="color: #999999">artist name</h4>
-                                <h4 style="color: #999999" class="mv_playTimes">播放：num</h4>
-                            </div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="mv">
-                            <div class="mv_top">
-                                <a href="javascript:;">
-                                    <img src="img/mv_Milo.jpg" th:src="@{/static/img/mv_Milo.jpg}" alt="">
-                                </a>
-                            </div>
-                            <div class="mv_bottom">
-                                <h4>music name</h4>
-                                <h4 style="color: #999999">artist name</h4>
-                                <h4 style="color: #999999" class="mv_playTimes">播放：num</h4>
-                            </div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="mv">
-                            <div class="mv_top">
-                                <a href="javascript:;">
-                                    <img src="img/mv_Milo.jpg" th:src="@{/static/img/mv_Milo.jpg}" alt="">
-                                </a>
-                            </div>
-                            <div class="mv_bottom">
-                                <h4>music name</h4>
-                                <h4 style="color: #999999">artist name</h4>
-                                <h4 style="color: #999999" class="mv_playTimes">播放：num</h4>
-                            </div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="mv">
-                            <div class="mv_top">
-                                <a href="javascript:;">
-                                    <img src="img/mv_Milo.jpg" th:src="@{/static/img/mv_Milo.jpg}" alt="">
-                                </a>
-                            </div>
-                            <div class="mv_bottom">
-                                <h4>music name</h4>
-                                <h4 style="color: #999999">artist name</h4>
-                                <h4 style="color: #999999" class="mv_playTimes">播放：num</h4>
-                            </div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="mv">
-                            <div class="mv_top">
-                                <a href="javascript:;">
-                                    <img src="img/mv_Milo.jpg" th:src="@{/static/img/mv_Milo.jpg}" alt="">
-                                </a>
-                            </div>
-                            <div class="mv_bottom">
-                                <h4>music name</h4>
-                                <h4 style="color: #999999">artist name</h4>
-                                <h4 style="color: #999999" class="mv_playTimes">播放：num</h4>
-                            </div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="mv">
-                            <div class="mv_top">
-                                <a href="javascript:;">
-                                    <img src="img/mv_Milo.jpg" th:src="@{/static/img/mv_Milo.jpg}" alt="">
-                                </a>
-                            </div>
-                            <div class="mv_bottom">
-                                <h4>music name</h4>
-                                <h4 style="color: #999999">artist name</h4>
-                                <h4 style="color: #999999" class="mv_playTimes">播放：num</h4>
+                                <h4 th:text="${list.musicVideoName}">music name</h4>
+                                <h4 th:text="${list.singerName}" style="color: #999999">artist name</h4>
+                                <h4 th:text="${list.playCount}" style="color: #999999" class="mv_playTimes">播放：num</h4>
                             </div>
                         </div>
                     </li>
                 </ul>
+                    <!--<li>
+                        <div class="mv">
+                            <div class="mv_top">
+                                <a href="./mvPlayer.html">
+                                    <img src="../../static/img/mv_燃烧我的卡路里.jpg" th:src="@{/static/img/mv_燃烧我的卡路里.jpg}" alt="">
+                                </a>
+                            </div>
+                            <div class="mv_bottom">
+                                <h4>music name</h4>
+                                <h4 style="color: #999999">artist name</h4>
+                                <h4 style="color: #999999" class="mv_playTimes">播放：num</h4>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="mv">
+                            <div class="mv_top">
+                                <a href="./mvPlayer.html">
+                                    <img src="../../static/img/mv_燃烧我的卡路里.jpg" th:src="@{/static/img/mv_燃烧我的卡路里.jpg}" alt="">
+                                </a>
+                            </div>
+                            <div class="mv_bottom">
+                                <h4>music name</h4>
+                                <h4 style="color: #999999">artist name</h4>
+                                <h4 style="color: #999999" class="mv_playTimes">播放：num</h4>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="mv">
+                            <div class="mv_top">
+                                <a href="./mvPlayer.html">
+                                    <img src="../../static/img/mv_燃烧我的卡路里.jpg" th:src="@{/static/img/mv_燃烧我的卡路里.jpg}" alt="">
+                                </a>
+                            </div>
+                            <div class="mv_bottom">
+                                <h4>music name</h4>
+                                <h4 style="color: #999999">artist name</h4>
+                                <h4 style="color: #999999" class="mv_playTimes">播放：num</h4>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="mv">
+                            <div class="mv_top">
+                                <a href="./mvPlayer.html">
+                                    <img src="../../static/img/mv_燃烧我的卡路里.jpg" th:src="@{/static/img/mv_燃烧我的卡路里.jpg}" alt="">
+                                </a>
+                            </div>
+                            <div class="mv_bottom">
+                                <h4>music name</h4>
+                                <h4 style="color: #999999">artist name</h4>
+                                <h4 style="color: #999999" class="mv_playTimes">播放：num</h4>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="mv">
+                            <div class="mv_top">
+                                <a href="./mvPlayer.html">
+                                    <img src="../../static/img/mv_燃烧我的卡路里.jpg" th:src="@{/static/img/mv_燃烧我的卡路里.jpg}" alt="">
+                                </a>
+                            </div>
+                            <div class="mv_bottom">
+                                <h4>music name</h4>
+                                <h4 style="color: #999999">artist name</h4>
+                                <h4 style="color: #999999" class="mv_playTimes">播放：num</h4>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="mv">
+                            <div class="mv_top">
+                                <a href="javascript:;">
+                                    <img src="img/mv_Milo.jpg" th:src="@{/static/img/mv_Milo.jpg}" alt="">
+                                </a>
+                            </div>
+                            <div class="mv_bottom">
+                                <h4>music name</h4>
+                                <h4 style="color: #999999">artist name</h4>
+                                <h4 style="color: #999999" class="mv_playTimes">播放：num</h4>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="mv">
+                            <div class="mv_top">
+                                <a href="javascript:;">
+                                    <img src="img/mv_Milo.jpg" th:src="@{/static/img/mv_Milo.jpg}" alt="">
+                                </a>
+                            </div>
+                            <div class="mv_bottom">
+                                <h4>music name</h4>
+                                <h4 style="color: #999999">artist name</h4>
+                                <h4 style="color: #999999" class="mv_playTimes">播放：num</h4>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="mv">
+                            <div class="mv_top">
+                                <a href="javascript:;">
+                                    <img src="img/mv_Milo.jpg" th:src="@{/static/img/mv_Milo.jpg}" alt="">
+                                </a>
+                            </div>
+                            <div class="mv_bottom">
+                                <h4>music name</h4>
+                                <h4 style="color: #999999">artist name</h4>
+                                <h4 style="color: #999999" class="mv_playTimes">播放：num</h4>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="mv">
+                            <div class="mv_top">
+                                <a href="javascript:;">
+                                    <img src="img/mv_Milo.jpg" th:src="@{/static/img/mv_Milo.jpg}" alt="">
+                                </a>
+                            </div>
+                            <div class="mv_bottom">
+                                <h4>music name</h4>
+                                <h4 style="color: #999999">artist name</h4>
+                                <h4 style="color: #999999" class="mv_playTimes">播放：num</h4>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="mv">
+                            <div class="mv_top">
+                                <a href="javascript:;">
+                                    <img src="img/mv_Milo.jpg" th:src="@{/static/img/mv_Milo.jpg}" alt="">
+                                </a>
+                            </div>
+                            <div class="mv_bottom">
+                                <h4>music name</h4>
+                                <h4 style="color: #999999">artist name</h4>
+                                <h4 style="color: #999999" class="mv_playTimes">播放：num</h4>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="mv">
+                            <div class="mv_top">
+                                <a href="javascript:;">
+                                    <img src="img/mv_Milo.jpg" th:src="@{/static/img/mv_Milo.jpg}" alt="">
+                                </a>
+                            </div>
+                            <div class="mv_bottom">
+                                <h4>music name</h4>
+                                <h4 style="color: #999999">artist name</h4>
+                                <h4 style="color: #999999" class="mv_playTimes">播放：num</h4>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="mv">
+                            <div class="mv_top">
+                                <a href="javascript:;">
+                                    <img src="img/mv_Milo.jpg" th:src="@{/static/img/mv_Milo.jpg}" alt="">
+                                </a>
+                            </div>
+                            <div class="mv_bottom">
+                                <h4>music name</h4>
+                                <h4 style="color: #999999">artist name</h4>
+                                <h4 style="color: #999999" class="mv_playTimes">播放：num</h4>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="mv">
+                            <div class="mv_top">
+                                <a href="javascript:;">
+                                    <img src="img/mv_Milo.jpg" th:src="@{/static/img/mv_Milo.jpg}" alt="">
+                                </a>
+                            </div>
+                            <div class="mv_bottom">
+                                <h4>music name</h4>
+                                <h4 style="color: #999999">artist name</h4>
+                                <h4 style="color: #999999" class="mv_playTimes">播放：num</h4>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="mv">
+                            <div class="mv_top">
+                                <a href="javascript:;">
+                                    <img src="img/mv_Milo.jpg" th:src="@{/static/img/mv_Milo.jpg}" alt="">
+                                </a>
+                            </div>
+                            <div class="mv_bottom">
+                                <h4>music name</h4>
+                                <h4 style="color: #999999">artist name</h4>
+                                <h4 style="color: #999999" class="mv_playTimes">播放：num</h4>
+                            </div>
+                        </div>
+                    </li>-->
             </div>
             <div class="main_rh_footer">
 
