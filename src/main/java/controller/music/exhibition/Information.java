@@ -5,6 +5,7 @@ import entity.SongListExt;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import service.music.*;
 
 import javax.annotation.Resource;
@@ -45,11 +46,11 @@ public class Information {
      * @return String 返回包含详细信息的页面
      */
     @RequestMapping(value = "/musicVideoInformation")
-    public  String showMusicVideoInformation(HttpServletRequest request, Model model){
+    @ResponseBody
+    public  List<Object> showMusicVideoInformation(HttpServletRequest request){
         String musicVideoId = request.getParameter("musicVideoId");
         List<Object> musicVideoInformation = musicVideoService.getMusicVideoInformation(Integer.parseInt(musicVideoId));
-        model.addAttribute("musicVideoInfo",musicVideoInformation);
-        return "mvPlayer";
+        return musicVideoInformation;
     }
 
     /**

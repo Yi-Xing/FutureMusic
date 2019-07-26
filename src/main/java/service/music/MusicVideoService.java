@@ -206,7 +206,7 @@ public class MusicVideoService {
        MusicVideo musicVideo = musicVideoList.get(0);
         MusicVideoExt musicVideoExt = transformMusicVideoExt(musicVideo.getId());
         musicVideoInformation.add(musicVideoExt);
-        musicVideoInformation.add(musicVideo.getPicture());
+        musicVideoInformation.add(musicVideo.getPath());
         List<CommentExt> commentExts = commentService.searchCommentByMusicId(musicVideoId,2);
         //评论
         musicVideoInformation.add(commentExts);
