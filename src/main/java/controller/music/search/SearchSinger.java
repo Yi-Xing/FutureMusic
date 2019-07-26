@@ -50,8 +50,8 @@ public class SearchSinger {
      * 搜索音乐人
      */
     @RequestMapping(value = "/exhibitionSingersByRegion")
-    public String exhibitionSingersByRegion(@RequestParam(value = "region")String region,
-                                            @RequestParam(value = "pn")Integer pn, Model model){
+    public String exhibitionSingersByRegion(@RequestParam(value = "region",defaultValue = "")String region,
+                                            @RequestParam(value = "pn",defaultValue = "1")Integer pn, Model model){
         List<SingerExt> artists = singerService.exhibitionSingersByRegion(region);
         model.addAttribute("artists",artists);
         PageInfo page = new PageInfo(artists, 5);

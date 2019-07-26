@@ -11,21 +11,21 @@
 <!--头部-->
 <div th:replace="webHead::html"></div>
 
-<div class="container-fluid  color_2">
+<div class="container-fluid  color_2" th:each="singerInformation:${singerInformation}">
     <div class="row inner">
         <h2>歌手</h2>
         <div class="container-fluid">
             <div class="personal_information">
                 <a href="javascript:;" class="pull-left">
-                    <img src="img/头像_邓紫棋.jpg" th:src="@{/static/img/头像_邓紫棋.jpg}" alt="">
+                    <img src="img/头像_邓紫棋.jpg" th:src="@{${singerInformation.portrait}" alt="">
                 </a>
                 <div class="pull-left name">
                     <a href="javascript:;">
                         <h2>
-                            name
+                            <b th:text="${singerInformation.key.singerName}">name</b>
                             <span class="iconfont icon-iconvip"></span>
                         </h2>
-                        <h3>2</h3>
+                        <h3 th:text="粉丝数+${singerInformation.focus}">2</h3>
                         <h3>3</h3>
                     </a>
                 </div>
