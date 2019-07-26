@@ -59,11 +59,11 @@
 
     <!--    拦截器-->
     <mvc:interceptors>
-<!--        <mvc:interceptor>-->
-<!--            &lt;!&ndash;防止表单重复提交&ndash;&gt;-->
-<!--            <mvc:mapping path="/**"/>-->
-<!--            <bean class="util.interceptor.SameUrlDataInterceptor"/>-->
-<!--        </mvc:interceptor>-->
+        <!--        <mvc:interceptor>-->
+        <!--            &lt;!&ndash;防止表单重复提交&ndash;&gt;-->
+        <!--            <mvc:mapping path="/**"/>-->
+        <!--            <bean class="util.interceptor.SameUrlDataInterceptor"/>-->
+        <!--        </mvc:interceptor>-->
         <mvc:interceptor>
             <!--用于实现自动登录-->
             <mvc:mapping path="/**"/>

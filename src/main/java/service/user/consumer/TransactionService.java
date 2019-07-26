@@ -82,7 +82,7 @@ public class TransactionService {
                 user.setBalance(user.getBalance().add(new BigDecimal(money)));
                 logger.debug("充值后的余额" + user.getBalance());
                 // 该方法更改了需要更改相应的参数
-//                userInformationService.modifyUser(user);
+                userInformationService.modifyUser(String.valueOf(user.getId()),String.valueOf(user.getLevel()),String.valueOf(user.getBalance()),String.valueOf(user.getReport()));;
                 return "index";
             }
         } else {//验证失败
@@ -106,6 +106,7 @@ public class TransactionService {
         User user = specialFunctions.getUser(session);
         // 首先判断用户是不是已经购买了指定音乐过MV
         if (isPurchaseMusic(id, type, user) == null) {
+            // 判断音乐或MV是否有版权，
             // 用来存储音乐和MV所属于的歌手
             int singerId;
             // 用来存储音乐所属于的专辑,MV没有专辑
@@ -119,6 +120,11 @@ public class TransactionService {
             if (type == 1) {
                 // 获得音乐的信息
                 Music music = idExistence.isMusicId(id);
+                // 判断该音乐有没有版权
+                if(music==null || music.getAvailable()==1){
+                    state.setInformation("该音乐没有版权");
+                    return state;
+                }
                 originalPrice = music.getPrice();
                 activityId = music.getActivity();
                 singerId = music.getSingerId();
@@ -127,6 +133,10 @@ public class TransactionService {
             } else {
                 // 获得MV的信息
                 MusicVideo musicVideo = idExistence.isMusicVideoId(id);
+                if(musicVideo==null || musicVideo.getAvailable()==1){
+                    state.setInformation("该MV没有版权");
+                    return state;
+                }
                 originalPrice = musicVideo.getPrice();
                 activityId = musicVideo.getActivity();
                 singerId = musicVideo.getSingerId();
@@ -155,7 +165,7 @@ public class TransactionService {
                 user.setBalance((user.getBalance().subtract(price)));
                 // 更新用户信息失败抛异常
                 // 该方法更改了需要更改相应的参数
-//                state = userInformationService.modifyUser(user);
+                state = userInformationService.modifyUser(String.valueOf(user.getId()),String.valueOf(user.getLevel()),String.valueOf(user.getBalance()),String.valueOf(user.getReport()));
                 // 添加订单信息,失败抛异常
                 addOrder(user.getId(), id, type, singerId, albumId, classificationId, originalPrice, price);
                 // 用户购买音乐完成，开始修改用户收藏的音乐或MV的是否购买状态

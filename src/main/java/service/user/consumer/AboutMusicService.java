@@ -239,7 +239,7 @@ public class AboutMusicService {
      * @param type    1表示音乐 2表示MV
      * @param session 获取当前会话
      */
-    public List showMusicPlay(Integer type, HttpSession session) {
+    public List<?> showMusicPlay(Integer type, HttpSession session) {
         //得到会话上的用户
         User user = specialFunctions.getUser(session);
         Play play = new Play();

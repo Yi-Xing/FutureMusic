@@ -27,7 +27,7 @@ public class AboutMusic {
     private static final Logger logger = LoggerFactory.getLogger(AboutMusic.class);
 
     /**
-     * 显示用户收藏的所有音乐，显示用户收藏的所有MV
+     * 显示用户收藏的所有音乐，显示用户收藏的所有MV  (需要更改)
      *
      * @param type 1表示查找音乐收藏 2表示查找MV收藏
      */
@@ -39,7 +39,7 @@ public class AboutMusic {
     }
 
     /**
-     * 显示用户购买过的音乐，显示用户购买过的MV
+     * 显示用户购买过的音乐，显示用户购买过的MV   （需要更改）
      *
      * @param type 1表示查找音乐购买 2表示查找MV购买
      */
@@ -81,14 +81,14 @@ public class AboutMusic {
     }
 
     /**
-     * 显示用户的音乐或MV的历史播放记录,ajax
+     * 显示用户的音乐或MV的历史播放记录,ajax （需要更改）
      *
      * @param type 1表示音乐 2表示MV
      * @param session 获取当前会话
      */
     @RequestMapping(value = "/showMusicPlay")
     @ResponseBody
-    public List showMusicPlay(Integer type, HttpSession session) {
+    public List<?> showMusicPlay(Integer type, HttpSession session) {
         logger.trace("showMusicPlay方法开始执行");
         return aboutMusicService.showMusicPlay(type, session);
     }

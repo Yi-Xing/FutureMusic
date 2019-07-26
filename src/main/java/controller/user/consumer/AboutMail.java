@@ -87,49 +87,18 @@ public class AboutMail {
     }
 
     /**
-     * 查看给那些用户发送过邮件
-     */
-    @RequestMapping(value = "/showSendMailUser")
-    @ResponseBody
-    public List<User> showSendMailUser(HttpSession session) {
-        logger.trace("showSendMailUser方法开始执行");
-        return aboutMailService.showSendMailUser(session);
-    }
-
-    /**
-     * 查看给指定用户发过那些邮件
+     * 客服给全体成员发消息,ajax
      *
-     * @param id 接收者的id
+     * @param content 发送的内容的内容
      */
-    @RequestMapping(value = "/showSendMail")
+    @RequestMapping(value = "/sendWhole")
     @ResponseBody
-    public List<Mail> showSendMail(Integer id, HttpSession session) {
-        logger.trace("showSendMail方法开始执行");
-        return aboutMailService.showSendMail(id, session);
+    public State sendWhole(String content, HttpSession session) throws DataBaseException {
+        logger.trace("sendWhole方法开始执行");
+        return aboutMailService.sendWhole(session, content);
     }
 
-    /**
-     * 查看收到过那些用户发送过邮件
-     */
-    @RequestMapping(value = "/showReceiveMailUser")
-    @ResponseBody
-    public List<User> showReceiveMailUser(HttpSession session) {
-        logger.trace("showReceiveMailUser方法开始执行");
-        return aboutMailService.showReceiveMailUser(session);
-    }
-
-    /**
-     * 查看收到过指定用户的那些邮件
-     *
-     * @param id 指定 发送者的id
-     */
-    @RequestMapping(value = "/showReceiveMail")
-    @ResponseBody
-    public List<Mail> showReceiveMail(Integer id, HttpSession session) {
-        logger.trace("showReceiveMail方法开始执行");
-        return aboutMailService.showReceiveMail(id, session);
-    }
-
+    // 以下代码无效
 
     /**
      * 修改邮箱信息,只修改状态，ajax
