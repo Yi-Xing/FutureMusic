@@ -26,8 +26,6 @@ public class MusicService {
     UserMapper userMapper;
     @Resource(name = "SongListMapper")
     SongListMapper songListMapper;
-    @Resource(name = "MusicVideoService")
-    MusicVideoService musicVideoService;
     @Resource(name = "PlayMapper")
     PlayMapper playMapper;
     @Resource(name = "MusicCollectMapper")
@@ -66,25 +64,13 @@ public class MusicService {
     /**
      * 显示歌曲的详细信息
      *     音乐、专辑图片、歌手信息、分类信息、评论（精彩评论、最新评论）、MV(如果有，显示mv的信息，如果无，显示其他相关歌单）
-     * @param musicId 封装音乐id
-     * @param model model
-     * @return String
-     *     音乐、专辑图片、歌手信息、分类信息、评论的详细信息的Map集合
+
      */
     public String showMusicth(Integer musicId, Model model) {
-        Music music = new Music();
-        music.setId(musicId);
-        Music resultMusic = musicMapper.selectListMusic(music).get(0);
-        //获取音乐的信息
-        model.addAttribute("music", resultMusic);
-        int musicAlbumId = resultMusic.getAlbumId();
-        int classificationId = resultMusic.getClassificationId();
-        int singerId = resultMusic.getSingerId();
-        int musicVideoId = resultMusic.getMusicVideoId();
         //获取评论
         System.out.println(getMusicComment(musicId));
         model.addAttribute("comment",getMusicComment(musicId));
-        return "music";
+        return "musics";
     }
     /**
      * 获取歌曲的评论

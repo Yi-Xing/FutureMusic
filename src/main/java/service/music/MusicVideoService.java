@@ -3,6 +3,7 @@ package service.music;
 import entity.*;
 import mapper.*;
 import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
 
 import javax.annotation.Resource;
 import java.util.ArrayList;
@@ -112,6 +113,8 @@ public class MusicVideoService {
         play.setType(2);
         int playCount = playMapper.selectPlays(play);
         musicVideoExt.setPlayCount(playCount);
+        //评论
+        commentService.searchCommentByMusicId(musicVideoId,2);
         return musicVideoExt;
     }
     /**

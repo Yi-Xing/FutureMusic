@@ -64,18 +64,18 @@ public class CommentService {
         commentExt.setCommentUserName(u.getName());
         commentExt.setCommentPhoto(u.getHeadPortrait());
         //获取回复者的 id 名字
-        if(c.getReply()!=0){
-            Comment com = new Comment();
-            com.setId(c.getReply());
-            Comment comment = commentMapper.selectListComment(com).get(0);
-            User user1 = new User();
-            user1.setId(comment.getUserId());
-            User user2 = userMapper.selectUser(user1).get(0);
-            commentExt.setReplyId(comment.getUserId());
-            commentExt.setReplyName(user2.getName());
-            commentExt.setReplyPhoto(user2.getHeadPortrait());
-        }
-        commentExt.setAllSubCommentExtList(getAllReply(c.getId(),new ArrayList<CommentExt>()));
+//        if(c.getReply()!=0){
+//            Comment com = new Comment();
+//            com.setId(c.getReply());
+//            Comment comment = commentMapper.selectListComment(com).get(0);
+//            User user1 = new User();
+//            user1.setId(comment.getUserId());
+//            User user2 = userMapper.selectUser(user1).get(0);
+//            commentExt.setReplyId(comment.getUserId());
+//            commentExt.setReplyName(user2.getName());
+//            commentExt.setReplyPhoto(user2.getHeadPortrait());
+//        }
+//        commentExt.setAllSubCommentExtList(getAllReply(c.getId(),new ArrayList<CommentExt>()));
         return commentExt;
     }
     /**

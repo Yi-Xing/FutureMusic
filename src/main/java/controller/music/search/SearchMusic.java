@@ -33,7 +33,7 @@ public class SearchMusic {
      */
     @RequestMapping(value = "/showMusicDetail")
     @ResponseBody
-    public Map<String,Object> showMusicDetail(@RequestParam(value = "musicId")Integer musicId){
+    public Map<String,Object> showMusicDetail(@RequestParam(value = "musicId")Integer musicId, Model model){
         return musicService.showMusic(musicId);
     }
 
