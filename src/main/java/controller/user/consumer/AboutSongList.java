@@ -40,7 +40,7 @@ public class AboutSongList {
      */
     @RequestMapping(value = "/showUserSongList")
     public String showUserSongList(Integer type, HttpSession session, Model model) {
-        return aboutSongListService.showUserSongList(type, session,model);
+        return aboutSongListService.showUserSongList(type, session, model);
     }
 
     /**
@@ -50,22 +50,29 @@ public class AboutSongList {
      */
     @RequestMapping(value = "/showUserCollectionSongList")
     public String showUserCollectionSongList(Integer type, HttpSession session, Model model) {
-        return aboutSongListService.showUserCollectionSongList(type, session,model);
+        return aboutSongListService.showUserCollectionSongList(type, session, model);
     }
 
     /**
-     *
      * @param id 歌单专辑的ID
-     * @return  歌单或专辑的详细页面
+     * @return 歌单或专辑的详细页面
      */
     @RequestMapping(value = "/showMusicSongList")
     public String showMusicSongList(String id, Model model) {
-        return aboutSongListService.showMusicList(id,model);
+        return aboutSongListService.showMusicList(id, model);
     }
 
 
-
-    //--------------------------------------------------------------------------
+    /**
+     * 显示指定歌单或专辑的音乐播放页面
+     *
+     * @param id      歌单或专辑的iD
+     * @param musicId 音乐的id
+     */
+    @RequestMapping(value = "/playMusicSongList")
+    public String playMusicSongList(String id, Model model,HttpSession session) {
+        return aboutSongListService.playMusicSongList(id, model,session);
+    }
 
 
     /**
@@ -120,7 +127,6 @@ public class AboutSongList {
         logger.trace("deleteMusicSongList方法开始执行");
         return aboutSongListService.deleteMusicSongList(id);
     }
-    //--------------------------------------------------------------------------
 
     /**
      * 收藏或取消收藏歌单或专辑,ajax

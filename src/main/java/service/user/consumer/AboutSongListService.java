@@ -1,5 +1,6 @@
 package service.user.consumer;
 
+import controller.user.consumer.AboutMusic;
 import entity.*;
 import mapper.*;
 import org.slf4j.Logger;
@@ -7,7 +8,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
 import service.user.IdExistence;
 import service.user.SpecialFunctions;
 import service.user.ValidationInformation;
@@ -17,7 +17,6 @@ import util.exception.DataBaseException;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -54,6 +53,8 @@ public class AboutSongListService {
     UserMapper userMapper;
     @Resource(name = "PlayMapper")
     PlayMapper playMapper;
+    @Resource(name = "AboutMusicService")
+    AboutMusicService aboutMusicService;
 
     /**
      * 显示用户创建的所有歌单或专辑
@@ -105,7 +106,7 @@ public class AboutSongListService {
      * 获得作者名字，歌单/专辑的收藏播放量   音乐名
      */
     public String showMusicList(String id, Model model) {
-        System.out.println("开始执行"+id);
+        System.out.println("开始执行" + id);
         // 判断id是否合法
         if (!validationInformation.isInt(id)) {
             return "index";
@@ -120,14 +121,14 @@ public class AboutSongListService {
         System.out.println(1);
         if (songList.getType() == 1 || songList.getType() == 2) {
             // 找到该歌单/专辑的创建者
-            User userInformation=idExistence.isUserId(songList.getUserId());
+            User userInformation = idExistence.isUserId(songList.getUserId());
             // 查找收藏量
             SongListCollect songListCollect = new SongListCollect();
             songListCollect.setType(songList.getType());
             songListCollect.setMusicId(songListId);
             List<SongListCollect> songListCollectList = songListCollectMapper.selectListSongListCollect(songListCollect);
             // 获得收藏量
-        System.out.println(2);
+            System.out.println(2);
             Play play = new Play();
             play.setAlbumId(songListId);
             // 查找包含的所有音乐
@@ -136,32 +137,32 @@ public class AboutSongListService {
             musicSongList.setType(songList.getType());
             List<MusicSongList> musics = musicSongListMapper.selectListMusicSongList(musicSongList);
             List<Integer> musicId = new ArrayList<>();
-        System.out.println(3);
+            System.out.println(3);
             // 得到该歌单或专辑包含的所有音乐
-        System.out.println(3);
+            System.out.println(3);
             for (MusicSongList m : musics) {
                 musicId.add(m.getMusicId());
             }
             //得到所有的音乐
             List<Music> musicList = musicMapper.listIdSelectListMusic(musicId);
             // 查找每个音乐属于的专辑和用户名
-        System.out.println(4);
+            System.out.println(4);
             User temporaryUser;
             SongList temporarySongList;
             for (Music music : musicList) {
                 // 得到每个音乐的用户信息
-        System.out.println(41+"music"+music);
+                System.out.println(41 + "music" + music);
                 temporaryUser = idExistence.isUserId(music.getSingerId());
                 // 得到每个音乐的专辑信息
-        System.out.println(42);
+                System.out.println(42);
                 temporarySongList = idExistence.isSongListId(music.getAlbumId());
-        System.out.println(43+"temporaryUser"+temporaryUser);
+                System.out.println(43 + "temporaryUser" + temporaryUser);
                 // 音乐ID 音乐名字 歌手Id 歌手名字（音乐路径） 专辑Id 专辑名字(单词路径)
                 music.setPath(temporaryUser.getName());
-        System.out.println(44+"temporarySongList"+temporarySongList);
+                System.out.println(44 + "temporarySongList" + temporarySongList);
                 music.setLyricPath(temporarySongList.getName());
             }
-        System.out.println(5);
+            System.out.println(5);
             // 上传歌单或专辑信息
             model.addAttribute("songList", songList);
             // 上传歌单或专辑创建者的信息
@@ -179,6 +180,43 @@ public class AboutSongListService {
         return "userMusic/musicList";
     }
 
+    /**
+     * 显示指定歌单或专辑的音乐播放页面
+     *
+     * @param songListId       歌单或专辑的iD
+     */
+    public String playMusicSongList(String songListId, Model model,HttpSession session) {
+        // 先判断音乐id和专辑id是否合法
+        if (validationInformation.isInt(songListId)) {
+                // 查找指定专辑或歌单
+            SongList songList=idExistence.isSongListId(Integer.valueOf(songListId));
+            // 音乐和专辑是否存在
+            if ( songList!=null) {
+                // 查找指定专辑中的所有音乐
+                MusicSongList musicSongList=new MusicSongList();
+                musicSongList.setMusicId(Integer.valueOf(songListId));
+                // 查找到专辑中的所有信息
+                List<MusicSongList> musicSongLists=musicSongListMapper.selectListMusicSongList(musicSongList);
+                // 用于存储专辑中所有音乐的id
+                List<Integer> musicIdList=new  ArrayList<>();
+                for(MusicSongList m:musicSongLists){
+                    musicIdList.add(m.getMusicId());
+                }
+                // 查找到所有的音乐
+                List<Music> musicList=musicMapper.listClassificationIdSelectListMusic(musicIdList);
+                // 传给前端
+                // 音乐列表数据
+                model.addAttribute("musicList",musicList);
+                // 当前歌单数据
+                model.addAttribute("songList",songList);
+            } else {
+                return "index";
+            }
+        } else {
+            return "index";
+        }
+        return "userMusic/musicPlayer";
+    }
 
     /**
      * 创建歌单或专辑
