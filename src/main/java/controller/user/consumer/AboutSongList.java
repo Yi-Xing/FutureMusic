@@ -64,10 +64,6 @@ public class AboutSongList {
     }
 
 
-
-    //--------------------------------------------------------------------------
-
-
     /**
      * 创建歌单或专辑
      *
@@ -120,7 +116,6 @@ public class AboutSongList {
         logger.trace("deleteMusicSongList方法开始执行");
         return aboutSongListService.deleteMusicSongList(id);
     }
-    //--------------------------------------------------------------------------
 
     /**
      * 收藏或取消收藏歌单或专辑,ajax
