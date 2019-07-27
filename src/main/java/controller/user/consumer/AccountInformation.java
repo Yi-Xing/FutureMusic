@@ -2,6 +2,7 @@ package controller.user.consumer;
 
 import entity.State;
 import org.springframework.ui.Model;
+import service.user.SpecialFunctions;
 import util.exception.DataBaseException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -26,7 +27,8 @@ import java.io.IOException;
 public class AccountInformation {
     @Resource(name = "AccountInformationService")
     AccountInformationService accountInformationService;
-
+    @Resource(name = "SpecialFunctions")
+    SpecialFunctions specialFunctions;
     private static final Logger logger = LoggerFactory.getLogger(AccountInformation.class);
 
     /**
@@ -84,4 +86,29 @@ public class AccountInformation {
         return accountInformationService.privacy(session);
     }
 
+    /**
+     *  点击充值余额页面
+     */
+    @RequestMapping(value = "/balancePage")
+    public String balancePage(HttpSession session,Model model){
+        return accountInformationService.balancePage(session,model);
+    }
+
+    /**
+     * 点击充值vip
+     */
+    @RequestMapping(value = "/vipPage")
+    public String vipPage(HttpSession session,Model model){
+        return accountInformationService.vipPage(session,model);
+    }
+
+    /**
+     * 购买音乐或MV页面
+     * @param id 音乐/MV的id
+     * @param type 1为音乐 2为MV
+     */
+    @RequestMapping(value = "/musicPage")
+    public String musicPage(HttpSession session,String id,String type,Model model){
+        return accountInformationService.musicPage(session,id,type,model);
+    }
 }

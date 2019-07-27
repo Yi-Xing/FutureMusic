@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="css/vip.css">
+    <title>vip_Center</title>
+</head>
+
+<body>
+    <div class="pay_nav"  th:fragment="balance">
+        <style>
+            .balance{
+                border-bottom: 5px solid #000;
+            }
+        </style>
+        <div class="price">
+            <ul>
+                <li>
+                    <div class="mes_nav" data-value="balance1">
+                        <div class="mes">
+                            <span class="price">10</span>
+                            <b>元/月</b>
+                            <i>10元</i>
+                        </div>
+                        <div class="new">普通充值</div>
+                        <div class="time">充值10元</div>
+                    </div>
+                    <div class="ewm">
+                        <img  th:src="@{/static/img/sq.jpg}" alt="">
+                        <br>
+                        <b>使用支付宝扫码支付</b>
+                    </div>
+                </li>
+                <li>
+                    <div class="mes_nav" data-value="balance2">
+                        <div class="mes">
+                            <span class="price">50</span>
+                            <b>元</b>
+                            <i>60元</i>
+                        </div>
+                        <div class="new">优惠充值</div>
+                        <div class="time">充值60元</div>
+                    </div>
+                    <div class="ewm">
+                        <img   th:src="@{/static/img/sq.jpg}" alt="">
+                        <br>
+                        <b>使用支付宝扫码支付</b>
+                    </div>
+                </li>
+                <li>
+                    <div class="mes_nav" data-value="balance3">
+                        <div class="mes">
+                            <span class="price">100</span>
+                            <b>元</b>
+                            <i>130元</i>
+                        </div>
+                        <div class="new">超级优惠</div>
+                        <div class="time">充值130元</div>
+                    </div>
+                    <div class="ewm">
+                        <img   th:src="@{/static/img/sq.jpg}" alt="">
+                        <br>
+                        <b>使用支付宝扫码支付</b>
+                    </div>
+                </li>
+<!--                <li>-->
+<!--                    <div class="mes_nav">-->
+<!--                        <div class="mes">-->
+<!--                            <span class="price">88</span>-->
+<!--                            <b>元</b>-->
+<!--                        </div>-->
+<!--                        <div class="new">7.33元/月</div>-->
+<!--                        <div class="time">12个月</div>-->
+<!--                    </div>-->
+<!--                    <div class="ewm">-->
+<!--                        <img   th:src="@{/static/img/sq.jpg}" alt="">-->
+<!--                        <br>-->
+<!--                        <b>使用支付宝扫码支付</b>-->
+<!--                    </div>-->
+<!--                </li>-->
+            </ul>
+        </div>
+    </div>
+</body>
+
+</html>
