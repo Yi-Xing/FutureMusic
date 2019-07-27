@@ -7,6 +7,7 @@ import entity.State;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -38,9 +39,8 @@ public class AboutSongList {
      * @param type 1是歌单2是专辑
      */
     @RequestMapping(value = "/showUserSongList")
-    @ResponseBody
-    public List<SongList> showUserSongList(Integer type, HttpSession session) {
-        return aboutSongListService.showUserSongList(type, session);
+    public String showUserSongList(Integer type, HttpSession session, Model model) {
+        return aboutSongListService.showUserSongList(type, session,model);
     }
 
     /**
@@ -49,10 +49,16 @@ public class AboutSongList {
      * @param type 1是歌单2是专辑
      */
     @RequestMapping(value = "/showUserCollectionSongList")
-    @ResponseBody
-    public List<SongListCollect> showUserCollectionSongList(Integer type, HttpSession session) {
-        return aboutSongListService.showUserCollectionSongList(type, session);
+    public String showUserCollectionSongList(Integer type, HttpSession session, Model model) {
+        return aboutSongListService.showUserCollectionSongList(type, session,model);
     }
+
+
+    @RequestMapping(value = "/showMusicSongList")
+    public String showMusicSongList(String id, Model model) {
+        return aboutSongListService.showMusicList(id,model);
+    }
+
 
 
     //--------------------------------------------------------------------------

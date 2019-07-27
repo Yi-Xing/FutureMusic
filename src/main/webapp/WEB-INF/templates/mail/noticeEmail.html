@@ -2,29 +2,30 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="head::html"></head>
 <head>
-    <link rel="stylesheet" href="/static/css/toEmail.css" th:href="@{/static/css/toEmail.css}">
+    <link rel="stylesheet" href="/static/css/sysytem/toEmail.css" th:href="@{/static/css/sysytem/toEmail.css}">
 </head>
 <body>
 
 
-<div class="col-lg-2" th:fragment="receiveEmailHead">
+
+<div class="col-lg-2" th:fragment="noticeEmailHead">
     <h3 class="pointer" style="text-align: center">我的邮件</h3>
     <ul class="toEmail_tab">
-        <li>
+        <li >
             <a th:href="@{/user/sendEmail}">
                 <h4>
                     <i class="iconfont icon-xinfeng"></i> 发送
                 </h4>
             </a>
         </li>
-        <li class="active">
+        <li>
             <a th:href="@{/user/receiveEmail}">
                 <h4>
                     <i class="iconfont icon-xinfeng"></i> 接收
                 </h4>
             </a>
         </li>
-        <li>
+        <li class="active">
             <a th:href="@{/user/noticeEmail}">
                 <h4>
                     <i class="iconfont icon-music"></i> 通知
@@ -33,8 +34,8 @@
         </li>
     </ul>
 </div>
-<div class="col-lg-9" th:fragment="receiveEmail" style="height: 800px;overflow: auto">
-    <h4 id="tabName">接收的邮箱</h4>
+<div class="col-lg-9" th:fragment="noticeEmail" style="height: 800px;overflow: auto">
+    <h4 id="tabName">通知</h4>
     <div class="redLine"></div>
     <table class="table table-hover PrivateLetter">
         <tr th:each="map:${mailMap}">
@@ -51,7 +52,6 @@
         </tr>
     </table>
 </div>
-<!--        <div class="col-lg-offset-1"></div>-->
 
 </body>
 </html>

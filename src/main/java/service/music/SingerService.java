@@ -1,8 +1,11 @@
 package service.music;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import entity.*;
 import mapper.*;
 import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
 
 import javax.annotation.Resource;
 import java.util.ArrayList;
@@ -149,32 +152,30 @@ public class SingerService {
      *                              MV列表
      *                              专辑列表
      */
-    public Map<String,Object> searchSingerInformation(int singerId) {
-        Map<String,Object> singerInformation = new HashMap<>();
+    public void searchSingerInformation(int singerId, Model singerInformation) {
         //歌手个人信息
         User user = new User();
         user.setId(singerId);
         List<User> singers = userMapper.selectUser(user);
         if(singers!=null&&singers.size()!=0){
-            singerInformation.put("singer",transformSingerExt(singers.get(0)));
+            singerInformation.addAttribute("singer",transformSingerExt(singers.get(0)));
         }
         Music m = new Music();
         //搜索歌曲
         m.setSingerId(singerId);
         List<MusicExt> musicExts = musicService.transformMusics(musicMapper.selectListMusic(m));
-        singerInformation.put("music",musicExts);
+        singerInformation.addAttribute("music",musicExts);
         //所有MV
         MusicVideo musicVideo = new MusicVideo();
         musicVideo.setSingerId(singerId);
         List <MusicVideoExt> musicVideoExts = musicVideoService.selectListMusicVideo(musicVideo);
-        singerInformation.put("musicVideo",musicVideoExts);
+        singerInformation.addAttribute("musicVideo",musicVideoExts);
         //专辑
         SongList songList = new SongList();
         songList.setUserId(singerId);
         songList.setType(2);
         List<String[]> albums = songListService.transformShowSongLists(songListMapper.selectListSongList(songList));
-        singerInformation.put("album",albums);
-        return singerInformation;
+        singerInformation.addAttribute("album",albums);
     }
 
     /**

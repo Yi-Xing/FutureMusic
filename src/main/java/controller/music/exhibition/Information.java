@@ -50,7 +50,7 @@ public class Information {
     @RequestMapping(value = "/musicVideoInformation")
     public  String showMusicVideoInformation(HttpServletRequest request,Model model){
         String musicVideoId = request.getParameter("musicVideoId");
-        Map<MusicVideoExt,List<CommentExt>> musicVideoInformation = musicVideoService.getMusicVideoInformation(Integer.parseInt(musicVideoId));
+        Map<MusicVideoExt, List <CommentExt>> musicVideoInformation = musicVideoService.getMusicVideoInformation(Integer.parseInt(musicVideoId));
         model.addAttribute("musicVideoInformation",musicVideoInformation);
         System.out.println(musicVideoInformation);
         return "mvPlayer";
@@ -61,11 +61,16 @@ public class Information {
      * @param request  页面请求，接收参数singerId
      * @return String 返回包含详细信息的页面
      */
+    /**
+     * 5条音乐人
+     */
     @RequestMapping("/singerInformation")
     public String singerInformation(HttpServletRequest request,Model model){
         int singerId = Integer.parseInt(request.getParameter("singerId"));
-        Map<String,Object> singerInformation = singerService.searchSingerInformation(singerId);
-        model.addAttribute("information",singerInformation);
+//        singerService.searchSingerInformation(singerId,model);
+//        return "artist";
+//        Map<String,Object> singerInformation = singerService.searchSingerInformation(singerId);
+//        model.addAttribute("information",singerInformation);
         return "artists";
     }
     /**
