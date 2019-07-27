@@ -10,3 +10,11 @@
     width: 100%;
     outline: none;
 }
+.ILike ul{
+    display: flex;
+    justify-content: space-between;
+    flex-flow: row wrap;
+}
+.ILike .mv{
+    margin: 10px 5px;
+}

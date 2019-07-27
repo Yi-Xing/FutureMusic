@@ -4,7 +4,6 @@ import entity.*;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.context.ContextLoader;
-import org.springframework.web.context.WebApplicationContext;
 import service.user.IdExistence;
 import service.user.SpecialFunctions;
 import util.exception.DataBaseException;
@@ -454,28 +453,47 @@ public class AboutMusicService {
         User user = specialFunctions.getUser(session);
         // 查找指定的音乐信息
         Music music = idExistence.isMusicId(id);
+        System.out.println(user);
+        System.out.println(music);
         // 得到音乐的等级
         int level = music.getLevel();
         // 先判断该音乐有没有版权 0表示有版权
+        System.out.println(music.getAvailable());
         if (music.getAvailable() == 0) {
             if (level == 2) {
+                System.out.println(222);
+                System.out.println(user.getVipDate());
+                System.out.println(222333);
                 // 判断用户是不是VIP
                 if (user.getVipDate().getTime() < System.currentTimeMillis()) {
+                    System.out.println(333);
                     music.setId(1);
                 }
             } else if (level == 3) {
+                System.out.println(444);
                 // 判断用户有没有购买，不为null表示购买
                 if (transactionService.isPurchaseMusic(id, 1, specialFunctions.getUser(session)) == null) {
                     music.setId(2);
                 }
             }
+            System.out.println(555);
             // 等级为1 ，表示免费
         } else {
             music.setId(0);
         }
+        System.out.println("开始判断歌词");
         // 使用io流读取指定音乐的歌词
-        try (InputStream inputStream = new FileInputStream(ContextLoader.getCurrentWebApplicationContext().getServletContext().getRealPath(music.getLyricPath()));
-        ) {
+
+        InputStream inputStream = null;
+        try {
+            System.out.println(music.getLyricPath());
+            if (music.getLyricPath() == null || "".equals(music.getLyricPath())) {
+                music.setLyricPath("/static");
+            }
+            System.out.println(ContextLoader.getCurrentWebApplicationContext());
+            System.out.println(ContextLoader.getCurrentWebApplicationContext().getServletContext().getRealPath(""));
+            inputStream = new FileInputStream(ContextLoader.getCurrentWebApplicationContext().getServletContext().getRealPath(music.getLyricPath()));
+//            inputStream = new FileInputStream("C:\\first\\FutureMusic\\target\\FutureMusic\\"+);
             System.out.println("我只写了");
             // 先使用反射获取项目文件的路径，然后获得缓冲流
             BufferedInputStream bufferedInputStream = new BufferedInputStream(inputStream);
@@ -487,12 +505,21 @@ public class AboutMusicService {
                 lyric.append(new String(bytes, 0, length));
             }
             music.setLyricPath(new String(lyric));
-        } catch (IOException e) {
+        } catch (Exception e) {
             music.setId(3);
             e.printStackTrace();
-        }
+        } finally {
+            try {
+                assert inputStream != null;
+                inputStream.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        System.out.println(music);
+        System.out.println(2222222);
         logger.debug("音乐的信息为：" + music);
         return music;
+        }
     }
 
 
