@@ -27,22 +27,20 @@ public class MusicIndex {
     MusicService musicService;
     @Resource(name = "ActivityService")
     ActivityService activityService;
-    @RequestMapping("/indexInformation")
+    @RequestMapping("/indexInfo")
     /**
      * 传入7个参数，三个音乐人的分类，四个音乐得分类
      * 变量名singerRegion1、singerRegion2、singerRegion3
      * musicType1、musicRegion1、musicRegion2、musicRegion3
      */
     public String indexInformation(HttpServletRequest request,Model model){
-        //活动
-        model.addAttribute("activities",activity());
         //歌手
         String singerRegion1 = request.getParameter("singerRegion1");
         String singerRegion2 = request.getParameter("singerRegion2");
         String singerRegion3 = request.getParameter("singerRegion3");
-        model.addAttribute("singers",singerIndex(singerRegion1));
-        model.addAttribute("singers",singerIndex(singerRegion2));
-        model.addAttribute("singers",singerIndex(singerRegion3));
+        model.addAttribute("singers1",singerIndex(singerRegion1));
+        model.addAttribute("singers2",singerIndex(singerRegion2));
+        model.addAttribute("singers3",singerIndex(singerRegion3));
         //MV
         model.addAttribute("musicVideo",musicVideoIndex());
         //音乐
