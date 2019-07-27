@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="css/goumaiyinyue.css">
+    <title>购买音乐</title>
+</head>
+
+<body>
+    <div class="pay_nav" th:fragment="music">
+        <style>
+            .music{
+                border-bottom: 5px solid #000;
+            }
+        </style>
+        <span th:if="${select!='请先选择音乐/MV'}">
+        <div class="contain">
+           <div class="img">
+                <img   th:src="@{/static/img/sq.jpg}" alt="">
+           </div>
+           <div class="message">
+               <div class="name" th:text="${music.name}">喜欢你 </div>
+               <div class="price">
+                   <span class="type" >原价：</span>
+                   <i th:text="${music.price}">6元</i>
+                   <br>
+                   <span class="type">现价：</span>
+                   <span class="price" th:text="${music.price}">4元</span>
+               </div>
+               <a href="" th:data-id="${id}"  th:data-type="${type}" class="queren">确认购买</a>
+           </div>
+        </div>
+            </span>
+        <span th:if="${select=='请先选择音乐/MV'}">请先选择音乐/MV</span>
+    </div>
+</body>
+
+</html>

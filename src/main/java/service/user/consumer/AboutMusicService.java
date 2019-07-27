@@ -148,6 +148,7 @@ public class AboutMusicService {
      *                                session          获取当前会话
      */
     public State collectionMusic(MusicCollect musicCollectInformation, HttpSession session) throws DataBaseException {
+        State state=new State();
         //得到会话上的用户
         User user = specialFunctions.getUser(session);
         MusicCollect musicCollect = existenceService.isUserCollectionMusic(user.getId(), musicCollectInformation.getMusicId(), musicCollectInformation.getType());
@@ -158,6 +159,8 @@ public class AboutMusicService {
                 logger.error("邮箱：" + user.getMailbox() + "删除收藏的音乐或MV时，数据库出错");
                 throw new DataBaseException("邮箱：" + user.getMailbox() + "删除收藏的音乐或MV时，数据库出错");
             }
+            //删除收藏成功
+            state.setState(1);
         } else {
             // 为null表示没有收藏，需要添加收藏
             int have = 0;
@@ -168,8 +171,9 @@ public class AboutMusicService {
             }
             // 添加收藏
             collectionAndPlay(have, musicCollectInformation, null, user);
+            state.setState(2);
         }
-        return new State(1);
+        return state;
     }
 
     /**

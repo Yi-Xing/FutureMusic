@@ -1,8 +1,6 @@
 package service.user.consumer;
 
-import entity.Focus;
-import entity.State;
-import entity.User;
+import entity.*;
 import mapper.FocusMapper;
 import org.springframework.ui.Model;
 import service.user.IdExistence;
@@ -54,6 +52,7 @@ public class AccountInformationService {
         model.addAttribute("page", "personalInformation");
         if (user == null) {
             user = specialFunctions.getUser(session);
+            model.addAttribute("show", "personal");
         } else {
             session.removeAttribute("otherUser");
             if (user.getSecret() == 1) {
@@ -109,7 +108,7 @@ public class AccountInformationService {
      */
     public String setUpHeadPortrait(HttpServletRequest request, HttpSession session, Model model) throws IOException, DataBaseException {
         User user = specialFunctions.getUser(session);
-        String path = fileUpload.userHeadPortrait(fileUpload.getMultipartFile(request, ""));
+        String path = fileUpload.userHeadPortrait(fileUpload.getMultipartFile(request, "img"));
         logger.debug("头像路径" + path);
         logger.debug("用户信息" + user);
         if (path != null) {
@@ -162,5 +161,55 @@ public class AccountInformationService {
             logger.error("邮箱：" + user.getMailbox() + "修改用户信息时，数据库出错");
             throw new DataBaseException("邮箱：" + user.getMailbox() + "修改用户信息时，数据库出错");
         }
+    }
+
+    /**
+     * 点击充值余额页面
+     */
+    public String balancePage(HttpSession session, Model model) {
+        model.addAttribute("page", "balance");
+        model.addAttribute("user", specialFunctions.getUser(session));
+        return "/vip/purchasePage";
+    }
+
+    /**
+     * 点击充值vip
+     */
+    public String vipPage(HttpSession session, Model model) {
+        model.addAttribute("user", specialFunctions.getUser(session));
+        model.addAttribute("page", "vip");
+        return "/vip/purchasePage";
+    }
+
+    /**
+     * 购买音乐或MV页面
+     */
+    public String musicPage(HttpSession session, String id, String type, Model model) {
+        model.addAttribute("user", specialFunctions.getUser(session));
+        model.addAttribute("page", "music");
+        model.addAttribute("id", id);
+        model.addAttribute("type", type);
+        // 先判断id和type是否合法
+        if (validationInformation.isInt(id) && validationInformation.isInt(type)) {
+            int musicId = Integer.valueOf(id);
+            int musicType = Integer.valueOf(type);
+            if (musicType == 1) {
+                // 音乐
+                Music music = idExistence.isMusicId(musicId);
+                if (music != null) {
+                    model.addAttribute("music", music);
+                    return "/vip/purchasePage";
+                }
+            } else if (musicType == 2) {
+                //MV
+                MusicVideo musicVideo = idExistence.isMusicVideoId(musicId);
+                if (musicVideo != null) {
+                    model.addAttribute("music", musicVideo);
+                    return "/vip/purchasePage";
+                }
+            }
+        }
+        model.addAttribute("select","请先选择音乐/MV");
+        return "/vip/purchasePage";
     }
 }

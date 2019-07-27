@@ -22,8 +22,13 @@
             <div class="head">
                 <img th:src="@{${user.headPortrait}}" alt="">
             </div>
-            <form action="" name="file" class="file">
-                上传图片<input type="file" id="img" name="img">
+            <span th:text="${tishi}"></span>
+            <form th:action="@{/user/setUpHeadPortrait}" method="post" enctype="multipart/form-data">
+                <span name="file" class="file">
+                    上传图片
+                <input type="file" id="img" name="img">
+                </span>
+                <input type="submit" value="确定">
             </form>
             <!-- <input type="file" class="xiugai file"  placeholder="上传图片"> -->
         </div>

@@ -20,7 +20,7 @@ public class MusicCollect implements Serializable {
      */
     private int userId=0;
     /**
-     * 音乐的id
+     * 音乐/MV的id
      */
     private int musicId=0;
     /**
