@@ -27,32 +27,8 @@ import java.util.List;
 @Service(value = "AboutPlayService")
 public class AboutPlayService {
     private static final Logger logger = LoggerFactory.getLogger(AboutPlayService.class);
-    @Resource(name = "SongListCollectMapper")
-    SongListCollectMapper songListCollectMapper;
     @Resource(name = "SpecialFunctions")
     SpecialFunctions specialFunctions;
-    @Resource(name = "Existence")
-    ExistenceService existenceService;
-    @Resource(name = "SongListMapper")
-    SongListMapper songListMapper;
-    @Resource(name = "ValidationInformation")
-    ValidationInformation validationInformation;
-    @Resource(name = "IdExistence")
-    IdExistence idExistence;
-    @Resource(name = "FileUpload")
-    FileUpload fileUpload;
-    @Resource(name = "MusicSongListMapper")
-    MusicSongListMapper musicSongListMapper;
-    @Resource(name = "TransactionService")
-    TransactionService transactionService;
-    @Resource(name = "MusicMapper")
-    MusicMapper musicMapper;
-    @Resource(name = "UserMapper")
-    UserMapper userMapper;
-    @Resource(name = "PlayMapper")
-    PlayMapper playMapper;
-    @Resource(name = "AboutMusicService")
-    AboutMusicService aboutMusicService;
     @Resource(name = "MusicCollectMapper")
     MusicCollectMapper musicCollectMapper;
     @Resource(name = "MusicVideoMapper")

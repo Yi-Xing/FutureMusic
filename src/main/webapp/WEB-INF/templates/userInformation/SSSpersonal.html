@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="head::html"></head>
+<head>
+    <link rel="stylesheet" href="../../static/css/personal.css" th:href="@{/static/css/personal.css}">
+</head>
+<body>
+<!--头部-->
+<div th:replace="webHead::html"></div>
+
+<div class="container-fluid">
+    <div class="personal_information">
+        <a href="javascript:;" class="pull-left">
+            <!--                    th:src="@{${user.headPortrait}}"-->
+            <img src="/static/img/头像_邓紫棋.jpg"  alt="">
+        </a>
+        <div class="pull-left name">
+            <a href="javascript:;">
+                <div>
+                    <h2 text="">name </h2>
+                    <span class="iconfont icon-iconvip" data-toggle="modal" data-target="#vip"></span> <span style="color:red;" th:text="${information}"></span>
+                    <div class="modal fade" id="vip" tabindex="-1" role="dialog" aria-labelledby="vip">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                    <h4 class="modal-title">余额充值 <span style="color: red" id="information"></span></h4>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="amount">
+                                        <div>
+                                            <a class="recharge" data-count="1">
+                                                <h4>一个月</h4>
+                                                <h3>￥10.00</h3>
+                                            </a>
+                                        </div>
+                                        <div>
+                                            <a class="recharge" data-count="3">
+                                                <h4>三个月</h4>
+                                                <h3>￥30.00</h3>
+                                            </a>
+                                        </div>
+                                        <div>
+                                            <a class="recharge" data-count="12">
+                                                <h4>一年</h4>
+                                                <h3>￥120.00</h3>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-primary" data-dismiss="modal">关闭</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <h4 text="'关注：'">关注：</h4>
+                <h4 text="'粉丝：'">粉丝：</h4>
+            </a>
+        </div>
+    </div>
+</div>
+
+<span th:if="${page=='like'}">
+    <div th:replace="userInformation/SSSlike::SSSlike"></div>
+</span>
+<span th:if="${page=='follow'}">
+    <div th:replace="userInformation/SSSfollow::SSSfollow"></div>
+</span>
+<span th:if="${page=='fans'}">
+    <div th:replace="userInformation/SSSfans::SSSfans"></div>
+</span>
+<span th:if="${page=='songList'}">
+    <div th:replace="userInformation/SSSsongList::SSSsongList"></div>
+</span>
+<span th:if="${page=='personalInformation'}">
+    <div th:replace="userInformation/SSSpersonalInformation::SSSpersonalInformation"></div>
+</span>
+
+<!--尾部-->
+<div th:replace="webFoot.html"></div>
+</body>
+<div th:replace="on-load-js::on-load-js"></div>
+<script src="../../static/js/personal.js" th:src="@{/static/js/personal.js}"></script>
+<script src="../../static/js/personal.js" th:src="@{/static/js/ajaxIndex.js}"></script>
+</html>

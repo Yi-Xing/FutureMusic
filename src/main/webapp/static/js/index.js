@@ -55,6 +55,7 @@ $('.icon-like').on('click', function () {
     if (like === 0){
         $(obj).addClass('like');
         like = 1;
+
     }else {
         $(obj).removeClass('like');
         like = 0;
