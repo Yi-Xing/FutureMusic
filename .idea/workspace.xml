@@ -6,17 +6,11 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="31ddee8a-f4ca-4e70-b952-7acc4327b6e7" name="Default Changelist" comment="">
+    <list default="true" id="31ddee8a-f4ca-4e70-b952-7acc4327b6e7" name="Default Changelist" comment="首页">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/music/exhibition/Information.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/music/exhibition/Information.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/service/music/MusicService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/service/music/MusicService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/service/music/SingerService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/service/music/SingerService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/test/jjy/Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/test/jjy/Test.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/util/music/FileUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/util/music/FileUtil.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/classes/controller/music/exhibition/Information.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/classes/controller/music/exhibition/Information.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/classes/service/music/SingerService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/classes/service/music/SingerService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/controller/music/exhibition/Information.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/controller/music/exhibition/Information.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/service/music/SingerService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/service/music/SingerService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/controller/music/exhibition/MusicIndex.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/controller/music/exhibition/MusicIndex.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/test/jjy/Test.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/test/jjy/Test.class" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -35,7 +29,7 @@
         <entry file="file://$PROJECT_DIR$/src/main/java/controller/music/search/SearchSongList.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="398">
-              <caret line="38" column="5" lean-forward="true" selection-start-line="38" selection-start-column="5" selection-end-line="38" selection-end-column="5" />
+              <caret line="38" column="5" selection-start-line="38" selection-start-column="5" selection-end-line="38" selection-end-column="5" />
             </state>
           </provider>
         </entry>
@@ -44,7 +38,7 @@
         <entry file="file://$PROJECT_DIR$/src/main/java/test/jjy/Test.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="212">
-              <caret line="25" column="47" lean-forward="true" selection-start-line="25" selection-start-column="47" selection-end-line="25" selection-end-column="47" />
+              <caret line="25" column="47" selection-start-line="25" selection-start-column="47" selection-end-line="25" selection-end-column="47" />
             </state>
           </provider>
         </entry>
@@ -52,8 +46,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/util/music/FileUtil.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="125">
-              <caret line="8" column="21" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="21" />
+            <state relative-caret-position="375">
+              <caret line="24" column="25" selection-start-line="24" selection-start-column="25" selection-end-line="24" selection-end-column="25" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -64,7 +58,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/controller/music/search/SearchMusic.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
+            <state relative-caret-position="225">
               <caret line="36" column="33" selection-start-line="36" selection-start-column="33" selection-end-line="36" selection-end-column="33" />
             </state>
           </provider>
@@ -74,7 +68,28 @@
         <entry file="file://$PROJECT_DIR$/src/main/java/service/music/MusicService.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="387">
-              <caret line="46" column="17" lean-forward="true" selection-start-line="46" selection-start-column="17" selection-end-line="46" selection-end-column="17" />
+              <caret line="69" column="20" selection-start-line="69" selection-start-column="20" selection-end-line="69" selection-end-column="20" />
+              <folding>
+                <element signature="e#2878#2879#0" expanded="true" />
+                <element signature="e#2949#2950#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/controller/music/exhibition/MusicIndex.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="153">
+              <caret line="46" column="53" lean-forward="true" selection-start-line="46" selection-start-column="53" selection-end-line="46" selection-end-column="53" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#2790#2791#0" expanded="true" />
+                <element signature="e#2860#2861#0" expanded="true" />
+                <element signature="e#3056#3057#0" expanded="true" />
+                <element signature="e#3119#3120#0" expanded="true" />
+                <element signature="docComment;method#rankingListByNewSong#0;class#MusicIndex#0" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -83,7 +98,7 @@
         <entry file="file://$PROJECT_DIR$/src/main/java/controller/music/exhibition/Information.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="198">
-              <caret line="76" column="21" lean-forward="true" selection-start-line="76" selection-start-column="21" selection-end-line="76" selection-end-column="21" />
+              <caret line="76" column="21" selection-start-line="76" selection-start-column="21" selection-end-line="76" selection-end-column="21" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -95,7 +110,7 @@
         <entry file="file://$PROJECT_DIR$/src/main/java/util/FileUpload.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="275">
-              <caret line="24" column="83" lean-forward="true" selection-start-line="24" selection-start-column="4" selection-end-line="24" selection-end-column="83" />
+              <caret line="24" column="83" selection-start-line="24" selection-start-column="4" selection-end-line="24" selection-end-column="83" />
             </state>
           </provider>
         </entry>
@@ -152,6 +167,7 @@
         <option value="$PROJECT_DIR$/src/main/java/controller/music/exhibition/Information.java" />
         <option value="$PROJECT_DIR$/src/main/java/test/jjy/Test.java" />
         <option value="$PROJECT_DIR$/src/main/java/util/music/FileUtil.java" />
+        <option value="$PROJECT_DIR$/src/main/java/controller/music/exhibition/MusicIndex.java" />
         <option value="$PROJECT_DIR$/src/main/java/service/music/MusicService.java" />
       </list>
     </option>
@@ -285,6 +301,14 @@
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="webapp" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="FutureMusic" type="b2602c69:ProjectViewProjectNode" />
+              <item name="FutureMusic" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="webapp" type="462c0819:PsiDirectoryNode" />
+              <item name="static" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
@@ -317,7 +341,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.Test">
+  <component name="RunManager" selected="Tomcat Server.Tomcat 8.5.38">
     <configuration name="Test" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="test.jjy.Test" />
       <module name="FutureMusic" />
@@ -465,7 +489,7 @@
       <workItem from="1564065743728" duration="3593000" />
       <workItem from="1564099133598" duration="17783000" />
       <workItem from="1564187109086" duration="132000" />
-      <workItem from="1564192913934" duration="2006000" />
+      <workItem from="1564192913934" duration="3345000" />
     </task>
     <task id="LOCAL-00002" summary="e">
       <created>1564040668652</created>
@@ -516,11 +540,25 @@
       <option name="project" value="LOCAL" />
       <updated>1564148760852</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="-部分功能的实现">
+      <created>1564194955911</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1564194955911</updated>
+    </task>
+    <task id="LOCAL-00010" summary="-部分功能的实现">
+      <created>1564195415389</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1564195415389</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="44860000" />
+    <option name="totallyTimeSpent" value="46199000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1295" height="695" extended-state="6" />
@@ -543,17 +581,17 @@
       <window_info anchor="bottom" id="Cvs" order="5" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="6" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="7" sideWeight="0.49959448" weight="0.3297491" />
-      <window_info anchor="bottom" id="Event Log" order="8" sideWeight="0.5004055" side_tool="true" weight="0.3297491" />
+      <window_info anchor="bottom" id="Event Log" order="8" sideWeight="0.5004055" side_tool="true" weight="0.32960895" />
       <window_info anchor="bottom" id="Terminal" order="9" weight="0.3297491" />
       <window_info anchor="bottom" id="Docker" order="10" show_stripe_button="false" />
       <window_info anchor="bottom" id="Database Changes" order="11" />
       <window_info anchor="bottom" id="JRebel Console" order="12" sideWeight="0.5004055" side_tool="true" weight="0.3286119" />
-      <window_info anchor="bottom" id="Version Control" order="13" weight="0.3286119" />
-      <window_info anchor="bottom" id="Java Enterprise" order="14" weight="0.3297491" />
+      <window_info anchor="bottom" id="Version Control" order="13" weight="0.32774675" />
+      <window_info anchor="bottom" id="Java Enterprise" order="14" weight="0.32960895" />
       <window_info anchor="bottom" id="JRebel Executor" order="15" weight="0.7802607" />
-      <window_info anchor="bottom" id="Spring" order="16" weight="0.32616487" />
-      <window_info anchor="bottom" id="FindBugs-IDEA" order="17" />
-      <window_info anchor="bottom" id="Messages" order="18" weight="0.04249292" />
+      <window_info anchor="bottom" id="Spring" order="16" weight="0.32588455" />
+      <window_info anchor="bottom" id="FindBugs-IDEA" order="17" weight="0.32960895" />
+      <window_info anchor="bottom" id="Messages" order="18" weight="0.05586592" />
       <window_info anchor="bottom" id="Problems" order="19" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -681,7 +719,8 @@
     <MESSAGE value="-.-" />
     <MESSAGE value="000" />
     <MESSAGE value="-部分功能的实现" />
-    <option name="LAST_COMMIT_MESSAGE" value="-部分功能的实现" />
+    <MESSAGE value="首页" />
+    <option name="LAST_COMMIT_MESSAGE" value="首页" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/src/main/webapp/static/css/RotationChart.css">
@@ -1043,25 +1082,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/controller/music/exhibition/MusicIndex.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="20" column="13" selection-start-line="20" selection-start-column="13" selection-end-line="20" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="docComment;method#rankingListByNewSong#0;class#MusicIndex#0" />
-            <element signature="method#rankingListByNewSong#0;class#MusicIndex#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/controller/music/search/SearchSongList.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="398">
-          <caret line="38" column="5" lean-forward="true" selection-start-line="38" selection-start-column="5" selection-end-line="38" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/util/AlipayConfig.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="325">
@@ -1079,40 +1099,62 @@
     <entry file="file://$PROJECT_DIR$/src/main/java/util/FileUpload.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="275">
-          <caret line="24" column="83" lean-forward="true" selection-start-line="24" selection-start-column="4" selection-end-line="24" selection-end-column="83" />
+          <caret line="24" column="83" selection-start-line="24" selection-start-column="4" selection-end-line="24" selection-end-column="83" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/test/jjy/Test.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="212">
-          <caret line="25" column="47" lean-forward="true" selection-start-line="25" selection-start-column="47" selection-end-line="25" selection-end-column="47" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/util/music/FileUtil.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="125">
-          <caret line="8" column="21" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="21" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+          <caret line="25" column="47" selection-start-line="25" selection-start-column="47" selection-end-line="25" selection-end-column="47" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/controller/music/exhibition/Information.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="198">
-          <caret line="76" column="21" lean-forward="true" selection-start-line="76" selection-start-column="21" selection-end-line="76" selection-end-column="21" />
+          <caret line="76" column="21" selection-start-line="76" selection-start-column="21" selection-end-line="76" selection-end-column="21" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/util/music/FileUtil.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="375">
+          <caret line="24" column="25" selection-start-line="24" selection-start-column="25" selection-end-line="24" selection-end-column="25" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/controller/music/search/SearchSongList.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="398">
+          <caret line="38" column="5" selection-start-line="38" selection-start-column="5" selection-end-line="38" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/controller/music/exhibition/MusicIndex.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="46" column="53" lean-forward="true" selection-start-line="46" selection-start-column="53" selection-end-line="46" selection-end-column="53" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#2790#2791#0" expanded="true" />
+            <element signature="e#2860#2861#0" expanded="true" />
+            <element signature="e#3056#3057#0" expanded="true" />
+            <element signature="e#3119#3120#0" expanded="true" />
+            <element signature="docComment;method#rankingListByNewSong#0;class#MusicIndex#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/controller/music/search/SearchMusic.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
+        <state relative-caret-position="225">
           <caret line="36" column="33" selection-start-line="36" selection-start-column="33" selection-end-line="36" selection-end-column="33" />
         </state>
       </provider>
@@ -1120,7 +1162,11 @@
     <entry file="file://$PROJECT_DIR$/src/main/java/service/music/MusicService.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="387">
-          <caret line="46" column="17" lean-forward="true" selection-start-line="46" selection-start-column="17" selection-end-line="46" selection-end-column="17" />
+          <caret line="69" column="20" selection-start-line="69" selection-start-column="20" selection-end-line="69" selection-end-column="20" />
+          <folding>
+            <element signature="e#2878#2879#0" expanded="true" />
+            <element signature="e#2949#2950#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
