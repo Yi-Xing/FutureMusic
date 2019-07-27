@@ -13,6 +13,9 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
+import java.io.BufferedInputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -437,7 +440,7 @@ public class AboutMusicService {
     /**
      * 播放音乐判断用户是否拥有该音乐
      *
-     * @param id 音乐的id
+     * @param id 音乐的id   id为0表示没版权  为1表示没有VIP 为2表示没购买  为3表示音乐无歌词
      */
     public Music playMusic(Integer id, HttpSession session) {
         //得到会话上的用户
@@ -448,23 +451,46 @@ public class AboutMusicService {
         int level = music.getLevel();
         // 先判断该音乐有没有版权 0表示有版权
         if (music.getAvailable() == 0) {
-            if (0 < level && level < 4) {
+            if (level == 2) {
                 // 判断用户是不是VIP
-                if (user.getVipDate().getTime() >= System.currentTimeMillis()) {
-                    return music;
+                if (user.getVipDate().getTime() < System.currentTimeMillis()) {
+                    music.setId(1);
                 }
-            } else if (level == 4) {
+            } else if (level == 3) {
                 // 判断用户有没有购买，不为null表示购买
-                if (transactionService.isPurchaseMusic(id, 1, specialFunctions.getUser(session)) != null) {
-                    return music;
+                if (transactionService.isPurchaseMusic(id, 1, specialFunctions.getUser(session)) == null) {
+                    music.setId(2);
                 }
-            } else {
-                // 等级为0 ，表示免费
-                return music;
             }
+            // 等级为1 ，表示免费
+        } else {
+            music.setId(0);
         }
-        return null;
+        // 使用io流读取指定音乐的歌词
+        InputStream inputStream = this.getClass().getClassLoader().getResourceAsStream(music.getLyricPath());
+        if (inputStream != null) {
+            // 先使用反射获取项目文件的路径，然后获得缓冲流
+            BufferedInputStream bufferedInputStream = new BufferedInputStream(inputStream);
+            byte[] bytes = new byte[1024];
+            // 一次读取的长度
+            int length;
+            StringBuilder lyric = new StringBuilder();
+            try {
+                while ((length = bufferedInputStream.read(bytes)) != -1) {
+                    lyric.append(new String(bytes, 0, length));
+                }
+                music.setLyricPath(new String(lyric));
+            } catch (IOException e) {
+                music.setId(3);
+                e.printStackTrace();
+            }
+        } else {
+            music.setId(3);
+        }
+        logger.debug("音乐的信息为："+music);
+        return music;
     }
+
 
     /**
      * 播放MV判断用户是否购买该MV
