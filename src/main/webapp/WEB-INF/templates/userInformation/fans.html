@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="right" th:fragment="fans">
+    <style>
+        .fensi{
+            background-color:#bdbdbd;
+            border-left: 5px solid #000;
+        }
+    </style>
+    <div class="guide">
+                <span class="message">
+                    当前所在位置：<a href="Personal_Center .html">个人中心</a> > 我的粉丝
+                </span>
+    </div>
+    <div class="fans">
+        <div class="fan" th:each="u:${users}">
+            <div class="fshead">
+                <img src="head.jpg" th:text="${u.headPortrait}" alt="">
+            </div>
+            <span class="fan_uername" th:text="${u.name}">粉丝用户名</span>
+            <a class="massage" th:data-value="${u.mailbox}">发消息</a>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

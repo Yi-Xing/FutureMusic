@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="right"  th:fragment="likeAlbum">
+    <style>
+        .like{
+            background-color:#bdbdbd;
+            border-left: 5px solid #000;
+        }
+    </style>
+    <div class="guide">
+                <span class="message">
+                    当前所在位置：<a href="Personal_Center .html">个人中心</a>  > <a href="like.html">我喜欢</a>  > 专辑
+                </span>
+    </div>
+    <div class="fans" th:each="songList:${songList}">
+        <div class="fan" >
+            <div class="fshead">
+                <img th:src="@{${songList.picture}}" alt="">
+            </div>
+            <span class="fan_uername" th:text="${songList.name}">刷作业必备歌曲</span>
+            <a class="massage" th:text="${songList.type}">12首</a>
+        </div>
+
+    </div>
+</div>
+</body>
+</html>

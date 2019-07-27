@@ -1,0 +1,264 @@
+*{
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+}
+a{
+    color: #000;
+}
+body{
+    background-color: rgba(232, 232, 232, 0.829);
+}
+.contain{
+    width: 1200px;
+    margin: 0 auto;
+    margin-top: 50px;
+}
+.top{
+    overflow: hidden;
+}
+.top .head{
+    display: inline-block;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    overflow: hidden;
+    vertical-align: top;
+    float: left;
+}
+.head img{
+    width: 100%;
+    height: 100%;
+}
+.use{
+    font-size: 20px;
+    margin-left: 20px;
+    margin-top: 10px;
+}
+.fsgz{
+    margin-left: 122px;
+    margin-top: 20px;
+}
+span.fensi, span.guanzhu{
+    font-size: 14px;
+}
+.modified_data{
+    margin-top: -60px;
+    float: right;
+    background-color:#1b1b1b;
+    border-radius: 5px;
+    padding: 10px;
+    color: #fff;
+}
+.left{
+    float: left;
+}
+ul{
+    margin-top: 30px;
+}
+li{
+    list-style: none;
+    background-color: #fff;
+    height: 20px;
+    width: 80px;
+    line-height: 20px;
+    font-size: 18px;
+    padding: 15px;
+    border-left: 5px solid #fff;
+}
+li a{
+    color: #000;
+}
+.active{
+    background-color:#bdbdbd;
+    border-left: 5px solid #000;
+}
+.right{
+    background-color: #fff;
+    margin-left: 140px;
+    padding-bottom: 20px;
+}
+.guide{
+    margin-top: 30px;
+    border-bottom: 5px solid #000;
+    background-color:#bdbdbd;
+}
+.message{
+    display: block;
+    background-color:#bdbdbd;
+    padding: 14px;
+}
+.message a{
+    color: #000;
+}
+.fan{
+    float: left;
+    overflow: hidden;
+    position: relative;
+    width: 50%;
+    height: 100px;
+}
+div.fans{
+    overflow: hidden;
+    width: 70%;
+    margin: 20px auto;
+    /* border: 1px solid #000; */
+}
+.fshead{
+    border-radius: 50%;
+    width: 80px;
+    height: 80px;
+    overflow: hidden;
+    float: left;
+}
+.fshead img{
+    width: 100%;
+    height: 100%;
+}
+.fan_uername{
+    margin-left: 20px;
+}
+.massage{
+    display: inline-block;
+    padding: 5px;
+    background-color: #000;
+    color: #fff;
+    border-radius: 10%;
+    position: absolute;
+    top: 35px;
+    left: 100px;
+}
+
+.right .contain{
+    width: 80%;
+    margin: 20px auto;
+    overflow: hidden;
+}
+.touxiang{
+    float: left;
+    width: 20%;
+    height: 230px;
+}
+.touxiang .head{
+    height: 150px;
+    width: 150px;
+    overflow: hidden;
+    border-radius: 50%;
+}
+.touxiang .head img{
+    width: 100%;
+    height: 100%;
+}
+.touxiang .xiugai{
+    width: 80px;
+    padding: 10px;
+    border-radius: 10px;
+    background-color: #000;
+    color: #fff;
+    margin-left: 25px;
+    text-align: center;
+    margin-top: 20px;
+    text-decoration: none;
+    display: block;
+}
+.contain div.name{
+    float: right;
+    width: 70%;
+}
+span.name{
+    font-size: 25px;
+}
+.changename{
+    color: #1b1b1b;
+    display: block;
+    margin-top: 20px;
+}
+
+.file{
+    display: block;
+    width: 75px;
+    text-align: center;
+    background-color: black;
+    color: #fff;
+    position: relative;
+    left: 25px;
+    top: 10px;
+    padding: 10px;
+    border-radius: 10px;
+}
+.file input{
+    width: 75px;
+    height: 25px;
+    opacity:0;
+    filter:alpha(opacity=0);
+    position:absolute;
+    left:0;
+    top:0;
+}
+.add_list{
+    float: right;
+    background-color: #1b1b1b;
+    border-radius: 5px;
+    padding: 5px;
+    color: #fff;
+    font-size: 14px;
+}
+
+#modal-overlay {
+    visibility: hidden;
+    position: absolute;   /* 使用绝对定位或固定定位  */
+    left: 0;
+    top: 0;
+    width:100%;
+    text-align:center;
+    z-index: 1000;
+    background-color: #333333b3;
+}
+/* 模态框样式 */
+.modal-data{
+    width: 450px;
+    margin: 50px auto;
+    background-color: #fff;
+    border: 1px solid #000;
+    padding: 15px;
+    text-align: center;
+    z-index: 999;
+    opacity: 1;
+}
+select{
+    background: black;
+    border-radius: 5px;
+    padding: 10px;
+    color: #fff;
+    font-size: 20px;
+    margin-top: 20px;
+}
+.close{
+    width: 100px;
+    padding: 10px;
+    font-size: 20px;
+    color: #fff;
+    background-color: #000;
+    display: inline-block;
+    margin: 50px 20px 0;
+    border-radius: 5px;
+    outline: none;
+
+}
+.title{
+    font-size: 20px;
+    margin: 20px auto;
+}
+.songname{
+    width: 80%;
+    height: 40px;
+    background: #a0a0a0;
+    outline: none;
+    font-size: 20px;
+}
+textarea{
+    width: 80%;
+    background: #a0a0a0;
+    outline: none;
+    font-size: 20px;
+}

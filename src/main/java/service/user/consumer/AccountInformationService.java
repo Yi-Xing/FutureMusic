@@ -39,8 +39,9 @@ public class AccountInformationService {
     FocusMapper focusMapper;
     @Resource(name = "FileUpload")
     FileUpload fileUpload;
-    @Resource(name ="IdExistence")
+    @Resource(name = "IdExistence")
     IdExistence idExistence;
+
     /**
      * 显示用户页面
      * Model封装：
@@ -49,52 +50,35 @@ public class AccountInformationService {
      */
     public String userPage(HttpSession session, Model model) {
         // 判断用户是否去访问
-        User user = (User)session.getAttribute("otherUser");
-        if(user==null){
-         user = specialFunctions.getUser(session);
-        }else{
+        User user = (User) session.getAttribute("otherUser");
+        model.addAttribute("page", "personalInformation");
+        if (user == null) {
+            user = specialFunctions.getUser(session);
+        } else {
             session.removeAttribute("otherUser");
-            if(user.getSecret()==1){
+            if (user.getSecret() == 1) {
                 model.addAttribute("user", user);
-                model.addAttribute("close",1);
-                return "personal";
+                model.addAttribute("close", 1);
+                return "userInformation/personal";
             }
         }
-        // 用于查找用户关注的人数
-        Focus userFollow = new Focus();
-        userFollow.setUserId(user.getId());
-        //查找关注
-        userFollow.setUserType(1);
-        // 去数据库查找用户关注的人数
-        int userFollowCount = focusMapper.selectUserFocusCount(userFollow);
-        // 用于查找关注用户的人数
-        Focus followUser = new Focus();
-        followUser.setUserFocusId(user.getId());
-        //查找关注
-        userFollow.setUserType(1);
-        // 去数据库查找关注用户的人数
-        int followUserCount = focusMapper.selectUserFocusCount(followUser);
-        logger.debug("用户"+user);
-        logger.debug("用户的粉丝量"+userFollowCount);
-        logger.debug("用户的关注量"+followUserCount);
-        model.addAttribute("user", user);
-        model.addAttribute("followCount",userFollowCount );
-        model.addAttribute("userFollowCount", followUserCount);
-        // 用于查找用户喜欢的歌曲数量，未写完差一个方法调用
-        return "personal";
+        // 得到用户的关注粉丝量及用户信息
+        specialFunctions.getUserInformation(user, model);
+        return "userInformation/personal";
     }
 
 
     /**
      * 用于访问其他用户的页面
      */
-    public String otherUserPage(String id,HttpSession session, Model model){
-        User user=idExistence.isUserIdExist(id);
-        if(user!=null){
-            session.setAttribute("otherUser",user);
+    public String otherUserPage(String id, HttpSession session, Model model) {
+        User user = idExistence.isUserIdExist(id);
+        if (user != null) {
+            session.setAttribute("otherUser", user);
         }
-        return userPage(session,model);
+        return userPage(session, model);
     }
+
     /**
      * 用于修改用户的用户名
      * 并修改会话上的用户名
@@ -125,8 +109,8 @@ public class AccountInformationService {
      */
     public String setUpHeadPortrait(HttpServletRequest request, HttpSession session, Model model) throws IOException, DataBaseException {
         User user = specialFunctions.getUser(session);
-        String path = fileUpload.userHeadPortrait(fileUpload.getMultipartFile(request,""));
-        logger.debug("头像路径"+path);
+        String path = fileUpload.userHeadPortrait(fileUpload.getMultipartFile(request, ""));
+        logger.debug("头像路径" + path);
         logger.debug("用户信息" + user);
         if (path != null) {
             String originalPath = user.getHeadPortrait();

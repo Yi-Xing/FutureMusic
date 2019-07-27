@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>music</title>
+    <!-- 导入 css -->
+    <link rel="stylesheet" type="text/css" th:href="@{/static/css/sysytem/personal.css}">
+</head>
+<body>
+<div class="right" th:fragment="songList">
+    <style>
+        li.gedan{
+            background-color:#bdbdbd;
+            border-left: 5px solid #000;
+        }
+    </style>
+    <div class="guide">
+                <span class="message">
+                    当前所在位置：个人中心 > 我的歌单
+                    <a href="#" class="add_list" onclick="overlay()" style="color: #fff">添加歌单</a>
+                </span>
+    </div>
+    <div id="modal-overlay">
+        <div class="modal-data">
+            <div class="title">请选择种类</div>
+            <span style="float: right; margin-top: -70px;cursor:pointer; " onclick="overlay()";>X</span>
+            <div style="margin-bottom: 100px">
+                <select>
+                    <option value="volvo">内地</option>
+                    <option value="saab">Saab</option>
+                    <option value="opel">Opel</option>
+                    <option value="audi">Audi</option>
+                </select>
+                <select>
+                    <option value="volvo">内地</option>
+                    <option value="saab">Saab</option>
+                    <option value="opel">Opel</option>
+                    <option value="audi">Audi</option>
+                </select>
+                <select>
+                    <option value="volvo">内地</option>
+                    <option value="saab">Saab</option>
+                    <option value="opel">Opel</option>
+                    <option value="audi">Audi</option>
+                </select>
+                <select>
+                    <option value="volvo">内地</option>
+                    <option value="saab">Saab</option>
+                    <option value="opel">Opel</option>
+                    <option value="audi">Audi</option>
+                </select>
+            </div>
+            <div class="title">请输入歌单名称</div>
+            <input type="text" class="songname">
+            <div class="title">请输入歌单简介</div>
+            <textarea rows="10" cols="30"></textarea>
+            <div class="title">请上传歌单封面图片</div>
+            <input type="file">
+            <div>
+                <button class="close" onclick="overlay()">确定</button>
+                <button class="close" onclick="overlay()">关闭</button>
+            </div>
+
+        </div>
+    </div>
+    <div class="fans" th:each="songList:${songList}">
+        <div class="fan" >
+            <div class="fshead">
+                <img th:src="@{${songList.picture}}" alt="">
+            </div>
+            <span class="fan_uername" th:text="${songList.name}">刷作业必备歌曲</span>
+            <a class="massage" th:text="${songList.type}">12首</a>
+        </div>
+
+    </div>
+</div>
+</div>
+<script>
+    function overlay() {
+        var e1 = document.getElementById('modal-overlay');
+        e1.style.visibility = (e1.style.visibility == "visible") ? "hidden" : "visible";
+    }
+</script>
+
+</body>
+</html>

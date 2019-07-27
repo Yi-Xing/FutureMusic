@@ -1,7 +1,10 @@
 package app;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import javax.servlet.http.HttpSession;
 
 @Controller
 public class Main {
@@ -160,6 +163,14 @@ public class Main {
     @RequestMapping(value = "/jjy")
     public String jjytest() {
         return "jjy";
+    }
+
+    @RequestMapping(value = "/qwe")
+    public String jjytet(Model model, HttpSession session) {
+
+        model.addAttribute("page","album_of_me");
+        model.addAttribute("user",session.getAttribute("userInformation"));
+        return "userInformation/personal";
     }
 
 
