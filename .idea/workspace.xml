@@ -7,9 +7,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="00f34b6d-162d-4228-80f5-f6692a05b882" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/templates/artist.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/templates/artist.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/templates/artist.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/FutureMusic/WEB-INF/templates/artist.html" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -115,8 +113,8 @@
           <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/templates/artist.html">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="256">
-                  <caret line="54" column="68" selection-start-line="54" selection-start-column="68" selection-end-line="54" selection-end-column="68" />
+                <state relative-caret-position="340">
+                  <caret line="58" column="39" selection-start-line="58" selection-start-column="39" selection-end-line="58" selection-end-column="39" />
                 </state>
               </provider>
             </entry>
@@ -188,8 +186,8 @@
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/templates/artists.html" />
         <option value="$PROJECT_DIR$/src/main/java/controller/music/search/SearchSinger.java" />
         <option value="$PROJECT_DIR$/src/main/java/service/music/SingerService.java" />
-        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/templates/artist.html" />
         <option value="$PROJECT_DIR$/src/main/java/controller/music/exhibition/Information.java" />
+        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/templates/artist.html" />
       </list>
     </option>
   </component>
@@ -521,7 +519,7 @@
       <workItem from="1564065743728" duration="3593000" />
       <workItem from="1564099133598" duration="25226000" />
       <workItem from="1564144463372" duration="8894000" />
-      <workItem from="1564185197315" duration="233000" />
+      <workItem from="1564185197315" duration="646000" />
     </task>
     <task id="LOCAL-00002" summary="e">
       <created>1564040668652</created>
@@ -586,17 +584,31 @@
       <option name="project" value="LOCAL" />
       <updated>1564151349866</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="-部分页面的交互">
+      <created>1564185461516</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1564185461532</updated>
+    </task>
+    <task id="LOCAL-00012" summary="-部分页面的交互">
+      <created>1564185551764</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1564185551764</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="50855000" />
+    <option name="totallyTimeSpent" value="51268000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.02010724" />
+      <window_info content_ui="combo" id="Project" order="0" weight="0.02010724" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="JRebel" order="2" side_tool="true" />
       <window_info id="Image Layers" order="3" />
@@ -1171,8 +1183,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/templates/artist.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="256">
-          <caret line="54" column="68" selection-start-line="54" selection-start-column="68" selection-end-line="54" selection-end-column="68" />
+        <state relative-caret-position="340">
+          <caret line="58" column="39" selection-start-line="58" selection-start-column="39" selection-end-line="58" selection-end-column="39" />
         </state>
       </provider>
     </entry>
