@@ -79,6 +79,11 @@ public class TransactionService {
                 // 获取充值金额
                 User user = specialFunctions.getUser(session);
                 logger.debug("充值前的余额" + user.getBalance());
+                if("50".equals(money)){
+                    money="60";
+                }else if("100".equals(money)){
+                    money="130";
+                }
                 user.setBalance(user.getBalance().add(new BigDecimal(money)));
                 logger.debug("充值后的余额" + user.getBalance());
                 // 该方法更改了需要更改相应的参数
@@ -270,6 +275,11 @@ public class TransactionService {
         logger.debug("用户余额" + balance);
         // 计算得到vip的价格
         BigDecimal price = BigDecimal.valueOf(count * 10);
+        if(count==6){
+            count++;
+        }else if(count==10){
+            count=count+2;
+        }
         logger.debug("vip的价格" + price);
         // 得到用户是否买的起
         if (balance.compareTo(price) > 0) {
@@ -294,7 +304,7 @@ public class TransactionService {
             logger.debug("设置用户vip的时间" + user.getVipDate());
             // 更新用户信息失败抛异常
             // 该方法更改了需要更改相应的参数
-//            state = userInformationService.modifyUser(user);
+            state = userInformationService.modifyUser(String.valueOf(user.getId()),String.valueOf(user.getLevel()),String.valueOf(user.getBalance()),String.valueOf(user.getReport()));
         } else {
             state.setInformation("余额不足，请立即充值");
         }

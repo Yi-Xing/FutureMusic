@@ -5,6 +5,8 @@
     <title>Title</title>
     <link rel="stylesheet" th:href="@{/static/css/vip/vip.css}">
     <link rel="stylesheet" th:href="@{/static/css/vip/goumaiyinyue.css}">
+    <!-- 导入 JQ -->
+    <script th:src="@{/static/js/jquery.js}"></script>
 </head>
 <body>
 <div class="topic_nav">
@@ -53,8 +55,8 @@
     <span th:if="${page=='music'}">
         <div th:replace="vip/music::music"></div>
     </span>
+    <script th:src="@{/static/js/userInformation/purchasePage.js}"></script>
 </div>
-<link rel="stylesheet" th:href="@{/static/js/userInformation/purchasePage.js}">
 
 </body>
 </html>
