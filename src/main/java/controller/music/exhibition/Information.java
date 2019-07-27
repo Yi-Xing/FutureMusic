@@ -10,7 +10,6 @@ import service.music.*;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -58,12 +57,14 @@ public class Information {
      * @param request  页面请求，接收参数singerId
      * @return String 返回包含详细信息的页面
      */
+    /**
+     * 5条音乐人
+     */
     @RequestMapping("/singerInformation")
     public String singerInformation(HttpServletRequest request,Model model){
         int singerId = Integer.parseInt(request.getParameter("singerId"));
-        Map<String,Object> singerInformation = singerService.searchSingerInformation(singerId);
-        model.addAttribute("information",singerInformation);
-        return "singerInfo";
+        singerService.searchSingerInformation(singerId,model);
+        return "artist";
     }
     /**
      * 显示歌单的详细信息

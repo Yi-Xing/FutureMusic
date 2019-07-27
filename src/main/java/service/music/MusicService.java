@@ -7,6 +7,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 import util.JudgeIsOverdueUtil;
+import util.music.FileUtil;
 
 import javax.annotation.Resource;
 import java.math.BigDecimal;
@@ -36,11 +37,13 @@ public class MusicService {
     CommentService commentService;
     @Resource(name = "MusicVideoMapper")
     MusicVideoMapper musicVideoMapper;
-    public Map<String,Object> showMusic(Integer musicId) {
+    public Map<String,Object> showMusic(Integer musicId) throws  Exception {
         Map<String,Object> model = new HashMap<>();
         Music music = new Music();
         music.setId(musicId);
         Music resultMusic = musicMapper.selectListMusic(music).get(0);
+        String lyrics = FileUtil.readInfoStream(resultMusic.getLyricPath());
+        resultMusic.setLyricPath(lyrics);
         //获取音乐的信息
         model.put("music", resultMusic);
         int musicAlbumId = resultMusic.getAlbumId();
