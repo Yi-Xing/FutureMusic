@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//ED"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.MusicMapper">
+    <select id="selectListMusic" parameterType="Music" resultMap="music">
+        select * from tb_music
+        <where>
+            <if test='id!=0'>
+                music_id=#{id}
+            </if>
+            <if test='name!=null and name !=""'>
+                and music_name like "%"#{name}"%"
+            </if>
+            <if test='level!=0'>
+                and music_level=#{level}
+            </if>
+            <if test='singerId!=0'>
+                and music_singer_id=#{singerId}
+            </if>
+            <if test='albumId!=0'>
+                and music_album_id=#{albumId}
+            </if>
+            <if test='classificationId!=0'>
+                and music_classification_id=#{classificationId}
+            </if>
+            <if test='activity!=0 and activity!=-1 '>
+                and music_activity=#{activity}
+            </if>
+            <if test='activity==-1 '>
+                and music_activity=0
+            </if>
+            <if test='available!=0'>
+                and music_available=#{available}
+            </if>
+            <if test='date!=null'>
+                and music_date >=#{date}
+            </if>
+        </where>
+    </select>
+    <select id="listIdSelectListMusic" parameterType="Integer" resultMap="music">
+        select * from tb_music
+        <where>
+            <foreach collection="list" item="value" separator="," open="music_id in(" close=")">
+                #{value}
+            </foreach>
+        </where>
+    </select>
+    <select id="listClassificationIdSelectListMusic" parameterType="Integer" resultMap="music">
+        select music_id,music_name,music_singer_id from tb_music
+        <where>
+            <foreach collection="list" item="value" separator="," open="music_classification_id in(" close=")">
+                #{value}
+            </foreach>
+        </where>
+    </select>
+    <insert id="insertMusic" parameterType="Music">
+         insert into tb_music (music_name,music_level,music_price,music_singer_id,music_album_id,music_classification_id,
+         music_date,music_path,music_lyric_path,music_music_video_id,music_activity,music_available,music_play_count,music_picture)
+         values(#{name},#{level},#{price},#{singerId},#{albumId},#{classificationId},#{date},#{path},#{lyricPath},#{musicVideoId},
+         #{activity},#{available},#{playCount},#{picture})
+    </insert>
+    <update id="updateMusic" parameterType="Music">
+        update tb_music
+        <set>
+            <if test='name!=null and name!=""'>
+                music_name=#{name}
+            </if>
+            <if test='level!=0'>
+                ,music_level=#{level}
+            </if>
+            <if test='price!=null and price!=""'>
+                ,music_price=#{price}
+            </if>
+            <if test='singerId!=0'>
+                ,music_singer_id=#{singerId}
+            </if>
+            <if test='albumId!=0'>
+                ,music_album_id=#{albumId}
+            </if>
+            <if test='classificationId!=0'>
+                ,music_classification_id=#{classificationId}
+            </if>
+            <if test='date!=null '>
+                ,music_date=#{date}
+            </if>
+            <if test='path!=null and path!=""'>
+                ,music_path=#{path}
+            </if>
+            <if test='lyricPath!=null and lyricPath!=""'>
+                , music_lyric_path=#{lyricPath}
+            </if>
+            <if test='musicVideoId!=0 and musicVideoId!=-1'>
+                ,music_music_video_id=#{musicVideoId}
+            </if>
+            <if test=' musicVideoId==-1'>
+                ,music_music_video_id=0
+            </if>
+            <if test='activity!=0 and activity!=-1 '>
+                ,music_activity=#{activity}
+            </if>
+             <if test='activity==-1 '>
+                ,music_activity=0
+            </if>
+            <if test='available!=0 and available!=-1'>
+                ,music_available=#{available}
+            </if>
+            <if test='available==-1'>
+                ,music_available=0
+            </if>
+            <if test='playCount!=0'>
+                ,music_play_count=#{playCount}
+            </if>
+            <if test='lyricPath!=null and lyricPath!=""'>
+                ,music_picture=#{picture}
+            </if>
+        </set>
+        where music_id=#{id}
+    </update>
+
+
+    <resultMap id="music" type="Music">
+        <id column="music_id" property="id"/>
+        <result column="music_name" property="name"/>
+        <result column="music_level" property="level"/>
+        <result column="music_price" property="price"/>
+        <result column="music_singer_id" property="singerId"/>
+        <result column="music_album_id" property="albumId"/>
+        <result column="music_classification_id" property="classificationId"/>
+        <result column="music_date" property="date"/>
+        <result column="music_path" property="path"/>
+        <result column="music_lyric_path" property="lyricPath"/>
+        <result column="music_music_video_id" property="musicVideoId"/>
+        <result column="music_activity" property="activity"/>
+        <result column="music_available" property="available"/>
+        <result column="music_play_count" property="playCount"/>
+        <result column="music_picture" property="picture"/>
+    </resultMap>
+</mapper>

@@ -1,0 +1,100 @@
+package util;
+
+import java.util.Date;
+import java.text.SimpleDateFormat;
+import java.util.GregorianCalendar;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+/**
+ * @author 蒋靓峣  5.19创建
+ * 判断当前系统时间对指定日期是否过期和两个时间的差值
+ * 时间的格式统一为yyy-MM-dd HH:mm:ss
+ */
+public class JudgeIsOverdueUtil {
+    /**
+     * @param date 传入要比较的日期，从数据库获取的数据
+     * @return result
+     * 返回true则是过期
+     * 返回false则是
+     */
+    public static boolean judgeIsOverdue(String date) {
+        try{
+            boolean result = false;
+            //设置日期格式
+            SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            // new Date()为获取当前系统时间
+            if (df.format(new Date()).compareTo(date)>= 0) {
+                result = true;
+            }
+            return result;
+
+            }catch (Exception e){
+                e.printStackTrace();
+                return false;
+            }
+    }
+
+    /**
+     * 计算给定时间-系统时间
+     * @param date 传入一个字符串代表时间，格式为 “yyyy-MM-dd HH:mm:ss”
+     * @return String 返回数据库中的时间里现在的秒数，结果为正
+     */
+    public static long reduceSecond(String date){
+        try{
+            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            long time = simpleDateFormat.parse(date).getTime();
+            String date1 = simpleDateFormat.format(new Date());
+            long time1 = simpleDateFormat.parse(date1).getTime();
+            return (time1-time)/1000;
+        }catch (Exception e){
+            e.printStackTrace();
+            return 0;
+        }
+    }
+
+    /**
+     *
+     * @param date 要比较的时间，从数据库中获取多的数据
+     * @return  long 相差天数
+     *                  传入的时间-系统时间
+     */
+    public static long reduceDay(String date){
+//        long time = reduceSecond(date);
+//        long days = time/(60*60*24);
+        return reduceSecond(date)/(60*60*24);
+    }
+    /**
+     *
+     * @param date 要比较的时间，从数据库中获取多的数据
+     * @return  long 相差时间，格式为 HH:mm:ss
+     *                  传入的时间-系统时间
+     * @throws Exception
+     */
+    public static String reduceHours(String date){
+        long time = reduceSecond(date);
+        int second = (int)time%60;
+        int minute = (int)(time/60)%60;
+        int hours = (int)(time/3600)%60;
+        String reduce = hours+":"+minute+":"+second;
+        return reduce;
+    }
+
+    /**
+     * 将Data转换成需要的字符串格式
+     */
+    public static String toDateSting(Date theDate){
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String date  = simpleDateFormat.format(theDate);
+        return date;
+    }
+
+    /**
+     * 用于将字符串转换为日期类型
+     */
+    public static Date toDate(String date) throws ParseException {
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        return  simpleDateFormat.parse(date);
+    }
+}

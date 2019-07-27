@@ -1,0 +1,13 @@
+body{
+    background-image: url("../img/collapse.jpg");
+    background-size: cover;
+}
+.Collapse{
+    position: absolute;
+    top: 33vh;
+    left: 50%;
+    transform: translateX(-50%);
+}
+.Collapse a{
+    margin: 0 20px;
+}

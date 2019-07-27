@@ -1,0 +1,81 @@
+/*轮播图*/
+.carousel-wrap {
+    position: relative;
+    overflow: hidden;
+    height: 490px;
+    width: 1200px;
+    margin: 0 auto;
+}
+
+.carousel {
+    width: 6000px;
+    z-index: 9;
+    position: absolute;
+    left: -1200px;
+    top: 0;
+}
+
+.carousel li {
+    float: left;
+    width: 1200px;
+    position: relative;
+}
+
+.carousel img {
+    width: 100%;
+}
+
+.arrow {
+    z-index: 10;
+    position: absolute;
+    width: 30px;
+    height: 50px;
+    text-align: center;
+    line-height: 50px;
+    top: 50%;
+    margin-top: -25px;
+    text-decoration: none;
+    color: #f66f6a;
+    font-size: 30px;
+    /*background: rgba(0, 0, 0, .2);*/
+    font-weight: 600;
+}
+
+.arrow-left {
+    left: 0;
+}
+
+.arrow-right {
+    right: 0
+}
+
+.indicators {
+    z-index: 10;
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+}
+
+.indicator {
+    float: left;
+    margin-right: 10px;
+    /*width: 15px;*/
+    /*height: 15px;*/
+    /*border-radius: 41%;*/
+    color: #ccc;
+    font-size: 50px;
+}
+
+.indicator.active {
+    color: #333;
+}
+
+
+.music_video .carousel-wrap {
+    position: relative;
+    overflow: hidden;
+    height: 400px;
+    width: 1200px;
+    margin: 0 auto;
+}
+
