@@ -27,7 +27,7 @@ import java.util.List;
  */
 @Controller
 @RequestMapping(value = "/user")
-public class AboutSongList {
+public class  AboutSongList {
     @Resource(name = "AboutSongListService")
     AboutSongListService aboutSongListService;
     private static final Logger logger = LoggerFactory.getLogger(AboutSongList.class);
