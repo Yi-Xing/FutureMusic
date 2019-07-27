@@ -57,13 +57,17 @@
                                 <div class="artist_right pull-right">
                                     <h5>音乐人作品</h5>
                                     <ol>
-                                        <li><a href="javascript:;">music name</a></li>
+                                        <li th:each="work:${list.music}">
+                                            <a th:href="@{/musics.html(musicId=${work.id})}" href="javascript:;">
+                                                <b th:text="${work.name}">music name</b>
+                                            </a>
+                                        </li>
                                     </ol>
                                 </div>
                             </div>
                             <div class="artist_bottom">
                                 <a href="javascript:;">
-                                    <h4 th:text="list.singerName">artistname</h4>
+                                    <h4 th:text="${list.singerName}">artistname</h4>
                                   </a>
                             </div>
                         </div>

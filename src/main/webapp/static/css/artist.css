@@ -13,7 +13,7 @@
     justify-content: space-around;
 }
 .artist,.mv{
-    margin-bottom: 20px;
+    margin-bottom: 40px;
 }
 .artist *,.mv *{
     font-family: "AkkuratPro-Regular", Helvetica, Arial, sans-serif;
@@ -45,7 +45,7 @@
 }
 .artist_bottom{
     width: 160px;
-    padding-right: 114px;
+    padding-left: 40px;
     height: 18px;
     line-height: 16px;
     margin-top: 22px;
