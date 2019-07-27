@@ -53,7 +53,11 @@ public class AboutSongList {
         return aboutSongListService.showUserCollectionSongList(type, session,model);
     }
 
-
+    /**
+     *
+     * @param id 歌单专辑的ID
+     * @return  歌单或专辑的详细页面
+     */
     @RequestMapping(value = "/showMusicSongList")
     public String showMusicSongList(String id, Model model) {
         return aboutSongListService.showMusicList(id,model);
