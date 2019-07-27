@@ -86,6 +86,13 @@ public class Mail implements Serializable {
         this.state = state;
     }
 
+    public Mail(int senderId, String content, Date date, int reply) {
+        this.senderId = senderId;
+        this.content = content;
+        this.date = date;
+        this.reply = reply;
+    }
+
     public int getId() {
         return id;
     }

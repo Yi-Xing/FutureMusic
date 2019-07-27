@@ -53,7 +53,8 @@ public class LoginService {
                 if (user.getReport() < ConstantUtil.Two_Hundred.getIntValue()) {
                     // 登录成功将信息存到会话中
                     // 实现唯一登录
-                    isUserLogin(session,user);
+                    isUserLogin(session, user);
+                    System.out.println("我执行了");
                     session.setAttribute("userInformation", user);
                     //判断是否设置7天内自动登登录
                     if (automatic) {
@@ -113,7 +114,7 @@ public class LoginService {
      * @param password 需要验证的密码
      * @return boolean 返回是否登录成功
      */
-     User isMailboxAndPassword(String mailbox, String password) {
+    User isMailboxAndPassword(String mailbox, String password) {
         // 从数据库中查找指定邮箱的用户
         User user = userMapper.selectUserMailbox(mailbox);
         // 再判断密码是否相同，密码再前面加过密了
@@ -143,20 +144,25 @@ public class LoginService {
      *
      * @param session 得到当前会话
      */
-    private void isUserLogin(HttpSession session,User user) {
-
+    private void isUserLogin(HttpSession session, User user) {
         // 将会话中的用户信息取出来
         HttpSession originalSession1 = SessionListener.sessionMap.get(user.getMailbox());
         // 判断该用户是否已经登录
         if (originalSession1 != null) {
-            logger.debug(user.getMailbox() + "用户再次登录");
-            // 将原用户的信息删除
-            SessionListener.forceUserLogout(user.getMailbox());
-            // 强制关掉会话，并删除会话上所有的绑定对象,会话被销毁后，执行监听器的销毁方法
+            // 判断是否在同一个页面
+            if (!originalSession1.getId().equals(session.getId())) {
+                logger.debug(user.getMailbox() + "用户再次登录");
+                // 将原用户的信息删除
+                SessionListener.delSession(originalSession1);
+                // 强制关掉会话，并删除会话上所有的绑定对象,会话被销毁后，执行监听器的销毁方法
 //            originalSession1.invalidate()
+            } else {
+                logger.debug(user.getMailbox() + "用户在同一个页面再次登录");
+            }
         }
         // 将用户的信息存储的session监听器中
         SessionListener.sessionMap.put(user.getMailbox(), session);
+        SessionListener.mailboxMap.put(session,user.getMailbox());
     }
 
 

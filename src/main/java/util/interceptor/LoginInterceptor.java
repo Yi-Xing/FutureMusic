@@ -46,6 +46,9 @@ public class LoginInterceptor implements HandlerInterceptor {
                     logger.info("邮箱：" + userCookie[0] + "自动登录成功");
                 } else {
                     logger.debug("邮箱：" + userCookie[0] + "自动登录失败，原因：" + state.getInformation());
+                    // 自动登录失败 ，删除cookie
+                    cookie.setMaxAge(0);
+                    response.addCookie(cookie);
                 }
             }
         }
