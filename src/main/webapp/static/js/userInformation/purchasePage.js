@@ -1,6 +1,6 @@
 //支付页面
 window.onload = function () {
-    alert(2);
+
     $(".mes_nav").on("click", function () {
         // 得到音乐id
         var value = $(this).data("value");
@@ -11,6 +11,7 @@ window.onload = function () {
             window.location.href = 'http://localhost:8080/user/rechargeBalance?type=2';
         }else if(value=="balance3"){
             window.location.href = 'http://localhost:8080/user/rechargeBalance?type=3';
+
         }else if(value=="vip1"){
 
         }else if(value=="vip2"){
