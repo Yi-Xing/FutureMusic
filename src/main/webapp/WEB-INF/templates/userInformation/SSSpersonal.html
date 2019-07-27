@@ -18,7 +18,7 @@
             <a href="javascript:;">
                 <div>
                     <h2 text="">name </h2>
-                    <span class="iconfont icon-iconvip" data-toggle="modal" data-target="#vip"></span> <span style="color:red;" th:text="${information}"></span>
+                    <span class="iconfont icon-iconvip" data-toggle="modal" data-target="#vip"></span> <span style="color:red;" ></span>
                     <div class="modal fade" id="vip" tabindex="-1" role="dialog" aria-labelledby="vip">
                         <div class="modal-dialog" role="document">
                             <div class="modal-content">
@@ -65,8 +65,11 @@
 <span th:if="${page=='like'}">
     <div th:replace="userInformation/SSSlike::SSSlike"></div>
 </span>
+vv
 <span th:if="${page=='follow'}">
-    <div th:replace="userInformation/SSSfollow::SSSfollow"></div>
+
+         <div th:replace="userInformation/SSSfollow::SSSfollow"></div>
+    bb
 </span>
 <span th:if="${page=='fans'}">
     <div th:replace="userInformation/SSSfans::SSSfans"></div>
