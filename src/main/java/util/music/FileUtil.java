@@ -13,7 +13,7 @@ public class FileUtil {
     private static String path = "C:\\first\\FutureMusic\\src\\main\\webapp\\static\\file\\musicLyric\\";
 //private static String path = "C:\\Users\\Lenovo\\Desktop\\";
     public static String readInfoStream(String fileName) throws Exception {
-        String realPath = path + fileName;
+        String realPath =path+fileName;
         File f = new File(realPath);
         InputStream out = new FileInputStream(f);
         if (out == null) {

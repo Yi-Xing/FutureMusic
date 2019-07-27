@@ -13,7 +13,7 @@ $.ajax({
     contentType: "application/x-www-form-urlencoded;charset=UTF-8",
     url: "showMusicDetail",
     type: 'post',
-    // dataType: "json",
+    dataType: "json",
     data: {musicId:musicId},
     success:function (data) {
         console.log(data);
