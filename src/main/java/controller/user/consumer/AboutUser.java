@@ -2,6 +2,7 @@ package controller.user.consumer;
 
 import entity.State;
 import entity.User;
+import org.springframework.ui.Model;
 import util.exception.DataBaseException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -33,10 +34,9 @@ public class AboutUser {
      * @param session 获取当前会话
      */
     @RequestMapping(value = "/showFollowUser")
-    @ResponseBody// 需要更改
-    public List<User> showFollowUser(Integer type, HttpSession session)  {
+    public String showFollowUser(Integer type, Model model, HttpSession session)  {
         logger.trace("showFollowUser方法开始执行");
-        return aboutUserService.showFollowUser(type,session);
+        return aboutUserService.showFollowUser(type,model,session);
     }
 
     /**

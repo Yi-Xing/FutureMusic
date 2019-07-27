@@ -2,6 +2,7 @@ package service.user.consumer;
 
 import entity.*;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.ui.Model;
 import service.user.IdExistence;
 import service.user.SpecialFunctions;
 import util.exception.DataBaseException;
@@ -46,6 +47,41 @@ public class AboutMusicService {
     TransactionService transactionService;
     @Resource(name = "IdExistence")
     IdExistence idExistence;
+    @Resource(name = "SongListCollectMapper")
+    SongListCollectMapper songListCollectMapper;
+
+    /**
+     * 显示用户的喜欢页面 统计喜欢歌单的个数，专辑的个数，音乐的个数，MV的个数
+     */
+    public String showUserLike(HttpSession session, Model model) {
+        User user = specialFunctions.getUser(session);
+        // 得到用户喜欢的所有音乐
+        MusicCollect musicCollect = new MusicCollect();
+        musicCollect.setType(1);
+        musicCollect.setUserId(user.getId());
+        int music = musicCollectMapper.selectListMusicCollect(musicCollect).size();
+        // 得到用户喜欢的所有MV
+        musicCollect.setType(2);
+        int musicVideo = musicCollectMapper.selectListMusicCollect(musicCollect).size();
+        // 得到用户喜欢的所有歌单
+        SongListCollect songListCollect = new SongListCollect();
+        songListCollect.setType(1);
+        songListCollect.setUserId(user.getId());
+        // 查找到指定用户收藏的所有歌单或专辑
+        int songList = songListCollectMapper.selectListSongListCollect(songListCollect).size();
+        // 得到用户喜欢的所有专辑
+        songListCollect.setType(2);
+        int album = songListCollectMapper.selectListSongListCollect(songListCollect).size();
+
+        model.addAttribute("music", music);
+        model.addAttribute("musicVideo", musicVideo);
+        model.addAttribute("songList", songList);
+        model.addAttribute("album", album);
+        model.addAttribute("page", "like");
+        // 得到用户的关注粉丝量及用户信息
+        specialFunctions.getUserInformation(user, model);
+        return "userInformation/personal";
+    }
 
     /**
      * 添加显示用户收藏的所有音乐，显示用户收藏的所有MV

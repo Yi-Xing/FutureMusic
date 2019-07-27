@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>music</title>
+    <!-- 导入 css -->
+    <link rel="stylesheet" type="text/css" th:href="@{/static/css/sysytem/personal.css}">
+
+</head>
+<body>
+<div class="contain">
+    <div class="top">
+        <div class="head">
+            <img th:src="@{${user.headPortrait}}" alt="">
+        </div>
+        <span class="use" th:text="${user.name}">未来音乐用户名</span>
+        <span style="border: 1px solid #000; display: inline-block; width: 20px; height: 20px;"> <i></i></span>
+        <div class="fsgz">
+            <span class="fensi" th:text="${followCount}">粉丝：12人</span>
+            <span class="guanzhu" th:text="${userFollowCount}">关注：15人</span>
+        </div>
+        <span><a href="" class="modified_data">我的邮箱</a></span>
+    </div>
+    <div class="left">
+        <ul>
+            <li class="personal_information"><a th:href="@{/user/userPage}">个人信息</a></li>
+            <li class="fensi"><a th:href="@{/user/showFollowUser(type=2)}">我的粉丝</a></li>
+            <li class="guanzhu"><a href="follow.html" th:href="@{/user/showFollowUser(type=1)}">我的关注</a></li>
+            <li class="gedan"><a href="songList.html" th:href="@{/user/showUserSongList(type=1)}">我的歌单</a></li>
+            <li class="album_of_me"><a href="album.html" th:href="@{/user/showUserSongList(type=2)}">我的专辑</a></li>
+            <li class="like"><a href="like.html" th:href="@{/user/showUserLike}">我喜欢</a></li>
+        </ul>
+    </div>
+    <span th:if="${page=='personalInformation'}">
+        <div  th:replace="userInformation/personalInformation::personalInformation"  ></div>
+    </span>
+    <span th:if="${page=='fans'}">
+        <div  th:replace="userInformation/fans::fans"></div>
+    </span>
+    <span th:if="${page=='follow'}">
+        <div  th:replace="userInformation/follow::follow"></div>
+    </span>
+    <span th:if="${page=='songList'}">
+        <div  th:replace="userInformation/songList::songList"></div>
+    </span>
+    <span th:if="${page=='album'}">
+        <div  th:replace="userInformation/album::album"></div>
+    </span>
+    <span th:if="${page=='like'}">
+        <div  th:replace="userInformation/like::like"></div>
+    </span>
+    <span th:if="${page=='likeSongList'}">
+        <div  th:replace="userInformation/likeSongList::likeSongList"></div>
+    </span>
+    <span th:if="${page=='likeAlbum'}">
+        <div  th:replace="userInformation/likeAlbum::likeAlbum"></div>
+    </span>
+</div>
+
+
+
+</body>
+</html>

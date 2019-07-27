@@ -145,6 +145,9 @@ public class LoginService {
      * @param session 得到当前会话
      */
     private void isUserLogin(HttpSession session, User user) {
+        logger.debug("删除前");
+        logger.debug("sessionMap"+SessionListener.sessionMap);
+        logger.debug("mailboxMap"+SessionListener.mailboxMap);
         // 将会话中的用户信息取出来
         HttpSession originalSession1 = SessionListener.sessionMap.get(user.getMailbox());
         // 判断该用户是否已经登录
@@ -163,6 +166,10 @@ public class LoginService {
         // 将用户的信息存储的session监听器中
         SessionListener.sessionMap.put(user.getMailbox(), session);
         SessionListener.mailboxMap.put(session,user.getMailbox());
+        logger.debug("删除后");
+        logger.debug("sessionMap"+SessionListener.sessionMap);
+        logger.debug("mailboxMap"+SessionListener.mailboxMap);
+
     }
 
 

@@ -54,7 +54,7 @@ public class AboutMailService {
         }
         model.addAttribute("mailMap", mailMap);
         model.addAttribute("page", "sendEmail");
-        return "userInformation/mailPage";
+        return "mail/mailPage";
     }
 
     /**
@@ -78,7 +78,7 @@ public class AboutMailService {
         }
         model.addAttribute("mailMap", mailMap);
         model.addAttribute("page", "receiveEmail");
-        return "userInformation/mailPage";
+        return "mail/mailPage";
     }
 
     /**
@@ -97,7 +97,7 @@ public class AboutMailService {
         }
         model.addAttribute("mailMap", mailMap);
         model.addAttribute("page", "noticeEmail");
-        return "userInformation/mailPage";
+        return "mail/mailPage";
     }
 
     /**

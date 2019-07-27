@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>music</title>
+    <!-- 新 Bootstrap 核心 CSS 文件 -->
+    <link rel="stylesheet" th:href="@{/static/css/bootstrap.css}">
+    <!-- 导入 JQ -->
+    <script th:src="@{/static/js/jquery.js}"></script>
+    <!--导入js-->
+    <script th:src="@{/static/js/userInformation/mail.js}"></script>
+    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+    <script th:src="@{/static/js/bootstrap.min.js}"></script>
+    <!-- 导入 css -->
+    <link rel="stylesheet" href="/static/css/sysytem/toEmail.css" th:href="@{/static/css/sysytem/toEmail.css}">
+    <link rel="stylesheet" href="css/index.css" th:href="@{/static/css/index.css}">
+    <link rel="stylesheet" href="font/iconfont.css" th:href="@{/static/font/iconfont.css}">
+    <link rel="stylesheet" href="//at.alicdn.com/t/font_1195775_v073aw5575.css">
+</head>
+<body>
+<!--头部-->
+<div th:replace="webHead.html"></div>
+<div class="container">
+    <div class="row">
+        <div class="col-lg-offset-2"></div>
+        <div th:if="${page=='sendEmail'}">
+            <div th:replace="userInformation/sendEmail::sendEmailHead"></div>
+        </div>
+        <div th:if="${page=='receiveEmail'}">
+            <div th:replace="userInformation/receiveEmail::receiveEmailHead"></div>
+        </div>
+        <div th:if="${page=='noticeEmail'}">
+            <div th:replace="userInformation/noticeEmail::noticeEmailHead"></div>
+        </div>
+
+
+
+        <div th:if="${page=='sendEmail'}">
+            <div th:replace="userInformation/sendEmail::sendEmail"></div>
+        </div>
+        <div th:if="${page=='receiveEmail'}">
+            <div th:replace="userInformation/receiveEmail::receiveEmail"></div>
+        </div>
+        <div th:if="${page=='noticeEmail'}">
+            <div th:replace="userInformation/noticeEmail::noticeEmail"></div>
+        </div>
+    </div>
+</div>
+<!--尾部-->
+<div th:replace="webFoot.html"></div>
+</body>
+<div th:replace="on-load-js.html"></div>
+</html>

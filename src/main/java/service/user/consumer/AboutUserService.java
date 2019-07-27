@@ -3,6 +3,7 @@ package service.user.consumer;
 import entity.Focus;
 import entity.State;
 import entity.User;
+import org.springframework.ui.Model;
 import service.user.SpecialFunctions;
 import util.exception.DataBaseException;
 import mapper.FocusMapper;
@@ -45,25 +46,29 @@ public class AboutUserService {
      * @param type    获取类型 1表示关注的用户，2表示被关注用户，3表示被访问的记录
      * @param session 获取当前会话
      */
-    public List<User> showFollowUser(Integer type, HttpSession session) {
+    public String showFollowUser(Integer type, Model model, HttpSession session) {
         User user = specialFunctions.getUser(session);
         Focus focus = new Focus();
         List<Integer> idList=new ArrayList<>();
         if (type == 1) {
             // 查找指定用户关注的所有用户
+            model.addAttribute("page","follow");
             focus.setUserType(1);
             focus.setUserId(user.getId());
             List<Focus> list = focusMapper.selectListFocus(focus);
             for(Focus f:list){
                 idList.add(f.getUserFocusId());
             }
+            logger.debug("用户的关注"+list);
         } else if (type == 2) {
+            model.addAttribute("page","fans");
             focus.setUserType(1);
             focus.setUserFocusId(user.getId());
             List<Focus> list = focusMapper.selectListFocus(focus);
             for(Focus f:list){
                 idList.add(f.getUserId());
             }
+            logger.debug("用户的粉丝"+list);
         } else {
             focus.setUserType(2);
             focus.setUserFocusId(user.getId());
@@ -71,8 +76,16 @@ public class AboutUserService {
             for(Focus f:list){
                 idList.add(f.getUserFocusId());
             }
+            logger.debug("用户的访客"+list);
         }
-         return userMapper.listIdSelectListUser(idList);
+        if(idList.size()==0){
+            idList.add(0);
+        }
+        // 得到用户的关注粉丝量及用户信息
+        specialFunctions.getUserInformation(user, model);
+        model.addAttribute("users",userMapper.listIdSelectListUser(idList));
+        System.out.println(userMapper.listIdSelectListUser(idList));
+        return "userInformation/personal";
     }
 
     /**

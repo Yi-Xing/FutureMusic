@@ -1,14 +1,18 @@
 package service.user;
 
 import com.sun.mail.util.MailSSLSocketFactory;
+import entity.Focus;
 import entity.State;
 import entity.User;
+import mapper.FocusMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
 import sun.misc.BASE64Encoder;
 import util.ConstantUtil;
 
+import javax.annotation.Resource;
 import javax.mail.*;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
@@ -32,6 +36,9 @@ import java.util.Random;
 public class SpecialFunctions {
     private static final Logger logger = LoggerFactory.getLogger(SpecialFunctions.class);
 
+
+    @Resource(name = "FocusMapper")
+    FocusMapper focusMapper;
     /**
      * 返回会话上的用户信息
      */
@@ -46,6 +53,32 @@ public class SpecialFunctions {
         return (String) session.getAttribute("userMailbox");
     }
 
+
+    /**
+     * 将用户信息和用户的关注量粉丝量加入Model中
+     */
+    public void getUserInformation(User user,Model model){
+        // 用于查找用户关注的人数
+        Focus userFollow = new Focus();
+        userFollow.setUserId(user.getId());
+        //查找关注
+        userFollow.setUserType(1);
+        // 去数据库查找用户关注的人数
+        int userFollowCount = focusMapper.selectUserFocusCount(userFollow);
+        // 用于查找关注用户的人数
+        Focus followUser = new Focus();
+        followUser.setUserFocusId(user.getId());
+        //查找关注
+        userFollow.setUserType(1);
+        // 去数据库查找关注用户的人数
+        int followUserCount = focusMapper.selectUserFocusCount(followUser);
+        logger.debug("用户"+user);
+        logger.debug("用户的粉丝量"+userFollowCount);
+        logger.debug("用户的关注量"+followUserCount);
+        model.addAttribute("user", user);
+        model.addAttribute("followCount",userFollowCount );
+        model.addAttribute("userFollowCount", followUserCount);
+    }
     /**
      * 给指定邮箱发送验证码，发送验证码
      * 用于注册，找回密码

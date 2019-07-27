@@ -1,6 +1,7 @@
 package controller.user.consumer;
 
 import entity.*;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
 import util.exception.DataBaseException;
 import org.slf4j.Logger;
@@ -25,6 +26,15 @@ public class AboutMusic {
     @Resource(name = "AboutMusicService")
     AboutMusicService aboutMusicService;
     private static final Logger logger = LoggerFactory.getLogger(AboutMusic.class);
+
+    /**
+     *  显示用户的喜欢页面 统计喜欢歌单的个数，专辑的个数，音乐的个数，MV的个数
+     */
+    @RequestMapping(value = "/showUserLike")
+    public String showUserLike(HttpSession session, Model model){
+        return aboutMusicService.showUserLike(session,model);
+    }
+
 
     /**
      * 显示用户收藏的所有音乐，显示用户收藏的所有MV  (需要更改)
