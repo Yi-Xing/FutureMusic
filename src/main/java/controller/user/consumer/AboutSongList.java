@@ -34,71 +34,70 @@ public class AboutSongList {
 
     /**
      * 显示用户创建的所有歌单或专辑
-     * @param  type 1是歌单2是专辑
+     *
+     * @param type 1是歌单2是专辑
      */
     @RequestMapping(value = "/showUserSongList")
     @ResponseBody
-    public List<SongList> showUserSongList(Integer type, HttpSession session){
-        return aboutSongListService.showUserSongList(type,session);
+    public List<SongList> showUserSongList(Integer type, HttpSession session) {
+        return aboutSongListService.showUserSongList(type, session);
     }
+
     /**
      * 显示用户收藏的所有歌单或专辑
-     * @param  type 1是歌单2是专辑
+     *
+     * @param type 1是歌单2是专辑
      */
     @RequestMapping(value = "/showUserCollectionSongList")
     @ResponseBody
-    public List<SongListCollect> showUserCollectionSongList(Integer type, HttpSession session){
-        return aboutSongListService.showUserCollectionSongList(type,session);
+    public List<SongListCollect> showUserCollectionSongList(Integer type, HttpSession session) {
+        return aboutSongListService.showUserCollectionSongList(type, session);
     }
 
 
+    //--------------------------------------------------------------------------
 
 
     /**
      * 创建歌单或专辑
      *
-     * @param songList 获取传来的歌单信息
-     *                 name           获取歌单或专辑的标题
-     *                 picture        获取歌单或专辑的封面的图片路径
-     *                 introduction   获取歌单或专辑的介绍
-     *                 classification 获取分类
-     *                 type           获取类型1是歌单2是专辑
-     * @param session  获取当前会话
+     * @param songList  获取传来的歌单信息
+     *                  name           获取歌单或专辑的标题
+     *                  introduction   获取歌单或专辑的介绍
+     *                  type           获取类型1是歌单2是专辑
+     * @param languages 分类的语种
+     * @param region    分类的地区
+     * @param gender    分类的性别
+     * @param type      分类的类型
+     * @param session   获取当前会话
      */
     @RequestMapping(value = "/createMusicSongList")
     @ResponseBody
-    public State createMusicSongList(@RequestBody SongList songList, HttpServletRequest request, HttpSession session) throws IOException, DataBaseException {
+    public State createMusicSongList(@RequestBody SongList songList, String languages, String region, String gender, String type, HttpServletRequest request, HttpSession session) throws DataBaseException {
         logger.trace("createMusicSongList方法开始执行");
-        return aboutSongListService.createMusicSongList(songList, request, session);
+        return aboutSongListService.createMusicSongList(songList, languages, region, gender, type, request, session);
     }
 
     /**
      * 编辑歌单或专辑
      *
-     * @param songList 获取传来的歌单信息
-     *                 name           获取歌单或专辑的标题
-     *                 introduction   获取歌单或专辑的介绍
-     *                 classification 获取分类
-     *                 type           获取类型1是歌单2是专辑
+     * @param songList  获取传来的歌单信息
+     *                  id           获取歌单或专辑的id
+     *                  name           获取歌单或专辑的标题
+     *                  introduction   获取歌单或专辑的介绍
+     *                  type           获取类型1是歌单2是专辑
+     * @param languages 分类的语种
+     * @param region    分类的地区
+     * @param gender    分类的性别
+     * @param type      分类的类型
      */
     @RequestMapping(value = "/editMusicSongList")
     @ResponseBody
-    public State editMusicSongList(@RequestBody SongList songList) throws DataBaseException {
+    public State editMusicSongList(@RequestBody SongList songList, String languages, String region, String gender, String type, HttpServletRequest request) throws DataBaseException {
         logger.trace("editMusicSongList方法开始执行");
-        return aboutSongListService.editMusicSongList(songList);
+        return aboutSongListService.editMusicSongList(songList, languages, region, gender, type, request);
     }
 
-    /**
-     * 编辑歌单或专辑的封面图片
-     *
-     * @param id 需要更改的歌单或专辑的id
-     */
-    @RequestMapping(value = "/editMusicSongListPicture")
-    @ResponseBody
-    public State editMusicSongListPicture(Integer id, HttpServletRequest request) throws IOException, DataBaseException {
-        logger.trace("editMusicSongListPicture方法开始执行");
-        return aboutSongListService.editMusicSongListPicture(id, request);
-    }
 
     /**
      * 删除歌单或专辑，ajax  还需删除图片
@@ -111,13 +110,14 @@ public class AboutSongList {
         logger.trace("deleteMusicSongList方法开始执行");
         return aboutSongListService.deleteMusicSongList(id);
     }
+    //--------------------------------------------------------------------------
 
     /**
      * 收藏或取消收藏歌单或专辑,ajax
      *
-     * @param id               获取收藏歌单或专辑的id
-     * @param type             获取类型1是歌单2是专辑
-     * @param session          获取当前会话
+     * @param id      获取收藏歌单或专辑的id
+     * @param type    获取类型1是歌单2是专辑
+     * @param session 获取当前会话
      */
     @RequestMapping(value = "/collectionSongList")
     @ResponseBody
@@ -137,8 +137,8 @@ public class AboutSongList {
      */
     @RequestMapping(value = "/SongListAddMusic")
     @ResponseBody
-    public State addMusicSongList(@RequestBody MusicSongList musicSongList,HttpSession session) throws DataBaseException {
-        return aboutSongListService.addMusicSongList(musicSongList,session);
+    public State addMusicSongList(@RequestBody MusicSongList musicSongList, HttpSession session) throws DataBaseException {
+        return aboutSongListService.addMusicSongList(musicSongList, session);
     }
 
 }

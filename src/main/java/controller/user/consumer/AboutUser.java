@@ -26,13 +26,14 @@ public class AboutUser {
     private AboutUserService aboutUserService;
     private static final Logger logger = LoggerFactory.getLogger(AboutUser.class);
 
+
     /**
      * 查找指定用户关注的所有用户，或被关注所有用户，被访问的记录
      * @param type    获取类型 1表示关注的用户，2表示被关注用户，3表示被访问的记录
      * @param session 获取当前会话
      */
     @RequestMapping(value = "/showFollowUser")
-    @ResponseBody
+    @ResponseBody// 需要更改
     public List<User> showFollowUser(Integer type, HttpSession session)  {
         logger.trace("showFollowUser方法开始执行");
         return aboutUserService.showFollowUser(type,session);

@@ -1,6 +1,8 @@
 package controller.music.exhibition;
 
 import entity.Activity;
+import entity.CommentExt;
+import entity.MusicVideoExt;
 import entity.SongListExt;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -45,11 +47,12 @@ public class Information {
      * @return String 返回包含详细信息的页面
      */
     @RequestMapping(value = "/musicVideoInformation")
-    @ResponseBody
-    public  Map<String,Object> showMusicVideoInformation(HttpServletRequest request){
+    public  String showMusicVideoInformation(HttpServletRequest request,Model model){
         String musicVideoId = request.getParameter("musicVideoId");
-        Map<String,Object> musicVideoInformation = musicVideoService.getMusicVideoInformation(Integer.parseInt(musicVideoId));
-        return musicVideoInformation;
+        Map<MusicVideoExt,List<CommentExt>> musicVideoInformation = musicVideoService.getMusicVideoInformation(Integer.parseInt(musicVideoId));
+        model.addAttribute("musicVideoInformation",musicVideoInformation);
+        System.out.println(musicVideoInformation);
+        return "mvPlayer";
     }
 
     /**
@@ -63,8 +66,14 @@ public class Information {
     @RequestMapping("/singerInformation")
     public String singerInformation(HttpServletRequest request,Model model){
         int singerId = Integer.parseInt(request.getParameter("singerId"));
+<<<<<<< HEAD
         singerService.searchSingerInformation(singerId,model);
         return "artist";
+=======
+        Map<String,Object> singerInformation = singerService.searchSingerInformation(singerId);
+        model.addAttribute("information",singerInformation);
+        return "artists";
+>>>>>>> 9a2b357b915d0975a9b767e03ab81f5ea6dd30ce
     }
     /**
      * 显示歌单的详细信息
@@ -76,6 +85,8 @@ public class Information {
         int songListId = Integer.parseInt(request.getParameter("songListId"));
         SongListExt songListExt = songListService.songListDetail(songListId);
         model.addAttribute("songList",songListExt);
-        return "songListInfo";
+        System.out.println(songListExt);
+        System.out.println("==================");
+        return "musicList";
     }
 }

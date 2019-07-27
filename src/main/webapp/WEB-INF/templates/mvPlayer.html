@@ -9,20 +9,22 @@
 <!--头部-->
 <div th:replace="webHead::html"></div>
 <!--MV-->
-<div class="container-fluid color_2" style="position: relative">
+<div class="container-fluid color_2" style="position: relative" th:each="musicVideoInformation:${musicVideoInformation}">
     <div class="music_video">
         <div class="text-center">
-            <h2>MV</h2>
+            <h2 th:text="${musicVideoInformation.key.musicVideoName}">MV</h2>
         </div>
         <div class="video_container">
             <div class="video">
-                <video src="../../static/video/火箭少女101-卡路里(《西虹市首富》电影插曲).mp4"
-                       th:src="@{/static/video/火箭少女101-卡路里(《西虹市首富》电影插曲).mp4}" controls></video>
+                <video src="../../static/video/火箭少女101-卡路里(《西虹市首富》电影插曲).mp4" th:src="@{${musicVideoInformation.key.path}}"
+                     controls></video>
             </div>
         </div>
     </div>
 </div>
+<span th:if="${page=='12345678485'}">
 <div class="container-fluid color_2" style="position: relative">
+
     <h2 style="margin-left: 100px">我喜欢的MV</h2>
     <ul style="width: 100%">
         <li>
@@ -41,7 +43,7 @@
         </li>
     </ul>
 </div>
-
+</span>
 <!--评论-->
 <div th:replace="webComment.html"></div>
 

@@ -107,6 +107,7 @@ public class MusicVideoService {
         User singer = userMapper.selectUser(user).get(0);
         musicVideoExt.setSingerId(musicVideo.getSingerId());
         musicVideoExt.setSingerName(singer.getName());
+        musicVideoExt.setPath(musicVideo.getPath());
         //播放量
         Play play = new Play();
         play.setMusicId(musicVideoId);
@@ -195,24 +196,20 @@ public class MusicVideoService {
      * @param musicVideoId MV的id
      * @return List<Object> MV的详细信息
      */
-    public Map<String,Object> getMusicVideoInformation(int musicVideoId){
-        Map<String,Object> musicVideoInformation = new HashMap<>();
+    public Map<MusicVideoExt,List<CommentExt>> getMusicVideoInformation(int musicVideoId){
+        Map<MusicVideoExt,List<CommentExt>> musicVideoInformation = new HashMap<>();
         MusicVideo tempMusicVideo = new MusicVideo();
         tempMusicVideo.setId(musicVideoId);
         List<MusicVideo> musicVideoList = musicVideoMapper.selectListMusicVideo(tempMusicVideo);
-        System.out.println(2);
        if(musicVideoList==null||musicVideoList.size()==0){
            return null;
        }
-        System.out.println(3);
        MusicVideo musicVideo = musicVideoList.get(0);
         MusicVideoExt musicVideoExt = transformMusicVideoExt(musicVideo.getId());
-        musicVideoInformation.put("musicVideo",musicVideoExt);
+//        musicVideoInformation.put("musicVideo",musicVideoExt);
         List<CommentExt> commentExts = commentService.searchCommentByMusicId(musicVideoId,2);
-        System.out.println(4);
         //评论
-        musicVideoInformation.put("comment",commentExts);
-        System.out.println(5);
+        musicVideoInformation.put(musicVideoExt,commentExts);
         System.out.println(musicVideoInformation);
         return musicVideoInformation;
     }

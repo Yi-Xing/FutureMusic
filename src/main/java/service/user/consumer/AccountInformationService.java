@@ -54,6 +54,11 @@ public class AccountInformationService {
          user = specialFunctions.getUser(session);
         }else{
             session.removeAttribute("otherUser");
+            if(user.getSecret()==1){
+                model.addAttribute("user", user);
+                model.addAttribute("close",1);
+                return "personal";
+            }
         }
         // 用于查找用户关注的人数
         Focus userFollow = new Focus();
@@ -120,7 +125,7 @@ public class AccountInformationService {
      */
     public String setUpHeadPortrait(HttpServletRequest request, HttpSession session, Model model) throws IOException, DataBaseException {
         User user = specialFunctions.getUser(session);
-        String path = fileUpload.userHeadPortrait(null);
+        String path = fileUpload.userHeadPortrait(fileUpload.getMultipartFile(request,""));
         logger.debug("头像路径"+path);
         logger.debug("用户信息" + user);
         if (path != null) {

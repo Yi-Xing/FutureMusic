@@ -51,6 +51,7 @@ public class CommentService {
      * 主评论下的所有回复
      */
     public CommentExt transform(Comment c){
+        System.out.println(c);
         CommentExt commentExt = new CommentExt();
         commentExt.setCommentId(c.getId());
         commentExt.setContent(c.getContent());
@@ -76,6 +77,7 @@ public class CommentService {
 //            commentExt.setReplyPhoto(user2.getHeadPortrait());
 //        }
 //        commentExt.setAllSubCommentExtList(getAllReply(c.getId(),new ArrayList<CommentExt>()));
+        System.out.println(commentExt);
         return commentExt;
     }
     /**

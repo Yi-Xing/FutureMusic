@@ -1,5 +1,6 @@
 package service.user.consumer;
 
+import com.mysql.cj.Session;
 import entity.Mail;
 import entity.State;
 import entity.User;
@@ -89,7 +90,7 @@ public class AboutMailService {
         List<Mail> list = mailMapper.selectListMail(mail);
         // 使用有存储顺序的map集合
         Map<Mail, User> mailMap = new LinkedHashMap<>();
-        User user=idExistence.isUserId(1);
+        User user = idExistence.isUserId(1);
         for (Mail m : list) {
             // 一个邮箱对应一个接收者
             mailMap.put(m, user);
@@ -169,80 +170,28 @@ public class AboutMailService {
     }
 
 
-    //下面代码无效
-
-
     /**
-     * 查看给那些用户发送过邮件
+     * 客服或管理员给所有成员发消息
      */
-    public List<User> showSendMailUser(HttpSession session) {
-        // 用户信息
+    public State sendWhole(HttpSession session,String content) throws DataBaseException {
+        State state = new State();
+        // 发送邮件的用户信息
         User sendUser = specialFunctions.getUser(session);
-        Mail mail = new Mail();
-        mail.setSenderId(sendUser.getId());
-        // 查找到该用户发送过的所有邮箱
-        List<Mail> list = mailMapper.selectListMail(mail);
-        // 用于存储接收者的用户信息
-        List<User> userList = new ArrayList<>();
-        User user = new User();
-        for (Mail m : list) {
-            // 得到接收者的id
-            user.setId(m.getRecipientId());
-            // 将查找到接收者的用户添加到集合中
-            userList.add(userMapper.selectUser(user).get(0));
+        // 判断有没有权限
+        if(sendUser.getLevel()>2){
+            // 判断内容是否合法
+            state = validationInformation.isContent(content);
+            if (state.getState() == 1) {
+                Mail mail = new Mail(1,content,new Date(),12);
+                if(mailMapper.insertMail(mail)<1){
+                    // 如果失败是数据库错误
+                    logger.error("邮箱：" + sendUser.getMailbox() + "发送邮件时，数据库出错");
+                    throw new DataBaseException("邮箱：" + sendUser.getMailbox() + "发送邮件时，数据库出错");
+                }
+            }
+        }else{
+            state.setInformation("没有权限");
         }
-        return userList;
-    }
-
-    /**
-     * 查看给指定用户发过那些邮件
-     *
-     * @param id 接收者的id
-     */
-    public List<Mail> showSendMail(Integer id, HttpSession session) {
-        // 用户信息
-        User user = specialFunctions.getUser(session);
-        Mail mail = new Mail();
-        mail.setSenderId(user.getId());
-        mail.setRecipientId(id);
-        // 查找到该用户给指定用户发送过的所有邮箱
-        return mailMapper.selectListMail(mail);
-    }
-
-    /**
-     * 查看收到过那些用户发送过邮件
-     */
-    public List<User> showReceiveMailUser(HttpSession session) {
-        // 用户信息
-        User sendUser = specialFunctions.getUser(session);
-        Mail mail = new Mail();
-        mail.setRecipientId(sendUser.getId());
-        // 查找到该用户接收过的所有邮箱
-        List<Mail> list = mailMapper.selectListMail(mail);
-        // 用于存储发送者的用户信息
-        List<User> userList = new ArrayList<>();
-        User user = new User();
-        for (Mail m : list) {
-            // 得到发送者的id
-            user.setId(m.getSenderId());
-            // 将查找到发送者的用户添加到集合中
-            userList.add(userMapper.selectUser(user).get(0));
-        }
-        return userList;
-    }
-
-    /**
-     * 查看收到过指定用户的那些邮件
-     *
-     * @param id 指定 发送者的id
-     */
-    public List<Mail> showReceiveMail(Integer id, HttpSession session) {
-        // 用户信息
-        User user = specialFunctions.getUser(session);
-        Mail mail = new Mail();
-        mail.setSenderId(id);
-        mail.setRecipientId(user.getId());
-        // 查找到指定用户给该用户发送过的所有邮箱
-        return mailMapper.selectListMail(mail);
+        return state;
     }
 }

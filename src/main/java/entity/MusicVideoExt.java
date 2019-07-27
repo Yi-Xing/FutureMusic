@@ -41,6 +41,20 @@ public class MusicVideoExt {
      */
     private int available=0;
 
+    /**
+     *
+     * MV路径
+     */
+    private String path;
+
+    public String getPath() {
+        return path;
+    }
+
+    public void setPath(String path) {
+        this.path = path;
+    }
+
     public MusicVideoExt() {
     }
 

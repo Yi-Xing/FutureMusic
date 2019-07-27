@@ -48,11 +48,11 @@
         <div class="col-lg-10" id="artist_list">
             <div class="artistS">
                 <ul>
-                    <li>
+                    <li th:each="list:${page.list}">
                         <div class="artist">
                             <div class="artist_top">
-                                <a href="javascript:;" class="artist_left pull-left">
-                                    <img src="img/头像_邓紫棋.jpg" th:src="@{/static/img/头像_邓紫棋.jpg}" alt="">
+                                <a th:href="@{/singerInformation(singerId=${list.singerId})}" href="javascript:;" class="artist_left pull-left">
+                                    <img th:src="@{${list.portrait}}" src="img/头像_邓紫棋.jpg" alt="">
                                 </a>
                                 <div class="artist_right pull-right">
                                     <h5>音乐人作品</h5>
@@ -63,7 +63,7 @@
                             </div>
                             <div class="artist_bottom">
                                 <a href="javascript:;">
-                                    <h4>artistname</h4>
+                                    <h4 th:text="list.singerName">artistname</h4>
                                   </a>
                             </div>
                         </div>
