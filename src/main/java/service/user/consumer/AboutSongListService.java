@@ -185,7 +185,7 @@ public class AboutSongListService {
      *
      * @param songListId       歌单或专辑的iD
      */
-    public String playMusicSongList(String songListId, Model model,HttpSession session) {
+    public String playMusicSongList(String songListId,String musicId, Model model,HttpSession session) {
         // 先判断音乐id和专辑id是否合法
         if (validationInformation.isInt(songListId)) {
                 // 查找指定专辑或歌单
@@ -209,6 +209,8 @@ public class AboutSongListService {
                 model.addAttribute("musicList",musicList);
                 // 当前歌单数据
                 model.addAttribute("songList",songList);
+                // 即将播放的音乐 musicId
+                model.addAttribute("musicId",musicId);
             } else {
                 return "index";
             }

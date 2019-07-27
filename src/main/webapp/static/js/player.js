@@ -157,10 +157,10 @@ console.log(musicUrl);
 
 $.ajax({
     contentType: "application/x-www-form-urlencoded;charset=UTF-8",
-    url: "showMusicDetail",
+    url: "playMusic",
     type: 'post',
     // dataType: "json",
-    data: {musicId: musicId},
+    data: {id: musicId},
     success: function (data) {
         console.log(data);
         console.log(data.music.lyricPath);

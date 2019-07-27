@@ -11,7 +11,7 @@
     <!--//左侧-->
     <div class="menu" id="menu">
         <!--用户信息-->
-        <div class="user">
+        <div class="user" id="musicId" th:data-value="${musicId}">
             <div class="user_img">
                 <a href="javascript:;">
                     <img th:src="@{${songList.picture}}" alt="">
@@ -56,9 +56,9 @@
                     <th>歌名</th>
                 </tr>
                 </thead>
-                <tbody th:each="musicList:${musicList}">
-                <tr class="music_list" th:data-id="${musicList.id}">
-                    <th scope="row" >
+                <tbody>
+                <tr class="music_list"  th:each="musicList:${musicList}" >
+                    <th scope="row" th:data-id="${musicList.id}">
                         <span class="iconfont icon-music" ></span>
                     </th>
                     <td th:text="${musicList.name}">凌晨三点</td>
@@ -179,5 +179,5 @@
 </body>
 <div th:replace="on-load-js::on-load-js"></div>
 <script src="js/audio.js" th:src="@{/static/js/audio.js}"></script>
-<script src="js/player.js" th:src="@{/static/js/player.js}"></script>
+<script src="js/player.js" th:src="@{/static/js/userInformation/musicPlayer.js}"></script>
 </html>

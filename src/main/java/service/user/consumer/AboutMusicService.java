@@ -3,6 +3,8 @@ package service.user.consumer;
 import entity.*;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
+import org.springframework.web.context.ContextLoader;
+import org.springframework.web.context.WebApplicationContext;
 import service.user.IdExistence;
 import service.user.SpecialFunctions;
 import util.exception.DataBaseException;
@@ -12,13 +14,18 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import javax.servlet.ServletConfig;
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpSession;
 import java.io.BufferedInputStream;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+
+import static org.apache.logging.log4j.web.WebLoggerContextUtils.getServletContext;
 
 /**
  * 收藏音乐，收藏MV，添加历史播放记录，评论，点赞，用户播放过的音乐
@@ -91,7 +98,7 @@ public class AboutMusicService {
      *
      * @param type 1表示查找音乐收藏 2表示查找MV收藏
      */
-    public List<MusicCollect> showUserCollectionMusic(Integer type, HttpSession session) {
+    public List <MusicCollect> showUserCollectionMusic(Integer type, HttpSession session) {
         //得到会话上的用户
         User user = specialFunctions.getUser(session);
         MusicCollect musicCollect = new MusicCollect();
@@ -111,9 +118,9 @@ public class AboutMusicService {
         Order order = new Order();
         order.setType(type);
         order.setUserId(user.getId());
-        List<Order> list = orderMapper.selectListOrder(order);
+        List <Order> list = orderMapper.selectListOrder(order);
         if (list.size() != 0) {
-            List<Integer> idList = new ArrayList<>();
+            List <Integer> idList = new ArrayList <>();
             // 得到所有音乐或MV的id
             for (Order o : list) {
                 idList.add(o.getMusicId());
@@ -278,16 +285,16 @@ public class AboutMusicService {
      * @param type    1表示音乐 2表示MV
      * @param session 获取当前会话
      */
-    public List<?> showMusicPlay(Integer type, HttpSession session) {
+    public List <?> showMusicPlay(Integer type, HttpSession session) {
         //得到会话上的用户
         User user = specialFunctions.getUser(session);
         Play play = new Play();
         play.setType(type);
         play.setUserId(user.getId());
         // 查找用户播放过的音乐或MV
-        List<Play> list = playMapper.selectListPlay(play);
+        List <Play> list = playMapper.selectListPlay(play);
         // 用来存放音乐或MV的id
-        List<Integer> idList = new ArrayList<>();
+        List <Integer> idList = new ArrayList <>();
         for (Play p : list) {
             idList.add(p.getMusicId());
         }
@@ -408,7 +415,7 @@ public class AboutMusicService {
         }
         Comment comment = new Comment();
         comment.setId(Integer.parseInt(id));
-        List<Comment> commentList = commentMapper.selectListComment(comment);
+        List <Comment> commentList = commentMapper.selectListComment(comment);
         // 得带查找到的评论
         comment = commentList.get(0);
         if (isFabulous) {
@@ -467,27 +474,24 @@ public class AboutMusicService {
             music.setId(0);
         }
         // 使用io流读取指定音乐的歌词
-        InputStream inputStream = this.getClass().getClassLoader().getResourceAsStream(music.getLyricPath());
-        if (inputStream != null) {
+        try (InputStream inputStream = new FileInputStream(ContextLoader.getCurrentWebApplicationContext().getServletContext().getRealPath(music.getLyricPath()));
+        ) {
+            System.out.println("我只写了");
             // 先使用反射获取项目文件的路径，然后获得缓冲流
             BufferedInputStream bufferedInputStream = new BufferedInputStream(inputStream);
             byte[] bytes = new byte[1024];
             // 一次读取的长度
             int length;
             StringBuilder lyric = new StringBuilder();
-            try {
-                while ((length = bufferedInputStream.read(bytes)) != -1) {
-                    lyric.append(new String(bytes, 0, length));
-                }
-                music.setLyricPath(new String(lyric));
-            } catch (IOException e) {
-                music.setId(3);
-                e.printStackTrace();
+            while ((length = bufferedInputStream.read(bytes)) != -1) {
+                lyric.append(new String(bytes, 0, length));
             }
-        } else {
+            music.setLyricPath(new String(lyric));
+        } catch (IOException e) {
             music.setId(3);
+            e.printStackTrace();
         }
-        logger.debug("音乐的信息为："+music);
+        logger.debug("音乐的信息为：" + music);
         return music;
     }
 

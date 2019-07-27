@@ -70,8 +70,8 @@ public class AboutSongList {
      * @param musicId 音乐的id
      */
     @RequestMapping(value = "/playMusicSongList")
-    public String playMusicSongList(String id, Model model,HttpSession session) {
-        return aboutSongListService.playMusicSongList(id, model,session);
+    public String playMusicSongList(String id,String musicId, Model model,HttpSession session) {
+        return aboutSongListService.playMusicSongList(id,musicId, model,session);
     }
 
 
