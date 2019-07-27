@@ -12,25 +12,25 @@
 <div th:replace="webHead::html"></div>
 
 <!--歌单主页-->
-<div class="container-fluid  color_2">
+<div class="container-fluid  color_2" th:each="songListInformation:${songListInformation}">
     <div class="row inner">
         <h1>歌单</h1>
         <div class="container-fluid">
             <div class="personal_information">
                 <a href="javascript:;" class="pull-left">
-                    <img src="img/头像_邓紫棋.jpg" th:src="@{/static/img/头像_邓紫棋.jpg}" alt="">
+                    <img src="img/头像_邓紫棋.jpg" th:src="@{${songListInformation.key.songListPhoto}}" alt="">
                 </a>
                 <div class="pull-left name">
                     <a href="javascript:;">
-                        <h1>
+                        <h1 th:text="${songListInformation.key.userId}">
                             name
                         </h1>
                         <h5>
                             <i class="iconfont icon-people1"></i>
-                            作者
+                            <b th:text="${songListInformation.key.usersName}"></b>
                         </h5>
-                        <h5>播放量：</h5>
-                        <h5>收藏量：</h5>
+                        <h5 th:text="${songListInformation.key.playCount}">播放量：</h5>
+                        <h5 th:text="${songListInformation.key.collectCount}">收藏量：</h5>
                     </a>
                 </div>
             </div>
@@ -44,9 +44,9 @@
                         <th>更多</th>
                     </tr>
                     </thead>
-                    <tbody>
+                    <tbody  th:each="songList:${songListInformation.key.musicExtList}">
                     <tr class="music_list">
-                        <td>NAME</td>
+                        <td th:text="${songList.}">NAME</td>
                         <td>artistName</td>
                         <td>album</td>
                         <th class="dropdown">

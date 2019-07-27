@@ -66,7 +66,7 @@ public class Information {
         int singerId = Integer.parseInt(request.getParameter("singerId"));
         Map<String,Object> singerInformation = singerService.searchSingerInformation(singerId);
         model.addAttribute("information",singerInformation);
-        return "singerInfo";
+        return "artists";
     }
     /**
      * 显示歌单的详细信息
@@ -78,6 +78,8 @@ public class Information {
         int songListId = Integer.parseInt(request.getParameter("songListId"));
         SongListExt songListExt = songListService.songListDetail(songListId);
         model.addAttribute("songList",songListExt);
-        return "songListInfo";
+        System.out.println(songListExt);
+        System.out.println("==================");
+        return "musicList";
     }
 }
