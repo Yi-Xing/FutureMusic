@@ -1,5 +1,5 @@
 body {
-    background-image: url("../img/background.jpeg");
+    background-image: url("../img/background.jpg");
     background-repeat: no-repeat;
     background-size: cover;
     min-width: 400px;
@@ -61,7 +61,7 @@ body::-webkit-scrollbar {
     left: 0;
     top: 0;
     background: inherit;
-    filter: blur(20px);
+    filter: blur(8px);
     z-index: 2;
 }
 /*真正的内容div*/
