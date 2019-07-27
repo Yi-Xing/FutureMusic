@@ -499,33 +499,33 @@ public class AboutMusicService {
     /**
      * 播放MV判断用户是否购买该MV
      *
-     * @param id MV的id
+     * @param id MV的id id为0表示没版权  为1表示没有VIP 为2表示没购买
      */
     public MusicVideo playMusicVideo(Integer id, HttpSession session) {
         //得到会话上的用户
         User user = specialFunctions.getUser(session);
         // 查找指定的音乐信息
         MusicVideo musicVideo = idExistence.isMusicVideoId(id);
-        // 得到音乐的等级
+        // 得到MV的等级
         int level = musicVideo.getLevel();
-        // 先判断该音乐有没有版权 0表示有版权
+        // 先判断该MV有没有版权 0表示有版权
         if (musicVideo.getAvailable() == 0) {
-            if (0 < level && level < 4) {
+            if (level == 2) {
                 // 判断用户是不是VIP
-                if (user.getVipDate().getTime() >= System.currentTimeMillis()) {
-                    return musicVideo;
+                if (user.getVipDate().getTime() < System.currentTimeMillis()) {
+                    musicVideo.setId(1);
                 }
-            } else if (level == 4) {
+            } else if (level == 3) {
                 // 判断用户有没有购买，不为null表示购买
-                if (transactionService.isPurchaseMusic(id, 2, specialFunctions.getUser(session)) != null) {
-                    return musicVideo;
+                if (transactionService.isPurchaseMusic(id, 2, specialFunctions.getUser(session)) == null) {
+                    musicVideo.setId(2);
                 }
-            } else {
-                // 等级为0 ，表示免费
-                return musicVideo;
             }
+            // 等级为1 ，表示免费
+        } else {
+            musicVideo.setId(0);
         }
-        return null;
+        return musicVideo;
 
     }
 }
