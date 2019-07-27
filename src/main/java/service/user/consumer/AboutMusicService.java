@@ -447,47 +447,49 @@ public class AboutMusicService {
         User user = specialFunctions.getUser(session);
         // 查找指定的音乐信息
         Music music = idExistence.isMusicId(id);
-        // 得到音乐的等级
-        int level = music.getLevel();
-        // 先判断该音乐有没有版权 0表示有版权
-        if (music.getAvailable() == 0) {
-            if (level == 2) {
-                // 判断用户是不是VIP
-                if (user.getVipDate().getTime() < System.currentTimeMillis()) {
-                    music.setId(1);
+        if (music != null) {
+            // 得到音乐的等级
+            int level = music.getLevel();
+            // 先判断该音乐有没有版权 0表示有版权
+            if (music.getAvailable() == 0) {
+                if (level == 2) {
+                    // 判断用户是不是VIP
+                    if (user.getVipDate().getTime() < System.currentTimeMillis()) {
+                        music.setId(1);
+                    }
+                } else if (level == 3) {
+                    // 判断用户有没有购买，不为null表示购买
+                    if (transactionService.isPurchaseMusic(id, 1, specialFunctions.getUser(session)) == null) {
+                        music.setId(2);
+                    }
                 }
-            } else if (level == 3) {
-                // 判断用户有没有购买，不为null表示购买
-                if (transactionService.isPurchaseMusic(id, 1, specialFunctions.getUser(session)) == null) {
-                    music.setId(2);
-                }
+                // 等级为1 ，表示免费
+            } else {
+                music.setId(0);
             }
-            // 等级为1 ，表示免费
-        } else {
-            music.setId(0);
-        }
-        // 使用io流读取指定音乐的歌词
-        InputStream inputStream = this.getClass().getClassLoader().getResourceAsStream(music.getLyricPath());
-        if (inputStream != null) {
-            // 先使用反射获取项目文件的路径，然后获得缓冲流
-            BufferedInputStream bufferedInputStream = new BufferedInputStream(inputStream);
-            byte[] bytes = new byte[1024];
-            // 一次读取的长度
-            int length;
-            StringBuilder lyric = new StringBuilder();
-            try {
-                while ((length = bufferedInputStream.read(bytes)) != -1) {
-                    lyric.append(new String(bytes, 0, length));
+            // 使用io流读取指定音乐的歌词
+            InputStream inputStream = this.getClass().getClassLoader().getResourceAsStream(music.getLyricPath());
+            if (inputStream != null) {
+                // 先使用反射获取项目文件的路径，然后获得缓冲流
+                BufferedInputStream bufferedInputStream = new BufferedInputStream(inputStream);
+                byte[] bytes = new byte[1024];
+                // 一次读取的长度
+                int length;
+                StringBuilder lyric = new StringBuilder();
+                try {
+                    while ((length = bufferedInputStream.read(bytes)) != -1) {
+                        lyric.append(new String(bytes, 0, length));
+                    }
+                    music.setLyricPath(new String(lyric));
+                } catch (IOException e) {
+                    music.setId(3);
+                    e.printStackTrace();
                 }
-                music.setLyricPath(new String(lyric));
-            } catch (IOException e) {
+            } else {
                 music.setId(3);
-                e.printStackTrace();
             }
-        } else {
-            music.setId(3);
         }
-        logger.debug("音乐的信息为："+music);
+        logger.debug("音乐的信息为：" + music);
         return music;
     }
 
@@ -495,33 +497,33 @@ public class AboutMusicService {
     /**
      * 播放MV判断用户是否购买该MV
      *
-     * @param id MV的id
+     * @param id MV的id id为0表示没版权  为1表示没有VIP 为2表示没购买
      */
     public MusicVideo playMusicVideo(Integer id, HttpSession session) {
         //得到会话上的用户
         User user = specialFunctions.getUser(session);
         // 查找指定的音乐信息
         MusicVideo musicVideo = idExistence.isMusicVideoId(id);
-        // 得到音乐的等级
+        // 得到MV的等级
         int level = musicVideo.getLevel();
-        // 先判断该音乐有没有版权 0表示有版权
+        // 先判断该MV有没有版权 0表示有版权
         if (musicVideo.getAvailable() == 0) {
-            if (0 < level && level < 4) {
+            if (level == 2) {
                 // 判断用户是不是VIP
-                if (user.getVipDate().getTime() >= System.currentTimeMillis()) {
-                    return musicVideo;
+                if (user.getVipDate().getTime() < System.currentTimeMillis()) {
+                    musicVideo.setId(1);
                 }
-            } else if (level == 4) {
+            } else if (level == 3) {
                 // 判断用户有没有购买，不为null表示购买
-                if (transactionService.isPurchaseMusic(id, 2, specialFunctions.getUser(session)) != null) {
-                    return musicVideo;
+                if (transactionService.isPurchaseMusic(id, 2, specialFunctions.getUser(session)) == null) {
+                    musicVideo.setId(2);
                 }
-            } else {
-                // 等级为0 ，表示免费
-                return musicVideo;
             }
+            // 等级为1 ，表示免费
+        } else {
+            musicVideo.setId(0);
         }
-        return null;
+        return musicVideo;
 
     }
 }
