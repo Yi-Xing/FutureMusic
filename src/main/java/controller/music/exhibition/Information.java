@@ -12,6 +12,7 @@ import service.music.*;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -49,7 +50,7 @@ public class Information {
     @RequestMapping(value = "/musicVideoInformation")
     public  String showMusicVideoInformation(HttpServletRequest request,Model model){
         String musicVideoId = request.getParameter("musicVideoId");
-        Map<MusicVideoExt,List<CommentExt>> musicVideoInformation = musicVideoService.getMusicVideoInformation(Integer.parseInt(musicVideoId));
+        Map<MusicVideoExt, List<CommentExt>> musicVideoInformation = musicVideoService.getMusicVideoInformation(Integer.parseInt(musicVideoId));
         model.addAttribute("musicVideoInformation",musicVideoInformation);
         System.out.println(musicVideoInformation);
         return "mvPlayer";
@@ -66,14 +67,8 @@ public class Information {
     @RequestMapping("/singerInformation")
     public String singerInformation(HttpServletRequest request,Model model){
         int singerId = Integer.parseInt(request.getParameter("singerId"));
-<<<<<<< HEAD
         singerService.searchSingerInformation(singerId,model);
         return "artist";
-=======
-        Map<String,Object> singerInformation = singerService.searchSingerInformation(singerId);
-        model.addAttribute("information",singerInformation);
-        return "artists";
->>>>>>> 9a2b357b915d0975a9b767e03ab81f5ea6dd30ce
     }
     /**
      * 显示歌单的详细信息
@@ -85,8 +80,6 @@ public class Information {
         int songListId = Integer.parseInt(request.getParameter("songListId"));
         SongListExt songListExt = songListService.songListDetail(songListId);
         model.addAttribute("songList",songListExt);
-        System.out.println(songListExt);
-        System.out.println("==================");
         return "musicList";
     }
 }
