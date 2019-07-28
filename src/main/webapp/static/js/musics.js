@@ -46,6 +46,6 @@ $.ajax({
     }
 });
 
-$(Tname).click(function () {
-    window.location.href = "musicPlay.html?musicId=" + musicId;
-})
+Tname.onclick = function () {
+    window.location.href = "player.html?musicId=" + musicId;
+}

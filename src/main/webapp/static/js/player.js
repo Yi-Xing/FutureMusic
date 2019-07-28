@@ -241,7 +241,10 @@ function suiji() {
 
 
 
-//-----------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------
+var url = window.location.search;
+var musicId = url.substring(url.lastIndexOf('musicId=') + 8, url.length);
+console.log('音乐ID=' + musicId);
 
 $('.musicList ul li').on('click', function () {
     let all = $('.musicList ul li');
@@ -260,20 +263,21 @@ $('.musicList ul li').on('click', function () {
 
 //音乐切换
 $(".music_list").click(function () {
+
+    oProgress_circle.style.left = 0 + "px";
+    oProgress.style.width = 0 + "px";
+    clickNum = 1;
+    oPlay.innerHTML = "<i class='iconfont icon-bofang' title='暂停'></i>";
+
+
     //获取角标
     var index = $(this).index();
-    // console.log("歌曲下标" + index);
+    console.log("歌曲下标" + index);
     //获取歌曲名
     var musicName = $(this).children()[1];
-    musicName = musicName.innerHTML;
-    //获取歌曲路径
-    // console.log($(".hide"));
-    var musicSrc = $(".hide")[index].innerHTML;
-    // console.log(musicSrc);
-    // musicSrc = "../../static/" + musicSrc;
-    //获取歌词
-    var musicLyr = $(".hideLyr")[index].innerHTML;
-    // musicLyr = musicLyr;
+    //获取对应歌曲的ID
+    console.log(musicId);
+
     //获取audio
     var autio = $("audio");
     //获取歌曲显示
@@ -281,37 +285,10 @@ $(".music_list").click(function () {
     // console.log("歌曲SRC" + musicSrc);
     //获取歌词显示
     var displayMusicLyr = $(".Play .Lyric")[0];
-
-    //开始显示
-    displayMusicName.innerHTML = musicName;
-    displayMusicLyr.innerHTML = musicLyr;
-    $(autio).attr('src', musicSrc);
-    // console.log($(autio).attr('src'));
+    musicTab();
 
 
 //歌词同步--------------------------------------------------------
-    var str = '';
-    var lyric = musicLyric[0].lyric;
-    var lyr = lyric.split("[");
-    lyr.forEach(function (current) {
-        // console.log(current);
-        let geci = current.split(']');
-        //关于时间的处理
-        let time = geci[0];
-        time = time.split(':');
-        time1 = time[0];
-        time2 = time[1];
-        time = time1 * 60 + parseInt(time2);
-
-        // console.log(time);
-        // console.log(geci[1]);
-        //undefined判断
-        if (geci[1]) {
-            str += '<p id = time' + time + '>' + geci[1] + '</p>';
-        }
-    });
-    $(".Lyric")[0].innerHTML = str;
-
     var Original = 0;
     document.getElementById('audio').addEventListener('timeupdate', function () {
         // console.log(this.currentTime);
@@ -336,38 +313,6 @@ $(".music_list").click(function () {
 
 
 //歌词同步
-var musicLyric = [
-    {
-        lyric: "[00:00.05]陈硕子 - 凌晨三点 (Demo)\n" +
-            "[00:01.98]我在凌晨三点\n" +
-            "[00:02.81]醒来的夜里\n" +
-            "[00:04.70]想起了失去的你\n" +
-            "[00:08.47]曾经说着永远一起\n" +
-            "[00:12.07]现在却不再联系\n" +
-            "[00:15.35]就算时间它模糊了很多的东西\n" +
-            "[00:19.40]我依然在深爱着你\n" +
-            "[00:22.91]如果当时的我们能少一些固执\n" +
-            "[00:27.10]是否会有更好的结局\n" +
-            "[00:30.49]我在凌晨三点\n" +
-            "[00:32.82]醒来的夜里\n" +
-            "[00:34.64]想起已失去的你\n" +
-            "[00:38.39]曾经说着永远一起\n" +
-            "[00:41.93]现在却不再联系\n" +
-            "[00:45.12]就算时间它模糊了很多的东西\n" +
-            "[00:49.12]我依然在深爱着你\n" +
-            "[00:52.60]如果当时的我们能少一些固执\n" +
-            "[00:56.69]是否会有更好的结局\n" +
-            "[01:03.19]我在凌晨三点\n" +
-            "[01:05.97]醒来的夜里\n" +
-            "[01:07.79]想起已失去的你\n" +
-            "[01:11.49]曾经说着永远一起\n" +
-            "[01:15.13]现在却不再联系\n" +
-            "[01:18.32]就算时间它模糊了很多的东西\n" +
-            "[01:22.33]我依然地深爱着你\n" +
-            "[01:25.72]如果当时的我们能少一些固执\n" +
-            "[01:29.82]是否会有更好的结局"
-    }
-];
 
 //歌曲localStorage
 // 判断浏览器是否支持
@@ -385,9 +330,6 @@ var musicLyric = [
 //
 // }
 
-var url = window.location.search;
-var musicId = url.substring(url.lastIndexOf('musicId=') + 8, url.length);
-console.log('音乐ID=' + musicId);
 
 var userImg = $(".user_img a img")[0];
 var userName = $(".user_information h4")[0];
@@ -400,30 +342,64 @@ console.log(musicName);
 console.log(musicUserName);
 console.log(musicUrl);
 
-$.ajax({
-    contentType: "application/x-www-form-urlencoded;charset=UTF-8",
-    url: "playMusic",
-    type: 'post',
-    // dataType: "json",
-    data: {id: musicId},
-    success: function (data) {
-        console.log(data);
-        console.log(data.music.lyricPath);
-        //歌名
-        var name = data.music.name;
-        userName.innerText = name;
-        musicName.innerHTML = name;
-        //    作者
-        var artist = data.singer.name;
-        musicUserName.innerHTML = artist;
-        //    头像
-        var touxiang = data.music.picture;
-        console.log(touxiang);
-        userImg.src = touxiang;
-        //    歌曲地址
-        var gequdizhi = data.music.path;
-        musicUrl.innerHTML = gequdizhi;
-        //        歌词地址
-        var lyric = data.music.lyricPath;
-    }
-});
+
+function musicTab() {
+    var str = '';
+    console.log("执行");
+    $.ajax({
+        contentType: "application/x-www-form-urlencoded;charset=UTF-8",
+        url: "playMusic",
+        type: 'post',
+        dataType: "json",
+        data: {id: musicId},
+        success: function (data) {
+            console.log(data.id);
+            console.log(data.name);
+            console.log(data.path);
+            console.log(data.picture);
+            // console.log(data.lyricPath);
+
+            //获取歌曲显示
+            var displayMusicName = $(".Play .music_name h2")[0];
+            displayMusicName.innerHTML = data.name;
+
+            if (data.id == 0) {
+                $(".Lyric")[0].innerHTML = "对不起，我们还未获得这首音乐的版权";
+            } else if (data.id == 1) {
+                $(".Lyric")[0].innerHTML = "对不起，这首歌需要VIP授权播放";
+            } else if (data.id == 2) {
+                $(".Lyric")[0].innerHTML = "对不起，您还没有购买这首歌曲";
+            } else if (data.id == 3) {
+                $(".Lyric")[0].innerHTML = "对不起，此音乐没有歌词";
+            } else {
+
+                //获取audio
+                var autio = $("audio");
+                $(autio).attr('src', data.path);
+
+
+
+                var lyric = data.lyricPath;
+                var lyr = lyric.split("[");
+                lyr.forEach(function (current) {
+                    // console.log(current);
+                    let geci = current.split(']');
+                    //关于时间的处理
+                    let time = geci[0];
+                    time = time.split(':');
+                    time1 = time[0];
+                    time2 = time[1];
+                    time = time1 * 60 + parseInt(time2);
+
+                    // console.log(time);
+                    // console.log(geci[1]);
+                    //undefined判断
+                    if (geci[1]) {
+                        str += '<p id = time' + time + '>' + geci[1] + '</p>';
+                    }
+                });
+                $(".Lyric")[0].innerHTML = str;
+            }
+        }
+    });
+}
