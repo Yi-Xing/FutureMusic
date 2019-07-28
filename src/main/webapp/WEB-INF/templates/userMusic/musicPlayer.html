@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/head.html"></head>
+<head>
+    <link rel="stylesheet" href="/static/css/player.css" th:href="@{/static/css/player.css}">
+</head>
+<body>
+
+<div class="player_container">
+
+    <!--//左侧-->
+    <div class="menu" id="menu">
+        <!--用户信息-->
+        <div class="user" id="musicId" th:data-value="${musicId}">
+            <div class="user_img">
+                <a href="javascript:;">
+                    <img th:src="@{${songList.picture}}" alt="">
+                </a>
+            </div>
+            <div class="user_information">
+                <h4 th:text="${songList.name}">name</h4>
+                <h5 style="padding-left: 20px">
+                    <a href="javascript:;">
+                        <span class="iconfont icon-people1"></span>
+
+                    </a>
+                    <a href="javascript:;">
+                        <span class="iconfont icon-music"></span>
+                    </a>
+                    <a href="javascript:;">
+                        <span class="iconfont icon-iconvip"></span>
+                    </a>
+                </h5>
+            </div>
+        </div>
+        <!--搜索框-->
+        <div class="search">
+            <form action="http://localhost:8080/FutureMusic_war_exploded/" method="get">
+                <div class="form-group">
+                    <label class="sr-only" for="exampleInputAmount"></label>
+                    <div class="input-group">
+                        <div class="input-group-addon iconfont icon-search"></div>
+                        <input type="text" class="form-control" id="exampleInputAmount" placeholder="What do you like?">
+                        <div class="input-group-addon">
+                            <button type="submit">搜索</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="Catalog">
+            <table class="table table-hover ">
+                <thead>
+                <tr>
+                    <th>我喜欢</th>
+                    <th>歌名</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr class="music_list"  th:each="musicList:${musicList}" >
+                    <th scope="row" th:data-id="${musicList.id}">
+                        <span class="iconfont icon-music" ></span>
+                    </th>
+                    <td th:text="${musicList.name}">凌晨三点</td>
+<!--                    <td>陈硕子</td>-->
+                    <div class="hide">music/凌晨三点.mp3</div>
+                    <!--歌词-->
+                    <div class="hideLyr">
+                        <p>作曲 : 陈硕子</p>
+                        <p>作词 : 陈硕子</p>
+                        <p>我在凌晨三点</p>
+                        <p>醒来的夜里</p>
+                        想起已失去的你<br>
+                        曾经说着永远一起<br>
+                        现在却不再联系<br>
+                        就算时间他模糊了很多的东西<br>
+                        我依然在深爱着你<br>
+                        如果当时的我们能少一些固执<br>
+                        是否会有更好的结局<br>
+                        我在凌晨三点<br>
+                        醒来的夜里<br>
+                        想起已失去的你<br>
+                        曾经说着永远一起<br>
+                        现在却不再联系<br>
+                        就算时间他模糊了很多的东西<br>
+                        我依然在深爱着你<br>
+                        如果当时的我们能少一些固执<br>
+                        是否会有更好的结局<br>
+                        我在凌晨三点<br>
+                        醒来的夜里<br>
+                        想起已失去的你<br>
+                        曾经说着永远一起<br>
+                        现在却不再联系<br>
+                        就算时间他模糊了很多的东西<br>
+                        我依然在深爱着你<br>
+                        如果当时的我们<br>
+                        是否会有更好的结局<br>
+                    </div>
+                    <th class="dropdown">
+                        <span class="iconfont icon-like"></span>
+                        <span type="button" class="iconfont icon-more dropdown-toggle" data-toggle="dropdown"
+                              aria-haspopup="true" aria-expanded="false"></span>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="#">
+                                    <span class="iconfont icon-laji"></span>
+                                    删除
+                                </a>
+                            </li>
+                            <li role="separator" class="divider"></li>
+                            <li>
+                                <a href="#">
+                                    <span class="iconfont icon-tianjia"></span>
+                                    添加到...
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <span class="iconfont icon-tianjia"></span>
+                                    添加到...
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <span class="iconfont icon-tianjia"></span>
+                                    添加到...
+                                </a>
+                            </li>
+                        </ul>
+                    </th>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!--//右侧-->
+    <div class="Play">
+        <div class="drag">
+            <div class="music_name">
+                <h2>MUSIC</h2>
+                <a href="javascript:;"><p>查看评论</p></a>
+            </div>
+            <div class="Lyric">
+                <!--               歌词---------------------------------------->
+
+            </div>
+            <div class="Play_control">
+                <audio src="" id="audio"></audio>
+                <div class="foot">
+                    <div class="control_left">
+                        <i class="iconfont icon-yduishangyiqu" title="上一首"></i>
+                        <span class="play"><i class="iconfont icon-bofang" title="播放"></i></span>
+                        <i class="iconfont icon-yduixiayiqu" title="下一首"></i>
+                    </div>
+                    <div class="Progress">
+                        <div class="current_time">00:00</div>
+                        <div class="progress_range">
+                            <div class="range"></div>
+                            <div class="circle"></div>
+                        </div>
+                        <span class="total_time">00:00</span>
+                    </div>
+                    <div class="model">
+                        <div class="volume"><span class="iconfont icon-yinliangxiaoyinliangxiao" title="静音"></span>
+                        </div>
+                        <div class="volume_range">
+                            <div class="range"></div>
+                            <div class="circle"></div>
+                        </div>
+                        <div class="bofangModel"><span class="iconfont icon-suijibofang" title="随机播放"></span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+<div th:replace="on-load-js::on-load-js"></div>
+<!--<script src="js/audio.js" th:src="@{/static/js/audio.js}"></script>-->
+<script src="js/player.js" th:src="@{/static/js/userInformation/musicPlayer.js}"></script>
+</html>

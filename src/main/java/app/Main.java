@@ -167,10 +167,10 @@ public class Main {
 
     @RequestMapping(value = "/qwe")
     public String jjytet(Model model, HttpSession session) {
-
-        model.addAttribute("page","album_of_me");
+        System.out.println(123112);
+        model.addAttribute("page","songList");
         model.addAttribute("user",session.getAttribute("userInformation"));
-        return "userInformation/personal";
+        return "userInformation/SSSpersonal";
     }
 
 

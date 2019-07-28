@@ -17,6 +17,7 @@
                         当前所在位置：<a href="Personal_Center .html">个人中心</a>  > 我喜欢
                 </span>
     </div>
+
     <div class="fans">
         <div class="fan">
             <div class="fshead">
@@ -25,7 +26,27 @@
             <a th:href="@{showUserCollectionSongList(type=1)}" class="fan_uername">歌单</a>
             <a class="massage" th:text="${songList}">五个</a>
         </div>
-
+        <div class="fan">
+            <div class="fshead">
+                <img src="head.jpg" alt="">
+            </div>
+            <a th:href="@{showUserCollectionSongList(type=1)}" class="fan_uername">专辑</a>
+            <a class="massage" th:text="${songList}">五个</a>
+        </div>
+        <div class="fan">
+            <div class="fshead">
+                <img src="head.jpg" alt="">
+            </div>
+            <a th:href="@{showUserCollectionSongList(type=1)}" class="fan_uername">音乐</a>
+            <a class="massage" th:text="${songList}">五个</a>
+        </div>
+        <div class="fan">
+            <div class="fshead">
+                <img src="head.jpg" alt="">
+            </div>
+            <a th:href="@{showUserCollectionSongList(type=1)}" class="fan_uername">MV</a>
+            <a class="massage" th:text="${songList}">五个</a>
+        </div>
     </div>
 </div>
 </body>

@@ -3,6 +3,7 @@ package controller.user.consumer;
 import entity.*;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
+import service.user.consumer.AboutPlayService;
 import util.exception.DataBaseException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -25,6 +26,8 @@ import java.util.List;
 public class AboutMusic {
     @Resource(name = "AboutMusicService")
     AboutMusicService aboutMusicService;
+    @Resource(name = "AboutPlayService")
+    AboutPlayService aboutPlayService;
     private static final Logger logger = LoggerFactory.getLogger(AboutMusic.class);
 
     /**
@@ -35,6 +38,13 @@ public class AboutMusic {
         return aboutMusicService.showUserLike(session,model);
     }
 
+    /**
+     * 显示用户喜欢MV的播放页面
+     */
+    @RequestMapping(value = "/playCollectMusicVideo")
+    public String playMusicVideo(HttpSession session, Model model){
+        return aboutPlayService.playMusicVideo(session,model);
+    }
 
     /**
      * 显示用户收藏的所有音乐，显示用户收藏的所有MV  (需要更改)

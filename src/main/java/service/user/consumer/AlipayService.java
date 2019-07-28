@@ -47,7 +47,7 @@ public class AlipayService {
         if(type==1){
             money="10";
         }else if(type==2){
-            money="25";
+            money="50";
         }else if(type==3){
             money="100";
         }

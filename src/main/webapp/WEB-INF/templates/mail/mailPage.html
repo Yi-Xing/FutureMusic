@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="head::html"></head>
 <head>
     <meta charset="UTF-8">
     <title>music</title>
@@ -7,8 +8,7 @@
     <link rel="stylesheet" th:href="@{/static/css/bootstrap.css}">
     <!-- 导入 JQ -->
     <script th:src="@{/static/js/jquery.js}"></script>
-    <!--导入js-->
-    <script th:src="@{/static/js/userInformation/mail.js}"></script>
+
     <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
     <script th:src="@{/static/js/bootstrap.min.js}"></script>
     <!-- 导入 css -->
@@ -24,25 +24,25 @@
     <div class="row">
         <div class="col-lg-offset-2"></div>
         <div th:if="${page=='sendEmail'}">
-            <div th:replace="userInformation/sendEmail::sendEmailHead"></div>
+            <div th:replace="mail/sendEmail::sendEmailHead"></div>
         </div>
         <div th:if="${page=='receiveEmail'}">
-            <div th:replace="userInformation/receiveEmail::receiveEmailHead"></div>
+            <div th:replace="mail/receiveEmail::receiveEmailHead"></div>
         </div>
         <div th:if="${page=='noticeEmail'}">
-            <div th:replace="userInformation/noticeEmail::noticeEmailHead"></div>
+            <div th:replace="mail/noticeEmail::noticeEmailHead"></div>
         </div>
 
 
 
         <div th:if="${page=='sendEmail'}">
-            <div th:replace="userInformation/sendEmail::sendEmail"></div>
+            <div th:replace="mail/sendEmail::sendEmail"></div>
         </div>
         <div th:if="${page=='receiveEmail'}">
-            <div th:replace="userInformation/receiveEmail::receiveEmail"></div>
+            <div th:replace="mail/receiveEmail::receiveEmail"></div>
         </div>
         <div th:if="${page=='noticeEmail'}">
-            <div th:replace="userInformation/noticeEmail::noticeEmail"></div>
+            <div th:replace="mail/noticeEmail::noticeEmail"></div>
         </div>
     </div>
 </div>
@@ -50,4 +50,6 @@
 <div th:replace="webFoot.html"></div>
 </body>
 <div th:replace="on-load-js.html"></div>
+<!--导入js-->
+<script th:src="@{/static/js/userInformation/mail.js}"></script>
 </html>

@@ -3,6 +3,7 @@ package service.user.consumer;
 import entity.*;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
+import org.springframework.web.context.ContextLoader;
 import service.user.IdExistence;
 import service.user.SpecialFunctions;
 import util.exception.DataBaseException;
@@ -12,10 +13,18 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import javax.servlet.ServletConfig;
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpSession;
+import java.io.BufferedInputStream;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+
+import static org.apache.logging.log4j.web.WebLoggerContextUtils.getServletContext;
 
 /**
  * 收藏音乐，收藏MV，添加历史播放记录，评论，点赞，用户播放过的音乐
@@ -88,7 +97,7 @@ public class AboutMusicService {
      *
      * @param type 1表示查找音乐收藏 2表示查找MV收藏
      */
-    public List<MusicCollect> showUserCollectionMusic(Integer type, HttpSession session) {
+    public List <MusicCollect> showUserCollectionMusic(Integer type, HttpSession session) {
         //得到会话上的用户
         User user = specialFunctions.getUser(session);
         MusicCollect musicCollect = new MusicCollect();
@@ -108,9 +117,9 @@ public class AboutMusicService {
         Order order = new Order();
         order.setType(type);
         order.setUserId(user.getId());
-        List<Order> list = orderMapper.selectListOrder(order);
+        List <Order> list = orderMapper.selectListOrder(order);
         if (list.size() != 0) {
-            List<Integer> idList = new ArrayList<>();
+            List <Integer> idList = new ArrayList <>();
             // 得到所有音乐或MV的id
             for (Order o : list) {
                 idList.add(o.getMusicId());
@@ -139,6 +148,7 @@ public class AboutMusicService {
      *                                session          获取当前会话
      */
     public State collectionMusic(MusicCollect musicCollectInformation, HttpSession session) throws DataBaseException {
+        State state=new State();
         //得到会话上的用户
         User user = specialFunctions.getUser(session);
         MusicCollect musicCollect = existenceService.isUserCollectionMusic(user.getId(), musicCollectInformation.getMusicId(), musicCollectInformation.getType());
@@ -149,6 +159,8 @@ public class AboutMusicService {
                 logger.error("邮箱：" + user.getMailbox() + "删除收藏的音乐或MV时，数据库出错");
                 throw new DataBaseException("邮箱：" + user.getMailbox() + "删除收藏的音乐或MV时，数据库出错");
             }
+            //删除收藏成功
+            state.setState(1);
         } else {
             // 为null表示没有收藏，需要添加收藏
             int have = 0;
@@ -159,8 +171,9 @@ public class AboutMusicService {
             }
             // 添加收藏
             collectionAndPlay(have, musicCollectInformation, null, user);
+            state.setState(2);
         }
-        return new State(1);
+        return state;
     }
 
     /**
@@ -275,16 +288,16 @@ public class AboutMusicService {
      * @param type    1表示音乐 2表示MV
      * @param session 获取当前会话
      */
-    public List<?> showMusicPlay(Integer type, HttpSession session) {
+    public List <?> showMusicPlay(Integer type, HttpSession session) {
         //得到会话上的用户
         User user = specialFunctions.getUser(session);
         Play play = new Play();
         play.setType(type);
         play.setUserId(user.getId());
         // 查找用户播放过的音乐或MV
-        List<Play> list = playMapper.selectListPlay(play);
+        List <Play> list = playMapper.selectListPlay(play);
         // 用来存放音乐或MV的id
-        List<Integer> idList = new ArrayList<>();
+        List <Integer> idList = new ArrayList <>();
         for (Play p : list) {
             idList.add(p.getMusicId());
         }
@@ -405,7 +418,7 @@ public class AboutMusicService {
         }
         Comment comment = new Comment();
         comment.setId(Integer.parseInt(id));
-        List<Comment> commentList = commentMapper.selectListComment(comment);
+        List <Comment> commentList = commentMapper.selectListComment(comment);
         // 得带查找到的评论
         comment = commentList.get(0);
         if (isFabulous) {
@@ -437,65 +450,113 @@ public class AboutMusicService {
     /**
      * 播放音乐判断用户是否拥有该音乐
      *
-     * @param id 音乐的id
+     * @param id 音乐的id   id为0表示没版权  为1表示没有VIP 为2表示没购买  为3表示音乐无歌词
      */
     public Music playMusic(Integer id, HttpSession session) {
         //得到会话上的用户
         User user = specialFunctions.getUser(session);
         // 查找指定的音乐信息
         Music music = idExistence.isMusicId(id);
+        System.out.println(user);
+        System.out.println(music);
         // 得到音乐的等级
         int level = music.getLevel();
         // 先判断该音乐有没有版权 0表示有版权
+        System.out.println(music.getAvailable());
         if (music.getAvailable() == 0) {
-            if (0 < level && level < 4) {
+            if (level == 2) {
+                System.out.println(222);
+                System.out.println(user.getVipDate());
+                System.out.println(222333);
                 // 判断用户是不是VIP
-                if (user.getVipDate().getTime() >= System.currentTimeMillis()) {
-                    return music;
+                if (user.getVipDate().getTime() < System.currentTimeMillis()) {
+                    System.out.println(333);
+                    music.setId(1);
                 }
-            } else if (level == 4) {
+            } else if (level == 3) {
+                System.out.println(444);
                 // 判断用户有没有购买，不为null表示购买
-                if (transactionService.isPurchaseMusic(id, 1, specialFunctions.getUser(session)) != null) {
-                    return music;
+                if (transactionService.isPurchaseMusic(id, 1, specialFunctions.getUser(session)) == null) {
+                    music.setId(2);
                 }
-            } else {
-                // 等级为0 ，表示免费
-                return music;
             }
+            System.out.println(555);
+            // 等级为1 ，表示免费
+        } else {
+            music.setId(0);
         }
-        return null;
+        System.out.println("开始判断歌词");
+        // 使用io流读取指定音乐的歌词
+
+        InputStream inputStream = null;
+        try {
+            System.out.println(music.getLyricPath());
+            if (music.getLyricPath() == null || "".equals(music.getLyricPath())) {
+                music.setLyricPath("/static");
+            }
+            System.out.println(ContextLoader.getCurrentWebApplicationContext());
+            System.out.println(ContextLoader.getCurrentWebApplicationContext().getServletContext().getRealPath(""));
+            inputStream = new FileInputStream(ContextLoader.getCurrentWebApplicationContext().getServletContext().getRealPath(music.getLyricPath()));
+//            inputStream = new FileInputStream("C:\\first\\FutureMusic\\target\\FutureMusic\\"+);
+            System.out.println("我只写了");
+            // 先使用反射获取项目文件的路径，然后获得缓冲流
+            BufferedInputStream bufferedInputStream = new BufferedInputStream(inputStream);
+            byte[] bytes = new byte[1024];
+            // 一次读取的长度
+            int length;
+            StringBuilder lyric = new StringBuilder();
+            while ((length = bufferedInputStream.read(bytes)) != -1) {
+                lyric.append(new String(bytes, 0, length));
+            }
+            music.setLyricPath(new String(lyric));
+        } catch (Exception e) {
+            music.setId(3);
+            e.printStackTrace();
+        } finally {
+            try {
+                assert inputStream != null;
+                inputStream.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        System.out.println(music);
+        System.out.println(2222222);
+        logger.debug("音乐的信息为：" + music);
+        return music;
+        }
     }
+
 
     /**
      * 播放MV判断用户是否购买该MV
      *
-     * @param id MV的id
+     * @param id MV的id id为0表示没版权  为1表示没有VIP 为2表示没购买
      */
     public MusicVideo playMusicVideo(Integer id, HttpSession session) {
         //得到会话上的用户
         User user = specialFunctions.getUser(session);
         // 查找指定的音乐信息
         MusicVideo musicVideo = idExistence.isMusicVideoId(id);
-        // 得到音乐的等级
+        // 得到MV的等级
         int level = musicVideo.getLevel();
-        // 先判断该音乐有没有版权 0表示有版权
+        // 先判断该MV有没有版权 0表示有版权
         if (musicVideo.getAvailable() == 0) {
-            if (0 < level && level < 4) {
+            if (level == 2) {
                 // 判断用户是不是VIP
-                if (user.getVipDate().getTime() >= System.currentTimeMillis()) {
-                    return musicVideo;
+                if (user.getVipDate().getTime() < System.currentTimeMillis()) {
+                    musicVideo.setId(1);
                 }
-            } else if (level == 4) {
+            } else if (level == 3) {
                 // 判断用户有没有购买，不为null表示购买
-                if (transactionService.isPurchaseMusic(id, 2, specialFunctions.getUser(session)) != null) {
-                    return musicVideo;
+                if (transactionService.isPurchaseMusic(id, 2, specialFunctions.getUser(session)) == null) {
+                    musicVideo.setId(2);
                 }
-            } else {
-                // 等级为0 ，表示免费
-                return musicVideo;
             }
+            // 等级为1 ，表示免费
+        } else {
+            musicVideo.setId(0);
         }
-        return null;
+        return musicVideo;
 
     }
 }

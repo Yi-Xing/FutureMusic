@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" th:href="@{/static/css/vip/vip.css}">
+    <link rel="stylesheet" th:href="@{/static/css/vip/goumaiyinyue.css}">
+    <!-- 导入 JQ -->
+    <script th:src="@{/static/js/jquery.js}"></script>
+</head>
+<body>
+<div class="topic_nav">
+    <div class="bc">
+    </div>
+    <h1>音乐，不将就</h1>
+    <h4>对音乐的追求，从这里开始。付费歌曲畅享无阻，HQ高品质许你完美沉浸的听觉盛宴，<br> SQ无损极致保留音乐的原生态，让耳朵捕捉音源现场的震撼。</h4>
+    <div class="picture">
+        <ul>
+            <li>
+                <img  th:src="@{/static/img/hq.jpg}" alt="">
+                <p>高品质音乐下载</p>
+            </li>
+            <li>
+                <img  th:src="@{/static/img/sq.jpg}" alt="">
+                <p>无损音乐下载</p>
+            </li>
+            <li>
+                <img  th:src="@{/static/img/aa.jpg}" alt="">
+                <p>付费音乐下载</p>
+            </li>
+        </ul>
+    </div>
+</div>
+<div class="pay_nav">
+    <div class="head">
+        <ul>
+            <li class="vip"><a th:href="@{/user/vipPage}">开通vip</a></li>
+            <li class="balance"><a th:href="@{/user/balancePage}">充值余额</a></li>
+            <li class="music"><a th:href="@{/user/musicPage(id=${id},type=${type})}">购买音乐/MV</a></li>
+        </ul>
+    </div>
+    <div >
+        <ul>
+            <li >用户名：<span th:text="${user.name}"></span></li>
+            <li >余额<span th:text="${user.balance}"></span></li>
+            <li >vip到期时间<span th:text="${#dates.format(user.vipDate, 'yyyy-MM-dd HH:mm:ss')}"></span></li>
+        </ul>
+    </div>
+    <span th:if="${page=='vip'}">
+        <div th:replace="vip/vip::vip"></div>
+    </span>
+    <span th:if="${page=='balance'}">
+        <div th:replace="vip/balance::balance"></div>
+    </span>
+    <span th:if="${page=='music'}">
+        <div th:replace="vip/music::music"></div>
+    </span>
+    <script th:src="@{/static/js/userInformation/purchasePage.js}"></script>
+</div>
+
+</body>
+</html>

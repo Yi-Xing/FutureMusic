@@ -9,43 +9,41 @@
 <!--头部-->
 <div th:replace="webHead::html"></div>
 <!--MV-->
-<div class="container-fluid color_2" style="position: relative" th:each="musicVideoInformation:${musicVideoInformation}">
+<div class="container-fluid color_2" style="position: relative">
     <div class="music_video">
         <div class="text-center">
-            <h2 th:text="${musicVideoInformation.key.musicVideoName}">MV</h2>
+            <h2>MV</h2>
         </div>
         <div class="video_container">
             <div class="video">
-                <video src="../../static/video/火箭少女101-卡路里(《西虹市首富》电影插曲).mp4" th:src="@{${musicVideoInformation.key.path}}"
-                     controls></video>
+                <video
+                       controls></video>
             </div>
         </div>
     </div>
 </div>
-<span th:if="${page=='12345678485'}">
 <div class="container-fluid color_2" style="position: relative">
-
-    <h2 style="margin-left: 100px">我喜欢的MV</h2>
-    <ul style="width: 100%">
-        <li>
-            <div class="mv">
-                <div class="mv_top">
-                    <a href="./mvPlayer.html">
-                        <img src="../../static/img/mv_燃烧我的卡路里.jpg" th:src="@{/static/img/mv_燃烧我的卡路里.jpg}" alt="">
-                    </a>
+    <div class="row inner ILike">
+        <h2 >我喜欢的MV</h2>
+        <i class="iconfont icon-like" style="font-size: 30px"></i>
+        <ul class="container">
+            <li class="ILikeMusicVideo" th:each="musicVideo:${musicVideoList}">
+                <div class="mv" th:data-id="${musicVideo.id}">
+                    <div class="mv_top">
+                        <a href="./mvPlayer.html" th:href="@{playCollectMusicVideo(musicVideoId=${musicVideo.id})}">
+                            <img th:src="@{${musicVideo.picture}}" alt="">
+                        </a>
+                    </div>
+                    <div class="mv_bottom">
+                        <h4 th:text="${musicVideo.name}">music name</h4>
+                    </div>
                 </div>
-                <div class="mv_bottom">
-                    <h4>music name</h4>
-                    <h4 style="color: #999999">artist name</h4>
-                    <h4 style="color: #999999" class="mv_playTimes">播放：num</h4>
-                </div>
-            </div>
-        </li>
-    </ul>
+            </li>
+        </ul>
+    </div>
 </div>
-</span>
-<!--评论-->
-<div th:replace="webComment.html"></div>
+<!--&lt;!&ndash;评论&ndash;&gt;-->
+<!--<div th:replace="webComment.html"></div>-->
 
 <!--尾部-->
 <div th:replace="webFoot.html"></div>

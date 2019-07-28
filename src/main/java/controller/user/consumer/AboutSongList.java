@@ -27,7 +27,7 @@ import java.util.List;
  */
 @Controller
 @RequestMapping(value = "/user")
-public class AboutSongList {
+public class  AboutSongList {
     @Resource(name = "AboutSongListService")
     AboutSongListService aboutSongListService;
     private static final Logger logger = LoggerFactory.getLogger(AboutSongList.class);
@@ -40,7 +40,7 @@ public class AboutSongList {
      */
     @RequestMapping(value = "/showUserSongList")
     public String showUserSongList(Integer type, HttpSession session, Model model) {
-        return aboutSongListService.showUserSongList(type, session,model);
+        return aboutSongListService.showUserSongList(type, session, model);
     }
 
     /**
@@ -50,17 +50,27 @@ public class AboutSongList {
      */
     @RequestMapping(value = "/showUserCollectionSongList")
     public String showUserCollectionSongList(Integer type, HttpSession session, Model model) {
-        return aboutSongListService.showUserCollectionSongList(type, session,model);
+        return aboutSongListService.showUserCollectionSongList(type, session, model);
     }
 
     /**
-     *
      * @param id 歌单专辑的ID
-     * @return  歌单或专辑的详细页面
+     * @return 歌单或专辑的详细页面
      */
     @RequestMapping(value = "/showMusicSongList")
     public String showMusicSongList(String id, Model model) {
-        return aboutSongListService.showMusicList(id,model);
+        return aboutSongListService.showMusicList(id, model);
+    }
+
+
+    /**
+     * 显示指定歌单或专辑的音乐播放页面
+     *
+     * @param id      歌单或专辑的iD
+     */
+    @RequestMapping(value = "/playMusicSongList")
+    public String playMusicSongList(String id,String musicId, Model model,HttpSession session) {
+        return aboutSongListService.playMusicSongList(id,musicId, model,session);
     }
 
 
