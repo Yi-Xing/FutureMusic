@@ -47,7 +47,7 @@ public class FileUpload {
                             //如果image=null 表示上传的不是图片格式
                             if (image != null) {
                                 // 再判断图片的高度和宽度是否符合要求（单位为px）
-                                if (image.getWidth() == 6000 && image.getHeight() == 4000) {
+                                if (image.getWidth() >= 250 && image.getHeight() >= 250) {
                                     // 然后存入音乐路径中，返回数据库路径
                                     return fileUpload(file, "/static/file/musicPicture/", suffix);
                                 } else {
@@ -174,7 +174,7 @@ public class FileUpload {
                             //如果image=null 表示上传的不是图片格式
                             if (image != null) {
                                 // 再判断图片的高度和宽度是否符合要求（单位为px）
-                                if (image.getWidth() == 6000 && image.getHeight() == 4000) {
+                                if (image.getWidth() >= 250 && image.getHeight() >= 250) {
                                     // 然后存入音乐路径中，返回数据库路径
                                     return fileUpload(file, "/static/file/userHeadPortrait/", suffix);
                                 } else {
@@ -262,7 +262,7 @@ public class FileUpload {
                             //如果image=null 表示上传的不是图片格式
                             if (image != null) {
                                 // 再判断图片的高度和宽度是否符合要求（单位为px）
-                                if (image.getWidth() == 6000 && image.getHeight() == 4000) {
+                                if (image.getWidth() >= 250 && image.getHeight() >= 250) {
                                     // 然后存入音乐路径中，返回数据库路径
                                     return fileUpload(file, "/static/file/musicVideoPicture/", suffix);
                                 } else {
@@ -313,7 +313,7 @@ public class FileUpload {
                             //如果image=null 表示上传的不是图片格式
                             if (image != null) {
                                 // 再判断图片的高度和宽度是否符合要求（单位为px）
-                                if (image.getWidth() == 6000 && image.getHeight() == 4000) {
+                                if (image.getWidth() >= 250 && image.getHeight() >= 250) {
                                     // 然后存入音乐路径中，返回数据库路径
                                     return fileUpload(file, "/static/file/songList/", suffix);
                                 } else {
@@ -364,7 +364,7 @@ public class FileUpload {
                             //如果image=null 表示上传的不是图片格式
                             if (image != null) {
                                 // 再判断图片的高度和宽度是否符合要求（单位为px）
-                                if (image.getWidth() == 6000 && image.getHeight() == 4000) {
+                                if (image.getWidth() >= 250 && image.getHeight() >= 250) {
                                     // 然后存入音乐路径中，返回数据库路径
                                     return fileUpload(file, "/static/file/activityPicture/", suffix);
                                 } else {
