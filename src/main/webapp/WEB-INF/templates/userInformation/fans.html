@@ -19,11 +19,13 @@
     </div>
     <div class="fans">
         <div class="fan" th:each="u:${users}">
-            <div class="fshead">
-                <img src="head.jpg" th:text="${u.headPortrait}" alt="">
+            <a th:href="@{/user/otherUserPage(id=${u.id})}">
+            <div class="fshead" >
+                <img src="head.jpg" th:src="${u.headPortrait}" alt="">
             </div>
             <span class="fan_uername" th:text="${u.name}">粉丝用户名</span>
             <a class="massage" th:data-value="${u.mailbox}">发消息</a>
+            </a>
         </div>
     </div>
 </div>

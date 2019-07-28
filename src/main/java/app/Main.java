@@ -165,7 +165,7 @@ public class Main {
         return "jjy";
     }
 
-    @RequestMapping(value = "/qwe")
+    @RequestMapping(value = "/fans")
     public String jjytet(Model model, HttpSession session) {
         System.out.println(123112);
         model.addAttribute("page","songList");

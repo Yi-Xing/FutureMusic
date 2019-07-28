@@ -19,15 +19,17 @@
                     当前所在位置：<a href="Personal_Center .html">个人中心</a>  >   我的关注
                 </span>
     </div>
-<!--    <div class="fans">-->
-<!--        <div class="fan" th:each="user:${users}">-->
-<!--            <div class="fshead">-->
-<!--                <img src="head.jpg" th:text="${user.headPortrait}" alt="">-->
-<!--            </div>-->
-<!--            <span class="fan_uername" th:text="${user.name}">粉丝用户名</span>-->
-<!--            <a class="massage" th:data-value="${user.mailbox}">发消息</a>-->
-<!--        </div>-->
-<!--    </div>-->
+    <div class="fans">
+        <div class="fan" th:each="user:${users}">
+            <a th:href="@{/user/otherUserPage(id=${user.id})}">
+            <div class="fshead">
+                <img src="head.jpg" th:src="${user.headPortrait}" alt="">
+            </div>
+            <span class="fan_uername" th:text="${user.name}">粉丝用户名</span>
+            <a class="massage" th:data-value="${user.mailbox}">发消息</a>
+        </div>
+    </div>
+    </div>
 </div>
 
 </body>

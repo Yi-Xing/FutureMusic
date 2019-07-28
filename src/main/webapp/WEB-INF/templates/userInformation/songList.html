@@ -64,6 +64,7 @@
         </div>
     </div>
     <div class="fans" th:each="songList:${songList}">
+        <a th:href="@{/user/showMusicSongList(id=${songList.id})}">
         <div class="fan" >
             <div class="fshead">
                 <img th:src="@{${songList.picture}}" alt="">
@@ -71,7 +72,7 @@
             <span class="fan_uername" th:text="${songList.name}">刷作业必备歌曲</span>
             <a class="massage" th:text="${songList.type}">12首</a>
         </div>
-
+            </a >
     </div>
 </div>
 </div>
