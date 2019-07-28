@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div id="gedan" th:fragment="likeSongList" class="likeTab">
+    <table class="table table-hover table-striped">
+        <thead>
+        <tr>
+            <th>喜欢的专辑</th>
+            <th>曲目数</th>
+            <th>收藏量</th>
+            <th>播放量</th>
+            <th>more</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr class="personal_list" th:each="songList:${songList}">
+            <td>
+                <div>
+                    <a th:href="@{/user/showMusicSongList(id=${songList.id})}">
+                        <img src="img/头像_邓紫棋.jpg" th:src="@{${songList.picture}}" alt="">
+                        <span  th:text="${songList.name}">name</span>
+                    </a>
+                </div>
+            </td>
+            <td>
+                <span><span th:text="${songList.type}" >2</span>次</span>
+            </td>
+            <td>
+                <span><span  th:text="${songList.activity}">2</span>次</span>
+            </td>
+            <td>
+                <span><span  th:text="${songList.classificationId}">2</span>次</span>
+            </td>
+            <th class="dropdown">
+                        <span type="button" class="iconfont icon-more dropdown-toggle" data-toggle="dropdown"
+                              aria-haspopup="true" aria-expanded="false"></span>
+                <ul class="dropdown-menu">
+                    <li>
+                        <a th:href="@{/user/showMusicSongList(id=${songList.id})}">
+                            <span class="iconfont icon-laji"></span>
+                            详细
+                        </a>
+                    </li>
+                    <!--                            <li role="separator" class="divider"></li>-->
+                </ul>
+            </th>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+</body>
+</html>

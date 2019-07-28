@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div id="myFans" th:fragment="fans" class="personalCenterTab">
+    <ul class="container">
+        <li  th:each="user:${users}">
+            <div class="fans">
+                <div class="fans_top">
+                    <a th:href="@{/user/otherUserPage(id=${user.id})}">
+                        <img src="/static/img/头像_邓紫棋.jpg" th:src="${user.headPortrait}" alt="">
+                    </a>
+                </div>
+                <div class="fans_bottom">
+                    <a href="javascript:;">
+                        <h3 class="text-center" th:text="${user.name}" >artistname</h3>
+<!--                        <h4 class="text-center">关注：2万</h4>-->
+                    </a>
+                </div>
+            </div>
+        </li>
+    </ul>
+</div>
+
+</body>
+</html>

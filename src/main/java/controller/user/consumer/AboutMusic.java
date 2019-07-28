@@ -42,8 +42,16 @@ public class AboutMusic {
      * 显示用户喜欢MV的播放页面
      */
     @RequestMapping(value = "/playCollectMusicVideo")
-    public String playMusicVideo(HttpSession session, Model model){
-        return aboutPlayService.playMusicVideo(session,model);
+    public String playCollectMusicVideo(HttpSession session, Model model){
+        return aboutPlayService.playCollectMusicVideo(session,model);
+    }
+
+    /**
+     * 显示用户喜欢音乐的播放页面
+     */
+    @RequestMapping(value = "/playCollectMusic")
+    public String playCollectMusic(HttpSession session, Model model){
+        return aboutPlayService.playCollectMusic(session,model);
     }
 
     /**

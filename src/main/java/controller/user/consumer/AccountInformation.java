@@ -68,9 +68,10 @@ public class AccountInformation {
      * @param session 当前会话
      */
     @RequestMapping(value = "/setUpHeadPortrait")
-    public String setUpHeadPortrait(HttpServletRequest request, HttpSession session, Model model) throws IOException, DataBaseException {
+    @ResponseBody
+    public State setUpHeadPortrait(HttpServletRequest request, HttpSession session) throws IOException, DataBaseException {
         logger.trace("setUpHeadPortrait方法开始执行");
-        return accountInformationService.setUpHeadPortrait(request,session,model);
+        return accountInformationService.setUpHeadPortrait(request,session);
     }
 
     /**

@@ -79,10 +79,10 @@ public class TransactionService {
                 // 获取充值金额
                 User user = specialFunctions.getUser(session);
                 logger.debug("充值前的余额" + user.getBalance());
-                if("50".equals(money)){
-                    money="60";
-                }else if("100".equals(money)){
-                    money="130";
+                if("50.00".equals(money)){
+                    money="60.00";
+                }else if("100.00".equals(money)){
+                    money="130.00";
                 }
                 user.setBalance(user.getBalance().add(new BigDecimal(money)));
                 logger.debug("充值后的余额" + user.getBalance());
@@ -275,11 +275,13 @@ public class TransactionService {
         logger.debug("用户余额" + balance);
         // 计算得到vip的价格
         BigDecimal price = BigDecimal.valueOf(count * 10);
+        logger.debug("优惠前" + count);
         if(count==6){
             count++;
         }else if(count==10){
             count=count+2;
         }
+        logger.debug("优惠后" + count);
         logger.debug("vip的价格" + price);
         // 得到用户是否买的起
         if (balance.compareTo(price) > 0) {
@@ -287,15 +289,17 @@ public class TransactionService {
             user.setBalance(balance.subtract(price));
             // 如果用户本来就是vip则续费
             Calendar calendar = Calendar.getInstance();
-            if (user.getLevel() == 1) {
+            if (user.getVipDate().getTime() > System.currentTimeMillis()) {
                 // 将原vip日期封装
                 calendar.setTime(user.getVipDate());
                 logger.debug("用户本来就是VIP，原vip时间" + user.getVipDate());
             } else {
-                // 修改用户的账号等级
-                user.setLevel(1);
                 // 将日期封装
                 calendar.setTime(new Date());
+            }
+                // 修改用户的账号等级
+            if(user.getLevel()<1){
+                user.setLevel(1);
             }
             // 向后推移几个月
             calendar.add(Calendar.MONTH, count);
@@ -304,7 +308,12 @@ public class TransactionService {
             logger.debug("设置用户vip的时间" + user.getVipDate());
             // 更新用户信息失败抛异常
             // 该方法更改了需要更改相应的参数
-            state = userInformationService.modifyUser(String.valueOf(user.getId()),String.valueOf(user.getLevel()),String.valueOf(user.getBalance()),String.valueOf(user.getReport()));
+            if (userMapper.updateUser(user) < 1) {
+                // 如果失败是数据库错误
+                logger.error("邮箱：" + user.getMailbox() + "修改用户信息时，数据库出错");
+                throw new DataBaseException("邮箱：" + user.getMailbox() + "修改用户信息时，数据库出错");
+            }
+            state.setState(1);
         } else {
             state.setInformation("余额不足，请立即充值");
         }
