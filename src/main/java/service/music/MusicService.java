@@ -1,5 +1,6 @@
 package service.music;
 
+import controller.user.LoginAndRegister;
 import entity.*;
 import mapper.*;
 import org.slf4j.Logger;
@@ -10,6 +11,10 @@ import util.JudgeIsOverdueUtil;
 import util.music.FileUtil;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.*;
 
@@ -43,8 +48,6 @@ public class MusicService {
             Music music = new Music();
             music.setId(musicId);
             Music resultMusic = musicMapper.selectListMusic(music).get(0);
-            String lyrics = FileUtil.readInfoStream(resultMusic.getLyricPath());
-            resultMusic.setLyricPath(lyrics);
             //获取音乐的信息
             model.put("music", resultMusic);
             int musicAlbumId = resultMusic.getAlbumId();
@@ -69,6 +72,22 @@ public class MusicService {
         }
         return null;
     }
+//    public String showMusic(HttpServletRequest request,HttpServletResponse response, HttpSession session, Integer musicId) {
+//        User user = (User)session.getAttribute("user");
+//        //跳转页面路径
+//        final String logonPath = "";
+//        final String musicPath = "";
+//        try {
+//            if(user==null){
+//                response.sendRedirect(logonPath);
+//            }else{
+//                request.setAttribute("musicId",musicId);
+//                request.getRequestDispatcher(musicPath).forward(request,response);
+//            }
+//        }catch (Exception e){
+//            e.printStackTrace();
+//        }
+//    }
     /**
      * 显示歌曲的详细信息
      *     音乐、专辑图片、歌手信息、分类信息、评论（精彩评论、最新评论）、MV(如果有，显示mv的信息，如果无，显示其他相关歌单）

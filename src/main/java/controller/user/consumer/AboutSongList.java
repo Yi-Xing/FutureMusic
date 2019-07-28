@@ -53,15 +53,15 @@ public class AboutSongList {
         return aboutSongListService.showUserCollectionSongList(type, session,model);
     }
 
-
+    /**
+     *
+     * @param id 歌单专辑的ID
+     * @return  歌单或专辑的详细页面
+     */
     @RequestMapping(value = "/showMusicSongList")
     public String showMusicSongList(String id, Model model) {
         return aboutSongListService.showMusicList(id,model);
     }
-
-
-
-    //--------------------------------------------------------------------------
 
 
     /**
@@ -116,7 +116,6 @@ public class AboutSongList {
         logger.trace("deleteMusicSongList方法开始执行");
         return aboutSongListService.deleteMusicSongList(id);
     }
-    //--------------------------------------------------------------------------
 
     /**
      * 收藏或取消收藏歌单或专辑,ajax

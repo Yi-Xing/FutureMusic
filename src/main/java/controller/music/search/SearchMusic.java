@@ -14,6 +14,8 @@ import service.music.MusicService;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.util.List;
 import java.util.Map;
 
@@ -33,7 +35,7 @@ public class SearchMusic {
      */
     @RequestMapping(value = "/showMusicDetail")
     @ResponseBody
-    public Map<String,Object> showMusicDetail(@RequestParam(value = "musicId")Integer musicId, Model model){
+    public Map<String,Object> showMusicDetail( @RequestParam(value = "musicId")Integer musicId){
         return musicService.showMusic(musicId);
     }
 

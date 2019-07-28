@@ -219,7 +219,7 @@ public class FileUpload {
                 // 先判断文件的后缀
                 if ("MP4".equals(suffix)) {
                     // 在判断文件大小
-                    if (file.getSize() <= 20480000) {
+                    if (file.getSize() <= 512000000) {
                         try {
                             return fileUpload(file, "/static/file/musicVideo/", suffix);
                         } catch (IOException e) {

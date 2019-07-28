@@ -350,6 +350,11 @@
       <artifactId>thymeleaf-spring5</artifactId>
       <version>3.0.9.RELEASE</version>
     </dependency>
+      <dependency>
+          <groupId>com.alipay.sdk</groupId>
+          <artifactId>alipay-sdk-java</artifactId>
+          <version>3.7.26.ALL</version>
+      </dependency>
 
   </dependencies>
 
