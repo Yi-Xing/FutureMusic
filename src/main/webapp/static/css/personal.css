@@ -31,9 +31,9 @@
 }
 
 /*分页*/
-#myFollow,#myFans,#myList,#myInformation{
-    display: none;
-}
+/*#myFollow,#myFans,#myList,#myInformation{*/
+/*    display: none;*/
+/*}*/
 #myFans,#myFollow,#iLike,#myList{
     max-height: 900px;
     overflow: auto;
@@ -129,9 +129,9 @@
     color: #f40;
 }
 
-#gedan,#zhuanji,#shipin{
-    display: none;
-}
+/*#gedan,#zhuanji,#shipin{*/
+/*    display: none;*/
+/*}*/
 
 .amount{
     display: flex;

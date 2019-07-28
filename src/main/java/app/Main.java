@@ -165,13 +165,74 @@ public class Main {
         return "jjy";
     }
 
+    @RequestMapping(value = "/likeMusic")
+    public String likeMusic(Model model, HttpSession session) {
+        System.out.println(123112);
+        model.addAttribute("page","like");
+        model.addAttribute("pages","likeMusic");
+        model.addAttribute("user",session.getAttribute("userInformation"));
+        return "userInformation/SSSpersonal";
+    }
+
+    @RequestMapping(value = "/likeSongList")
+    public String likeSongList(Model model, HttpSession session) {
+        System.out.println(123112);
+        model.addAttribute("page","like");
+        model.addAttribute("pages","likeSongList");
+        model.addAttribute("user",session.getAttribute("userInformation"));
+        return "userInformation/SSSpersonal";
+    }
+
+    @RequestMapping(value = "/likeAlbum")
+    public String likeAlbum(Model model, HttpSession session) {
+        System.out.println(123112);
+        model.addAttribute("page","like");
+        model.addAttribute("pages","likeAlbum");
+        model.addAttribute("user",session.getAttribute("userInformation"));
+        return "userInformation/SSSpersonal";
+    }
+
+    @RequestMapping(value = "/likeMusicVideo")
+    public String likeMusicVideo(Model model, HttpSession session) {
+        System.out.println(123112);
+        model.addAttribute("page","like");
+        model.addAttribute("pages","likeMusicVideo");
+        model.addAttribute("user",session.getAttribute("userInformation"));
+        return "userInformation/SSSpersonal";
+    }
+
+    @RequestMapping(value = "/follow")
+    public String follow(Model model, HttpSession session) {
+        System.out.println(123112);
+        model.addAttribute("page","follow");
+        model.addAttribute("user",session.getAttribute("userInformation"));
+        return "userInformation/SSSpersonal";
+    }
+
     @RequestMapping(value = "/fans")
-    public String jjytet(Model model, HttpSession session) {
+    public String fans(Model model, HttpSession session) {
+        System.out.println(123112);
+        model.addAttribute("page","fans");
+        model.addAttribute("user",session.getAttribute("userInformation"));
+        return "userInformation/SSSpersonal";
+    }
+
+    @RequestMapping(value = "/songList")
+    public String songList(Model model, HttpSession session) {
         System.out.println(123112);
         model.addAttribute("page","songList");
         model.addAttribute("user",session.getAttribute("userInformation"));
         return "userInformation/SSSpersonal";
     }
+
+    @RequestMapping(value = "/personalInformation")
+    public String personalInformation(Model model, HttpSession session) {
+        System.out.println(123112);
+        model.addAttribute("page","personalInformation");
+        model.addAttribute("user",session.getAttribute("userInformation"));
+        return "userInformation/SSSpersonal";
+    }
+
 
 
 }
