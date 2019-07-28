@@ -41,6 +41,7 @@
     </div>
     <div >
         <ul>
+            <li ><a th:href="@{/index}">返回首页</a></li>
             <li >用户名：<span th:text="${user.name}"></span></li>
             <li >余额<span th:text="${user.balance}"></span></li>
             <li >vip到期时间<span th:text="${#dates.format(user.vipDate, 'yyyy-MM-dd HH:mm:ss')}"></span></li>

@@ -30,8 +30,9 @@ public class DeleteInterceptor implements HandlerInterceptor {
             }
         }
         request.setAttribute("exception","用户没有删除的权限");
-        exceptionJump.pageJump(request,response);
+        exceptionJump.pageJump(request, response);
         // 跳转页面，表示没有权限访问
+        System.out.println("我拦截了");
         return false;
     }
 }

@@ -22,7 +22,7 @@
                 and #{id}>user_level
             </if>
             <if test='report!=0'>
-                and user_report>=#{report}
+                and user_report>=200
             </if>
         </where>
     </select>

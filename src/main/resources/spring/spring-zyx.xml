@@ -27,8 +27,8 @@
     <!--        </aop:aspect>-->
     <!--    </aop:config>-->
 
-    <!--配置异常处理器-->
-    <!--    <bean class="util.exception.ExceptionResolver" />-->
+<!--    配置异常处理器-->
+        <bean class="util.exception.ExceptionResolver" />
 
 
     <!--配置平台事务管理器-->

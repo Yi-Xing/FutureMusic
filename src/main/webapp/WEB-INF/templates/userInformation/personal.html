@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="head::html"></head>
+<!--<head th:replace="head::html"></head>-->
 <head>
     <meta charset="UTF-8">
     <title>music</title>
@@ -10,7 +10,7 @@
 </head>
 <body>
 <!--头部-->
-<div th:replace="webHead::html" ></div>
+<!--<div th:replace="webHead::html" ></div>-->
 
 <div class="contain">
     <div class="top">
@@ -23,16 +23,16 @@
             <span class="fensi">粉丝：<span th:text="${followCount}"></span>人</span>
             <span class="guanzhu">关注：<span th:text="${userFollowCount}"></span>人</span>
         </div>
-        <span th:if="${show==personal}">
-            <button>锁定个人主页</button>
-        </span>
-        <span th:if="${show!=personal}">
-            <button>举报</button>
-        <button>发邮件</button>
-        <button>关注/取消关注</button>
-        </span>
-        <span><a href="" class="modified_data">我的邮箱</a></span>
-        <span><a href="" class="modified_data">安全中心</a></span>
+<!--        <span th:if="${show!=personal}">-->
+<!--            <button>锁定个人主页</button>-->
+<!--        </span>-->
+<!--        <span th:if="${show==personal}">-->
+<!--            <button>举报</button>-->
+<!--        <button>发邮件</button>-->
+<!--        <button>关注/取消关注</button>-->
+<!--        </span>-->
+<!--        <a th:href="@{/user/userPage}">==</a>-->
+        <span><a th:href="@{/index}" class="modified_data">返回首页</a></span>
     </div>
     <div class="left">
         <ul>
@@ -71,10 +71,10 @@
 </div>
 
 <!--尾部-->
-<div th:replace="webFoot.html"></div>
+<!--<div th:replace="webFoot.html"></div>-->
 
 
 </body>
-<span th:include="on-load-js.html"></span>
+<!--<span th:include="on-load-js.html"></span>-->
 <script src="js/jquery-1.9.1.js" th:src="@{/static/js/jquery-1.9.1.js}" ></script>
 </html>
