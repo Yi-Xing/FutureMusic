@@ -40,8 +40,8 @@
     <table class="table table-hover PrivateLetter">
         <tr th:each="map:${mailMap}">
             <th class="container row">
-                <div class="col-lg-1" style="width: 60px"><a href="#"><img src="" th:src="${map.value.headPortrait}"
-                                                                           alt=""></a></div>
+                <div class="col-lg-1" style="width: 60px"><a th:href="@{/user/otherUserPage(id=${map.value.id})}">
+                    <img src="" th:src="${map.value.headPortrait}" alt=""></a></div>
                 <div class="col-lg-11">
                     <b class="emailName" th:text="${map.value.name}">123</b>
                     <i class="iconfont icon-59"></i>

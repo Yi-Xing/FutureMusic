@@ -234,6 +234,16 @@ public class Main {
     }
 
 
+    @RequestMapping(value = "/qwe")
+    public String followaaa(Model model, HttpSession session) {
+        System.out.println(123112);
+        model.addAttribute("page","likePage");
+        model.addAttribute("pages","likeMusicVideo");
+        model.addAttribute("user",session.getAttribute("userInformation"));
+        return "userPage/userPage";
+    }
+
+
 
 }
 

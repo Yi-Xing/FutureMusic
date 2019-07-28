@@ -36,6 +36,11 @@
                 #{value}
             </foreach>
         </where>
+        <if test="list.size() == 0">
+            <where>
+                song_list_id=0
+            </where>
+        </if>
     </select>
     <insert id="insertSongList" parameterType="SongList">
          insert into tb_song_list(song_list_user_id,song_list_name,song_list_picture,song_list_introduction,song_list_date,

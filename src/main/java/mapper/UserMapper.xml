@@ -57,6 +57,11 @@
                 #{value}
             </foreach>
         </where>
+        <if test="list.size() == 0">
+            <where>
+                user_id=0
+            </where>
+        </if>
     </select>
 
     <insert id="insertUser" parameterType="User">

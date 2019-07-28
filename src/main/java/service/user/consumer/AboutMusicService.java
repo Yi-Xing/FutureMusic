@@ -81,19 +81,18 @@ public class AboutMusicService {
         // 得到用户喜欢的所有专辑
         songListCollect.setType(2);
         int album = songListCollectMapper.selectListSongListCollect(songListCollect).size();
-
         model.addAttribute("music", music);
         model.addAttribute("musicVideo", musicVideo);
         model.addAttribute("songList", songList);
         model.addAttribute("album", album);
-        model.addAttribute("page", "like");
+        model.addAttribute("page", "likePage");
         // 得到用户的关注粉丝量及用户信息
         specialFunctions.getUserInformation(user, model);
-        return "userInformation/personal";
+        return "userPage/userPage";
     }
 
     /**
-     * 添加显示用户收藏的所有音乐，显示用户收藏的所有MV
+     * 显示用户收藏的所有音乐，显示用户收藏的所有MV
      *
      * @param type 1表示查找音乐收藏 2表示查找MV收藏
      */
@@ -465,11 +464,9 @@ public class AboutMusicService {
         System.out.println(music.getAvailable());
         if (music.getAvailable() == 0) {
             if (level == 2) {
-                System.out.println(222);
                 System.out.println(user.getVipDate());
-                System.out.println(222333);
                 // 判断用户是不是VIP
-                if (user.getVipDate().getTime() < System.currentTimeMillis()) {
+                if (user.getVipDate().getTime() > System.currentTimeMillis()) {
                     System.out.println(333);
                     music.setId(1);
                 }

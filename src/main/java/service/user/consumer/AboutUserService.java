@@ -85,7 +85,7 @@ public class AboutUserService {
         specialFunctions.getUserInformation(user, model);
         model.addAttribute("users",userMapper.listIdSelectListUser(idList));
         System.out.println(userMapper.listIdSelectListUser(idList));
-        return "userInformation/personal";
+        return "userPage/userPage";
     }
 
     /**
@@ -150,9 +150,7 @@ public class AboutUserService {
             logger.debug("邮箱：" + user.getMailbox() + "取消关注用户信息时，数据库出错");
             throw new DataBaseException("邮箱：" + user.getMailbox() + "取消关注用户信息时，数据库出错");
         }
-        State state = new State();
-        state.setState(1);
-        return state;
+        return new State(1);
     }
 
     /**

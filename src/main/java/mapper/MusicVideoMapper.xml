@@ -46,6 +46,11 @@
                 #{value}
             </foreach>
         </where>
+        <if test="list.size() == 0">
+            <where>
+                music_video_id=0
+            </where>
+        </if>
     </select>
     <insert id="insertMusicVideo" parameterType="MusicVideo">
          insert into tb_music_video (music_video_name,music_video_path,music_video_introduction,music_video_date,

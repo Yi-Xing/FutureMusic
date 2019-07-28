@@ -1,8 +1,6 @@
 package service.user.consumer;
 
-import entity.MusicCollect;
-import entity.MusicVideo;
-import entity.User;
+import entity.*;
 import mapper.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -33,27 +31,44 @@ public class AboutPlayService {
     MusicCollectMapper musicCollectMapper;
     @Resource(name = "MusicVideoMapper")
     MusicVideoMapper musicVideoMapper;
+    @Resource(name = "AboutMusicService")
+    AboutMusicService aboutMusicService;
+    @Resource(name = "MusicMapper")
+    MusicMapper musicMapper;
     /**
      * 显示用户喜欢MV的播放页面
      */
-    public String playMusicVideo(HttpSession session, Model model){
-        System.out.println(1);
-        User user=specialFunctions.getUser(session);
-        System.out.println(user);
-        MusicCollect musicCollect=new MusicCollect();
-        musicCollect.setUserId(user.getId());
-        musicCollect.setType(2);
+    public String playCollectMusicVideo(HttpSession session, Model model){
         // 查找到用户收藏的MV
-        List<MusicCollect> musicCollectList= musicCollectMapper.selectListMusicCollect(musicCollect);
+        List<MusicCollect> musicCollectList=aboutMusicService.showUserCollectionMusic(2,session);
         List<Integer> musicId=new ArrayList<>();
         for (MusicCollect musicCollect1:musicCollectList){
             musicId.add(musicCollect1.getMusicId());
         }
         List<MusicVideo> musicVideoList=musicVideoMapper.listIdSelectListMusicVideo(musicId);
         model.addAttribute("musicVideoList",musicVideoList);
-        System.out.println(musicVideoList);
-        System.out.println("===============================");
+        logger.debug("用户喜欢的MV"+musicVideoList);
         return "userMusic/musicVideoPlayer";
     }
 
+    /**
+     * 显示用户喜欢音乐的播放页面
+     */
+    public String playCollectMusic(HttpSession session, Model model){
+        User user=specialFunctions.getUser(session);
+        List <MusicCollect> list=aboutMusicService.showUserCollectionMusic(1,session);
+        List<Integer> musicId=new ArrayList<>();
+        for (MusicCollect musicCollect1:list){
+            musicId.add(musicCollect1.getMusicId());
+        }
+        List<Music> musicList=musicMapper.listIdSelectListMusic(musicId);
+        SongList songList=new SongList();
+        songList.setPicture(user.getHeadPortrait());
+        songList.setName(user.getName());
+        // 当前歌单数据,其实是用户数据
+        model.addAttribute("songList", songList);
+        // 音乐列表数据
+        model.addAttribute("musicList", musicList);
+        return "userMusic/musicPlayer";
+    }
 }

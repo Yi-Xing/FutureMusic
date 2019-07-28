@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div id="myInformation" th:fragment="personal" class="personalCenterTab">
+    <div class="container">
+        <div class="money">
+            <h2>
+                账户余额
+                <span class="iconfont icon-iconvip" ></span>
+            </h2>
+            <h3 >￥<span th:text="${user.balance}"></span></h3>
+            <a class="btn btn-danger pull-right" th:href="@{/user/balancePage}" >充值</a>
+        </div>
+        <h2 id="changeInformation"><a href="javascript:;">修改个人信息</a></h2>
+        <form class="" >
+            <div class="form-group">
+                <label for="exampleInputEmail1">昵称</label>
+                <input type="text" class="form-control" id="exampleInputEmail1" placeholder="昵称">
+            </div>
+            <a class="btn btn-success pull-right" id="modifyUserName">确认更改</a>
+        </form>
+        <form action="#" id="selectFile" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="exampleInputFile">上传头像</label>
+                <input type="file" name="file" id="exampleInputFile">
+                <p class="help-block">选择你的头像。</p>
+            </div>
+            <a class="btn btn-success pull-right" id="modifyUserPortrait">确认更改</a>
+        </form>
+    </div>
+</div>
+
+</body>
+</html>

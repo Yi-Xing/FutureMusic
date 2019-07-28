@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div id="iLike" th:fragment="likePage" class="personalCenterTab">
+    <div class="btn-group" role="group" aria-label="...">
+        <a type="button" class="btn btn-success MyFavoriteMusic" data-value="1"  th:href="@{/user/playCollectMusic}" >歌曲</a>
+        <a type="button" class="btn btn-success" th:href="@{/user/showUserCollectionSongList(type=1)}">歌单</a>
+        <a type="button" class="btn btn-success" th:href="@{/user/showUserCollectionSongList(type=2)}">专辑</a>
+        <a type="button" class="btn btn-success MyFavoriteMusic" th:href="@{/user/playCollectMusicVideo}" data-value="2">视频</a>
+    </div>
+    <div id="woxihuan">
+        <div th:if="${pages=='likeSongList'}">
+            <div th:replace="userPage/likeSongList::likeSongList"></div>
+        </div>
+        <div th:if="${pages=='likeAlbum'}">
+            <div th:replace="userPage/likeAlbum::likeAlbum"></div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

@@ -3,7 +3,6 @@ window.onload = function () {
     $(".ewm").on("click", function () {
         // 得到音乐id
         var value = $(this).data("value");
-        alert(value);
         if(value==="balance1"){
             window.location.href = 'http://localhost:8080/user/rechargeBalance?type=1';
         }else if(value==="balance2"){
@@ -19,7 +18,6 @@ window.onload = function () {
         }else{
             alert("选择不合法");
         }
-        alert(value)
         if(value===1 ||value===6 ||value===10 ){
             $.ajax({
                 contentType: "application/x-www-form-urlencoded",
