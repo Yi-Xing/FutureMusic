@@ -351,31 +351,31 @@ function musicTab() {
     });
 }
 
-var type = 1;
-var like = 0;
-$('.icon-like').on('click', function () {
-    let obj = $(this)[0];
-    if (like === 0){
-        $(obj).addClass('like');
-        like = 1;
-        $.ajax({
-            contentType: "application/x-www-form-urlencoded;charset=UTF-8",
-            url: "collectionMusic",
-            type: 'post',
-            dataType: "json",
-            data: {
-                musicId: musicId,
-                type: type
-            },
-            success: function (data) {
-                console.log(data);
-            }
-        })
-    }else {
-        $(obj).removeClass('like');
-        like = 0;
-    }
-});
+// var type = 1;
+// var like = 0;
+// $('.icon-like').on('click', function () {
+//     let obj = $(this)[0];
+//     if (like === 0){
+//         $(obj).addClass('like');
+//         like = 1;
+//         $.ajax({
+//             contentType: "application/x-www-form-urlencoded;charset=UTF-8",
+//             url: "collectionMusic",
+//             type: 'post',
+//             dataType: "json",
+//             data: {
+//                 musicId: musicId,
+//                 type: type
+//             },
+//             success: function (data) {
+//                 console.log(data);
+//             }
+//         })
+//     }else {
+//         $(obj).removeClass('like');
+//         like = 0;
+//     }
+// });
 
 
 function PLAY(index) {

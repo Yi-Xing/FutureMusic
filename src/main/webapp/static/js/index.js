@@ -60,15 +60,15 @@ var mh_a1 = document.querySelectorAll(".modal_header a")[0];
 var mh_a2 = document.querySelectorAll(".modal_header a")[1];
 var login = document.getElementsByClassName("login")[0];
 var registered = document.getElementsByClassName("registered")[0];
-mh_a1.onclick = function () {
+$(mh_a1).onclick = function () {
     login.style.display = "block";
     registered.style.display = "none";
 };
-mh_a2.onclick = function () {
+$(mh_a2).onclick = function () {
     login.style.display = "none";
     registered.style.display = "block";
 };
-var httpurl = ""//请求路径
+var httpurl = "";    //请求路径
 
 // 用于发送验证码
 // $("#button4").on("click", function () {
@@ -190,42 +190,53 @@ $(".thumbnail .icon-like").click(function () {
 //         }
 //     })
 // });
-window.onload = function (){
-    var length = $('.icon-like').length;
-    for(i = 0 ; i < length ; i++){
-        var id = $('.icon-like')[i].data('id');
-        $.ajax({
-            contentType: "application/x-www-form-urlencoded;charset=UTF-8",
-            url: "",
-            type: 'post',
-            dataType: "json",
-            success:{}
-        })
-    }
-};
+// window.onload = function (){
+//     var length = $('.icon-like').length;
+//     for(i = 0 ; i < length ; i++){
+//         var id = $('.icon-like')[i].data('id');
+//         $.ajax({
+//             contentType: "application/x-www-form-urlencoded;charset=UTF-8",
+//             url: "",
+//             type: 'post',
+//             dataType: "json",
+//             success:{}
+//         })
+//     }
+// };
 var like = 0;
 $('.icon-like').on('click', function () {
-    if(like == 0){
+    if (like == 0) {
         $(this).addClass('like');
         like = 1;
-    }
-    else{
-        $(this).removeClass('like');
-        like =0;
-    }
-});
-
-$('.icon-like').on('click', function () {
-    var L;
-    if (like == 1) {
-        collection(1,$(this));
     } else {
-        collection(0,$(this));
+        $(this).removeClass('like');
+        like = 0;
+    }
+});
+
+$(".icon-like").on('click', function () {
+    var L;
+    var id = $(this).data('id');
+    console.log(id);
+    if ($(this)[0].hasClass("like")) {
+        console.log("还未收藏");
+        //存在进行下面的操作
+        L = 0;
+        if (like == 1) {
+            console.log("已取消收藏");
+            collection(1, $(this));
+        } else {
+            console.log("已收藏");
+            collection(0, $(this));
+        }
+    }else {
+        L = 1;
+
     }
 });
 
 
-function collection(like,obj) {
+function collection(like, obj) {
     if (like === 0) {
         $.ajax({
             contentType: "application/x-www-form-urlencoded;charset=UTF-8",
@@ -243,7 +254,7 @@ function collection(like,obj) {
             }
         });
         return 1;
-    } else if(like === 1) {
+    } else if (like === 1) {
         $.ajax({
             contentType: "application/x-www-form-urlencoded;charset=UTF-8",
             url: "/user/collectionMusic",

@@ -5,7 +5,7 @@
     <link rel="stylesheet" href="/static/css/player.css" th:href="@{/static/css/player.css}">
 </head>
 <body>
-
+<li id="userId" style="display: none" th:data-id="${session.userInformation.getId()}"></li>
 <div class="player_container">
 
     <!--//左侧-->
@@ -98,10 +98,10 @@
                     </div>
                     <th class="dropdown">
                         <span th:if="${musicList.classificationId!=1}">
-                            <span class="iconfont icon-like"></span>
+                            <span th:data-id="${musicList.id}" class="iconfont icon-like"></span>
                         </span>
                         <span th:if="${musicList.classificationId==1}">
-                            <span class="iconfont icon-like like"></span>
+                            <span th:data-id="${musicList.id}" class="iconfont icon-like like"></span>
                         </span>
 
                         <span type="button" class="iconfont icon-more dropdown-toggle" data-toggle="dropdown"
