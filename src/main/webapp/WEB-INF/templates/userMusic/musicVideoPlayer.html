@@ -24,7 +24,7 @@
 </div>
 <div class="container-fluid color_2" style="position: relative">
     <div class="row inner ILike">
-        <h2 >我喜欢的MV</h2>
+        <h2 th:data-id="${musicVideoId}">我喜欢的MV</h2>
         <i class="iconfont icon-like" style="font-size: 30px"></i>
         <ul class="container">
             <li class="ILikeMusicVideo" th:each="musicVideo:${musicVideoList}">
