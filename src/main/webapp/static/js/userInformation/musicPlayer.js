@@ -240,7 +240,8 @@ function suiji() {
 //-------------------------------------------------------------------------------
 
 
-var musicId = $("#musicId").data("value");
+var musicId;
+musicId = $("#musicId").data("value");
 console.log('音乐ID=' + musicId);
 
 //音乐切换

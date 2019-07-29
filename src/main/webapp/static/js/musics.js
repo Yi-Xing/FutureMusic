@@ -48,4 +48,4 @@ $.ajax({
 
 Tname.onclick = function () {
     window.location.href = "player.html?musicId=" + musicId;
-}
+};

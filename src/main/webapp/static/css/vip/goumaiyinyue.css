@@ -27,6 +27,7 @@ a{
 .topic_nav h4{
     font-weight: 400;
     margin: 15px auto;
+    line-height: 40px;
 }
 .topic_nav li{
     display: inline-block;
@@ -36,6 +37,9 @@ a{
     width: 85%;
     margin: 0 auto;
     text-align: center;
+}
+.head ul{
+    width: 100%;
 }
 .head li{
     display: inline-block;
@@ -63,8 +67,6 @@ a{
     
     padding: 10px;
 }
-
-
 .new{
     color: #777;
     margin: 15px auto;

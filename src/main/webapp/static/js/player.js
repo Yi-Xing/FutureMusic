@@ -237,10 +237,6 @@ function suiji() {
 }
 
 
-
-
-
-
 //--------------------------------------------------------------------
 var url = window.location.search;
 var musicId = url.substring(url.lastIndexOf('musicId=') + 8, url.length);
@@ -260,6 +256,8 @@ $('.musicList ul li').on('click', function () {
     console.log(this);
     $(this).addClass('active');
 });
+
+musicTab();
 
 //音乐切换
 $(".music_list").click(function () {
@@ -285,7 +283,7 @@ $(".music_list").click(function () {
     // console.log("歌曲SRC" + musicSrc);
     //获取歌词显示
     var displayMusicLyr = $(".Play .Lyric")[0];
-    musicTab();
+
 
 
 //歌词同步--------------------------------------------------------
@@ -348,58 +346,26 @@ function musicTab() {
     console.log("执行");
     $.ajax({
         contentType: "application/x-www-form-urlencoded;charset=UTF-8",
-        url: "playMusic",
+        url: "showMusicDetail",
         type: 'post',
         dataType: "json",
-        data: {id: musicId},
+        data: {musicId: musicId},
         success: function (data) {
-            console.log(data.id);
-            console.log(data.name);
-            console.log(data.path);
-            console.log(data.picture);
+            // console.log(data);
             // console.log(data.lyricPath);
 
             //获取歌曲显示
             var displayMusicName = $(".Play .music_name h2")[0];
-            displayMusicName.innerHTML = data.name;
+            displayMusicName.innerHTML = data.music.name;
 
-            if (data.id == 0) {
-                $(".Lyric")[0].innerHTML = "对不起，我们还未获得这首音乐的版权";
-            } else if (data.id == 1) {
-                $(".Lyric")[0].innerHTML = "对不起，这首歌需要VIP授权播放";
-            } else if (data.id == 2) {
-                $(".Lyric")[0].innerHTML = "对不起，您还没有购买这首歌曲";
-            } else if (data.id == 3) {
-                $(".Lyric")[0].innerHTML = "对不起，此音乐没有歌词";
-            } else {
+            $(userImg).attr('src', data.music.picture);
+            userName.innerHTML = data.music.name;
+            musicName.innerHTML = data.music.name;
 
-                //获取audio
-                var autio = $("audio");
-                $(autio).attr('src', data.path);
+            //获取audio
+            var autio = $("audio");
+            $(autio).attr('src', data.music.path);
 
-
-
-                var lyric = data.lyricPath;
-                var lyr = lyric.split("[");
-                lyr.forEach(function (current) {
-                    // console.log(current);
-                    let geci = current.split(']');
-                    //关于时间的处理
-                    let time = geci[0];
-                    time = time.split(':');
-                    time1 = time[0];
-                    time2 = time[1];
-                    time = time1 * 60 + parseInt(time2);
-
-                    // console.log(time);
-                    // console.log(geci[1]);
-                    //undefined判断
-                    if (geci[1]) {
-                        str += '<p id = time' + time + '>' + geci[1] + '</p>';
-                    }
-                });
-                $(".Lyric")[0].innerHTML = str;
-            }
         }
     });
 }

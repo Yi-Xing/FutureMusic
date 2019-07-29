@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="head::html"></head>
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
@@ -9,6 +10,10 @@
     <script th:src="@{/static/js/jquery.js}"></script>
 </head>
 <body>
+
+<!--头部-->
+<div th:replace="webHead.html"></div>
+
 <div class="topic_nav">
     <div class="bc">
     </div>
@@ -36,12 +41,11 @@
         <ul>
             <li class="vip"><a th:href="@{/user/vipPage}">开通vip</a></li>
             <li class="balance"><a th:href="@{/user/balancePage}">充值余额</a></li>
-            <li class="music"><a th:href="@{/user/musicPage(id=${id},type=${type})}">购买音乐/MV</a></li>
+            <li class="Smusic"><a th:href="@{/user/musicPage(id=${id},type=${type})}">购买音乐/MV</a></li>
         </ul>
     </div>
     <div >
         <ul>
-            <li ><a th:href="@{/index}">返回首页</a></li>
             <li >用户名：<span th:text="${user.name}"></span></li>
             <li >余额<span th:text="${user.balance}"></span></li>
             <li >vip到期时间<span th:text="${#dates.format(user.vipDate, 'yyyy-MM-dd HH:mm:ss')}"></span></li>
@@ -58,6 +62,9 @@
     </span>
     <script th:src="@{/static/js/userInformation/purchasePage.js}"></script>
 </div>
+
+<!--尾部-->
+<div th:replace="webFoot.html"></div>
 
 </body>
 </html>
