@@ -38,10 +38,10 @@
                     <div class="mv_bottom">
                         <h4 th:text="${musicVideo.name}">music name</h4>
                         <span th:if="${musicVideo.classificationId!=1}">
-                            <span class="iconfont icon-like xin" th:data-id="${musicVideo.id}"></span>
+                            <span class="iconfont icon-like " th:data-id="${musicVideo.id}"></span>
                         </span>
                         <span th:if="${musicVideo.classificationId==1}">
-                            <span class="iconfont icon-like like xin" th:data-id="${musicVideo.id}"></span>
+                            <span class="iconfont icon-like like " th:data-id="${musicVideo.id}"></span>
                         </span>
                     </div>
                 </div>

@@ -75,35 +75,6 @@ $('.icon-like').on('click', function () {
         $(obj).removeClass('like');
         like = 0;
     }
-    // 点击小红心
-
-
 });
 
-window.onload = function () {
-    // 点击发送邮箱按钮触发的事件
-    $(".xin").on("click", function () {
-        var id=$("#userId").data("id");
-        var music=$(this).data("id");
-        $.ajax({
-            contentType: "application/x-www-form-urlencoded;charset=UTF-8",
-            url: "/user/collectionMusic",
-            type: 'post',
-            dataType: "json",
-            data: {
-                userId: id,
-                musicId: music,
-                type: 2
-            },
-            success: function (data) {
-                if(data.state==1){
-                    alert("删除收藏成功")
-                }else if(data.state==2){
-                    alert("添加收藏成功")
-                }else{
-                    alert("请刷新网页")
-                }
-            }
-        });
-    })
-};
+
