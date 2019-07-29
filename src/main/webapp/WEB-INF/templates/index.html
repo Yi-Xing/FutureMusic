@@ -24,16 +24,16 @@
 
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
-                    <li class="active"><a href="./index.html" th:href="@{/index}">音乐馆 <span
+                    <li class="active"><a href="./index.html" th:href="@{/musicPage}">音乐馆 <span
                             class="sr-only">(current)</span></a></li>
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                            aria-expanded="false">发现 <span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <li><a href="#" th:href="@{/showSongListByClassification}">歌单</a></li>
-                            <li><a href="#" th:href="@{/exhibitionSingersByRegion}">歌手</a></li>
+                            <li><a href="#" th:href="@{/musicPage}">音乐</a></li>
+                            <li><a href="#" th:href="@{/musicVideoPage}">MV</a></li>
                             <li role="separator" class="divider"></li>
-                            <li><a href="#" th:href="@{/searchMusicVideoByClassification}">MV</a></li>
+                            <li><a href="#" th:href="@{/albumPage}">专辑</a></li>
                             <li role="separator" class="divider"></li>
                         </ul>
                     </li>

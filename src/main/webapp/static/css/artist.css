@@ -12,8 +12,11 @@
     flex-flow: row wrap;
     justify-content: space-around;
 }
-.artist,.mv{
+.mv{
     margin-bottom: 40px;
+}
+.artist{
+    margin: 20px 40px;
 }
 .artist *,.mv *{
     font-family: "AkkuratPro-Regular", Helvetica, Arial, sans-serif;
@@ -45,7 +48,6 @@
 }
 .artist_bottom{
     width: 160px;
-    padding-left: 40px;
     height: 18px;
     line-height: 16px;
     margin-top: 22px;
