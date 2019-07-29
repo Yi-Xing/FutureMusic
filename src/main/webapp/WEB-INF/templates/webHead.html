@@ -1,7 +1,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <!--头部-->
 <div class="header">
-    <img class="show_bg" src="../../static/video/首页.mp4" th:src="@{/static/video/首页.mp4}"  alt=""></img>
+<!--    <img class="show_bg" src="../../static/video/首页.mp4" th:src="@{/static/video/首页.mp4}"  alt=""></img>-->
     <nav class="navbar">
         <div class="container-fluid">
             <div class="navbar-header">
@@ -30,7 +30,7 @@
                             <li role="separator" class="divider"></li>
                         </ul>
                     </li>
-                    <li><a th:href="@{/user/playCollectMusic}">听见</a></li>
+                    <li><a target="view_window" th:href="@{/user/playCollectMusic}">听见</a></li>
                     <li><a th:href="@{/user/vipPage}">VIP</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
