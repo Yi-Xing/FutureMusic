@@ -48,6 +48,9 @@ public class AboutPlayService {
         List<MusicVideo> musicVideoList=musicVideoMapper.listIdSelectListMusicVideo(musicId);
         model.addAttribute("musicVideoList",musicVideoList);
         logger.debug("用户喜欢的MV"+musicVideoList);
+        if(musicVideoList.size()>0){
+            model.addAttribute("musicVideoId",musicVideoList.get(0));
+        }
         return "userMusic/musicVideoPlayer";
     }
 
@@ -70,5 +73,14 @@ public class AboutPlayService {
         // 音乐列表数据
         model.addAttribute("musicList", musicList);
         return "userMusic/musicPlayer";
+    }
+
+    /**
+     * 播放指定MV
+     * @param
+     */
+    public String playMusicVideoId(Integer id, Model model){
+        model.addAttribute("musicVideoId",id);
+        return "userMusic/musicVideoPlayer";
     }
 }

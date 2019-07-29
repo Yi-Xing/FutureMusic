@@ -7,6 +7,7 @@ import entity.*;
 import mapper.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
 import javax.annotation.Resource;
@@ -20,6 +21,7 @@ import java.util.Map;
  *
  * @author 考核前天 23:59创建
  */
+@Service(value = "Emergency")
 public class Emergency {
     private static final Logger logger = LoggerFactory.getLogger(Emergency.class);
     @Resource(name = "SongListMapper")
@@ -35,6 +37,66 @@ public class Emergency {
 
     // 需求 数据库至少有3个活动  5个音乐人，每个人至少5个音乐  至少有5个MV
     // 遍历所有   MV 音乐 专辑（每个至少18个）
+
+    /**
+     * 显示首页
+     */
+    public String homePage( Model model) {
+        // 3个活动信息 List<Activity>
+        model.addAttribute("Activity", getActivity());
+        // 5个音乐人，每个人5个音乐 Map<User, List<Music>>
+        model.addAttribute("userMusic", getUserAndMusic());
+        // 查找15首个分5份来存放  Map<User, List<Music>>
+        model.addAttribute("userMusic", getUserAndMusic());
+        // 查找5个MV  Map<Integer, List<Music>>
+        model.addAttribute("userMusic", getMusicVideo());
+        return "music/index";
+    }
+
+    /**
+     * 查找所有的音乐分页显示
+     */
+    public String getMusicList(Integer page, Model model){
+        //在查询之前传入当前页，然后多少记录
+        PageHelper.startPage(page, 18);
+        // 根据条件查找音乐信息
+        List<Music> list = musicMapper.selectListMusic(new Music());
+        PageInfo pageInfo = new PageInfo<>(list);
+        // 传入页面信息
+        logger.debug("查找到的音乐" + list);
+        model.addAttribute("pageInfo", pageInfo);
+        return "music/music";
+    }
+    /**
+     * 查找所有的MV分页显示
+     */
+    public String getMusicVideoList(Integer page, Model model){
+        //在查询之前传入当前页，然后多少记录
+        PageHelper.startPage(page, 18);
+        // 根据条件查找MV信息
+        List<MusicVideo> list = musicVideoMapper.selectListMusicVideo(new MusicVideo());
+        PageInfo pageInfo = new PageInfo<>(list);
+        // 传入页面信息
+        logger.debug("查找到的MV" + list);
+        model.addAttribute("pageInfo", pageInfo);
+        return "music/musicVideo";
+    }
+    /**
+     * 查找所有的专辑分页显示
+     */
+    public String getSongListList(Integer page, Model model){
+        //在查询之前传入当前页，然后多少记录
+        PageHelper.startPage(page, 18);
+        SongList songList=new SongList();
+        songList.setType(2);
+        // 根据条件查找专辑信息
+        List<SongList> list = songListMapper.selectListSongList(songList);
+        PageInfo pageInfo = new PageInfo<>(list);
+        // 传入页面信息
+        logger.debug("查找到的专辑" + list);
+        model.addAttribute("pageInfo", pageInfo);
+        return "music/album";
+    }
 
 
     /**
@@ -131,59 +193,14 @@ public class Emergency {
     public List<MusicVideo> getMusicVideo(){
         List<MusicVideo> musicVideoList=new ArrayList<>();
         List<MusicVideo>  list=musicVideoMapper.selectListMusicVideo(new MusicVideo());
-        if(list.size()>=5){
+        if(list.size()>=4){
             musicVideoList.add(list.get(0));
             musicVideoList.add(list.get(1));
             musicVideoList.add(list.get(2));
             musicVideoList.add(list.get(3));
-            musicVideoList.add(list.get(4));
         }
         return musicVideoList;
     }
 
 
-    /**
-     * 查找所有的音乐分页显示
-     */
-    public String getMusicList(Integer page, Model model){
-        //在查询之前传入当前页，然后多少记录
-        PageHelper.startPage(page, 18);
-        // 根据条件查找音乐信息
-        List<Music> list = musicMapper.selectListMusic(new Music());
-        PageInfo pageInfo = new PageInfo<>(list);
-        // 传入页面信息
-        logger.debug("查找到的音乐" + list);
-        model.addAttribute("pageInfo", pageInfo);
-        return "";
-    }
-    /**
-     * 查找所有的MV分页显示
-     */
-    public String getMusicVideoList(Integer page, Model model){
-        //在查询之前传入当前页，然后多少记录
-        PageHelper.startPage(page, 18);
-        // 根据条件查找MV信息
-        List<MusicVideo> list = musicVideoMapper.selectListMusicVideo(new MusicVideo());
-        PageInfo pageInfo = new PageInfo<>(list);
-        // 传入页面信息
-        logger.debug("查找到的MV" + list);
-        model.addAttribute("pageInfo", pageInfo);
-        return "";
-    }
-    /**
-     * 查找所有的专辑分页显示
-     */
-    public String getSongListList(Integer page, Model model){
-        //在查询之前传入当前页，然后多少记录
-        PageHelper.startPage(page, 18);
-        SongList songList=new SongList();
-        songList.setType(2);
-        // 根据条件查找专辑信息
-        List<SongList> list = songListMapper.selectListSongList(songList);
-        PageInfo pageInfo = new PageInfo<>(list);
-        // 传入页面信息
-        logger.debug("查找到的专辑" + list);
-        model.addAttribute("pageInfo", pageInfo);
-        return "";
-    }
 }

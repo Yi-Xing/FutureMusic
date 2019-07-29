@@ -55,6 +55,15 @@ public class AboutMusic {
     }
 
     /**
+     * 播放指定MV
+     * @param
+     */
+    @RequestMapping(value = "/playMusicVideoId")
+    public String playMusicVideoId(Integer id, Model model){
+        return aboutPlayService.playMusicVideoId(id,model);
+    }
+
+    /**
      * 显示用户收藏的所有音乐，显示用户收藏的所有MV  (需要更改)
      *
      * @param type 1表示查找音乐收藏 2表示查找MV收藏
