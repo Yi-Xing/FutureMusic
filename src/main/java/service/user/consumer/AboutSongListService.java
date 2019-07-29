@@ -269,7 +269,6 @@ public class AboutSongListService {
     /**
      * 创建歌单或专辑
      *
-     * @param songList 获取传来的歌单信息
      *                 name           获取歌单或专辑的标题
      *                 picture        获取歌单或专辑的封面的图片路径
      *                 introduction   获取歌单或专辑的介绍
@@ -277,9 +276,13 @@ public class AboutSongListService {
      *                 type           获取类型1是歌单2是专辑
      * @param session  获取当前会话
      */
-    public State createMusicSongList(@RequestBody SongList songList, String languages, String region, String gender, String type, HttpServletRequest request, HttpSession session) throws DataBaseException {
+    public State createMusicSongList(String name,String  introduction,String type, HttpServletRequest request, HttpSession session) throws DataBaseException {
+        SongList songList =new SongList();
+        songList.setName(name);
+        songList.setIntroduction(introduction);
+        songList.setType(Integer.valueOf(type));
         User user = specialFunctions.getUser(session);
-        State state = isSongList(songList, languages, region, gender, type, request);
+        State state = isSongList(songList, request);
         if (state.getState() == 1) {
             // 存储创建者的id
             songList.setUserId(user.getId());
@@ -309,8 +312,8 @@ public class AboutSongListService {
      *                 classification 获取分类
      *                 type           获取类型1是歌单2是专辑
      */
-    public State editMusicSongList(SongList songList, String languages, String region, String gender, String type, HttpServletRequest request) throws DataBaseException {
-        State state = isSongList(songList, languages, region, gender, type, request);
+    public State editMusicSongList(SongList songList, HttpServletRequest request) throws DataBaseException {
+        State state = isSongList(songList,  request);
         if (state.getState() == 1) {
             // 查找原歌单或专辑的信息
             SongList originalSongList = idExistence.isSongListId(songList.getId());
@@ -456,20 +459,21 @@ public class AboutSongListService {
     /**
      * 判断歌单或专辑的各个信息是否合法
      */
-    private State isSongList(SongList songList, String languages, String region, String gender, String type, HttpServletRequest request) {
+    private State isSongList(SongList songList, HttpServletRequest request) {
         State state = new State();
         //歌单或专辑的标题是否符合要求
         if (validationInformation.isName(songList.getName())) {
             //歌单或专辑的介绍是否符合要求
             if (0 < songList.getIntroduction().length() && songList.getIntroduction().length() <= 300) {
                 // 判断分类是否存在
-                List<Integer> list = idExistence.getClassificationId(languages, region, gender, type);
-                if (list != null && list.size() == 1) {
+//                List<Integer> list = idExistence.getClassificationId(languages, region, gender, type)
+//                if (list != null && list.size() == 1) {
                     // 将上传的图片存入硬盘上去
-                    String path = fileUpload.songList(fileUpload.getMultipartFile(request, ""));
+                    String path = fileUpload.songList(fileUpload.getMultipartFile(request, "file"));
                     if (path != null) {
                         // 存储分类
-                        songList.setClassificationId(list.get(0));
+//                        songList.setClassificationId(list.get(0))
+                        songList.setClassificationId(1);
                         // 存储图片路径
                         songList.setPicture(path);
                         state.setState(1);
@@ -477,17 +481,17 @@ public class AboutSongListService {
                         logger.debug("歌单或专辑：" + songList + "歌单或专辑的图片不合法");
                         state.setInformation("歌单或专辑的图片不合法");
                     }
-                } else {
-                    logger.debug("歌单或专辑：" + songList + "歌单或专辑的分类不存在");
-                    state.setInformation("歌单或专辑的分类不存在");
-                }
+//                } else {
+//                    logger.debug("歌单或专辑：" + songList + "歌单或专辑的分类不存在");
+//                    state.setInformation("歌单或专辑的分类不存在");
+//                }
             } else {
-                logger.debug("歌单或专辑：" + songList + "歌单或专辑的标题格式有误");
-                state.setInformation("标题格式有误");
+                logger.debug("歌单或专辑：" + songList + "歌单或专辑的介绍不合法");
+                state.setInformation("介绍不合法");
             }
         } else {
-            logger.debug("歌单或专辑：" + songList + "歌单或专辑的标题格式有误");
-            state.setInformation("标题格式有误");
+            logger.debug("歌单或专辑：" + songList + "歌单或专辑的标题不合法");
+            state.setInformation("标题不合法");
         }
         return state;
     }
