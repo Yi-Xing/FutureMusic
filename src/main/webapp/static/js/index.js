@@ -49,19 +49,6 @@ $(document).ready(function () {
     });
 });
 
-var like = 0;
-$('.icon-like').on('click', function () {
-    let obj = $(this)[0];
-    if (like === 0){
-        $(obj).addClass('like');
-        like = 1;
-
-    }else {
-        $(obj).removeClass('like');
-        like = 0;
-    }
-});
-
 
 //头部
 $(".icon-laji").parent().click(function () {
@@ -123,7 +110,7 @@ $("#search").keyup(function () {
                 // console.log(music);
                 for (let i in music) {
                     var musicName = music[i].name;
-                    tips_head = "<li><a href='./musics.html?musicId="+ music[i].id +"'>";
+                    tips_head = "<li><a href='./musics.html?musicId=" + music[i].id + "'>";
                     // console.log(tips_head);
                     tips = tips + tips_head + musicName + tips_last;
                 }
@@ -144,13 +131,13 @@ $("#search").click(function () {
         type: "post",
         url: "searchMyRecord",
         dataType: "json",
-        success:function (data) {
+        success: function (data) {
             alert(22);
             var history = data[1];
             console.log(history);
             for (let i in history) {
                 var musicName = history[i].name;
-                tips_head = "<li><a href='./musics.html?musicId="+ history[i].id +"'>";
+                tips_head = "<li><a href='./musics.html?musicId=" + history[i].id + "'>";
                 console.log(tips_head);
                 tips = tips + tips_head + musicName + tips_last;
             }
@@ -203,4 +190,76 @@ $(".thumbnail .icon-like").click(function () {
 //         }
 //     })
 // });
+window.onload = function (){
+    var length = $('.icon-like').length;
+    for(i = 0 ; i < length ; i++){
+        var id = $('.icon-like')[i].data('id');
+        $.ajax({
+            contentType: "application/x-www-form-urlencoded;charset=UTF-8",
+            url: "",
+            type: 'post',
+            dataType: "json",
+            success:{}
+        })
+    }
+};
+var like = 0;
+$('.icon-like').on('click', function () {
+    if(like == 0){
+        $(this).addClass('like');
+        like = 1;
+    }
+    else{
+        $(this).removeClass('like');
+        like =0;
+    }
+});
+
+$('.icon-like').on('click', function () {
+    var L;
+    if (like == 1) {
+        collection(1,$(this));
+    } else {
+        collection(0,$(this));
+    }
+});
+
+
+function collection(like,obj) {
+    if (like === 0) {
+        $.ajax({
+            contentType: "application/x-www-form-urlencoded;charset=UTF-8",
+            url: "/user/collectionMusic",
+            type: 'post',
+            dataType: "json",
+            data: {
+                musicId: musicId,
+                type: type
+            },
+            success: function (data) {
+                console.log(data);
+                alert("已收藏！");
+                $(obj).addClass('like');
+            }
+        });
+        return 1;
+    } else if(like === 1) {
+        $.ajax({
+            contentType: "application/x-www-form-urlencoded;charset=UTF-8",
+            url: "/user/collectionMusic",
+            type: 'post',
+            dataType: "json",
+            data: {
+                musicId: musicId,
+                type: type
+            },
+            success: function (data) {
+                console.log(data);
+                alert("已取消收藏！");
+                $(obj).removeClass('like');
+            }
+        });
+        return 0;
+    }
+}
 

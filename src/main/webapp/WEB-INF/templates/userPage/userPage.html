@@ -12,7 +12,7 @@
     <div class="row inner">
         <div class="container-fluid">
             <div class="personal_information">
-                <a href="javascript:;" class="pull-left">
+                <a href="javascript:;" style="width: 160px" class="pull-left">
                     <!--                    th:src="@{${user.headPortrait}}"-->
                     <img th:src="@{${user.headPortrait}}" alt="">
                 </a>
@@ -70,7 +70,7 @@
                          </li>-->
                         <li th:if="${show!='personal'}">
                             <div th:if="${focus=='follow'}" style="margin-top: 10px;">
-                                <i id="focus" class="iconfont icon-laji icon-dianzan" th:data-id="${user.id}">关注</i>
+                                <i id="focus" class="iconfont icon-laji icon-dianzan" style="font-size: 17px;font-weight: 600" th:data-id="${user.id}">关注</i>
                             </div>
                             <div th:if="${focus=='focus'}" style="margin-top: 10px;">
                                 <i id="follow" class="iconfont icon-laji pointer"
