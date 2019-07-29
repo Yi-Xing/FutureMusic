@@ -7,20 +7,24 @@
 <body>
 
 <div id="myFans" th:fragment="fans" class="personalCenterTab">
+    <style>
+        .focusa{
+            color: #555;
+            background-color: #e7e7e7;
+        }
+    </style>
     <ul class="container">
         <li  th:each="user:${users}">
             <div class="fans">
-                <div class="fans_top">
                     <a th:href="@{/user/otherUserPage(id=${user.id})}">
+                <div class="fans_top">
                         <img src="/static/img/头像_邓紫棋.jpg" th:src="${user.headPortrait}" alt="">
-                    </a>
                 </div>
                 <div class="fans_bottom">
-                    <a href="javascript:;">
                         <h3 class="text-center" th:text="${user.name}" >artistname</h3>
 <!--                        <h4 class="text-center">关注：2万</h4>-->
-                    </a>
                 </div>
+                    </a>
             </div>
         </li>
     </ul>

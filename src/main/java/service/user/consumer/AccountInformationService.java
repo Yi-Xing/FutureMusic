@@ -50,7 +50,7 @@ public class AccountInformationService {
     public String userPage(HttpSession session, Model model) {
         // 判断用户是否去访问
         User user = (User) session.getAttribute("otherUser");
-        model.addAttribute("page", "likePage");
+        model.addAttribute("page", "show");
         if (user == null) {
             user = specialFunctions.getUser(session);
             // 从数据库中获取信息

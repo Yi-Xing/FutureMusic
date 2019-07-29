@@ -7,6 +7,12 @@
 <body>
 
 <div id="iLike" th:fragment="likePage" class="personalCenterTab">
+    <style>
+        .likePagea{
+            color: #555;
+            background-color: #e7e7e7;
+        }
+    </style>
     <div class="btn-group" role="group" aria-label="...">
         <a type="button" class="btn btn-success MyFavoriteMusic" data-value="1"  th:href="@{/user/playCollectMusic}" >歌曲</a>
         <a type="button" class="btn btn-success" th:href="@{/user/showUserCollectionSongList(type=1)}">歌单</a>

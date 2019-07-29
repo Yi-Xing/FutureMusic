@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="head::html"></head>
+<head>
+    <link rel="stylesheet" href="/static/css/artist.css" th:href="@{/static/css/artist.css}">
+    <link rel="stylesheet" href="/static/css/musicVideo.css" th:href="@{/static/css/musicVideo.css}">
+    <link rel="stylesheet" href="../../static/css/fenYe.css" th:href="@{/static/css/fenYe.css}">
+</head>
+<body>
+
+<!--头部-->
+<div th:replace="webHead.html"></div>
+
+<!--全部歌单-->
+<div class="container-fluid color_2" style="position: relative">
+    <div class="row inner Artist">
+        <div class="text-center">
+            <h2>分类歌单</h2>
+        </div>
+        <div class="col-lg-2">
+            <h4>全部歌单</h4>
+            <ul class="nav nav-pills nav-stacked artist_menu">
+                <li role="presentation" class="active">
+                    <a href="#">语种</a>
+                    <ul class="nav nav-pills nav-stacked">
+                        <li><a href="#">华语</a></li>
+                        <li><a href="#">英语</a></li>
+                        <li><a href="#">粤语</a></li>
+                        <li><a href="#">日语</a></li>
+                    </ul>
+                </li>
+                <li role="presentation" class="active">
+                    <a href="#">心情</a>
+                    <ul class="nav nav-pills nav-stacked">
+                        <li><a href="#">伤感</a></li>
+                        <li><a href="#">安静</a></li>
+                        <li><a href="#">快乐</a></li>
+                        <li><a href="#">治愈</a></li>
+                        <li><a href="#">励志</a></li>
+                        <li><a href="#">甜蜜</a></li>
+                    </ul>
+                </li>
+                <li role="presentation" class="active">
+                    <a href="#">场景</a>
+                    <ul class="nav nav-pills nav-stacked">
+                        <li><a href="#">睡前</a></li>
+                        <li><a href="#">夜店</a></li>
+                        <li><a href="#">学习</a></li>
+                        <li><a href="#">运动</a></li>
+                        <li><a href="#">开车</a></li>
+                        <li><a href="#">约会</a></li>
+                        <li><a href="#">旅行</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        <div class="col-lg-10" id="artist_list">
+            <div class="mvS">
+                <ul>
+                    <li th:each="list:${songList}">
+                        <div class="mv">
+                            <div class="list_top">
+                                <a href="./musicList.html" th:href="@{/songListInformation(musicVideoId=${list.songList.id})}">
+                                    <img th:src="@{${list.songListPhoto}}" src="../../static/img/mv_燃烧我的卡路里.jpg" alt="">
+                                </a>
+                            </div>
+                            <div class="list_bottom">
+                                <h4 th:text="${list.songList.name}">music name</h4>
+                                <h4 style="color: #999999">artist name</h4>
+                                <h4 th:text="${list.playCount}" style="color: #999999" class="mv_playTimes">播放：num</h4>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="main_rh_footer">
+
+
+                <div class="zzsc">
+                    <ul class="page" id="page" pagelistcount="10" maxshowpageitem="5">
+                        <li class="pageItemDisable" page-rel="firstpage" page-data="1">首页</li>
+                        <li class="pageItemDisable" page-rel="prepage" page-data="0">&lt;上一页</li>
+                        <li class="pageItemActive" page-rel="itempage" page-data="1">1</li>
+                        <li class="pageItem" page-rel="itempage" page-data="2">2</li>
+                        <li class="pageItem" page-rel="itempage" page-data="3">3</li>
+                        <li class="pageItem" page-rel="itempage" page-data="4">4</li>
+                        <li class="pageItem" page-rel="itempage" page-data="5">5</li>
+                        <li class="pageItem" page-rel="nextpage" page-data="2">下一页&gt;</li>
+                        <li class="pageItem" page-rel="lastpage" page-data="8">尾页</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--尾部-->
+<div th:replace="webFoot.html"></div>
+
+</body>
+<div th:replace="on-load-js::on-load-js"></div>
+<script src="../../static/js/personal.js" th:src="@{/static/js/personal.js}"></script>
+</html>

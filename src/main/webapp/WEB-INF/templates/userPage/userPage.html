@@ -41,27 +41,37 @@
                 </div>
 
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <div th:if="${page!='show'}">
+
                     <ul class="nav navbar-nav">
-                        <li class="active personal_tab"><a th:href="@{/user/showUserLike}">我喜欢 <span class="sr-only">(current)</span></a>
+                        <li class=" likePagea personal_tab"><a th:href="@{/user/showUserLike}">我喜欢 <span
+                                class="sr-only">(current)</span></a>
                         </li>
-                        <li class="personal_tab"><a th:href="@{/user/showFollowUser(type=1)}">我的关注</a></li>
-                        <li class="personal_tab"><a th:href="@{/user/showFollowUser(type=2)}">粉丝</a></li>
-                        <li class="personal_tab"><a th:href="@{/user/showUserSongList(type=1)}">我的歌单</a></li>
-                        <li class="personal_tab"><a th:href="@{/user/showUserSongList(type=2)}">我的专辑</a></li>
-                        <li class="personal_tab"><a th:href="@{/user/userPage}">个人信息</a></li>
+                        <li class="  followa personal_tab"><a th:href="@{/user/showFollowUser(type=1)}">我的关注</a></li>
+                        <li class=" focusa personal_tab"><a th:href="@{/user/showFollowUser(type=2)}">粉丝</a></li>
+                        <li class="songLista personal_tab"><a th:href="@{/user/showUserSongList(type=1)}">我的歌单</a></li>
+                        <li class="albuma personal_tab"><a th:href="@{/user/showUserSongList(type=2)}">我的专辑</a></li>
+                        <li class="personala personal_tab"><a th:href="@{/user/userPage}">个人信息</a></li>
                     </ul>
+                    </div>
                     <ul class="nav navbar-nav navbar-right">
                         <!--                        发送信件-->
                         <li><a th:href="@{/user/sendEmail}"><i class="iconfont icon-youxiang-kong"></i></a></li>
                         <!--该值不为personal表示访问其他用户的界面-->
-                        <li th:if="${show!='personal'}">
+                       <!-- <li th:if="${show!='personal'}">
                             <span th:if="${focus=='follow'}">
                                 <button id="focus" th:data-id="${user.id}">关注</button>
                             </span>
                             <span th:if="${focus=='focus'}">
                                 <button id="follow" th:data-id="${user.id}">取消关注</button>
                             </span>
-                        </li>
+                        </li>-->
+                        <li th:if="${show!='personal'}">
+                            <div th:if="${focus=='follow'}" style="margin-top: 10px;">
+                                <i id="focus" class="iconfont icon-laji icon-dianzan" th:data-id="${user.id}">关注</i>
+                            </div>
+                            <div th:if="${focus=='focus'}" style="margin-top: 10px;">
+                                <i id="follow" class="iconfont icon-laji pointer" style="font-size: 17px;font-weight: 300" th:data-id="${user.id}">取消关注</i>
                         <!--  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
                               <div class="modal-dialog" role="document">
                                   <div class="modal-content">
@@ -116,25 +126,25 @@
                 </div>
             </div>
         </nav>
-        <!--我喜欢的页面-->
-        <div th:if="${page=='likePage'}">
-            <div th:replace="userPage/likePage::likePage"></div>
-        </div>
-        <div th:if="${page=='follow'}">
-            <div th:replace="userPage/follow::follow"></div>
-        </div>
-        <div th:if="${page=='fans'}">
-            <div th:replace="userPage/fans::fans"></div>
-        </div>
-        <div th:if="${page=='songList'}">
-            <div th:replace="userPage/songList::songList"></div>
-        </div>
-        <div th:if="${page=='album'}">
-            <div th:replace="userPage/album::album"></div>
-        </div>
-        <div th:if="${page=='personal'}">
-            <div th:replace="userPage/personal::personal"></div>
-        </div>
+            <!--我喜欢的页面-->
+            <div th:if="${page=='likePage'}">
+                <div th:replace="userPage/likePage::likePage"></div>
+            </div>
+            <div th:if="${page=='follow'}">
+                <div th:replace="userPage/follow::follow"></div>
+            </div>
+            <div th:if="${page=='fans'}">
+                <div th:replace="userPage/fans::fans"></div>
+            </div>
+            <div th:if="${page=='songList'}">
+                <div th:replace="userPage/songList::songList"></div>
+            </div>
+            <div th:if="${page=='album'}">
+                <div th:replace="userPage/album::album"></div>
+            </div>
+            <div th:if="${page=='personal'}">
+                <div th:replace="userPage/personal::personal"></div>
+            </div>
     </div>
 </div>
 

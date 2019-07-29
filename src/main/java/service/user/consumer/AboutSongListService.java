@@ -73,10 +73,10 @@ public class AboutSongListService {
         }
         List<SongList> songLists = songListMapper.selectListSongList(songList);
         // 得到指定歌单或专辑包含的音乐数量
-        for (SongList s: songLists) {
-            s.setType(songListMusicList(s.getType(),s.getId()).size());
-            s.setActivity(songListCount(1,s.getType(),s.getId()));
-            s.setClassificationId(songListCount(2,s.getType(),s.getId()));
+        for (SongList s : songLists) {
+            s.setType(songListMusicList(s.getType(), s.getId()).size());
+            s.setActivity(songListCount(1, s.getType(), s.getId()));
+            s.setClassificationId(songListCount(2, s.getType(), s.getId()));
         }
         // 得到用户的关注粉丝量及用户信息
         specialFunctions.getUserInformation(user, model);
@@ -98,24 +98,24 @@ public class AboutSongListService {
         // 得到用户的关注粉丝量及用户信息
         specialFunctions.getUserInformation(user, model);
         // 查找到指定用户收藏的所有歌单或专辑
-            model.addAttribute("page", "likePage");
+        model.addAttribute("page", "likePage");
         if (type == 1) {
             model.addAttribute("pages", "likeSongList");
         } else {
             model.addAttribute("pages", "likeAlbum");
         }
-        List<SongListCollect> listCollects=songListCollectMapper.selectListSongListCollect(songListCollect);
+        List<SongListCollect> listCollects = songListCollectMapper.selectListSongListCollect(songListCollect);
         System.out.println(listCollects);
         System.out.println("==============================");
-        List<Integer> songListId=new ArrayList<>();
-        for(SongListCollect s:listCollects){
+        List<Integer> songListId = new ArrayList<>();
+        for (SongListCollect s : listCollects) {
             songListId.add(s.getMusicId());
         }
-        List<SongList> songLists= songListMapper.listIdSelectListSongList(songListId);
-        for (SongList s: songLists) {
-            s.setType(songListMusicList(s.getType(),s.getId()).size());
-            s.setActivity(songListCount(1,s.getType(),s.getId()));
-            s.setClassificationId(songListCount(2,s.getType(),s.getId()));
+        List<SongList> songLists = songListMapper.listIdSelectListSongList(songListId);
+        for (SongList s : songLists) {
+            s.setType(songListMusicList(s.getType(), s.getId()).size());
+            s.setActivity(songListCount(1, s.getType(), s.getId()));
+            s.setClassificationId(songListCount(2, s.getType(), s.getId()));
         }
         model.addAttribute("songList", songLists);
         return "userPage/userPage";
@@ -135,6 +135,7 @@ public class AboutSongListService {
         int songListId = Integer.valueOf(id);
         // 找到指定歌单或专辑
         SongList songList = idExistence.isSongListId(songListId);
+        logger.debug("查找到的指定歌单/专辑信息" + songList);
         if (songList == null) {
             return "index";
         }
@@ -143,7 +144,8 @@ public class AboutSongListService {
             // 找到该歌单/专辑的创建者
             User userInformation = idExistence.isUserId(songList.getUserId());
             //得到所有的音乐
-            List<Music> musicList =songListMusicList(songList.getType() ,songList.getId());
+            List<Music> musicList = songListMusicList(songList.getType(), songList.getId());
+            logger.debug("查找到的指定歌单/专辑的所有音乐" + musicList);
             // 查找每个音乐属于的专辑和用户名
             logger.debug("4");
             User temporaryUser;
@@ -165,15 +167,15 @@ public class AboutSongListService {
             // 上传歌单或专辑创建者的信息
             model.addAttribute("user", userInformation);
             // 上传播放量
-            model.addAttribute("plays", songListCount(2,songList.getType() ,songList.getId()));
+            model.addAttribute("plays", songListCount(2, songList.getType(), songList.getId()));
             // 上传收藏量
-            model.addAttribute("collects", songListCount(1,songList.getType() ,songList.getId()));
+            model.addAttribute("collects", songListCount(1, songList.getType(), songList.getId()));
             // 上传所有音乐
             model.addAttribute("musicList", musicList);
+            logger.debug("歌单" + songList + "所有音乐" + musicList);
         } else {
             return "index";
         }
-        System.out.println(6);
         return "userMusic/musicList";
     }
 
@@ -204,19 +206,21 @@ public class AboutSongListService {
     /**
      * 查找指定专辑或歌单中的所有的音乐
      */
-    public List<Music> songListMusicList(int songListType, int songListId){
+    public List<Music> songListMusicList(int songListType, int songListId) {
         // 查找包含的所有音乐
         MusicSongList musicSongList = new MusicSongList();
         musicSongList.setBelongId(songListId);
         musicSongList.setType(songListType);
         List<MusicSongList> musics = musicSongListMapper.selectListMusicSongList(musicSongList);
+        logger.debug("该歌单/专辑中包含的音乐" + musics);
         List<Integer> musicId = new ArrayList<>();
         // 得到该歌单或专辑包含的所有音乐
         logger.debug("3");
         for (MusicSongList m : musics) {
             musicId.add(m.getMusicId());
         }
-        return  musicMapper.listIdSelectListMusic(musicId);
+        logger.debug("该歌单/专辑中包含的音乐Id" + musicId);
+        return musicMapper.listIdSelectListMusic(musicId);
     }
 
     /**
@@ -233,16 +237,18 @@ public class AboutSongListService {
             if (songList != null) {
                 // 查找指定专辑中的所有音乐
                 MusicSongList musicSongList = new MusicSongList();
-                musicSongList.setMusicId(Integer.valueOf(songListId));
+                musicSongList.setBelongId(Integer.valueOf(songListId));
                 // 查找到专辑中的所有信息
                 List<MusicSongList> musicSongLists = musicSongListMapper.selectListMusicSongList(musicSongList);
+                logger.debug("歌单/专辑中的所有音乐信息"+musicSongLists);
                 // 用于存储专辑中所有音乐的id
                 List<Integer> musicIdList = new ArrayList<>();
                 for (MusicSongList m : musicSongLists) {
                     musicIdList.add(m.getMusicId());
                 }
                 // 查找到所有的音乐
-                List<Music> musicList = musicMapper.listClassificationIdSelectListMusic(musicIdList);
+                System.out.println("音乐ID" + musicIdList);
+                List<Music> musicList = musicMapper.listIdSelectListMusic(musicIdList);
                 // 传给前端
                 // 音乐列表数据
                 model.addAttribute("musicList", musicList);
@@ -250,6 +256,7 @@ public class AboutSongListService {
                 model.addAttribute("songList", songList);
                 // 即将播放的音乐 musicId
                 model.addAttribute("musicId", musicId);
+                logger.debug("歌单" + songList + "即将播放的音乐" + musicId + "所有音乐" + musicList);
             } else {
                 return "index";
             }

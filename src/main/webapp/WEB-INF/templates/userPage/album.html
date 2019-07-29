@@ -7,6 +7,12 @@
 <body>
 
 <div id="myList" th:fragment="album" class="personalCenterTab">
+    <style>
+        .albuma {
+            color: #555;
+            background-color: #e7e7e7;
+        }
+    </style>
     <table class="table table-hover table-striped">
         <thead>
         <tr>
@@ -23,18 +29,18 @@
                 <div>
                     <a th:href="@{/user/showMusicSongList(id=${songList.id})}">
                         <img src="img/头像_邓紫棋.jpg" th:src="@{${songList.picture}}" alt="">
-                        <span  th:text="${songList.name}">name</span>
+                        <span th:text="${songList.name}">name</span>
                     </a>
                 </div>
             </td>
             <td>
-                <span><span th:text="${songList.type}" >2</span>次</span>
+                <span><span th:text="${songList.type}">2</span>次</span>
             </td>
             <td>
-                <span><span  th:text="${songList.activity}">2</span>次</span>
+                <span><span th:text="${songList.activity}">2</span>次</span>
             </td>
             <td>
-                <span><span  th:text="${songList.classificationId}">2</span>次</span>
+                <span><span th:text="${songList.classificationId}">2</span>次</span>
             </td>
             <th class="dropdown">
                         <span type="button" class="iconfont icon-more dropdown-toggle" data-toggle="dropdown"
