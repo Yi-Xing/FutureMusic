@@ -13,6 +13,7 @@
     <div class="music_video">
         <div class="text-center">
             <h2>MV</h2>
+            <span class="iconfont icon-like"></span>
         </div>
         <div class="video_container">
             <div class="video">
@@ -36,6 +37,12 @@
                     </div>
                     <div class="mv_bottom">
                         <h4 th:text="${musicVideo.name}">music name</h4>
+                        <span th:if="${musicVideo.classificationId!=1}">
+                            <span class="iconfont icon-like"></span>
+                        </span>
+                        <span th:if="${musicVideo.classificationId==1}">
+                            <span class="iconfont icon-like like"></span>
+                        </span>
                     </div>
                 </div>
             </li>

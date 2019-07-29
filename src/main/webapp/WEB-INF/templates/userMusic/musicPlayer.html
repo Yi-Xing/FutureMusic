@@ -57,12 +57,12 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr class="music_list"  th:each="musicList:${musicList}" >
+                <tr class="music_list" th:each="musicList:${musicList}">
                     <th scope="row" th:data-id="${musicList.id}">
-                        <span class="iconfont icon-music" ></span>
+                        <span class="iconfont icon-music"></span>
                     </th>
                     <td th:text="${musicList.name}">凌晨三点</td>
-<!--                    <td>陈硕子</td>-->
+                    <!--                    <td>陈硕子</td>-->
                     <div class="hide">music/凌晨三点.mp3</div>
                     <!--歌词-->
                     <div class="hideLyr">
@@ -97,7 +97,13 @@
                         是否会有更好的结局<br>
                     </div>
                     <th class="dropdown">
-                        <span class="iconfont icon-like"></span>
+                        <span th:if="${musicList.classificationId!=1}">
+                            <span class="iconfont icon-like"></span>
+                        </span>
+                        <span th:if="${musicList.classificationId==1}">
+                            <span class="iconfont icon-like like"></span>
+                        </span>
+
                         <span type="button" class="iconfont icon-more dropdown-toggle" data-toggle="dropdown"
                               aria-haspopup="true" aria-expanded="false"></span>
                         <ul class="dropdown-menu">

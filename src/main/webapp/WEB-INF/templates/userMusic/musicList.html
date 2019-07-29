@@ -25,13 +25,14 @@
                         <h1 th:text="${songList.name}">
                             name
                         </h1>
-                        <h5 >
+                        <h5>
                             <i class="iconfont icon-people1"></i>
                             作者：<span th:text="${user.name}"></span>
                         </h5>
-                        <h5 >播放量：<span th:text="${plays}"></span></h5>
-                        <h5 >收藏量：<span th:text="${collects}"></span></h5>
+                        <h5>播放量：<span th:text="${plays}"></span></h5>
+                        <h5>收藏量：<span th:text="${collects}"></span></h5>
                     </a>
+                    <span class="iconfont icon-like"></span>
                 </div>
             </div>
             <div class="container">
@@ -44,10 +45,10 @@
                         <th>更多</th>
                     </tr>
                     </thead>
-                    <tbody >
-                    <tr class="music_list" th:each="musicList:${musicList}" >
+                    <tbody>
+                    <tr class="music_list" th:each="musicList:${musicList}">
 
-                        <td >
+                        <td>
                             <a th:href="@{/user/playMusicSongList(id=${songList.id},musicId=${musicList.id})}">
                                 <span th:text="${musicList.name}"></span>
                             </a>
@@ -57,7 +58,12 @@
                         <td th:text="${musicList.path}">artistName</td>
                         <td th:text="${musicList.lyricPath}">album</td>
                         <th class="dropdown">
-                            <span class="iconfont icon-like"></span>
+                            <span th:if="${musicList.classificationId!=1}">
+                                <span class="iconfont icon-like"></span>
+                            </span>
+                            <span th:if="${musicList.classificationId==1}">
+                                <span class="iconfont icon-like like"></span>
+                            </span>
                             <span type="button" class="iconfont icon-more dropdown-toggle" data-toggle="dropdown"
                                   aria-haspopup="true" aria-expanded="false"></span>
                             <ul class="dropdown-menu">
