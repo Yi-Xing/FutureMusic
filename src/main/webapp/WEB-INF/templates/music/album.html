@@ -11,50 +11,54 @@
 <!--头部-->
 <div th:replace="webHead.html"></div>
 
+<div class="container-fluid color_1" style="position: relative;padding: 0;top: -10px">
+    <img src="" th:src="@{/static/img/albumBG.jpg}" style="width: 100%" alt="">
+</div>
+
 <!--全部歌单-->
 <div class="container-fluid color_2" style="position: relative">
     <div class="row inner Artist">
         <div class="text-center">
             <h2>分类歌单</h2>
         </div>
-        <div class="col-lg-2">
-            <h4>全部歌单</h4>
-            <ul class="nav nav-pills nav-stacked artist_menu">
-                <li role="presentation" class="active">
-                    <a href="#">语种</a>
-                    <ul class="nav nav-pills nav-stacked">
-                        <li><a href="#">华语</a></li>
-                        <li><a href="#">英语</a></li>
-                        <li><a href="#">粤语</a></li>
-                        <li><a href="#">日语</a></li>
-                    </ul>
-                </li>
-                <li role="presentation" class="active">
-                    <a href="#">心情</a>
-                    <ul class="nav nav-pills nav-stacked">
-                        <li><a href="#">伤感</a></li>
-                        <li><a href="#">安静</a></li>
-                        <li><a href="#">快乐</a></li>
-                        <li><a href="#">治愈</a></li>
-                        <li><a href="#">励志</a></li>
-                        <li><a href="#">甜蜜</a></li>
-                    </ul>
-                </li>
-                <li role="presentation" class="active">
-                    <a href="#">场景</a>
-                    <ul class="nav nav-pills nav-stacked">
-                        <li><a href="#">睡前</a></li>
-                        <li><a href="#">夜店</a></li>
-                        <li><a href="#">学习</a></li>
-                        <li><a href="#">运动</a></li>
-                        <li><a href="#">开车</a></li>
-                        <li><a href="#">约会</a></li>
-                        <li><a href="#">旅行</a></li>
-                    </ul>
-                </li>
-            </ul>
-        </div>
-        <div class="col-lg-10" id="artist_list">
+<!--        <div class="col-lg-2">-->
+<!--            <h4>全部歌单</h4>-->
+<!--            <ul class="nav nav-pills nav-stacked artist_menu">-->
+<!--                <li role="presentation" class="active">-->
+<!--                    <a href="#">语种</a>-->
+<!--                    <ul class="nav nav-pills nav-stacked">-->
+<!--                        <li><a href="#">华语</a></li>-->
+<!--                        <li><a href="#">英语</a></li>-->
+<!--                        <li><a href="#">粤语</a></li>-->
+<!--                        <li><a href="#">日语</a></li>-->
+<!--                    </ul>-->
+<!--                </li>-->
+<!--                <li role="presentation" class="active">-->
+<!--                    <a href="#">心情</a>-->
+<!--                    <ul class="nav nav-pills nav-stacked">-->
+<!--                        <li><a href="#">伤感</a></li>-->
+<!--                        <li><a href="#">安静</a></li>-->
+<!--                        <li><a href="#">快乐</a></li>-->
+<!--                        <li><a href="#">治愈</a></li>-->
+<!--                        <li><a href="#">励志</a></li>-->
+<!--                        <li><a href="#">甜蜜</a></li>-->
+<!--                    </ul>-->
+<!--                </li>-->
+<!--                <li role="presentation" class="active">-->
+<!--                    <a href="#">场景</a>-->
+<!--                    <ul class="nav nav-pills nav-stacked">-->
+<!--                        <li><a href="#">睡前</a></li>-->
+<!--                        <li><a href="#">夜店</a></li>-->
+<!--                        <li><a href="#">学习</a></li>-->
+<!--                        <li><a href="#">运动</a></li>-->
+<!--                        <li><a href="#">开车</a></li>-->
+<!--                        <li><a href="#">约会</a></li>-->
+<!--                        <li><a href="#">旅行</a></li>-->
+<!--                    </ul>-->
+<!--                </li>-->
+<!--            </ul>-->
+<!--        </div>-->
+        <div class="col-lg-12" id="artist_list">
             <div class="mvS">
                 <ul>
                     <li th:each="list:${pageInfo.list}">
