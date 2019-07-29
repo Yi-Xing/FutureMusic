@@ -11,10 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
 import javax.annotation.Resource;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * 救急业务逻辑速度成接口，佛祖保佑，无bug一遍过
@@ -84,6 +81,8 @@ public class Emergency {
         // 传入页面信息
         logger.debug("查找到的MV" + list);
         model.addAttribute("pageInfo", pageInfo);
+        model.addAttribute("pages", pageInfo.getNavigatepageNums());
+        System.out.println(pageInfo.getNavigatepageNums().length);
         return "music/musicVideo";
     }
     /**
@@ -140,9 +139,9 @@ public class Emergency {
         }
         Music music = new Music();
         // 用来存储每个用户的5个音乐
-        List<Music> listMusic = new ArrayList<>();
         // 遍历用户查找音乐
         for (User u : listUser) {
+        List<Music> listMusic = new ArrayList<>();
             music.setSingerId(u.getId());
             // 查找到指定用户的所有音乐
             List<Music> list = musicMapper.selectListMusic(music);

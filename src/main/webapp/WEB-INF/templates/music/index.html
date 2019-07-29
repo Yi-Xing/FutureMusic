@@ -200,39 +200,12 @@
                         <img src="img/精彩推荐3.jpg" th:src="@{${activity.picture}}" alt="">
                     </a>
                 </li>
-               <!-- <li>
-                    <a href="javascript:;">
-                        <img src="img/精彩推荐1.jpg" th:src="@{/static/img/精彩推荐1.jpg}" alt="">
-                    </a>
-                </li>
-                <li>
-                    <a href="javascript:;">
-                        <img src="img/精彩推荐2.jpg" th:src="@{/static/img/精彩推荐2.jpg}" alt="">
-                    </a>
-                </li>
-                <li>
-                    <a href="javascript:;">
-                        <img src="img/精彩推荐3.jpg" th:src="@{/static/img/精彩推荐3.jpg}" alt="">
-                    </a>
-                </li>
-                <li>
-                    <a href="javascript:;">
-                        <img src="img/精彩推荐1.jpg" th:src="@{/static/img/精彩推荐1.jpg}" alt="">
-                    </a>
-                </li>-->
-                 
             </ul>
-               
             <ul class="indicators">
-                     
                 <li class="indicator iconfont icon-hengxian active"></li>
-                     
                 <li class="indicator iconfont icon-hengxian"></li>
-                     
                 <li class="indicator iconfont icon-hengxian"></li>
-                   
             </ul>
-             
         </div>
         <a class="arrow arrow-left" href="">
             <i class="iconfont icon-icon-bold-arrow-left1"></i>
@@ -249,31 +222,6 @@
         <div class="text-center">
             <h2>音乐人</h2>
         </div>
-        <!--检索：华语、欧美、日韩-->
-<!--        <div class="container artist_tab">-->
-<!--            <ul>-->
-<!--                <li>-->
-<!--                    <a href="javascript:;" id="CN_tab">-->
-<!--                        <b>华语</b>-->
-<!--                    </a>-->
-<!--                </li>-->
-<!--&lt;!&ndash;                <li>&ndash;&gt;-->
-<!--&lt;!&ndash;                    <a href="javascript:;" id="EM_tab">&ndash;&gt;-->
-<!--&lt;!&ndash;                        <b>欧美</b>&ndash;&gt;-->
-<!--&lt;!&ndash;                    </a>&ndash;&gt;-->
-<!--&lt;!&ndash;                </li>&ndash;&gt;-->
-<!--&lt;!&ndash;                <li>&ndash;&gt;-->
-<!--&lt;!&ndash;                    <a href="javascript:;" id="RH_tab">&ndash;&gt;-->
-<!--&lt;!&ndash;                        <b>日韩</b>&ndash;&gt;-->
-<!--&lt;!&ndash;                    </a>&ndash;&gt;-->
-<!--&lt;!&ndash;                </li>&ndash;&gt;-->
-<!--                <li>-->
-<!--                    <a href="exhibitionSingersByRegion;jsessionid=C0C12BE5DE4D72776357DDD929CDEBE4">-->
-<!--                        <b>了解更多</b>-->
-<!--                    </a>-->
-<!--                </li>-->
-<!--            </ul>-->
-<!--        </div>-->
         <div class="container artist_container" id="CN">
             <div class="artists" th:each="userMusic:${userMusic}">
                 <!-- th:src="@{${userMusic.key.headPortrait}}"-->
