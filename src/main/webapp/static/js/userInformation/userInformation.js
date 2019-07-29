@@ -103,30 +103,38 @@ window.onload = function () {
     });
 
     // 创建歌单或专辑
-    $("#addAlbum").on("click", function () {
+    $(".addAlbum").on("click", function () {
         // 歌单或专辑的标题
-        var name = $("#registerUserName").val();
+        var name = $("#nameAdd").val();
         // 歌单或专辑的介绍
-        var introduction = $("#registerUserName").val();
-        // 分类
-        var classification = $("#registerUserName").val();
+        var introduction = $("#activityAdd").val();
         // 获取类型1是歌单2是专辑
-        var type = $("#registerUserName").val();
-        $.ajax({
-            contentType: "application/json;charset=UTF-8",
-            type: "post",
-            url: "editMusicSongList",
-            data: {
-                "name": name,
-                "introduction": introduction,
-                "classification": classification,
-                "type": type
-            },
-            dataType: "json",
-            success: function (data, status) {
-                //返回 State
-            }
-        });
+        var type = $(this).data("value");
+        // 得到文件上传对象
+        var selectFile = new FormData($('#selectFileAdd')[0]);
+        selectFile.append('name', name);
+        selectFile.append('introduction', introduction);
+        selectFile.append('type', type);
+            $.ajax({
+                // contentType: "multipart/form-data",
+                type: "post",
+                cache: false,
+                processData: false,// 使数据不做处理
+                contentType: false,// 不要设置Content-Type请求头
+                url: "/user/createMusicSongList",
+                data:selectFile,
+                dataType: "json",
+                success: function (data, status) {
+                    // 返回state
+                    if(data.state===0){
+                        $(".promptInformation").text(data.information);
+                    }else {
+                        alert("歌单/专辑创建成功");
+                        // 修改成功刷新网页
+                        location.reload();
+                    }
+                }
+            });
     });
 
     // 编辑歌单或专辑的基本信息

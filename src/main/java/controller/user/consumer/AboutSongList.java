@@ -82,17 +82,14 @@ public class  AboutSongList {
      *                  name           获取歌单或专辑的标题
      *                  introduction   获取歌单或专辑的介绍
      *                  type           获取类型1是歌单2是专辑
-     * @param languages 分类的语种
-     * @param region    分类的地区
-     * @param gender    分类的性别
-     * @param type      分类的类型
      * @param session   获取当前会话
      */
     @RequestMapping(value = "/createMusicSongList")
     @ResponseBody
-    public State createMusicSongList(@RequestBody SongList songList, String languages, String region, String gender, String type, HttpServletRequest request, HttpSession session) throws DataBaseException {
+    public State createMusicSongList(String name,String  introduction,String type, HttpServletRequest request, HttpSession session) throws DataBaseException {
+        System.out.println("我只写了");
         logger.trace("createMusicSongList方法开始执行");
-        return aboutSongListService.createMusicSongList(songList, languages, region, gender, type, request, session);
+        return aboutSongListService.createMusicSongList(name,introduction,type,  request, session);
     }
 
     /**
@@ -103,16 +100,12 @@ public class  AboutSongList {
      *                  name           获取歌单或专辑的标题
      *                  introduction   获取歌单或专辑的介绍
      *                  type           获取类型1是歌单2是专辑
-     * @param languages 分类的语种
-     * @param region    分类的地区
-     * @param gender    分类的性别
-     * @param type      分类的类型
      */
     @RequestMapping(value = "/editMusicSongList")
     @ResponseBody
-    public State editMusicSongList(@RequestBody SongList songList, String languages, String region, String gender, String type, HttpServletRequest request) throws DataBaseException {
+    public State editMusicSongList(@RequestBody SongList songList, HttpServletRequest request) throws DataBaseException {
         logger.trace("editMusicSongList方法开始执行");
-        return aboutSongListService.editMusicSongList(songList, languages, region, gender, type, request);
+        return aboutSongListService.editMusicSongList(songList, request);
     }
 
 
