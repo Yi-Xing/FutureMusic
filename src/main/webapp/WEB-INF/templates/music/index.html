@@ -41,6 +41,7 @@
                     <li><a th:href="@{/user/vipPage}">VIP</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
+                    <li id="userId" style="display: none" th:data-id="${session.userInformation.getId()}"></li>
                     <li><a href="#" style="background: transparent;padding: 5px" th:href="@{/user/userPage} ">
                         <img src="img/mv1.jpg" class="touxiang"  th:src="@{${session.userInformation.getHeadPortrait()}}"
                              th:if="${session.userInformation!=null}" alt="...">
