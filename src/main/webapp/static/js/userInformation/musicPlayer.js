@@ -244,6 +244,9 @@ var musicId;
 musicId = $("#musicId").data("value");
 console.log('音乐ID=' + musicId);
 
+musicTab();
+monitor();
+
 //音乐切换
 $(".music_list").click(function () {
 
@@ -271,8 +274,13 @@ $(".music_list").click(function () {
     //获取歌词显示
     var displayMusicLyr = $(".Play .Lyric")[0];
     musicTab();
+    monitor();
+});
+
 
 //歌词同步--------------------------------------------------------
+
+function monitor() {
     var Original = 0;
     document.getElementById('audio').addEventListener('timeupdate', function () {
         // console.log(this.currentTime);
@@ -291,10 +299,7 @@ $(".music_list").click(function () {
         }
         //歌词滚动
     }, false);
-
-
-});
-
+}
 
 function musicTab() {
     var str = '';
