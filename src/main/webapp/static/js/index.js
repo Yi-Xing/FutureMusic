@@ -214,63 +214,74 @@ $('.icon-like').on('click', function () {
     }
 });
 
-$(".icon-like").on('click', function () {
-    var L;
-    var id = $(this).data('id');
-    console.log(id);
-    if ($(this)[0].hasClass("like")) {
-        console.log("还未收藏");
-        //存在进行下面的操作
-        L = 0;
-        if (like == 1) {
-            console.log("已取消收藏");
-            collection(1, $(this));
-        } else {
-            console.log("已收藏");
-            collection(0, $(this));
-        }
-    }else {
-        L = 1;
 
+$(".icon-like").on('click', function () {
+    var userId = $("#userId").data('id');
+    var musicId = $(this).data('id');
+    console.log(musicId);
+    if ($(this).hasClass("likeMusicVideo")) {
+        collectionMusic(userId, musicId, 2, $(this));
+    } else if($(this).hasClass("likeSongList")){
+        collectionSongList(userId, musicId, 1, $(this));
+    } else if($(this).hasClass("likeAlbum")){
+        collectionSongList(userId, musicId, 2, $(this));
+    } else if($(this).hasClass("likeMusic")){
+        collectionMusic(userId, musicId, 1, $(this));
     }
 });
 
 
-function collection(like, obj) {
-    if (like === 0) {
-        $.ajax({
-            contentType: "application/x-www-form-urlencoded;charset=UTF-8",
-            url: "/user/collectionMusic",
-            type: 'post',
-            dataType: "json",
-            data: {
-                musicId: musicId,
-                type: type
-            },
-            success: function (data) {
-                console.log(data);
-                alert("已收藏！");
-                $(obj).addClass('like');
+function collectionMusic(userId, musicId, type) {
+    $.ajax({
+        contentType: "application/x-www-form-urlencoded;charset=UTF-8",
+        url: "/user/collectionMusic",
+        type: 'post',
+        dataType: "json",
+        data: {
+            musicId: musicId,
+            type: type
+        },
+        success: function (data) {
+            console.log(data);
+            // alert("已取消收藏！");
+            // $(obj).removeClass('like');
+            if(data.state==1){
+                alert("删除收藏成功")
+            }else if(data.state==2){
+                alert("添加收藏成功")
+            }else{
+                alert("请刷新网页")
             }
-        });
-        return 1;
-    } else if (like === 1) {
-        $.ajax({
-            contentType: "application/x-www-form-urlencoded;charset=UTF-8",
-            url: "/user/collectionMusic",
-            type: 'post',
-            dataType: "json",
-            data: {
-                musicId: musicId,
-                type: type
-            },
-            success: function (data) {
-                console.log(data);
-                alert("已取消收藏！");
-                $(obj).removeClass('like');
+
+        }
+    });
+
+}
+
+function collectionSongList(userId, musicId, type) {
+    $.ajax({
+        contentType: "application/x-www-form-urlencoded;charset=UTF-8",
+        url: "/user/collectionSongList",
+        type: 'post',
+        dataType: "json",
+        data: {
+            id: musicId,
+            type: type
+        },
+        success: function (data) {
+            console.log(data);
+            // alert("已取消收藏！");
+            // $(obj).removeClass('like');
+            if(data.state==1){
+                alert("删除收藏成功")
+            }else if(data.state==2){
+                alert("添加收藏成功")
+            }else{
+                alert("请刷新网页")
             }
-        });
-        return 0;
-    }
+
+        }
+    });
+
 }
 

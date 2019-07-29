@@ -2,7 +2,7 @@
 <!--头部-->
 <div class="header">
 <!--    <img class="show_bg" src="../../static/video/首页.mp4" th:src="@{/static/video/首页.mp4}"  alt=""></img>-->
-    <nav class="navbar" style="background-color: rgba(47,47,47,0.6)">
+    <nav class="navbar">
         <div class="container-fluid">
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
@@ -35,7 +35,7 @@
                     <li><a th:href="@{/user/vipPage}">VIP</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-                    <li id="userId" style="display: none" th:data-id="${session.userInformation.getId()}"></li>
+                    <li id="userId" style="display: none" th:if="${session.userInformation!=null}" th:data-id="${session.userInformation.getId()}"></li>
                     <li><a href="#" style="background: transparent;padding: 5px" th:href="@{/user/userPage}">
                         <img src="img/mv1.jpg" class="touxiang"  th:src="@{/static/img/mv1.jpg}"
                              th:if="${session.userInformation!=null}" alt="...">
