@@ -106,7 +106,6 @@ public class Emergency {
         return "music/album";
     }
 
-
     /**
      * 从数据库去活动3个活动信息
      */
@@ -267,4 +266,17 @@ public class Emergency {
         }
         return songList;
     }
+
+    /**
+     * 模糊查找指定音乐
+     */
+    public List<Music> getSearchMusic(String search){
+        Music music=new Music();
+        music.setName(search);
+        List<Music> list= musicMapper.selectListMusic(music);
+        return null;
+    }
+
+
+
 }
