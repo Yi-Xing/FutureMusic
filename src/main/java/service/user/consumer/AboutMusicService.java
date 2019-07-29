@@ -67,6 +67,19 @@ public class AboutMusicService {
      */
     public String showUserLike(HttpSession session, Model model) {
         User user = specialFunctions.getUser(session);
+        // 添加 歌单的个数，专辑的个数，音乐的个数，MV的个数
+        getCount(session,model);
+        model.addAttribute("page", "likePage");
+        // 得到用户的关注粉丝量及用户信息
+        specialFunctions.getUserInformation(user, model);
+        return "userPage/userPage";
+    }
+
+    /**
+     * 给当前会话上的用户，指定的model加上 歌单的个数，专辑的个数，音乐的个数，MV的个数
+     */
+    public void getCount(HttpSession session,Model model){
+        User user = specialFunctions.getUser(session);
         // 得到用户喜欢的所有音乐
         MusicCollect musicCollect = new MusicCollect();
         musicCollect.setType(1);
@@ -84,14 +97,10 @@ public class AboutMusicService {
         // 得到用户喜欢的所有专辑
         songListCollect.setType(2);
         int album = songListCollectMapper.selectListSongListCollect(songListCollect).size();
-        model.addAttribute("music", music);
-        model.addAttribute("musicVideo", musicVideo);
-        model.addAttribute("songList", songList);
-        model.addAttribute("album", album);
-        model.addAttribute("page", "likePage");
-        // 得到用户的关注粉丝量及用户信息
-        specialFunctions.getUserInformation(user, model);
-        return "userPage/userPage";
+        model.addAttribute("musicCount", music);
+        model.addAttribute("musicVideoCount", musicVideo);
+        model.addAttribute("songListCount", songList);
+        model.addAttribute("albumCount", album);
     }
 
     /**

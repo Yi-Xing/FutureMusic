@@ -14,10 +14,10 @@
         }
     </style>
     <div class="btn-group" role="group" aria-label="...">
-        <a type="button" class="btn btn-success MyFavoriteMusic" data-value="1"  th:href="@{/user/playCollectMusic}" >歌曲</a>
-        <a type="button" class="btn btn-success" th:href="@{/user/showUserCollectionSongList(type=1)}">歌单</a>
-        <a type="button" class="btn btn-success" th:href="@{/user/showUserCollectionSongList(type=2)}">专辑</a>
-        <a type="button" class="btn btn-success MyFavoriteMusic" th:href="@{/user/playCollectMusicVideo}" data-value="2">视频</a>
+        <a type="button" class="btn btn-success MyFavoriteMusic" data-value="1"  th:href="@{/user/playCollectMusic}" >音乐<span th:text="${musicCount}"></span>个</a>
+        <a type="button" class="btn btn-success" th:href="@{/user/showUserCollectionSongList(type=1)}">歌单<span th:text="${songListCount}"></span>个</a>
+        <a type="button" class="btn btn-success" th:href="@{/user/showUserCollectionSongList(type=2)}">专辑<span th:text="${albumCount}"></span>个</a>
+        <a type="button" class="btn btn-success MyFavoriteMusic" th:href="@{/user/playCollectMusicVideo}" data-value="2">视频<span th:text="${musicVideoCount}"></span>个</a>
     </div>
     <div id="woxihuan">
         <div th:if="${pages=='likeSongList'}">
