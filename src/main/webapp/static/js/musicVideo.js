@@ -76,3 +76,5 @@ $('.icon-like').on('click', function () {
         like = 0;
     }
 });
+
+

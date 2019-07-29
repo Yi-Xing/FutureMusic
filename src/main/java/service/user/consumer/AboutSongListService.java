@@ -96,6 +96,8 @@ public class AboutSongListService {
      */
     public String showUserCollectionSongList(Integer type, HttpSession session, Model model) {
         User user = specialFunctions.getUser(session);
+        // 添加 歌单的个数，专辑的个数，音乐的个数，MV的个数
+        aboutMusicService.getCount(session,model);
         SongListCollect songListCollect = new SongListCollect();
         songListCollect.setType(type);
         songListCollect.setUserId(user.getId());
