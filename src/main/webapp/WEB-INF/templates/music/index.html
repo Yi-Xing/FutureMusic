@@ -24,16 +24,16 @@
 
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
-                    <li class="active"><a href="./index.html" th:href="@{/index}">音乐馆 <span
+                    <li class="active"><a href="./index.html" th:href="@{/homePage}">音乐馆 <span
                             class="sr-only">(current)</span></a></li>
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                            aria-expanded="false">发现 <span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <li><a href="#" th:href="@{/showSongListByClassification}">歌单</a></li>
-                            <li><a href="#" th:href="@{/exhibitionSingersByRegion}">歌手</a></li>
+                            <li><a href="#" th:href="@{/musicPage}">音乐</a></li>
+                            <li><a href="#" th:href="@{/albumPage}">专辑</a></li>
                             <li role="separator" class="divider"></li>
-                            <li><a href="#" th:href="@{/searchMusicVideoByClassification}">MV</a></li>
+                            <li><a href="#" th:href="@{/musicVideoPage}">MV</a></li>
                             <li role="separator" class="divider"></li>
                         </ul>
                     </li>
@@ -109,6 +109,7 @@
         }
     };
 </script>
+<!--登录注册-->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
         <div class="modal_content">
@@ -196,7 +197,7 @@
         <div class="carousel-wrap"> 
             <ul class="carousel">
                 <li th:each="activity:${Activity}">
-                    <a th:href="@{${activity.website}}">
+                    <a target="view_window" th:href="@{${activity.website}}">
                         <img src="img/精彩推荐3.jpg" th:src="@{${activity.picture}}" alt="">
                     </a>
                 </li>
@@ -215,6 +216,14 @@
         </a>
     </div>
 </div>
+<script>
+    // var active = $(".Recommend .carousel li a");
+    // $(active).on(click,function () {
+    //     var url = $(this).href;
+    //     console.log(url);
+    //     window.open(url,'_blank').location;
+    // })
+</script>
 
 <!--音乐人-->
 <div class="container-fluid color_2" style="position: relative">

@@ -82,7 +82,7 @@ public class Emergency {
         logger.debug("查找到的MV" + list);
         model.addAttribute("pageInfo", pageInfo);
         model.addAttribute("pages", pageInfo.getNavigatepageNums());
-        System.out.println(pageInfo.getNavigatepageNums().length);
+        model.addAttribute("pageCount", pageInfo.getNavigatepageNums().length);
         return "music/musicVideo";
     }
     /**

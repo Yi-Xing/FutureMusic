@@ -29,6 +29,8 @@ var ProgressLeft = getOffsetWidthByBody(Progressleft);
 var voiceleft = document.getElementsByClassName("volume_range")[0];
 var voiceLeft = getOffsetWidthByBody(voiceleft);
 // console.log(ProgressLeft);
+var index;      //用于切换音乐
+var length;
 
 
 // 元素相对于body的offsetTop
@@ -43,9 +45,11 @@ function getOffsetWidthByBody(el) {
 
 
 function playSong(index) {
-    localStorage.setItem("index", index);
-    setInfo();
+    // localStorage.setItem("index", index);
+    // setInfo();
     oAudio.play();
+    console.log("播放");
+
     oPlay.innerHTML = "<i class='iconfont icon-bofang' title='暂停'></i>";
     clickNum = 1;
     setInterval(setProgress, 1000);
@@ -53,6 +57,7 @@ function playSong(index) {
 
 //播放与暂停按钮的设置
 oPlay.onclick = function () {
+
     if (clickNum == 0) {
         oAudio.play();
         setInterval(setProgress, 1000);
@@ -67,23 +72,18 @@ oPlay.onclick = function () {
 
 //下一首按钮的点击
 oNext.onclick = function () {
-    var next = (parseInt(localStorage.getItem("index")) + 1) % oMusic.length;
-    if (clickNum == 0) {
-        localStorage.setItem("index", next);
-        setInfo();
-    } else {
+    console.log("下一首");
+    var next = index + 1;
+    if (clickNum == 1) {
         playSong(next);
     }
 };
-//上一首按钮的点击事件
 oPre.onclick = function () {
-    var pre = oMusic.length - 1;
-    if (parseInt(localStorage.getItem("index")) != 0)
-        pre = (parseInt(localStorage.getItem("index")) - 1) % oMusic.length;
-    if (clickNum == 0) {        //未播放只设置信息
-        localStorage.setItem("index", pre);
-        setInfo();
-    } else {
+// var next = index;
+    console.log("上一首");
+//上一首按钮的点击事件
+    var pre = index - 1;
+    if (clickNum == 1) {        //未播放只设置信息
         playSong(pre);
     }
 };
@@ -120,7 +120,7 @@ function changeProgress(ev) {
     } else if (l > ProgressWid) {
         l = ProgressWid - 10;
     }
-    localStorage.setItem("progress", l);
+    // localStorage.setItem("progress", l);
     oProgress_circle.style.left = l + "px";
     oProgress.style.width = l + "px";
     oAudio.currentTime = (l / ProgressWid) * oAudio.duration;
@@ -242,10 +242,10 @@ function suiji() {
 
 var musicId;
 musicId = $("#musicId").data("value");
-console.log('音乐ID=' + musicId);
+// console.log('音乐ID=' + musicId);
+index = $(".music_list").length - 1;
+console.log("列表长度="+$(".music_list").length);
 
-musicTab();
-monitor();
 
 //音乐切换
 $(".music_list").click(function () {
@@ -257,20 +257,18 @@ $(".music_list").click(function () {
 
 
     //获取角标
-    var index = $(this).index();
-    console.log("歌曲下标" + index);
+    index = $(this).index();
+    console.log("歌曲下标=" + index);
     //获取歌曲名
     var musicName = $(this).children()[1];
     //获取对应歌曲的ID
     var thi = this.children[0];
     musicId = $(thi).data("id");
-    console.log(musicId);
 
     //获取audio
     var autio = $("audio");
     //获取歌曲显示
     var displayMusicName = $(".Play .music_name h2")[0];
-    // console.log("歌曲SRC" + musicSrc);
     //获取歌词显示
     var displayMusicLyr = $(".Play .Lyric")[0];
     musicTab();
@@ -303,7 +301,6 @@ function monitor() {
 
 function musicTab() {
     var str = '';
-    console.log("执行力");
     $.ajax({
         contentType: "application/x-www-form-urlencoded;charset=UTF-8",
         url: "playMusic",
@@ -311,11 +308,6 @@ function musicTab() {
         dataType: "json",
         data: {id: musicId},
         success: function (data) {
-            console.log(data.id);
-            console.log(data.name);
-            console.log(data.path);
-            console.log(data.picture);
-            // console.log(data.lyricPath);
 
             //获取歌曲显示
             var displayMusicName = $(".Play .music_name h2")[0];
@@ -340,7 +332,6 @@ function musicTab() {
                 var lyric = data.lyricPath;
                 var lyr = lyric.split("[");
                 lyr.forEach(function (current) {
-                    // console.log(current);
                     let geci = current.split(']');
                     //关于时间的处理
                     let time = geci[0];
@@ -349,8 +340,6 @@ function musicTab() {
                     time2 = time[1];
                     time = time1 * 60 + parseInt(time2);
 
-                    // console.log(time);
-                    // console.log(geci[1]);
                     //undefined判断
                     if (geci[1]) {
                         str += '<p id = time' + time + '>' + geci[1] + '</p>';
@@ -387,3 +376,8 @@ $('.icon-like').on('click', function () {
         like = 0;
     }
 });
+
+
+function PLAY(index) {
+
+}
