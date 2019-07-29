@@ -75,4 +75,6 @@ $('.icon-like').on('click', function () {
         $(obj).removeClass('like');
         like = 0;
     }
+    // 点击小红心
+
 });

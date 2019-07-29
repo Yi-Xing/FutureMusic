@@ -34,15 +34,15 @@
                             <li><a href="#" th:href="@{/albumPage}">专辑</a></li>
                             <li role="separator" class="divider"></li>
                             <li><a href="#" th:href="@{/musicVideoPage}">MV</a></li>
-                            <li role="separator" class="divider"></li>
+                            <li role="separator" class="divider" ></li>
                         </ul>
                     </li>
                     <li><a target="view_window" th:href="@{/user/playCollectMusic}">听见</a></li>
                     <li><a th:href="@{/user/vipPage}">VIP</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="#" style="background: transparent;padding: 5px" th:href="@{/user/userPage}">
-                        <img src="img/mv1.jpg" class="touxiang"  th:src="@{/static/img/mv1.jpg}"
+                    <li><a href="#" style="background: transparent;padding: 5px" th:href="@{/user/userPage} ">
+                        <img src="img/mv1.jpg" class="touxiang"  th:src="@{${session.userInformation.getHeadPortrait()}}"
                              th:if="${session.userInformation!=null}" alt="...">
                     </a></li>
                     <li class="dropdown">
