@@ -14,7 +14,6 @@ window.onload = function () {
             },
             dataType: "json",
             success: function (data, status) {
-                //返回state
                 // 返回state
                 if(data.state===0){
                     alert(data.information);

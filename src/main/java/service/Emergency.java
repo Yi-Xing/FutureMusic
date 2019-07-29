@@ -46,10 +46,15 @@ public class Emergency {
         model.addAttribute("Activity", getActivity());
         // 5个音乐人，每个人5个音乐 Map<User, List<Music>>
         model.addAttribute("userMusic", getUserAndMusic());
-        // 查找15首个分5份来存放  Map<User, List<Music>>
-        model.addAttribute("userMusic", getUserAndMusic());
-        // 查找5个MV  Map<Integer, List<Music>>
-        model.addAttribute("userMusic", getMusicVideo());
+        // 查找4个MV  Map<Integer, List<Music>>
+        model.addAttribute("musicVideo", getMusicVideo());
+        // 查找15首个分5份来存放  Map<Integer, List<Music>>
+        Map<Integer, List<Music>> music= getMusic();
+        model.addAttribute("music1", music.get(0));
+        model.addAttribute("music2", music.get(1));
+        model.addAttribute("music3" ,music.get(2));
+        model.addAttribute("music4",music.get(3));
+        model.addAttribute("music5",music.get(4));
         return "music/index";
     }
 
@@ -106,9 +111,11 @@ public class Emergency {
         List<Activity> list = activityMapper.selectListActivity(new Activity());
         List<Activity> listActivity = new ArrayList<>();
         if (list.size() >= 3) {
+            listActivity.add(list.get(2));
             listActivity.add(list.get(0));
             listActivity.add(list.get(1));
             listActivity.add(list.get(2));
+            listActivity.add(list.get(0));
         }
         return listActivity;
     }
@@ -119,10 +126,11 @@ public class Emergency {
     public Map<User, List<Music>> getUserAndMusic() {
         Map<User, List<Music>> map = new HashMap<>();
         User user = new User();
-        user.setLevel(1);
+        user.setLevel(2);
         List<User> listUsers = userMapper.selectUsers(user);
         List<User> listUser = new ArrayList<>();
-        // 得到3个用户
+        // 得到5个用户
+        System.out.println("个数"+listUsers.size());
         if (listUsers.size() >= 5) {
             listUser.add(listUsers.get(0));
             listUser.add(listUsers.get(1));
@@ -162,33 +170,33 @@ public class Emergency {
             listMusic.add(list.get(0));
             listMusic.add(list.get(1));
             listMusic.add(list.get(2));
-            map.put(1,listMusic);
+            map.put(0,listMusic);
             listMusic = new ArrayList<>();
             listMusic.add(list.get(3));
             listMusic.add(list.get(4));
             listMusic.add(list.get(5));
-            map.put(2,listMusic);
+            map.put(1,listMusic);
             listMusic = new ArrayList<>();
             listMusic.add(list.get(6));
             listMusic.add(list.get(7));
             listMusic.add(list.get(8));
-            map.put(3,listMusic);
+            map.put(2,listMusic);
             listMusic = new ArrayList<>();
             listMusic.add(list.get(9));
             listMusic.add(list.get(10));
             listMusic.add(list.get(11));
-            map.put(4,listMusic);
+            map.put(3,listMusic);
             listMusic = new ArrayList<>();
             listMusic.add(list.get(12));
             listMusic.add(list.get(13));
             listMusic.add(list.get(14));
-            map.put(5,listMusic);
+            map.put(4,listMusic);
         }
         return map;
     }
 
     /**
-     * 查找5个MV
+     * 查找4个MV
      */
     public List<MusicVideo> getMusicVideo(){
         List<MusicVideo> musicVideoList=new ArrayList<>();

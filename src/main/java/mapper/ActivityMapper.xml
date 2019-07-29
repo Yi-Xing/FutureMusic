@@ -15,10 +15,10 @@
             <if test='type!=0'>
                 and activity_type=#{type}
             </if>
-            <if test='endDate!=null ' >
+            <if test='endDate!=null' >
                 and activity_end_date &lt;= #{endDate}
             </if>
-            <if test='startDate!=null ' >
+            <if test='startDate!=null' >
                 and activity_end_date >= #{startDate}
             </if>
         </where>

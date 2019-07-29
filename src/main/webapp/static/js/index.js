@@ -164,43 +164,43 @@ $(".thumbnail .icon-like").click(function () {
     var musicId = $(this).parent().parent().parent()[0].children[0];
     musicId = musicId.innerHTML;
     console.log(musicId);
-    $.ajax({
-        contentType: "application/json;charset=UTF-8",
-        type: "post",
-        // dataType: "json",
-        url: "collectionMusic",
-        data:{
-            "musicId" : musicId,
-            "type" : 1,
-        },
-        success: function (data) {
-            console.log(111);
-            let obj = $(this)[0];
-            if (like === 0) {
-                $(obj).addClass('like');
-                like = 1;
-            } else {
-                $(obj).removeClass('like');
-                like = 0;
-            }
-        },
-        error:function () {
-            console.log("错误")
-        }
-    })
+    // $.ajax({
+    //     contentType: "application/json;charset=UTF-8",
+    //     type: "post",
+    //     // dataType: "json",
+    //     url: "collectionMusic",
+    //     data:{
+    //         "musicId" : musicId,
+    //         "type" : 1,
+    //     },
+    //     success: function (data) {
+    //         console.log(111);
+    //         let obj = $(this)[0];
+    //         if (like === 0) {
+    //             $(obj).addClass('like');
+    //             like = 1;
+    //         } else {
+    //             $(obj).removeClass('like');
+    //             like = 0;
+    //         }
+    //     },
+    //     error:function () {
+    //         console.log("错误")
+    //     }
+    // })
 });
 
 
-//音乐人遍历
-$(".artist_container").hover(function () {
-    $.ajax({
-        contentType: "application/x-www-form-urlencoded;charset=UTF-8",
-        type: "post",
-        url: "/allSinger",
-        dataType: "json",
-        success: function (data) {
-            console.log(data);
-        }
-    })
-});
+// //音乐人遍历
+// $(".artist_container").hover(function () {
+//     $.ajax({
+//         contentType: "application/x-www-form-urlencoded;charset=UTF-8",
+//         type: "post",
+//         url: "/allSinger",
+//         dataType: "json",
+//         success: function (data) {
+//             console.log(data);
+//         }
+//     })
+// });
 
