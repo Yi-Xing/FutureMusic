@@ -58,8 +58,8 @@ public class  AboutSongList {
      * @return 歌单或专辑的详细页面
      */
     @RequestMapping(value = "/showMusicSongList")
-    public String showMusicSongList(String id, Model model) {
-        return aboutSongListService.showMusicList(id, model);
+    public String showMusicSongList(String id, Model model,HttpSession session) {
+        return aboutSongListService.showMusicList(id, model,session);
     }
 
 
@@ -78,7 +78,6 @@ public class  AboutSongList {
     /**
      * 创建歌单或专辑
      *
-     * @param songList  获取传来的歌单信息
      *                  name           获取歌单或专辑的标题
      *                  introduction   获取歌单或专辑的介绍
      *                  type           获取类型1是歌单2是专辑

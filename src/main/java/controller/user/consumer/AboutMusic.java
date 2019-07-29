@@ -56,7 +56,6 @@ public class AboutMusic {
 
     /**
      * 播放指定MV
-     * @param
      */
     @RequestMapping(value = "/playMusicVideoId")
     public String playMusicVideoId(Integer id, Model model){

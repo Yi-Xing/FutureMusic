@@ -20,7 +20,7 @@ window.onload = function () {
                 }else {
                     alert("用户名:"+userName+"修改成功");
                     // 修改成功刷新网页
-                    window.location.href = 'http://localhost:8080/user/userPage';
+                    window.location.href = '/user/userPage';
                 }
             }
         });
@@ -44,7 +44,7 @@ window.onload = function () {
                 }else {
                     alert("用户头像修改成功");
                     // 修改成功刷新网页
-                    window.location.href = 'http://localhost:8080/user/userPage';
+                    window.location.href = '/user/userPage';
                 }
             }
         });

@@ -31,6 +31,10 @@ public class Emergency {
     ActivityMapper activityMapper;
     @Resource(name = "MusicVideoMapper")
     MusicVideoMapper musicVideoMapper;
+    @Resource(name = "MusicCollectMapper")
+    MusicCollectMapper musicCollectMapper;
+    @Resource(name = "SongListCollectMapper")
+    SongListCollectMapper songListCollectMapper;
 
     // 需求 数据库至少有3个活动  5个音乐人，每个人至少5个音乐  至少有5个MV
     // 遍历所有   MV 音乐 专辑（每个至少18个）
@@ -208,6 +212,59 @@ public class Emergency {
         }
         return musicVideoList;
     }
+    /**
+     * 判断指定音乐是否已被收藏  1为音乐   （1为收藏  0为没收藏）
+     */
+    public List<Music> getMusicCollect(User user,List<Music> list){
+        MusicCollect musicCollect=new MusicCollect();
+        // 设置用户Id
+        musicCollect.setUserId(user.getId());
+        musicCollect.setType(1);
+        for(Music music:list){
+            musicCollect.setMusicId(music.getId());
+            int count =musicCollectMapper.selectUserMusicCollectCount(musicCollect);
+            if(count!=0){
+                music.setClassificationId(1);
+            }else {
+                music.setClassificationId(0);
+            }
+        }
+        return list;
+    }
+
+    /**
+     * 判断指定MV是否已被收藏  2为MV
+     */
+    public List<MusicVideo> getMusicVideoCollect(User user,List<MusicVideo> list){
+        MusicCollect musicCollect=new MusicCollect();
+        // 设置用户Id
+        musicCollect.setUserId(user.getId());
+        musicCollect.setType(2);
+        for(MusicVideo music:list){
+            musicCollect.setMusicId(music.getId());
+            int count =musicCollectMapper.selectUserMusicCollectCount(musicCollect);
+            if(count!=0){
+                music.setClassificationId(1);
+            }else {
+                music.setClassificationId(0);
+            }
+        }
+        return list;
+    }
 
 
+    /**
+     * 判断指定专辑或歌单是否收藏
+     */
+    public SongList getSongListCollect(User user,SongList songList){
+        SongListCollect songListCollect=new SongListCollect();
+        songListCollect.setUserId(user.getId());
+        songListCollect.setMusicId(songList.getId());
+        if(songListCollectMapper.selectUserSongListCollectCount(songListCollect)!=0){
+            songList.setClassificationId(1);
+        }else {
+            songList.setClassificationId(0);
+        }
+        return songList;
+    }
 }

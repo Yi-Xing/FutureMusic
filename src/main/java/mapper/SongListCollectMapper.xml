@@ -26,6 +26,9 @@
             <if test='type!=0'>
                 and song_list_collect_type=#{type}
             </if>
+            <if test='musicId!=0'>
+                and song_list_collect_music_id=#{musicId}
+            </if>
         </where>
     </select>
     <insert id="insertSongListCollect" parameterType="SongListCollect">

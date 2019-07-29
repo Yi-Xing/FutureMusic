@@ -27,7 +27,6 @@ public class AboutUser {
     private AboutUserService aboutUserService;
     private static final Logger logger = LoggerFactory.getLogger(AboutUser.class);
 
-
     /**
      * 查找指定用户关注的所有用户，或被关注所有用户，被访问的记录
      * @param type    获取类型 1表示关注的用户，2表示被关注用户，3表示被访问的记录

@@ -8,6 +8,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
+import service.Emergency;
 import service.user.IdExistence;
 import service.user.SpecialFunctions;
 import service.user.ValidationInformation;
@@ -55,7 +56,8 @@ public class AboutSongListService {
     PlayMapper playMapper;
     @Resource(name = "AboutMusicService")
     AboutMusicService aboutMusicService;
-
+    @Resource(name = "Emergency")
+    Emergency emergency;
     /**
      * 显示用户创建的所有歌单或专辑
      *
@@ -77,6 +79,8 @@ public class AboutSongListService {
             s.setType(songListMusicList(s.getType(), s.getId()).size());
             s.setActivity(songListCount(1, s.getType(), s.getId()));
             s.setClassificationId(songListCount(2, s.getType(), s.getId()));
+            // 判断指定歌单或专辑是否被收藏，收藏信息存入分类中
+            emergency.getSongListCollect(user,s);
         }
         // 得到用户的关注粉丝量及用户信息
         specialFunctions.getUserInformation(user, model);
@@ -116,6 +120,8 @@ public class AboutSongListService {
             s.setType(songListMusicList(s.getType(), s.getId()).size());
             s.setActivity(songListCount(1, s.getType(), s.getId()));
             s.setClassificationId(songListCount(2, s.getType(), s.getId()));
+            // 判断指定歌单或专辑是否被收藏，收藏信息存入分类中
+            emergency.getSongListCollect(user,s);
         }
         model.addAttribute("songList", songLists);
         return "userPage/userPage";
@@ -123,10 +129,11 @@ public class AboutSongListService {
 
 
     /**
+     * 歌单或专辑的详细页面
      * 得到id 查找指定的专辑或歌单
      * 获得作者名字，歌单/专辑的收藏播放量   音乐名
      */
-    public String showMusicList(String id, Model model) {
+    public String showMusicList(String id, Model model,HttpSession session) {
         System.out.println("开始执行" + id);
         // 判断id是否合法
         if (!validationInformation.isInt(id)) {
@@ -163,7 +170,7 @@ public class AboutSongListService {
                 music.setLyricPath(temporarySongList.getName());
             }
             // 上传歌单或专辑信息
-            model.addAttribute("songList", songList);
+            model.addAttribute("songList", emergency.getSongListCollect(specialFunctions.getUser(session),songList));
             // 上传歌单或专辑创建者的信息
             model.addAttribute("user", userInformation);
             // 上传播放量
@@ -171,7 +178,7 @@ public class AboutSongListService {
             // 上传收藏量
             model.addAttribute("collects", songListCount(1, songList.getType(), songList.getId()));
             // 上传所有音乐
-            model.addAttribute("musicList", musicList);
+            model.addAttribute("musicList", emergency.getMusicCollect(specialFunctions.getUser(session),musicList));
             logger.debug("歌单" + songList + "所有音乐" + musicList);
         } else {
             return "index";
@@ -206,7 +213,7 @@ public class AboutSongListService {
     /**
      * 查找指定专辑或歌单中的所有的音乐
      */
-    public List<Music> songListMusicList(int songListType, int songListId) {
+    private List<Music> songListMusicList(int songListType, int songListId) {
         // 查找包含的所有音乐
         MusicSongList musicSongList = new MusicSongList();
         musicSongList.setBelongId(songListId);
@@ -251,7 +258,7 @@ public class AboutSongListService {
                 List<Music> musicList = musicMapper.listIdSelectListMusic(musicIdList);
                 // 传给前端
                 // 音乐列表数据
-                model.addAttribute("musicList", musicList);
+                model.addAttribute("musicList", emergency.getMusicCollect(specialFunctions.getUser(session),musicList));
                 // 当前歌单数据
                 model.addAttribute("songList", songList);
                 // 即将播放的音乐 musicId

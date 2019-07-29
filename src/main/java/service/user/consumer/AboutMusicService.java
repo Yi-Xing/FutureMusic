@@ -4,6 +4,7 @@ import entity.*;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.context.ContextLoader;
+import service.Emergency;
 import service.user.IdExistence;
 import service.user.SpecialFunctions;
 import util.exception.DataBaseException;
@@ -32,7 +33,7 @@ import static org.apache.logging.log4j.web.WebLoggerContextUtils.getServletConte
  * @author 5月15日 张易兴创建
  */
 @Service(value = "AboutMusicService")
-public class AboutMusicService {
+public class AboutMusicService{
     private static final Logger logger = LoggerFactory.getLogger(AboutMusicService.class);
     @Resource(name = "MusicCollectMapper")
     MusicCollectMapper musicCollectMapper;
@@ -58,7 +59,8 @@ public class AboutMusicService {
     IdExistence idExistence;
     @Resource(name = "SongListCollectMapper")
     SongListCollectMapper songListCollectMapper;
-
+    @Resource(name = "Emergency")
+    Emergency emergency;
     /**
      * 显示用户的喜欢页面 统计喜欢歌单的个数，专辑的个数，音乐的个数，MV的个数
      */
@@ -516,11 +518,11 @@ public class AboutMusicService {
             } catch (IOException e) {
                 e.printStackTrace();
             }
+        }
         System.out.println(music);
         System.out.println(2222222);
         logger.debug("音乐的信息为：" + music);
         return music;
-        }
     }
 
 
@@ -553,7 +555,8 @@ public class AboutMusicService {
         } else {
             musicVideo.setId(0);
         }
-        return musicVideo;
-
+        List<MusicVideo> list=new ArrayList<>();
+        list.add(musicVideo);
+        return emergency.getMusicVideoCollect(user,list).get(0);
     }
 }
