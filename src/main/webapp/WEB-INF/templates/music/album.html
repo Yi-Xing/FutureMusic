@@ -57,17 +57,15 @@
         <div class="col-lg-10" id="artist_list">
             <div class="mvS">
                 <ul>
-                    <li th:each="list:${songList}">
+                    <li th:each="list:${pageInfo.list}">
                         <div class="mv">
                             <div class="list_top">
-                                <a href="./musicList.html" th:href="@{/songListInformation(musicVideoId=${list.songList.id})}">
-                                    <img th:src="@{${list.songListPhoto}}" src="../../static/img/mv_燃烧我的卡路里.jpg" alt="">
+                                <a href="./musicList.html" th:href="@{/user/showMusicSongList(id=${list.id})}">
+                                    <img th:src="@{${list.picture}}" src="../../static/img/mv_燃烧我的卡路里.jpg" alt="">
                                 </a>
                             </div>
                             <div class="list_bottom">
-                                <h4 th:text="${list.songList.name}">music name</h4>
-                                <h4 style="color: #999999">artist name</h4>
-                                <h4 th:text="${list.playCount}" style="color: #999999" class="mv_playTimes">播放：num</h4>
+                                <h4 th:text="${list.name}">music name</h4>
                             </div>
                         </div>
                     </li>

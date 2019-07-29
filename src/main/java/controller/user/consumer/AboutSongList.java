@@ -67,6 +67,7 @@ public class  AboutSongList {
      * 显示指定歌单或专辑的音乐播放页面
      *
      * @param id      歌单或专辑的iD
+     * @param musicId      即将播放的音乐
      */
     @RequestMapping(value = "/playMusicSongList")
     public String playMusicSongList(String id,String musicId, Model model,HttpSession session) {
