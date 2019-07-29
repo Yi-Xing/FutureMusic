@@ -13,6 +13,52 @@
             background-color: #e7e7e7;
         }
     </style>
+    <button type="button" class="btn btn-primary btn-sm " data-toggle="modal"
+            data-target="#add">添加专辑</button>
+    <!--添加活动信息-->
+    <div class="modal fade" id="add" tabindex="-1"
+         role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">添加专辑<span class="promptInformation" style="color: red"></span></h4>
+                </div>
+                <div class="modal-body">
+                    <!--存放添加音乐的信息-->
+                    <div class="form-group">
+                        <label
+                                class="col-sm-2 control-label">标题</label>
+                        <div class="col-sm-9">
+                            <input id="nameAdd" class="form-control "
+                                   placeholder="1-15个字符">
+                        </div>
+                        <br> <br> <br>
+                        <label class="col-sm-2 control-label">介绍</label>
+                        <div class="col-sm-9">
+                            <input id="activityAdd" class="form-control " placeholder="1-300个字符">
+                        </div>
+                        <form action="#"  id="selectFileAdd" enctype="multipart/form-data">
+                            <br> <br> <br> <label
+                                class="col-sm-2 control-label">封面图片</label>
+                            <div class="col-sm-9">
+                                <input name="pictureFile" type="file" class="form-control ">
+                            </div>
+                            <br> <br> <br>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default"
+                                data-dismiss="modal">关闭
+                        </button>
+                        <input type="submit" data-value="2" class="btn btn-primary addAlbum" value="保存"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
     <table class="table table-hover table-striped">
         <thead>
         <tr>

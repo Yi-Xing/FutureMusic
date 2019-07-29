@@ -102,29 +102,8 @@ window.onload = function () {
         });
     });
 
-    // 举报用户
-    $("#registerUser").on("click", function () {
-        // 被举报者的邮箱
-        var mailbox = $("#registerUserName").val();
-        // 发送的内容
-        var content = $("#registerUserName").val();
-        $.ajax({
-            contentType: "application/x-www-form-urlencoded;charset=UTF-8",
-            type: "post",
-            url: "reportUser",
-            data: {
-                "mailbox": mailbox,
-                "content": content
-            },
-            dataType: "json",
-            success: function (data, status) {
-                //返回state
-            }
-        });
-    });
-
     // 创建歌单或专辑
-    $("#registerUser").on("click", function () {
+    $("#addAlbum").on("click", function () {
         // 歌单或专辑的标题
         var name = $("#registerUserName").val();
         // 歌单或专辑的介绍
@@ -205,16 +184,24 @@ window.onload = function () {
         });
     });
 
-    // 开通关闭个人空间
+    // 举报用户
     $("#registerUser").on("click", function () {
+        // 被举报者的邮箱
+        var mailbox = $("#registerUserName").val();
+        // 发送的内容
+        var content = $("#registerUserName").val();
         $.ajax({
-            type: "get",
-            url: "privacy",
+            contentType: "application/x-www-form-urlencoded;charset=UTF-8",
+            type: "post",
+            url: "reportUser",
+            data: {
+                "mailbox": mailbox,
+                "content": content
+            },
             dataType: "json",
             success: function (data, status) {
-                // 返回state
+                //返回state
             }
         });
     });
-
 };

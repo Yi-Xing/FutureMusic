@@ -5,6 +5,7 @@ import mapper.FocusMapper;
 import org.springframework.ui.Model;
 import service.user.IdExistence;
 import service.user.SpecialFunctions;
+import service.user.administrators.UserInformationService;
 import util.FileUpload;
 import util.exception.DataBaseException;
 import mapper.UserMapper;
@@ -40,7 +41,8 @@ public class AccountInformationService {
     FileUpload fileUpload;
     @Resource(name = "IdExistence")
     IdExistence idExistence;
-
+    @Resource(name = "UserInformationService")
+    UserInformationService userInformationService;
     /**
      * 显示用户页面
      * Model封装：
@@ -57,6 +59,12 @@ public class AccountInformationService {
             user = idExistence.isUserId(user.getId());
             model.addAttribute("page", "personal");
             model.addAttribute("show", "personal");
+            if(user.getLevel()>2){
+            System.out.println("我这里");
+                //如果用户等级够的话跳转到管理员页面
+                model.addAttribute("page","homePage");
+                return "system/backgroundSystem";
+            }
         } else {
             session.removeAttribute("otherUser");
             if (user.getSecret() == 1) {

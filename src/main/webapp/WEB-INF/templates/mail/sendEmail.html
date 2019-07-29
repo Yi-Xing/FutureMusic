@@ -39,6 +39,11 @@
         <a href="javascript:" type="button" data-toggle="modal" data-target="#customer" data-whatever="@mdo">
             <i class="iconfont icon-people1"></i>客服
         </a>
+        <span th:if="${level=='level'}">
+            <a href="javascript:" type="button" data-toggle="modal" data-target="#user" data-whatever="@mdo">
+                <i class="iconfont icon-people1"></i>全体通知
+            </a>
+        </span>
     </h4>
     <div class="redLine"></div>
     <table class="table table-hover PrivateLetter">
@@ -108,6 +113,31 @@
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">返回</button>
                     <button type="button" class="btn btn-primary" id="sendCustomer">发送</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--给全体用户发邮箱信息的模态框-->
+    <div class="modal fade " id="user" tabindex="-1" role="dialog"
+         aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">发送通知</h4>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group">
+                            <label class="control-label" >信件:</label>
+                            <textarea class="form-control" id="userContent"  placeholder="1-300个字符"></textarea>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">返回</button>
+                    <button type="button" class="btn btn-primary" id="sendUser">发送</button>
                 </div>
             </div>
         </div>

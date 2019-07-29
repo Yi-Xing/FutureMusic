@@ -20,6 +20,10 @@
 <div class="Allhead">
     <!--上面的标题-->
     <div class="headleft">音乐管理系统</div>
+    <!--首页的标头-->
+    <span th:if="${page=='homePage'}">
+        <ul  th:replace="system/homePageAdmin::homePageHead"></ul>
+    </span>
     <!--用户信息的标头-->
     <span th:if="${#httpServletRequest.getRequestURI()=='/administrators/showUser'}">
         <ul  th:replace="system/userAdmin::userHead"></ul>
@@ -63,6 +67,7 @@
             <span th:case="4">管理员</span>
             <span th:case="5">总管理员</span>
         </td>
+        <a th:href="@{/user/sendEmail}">邮箱</a>
     </div>
     <div class="headright">
         <a class="signOutLogin" href="#">退出</a>
@@ -71,7 +76,7 @@
 <!--左边的按钮-->
 <div>
     <ul class="fixedleft">
-        <li><a id="homePage" th:href="@{/administrators/showHome}">首页</a></li>
+        <li><a id="homePage" th:href="@{/administrators/showHomePage}">首页</a></li>
         <li><a id="userPage" th:href="@{/administrators/showUser}">用户</a></li>
         <li><a id="orderPage" th:href="@{/administrators/showOrder}">订单</a></li>
         <li><a id="mailPage" th:href="@{/administrators/showMail}">邮箱</a></li>
@@ -83,6 +88,10 @@
         <li><a id="classificationPage" th:href="@{/administrators/showClassification}">分类</a></li>
     </ul>
 </div>
+<!--首页的内容-->
+<span th:if="${page=='homePage'}">
+    <div th:replace="system/homePageAdmin::homePage"></div>
+</span>
 <!--用户表格-->
 <span th:if="${#httpServletRequest.getRequestURI()=='/administrators/showUser'}">
     <div th:replace="system/userAdmin::user"></div>

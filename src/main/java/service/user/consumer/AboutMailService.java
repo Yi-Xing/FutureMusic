@@ -52,6 +52,9 @@ public class AboutMailService {
             // 一个邮箱对应一个接收者
             mailMap.put(m, idExistence.isUserId(m.getRecipientId()));
         }
+        if(user.getLevel()>2){
+            model.addAttribute("level", "level");
+        }
         model.addAttribute("mailMap", mailMap);
         model.addAttribute("page", "sendEmail");
         return "mail/mailPage";
@@ -88,6 +91,7 @@ public class AboutMailService {
         Mail mail = new Mail();
         mail.setReply(12);
         List<Mail> list = mailMapper.selectListMail(mail);
+        logger.debug("所有的通知信息"+list);
         // 使用有存储顺序的map集合
         Map<Mail, User> mailMap = new LinkedHashMap<>();
         User user = idExistence.isUserId(1);
@@ -182,7 +186,9 @@ public class AboutMailService {
             // 判断内容是否合法
             state = validationInformation.isContent(content);
             if (state.getState() == 1) {
-                Mail mail = new Mail(1,content,new Date(),12);
+                Mail mail = new Mail(1,content,new Date(),2);
+                // 添加的邮件未读
+                mail.setState(0);
                 if(mailMapper.insertMail(mail)<1){
                     // 如果失败是数据库错误
                     logger.error("邮箱：" + sendUser.getMailbox() + "发送邮件时，数据库出错");

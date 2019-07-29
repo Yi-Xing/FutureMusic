@@ -4,6 +4,7 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import entity.*;
 import mapper.MusicMapper;
+import mapper.MusicSongListMapper;
 import mapper.PlayMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -49,6 +50,8 @@ public class MusicInformationService {
     IdExistence idExistence;
     @Resource(name = "FileUpload")
     FileUpload fileUpload;
+    @Resource(name = "MusicSongListMapper")
+    MusicSongListMapper musicSongListMapper;
 
     /**
      * 添加音乐
@@ -78,6 +81,18 @@ public class MusicInformationService {
                     fileUpload.deleteFile(music.getPicture());
                     fileUpload.deleteFile(music.getPath());
                     fileUpload.deleteFile(music.getLyricPath());
+                    throw new DataBaseException(musicCopy + "添加音乐信息，数据库出错");
+                }
+                List<Music> list = musicMapper.selectListMusic(musicCopy);
+                MusicSongList musicSongList = new MusicSongList();
+                if (list.size() > 0) {
+                    musicCopy = list.get(0);
+                    musicSongList.setBelongId(musicCopy.getAlbumId());
+                    musicSongList.setType(2);
+                    musicSongList.setSingerId(musicCopy.getSingerId());
+                    musicSongList.setMusicId(musicCopy.getId());
+                }
+                if (musicSongListMapper.insertMusicSongList(musicSongList) < 1) {
                     throw new DataBaseException(musicCopy + "添加音乐信息，数据库出错");
                 }
                 state.setState(1);
@@ -113,7 +128,7 @@ public class MusicInformationService {
             if ((condition[2] != null) && !"".equals(condition[2]) && (condition[3] != null) && !"".equals(condition[3])) {
                 // 1-ID，2-名字 3-歌手 4-专辑 5-分类 6-活动
                 if (!validationInformation.isInt(condition[3])) {
-                    condition[3]="-1";
+                    condition[3] = "-1";
                 }
 
                 switch (condition[2]) {
@@ -189,7 +204,7 @@ public class MusicInformationService {
                 if ("0".equals(available)) {
                     available = "-1";
                 }
-                if("0".equals(activity)){
+                if ("0".equals(activity)) {
                     activity = "-1";
                 }
                 Music music = new Music(Integer.valueOf(id), name, Integer.valueOf(level), new BigDecimal(price), Integer.valueOf(singerId), Integer.valueOf(albumId), Integer.valueOf(classificationId), Integer.valueOf(activity), Integer.valueOf(available));
@@ -262,7 +277,7 @@ public class MusicInformationService {
                                 // 判断价格是否符合要求
                                 if (validationInformation.isPrice(String.valueOf(price))) {
                                     // 判断活动id是否符合要求
-                                    if ("0".equals(activity)||(activity.matches("([1-9][0-9]*)") && idExistence.isActivityId(Integer.valueOf(activity)) != null)) {
+                                    if ("0".equals(activity) || (activity.matches("([1-9][0-9]*)") && idExistence.isActivityId(Integer.valueOf(activity)) != null)) {
                                         // 判断版权
                                         if (available.matches("([0-1])")) {
                                             state.setState(1);
@@ -303,7 +318,7 @@ public class MusicInformationService {
     private State isModifyMore(String musicVideoId, boolean[] checkbox, HttpServletRequest request, Music music) {
         State state = new State();
         // 判断MV的id
-        if ("0".equals(musicVideoId)||"-1".equals(musicVideoId)||(musicVideoId.matches("([1-9][0-9]*)") && idExistence.isMusicVideoId(Integer.valueOf(musicVideoId)) != null)) {
+        if ("0".equals(musicVideoId) || "-1".equals(musicVideoId) || (musicVideoId.matches("([1-9][0-9]*)") && idExistence.isMusicVideoId(Integer.valueOf(musicVideoId)) != null)) {
             // 先得到3个文件input的name名称 判断接收到的3个文件是否合法
             if (checkbox != null && checkbox.length == 3) {
                 // 音乐图片路径

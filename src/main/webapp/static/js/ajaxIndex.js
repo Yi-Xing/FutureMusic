@@ -116,7 +116,7 @@ window.onload = function () {
                     // }, 1000); //指定1秒刷新一次
                         location.reload();
                 }else if(data.state === 2){
-                    window.location.href ="http://localhost:8080/administrators/showUser";
+                    window.location.href ="http://localhost:8080/administrators/showHomePage";
                 }
             }
         });

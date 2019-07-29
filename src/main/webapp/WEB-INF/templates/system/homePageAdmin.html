@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head></head>
+<body>
+<ul class="headul" th:fragment="homePageHead">
+    <li class="headli">
+        <a th:href="@{/administrators/showUser}">用户</a>
+    </li>
+    <li class="headli">
+        <a th:href="@{/administrators/showOrder}">订单</a>
+    </li>
+    <li class="headli">
+        <a th:href="@{/administrators/showMusic}">音乐</a>
+    </li>
+    <li class="headli">
+        <a th:href="@{/administrators/showMusicVideo}">MV</a>
+    </li>
+    <li class="headli">
+        <a th:href="@{/administrators/showSongList}">歌单/专辑</a>
+    </li>
+</ul>
+<div class="Allbody peobody " th:fragment="homePage">
+    <!-- 导入 JS -->
+    <script th:src="@{/static/js/system/homePageAdmin.js}"></script>
+    <div class="headFrame dropdown">
+        <h2>欢迎使用未来音乐后台管理系统</h2>
+    </div>
+
+    <div class="peolt">
+
+    </div>
+</div>
+</body>
+</html>
