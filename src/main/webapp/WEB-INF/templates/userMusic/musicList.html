@@ -32,7 +32,12 @@
                         <h5>播放量：<span th:text="${plays}"></span></h5>
                         <h5>收藏量：<span th:text="${collects}"></span></h5>
                     </a>
-                    <span class="iconfont icon-like"></span>
+                    <span th:if="${songList.classificationId!=1}">
+                                <span class="iconfont icon-like"></span>
+                            </span>
+                    <span th:if="${songList.classificationId==1}">
+                                <span class="iconfont icon-like like"></span>
+                            </span>
                 </div>
             </div>
             <div class="container">

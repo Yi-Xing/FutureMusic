@@ -33,7 +33,7 @@ import static org.apache.logging.log4j.web.WebLoggerContextUtils.getServletConte
  * @author 5月15日 张易兴创建
  */
 @Service(value = "AboutMusicService")
-public class AboutMusicService{
+public class AboutMusicService {
     private static final Logger logger = LoggerFactory.getLogger(AboutMusicService.class);
     @Resource(name = "MusicCollectMapper")
     MusicCollectMapper musicCollectMapper;
@@ -61,6 +61,7 @@ public class AboutMusicService{
     SongListCollectMapper songListCollectMapper;
     @Resource(name = "Emergency")
     Emergency emergency;
+
     /**
      * 显示用户的喜欢页面 统计喜欢歌单的个数，专辑的个数，音乐的个数，MV的个数
      */
@@ -98,7 +99,7 @@ public class AboutMusicService{
      *
      * @param type 1表示查找音乐收藏 2表示查找MV收藏
      */
-    public List <MusicCollect> showUserCollectionMusic(Integer type, HttpSession session) {
+    public List<MusicCollect> showUserCollectionMusic(Integer type, HttpSession session) {
         //得到会话上的用户
         User user = specialFunctions.getUser(session);
         MusicCollect musicCollect = new MusicCollect();
@@ -118,9 +119,9 @@ public class AboutMusicService{
         Order order = new Order();
         order.setType(type);
         order.setUserId(user.getId());
-        List <Order> list = orderMapper.selectListOrder(order);
+        List<Order> list = orderMapper.selectListOrder(order);
         if (list.size() != 0) {
-            List <Integer> idList = new ArrayList <>();
+            List<Integer> idList = new ArrayList<>();
             // 得到所有音乐或MV的id
             for (Order o : list) {
                 idList.add(o.getMusicId());
@@ -149,7 +150,7 @@ public class AboutMusicService{
      *                                session          获取当前会话
      */
     public State collectionMusic(MusicCollect musicCollectInformation, HttpSession session) throws DataBaseException {
-        State state=new State();
+        State state = new State();
         //得到会话上的用户
         User user = specialFunctions.getUser(session);
         MusicCollect musicCollect = existenceService.isUserCollectionMusic(user.getId(), musicCollectInformation.getMusicId(), musicCollectInformation.getType());
@@ -170,6 +171,7 @@ public class AboutMusicService{
             if (order != null) {
                 have = 1;
             }
+            musicCollectInformation.setUserId(user.getId());
             // 添加收藏
             collectionAndPlay(have, musicCollectInformation, null, user);
             state.setState(2);
@@ -289,16 +291,16 @@ public class AboutMusicService{
      * @param type    1表示音乐 2表示MV
      * @param session 获取当前会话
      */
-    public List <?> showMusicPlay(Integer type, HttpSession session) {
+    public List<?> showMusicPlay(Integer type, HttpSession session) {
         //得到会话上的用户
         User user = specialFunctions.getUser(session);
         Play play = new Play();
         play.setType(type);
         play.setUserId(user.getId());
         // 查找用户播放过的音乐或MV
-        List <Play> list = playMapper.selectListPlay(play);
+        List<Play> list = playMapper.selectListPlay(play);
         // 用来存放音乐或MV的id
-        List <Integer> idList = new ArrayList <>();
+        List<Integer> idList = new ArrayList<>();
         for (Play p : list) {
             idList.add(p.getMusicId());
         }
@@ -419,7 +421,7 @@ public class AboutMusicService{
         }
         Comment comment = new Comment();
         comment.setId(Integer.parseInt(id));
-        List <Comment> commentList = commentMapper.selectListComment(comment);
+        List<Comment> commentList = commentMapper.selectListComment(comment);
         // 得带查找到的评论
         comment = commentList.get(0);
         if (isFabulous) {
@@ -555,8 +557,8 @@ public class AboutMusicService{
         } else {
             musicVideo.setId(0);
         }
-        List<MusicVideo> list=new ArrayList<>();
+        List<MusicVideo> list = new ArrayList<>();
         list.add(musicVideo);
-        return emergency.getMusicVideoCollect(user,list).get(0);
+        return emergency.getMusicVideoCollect(user, list).get(0);
     }
 }
