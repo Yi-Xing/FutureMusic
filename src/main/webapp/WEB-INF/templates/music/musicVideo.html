@@ -26,11 +26,11 @@
                 <ul>
                     <li th:each="list:${pageInfo.list}">
                         <div class="mv">
-                            <a th:href="@{/user/playMusicVideoId(id=${list.id})}">
-                                <div class="mv_top">
-                                    <img th:src="@{${list.picture}}" src="/static/img/mv_燃烧我的卡路里.jpg" alt="">
-                                </div>
-                            </a>
+                            <div class="mv_top">
+                                <a th:href="@{/user/playMusicVideoId(id=${list.id})}">
+                                    <img th:src="@{${list.picture}}" alt="">
+                                </a>
+                            </div>
                             <div class="mv_bottom">
                                 <h4 th:text="${list.name}">music name</h4>
                             </div>
@@ -69,25 +69,6 @@
                 </button>
                 一共<span th:text="${pageCount}"></span>页
             </div>
-            <!--            <nav aria-label="Page navigation">-->
-            <!--                <ul class="pagination pagination-lg pull-right">-->
-            <!--                    <li>-->
-            <!--                        <a href="#" aria-label="Previous">-->
-            <!--                            <span aria-hidden="true">&laquo;</span>-->
-            <!--                        </a>-->
-            <!--                    </li>-->
-            <!--                    <li><a href="#">1</a></li>-->
-            <!--                    <li><a href="#">2</a></li>-->
-            <!--                    <li><a href="#">3</a></li>-->
-            <!--                    <li><a href="#">4</a></li>-->
-            <!--                    <li><a href="#">5</a></li>-->
-            <!--                    <li>-->
-            <!--                        <a href="#" aria-label="Next">-->
-            <!--                            <span aria-hidden="true">&raquo;</span>-->
-            <!--                        </a>-->
-            <!--                    </li>-->
-            <!--                </ul>-->
-            <!--            </nav>-->
         </div>
     </div>
 </div>
@@ -98,8 +79,6 @@
 
 </body>
 <span th:include="on-load-js.html"></span>
-<!--<script src="js/jquery-1.9.1.js" th:src="@{/static/js/jquery-1.9.1.js}"></script>-->
-<!--<script src="js/back_system.js" th:src="@{/static/js/back_system.js}"></script>-->
 <script src="js/page.js" th:src="@{/static/js/page.js}"></script>
 <script src="js/musicVideo.js" th:src="@{/static/js/musicVideo.js}"></script>
 </html>

@@ -89,37 +89,46 @@ var httpurl = "";    //请求路径
 //     });
 // });
 
-    // 搜索框提示
-    $("#search").keyup(function () {
-        var searchVal = this.value;
-        var search_tips = $('.search_tips')[0];
-        var tips_head = "<li><a href='./musics.html?musicId='>";
-        var tips_last = "</a></li>";
-        var tips = "";
+// 搜索框提示
+$("#search").keyup(function () {
+    var searchVal = this.value;
+    console.log(searchVal);
+    var search_tips = $('.search_tips')[0];
+    var tips_head = "<li><a href='/musicPage?musicId='>";
+    var tips_last = "</a></li>";
+    var tips = "";
+    if (searchVal != "") {
         $.ajax({
             contentType: "application/x-www-form-urlencoded;charset=UTF-8",
             type: "post",
-            url: "searchListAll",
-            data: {keyWord: searchVal},
+            url: "/getSearchMusic",
+            data: {search: searchVal},
             dataType: "json",
-            success: function (data, status) {
-                var music = data[1];
-                if (searchVal === '') {
-                    search_tips.innerHTML = '';
-                } else {
-                    // console.log(music);
-                    for (let i in music) {
-                        var musicName = music[i].name;
-                        tips_head = "<li><a href='./musics.html?musicId=" + music[i].id + "'>";
-                        // console.log(tips_head);
-                        tips = tips + tips_head + musicName + tips_last;
-                    }
-                    search_tips.innerHTML = tips;
+            success: function (data) {
+                console.log(data);
+
+                for (let i in data) {
+                    var musicName = data[i].name;
+                    tips_head = "<li><a href='/musicPage?condition=" + searchVal + "'>";
+                    // console.log(tips_head);
+                    tips = tips + tips_head + musicName + tips_last;
                 }
+                search_tips.innerHTML = tips;
+
 
             }
         })
-    });
+    }
+});
+
+// $("#searchGo").on('click',function () {
+//     var searchVal = $("#search").val();
+//     console.log(searchVal);
+//     // window.location.href = "/musicPage?condition=" + searchVal;
+//
+// });
+
+
 //搜索框历史记录
 $("#search").click(function () {
     var search_tips = $('.search_tips')[0];
@@ -223,12 +232,13 @@ $(".icon-like").on('click', function () {
     var obj = $thi[0];
     console.log(obj);
     if ($(obj).hasClass("likeMusicVideo")) {
+        musicId = musicVideoId;
         collectionMusic(userId, musicId, 2, $(this));
-    } else if($(obj).hasClass("likeSongList")){
+    } else if ($(obj).hasClass("likeSongList")) {
         collectionSongList(userId, musicId, 1, $(this));
-    } else if($(obj).hasClass("likeAlbum")){
+    } else if ($(obj).hasClass("likeAlbum")) {
         collectionSongList(userId, musicId, 2, $(this));
-    } else if($(obj).hasClass("likeMusic")){
+    } else if ($(obj).hasClass("likeMusic")) {
         collectionMusic(userId, musicId, 1, $(this));
     }
 });
@@ -245,14 +255,11 @@ function collectionMusic(userId, musicId, type) {
             type: type
         },
         success: function (data) {
-            console.log(data);
-            // alert("已取消收藏！");
-            // $(obj).removeClass('like');
-            if(data.state==1){
+            if (data.state == 1) {
                 alert("删除收藏成功")
-            }else if(data.state==2){
+            } else if (data.state == 2) {
                 alert("添加收藏成功")
-            }else{
+            } else {
                 alert("请刷新网页")
             }
 
@@ -272,13 +279,11 @@ function collectionSongList(userId, musicId, type) {
             type: type
         },
         success: function (data) {
-            // alert("已取消收藏！");
-            // $(obj).removeClass('like');
-            if(data.state==1){
+            if (data.state == 1) {
                 alert("删除收藏成功")
-            }else if(data.state==2){
+            } else if (data.state == 2) {
                 alert("添加收藏成功")
-            }else{
+            } else {
                 alert("请刷新网页")
             }
 

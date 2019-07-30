@@ -34,7 +34,7 @@ function playMusicVideo(musicVideoId) {
 
     $.ajax({
         contentType: "application/x-www-form-urlencoded;charset=UTF-8",
-        url: "playMusicVideo",
+        url: "/user/playMusicVideo",
         type: 'post',
         dataType: "json",
         data: {id: musicVideoId},
@@ -52,6 +52,9 @@ function playMusicVideo(musicVideoId) {
                 information.innerHTML = data.name;
                 var video = $("video");
                 $(video).attr('src', data.path);
+            }
+            if(data.classificationId == 1){
+                $($(".icon-like")).addClass("like");
             }
         }
     });
