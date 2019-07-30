@@ -54,7 +54,7 @@ public class MusicInformationService {
     MusicSongListMapper musicSongListMapper;
 
     /**
-     * 添加音乐
+     * 添加音乐 还需向MusicSongList添加
      */
     public State addMusic(String name, String singerId, String albumId, String classificationId, String level, String price, String activity, String available, String musicVideoId, HttpServletRequest request) throws DataBaseException, IOException {
         // 先判断一部分信息是否合法
@@ -92,8 +92,9 @@ public class MusicInformationService {
                     musicSongList.setSingerId(musicCopy.getSingerId());
                     musicSongList.setMusicId(musicCopy.getId());
                 }
+                // 向MusicSongList添加
                 if (musicSongListMapper.insertMusicSongList(musicSongList) < 1) {
-                    throw new DataBaseException(musicCopy + "添加音乐信息，数据库出错");
+                    throw new DataBaseException(musicCopy + "添加音乐专辑信息，数据库出错");
                 }
                 state.setState(1);
             }
@@ -212,6 +213,20 @@ public class MusicInformationService {
                     // 如果失败是数据库错误
                     logger.error(music + "修改音乐信息，数据库出错");
                     throw new DataBaseException(music + "修改音乐信息，数据库出错");
+                }
+                MusicSongList musicSongList = new MusicSongList();
+                musicSongList.setType(2);
+                musicSongList.setMusicId(Integer.valueOf(id));
+                List<MusicSongList> listMusicSongList = musicSongListMapper.selectListMusicSongList(musicSongList);
+                if (listMusicSongList.size() > 0) {
+                    musicSongList = listMusicSongList.get(1);
+                    musicSongList.setBelongId(Integer.valueOf(albumId));
+                    musicSongList.setSingerId(Integer.valueOf(singerId));
+                    if (musicSongListMapper.updateMusicSongList(musicSongList) < 1) {
+                        // 如果失败是数据库错误
+                        logger.error(music + "修改音乐专辑信息，数据库出错");
+                        throw new DataBaseException(music + "修改音乐专辑信息，数据库出错");
+                    }
                 }
             }
         } else {
