@@ -12,24 +12,6 @@ playMusicVideo(musicVideoId);
 var payUrl = "/user/musicPage?id=" + musicVideoId + "&type=2";
 var vipUrl = "/user/vipPage?id=" + musicVideoId + "&type=2";
 
-// $.ajax({
-//     contentType: "application/x-www-form-urlencoded;charset=UTF-8",
-//     url: "musicVideoInformation",
-//     type: 'post',
-//     dataType: "json",
-//     data: {musicVideoId: musicVideoId},
-//     success: function (data) {
-//         console.log("ok");
-//         console.log(data);
-//     }
-// });
-
-
-// $(".ILike .ILikeMusicVideo").click(function () {
-//     var mv = $(this).children()[0];
-//     console.log(mv);
-// });
-
 function playMusicVideo(musicVideoId) {
 
     $.ajax({
@@ -60,31 +42,31 @@ function playMusicVideo(musicVideoId) {
     });
 }
 
-var type = 2;
-var like = 0;
-$('.icon-like').on('click', function () {
-    let obj = $(this)[0];
-    if (like === 0) {
-        $(obj).addClass('like');
-        $.ajax({
-            contentType: "application/x-www-form-urlencoded;charset=UTF-8",
-            url: "collectionMusic",
-            type: 'post',
-            dataType: "json",
-            data: {
-                musicId: musicVideoId,
-                type: type
-            },
-            success: function (data) {
-                console.log(data);
-            }
-        });
-        like = 1;
-    } else {
-        $(obj).removeClass('like');
-        like = 0;
-    }
-});
+// var type = 2;
+// var like = 0;
+// $('.icon-like').on('click', function () {
+//     let obj = $(this)[0];
+//     if (like === 0) {
+//         $(obj).addClass('like');
+//         $.ajax({
+//             contentType: "application/x-www-form-urlencoded;charset=UTF-8",
+//             url: "collectionMusic",
+//             type: 'post',
+//             dataType: "json",
+//             data: {
+//                 musicId: musicVideoId,
+//                 type: type
+//             },
+//             success: function (data) {
+//                 console.log(data);
+//             }
+//         });
+//         like = 1;
+//     } else {
+//         $(obj).removeClass('like');
+//         like = 0;
+//     }
+// });
 
 
 
