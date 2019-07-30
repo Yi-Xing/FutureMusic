@@ -35,6 +35,7 @@ function playMusicVideo(musicVideoId) {
                 var video = $("video");
                 $(video).attr('src', data.path);
             }
+            alert(data.classificationId)
             if(data.classificationId == 1){
                 $($(".icon-like")).addClass("like");
             }

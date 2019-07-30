@@ -43,7 +43,7 @@ public class AboutMusic {
      */
     @RequestMapping(value = "/playCollectMusicVideo")
     public String playCollectMusicVideo(HttpSession session, Model model) {
-        return aboutPlayService.playCollectMusicVideo(session, model);
+        return aboutPlayService.playCollectMusicVideo(session,0, model);
     }
 
     /**
@@ -58,8 +58,8 @@ public class AboutMusic {
      * 播放指定MV
      */
     @RequestMapping(value = "/playMusicVideoId")
-    public String playMusicVideoId(Integer id, Model model) {
-        return aboutPlayService.playMusicVideoId(id, model);
+    public String playMusicVideoId(HttpSession session,Integer id, Model model) {
+        return aboutPlayService.playMusicVideoId(session,id, model);
     }
 
     /**

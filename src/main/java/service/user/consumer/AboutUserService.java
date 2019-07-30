@@ -25,7 +25,7 @@ import java.util.List;
  * @author 5月14日 张易兴创建
  */
 @Service(value = "AboutUserService")
-public class AboutUserService {
+public class  AboutUserService {
     private static final Logger logger = LoggerFactory.getLogger(AboutUserService.class);
     @Resource(name = "ValidationInformation")
     ValidationInformation validationInformation;

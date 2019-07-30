@@ -255,6 +255,7 @@ public class Emergency {
             } else {
                 music.setClassificationId(0);
             }
+            System.out.println(music);
         }
         return list;
     }
