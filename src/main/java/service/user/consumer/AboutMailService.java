@@ -50,9 +50,11 @@ public class AboutMailService {
         Map<Mail, User> mailMap = new LinkedHashMap<>();
         for (Mail m : list) {
             // 一个邮箱对应一个接收者
-            mailMap.put(m, idExistence.isUserId(m.getRecipientId()));
+            if (m.getReply() != 2) {
+                mailMap.put(m, idExistence.isUserId(m.getRecipientId()));
+            }
         }
-        if(user.getLevel()>2){
+        if (user.getLevel() > 2) {
             model.addAttribute("level", "level");
         }
         model.addAttribute("mailMap", mailMap);
@@ -91,7 +93,7 @@ public class AboutMailService {
         Mail mail = new Mail();
         mail.setReply(12);
         List<Mail> list = mailMapper.selectListMail(mail);
-        logger.debug("所有的通知信息"+list);
+        logger.debug("所有的通知信息" + list);
         // 使用有存储顺序的map集合
         Map<Mail, User> mailMap = new LinkedHashMap<>();
         User user = idExistence.isUserId(1);
@@ -177,25 +179,25 @@ public class AboutMailService {
     /**
      * 客服或管理员给所有成员发消息
      */
-    public State sendWhole(HttpSession session,String content) throws DataBaseException {
+    public State sendWhole(HttpSession session, String content) throws DataBaseException {
         State state = new State();
         // 发送邮件的用户信息
         User sendUser = specialFunctions.getUser(session);
         // 判断有没有权限
-        if(sendUser.getLevel()>2){
+        if (sendUser.getLevel() > 2) {
             // 判断内容是否合法
             state = validationInformation.isContent(content);
             if (state.getState() == 1) {
-                Mail mail = new Mail(1,content,new Date(),2);
+                Mail mail = new Mail(1, content, new Date(), 2);
                 // 添加的邮件未读
                 mail.setState(0);
-                if(mailMapper.insertMail(mail)<1){
+                if (mailMapper.insertMail(mail) < 1) {
                     // 如果失败是数据库错误
                     logger.error("邮箱：" + sendUser.getMailbox() + "发送邮件时，数据库出错");
                     throw new DataBaseException("邮箱：" + sendUser.getMailbox() + "发送邮件时，数据库出错");
                 }
             }
-        }else{
+        } else {
             state.setInformation("没有权限");
         }
         return state;
