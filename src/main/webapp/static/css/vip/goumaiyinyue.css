@@ -104,6 +104,7 @@ a{
 .contain{
     width: 70%;
     margin: 20px auto;
+    overflow: hidden;
 }
 .img{
     height: 200px;

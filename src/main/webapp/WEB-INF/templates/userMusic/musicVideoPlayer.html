@@ -13,7 +13,7 @@
     <div class="music_video">
         <div class="text-center">
             <h2>MV</h2>
-            <span class="iconfont icon-like"></span>
+            <span class="iconfont icon-like likeMusicVideo"></span>
         </div>
         <div class="video_container">
             <div class="video">
@@ -26,7 +26,8 @@
 <div class="container-fluid color_2" style="position: relative">
     <div class="row inner ILike">
         <h2 th:data-id="${musicVideoId}">我喜欢的MV</h2>
-        <i class="iconfont icon-like" style="font-size: 30px"></i>
+<!--        收藏此MV-->
+        <i class="iconfont icon-like likeMusicVideo" style="font-size: 30px"></i>
         <ul class="container">
             <li class="ILikeMusicVideo" th:each="musicVideo:${musicVideoList}">
                 <div class="mv" th:data-id="${musicVideo.id}">
@@ -38,10 +39,10 @@
                     <div class="mv_bottom">
                         <h4 th:text="${musicVideo.name}">music name</h4>
                         <span th:if="${musicVideo.classificationId!=1}">
-                            <span class="iconfont icon-like " th:data-id="${musicVideo.id}"></span>
+                            <span th:data-id="${musicVideo.id}" class="iconfont icon-like likeMusicVideo"></span>
                         </span>
                         <span th:if="${musicVideo.classificationId==1}">
-                            <span class="iconfont icon-like like " th:data-id="${musicVideo.id}"></span>
+                            <span th:data-id="${musicVideo.id}" class="iconfont icon-like like likeMusicVideo"></span>
                         </span>
                     </div>
                 </div>

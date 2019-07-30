@@ -31,35 +31,35 @@ public class AboutMusic {
     private static final Logger logger = LoggerFactory.getLogger(AboutMusic.class);
 
     /**
-     *  显示用户的喜欢页面 统计喜欢歌单的个数，专辑的个数，音乐的个数，MV的个数
+     * 显示用户的喜欢页面 统计喜欢歌单的个数，专辑的个数，音乐的个数，MV的个数
      */
     @RequestMapping(value = "/showUserLike")
-    public String showUserLike(HttpSession session, Model model){
-        return aboutMusicService.showUserLike(session,model);
+    public String showUserLike(HttpSession session, Model model) {
+        return aboutMusicService.showUserLike(session, model);
     }
 
     /**
      * 显示用户喜欢MV的播放页面
      */
     @RequestMapping(value = "/playCollectMusicVideo")
-    public String playCollectMusicVideo(HttpSession session, Model model){
-        return aboutPlayService.playCollectMusicVideo(session,model);
+    public String playCollectMusicVideo(HttpSession session, Model model) {
+        return aboutPlayService.playCollectMusicVideo(session, model);
     }
 
     /**
      * 显示用户喜欢音乐的播放页面
      */
     @RequestMapping(value = "/playCollectMusic")
-    public String playCollectMusic(HttpSession session, Model model){
-        return aboutPlayService.playCollectMusic(session,model);
+    public String playCollectMusic(HttpSession session, Model model) {
+        return aboutPlayService.playCollectMusic(session, model);
     }
 
     /**
      * 播放指定MV
      */
     @RequestMapping(value = "/playMusicVideoId")
-    public String playMusicVideoId(Integer id, Model model){
-        return aboutPlayService.playMusicVideoId(id,model);
+    public String playMusicVideoId(Integer id, Model model) {
+        return aboutPlayService.playMusicVideoId(id, model);
     }
 
     /**
@@ -69,7 +69,7 @@ public class AboutMusic {
      */
     @RequestMapping(value = "/showUserCollectionMusic")
     @ResponseBody
-    public List<MusicCollect> showUserCollectionMusic(Integer type, HttpSession session) {
+    public List <MusicCollect> showUserCollectionMusic(Integer type, HttpSession session) {
         logger.trace("showUserCollectionMusic方法开始执行");
         return aboutMusicService.showUserCollectionMusic(type, session);
     }
@@ -88,17 +88,21 @@ public class AboutMusic {
 
     /**
      * 收藏和取消收藏音乐或MV,ajax
-     *
-     * @param musicCollectInformation 封装音乐或MV收藏的信息
-     *                                musicId          获取收藏音乐或MV的id
-     *                                type             获取类型1是音乐2是MV
-     *                                session          获取当前会话
+     * <p>
+     * 封装音乐或MV收藏的信息
+     * musicId          获取收藏音乐或MV的id
+     * type             获取类型1是音乐2是MV
+     * session          获取当前会话
      */
     @RequestMapping(value = "/collectionMusic")
     @ResponseBody
-    public State collectionMusic(@RequestBody MusicCollect musicCollectInformation, HttpSession session) throws DataBaseException {
+    public State collectionMusic(Integer musicId, Integer type, HttpSession session) throws DataBaseException {
         logger.trace("collectionMusic方法开始执行");
-        return aboutMusicService.collectionMusic(musicCollectInformation, session);
+        MusicCollect musicCollect = new MusicCollect();
+        musicCollect.setMusicId(musicId);
+        musicCollect.setUserId(((User)session.getAttribute("userInformation")).getId());
+        musicCollect.setType(type);
+        return aboutMusicService.collectionMusic(musicCollect, session);
     }
 
     /**
@@ -119,12 +123,12 @@ public class AboutMusic {
     /**
      * 显示用户的音乐或MV的历史播放记录,ajax （需要更改）
      *
-     * @param type 1表示音乐 2表示MV
+     * @param type    1表示音乐 2表示MV
      * @param session 获取当前会话
      */
     @RequestMapping(value = "/showMusicPlay")
     @ResponseBody
-    public List<?> showMusicPlay(Integer type, HttpSession session) {
+    public List <?> showMusicPlay(Integer type, HttpSession session) {
         logger.trace("showMusicPlay方法开始执行");
         return aboutMusicService.showMusicPlay(type, session);
     }
@@ -173,20 +177,23 @@ public class AboutMusic {
 
     /**
      * 播放音乐判断用户是否拥有该音乐
+     *
      * @param id 音乐的id
      */
     @RequestMapping(value = "/playMusic")
     @ResponseBody
-    public Music playMusic(Integer id,HttpSession session){
-        return aboutMusicService.playMusic(id,session);
+    public Music playMusic(Integer id, HttpSession session) {
+        return aboutMusicService.playMusic(id, session);
     }
+
     /**
      * 播放MV判断用户是否购买该MV
+     *
      * @param id MV的id
      */
     @RequestMapping(value = "/playMusicVideo")
     @ResponseBody
-    public MusicVideo playMusicVideo(Integer id,HttpSession session){
-        return aboutMusicService.playMusicVideo(id,session);
+    public MusicVideo playMusicVideo(Integer id, HttpSession session) {
+        return aboutMusicService.playMusicVideo(id, session);
     }
 }
