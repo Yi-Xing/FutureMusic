@@ -43,9 +43,7 @@ a{
     font-size: 25px;
     padding: 10px;
 }
-li.active{
-     border-bottom: 5px solid #000;
- }
+
 .head li:hover{
     border-bottom: 5px solid #000;
 }

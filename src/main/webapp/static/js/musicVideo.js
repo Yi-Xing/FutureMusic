@@ -1,25 +1,28 @@
 var url = window.location.search;
 var musicVideoId = url.substring(url.lastIndexOf('musicVideoId=') + 13, url.length);
-console.log('ID=' + musicVideoId);
+// console.log('ID=' + musicVideoId);
 
 var information = $(".music_video")[0].children[0].children[0]
 
 var obj_id = $(".ILike h2")[0];
 musicVideoId = $(obj_id).data("id");
-console.log(musicVideoId);
+// console.log(musicVideoId);
 playMusicVideo(musicVideoId);
 
-$.ajax({
-    contentType: "application/x-www-form-urlencoded;charset=UTF-8",
-    url: "musicVideoInformation",
-    type: 'post',
-    dataType: "json",
-    data: {musicVideoId: musicVideoId},
-    success: function (data) {
-        console.log("ok");
-        console.log(data);
-    }
-});
+var payUrl = "/user/musicPage?id=" + musicVideoId + "&type=2";
+var vipUrl = "/user/vipPage?id=" + musicVideoId + "&type=2";
+
+// $.ajax({
+//     contentType: "application/x-www-form-urlencoded;charset=UTF-8",
+//     url: "musicVideoInformation",
+//     type: 'post',
+//     dataType: "json",
+//     data: {musicVideoId: musicVideoId},
+//     success: function (data) {
+//         console.log("ok");
+//         console.log(data);
+//     }
+// });
 
 
 // $(".ILike .ILikeMusicVideo").click(function () {
@@ -40,9 +43,12 @@ function playMusicVideo(musicVideoId) {
                 information.innerHTML = "对不起，我们还未获得这支MV的版权";
             } else if (data.id == 1) {
                 information.innerHTML = "对不起，这支MV需要VIP授权播放";
+                $(".payMusic").attr("href",vipUrl);
             } else if (data.id == 2) {
                 information.innerHTML = "对不起，您还没有购买这支MV";
+                $(".payMusic").attr("href",payUrl);
             } else {
+                $(".payMusic").hide();
                 information.innerHTML = data.name;
                 var video = $("video");
                 $(video).attr('src', data.path);
@@ -76,5 +82,6 @@ $('.icon-like').on('click', function () {
         like = 0;
     }
 });
+
 
 

@@ -20,14 +20,14 @@
             <div class="user_information">
                 <h4 th:text="${songList.name}">name</h4>
                 <h5 style="padding-left: 20px">
-                    <a href="javascript:;">
+                    <a th:href="@{/user/userPage}">
                         <span class="iconfont icon-people1"></span>
 
                     </a>
-                    <a href="javascript:;">
+                    <a th:href="@{/homePage}">
                         <span class="iconfont icon-music"></span>
                     </a>
-                    <a href="/user/vipPage">
+                    <a th:href="@{/user/vipPage}">
                         <span class="iconfont icon-iconvip"></span>
                     </a>
                 </h5>
@@ -35,8 +35,8 @@
         </div>
         <!--搜索框-->
         <div class="search">
-            <b><a href="/homePage" th class="">返回主页</a></b>
-            <b><a href="/user/vipPage" class="">个人中心</a></b>
+            <b class="pull-left"><a th:href="@{/homePage}" class=""><i class="iconfont icon-home"></i>&nbsp;&nbsp;返回主页</a></b>
+            <b class="pull-right"><a th:href="@{/user/userPage}" class=""><i class="iconfont icon-people1"></i>&nbsp;&nbsp;个人中心</a></b>
         </div>
         <div class="Catalog">
             <table class="table table-hover ">
