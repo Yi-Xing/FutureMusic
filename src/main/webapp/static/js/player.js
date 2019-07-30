@@ -342,7 +342,6 @@ console.log(musicUrl);
 
 
 function musicTab() {
-    var str = '';
     console.log("执行");
     $.ajax({
         contentType: "application/x-www-form-urlencoded;charset=UTF-8",
