@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import service.user.IdExistence;
 import service.user.ValidationInformation;
+import util.FileUpload;
 import util.exception.DataBaseException;
 
 import javax.annotation.Resource;
@@ -41,7 +42,8 @@ public class SongListInformationService {
     MusicSongListMapper musicSongListMapper;
     @Resource(name = "ValidationInformation")
     ValidationInformation validationInformation;
-
+    @Resource(name = "FileUpload")
+    FileUpload fileUpload;
     /**
      * 歌单或专辑的信息
      *
@@ -185,12 +187,21 @@ public class SongListInformationService {
         // 根据条件查找歌单专辑信息
         if (validationInformation.isInt(id)) {
             // 验证id是否存在
-            if (idExistence.isSongListId(Integer.valueOf(id)) != null) {
+            SongList songList=idExistence.isSongListId(Integer.valueOf(id));
+            if (songList != null) {
                 // 删除指定id的评论
                 if (songListMapper.deleteSongList(Integer.valueOf(id)) < 1) {
                     // 如果失败是数据库错误
                     logger.error("专辑或歌单：" + id + "删除时，数据库出错");
                     throw new DataBaseException("专辑或歌单：" + id + "删除时，数据库出错");
+                }
+                // 数据库中删除成功，删除硬盘上的数据
+                fileUpload.deleteFile(songList.getPicture());
+                if (songList.getType() == 1) {
+                    // 再删除关联表的MusicSongList
+                    MusicSongList musicSongList = new MusicSongList();
+                    musicSongList.setBelongId(songList.getId());
+                    musicSongListMapper.deleteMusicSongList(musicSongList);
                 }
                 state.setState(1);
             } else {

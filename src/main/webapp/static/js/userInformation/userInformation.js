@@ -180,16 +180,23 @@ window.onload = function () {
         });
     });
 
-    // 编辑指定歌单或专辑
+    // 删除指定歌单或专辑
     $("#registerUser").on("click", function () {
         // 主键 id
-        var id = $("#registerUserName").val();
+        var id = $(this).data("id");
         $.ajax({
             type: "get",
             url: "deleteMusicSongList?id=" + id,
             dataType: "json",
             success: function (data, status) {
-                //返回 State
+                // 返回state
+                if(data.state===0){
+                    $(".promptInformation").text(data.information);
+                }else {
+                    alert("歌单删除成功");
+                    // 修改成功刷新网页
+                    location.reload();
+                }
             }
         });
     });

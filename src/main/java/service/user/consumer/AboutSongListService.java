@@ -58,6 +58,7 @@ public class AboutSongListService {
     AboutMusicService aboutMusicService;
     @Resource(name = "Emergency")
     Emergency emergency;
+
     /**
      * 显示用户创建的所有歌单或专辑
      *
@@ -80,7 +81,7 @@ public class AboutSongListService {
             s.setActivity(songListCount(1, s.getType(), s.getId()));
             s.setClassificationId(songListCount(2, s.getType(), s.getId()));
             // 判断指定歌单或专辑是否被收藏，收藏信息存入分类中
-            emergency.getSongListCollect(user,s);
+            emergency.getSongListCollect(user, s);
         }
         // 得到用户的关注粉丝量及用户信息
         specialFunctions.getUserInformation(user, model);
@@ -97,7 +98,7 @@ public class AboutSongListService {
     public String showUserCollectionSongList(Integer type, HttpSession session, Model model) {
         User user = specialFunctions.getUser(session);
         // 添加 歌单的个数，专辑的个数，音乐的个数，MV的个数
-        aboutMusicService.getCount(session,model);
+        aboutMusicService.getCount(session, model);
         SongListCollect songListCollect = new SongListCollect();
         songListCollect.setType(type);
         songListCollect.setUserId(user.getId());
@@ -123,7 +124,7 @@ public class AboutSongListService {
             s.setActivity(songListCount(1, s.getType(), s.getId()));
             s.setClassificationId(songListCount(2, s.getType(), s.getId()));
             // 判断指定歌单或专辑是否被收藏，收藏信息存入分类中
-            emergency.getSongListCollect(user,s);
+            emergency.getSongListCollect(user, s);
         }
         model.addAttribute("songList", songLists);
         return "userPage/userPage";
@@ -135,7 +136,7 @@ public class AboutSongListService {
      * 得到id 查找指定的专辑或歌单
      * 获得作者名字，歌单/专辑的收藏播放量   音乐名
      */
-    public String showMusicList(String id, Model model,HttpSession session) {
+    public String showMusicList(String id, Model model, HttpSession session) {
         System.out.println("开始执行" + id);
         // 判断id是否合法
         if (!validationInformation.isInt(id)) {
@@ -172,7 +173,7 @@ public class AboutSongListService {
                 music.setLyricPath(temporarySongList.getName());
             }
             // 上传歌单或专辑信息
-            model.addAttribute("songList", emergency.getSongListCollect(specialFunctions.getUser(session),songList));
+            model.addAttribute("songList", emergency.getSongListCollect(specialFunctions.getUser(session), songList));
             // 上传歌单或专辑创建者的信息
             model.addAttribute("user", userInformation);
             // 上传播放量
@@ -180,7 +181,7 @@ public class AboutSongListService {
             // 上传收藏量
             model.addAttribute("collects", songListCount(1, songList.getType(), songList.getId()));
             // 上传所有音乐
-            model.addAttribute("musicList", emergency.getMusicCollect(specialFunctions.getUser(session),musicList));
+            model.addAttribute("musicList", emergency.getMusicCollect(specialFunctions.getUser(session), musicList));
             logger.debug("歌单" + songList + "所有音乐" + musicList);
         } else {
             return "index";
@@ -249,7 +250,7 @@ public class AboutSongListService {
                 musicSongList.setBelongId(Integer.valueOf(songListId));
                 // 查找到专辑中的所有信息
                 List<MusicSongList> musicSongLists = musicSongListMapper.selectListMusicSongList(musicSongList);
-                logger.debug("歌单/专辑中的所有音乐信息"+musicSongLists);
+                logger.debug("歌单/专辑中的所有音乐信息" + musicSongLists);
                 // 用于存储专辑中所有音乐的id
                 List<Integer> musicIdList = new ArrayList<>();
                 for (MusicSongList m : musicSongLists) {
@@ -260,7 +261,7 @@ public class AboutSongListService {
                 List<Music> musicList = musicMapper.listIdSelectListMusic(musicIdList);
                 // 传给前端
                 // 音乐列表数据
-                model.addAttribute("musicList", emergency.getMusicCollect(specialFunctions.getUser(session),musicList));
+                model.addAttribute("musicList", emergency.getMusicCollect(specialFunctions.getUser(session), musicList));
                 // 当前歌单数据
                 model.addAttribute("songList", songList);
                 // 即将播放的音乐 musicId
@@ -277,16 +278,17 @@ public class AboutSongListService {
 
     /**
      * 创建歌单或专辑
+     * <p>
+     * name           获取歌单或专辑的标题
+     * picture        获取歌单或专辑的封面的图片路径
+     * introduction   获取歌单或专辑的介绍
+     * classification 获取分类
+     * type           获取类型1是歌单2是专辑
      *
-     *                 name           获取歌单或专辑的标题
-     *                 picture        获取歌单或专辑的封面的图片路径
-     *                 introduction   获取歌单或专辑的介绍
-     *                 classification 获取分类
-     *                 type           获取类型1是歌单2是专辑
-     * @param session  获取当前会话
+     * @param session 获取当前会话
      */
-    public State createMusicSongList(String name,String  introduction,String type, HttpServletRequest request, HttpSession session) throws DataBaseException {
-        SongList songList =new SongList();
+    public State createMusicSongList(String name, String introduction, String type, HttpServletRequest request, HttpSession session) throws DataBaseException {
+        SongList songList = new SongList();
         songList.setName(name);
         songList.setIntroduction(introduction);
         songList.setType(Integer.valueOf(type));
@@ -322,7 +324,7 @@ public class AboutSongListService {
      *                 type           获取类型1是歌单2是专辑
      */
     public State editMusicSongList(SongList songList, HttpServletRequest request) throws DataBaseException {
-        State state = isSongList(songList,  request);
+        State state = isSongList(songList, request);
         if (state.getState() == 1) {
             // 查找原歌单或专辑的信息
             SongList originalSongList = idExistence.isSongListId(songList.getId());
@@ -357,7 +359,12 @@ public class AboutSongListService {
             state.setState(1);
             // 数据库中删除成功，删除硬盘上的数据
             fileUpload.deleteFile(originalPath);
-            // 再删除关联表的MusicSongList
+            if (songList.getType() == 1) {
+                // 再删除关联表的MusicSongList
+                MusicSongList musicSongList = new MusicSongList();
+                musicSongList.setBelongId(songList.getId());
+                musicSongListMapper.deleteMusicSongList(musicSongList);
+            }
         } else {
             state.setInformation("歌单/专辑ID不存在");
         }
@@ -373,7 +380,7 @@ public class AboutSongListService {
      */
     public State collectionSongList(Integer id, Integer type, HttpSession session) throws DataBaseException {
         //得到会话上的用户
-        State state=new State();
+        State state = new State();
         User user = specialFunctions.getUser(session);
         SongListCollect songListCollect = existenceService.isUserCollectionSongList(user.getId(), id, type);
         if (songListCollect != null) {
@@ -447,19 +454,19 @@ public class AboutSongListService {
                 // 判断分类是否存在
 //                List<Integer> list = idExistence.getClassificationId(languages, region, gender, type)
 //                if (list != null && list.size() == 1) {
-                    // 将上传的图片存入硬盘上去
-                    String path = fileUpload.songList(fileUpload.getMultipartFile(request, "file"));
-                    if (path != null) {
-                        // 存储分类
+                // 将上传的图片存入硬盘上去
+                String path = fileUpload.songList(fileUpload.getMultipartFile(request, "file"));
+                if (path != null) {
+                    // 存储分类
 //                        songList.setClassificationId(list.get(0))
-                        songList.setClassificationId(1);
-                        // 存储图片路径
-                        songList.setPicture(path);
-                        state.setState(1);
-                    } else {
-                        logger.debug("歌单或专辑：" + songList + "歌单或专辑的图片不合法");
-                        state.setInformation("歌单或专辑的图片不合法");
-                    }
+                    songList.setClassificationId(1);
+                    // 存储图片路径
+                    songList.setPicture(path);
+                    state.setState(1);
+                } else {
+                    logger.debug("歌单或专辑：" + songList + "歌单或专辑的图片不合法");
+                    state.setInformation("歌单或专辑的图片不合法");
+                }
 //                } else {
 //                    logger.debug("歌单或专辑：" + songList + "歌单或专辑的分类不存在");
 //                    state.setInformation("歌单或专辑的分类不存在");
