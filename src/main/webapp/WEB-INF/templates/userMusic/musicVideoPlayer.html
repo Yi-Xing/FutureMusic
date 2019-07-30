@@ -13,6 +13,7 @@
     <div class="music_video">
         <div class="text-center">
             <h2>MV</h2>
+            <h4></h4>
         </div>
         <div class="video_container">
             <div class="video">
@@ -38,12 +39,12 @@
                     </div>
                     <div class="mv_bottom">
                         <h4 th:text="${musicVideo.name}">music name</h4>
-                        <span th:if="${musicVideo.classificationId!=1}">
-                            <span th:data-id="${musicVideo.id}" class="iconfont icon-like likeMusicVideo"></span>
-                        </span>
-                        <span th:if="${musicVideo.classificationId==1}">
-                            <span th:data-id="${musicVideo.id}" class="iconfont icon-like like likeMusicVideo"></span>
-                        </span>
+<!--                        <span th:if="${musicVideo.classificationId!=1}">-->
+<!--                            <span th:data-id="${musicVideo.id}" class="iconfont icon-like likeMusicVideo"></span>-->
+<!--                        </span>-->
+<!--                        <span th:if="${musicVideo.classificationId==1}">-->
+<!--                            <span th:data-id="${musicVideo.id}" class="iconfont icon-like like likeMusicVideo"></span>-->
+<!--                        </span>-->
                     </div>
 
                 </div>
