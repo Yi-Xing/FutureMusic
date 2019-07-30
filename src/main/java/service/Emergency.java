@@ -62,15 +62,20 @@ public class Emergency {
     /**
      * 查找所有的音乐分页显示
      */
-    public String getMusicList(Integer page, Model model){
+    public String getMusicList(Integer page,String  condition,Model model){
+        Music music=new Music();
+        if(condition!=null && !"".equals(condition)){
+            music.setName(condition);
+        }
         //在查询之前传入当前页，然后多少记录
         PageHelper.startPage(page, 18);
         // 根据条件查找音乐信息
-        List<Music> list = musicMapper.selectListMusic(new Music());
+        List<Music> list = musicMapper.selectListMusic(music);
         PageInfo pageInfo = new PageInfo<>(list);
         // 传入页面信息
         logger.debug("查找到的音乐" + list);
         model.addAttribute("pageInfo", pageInfo);
+        model.addAttribute("condition", condition);
         return "music/music";
     }
     /**
@@ -273,10 +278,7 @@ public class Emergency {
     public List<Music> getSearchMusic(String search){
         Music music=new Music();
         music.setName(search);
-        List<Music> list= musicMapper.selectListMusic(music);
-        return null;
+        return musicMapper.selectListMusic(music);
     }
-
-
 
 }
