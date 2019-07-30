@@ -14,7 +14,8 @@
         }
     </style>
     <button type="button" class="btn btn-primary btn-sm " data-toggle="modal"
-            data-target="#add">添加专辑</button>
+            data-target="#add">添加专辑
+    </button>
     <!--添加专辑信息-->
     <div class="modal fade" id="add" tabindex="-1"
          role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -37,7 +38,7 @@
                         <div class="col-sm-9">
                             <input id="activityAdd" class="form-control " placeholder="1-300个字符">
                         </div>
-                        <form action="#"  id="selectFileAdd" enctype="multipart/form-data">
+                        <form action="#" id="selectFileAdd" enctype="multipart/form-data">
                             <br> <br> <br> <label
                                 class="col-sm-2 control-label">封面图片</label>
                             <div class="col-sm-9">
@@ -58,7 +59,6 @@
     </div>
 
 
-
     <table class="table table-hover table-striped">
         <thead>
         <tr>
@@ -74,7 +74,9 @@
             <td>
                 <div>
                     <a th:href="@{/user/showMusicSongList(id=${songList.id})}">
-                        <img src="img/头像_邓紫棋.jpg" th:src="@{${songList.picture}}" alt="">
+                        <div style="width: 50px;display: inline-block">
+                            <img src="img/头像_邓紫棋.jpg" th:src="@{${songList.picture}}" alt="">
+                        </div>
                         <span th:text="${songList.name}">name</span>
                     </a>
                 </div>
@@ -96,7 +98,7 @@
                     <span th:data-id="${songList.id}" class="iconfont icon-like like likeAlbum"></span>
                 </span>
                 <span type="button" class="iconfont icon-more dropdown-toggle" data-toggle="dropdown"
-                              aria-haspopup="true" aria-expanded="false"></span>
+                      aria-haspopup="true" aria-expanded="false"></span>
                 <ul class="dropdown-menu">
                     <li>
                         <a th:href="@{/user/showMusicSongList(id=${songList.id})}">
