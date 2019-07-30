@@ -372,6 +372,7 @@ public class AboutSongListService {
      */
     public State collectionSongList(Integer id, Integer type, HttpSession session) throws DataBaseException {
         //得到会话上的用户
+        State state=new State();
         User user = specialFunctions.getUser(session);
         SongListCollect songListCollect = existenceService.isUserCollectionSongList(user.getId(), id, type);
         if (songListCollect != null) {
@@ -381,6 +382,7 @@ public class AboutSongListService {
                 logger.error("邮箱：" + user.getMailbox() + "删除收藏的歌单或专辑时，数据库出错");
                 throw new DataBaseException("邮箱：" + user.getMailbox() + "删除收藏的歌单或专辑时，数据库出错");
             }
+            state.setState(1);
         } else {
             SongList songList = idExistence.isSongListId(id);
             // 为null表示没有收藏，需要添加收藏
@@ -396,8 +398,9 @@ public class AboutSongListService {
                 logger.error("邮箱：" + user.getMailbox() + "收藏歌单或专辑时，数据库出错");
                 throw new DataBaseException("邮箱：" + user.getMailbox() + "收藏歌单或专辑时，数据库出错");
             }
+            state.setState(2);
         }
-        return new State(1);
+        return state;
     }
 
     /**
@@ -428,40 +431,6 @@ public class AboutSongListService {
             return null;
         }
         return list;
-    }
-
-    /**
-     * 将指定音乐添加到专辑或歌单中
-     *
-     * @param musicSongList 获取需要添加到指定专辑或歌单中的音乐
-     *                      所需参数：
-     *                      belongId 专辑或歌单的id
-     *                      type 1是歌单2是专辑
-     *                      musicId 音乐的id
-     */
-    public State addMusicSongList(MusicSongList musicSongList, HttpSession session) throws DataBaseException {
-        // 得到音乐的id
-        int musicId = musicSongList.getMusicId();
-        // 得到音乐信息
-        Music music = idExistence.isMusicId(musicId);
-        musicSongList.setHave(1);
-        // 为歌单时候，再判断
-        if (musicSongList.getType() == 1) {
-            // 判断用户有没有购买
-            if (transactionService.isPurchaseMusic(musicId, 1, specialFunctions.getUser(session)) == null) {
-                musicSongList.setHave(0);
-            }
-        }
-        // 音乐的歌手的id
-        musicSongList.setSingerId(music.getSingerId());
-        // 音乐的分类的id
-        musicSongList.setClassificationId(music.getClassificationId());
-        if (musicSongListMapper.insertMusicSongList(musicSongList) < 1) {
-            // 如果失败是数据库错误
-            logger.error("歌单或专辑：" + musicSongList + "添加歌单或专辑信息时，数据库出错");
-            throw new DataBaseException("歌单或专辑：" + musicSongList + "添加歌单或专辑信息时，数据库出错");
-        }
-        return new State(1);
     }
 
 

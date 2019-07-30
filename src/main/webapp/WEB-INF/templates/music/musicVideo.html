@@ -26,11 +26,11 @@
                 <ul>
                     <li th:each="list:${pageInfo.list}">
                         <div class="mv">
-                            <div class="mv_top">
-                                <a th:href="@{/user/playMusicVideoId(id=${list.id})}">
+                            <a th:href="@{/user/playMusicVideoId(id=${list.id})}">
+                                <div class="mv_top">
                                     <img th:src="@{${list.picture}}" src="/static/img/mv_燃烧我的卡路里.jpg" alt="">
-                                </a>
-                            </div>
+                                </div>
+                            </a>
                             <div class="mv_bottom">
                                 <h4 th:text="${list.name}">music name</h4>
                             </div>
@@ -41,32 +41,32 @@
 
 
             <div class="text-center">
-                    当前第<span th:text="${pageInfo.pageNum}"></span>页
-                    <button class="btn btn-default">
-                        <a th:href="@{/musicVideoPage(page=1)}">首页</a>
-                    </button>
-                    <span th:if="${pageInfo.hasPreviousPage}">
+                当前第<span th:text="${pageInfo.pageNum}"></span>页
+                <button class="btn btn-default">
+                    <a th:href="@{/musicVideoPage(page=1)}">首页</a>
+                </button>
+                <span th:if="${pageInfo.hasPreviousPage}">
                         <button class="btn">
                             <a th:href="@{/musicVideoPage(page=${pageInfo.pageNum-1})}">&lt;上一页</a>
                         </button>
                     </span>
-                    <span th:if="${!pageInfo.hasPreviousPage}">
+                <span th:if="${!pageInfo.hasPreviousPage}">
                         <button class="btn" disabled="disabled">&lt;上一页</button>
                     </span>
-                    <button class="btn btn-default" th:each="list,tmp:${pages}">
-                        <a th:href="@{/musicVideoPage(page=${tmp.count})}" th:text="${tmp.count}"></a>
-                    </button>
-                    <span th:if="${pageInfo.hasNextPage}">
+                <button class="btn btn-default" th:each="list,tmp:${pages}">
+                    <a th:href="@{/musicVideoPage(page=${tmp.count})}" th:text="${tmp.count}"></a>
+                </button>
+                <span th:if="${pageInfo.hasNextPage}">
                         <button class="btn">
                             <a th:href="@{/musicVideoPage(page=${pageInfo.pageNum-1})}">下一页&gt;</a>
                         </button>
                     </span>
-                    <span th:if="${!pageInfo.hasNextPage}">
+                <span th:if="${!pageInfo.hasNextPage}">
                         <button class="btn" disabled="disabled">下一页&gt;</button>
                     </span>
-                    <button class="btn btn-default">
-                        <a th:href="@{/musicVideoPage(page=${pageInfo.pages})}">尾页</a>
-                    </button>
+                <button class="btn btn-default">
+                    <a th:href="@{/musicVideoPage(page=${pageInfo.pages})}">尾页</a>
+                </button>
                 一共<span th:text="${pageCount}"></span>页
             </div>
             <!--            <nav aria-label="Page navigation">-->

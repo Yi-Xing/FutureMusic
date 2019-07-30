@@ -65,7 +65,7 @@ public class User implements Serializable {
     /**
      * 头像图片路径
      */
-    private String headPortrait=null;
+    private String headPortrait="/static/file/userHeadPortrait/Personal.PNG";
     /**
      * vip的到期时间
      */

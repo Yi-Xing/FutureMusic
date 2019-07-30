@@ -134,19 +134,6 @@ public class  AboutSongList {
         return aboutSongListService.collectionSongList(id, type, session);
     }
 
-    /**
-     * 将指定音乐添加到专辑或歌单中
-     *
-     * @param musicSongList 获取需要添加到指定专辑或歌单中的音乐
-     *                      所需参数：
-     *                      belongId 专辑或歌单的id
-     *                      type 1是歌单2是专辑
-     *                      musicId 音乐的id
-     */
-    @RequestMapping(value = "/SongListAddMusic")
-    @ResponseBody
-    public State addMusicSongList(@RequestBody MusicSongList musicSongList, HttpSession session) throws DataBaseException {
-        return aboutSongListService.addMusicSongList(musicSongList, session);
-    }
+
 
 }
