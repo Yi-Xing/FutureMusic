@@ -18,6 +18,7 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.util.List;
 
 /**
@@ -41,8 +42,9 @@ public class AccountInformationService {
     FileUpload fileUpload;
     @Resource(name = "IdExistence")
     IdExistence idExistence;
-    @Resource(name = "UserInformationService")
-    UserInformationService userInformationService;
+    @Resource(name = "TransactionService")
+    TransactionService transactionService;
+
     /**
      * 显示用户页面
      * Model封装：
@@ -59,10 +61,10 @@ public class AccountInformationService {
             user = idExistence.isUserId(user.getId());
             model.addAttribute("page", "personal");
             model.addAttribute("show", "personal");
-            if(user.getLevel()>2){
-            System.out.println("我这里");
+            if (user.getLevel() > 2) {
+                System.out.println("我这里");
                 //如果用户等级够的话跳转到管理员页面
-                model.addAttribute("page","homePage");
+                model.addAttribute("page", "homePage");
                 return "system/backgroundSystem";
             }
         } else {
@@ -88,15 +90,15 @@ public class AccountInformationService {
             session.setAttribute("otherUser", user);
             // 得到关注者的ID
             int userId = specialFunctions.getUser(session).getId();
-            Focus focus=new Focus();
+            Focus focus = new Focus();
             // 关注
             focus.setUserType(1);
             focus.setUserId(userId);
             focus.setUserFocusId(user.getId());
-            List<Focus> list= focusMapper.selectListFocus(focus);
-            if(list.size()==1){
+            List<Focus> list = focusMapper.selectListFocus(focus);
+            if (list.size() == 1) {
                 model.addAttribute("focus", "focus");
-            }else{
+            } else {
                 model.addAttribute("focus", "follow");
             }
         }
@@ -225,21 +227,38 @@ public class AccountInformationService {
         if (validationInformation.isInt(id) && validationInformation.isInt(type)) {
             int musicId = Integer.valueOf(id);
             int musicType = Integer.valueOf(type);
-            if (musicType == 1) {
-                // 音乐
-                Music music = idExistence.isMusicId(musicId);
-                if (music != null) {
-                    model.addAttribute("music", music);
-                    System.out.println(music);
-                    return "/vip/purchasePage";
+            // 首先判断用户是不是已经购买了指定音乐过MV
+            if (transactionService.isPurchaseMusic(musicId, musicType, user) == null) {
+                if (musicType == 1) {
+                    model.addAttribute("name", "购买音乐");
+                    // 音乐
+                    Music music = idExistence.isMusicId(musicId);
+                    // 得到音乐的折扣
+                    if (music != null) {
+                        float discount = transactionService.getDiscount(music.getActivity());
+                        // 进行折扣,得到打折后的价格
+                        BigDecimal price = music.getPrice().multiply(BigDecimal.valueOf(discount)).setScale(2, BigDecimal.ROUND_UP);
+                        music.setLyricPath(String.valueOf(price));
+                        // 将折扣存入歌词
+                        model.addAttribute("music", music);
+                        return "/vip/purchasePage";
+                    }
+                } else if (musicType == 2) {
+                    model.addAttribute("name", "购买MV");
+                    //MV
+                    MusicVideo musicVideo = idExistence.isMusicVideoId(musicId);
+                    if (musicVideo != null) {
+                        float discount = transactionService.getDiscount(musicVideo.getActivity());
+                        // 进行折扣,得到打折后的价格
+                        BigDecimal price = musicVideo.getPrice().multiply(BigDecimal.valueOf(discount)).setScale(2, BigDecimal.ROUND_UP);
+                        musicVideo.setPath(String.valueOf(price));
+                        model.addAttribute("music", musicVideo);
+                        return "/vip/purchasePage";
+                    }
                 }
-            } else if (musicType == 2) {
-                //MV
-                MusicVideo musicVideo = idExistence.isMusicVideoId(musicId);
-                if (musicVideo != null) {
-                    model.addAttribute("music", musicVideo);
-                    return "/vip/purchasePage";
-                }
+            } else {
+                model.addAttribute("select", "您已购买过，无需重复购买，如果无法播放请及时联系客服。");
+                return "/vip/purchasePage";
             }
         }
         model.addAttribute("select", "请先选择音乐/MV");

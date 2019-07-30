@@ -1,5 +1,7 @@
 //支付页面
 window.onload = function () {
+
+
     $(".ewm").on("click", function () {
         // 得到音乐id
         var value = $(this).data("value");
@@ -38,5 +40,30 @@ window.onload = function () {
                 }
             });
         }
+    });
+
+
+    $("#purchase").on("click", function () {
+        var id=$(this).data("id");
+        var type=$(this).data("type");
+        $.ajax({
+            contentType: "application/x-www-form-urlencoded",
+            type: "post",
+            url: "/user/purchase",
+            data: {
+                "type": type,
+                "id": id
+            },
+            dataType: "json",
+            success: function (data, status) {
+                // 返回state
+                if(data.state===0){
+                    alert(data.information);
+                }else {
+                    alert("购买成功");
+                    location.reload();
+                }
+            }
+        });
     });
 };

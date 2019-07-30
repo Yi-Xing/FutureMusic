@@ -82,7 +82,6 @@
     <!--引入spring的配置文件-->
     <import resource="spring/spring-config.xml"/>
     <import resource="spring/spring-zyx.xml"/>
-    <import resource="spring/spring-jjy.xml"/>
 
     <!-- 静态资源映射 -->
     <mvc:resources mapping="/static/**" location="/static/"/>

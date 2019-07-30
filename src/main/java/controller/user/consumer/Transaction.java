@@ -54,6 +54,7 @@ public class Transaction {
      * @param type 得到购买的类型 1表示音乐  2表示MV
      */
     @RequestMapping(value = "/purchase")
+    @ResponseBody
     public  State purchase(Integer id, Integer type,HttpSession session) throws DataBaseException {
         return transactionService.purchase(id,type,session);
     }

@@ -9,32 +9,40 @@
 </head>
 
 <body>
-    <div class="pay_nav" th:fragment="music">
-        <style>
-            .music{
-                border-bottom: 5px solid #000;
-            }
-        </style>
-        <span th:if="${select!='请先选择音乐/MV'}">
+<div class="pay_nav" th:fragment="music">
+    <style>
+        .music {
+            border-bottom: 5px solid #000;
+        }
+    </style>
+    <h2 th:text="${name}"></h2>
+    <span th:if="${select==null}">
         <div class="contain">
            <div class="img">
-                <img   th:src="@{music.picture}" alt="">
+                <img th:src="@{music.picture}" alt="">
            </div>
            <div class="message">
                <div class="name" th:text="${music.name}">喜欢你 </div>
                <div class="price">
-                   <span class="type" >原价：</span>
-                   <i th:text="${music.price}">6元</i>
+
+                       <span class="type">原价：</span>
+                       <i th:text="${music.price}">6元</i>
                    <br>
-                   <span class="type">现价：</span>
-                   <span class="price" th:text="${music.price}">4元</span>
+                   <span th:if="${type=='1'}">
+                       <span class="type">现价：</span>
+                       <span class="price" th:text="${music.lyricPath}">4元</span>
+                   </span>
+                   <span th:if="${type=='2'}">
+                       <span class="type">现价：</span>
+                       <span class="price" th:text="${music.path}">4元</span>
+                   </span>
                </div>
-               <a href="" th:data-id="${id}"  th:data-type="${type}" class="queren">确认购买</a>
+               <a href="#" id="purchase" th:data-id="${id}" th:data-type="${type}" class="queren">确认购买</a>
            </div>
         </div>
             </span>
-        <span th:if="${select=='请先选择音乐/MV'}">请先选择音乐/MV</span>
-    </div>
+    <h2 th:if="${select!=null}" th:text="${select}"></h2>
+</div>
 </body>
 
 </html>

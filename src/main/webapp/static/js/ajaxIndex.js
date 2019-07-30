@@ -123,7 +123,7 @@ window.onload = function () {
     });
 
     // 用户退出登录
-    $(".signOutLogin").on("click", function () {
+     $(".signOutLogin").on("click", function () {
         $.ajax({
             type: "get",
             url: "/signOutLogin",
