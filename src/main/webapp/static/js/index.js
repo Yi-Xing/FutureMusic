@@ -123,7 +123,7 @@ $("#search").keyup(function () {
 
 // $("#searchGo").on('click',function () {
 //     var searchVal = $("#search").val();
-//     console.log(searchVal);
+//     console.log(searchVal)
 //     // window.location.href = "/musicPage?condition=" + searchVal;
 //
 // });
@@ -232,7 +232,6 @@ $(".icon-like").on('click', function () {
     var obj = $thi[0];
     console.log(obj);
     if ($(obj).hasClass("likeMusicVideo")) {
-        musicId = musicVideoId;
         collectionMusic(userId, musicId, 2, $(this));
     } else if ($(obj).hasClass("likeSongList")) {
         collectionSongList(userId, musicId, 1, $(this));
@@ -255,6 +254,9 @@ function collectionMusic(userId, musicId, type) {
             type: type
         },
         success: function (data) {
+            console.log(data);
+            // alert("已取消收藏！");
+            // $(obj).removeClass('like');
             if (data.state == 1) {
                 alert("删除收藏成功")
             } else if (data.state == 2) {
@@ -279,6 +281,8 @@ function collectionSongList(userId, musicId, type) {
             type: type
         },
         success: function (data) {
+            // alert("已取消收藏！");
+            // $(obj).removeClass('like');
             if (data.state == 1) {
                 alert("删除收藏成功")
             } else if (data.state == 2) {
