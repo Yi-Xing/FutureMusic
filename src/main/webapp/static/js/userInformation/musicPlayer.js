@@ -316,9 +316,9 @@ function musicTab() {
             if (data.id == 0) {
                 $(".Lyric")[0].innerHTML = "对不起，我们还未获得这首音乐的版权";
             } else if (data.id == 1) {
-                $(".Lyric")[0].innerHTML = "对不起，这首歌需要VIP授权播放";
+                $(".Lyric")[0].innerHTML = "对不起，这首歌需要VIP授权播放" + "<br><a href='/user/vipPage'>" + "点此进入充值购买页面" + '</a>';
             } else if (data.id == 2) {
-                $(".Lyric")[0].innerHTML = "对不起，您还没有购买这首歌曲";
+                $(".Lyric")[0].innerHTML = "对不起，您还没有购买这首歌曲" + "<br><a href='/user/musicPage?id="+ musicId + "&type=1" + "'>" + "点此进入充值购买页面" + '</a>';
             } else if (data.id == 3) {
                 $(".Lyric")[0].innerHTML = "对不起，此音乐没有歌词";
             } else {

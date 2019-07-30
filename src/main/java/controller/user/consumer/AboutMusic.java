@@ -96,12 +96,12 @@ public class AboutMusic {
      */
     @RequestMapping(value = "/collectionMusic")
     @ResponseBody
-    public State collectionMusic(Integer userId, Integer musicId, Integer type, HttpSession session) throws DataBaseException {
+    public State collectionMusic(Integer musicId, Integer type, HttpSession session) throws DataBaseException {
         logger.trace("collectionMusic方法开始执行");
         MusicCollect musicCollect = new MusicCollect();
         musicCollect.setMusicId(musicId);
-        musicCollect.setMusicId(userId);
-        musicCollect.setMusicId(type);
+        musicCollect.setUserId(((User)session.getAttribute("userInformation")).getId());
+        musicCollect.setType(type);
         return aboutMusicService.collectionMusic(musicCollect, session);
     }
 

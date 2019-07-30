@@ -230,6 +230,7 @@ public class AccountInformationService {
                 Music music = idExistence.isMusicId(musicId);
                 if (music != null) {
                     model.addAttribute("music", music);
+                    System.out.println(music);
                     return "/vip/purchasePage";
                 }
             } else if (musicType == 2) {

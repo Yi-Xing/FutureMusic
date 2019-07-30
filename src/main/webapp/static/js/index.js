@@ -219,13 +219,16 @@ $(".icon-like").on('click', function () {
     var userId = $("#userId").data('id');
     var musicId = $(this).data('id');
     console.log(musicId);
-    if ($(this).hasClass("likeMusicVideo")) {
+    var $thi = $(this);
+    var obj = $thi[0];
+    console.log(obj);
+    if ($(obj).hasClass("likeMusicVideo")) {
         collectionMusic(userId, musicId, 2, $(this));
-    } else if($(this).hasClass("likeSongList")){
+    } else if($(obj).hasClass("likeSongList")){
         collectionSongList(userId, musicId, 1, $(this));
-    } else if($(this).hasClass("likeAlbum")){
+    } else if($(obj).hasClass("likeAlbum")){
         collectionSongList(userId, musicId, 2, $(this));
-    } else if($(this).hasClass("likeMusic")){
+    } else if($(obj).hasClass("likeMusic")){
         collectionMusic(userId, musicId, 1, $(this));
     }
 });
@@ -269,7 +272,6 @@ function collectionSongList(userId, musicId, type) {
             type: type
         },
         success: function (data) {
-            console.log(data);
             // alert("已取消收藏！");
             // $(obj).removeClass('like');
             if(data.state==1){
