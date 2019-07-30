@@ -22,7 +22,6 @@
     <context:component-scan base-package="util"/>
     <context:component-scan base-package="mapper"/>
     <context:component-scan base-package="service"/>
-    <context:component-scan base-package="test"/>
     <!--开启ioc注解-->
     <context:annotation-config/>
 

@@ -18,6 +18,7 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.util.List;
 
 /**
@@ -229,22 +230,35 @@ public class AccountInformationService {
             // 首先判断用户是不是已经购买了指定音乐过MV
             if (transactionService.isPurchaseMusic(musicId, musicType, user) == null) {
                 if (musicType == 1) {
+                    model.addAttribute("name", "购买音乐");
                     // 音乐
                     Music music = idExistence.isMusicId(musicId);
+                    // 得到音乐的折扣
                     if (music != null) {
+                        float discount = transactionService.getDiscount(music.getActivity());
+                        // 进行折扣,得到打折后的价格
+                        BigDecimal price = music.getPrice().multiply(BigDecimal.valueOf(discount)).setScale(2, BigDecimal.ROUND_UP);
+                        music.setLyricPath(String.valueOf(price));
+                        // 将折扣存入歌词
                         model.addAttribute("music", music);
                         return "/vip/purchasePage";
                     }
                 } else if (musicType == 2) {
+                    model.addAttribute("name", "购买MV");
                     //MV
                     MusicVideo musicVideo = idExistence.isMusicVideoId(musicId);
                     if (musicVideo != null) {
+                        float discount = transactionService.getDiscount(musicVideo.getActivity());
+                        // 进行折扣,得到打折后的价格
+                        BigDecimal price = musicVideo.getPrice().multiply(BigDecimal.valueOf(discount)).setScale(2, BigDecimal.ROUND_UP);
+                        musicVideo.setPath(String.valueOf(price));
                         model.addAttribute("music", musicVideo);
                         return "/vip/purchasePage";
                     }
-                } else {
-                    model.addAttribute("select", "您已购买过，无需重复购买，如果无法播放请及时联系客服。");
                 }
+            } else {
+                model.addAttribute("select", "您已购买过，无需重复购买，如果无法播放请及时联系客服。");
+                return "/vip/purchasePage";
             }
         }
         model.addAttribute("select", "请先选择音乐/MV");

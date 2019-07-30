@@ -23,6 +23,7 @@ import java.util.*;
 
 /**
  * 支付与购买
+ *
  * @author HP
  */
 @Service(value = "TransactionService")
@@ -79,15 +80,16 @@ public class TransactionService {
                 // 获取充值金额
                 User user = specialFunctions.getUser(session);
                 logger.debug("充值前的余额" + user.getBalance());
-                if("50.00".equals(money)){
-                    money="60.00";
-                }else if("100.00".equals(money)){
-                    money="130.00";
+                if ("50.00".equals(money)) {
+                    money = "60.00";
+                } else if ("100.00".equals(money)) {
+                    money = "130.00";
                 }
                 user.setBalance(user.getBalance().add(new BigDecimal(money)));
                 logger.debug("充值后的余额" + user.getBalance());
                 // 该方法更改了需要更改相应的参数
-                userInformationService.modifyUser(String.valueOf(user.getId()),String.valueOf(user.getLevel()),String.valueOf(user.getBalance()),String.valueOf(user.getReport()));;
+                userInformationService.modifyUser(String.valueOf(user.getId()), String.valueOf(user.getLevel()), String.valueOf(user.getBalance()), String.valueOf(user.getReport()));
+                ;
                 return "index";
             }
         } else {//验证失败
@@ -109,6 +111,7 @@ public class TransactionService {
     public State purchase(Integer id, Integer type, HttpSession session) throws DataBaseException {
         State state = new State();
         User user = specialFunctions.getUser(session);
+        user = idExistence.isUserId(user.getId());
         // 首先判断用户是不是已经购买了指定音乐过MV
         if (isPurchaseMusic(id, type, user) == null) {
             // 判断音乐或MV是否有版权，
@@ -126,7 +129,8 @@ public class TransactionService {
                 // 获得音乐的信息
                 Music music = idExistence.isMusicId(id);
                 // 判断该音乐有没有版权
-                if(music==null || music.getAvailable()==1){
+                if (music == null || music.getAvailable() == 1) {
+                    logger.debug("音乐没有版权");
                     state.setInformation("该音乐没有版权");
                     return state;
                 }
@@ -138,7 +142,8 @@ public class TransactionService {
             } else {
                 // 获得MV的信息
                 MusicVideo musicVideo = idExistence.isMusicVideoId(id);
-                if(musicVideo==null || musicVideo.getAvailable()==1){
+                if (musicVideo == null || musicVideo.getAvailable() == 1) {
+                    logger.debug("MV没有版权");
                     state.setInformation("该MV没有版权");
                     return state;
                 }
@@ -147,43 +152,62 @@ public class TransactionService {
                 singerId = musicVideo.getSingerId();
                 classificationId = musicVideo.getClassificationId();
             }
-            // 用来存储活动的折扣
-            float discount = 1;
             // 判断购买的商品是否参加了活动
-            if (activityId != 0) {
-                // 得到指定id的活动信息
-                Activity activity = idExistence.isActivityId(activityId);
-                // 得到活动的结束时间
-                long endDate = activity.getEndDate().getTime();
-                // 判断活动是否结束
-                if (endDate >= System.currentTimeMillis()) {
-                    // 得到指定活动的折扣
-                    discount = activity.getDiscount();
-                }
-            }
+            // 用来存储活动的折扣
+            float discount = getDiscount(activityId);
             // 得到打折后的价格，然后对价格保留两位小数进行进位处理，得到最后的音乐的价格
             BigDecimal price = originalPrice.multiply(BigDecimal.valueOf(discount)).setScale(2, BigDecimal.ROUND_UP);
             // 得到用户是否买的起
-            if (price.compareTo(user.getBalance()) > 0) {
+            logger.debug("打折后的价格" + price);
+            logger.debug("价格对比-1小于、0等于 或 1大于" + price.compareTo(user.getBalance()));
+            if (price.compareTo(user.getBalance()) <= 0) {
                 // 得到打折后的余额
                 // 修改用户的余额
+                logger.debug("开始购买修改用户余额");
                 user.setBalance((user.getBalance().subtract(price)));
                 // 更新用户信息失败抛异常
                 // 该方法更改了需要更改相应的参数
-                state = userInformationService.modifyUser(String.valueOf(user.getId()),String.valueOf(user.getLevel()),String.valueOf(user.getBalance()),String.valueOf(user.getReport()));
-                // 添加订单信息,失败抛异常
-                addOrder(user.getId(), id, type, singerId, albumId, classificationId, originalPrice, price);
-                // 用户购买音乐完成，开始修改用户收藏的音乐或MV的是否购买状态
-                modifyCollectionAndSongList(user.getId(), id, type);
+                state = userInformationService.modifyUser(String.valueOf(user.getId()), String.valueOf(user.getLevel()), String.valueOf(user.getBalance()), String.valueOf(user.getReport()));
+                if (state.getState() == 1) {
+                    logger.debug("购买成功");
+                    // 添加订单信息,失败抛异常
+                    addOrder(user.getId(), id, type, singerId, albumId, classificationId, originalPrice, price);
+                    logger.debug("订单添加成功");
+                    // 用户购买音乐完成，开始修改用户收藏的音乐或MV的是否购买状态
+//                    modifyCollectionAndSongList(user.getId(), id, type)
+                }
             } else {
+                logger.debug("余额不足");
                 state.setInformation("余额不足，请立即充值");
             }
         } else {
+            logger.debug("已购买过");
             state.setInformation("您已购买过，无需重复购买，如果无法播放请及时联系客服。");
         }
         return state;
     }
 
+    /**
+     * 用来得到指定活动的折扣
+     */
+    public float getDiscount(Integer activityId) {
+        // 判断购买的商品是否参加了活动
+        if (activityId != 0) {
+            // 得到指定id的活动信息
+            Activity activity = idExistence.isActivityId(activityId);
+            // 判断活动是否存在
+            if (activity != null) {
+                // 得到活动的结束时间
+                long endDate = activity.getEndDate().getTime();
+                // 判断活动是否结束
+                if (endDate >= System.currentTimeMillis()) {
+                    // 得到指定活动的折扣
+                    return activity.getDiscount();
+                }
+            }
+        }
+        return 1;
+    }
 
     /**
      * 向数据库添加指定的订单信息
@@ -200,6 +224,7 @@ public class TransactionService {
         order.setPrice(originalPrice);
         order.setOriginalPrice(price);
         order.setMode("余额支付");
+        order.setDate(new Date());
         // 向数据库添加订单信息
         if (orderMapper.insertOrder(order) < 1) {
             // 如果失败是数据库错误
@@ -276,10 +301,10 @@ public class TransactionService {
         // 计算得到vip的价格
         BigDecimal price = BigDecimal.valueOf(count * 10);
         logger.debug("优惠前" + count);
-        if(count==6){
+        if (count == 6) {
             count++;
-        }else if(count==10){
-            count=count+2;
+        } else if (count == 10) {
+            count = count + 2;
         }
         logger.debug("优惠后" + count);
         logger.debug("vip的价格" + price);
@@ -297,8 +322,8 @@ public class TransactionService {
                 // 将日期封装
                 calendar.setTime(new Date());
             }
-                // 修改用户的账号等级
-            if(user.getLevel()<1){
+            // 修改用户的账号等级
+            if (user.getLevel() < 1) {
                 user.setLevel(1);
             }
             // 向后推移几个月

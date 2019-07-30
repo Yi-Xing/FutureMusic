@@ -470,8 +470,6 @@ public class AboutMusicService {
         user=idExistence.isUserId(user.getId());
         // 查找指定的音乐信息
         Music music = idExistence.isMusicId(id);
-        System.out.println(user);
-        System.out.println(music);
         // 得到音乐的等级
         int level = music.getLevel();
         // 先判断该音乐有没有版权 0表示有版权
@@ -480,23 +478,19 @@ public class AboutMusicService {
             if (level == 2) {
                 System.out.println(user.getVipDate());
                 // 判断用户是不是VIP
-                if (user.getVipDate().getTime() > System.currentTimeMillis()) {
-                    System.out.println(333);
+                if (user.getVipDate().getTime() < System.currentTimeMillis()) {
                     music.setId(1);
                 }
             } else if (level == 3) {
-                System.out.println(444);
                 // 判断用户有没有购买，不为null表示购买
                 if (transactionService.isPurchaseMusic(id, 1,user) == null) {
                     music.setId(2);
                 }
             }
-            System.out.println(555);
             // 等级为1 ，表示免费
         } else {
             music.setId(0);
         }
-        System.out.println("开始判断歌词");
         // 使用io流读取指定音乐的歌词
         InputStream inputStream = null;
         try {
@@ -508,7 +502,6 @@ public class AboutMusicService {
             System.out.println(ContextLoader.getCurrentWebApplicationContext().getServletContext().getRealPath(""));
             inputStream = new FileInputStream(ContextLoader.getCurrentWebApplicationContext().getServletContext().getRealPath(music.getLyricPath()));
 //            inputStream = new FileInputStream("C:\\first\\FutureMusic\\target\\FutureMusic\\"+);
-            System.out.println("我只写了");
             // 先使用反射获取项目文件的路径，然后获得缓冲流
             BufferedInputStream bufferedInputStream = new BufferedInputStream(inputStream);
             byte[] bytes = new byte[1024];
@@ -530,9 +523,7 @@ public class AboutMusicService {
                 e.printStackTrace();
             }
         }
-        System.out.println(music);
-        System.out.println(2222222);
-        logger.debug("音乐的信息为：" + music);
+        logger.debug("音乐的信息为：" + music.getId());
         return music;
     }
 
@@ -569,6 +560,7 @@ public class AboutMusicService {
         }
         List<MusicVideo> list = new ArrayList<>();
         list.add(musicVideo);
+        logger.debug("播放的MV"+musicVideo);
         return emergency.getMusicVideoCollect(user, list).get(0);
     }
 }
