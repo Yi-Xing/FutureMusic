@@ -129,6 +129,7 @@ window.onload = function () {
             url: "/signOutLogin",
             dataType: "json",
             success: function (data, status) {
+                alert(1)
                 // 返回state
                 if(data.state===1){
                     location.reload();

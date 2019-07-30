@@ -207,7 +207,7 @@ window.onload = function () {
                 if(data.state===0){
                     alert("请重试");
                 }else {
-                    alert("添加成功");
+                    alert("删除成功");
                     // 修改成功刷新网页
                     location.reload();
                 }

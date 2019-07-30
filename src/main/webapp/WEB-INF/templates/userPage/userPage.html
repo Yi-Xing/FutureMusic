@@ -20,8 +20,8 @@
                     <div>
                         <h2 th:text="${user.name}">name </h2>
                     </div>
-                    <h4>关注：<span th:text="${userFollowCount}"></span></h4>
-                    <h4>粉丝：<span th:text="${followCount}"></span></h4>
+                    <h4>关注：<span th:text="${followCount}"></span></h4>
+                    <h4>粉丝：<span th:text="${userFollowCount}"></span></h4>
                     <h4>邮箱：<span th:text="${user.mailbox}"></span></h4>
                     <h4>vip到期时间：<span th:text="${#dates.format(user.vipDate, 'yyyy-MM-dd HH:mm:ss')}"></span></h4>
                 </div>

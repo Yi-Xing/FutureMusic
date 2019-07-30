@@ -2,7 +2,8 @@ var url = window.location.search;
 var musicVideoId = url.substring(url.lastIndexOf('musicVideoId=') + 13, url.length);
 // console.log('ID=' + musicVideoId);
 
-var information = $(".music_video")[0].children[0].children[0]
+var information = $(".music_video")[0].children[0].children[0];
+var Information = $(".music_video")[0].children[0].children[1];
 
 var obj_id = $(".ILike h2")[0];
 musicVideoId = $(obj_id).data("id");
@@ -22,21 +23,21 @@ function playMusicVideo(musicVideoId) {
         data: {id: musicVideoId},
         success: function (data) {
             if (data.id == 0) {
-                information.innerHTML = "对不起，我们还未获得这支MV的版权";
+                Information.innerHTML = "对不起，我们还未获得这支MV的版权";
             } else if (data.id == 1) {
-                information.innerHTML = "对不起，这支MV需要VIP授权播放";
-                $(".payMusic").attr("href",vipUrl);
+                Information.innerHTML = "对不起，这支MV需要VIP授权播放";
+                $(".payMusic").attr("href", vipUrl);
             } else if (data.id == 2) {
-                information.innerHTML = "对不起，您还没有购买这支MV";
-                $(".payMusic").attr("href",payUrl);
+                Information.innerHTML = "对不起，您还没有购买这支MV";
+                $(".payMusic").attr("href", payUrl);
             } else {
                 $(".payMusic").hide();
-                information.innerHTML = data.name;
-                var video = $("video");
-                $(video).attr('src', data.path);
             }
-            alert(data.classificationId)
-            if(data.classificationId == 1){
+            information.innerHTML = data.name;
+            var video = $("video");
+            $(video).attr('src', data.path);
+            // alert(data.classificationId);
+            if (data.classificationId == 1) {
                 $($(".icon-like")).addClass("like");
             }
         }

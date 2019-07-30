@@ -33,11 +33,19 @@
                         <h5>收藏量：<span th:text="${collects}"></span></h5>
                     </a>
                     <span th:if="${songList.classificationId!=1}">
-                                <span th:data-id="${songList.id}"  class="iconfont icon-like likeSongList"></span>
+                                <span th:data-id="${songList.id}" class="iconfont icon-like likeSongList"></span>
                             </span>
                     <span th:if="${songList.classificationId==1}">
-                                <span th:data-id="${songList.id}"  class="iconfont icon-like like likeSongList"></span>
+                                <span th:data-id="${songList.id}" class="iconfont icon-like like likeSongList"></span>
                             </span>
+                </div>
+                <div class="introduction">
+                    <div>
+                        <h4>歌单详情</h4>
+                    </div>
+                    <div>
+                        <p th:text="${songList.introduction}">歌单或专辑介绍</p>
+                    </div>
                 </div>
             </div>
             <div class="container">
@@ -72,23 +80,14 @@
                             <span type="button" class="iconfont icon-more dropdown-toggle" data-toggle="dropdown"
                                   aria-haspopup="true" aria-expanded="false"></span>
                             <ul class="dropdown-menu">
-                                <li role="separator" class="divider"></li>
+                                <!--                                <li role="separator" class="divider"></li>-->
                                 <li>
                                     <a href="#">
                                         <span class="iconfont icon-tianjia"></span>
-                                        添加到...
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <span class="iconfont icon-tianjia"></span>
-                                        添加到...
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <span class="iconfont icon-tianjia"></span>
-                                        添加到...
+                                        <button type="button" class="btn btn-default btn-sm" data-toggle="modal"
+                                                data-target="#addMusic">添加到你的歌单
+                                        </button>
+
                                     </a>
                                 </li>
                             </ul>
@@ -96,10 +95,43 @@
                     </tr>
                     </tbody>
                 </table>
+
+                <!--添加歌单-->
+                <div class="modal fade" id="addMusic" tabindex="-1"
+                     role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h4 class="modal-title">
+                                    添加到歌单
+                                </h4>
+                            </div>
+                            <div class="modal-body">
+                                <!--存放所有的歌单-->
+                                <form>
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">歌单1</label>
+                                        <div class="col-sm-9">
+                                            <input type="radio" id="musicList1" value="1">
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default"
+                                        data-dismiss="modal">关闭
+                                </button>
+                                <input type="submit" id="addMusicInformation" class="btn btn-primary" value="添加"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </div>
     </div>
 </div>
+
 
 <!--&lt;!&ndash;评论&ndash;&gt;-->
 <!--<div th:replace="webComment2.html"></div>-->
