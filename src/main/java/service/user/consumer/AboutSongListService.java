@@ -357,6 +357,7 @@ public class AboutSongListService {
             state.setState(1);
             // 数据库中删除成功，删除硬盘上的数据
             fileUpload.deleteFile(originalPath);
+            // 再删除关联表的MusicSongList
         } else {
             state.setInformation("歌单/专辑ID不存在");
         }
