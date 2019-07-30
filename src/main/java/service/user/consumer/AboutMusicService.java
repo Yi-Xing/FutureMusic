@@ -467,6 +467,7 @@ public class AboutMusicService {
     public Music playMusic(Integer id, HttpSession session) {
         //得到会话上的用户
         User user = specialFunctions.getUser(session);
+        user=idExistence.isUserId(user.getId());
         // 查找指定的音乐信息
         Music music = idExistence.isMusicId(id);
         System.out.println(user);
@@ -486,7 +487,7 @@ public class AboutMusicService {
             } else if (level == 3) {
                 System.out.println(444);
                 // 判断用户有没有购买，不为null表示购买
-                if (transactionService.isPurchaseMusic(id, 1, specialFunctions.getUser(session)) == null) {
+                if (transactionService.isPurchaseMusic(id, 1,user) == null) {
                     music.setId(2);
                 }
             }
@@ -497,7 +498,6 @@ public class AboutMusicService {
         }
         System.out.println("开始判断歌词");
         // 使用io流读取指定音乐的歌词
-
         InputStream inputStream = null;
         try {
             System.out.println(music.getLyricPath());
@@ -545,6 +545,7 @@ public class AboutMusicService {
     public MusicVideo playMusicVideo(Integer id, HttpSession session) {
         //得到会话上的用户
         User user = specialFunctions.getUser(session);
+        user=idExistence.isUserId(user.getId());
         // 查找指定的音乐信息
         MusicVideo musicVideo = idExistence.isMusicVideoId(id);
         // 得到MV的等级
@@ -558,7 +559,7 @@ public class AboutMusicService {
                 }
             } else if (level == 3) {
                 // 判断用户有没有购买，不为null表示购买
-                if (transactionService.isPurchaseMusic(id, 2, specialFunctions.getUser(session)) == null) {
+                if (transactionService.isPurchaseMusic(id, 2, user) == null) {
                     musicVideo.setId(2);
                 }
             }
