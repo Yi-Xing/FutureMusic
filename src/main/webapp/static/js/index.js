@@ -89,37 +89,37 @@ var httpurl = "";    //请求路径
 //     });
 // });
 
-// 搜索框提示
-$("#search").keyup(function () {
-    var searchVal = this.value;
-    var search_tips = $('.search_tips')[0];
-    var tips_head = "<li><a href='./musics.html?musicId='>";
-    var tips_last = "</a></li>";
-    var tips = "";
-    $.ajax({
-        contentType: "application/x-www-form-urlencoded;charset=UTF-8",
-        type: "post",
-        url: "searchListAll",
-        data: {keyWord: searchVal},
-        dataType: "json",
-        success: function (data, status) {
-            var music = data[1];
-            if (searchVal === '') {
-                search_tips.innerHTML = '';
-            } else {
-                // console.log(music);
-                for (let i in music) {
-                    var musicName = music[i].name;
-                    tips_head = "<li><a href='./musics.html?musicId=" + music[i].id + "'>";
-                    // console.log(tips_head);
-                    tips = tips + tips_head + musicName + tips_last;
+    // 搜索框提示
+    $("#search").keyup(function () {
+        var searchVal = this.value;
+        var search_tips = $('.search_tips')[0];
+        var tips_head = "<li><a href='./musics.html?musicId='>";
+        var tips_last = "</a></li>";
+        var tips = "";
+        $.ajax({
+            contentType: "application/x-www-form-urlencoded;charset=UTF-8",
+            type: "post",
+            url: "searchListAll",
+            data: {keyWord: searchVal},
+            dataType: "json",
+            success: function (data, status) {
+                var music = data[1];
+                if (searchVal === '') {
+                    search_tips.innerHTML = '';
+                } else {
+                    // console.log(music);
+                    for (let i in music) {
+                        var musicName = music[i].name;
+                        tips_head = "<li><a href='./musics.html?musicId=" + music[i].id + "'>";
+                        // console.log(tips_head);
+                        tips = tips + tips_head + musicName + tips_last;
+                    }
+                    search_tips.innerHTML = tips;
                 }
-                search_tips.innerHTML = tips;
-            }
 
-        }
-    })
-});
+            }
+        })
+    });
 //搜索框历史记录
 $("#search").click(function () {
     var search_tips = $('.search_tips')[0];
