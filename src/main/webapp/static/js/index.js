@@ -51,10 +51,10 @@ $(document).ready(function () {
 
 
 //头部
-$(".icon-laji").parent().click(function () {
-    console.log(111);
-    $(this).parent().parent().parent().parent().remove();
-});
+// $(".icon-laji").parent().click(function () {
+//     console.log(111);
+//     $(this).parent().parent().parent().parent().remove();
+// });
 
 var mh_a1 = document.querySelectorAll(".modal_header a")[0];
 var mh_a2 = document.querySelectorAll(".modal_header a")[1];

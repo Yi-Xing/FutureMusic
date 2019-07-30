@@ -62,6 +62,9 @@
             <if test='belongId!=0'>
                 and music_song_list_belong_id=#{belongId}
             </if>
+            <if test='musicId!=0'>
+                and music_song_list_music_id=#{musicId}
+            </if>
         </where>
     </delete>
 

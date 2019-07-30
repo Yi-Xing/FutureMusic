@@ -95,6 +95,7 @@ public class AboutsSupplementService {
      * musicId 音乐的id
      */
     public State deleteMusicSongList(MusicSongList musicSongList) throws DataBaseException {
+        System.out.println("======"+musicSongList);
         if (musicSongListMapper.deleteMusicSongList(musicSongList) < 1) {
             // 如果失败是数据库错误
             logger.error("歌单或专辑：" + musicSongList + "删除歌单或专辑音乐时，数据库出错");

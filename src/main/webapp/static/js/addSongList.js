@@ -26,9 +26,9 @@ $(".add_Music").on("click", function () {
 // 选中指定歌单后点击确定提交
 $("#add_MusicInformation").on("click", function () {
     // 的到用户选中的单选按钮中的歌单Id
-    alert(musicId);
     var id= $('input:radio:checked').val();
-    alert(id);
+    // alert(id);
+    // alert(musicId);
     // 以及音乐的ID
     // var musicId=$("").val();
     $.ajax({
@@ -53,6 +53,38 @@ $("#add_MusicInformation").on("click", function () {
         }
     });
 });
+
+// 在歌单详细信息中点击... 删除将指定音乐从歌单中删除
+$(".icon-laji").on("click", function () {
+    id = $(this).data('id');
+    // 的到用户选中的单选按钮中的歌单Id
+    musicId = $(this).children().data('id');
+    alert(id);
+    alert(musicId);
+    // 以及音乐的ID
+    $.ajax({
+        contentType: "application/x-www-form-urlencoded;charset=UTF-8",
+        type: "post",
+        url: "/user/SongListDeleteMusic",
+        data: {
+            "musicId": musicId,
+            "type": 1,
+            "belongId": id
+        },
+        dataType: "json",
+        success: function (data, status) {
+            //返回state
+            if(data.state===0){
+                alert("请重试");
+            }else {
+                alert("删除成功");
+                // 修改成功刷新网页
+                location.reload();
+            }
+        }
+    });
+});
+
 
 function addSongList(songList) {
     var modalBody = $(".modal-body .form-group")[0];

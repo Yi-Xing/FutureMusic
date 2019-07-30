@@ -14,7 +14,9 @@
 <!--歌单主页-->
 <div class="container-fluid  color_2">
     <div class="row inner">
-        <h1>歌单</h1>
+
+        <h1 th:if="${songList.type==1}">歌单</h1>
+        <h1 th:if="${songList.type!=1}">专辑</h1>
         <div class="container-fluid">
             <div class="personal_information">
                 <a style="width: 250px;" href="javascript:;" class="pull-left">
@@ -87,7 +89,13 @@
                                         <button th:data-id="${musicList.id}" type="button" class="btn btn-default btn-sm add_Music" data-toggle="modal"
                                                 data-target="#addMusic">添加到你的歌单
                                         </button>
-
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <span th:data-id="${songList.id}" th:if="${songList.type==1}" class="iconfont icon-laji">
+                                            <font style="display: inline-block" th:data-id="${musicList.id}">删除</font>
+                                        </span>
                                     </a>
                                 </li>
                             </ul>
