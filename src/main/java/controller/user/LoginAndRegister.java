@@ -2,6 +2,7 @@ package controller.user;
 
 
 import entity.State;
+import org.springframework.ui.Model;
 import util.SameUrlData;
 import util.exception.DataBaseException;
 import org.slf4j.Logger;
@@ -93,9 +94,8 @@ public class LoginAndRegister {
      * @param session  获取当前会话的对象
      */
     @RequestMapping(value = "/signOutLogin")
-    @ResponseBody
-    public State signOutLogin(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
+    public String signOutLogin(HttpServletRequest request, HttpServletResponse response, HttpSession session, Model model) {
         logger.trace("signOutLogin方法开始执行");
-        return loginService.signOutLogin(request,response,session);
+        return loginService.signOutLogin(request,response,session,model);
     }
 }

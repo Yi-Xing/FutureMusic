@@ -1,8 +1,11 @@
 package service.user;
 
+import controller.Tourist;
 import entity.State;
 import entity.User;
 import mapper.UserMapper;
+import org.springframework.ui.Model;
+import service.Emergency;
 import util.listener.SessionListener;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -31,7 +34,8 @@ public class LoginService {
     UserMapper userMapper;
     @Resource(name = "SpecialFunctions")
     SpecialFunctions specialFunctions;
-
+    @Resource(name = "Emergency")
+    Emergency emergency;
     /**
      * 登录
      *
@@ -90,7 +94,7 @@ public class LoginService {
      * @param response 获取服务器端对象
      * @param session  获取当前会话的对象
      */
-    public State signOutLogin(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
+    public String  signOutLogin(HttpServletRequest request, HttpServletResponse response, HttpSession session, Model model) {
         User user = specialFunctions.getUser(session);
         // 删除监听器上的用户信息
         SessionListener.delSession(session);
@@ -103,7 +107,7 @@ public class LoginService {
             logger.debug("邮箱：" + user.getMailbox() + "的7天自动登录撒好删除成功");
         }
         logger.info("邮箱：" + user.getMailbox() + "退出成功");
-        return new State(1);
+        return emergency.homePage(model);
     }
 
     /**

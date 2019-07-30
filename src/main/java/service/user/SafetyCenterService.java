@@ -101,7 +101,7 @@ public class SafetyCenterService {
         User user = specialFunctions.getUser(session);
         if (user != null) {
             // 如果会话上绑定有用户信息则需要先删除会话上的用户信息
-            loginService.signOutLogin(request, response, session);
+            loginService.signOutLogin(request, response, session,model);
         }
         // 删除绑定的邮箱
         session.removeAttribute("userMailbox");

@@ -1,76 +1,200 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="head::html"></head>
+<link rel="Icon" th:href="@{/static/img/logo.ico}">
 <head>
     <link rel="stylesheet" href="/static/css/RotationChart.css" th:href="@{/static/css/RotationChart.css}">
 </head>
 <body>
-<!--头部-->
-<div class="header" style="height: 650px;overflow: hidden">
-    <video class="show_bg" src="../../static/video/首页.mp4" th:src="@{/static/video/首页.mp4}" autoplay="autoplay" loop="loop" width="100%" alt=""></video>
-    <nav class="navbar" style="background-color: rgba(47,47,47,0.6)">
-        <div class="container-fluid">
-            <!-- Brand and toggle get grouped for better mobile display -->
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
-                        data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand iconfont icon-yinlemusic216" style="font-size: 25px;" href="#"></a>
-            </div>
+<style>
+    .container,
+    .col-md-12,
+    .clearfix {
+        padding: 0;
+        margin: 0;
+    }
 
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav">
-                    <li class="active"><a href="./index.html" th:href="@{/homePage}">音乐馆 <span
-                            class="sr-only">(current)</span></a></li>
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-                           aria-expanded="false">发现 <span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="#" th:href="@{/musicPage}">音乐</a></li>
-                            <li><a href="#" th:href="@{/albumPage}">专辑</a></li>
-                            <li role="separator" class="divider"></li>
-                            <li><a href="#" th:href="@{/musicVideoPage}">MV</a></li>
-                            <li role="separator" class="divider" ></li>
-                        </ul>
-                    </li>
-                    <li><a target="view_window" th:href="@{/user/playCollectMusic}">听见</a></li>
-                    <li><a th:href="@{/user/vipPage}">VIP</a></li>
-                </ul>
-                <ul class="nav navbar-nav navbar-right">
-                    <li id="userId" style="display: none" th:if="${session.userInformation!=null}" th:data-id="${session.userInformation.getId()}"></li>
-                    <li><a href="#" style="background: transparent;padding: 5px" th:href="@{/user/userPage} ">
-                        <img src="img/mv1.jpg" class="touxiang"  th:src="@{${session.userInformation.getHeadPortrait()}}"
-                             th:if="${session.userInformation!=null}" alt="...">
-                    </a></li>
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-                           aria-expanded="false">账户 <span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            <li>
-                                <a href="#" id="button1" data-toggle="modal" data-target="#myModal"> <span th:if="${session.userInformation==null}">直接登录</span></a>
-                            </li>
-                            <li><a th:href="@{/safetyCenterPage}">安全中心</a></li>
-                            <li><a th:href="@{/user/sendEmail}"><span th:if="${session.userInformation!=null}">我的邮箱</span></a></li>
-                            <li role="separator" class="divider"></li>
-                            <li><a href="#" class="signOutLogin"><span th:if="${session.userInformation!=null}">退出登录</span></a></li>
-                        </ul>
-                    </li>
-                </ul>
-                <form class="navbar-form navbar-right" action="musicPage" method="get">
-                    <div class="form-group">
-                        <input type="text" id="search" class="form-control" name="condition" placeholder="你想听什么？">
-                        <ul class="search_tips" id="search_tips">
-                        </ul>
+    /*.col-md-12 {*/
+    /*    height: 50px;*/
+    /*}*/
+
+    /*.clearfix{*/
+    /*    height: 50px;*/
+    /*}*/
+    /*.container {*/
+    /*    width: 100%;*/
+    /*    height: 50px;*/
+    /*}*/
+
+
+    .navbar {
+        border-radius: 0;
+    }
+
+    .navbar-form {
+        margin-left: 40%;
+    }
+
+    .img {
+        height: 48px;
+        width: 48px;
+        overflow: hidden;
+        border-radius: 50%;
+        display: inline-block;
+        position: absolute;
+        right: 80px;
+    }
+
+    .img img {
+        height: 100%;
+        width: 100%;
+    }
+</style>
+<!--头部-->
+<div class="container" style="width: 100%;height: 50px;">
+    <div class="row clearfix" style="height: 50px;">
+        <div class="col-md-12 column" style="height: 50px;">
+            <nav class="navbar navbar-inverse" role="navigation">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse"
+                            data-target="#bs-example-navbar-collapse-1"> <span class="sr-only">Toggle
+                                navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span
+                            class="icon-bar"></span></button>
+                    <a class="navbar-brand" href="#">猩猩音乐</a>
+                </div>
+
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav">
+                        <li class="active">
+                            <a th:href="@{/homePage}">音乐馆</a>
+                        </li>
+                        <li>
+                            <a th:href="@{/user/playCollectMusic}">听见</a>
+                        </li>
+                        <li>
+                            <a th:href="@{/user/vipPage}">VIP</a>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">发现<strong
+                                    class="caret"></strong></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#" th:href="@{/musicPage}">音乐</a></li>
+                                <li><a href="#" th:href="@{/albumPage}">专辑</a></li>
+                                <li><a href="#" th:href="@{/musicVideoPage}">MV</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <form class="navbar-form navbar-left" role="search" th:action="@{/musicPage}" method="get">
+                        <div class="form-group">
+                            <input type="text" id="search" class="form-control" name="condition" placeholder="你想听什么？">
+                        </div>
+                        <button type="submit" id="searchGo" class="btn btn-default">搜索</button>
+                    </form>
+                    <div class="img">
+                        <a href="#"  th:href="@{/user/userPage} ">
+                            <img src="img/mv1.jpg" class="touxiang" th:if="${session.userInformation!=null}"
+                                 th:src="@{${session.userInformation.getHeadPortrait()}}"
+                                 alt="...">
+                        </a>
                     </div>
-                    <button type="submit" id="searchGo" class="btn btn-default">搜索</button>
-                </form>
-            </div>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li id="userId" style="display: none" th:if="${session.userInformation!=null}"
+                            th:data-id="${session.userInformation.getId()}"></li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                               aria-haspopup="true"
+                               aria-expanded="false">账户 <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a href="#" th:if="${session.userInformation==null}" class="dropdown-toggle"
+                                       id="button1" data-toggle="modal" data-target="#myModal">登录</a>
+                                </li>
+                                <li>
+                                    <a th:href="@{/safetyCenterPage}">安全中心</a>
+                                </li>
+                                <li>
+                                    <a th:if="${session.userInformation!=null}" th:href="@{/user/sendEmail}">我的邮箱</a>
+                                </li>
+                                <li class="divider">
+                                </li>
+                                <li>
+                                    <a th:if="${session.userInformation!=null}" th:href="@{/signOutLogin}">退出登录</a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+
+            </nav>
         </div>
-    </nav>
+    </div>
+</div>
+<div class="header" style="height: 650px;overflow: hidden">
+    <video class="show_bg" src="../../static/video/首页.mp4" th:src="@{/static/video/首页.mp4}" autoplay="autoplay"
+           loop="loop" width="100%" alt=""></video>
+    <!--    <nav class="navbar" style="background-color: rgba(47,47,47,0.6)">
+            <div class="container-fluid">
+                &lt;!&ndash; Brand and toggle get grouped for better mobile display &ndash;&gt;
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                            data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand iconfont icon-yinlemusic216" style="font-size: 25px;" href="#"></a>
+                </div>
+
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav">
+                        <li class="active"><a href="./index.html" th:href="@{/homePage}">音乐馆 <span
+                                class="sr-only">(current)</span></a></li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                               aria-expanded="false">发现 <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#" th:href="@{/musicPage}">音乐</a></li>
+                                <li><a href="#" th:href="@{/albumPage}">专辑</a></li>
+                                <li role="separator" class="divider"></li>
+                                <li><a href="#" th:href="@{/musicVideoPage}">MV</a></li>
+                                <li role="separator" class="divider" ></li>
+                            </ul>
+                        </li>
+                        <li><a target="view_window" th:href="@{/user/playCollectMusic}">听见</a></li>
+                        <li><a th:href="@{/user/vipPage}">VIP</a></li>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li id="userId" style="display: none" th:if="${session.userInformation!=null}" th:data-id="${session.userInformation.getId()}"></li>
+                        <li><a href="#" style="background: transparent;padding: 5px" th:href="@{/user/userPage} ">
+                            <img src="img/mv1.jpg" class="touxiang"  th:src="@{${session.userInformation.getHeadPortrait()}}"
+                                 th:if="${session.userInformation!=null}" alt="...">
+                        </a></li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                               aria-expanded="false">账户 <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a href="#" id="button1" data-toggle="modal" data-target="#myModal"> <span th:if="${session.userInformation==null}">直接登录</span></a>
+                                </li>
+                                <li><a th:href="@{/safetyCenterPage}">安全中心</a></li>
+                                <li><a th:href="@{/user/sendEmail}"><span th:if="${session.userInformation!=null}">我的邮箱</span></a></li>
+                                <li role="separator" class="divider"></li>
+                                <li><a href="#" class="signOutLogin"><span th:if="${session.userInformation!=null}">退出登录</span></a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <form class="navbar-form navbar-right" action="musicPage" method="get">
+                        <div class="form-group">
+                            <input type="text" id="search" class="form-control" name="condition" placeholder="你想听什么？">
+                            <ul class="search_tips" id="search_tips">
+                            </ul>
+                        </div>
+                        <button type="submit" id="searchGo" class="btn btn-default">搜索</button>
+                    </form>
+                </div>
+            </div>
+        </nav>-->
     <div class="show_text">
         <div class="music active">
             <i></i>
@@ -98,14 +222,13 @@
 <script>
     let nav_container = $(".header .navbar");
     window.onmousewheel = document.onmousewheel = function () {
-        if(window.event.wheelDelta){
-            if(window.event.wheelDelta<0){
+        if (window.event.wheelDelta) {
+            if (window.event.wheelDelta < 0) {
                 nav_container.slideUp(0);
                 $("#nav_container").hide();
-            }
-            else if(window.event.wheelDelta>0){
+            } else if (window.event.wheelDelta > 0) {
                 nav_container.slideDown(0);
-                nav_container.css("top","0px");
+                nav_container.css("top", "0px");
             }
         }
     };
@@ -235,7 +358,7 @@
         <div class="container artist_container" id="CN">
             <div class="artists" th:each="userMusic:${userMusic}">
                 <!-- th:src="@{${userMusic.key.headPortrait}}"-->
-                <img th:src="@{/static/img/陈奕迅.jpg}"   alt="">
+                <img th:src="@{/static/img/陈奕迅.jpg}" alt="">
                 <div class="artist_introduce">
                     <h4 th:text="${userMusic.key.name}">陈奕迅</h4>
                     <h5>代表作：富士山下</h5>
@@ -247,7 +370,7 @@
                     <h3>热门单曲</h3>
                     <ol>
                         <li th:each="userMusic:${userMusic.value}">
-                            <a th:href="@{/user/playMusicSongList(id=${userMusic.albumId},musicId=${userMusic.id})}" >
+                            <a th:href="@{/user/playMusicSongList(id=${userMusic.albumId},musicId=${userMusic.id})}">
                                 <span th:text="${userMusic.name}">富士山下</span>
                             </a>
                         </li>
@@ -301,7 +424,8 @@
                 </div>
                 <ol>
                     <li th:each="music:${music1}">
-                        <a th:href="@{/user/playMusicSongList(id=${music.albumId},musicId=${music.id})}" th:text="${music.name}"></a>
+                        <a th:href="@{/user/playMusicSongList(id=${music.albumId},musicId=${music.id})}"
+                           th:text="${music.name}"></a>
                     </li>
                 </ol>
             </div>
@@ -314,7 +438,8 @@
                 </div>
                 <ol>
                     <li th:each="music:${music2}">
-                        <a th:href="@{/user/playMusicSongList(id=${music.albumId},musicId=${music.id})}" th:text="${music.name}"></a>
+                        <a th:href="@{/user/playMusicSongList(id=${music.albumId},musicId=${music.id})}"
+                           th:text="${music.name}"></a>
                     </li>
                 </ol>
             </div>
@@ -327,7 +452,8 @@
                 </div>
                 <ol>
                     <li th:each="music:${music3}">
-                        <a th:href="@{/user/playMusicSongList(id=${music.albumId},musicId=${music.id})}" th:text="${music.name}"></a>
+                        <a th:href="@{/user/playMusicSongList(id=${music.albumId},musicId=${music.id})}"
+                           th:text="${music.name}"></a>
                     </li>
                 </ol>
             </div>
@@ -340,7 +466,8 @@
                 </div>
                 <ol>
                     <li th:each="music:${music4}">
-                        <a th:href="@{/user/playMusicSongList(id=${music.albumId},musicId=${music.id})}" th:text="${music.name}"></a>
+                        <a th:href="@{/user/playMusicSongList(id=${music.albumId},musicId=${music.id})}"
+                           th:text="${music.name}"></a>
                     </li>
                 </ol>
             </div>
@@ -353,7 +480,8 @@
                 </div>
                 <ol>
                     <li th:each="music:${music5}">
-                        <a th:href="@{/user/playMusicSongList(id=${music.albumId},musicId=${music.id})}" th:text="${music.name}"></a>
+                        <a th:href="@{/user/playMusicSongList(id=${music.albumId},musicId=${music.id})}"
+                           th:text="${music.name}"></a>
                     </li>
                 </ol>
             </div>

@@ -579,8 +579,6 @@ ul li{
     margin-bottom: 20px;
 }
 .artist_container .artist_works ol{
-    display: flex;
-    flex-direction: column;
     justify-content: space-between;
 }
 .artist_container .artist_works ol li{
