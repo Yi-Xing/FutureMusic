@@ -241,6 +241,14 @@ function suiji() {
 
 
 var musicId;
+var musicUrlId;
+var url = window.location.search;
+musicUrlId = url.substring(url.lastIndexOf('musicId=') + 8, url.length);
+console.log(musicUrlId);
+musicId = musicUrlId;
+console.log(musicId);
+musicTab();
+console.log('音乐ID='+musicId);
 musicId = $("#musicId").data("value");
 // console.log('音乐ID=' + musicId);
 index = $(".music_list").length - 1;

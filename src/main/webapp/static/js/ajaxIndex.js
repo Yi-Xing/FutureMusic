@@ -122,7 +122,7 @@ window.onload = function () {
         });
     });
 
-    // 用户退出登录
+   /* // 用户退出登录
      $(".signOutLogin").on("click", function () {
         $.ajax({
             type: "get",
@@ -136,5 +136,5 @@ window.onload = function () {
                 }
             }
         });
-    });
+    });*/
 };
