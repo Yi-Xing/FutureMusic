@@ -361,8 +361,7 @@
         </div>
         <div class="container artist_container" id="CN">
             <div class="artists" th:each="userMusic:${userMusic}">
-                <!-- th:src="@{${userMusic.key.headPortrait}}"-->
-                <img th:src="@{/static/img/陈奕迅.jpg}" alt="">
+                <img th:src="@{${userMusic.key.headPortrait}}"alt="">
                 <div class="artist_introduce">
                     <h4 th:text="${userMusic.key.name}">陈奕迅</h4>
                     <h5>代表作：富士山下</h5>

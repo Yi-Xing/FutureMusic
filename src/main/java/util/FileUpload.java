@@ -174,7 +174,7 @@ public class FileUpload {
                             //如果image=null 表示上传的不是图片格式
                             if (image != null) {
                                 // 再判断图片的高度和宽度是否符合要求（单位为px）
-                                if (image.getWidth() >= 250 && image.getHeight() >= 250) {
+                                if (image.getWidth() >= 200 && image.getHeight() >= 200) {
                                     // 然后存入音乐路径中，返回数据库路径
                                     return fileUpload(file, "/static/file/userHeadPortrait/", suffix);
                                 } else {
