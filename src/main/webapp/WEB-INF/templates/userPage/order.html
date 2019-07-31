@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="myInformation" th:fragment="order" class="personalCenterTab">
+    <style>
+        .order{
+            color: #555;
+            background-color: #e7e7e7;
+        }
+    </style>
+    <table class="table table-hover table-striped">
+        <thead>
+        <tr>
+            <th>名称</th>
+            <th>原价</th>
+            <th>现价</th>
+            <th>支付方式</th>
+            <th>时间</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr class="personal_list" th:each="order:${orders}">
+            <td>
+                <span th:text="${order.mode}"></span>
+            </td>
+            <td>
+                <span><span th:text="${order.originalPrice}">2</span>元</span>
+            </td>
+            <td>
+                <span><span th:text="${order.price}">2</span>元</span>
+            </td>
+            <td th:switch="${order.type}">
+                <span th:case="1" >余额</span>
+                <span th:case="2" >支付宝</span>
+            </td>
+            <td th:text="${#dates.format(order.date, 'yyyy-MM-dd HH:mm:ss')}"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

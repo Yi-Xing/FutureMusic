@@ -41,9 +41,6 @@
             <if test='singerId!=0'>
                 , music_song_list_singer_id=#{singerId}
             </if>
-            <if test='classificationId!=0'>
-                ,music_classification_id=#{classificationId}
-            </if>
             <if test='date!=null'>
                 ,music_song_list_music_date=#{date}
             </if>

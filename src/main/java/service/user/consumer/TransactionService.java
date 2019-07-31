@@ -80,6 +80,7 @@ public class TransactionService {
                 // 获取充值金额
                 User user = specialFunctions.getUser(session);
                 logger.debug("充值前的余额" + user.getBalance());
+                String originalPrice=money;
                 if ("50.00".equals(money)) {
                     money = "60.00";
                 } else if ("100.00".equals(money)) {
@@ -87,9 +88,10 @@ public class TransactionService {
                 }
                 user.setBalance(user.getBalance().add(new BigDecimal(money)));
                 logger.debug("充值后的余额" + user.getBalance());
+                // 添加订单信息,失败抛异常
+                getOrder(4,user.getId(),0,new BigDecimal(originalPrice),new BigDecimal(money));
                 // 该方法更改了需要更改相应的参数
                 userInformationService.modifyUser(String.valueOf(user.getId()), String.valueOf(user.getLevel()), String.valueOf(user.getBalance()), String.valueOf(user.getReport()));
-                ;
                 return "index";
             }
         } else {//验证失败
@@ -171,7 +173,8 @@ public class TransactionService {
                 if (state.getState() == 1) {
                     logger.debug("购买成功");
                     // 添加订单信息,失败抛异常
-                    addOrder(user.getId(), id, type, singerId, albumId, classificationId, originalPrice, price);
+                    getOrder(type,user.getId(),id,originalPrice,price);
+//                    addOrder(user.getId(), id, type, singerId, albumId, classificationId, originalPrice, price);
                     logger.debug("订单添加成功");
                     // 用户购买音乐完成，开始修改用户收藏的音乐或MV的是否购买状态
 //                    modifyCollectionAndSongList(user.getId(), id, type)
@@ -301,6 +304,8 @@ public class TransactionService {
         // 计算得到vip的价格
         BigDecimal price = BigDecimal.valueOf(count * 10);
         logger.debug("优惠前" + count);
+        // 计算优惠前的价格
+        int originalPrice =count;
         if (count == 6) {
             count++;
         } else if (count == 10) {
@@ -338,6 +343,8 @@ public class TransactionService {
                 logger.error("邮箱：" + user.getMailbox() + "修改用户信息时，数据库出错");
                 throw new DataBaseException("邮箱：" + user.getMailbox() + "修改用户信息时，数据库出错");
             }
+            // 4表示是充值VIp 然后用户ID，无音乐ID ，原价是VIP充值月数*10  现价是扣的钱
+            getOrder(4,user.getId(),0,new BigDecimal(String.valueOf(count*10)),price);
             state.setState(1);
         } else {
             state.setInformation("余额不足，请立即充值");
@@ -363,4 +370,39 @@ public class TransactionService {
         return null;
     }
 
+
+    /**
+     * 生成订单  1表示是音乐 2表示是MV 3表示充值 4表示VIP
+     *
+     * @param type          类型
+     * @param userId        用户ID
+     * @param musicId       如果是音乐MV音乐MV ID
+     * @param originalPrice 原价
+     * @param price         现价
+     */
+    public void getOrder(int type, int userId, int musicId, BigDecimal originalPrice, BigDecimal price) throws DataBaseException {
+        Order order = new Order();
+        switch (type) {
+            case 1:
+            case 2:
+                order.setMusicId(musicId);
+            case 4:
+                order.setMode("余额");
+                break;
+            default:
+                order.setMode("支付宝");
+                break;
+
+        }
+        order.setType(type);
+        order.setUserId(userId);
+        order.setOriginalPrice(originalPrice);
+        order.setPrice(price);
+        order.setDate(new Date());
+        if (orderMapper.insertOrder(order) < 1) {
+            // 如果失败是数据库错误
+            logger.error("添加时，数据库出错");
+            throw new DataBaseException("添加时，数据库出错");
+        }
+    }
 }

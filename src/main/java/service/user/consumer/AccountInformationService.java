@@ -2,6 +2,7 @@ package service.user.consumer;
 
 import entity.*;
 import mapper.FocusMapper;
+import mapper.OrderMapper;
 import org.springframework.ui.Model;
 import service.user.IdExistence;
 import service.user.SpecialFunctions;
@@ -19,7 +20,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.math.BigDecimal;
+import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 /**
  * 用户信息的业务逻辑
@@ -44,6 +47,8 @@ public class AccountInformationService {
     IdExistence idExistence;
     @Resource(name = "TransactionService")
     TransactionService transactionService;
+    @Resource(name = "OrderMapper")
+    OrderMapper orderMapper;
 
     /**
      * 显示用户页面
@@ -76,7 +81,7 @@ public class AccountInformationService {
             }
         }
         // 得到用户的关注粉丝量及用户信息
-        specialFunctions.getUserInformation(user, model,session);
+        specialFunctions.getUserInformation(user, model, session);
         return "userPage/userPage";
     }
 
@@ -155,6 +160,50 @@ public class AccountInformationService {
         }
         return state;
     }
+
+    /**
+     * 显示用户订单页面
+     */
+    public String userOrderPage(HttpSession session, Model model) {
+        // 从数据库中获取信息
+        User user = idExistence.isUserId(specialFunctions.getUser(session).getId());
+        Order order = new Order();
+        order.setUserId(user.getId());
+        // 时间按降序排序
+        order.setDate(new Date());
+        // 得到指定用户 model 用来存储名称  用type存储支付方式 1表示余额 2表示支付宝
+        List<Order> list = orderMapper.selectListOrder(order);
+        for (Order o : list) {
+            switch (o.getType()) {
+               // 1表示是音乐 2表示是MV 3表示充值 4vip
+                case 1:
+                    // 查找指定音乐信息 得到指定音乐的名字
+                    o.setMode(idExistence.isMusicId(o.getMusicId()).getName()+"(音乐)");
+                    o.setType(1);
+                    break;
+                case 2:
+                    // 查找指定MV信息 得到指定MV的名字
+                    o.setMode(idExistence.isMusicVideoId(o.getMusicId()).getName()+"(MV)");
+                    o.setType(1);
+                    break;
+                case 3:
+                    o.setMode("充值余额");
+                    o.setType(2);
+                    break;
+                case 4:
+                    o.setMode("购买VIP");
+                    o.setType(1);
+                    break;
+                default:
+            }
+        }
+        model.addAttribute("orders",list);
+        model.addAttribute("page","order");
+        // 得到用户的关注粉丝量及用户信息
+        specialFunctions.getUserInformation(user, model, session);
+        return "userPage/userPage";
+    }
+
 
     /**
      * 开通个人空间或关闭个人空间

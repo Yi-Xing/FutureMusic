@@ -18,6 +18,9 @@
             <if test='musicId!=0'>
                 and order_music_id=#{musicId}
             </if>
+            <if test="date!=null">
+                order by order_date	DESC
+            </if>
         </where>
     </select>
 
