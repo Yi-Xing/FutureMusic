@@ -364,9 +364,9 @@
                 <img th:src="@{${userMusic.key.headPortrait}}"alt="">
                 <div class="artist_introduce">
                     <h4 th:text="${userMusic.key.name}">陈奕迅</h4>
-                    <h5 th:text="${userMusic.key.password}">代表作：富士山下</h5>
+                    <h5 >代表作：<span th:text="${userMusic.key.password}"></span></h5>
                     <p>
-                        <i class="iconfont icon-like" th:text="${userMusic.key.report}">12</i>
+                        <i class="iconfont icon-like like" th:text="${userMusic.key.report}">12</i>
                     </p>
                 </div>
                 <div class="artist_works">
