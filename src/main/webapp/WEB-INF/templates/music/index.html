@@ -90,6 +90,8 @@
                     <form class="navbar-form navbar-left" role="search" th:action="@{/musicPage}" method="get">
                         <div class="form-group">
                             <input type="text" id="search" class="form-control" name="condition" placeholder="你想听什么？">
+                            <ul class="search_tips" id="search_tips">
+                            </ul>
                         </div>
                         <button type="submit" id="searchGo" class="btn btn-default">搜索</button>
                     </form>
@@ -223,15 +225,16 @@
 </div>
 <script src="js/jquery.js" th:src="@{/static/js/jquery.js}"></script>
 <script>
-    let nav_container = $(".header .navbar");
+    let nav_container = $(".clearfix");
     window.onmousewheel = document.onmousewheel = function () {
         if (window.event.wheelDelta) {
             if (window.event.wheelDelta < 0) {
-                nav_container.slideUp(0);
-                $("#nav_container").hide();
+                // nav_container.slideUp(0);
+                $(".clearfix").hide();
             } else if (window.event.wheelDelta > 0) {
-                nav_container.slideDown(0);
-                nav_container.css("top", "0px");
+                // nav_container.slideDown(0);
+                // nav_container.css("top", "0px");
+                $(".clearfix").show();
             }
         }
     };

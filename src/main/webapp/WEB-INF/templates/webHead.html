@@ -84,6 +84,8 @@
                     <form class="navbar-form navbar-left" role="search" th:action="@{/musicPage}" method="get">
                         <div class="form-group">
                             <input type="text" id="search" class="form-control" name="condition" placeholder="你想听什么？">
+                            <ul class="search_tips" id="search_tips">
+                            </ul>
                         </div>
                         <button type="submit" id="searchGo" class="btn btn-default">搜索</button>
                     </form>
@@ -126,106 +128,19 @@
         </div>
     </div>
 </div>
-<!--<div class="header">-->
-<!--    <img class="show_bg" src="../../static/video/首页.mp4" th:src="@{/static/video/首页.mp4}"  alt=""></img>-->
-<!--    <nav class="navbar">-->
-<!--        <div class="container-fluid">-->
-<!--            &lt;!&ndash; Brand and toggle get grouped for better mobile display &ndash;&gt;-->
-<!--            <div class="navbar-header">-->
-<!--                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"-->
-<!--                        data-target="#bs-example-navbar-collapse-1" aria-expanded="false">-->
-<!--                    <span class="sr-only">Toggle navigation</span>-->
-<!--                    <span class="icon-bar"></span>-->
-<!--                    <span class="icon-bar"></span>-->
-<!--                    <span class="icon-bar"></span>-->
-<!--                </button>-->
-<!--                <a class="navbar-brand iconfont icon-yinlemusic216" style="font-size: 25px;" href="#"></a>-->
-<!--            </div>-->
 
-<!--            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">-->
-<!--                <ul class="nav navbar-nav">-->
-<!--                    <li class="active"><a href="./index.html" th:href="@{/homePage}">音乐馆 <span-->
-<!--                            class="sr-only">(current)</span></a></li>-->
-<!--                    <li class="dropdown">-->
-<!--                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"-->
-<!--                           aria-expanded="false">发现 <span class="caret"></span></a>-->
-<!--                        <ul class="dropdown-menu">-->
-<!--                            <li><a href="#" th:href="@{/musicPage}">音乐</a></li>-->
-<!--                            <li><a href="#" th:href="@{/albumPage}">专辑</a></li>-->
-<!--                            <li role="separator" class="divider"></li>-->
-<!--                            <li><a href="#" th:href="@{/musicVideoPage}">MV</a></li>-->
-<!--                            <li role="separator" class="divider"></li>-->
-<!--                        </ul>-->
-<!--                    </li>-->
-<!--                    <li><a target="view_window" th:href="@{/user/playCollectMusic}">听见</a></li>-->
-<!--                    <li><a th:href="@{/user/vipPage}">VIP</a></li>-->
-<!--                </ul>-->
-<!--                <ul class="nav navbar-nav navbar-right">-->
-<!--                    <li id="userId" style="display: none" th:if="${session.userInformation!=null}" th:data-id="${session.userInformation.getId()}"></li>-->
-<!--                    <li><a href="#" style="background: transparent;padding: 5px" th:href="@{/user/userPage} ">-->
-<!--                        <img src="img/mv1.jpg" class="touxiang"  th:src="@{${session.userInformation.getHeadPortrait()}}"-->
-<!--                             th:if="${session.userInformation!=null}" alt="...">-->
-<!--                    </a></li>-->
-<!--                    <li class="dropdown">-->
-<!--                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"-->
-<!--                           aria-expanded="false">账户 <span class="caret"></span></a>-->
-<!--                        <ul class="dropdown-menu">-->
-<!--                            <li>-->
-<!--                                <a href="#" id="button1" data-toggle="modal" data-target="#myModal"> <span th:if="${session.userInformation==null}">直接登录</span></a>-->
-<!--                            </li>-->
-<!--                            <li><a th:href="@{/safetyCenterPage}">安全中心</a></li>-->
-<!--                            <li><a th:href="@{/user/sendEmail}"><span th:if="${session.userInformation!=null}">我的邮箱</span></a></li>-->
-<!--                            <li role="separator" class="divider"></li>-->
-<!--                            <li><a href="#" class="signOutLogin"><span th:if="${session.userInformation!=null}">退出登录</span></a></li>-->
-<!--                        </ul>-->
-<!--                    </li>-->
-<!--                </ul>-->
-<!--                <form class="navbar-form navbar-right" action="musicPage" method="get">-->
-<!--                    <div class="form-group">-->
-<!--                        <input type="text" id="search" class="form-control" name="condition" placeholder="你想听什么？">-->
-<!--                        <ul class="search_tips" id="search_tips">-->
-<!--                        </ul>-->
-<!--                    </div>-->
-<!--                    <button type="submit" id="searchGo" class="btn btn-default">搜索</button>-->
-<!--                </form>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--    </nav>-->
-<!--    <div class="show_text">-->
-<!--        <div class="music active">-->
-<!--            <i></i>-->
-<!--            <i></i>-->
-<!--            <i></i>-->
-<!--            <i></i>-->
-<!--            <i></i>-->
-<!--            <i></i>-->
-<!--        </div>-->
-<!--        <div>-->
-<!--            <h1>想你所想</h1>-->
-<!--            <h1>听你所听</h1>-->
-<!--        </div>-->
-<!--        <div class="music active">-->
-<!--            <i></i>-->
-<!--            <i></i>-->
-<!--            <i></i>-->
-<!--            <i></i>-->
-<!--            <i></i>-->
-<!--            <i></i>-->
-<!--        </div>-->
-<!--    </div>-->
-</div>
 <script src="js/jquery.js" th:src="@{/static/js/jquery.js}"></script>
 <script>
-    let nav_container = $(".header .navbar");
+    let nav_container = $(".clearfix");
     window.onmousewheel = document.onmousewheel = function () {
         if(window.event.wheelDelta){
             if(window.event.wheelDelta<0){
-                nav_container.slideUp(0);
-                $("#nav_container").hide();
-            }
-            else if(window.event.wheelDelta>0){
-                nav_container.slideDown(0);
-                nav_container.css("top","0px");
+                // nav_container.slideUp(0);
+                $(".clearfix").hide();
+            } else if(window.event.wheelDelta>0){
+                // nav_container.slideDown(0);
+                // nav_container.css("top","0px");
+                $(".clearfix").show();
             }
         }
     };
