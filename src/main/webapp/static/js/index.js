@@ -159,7 +159,7 @@ var like = 0;
 $(".thumbnail .icon-like").click(function () {
     var musicId = $(this).parent().parent().parent()[0].children[0];
     musicId = musicId.innerHTML;
-    console.log(musicId);
+    // console.log(musicId);
     // $.ajax({
     //     contentType: "application/json;charset=UTF-8",
     //     type: "post",
@@ -212,16 +212,16 @@ $(".thumbnail .icon-like").click(function () {
 //         })
 //     }
 // };
-var like = 0;
-$('.icon-like').on('click', function () {
-    if (like == 0) {
-        $(this).addClass('like');
-        like = 1;
-    } else {
-        $(this).removeClass('like');
-        like = 0;
-    }
-});
+// var like = 0;
+// $('.icon-like').on('click', function () {
+//     if (like == 0) {
+//         $(this).addClass('like');
+//         like = 1;
+//     } else {
+//         $(this).removeClass('like');
+//         like = 0;
+//     }
+// });
 
 
 $(".icon-like").on('click', function () {
@@ -243,7 +243,7 @@ $(".icon-like").on('click', function () {
 });
 
 
-function collectionMusic(userId, musicId, type) {
+function collectionMusic(userId, musicId, type, obj) {
     $.ajax({
         contentType: "application/x-www-form-urlencoded;charset=UTF-8",
         url: "/user/collectionMusic",
@@ -254,13 +254,15 @@ function collectionMusic(userId, musicId, type) {
             type: type
         },
         success: function (data) {
-            console.log(data);
+            // console.log(data);
             // alert("已取消收藏！");
             // $(obj).removeClass('like');
             if (data.state == 1) {
-                alert("删除收藏成功")
+                alert("删除收藏成功");
+                obj.removeClass('like');
             } else if (data.state == 2) {
-                alert("添加收藏成功")
+                alert("添加收藏成功");
+                obj.addClass('like');
             } else {
                 alert("请刷新网页")
             }
@@ -270,7 +272,7 @@ function collectionMusic(userId, musicId, type) {
 
 }
 
-function collectionSongList(userId, musicId, type) {
+function collectionSongList(userId, musicId, type, obj) {
     $.ajax({
         contentType: "application/x-www-form-urlencoded;charset=UTF-8",
         url: "/user/collectionSongList",
@@ -284,9 +286,11 @@ function collectionSongList(userId, musicId, type) {
             // alert("已取消收藏！");
             // $(obj).removeClass('like');
             if (data.state == 1) {
-                alert("删除收藏成功")
+                alert("删除收藏成功index");
+                obj.removeClass('like');
             } else if (data.state == 2) {
-                alert("添加收藏成功")
+                alert("添加收藏成功index");
+                obj.addClass('like');
             } else {
                 alert("请刷新网页")
             }

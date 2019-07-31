@@ -18,14 +18,13 @@ function collectionMusic(musicId, type, obj) {
             type: type
         },
         success: function (data) {
-            console.log(data);
             if (data.state == 1) {
                 alert("删除收藏成功")
                 // alert("已取消收藏！");
-                // $(obj).removeClass('like');
+                $(obj).removeClass('like');
             } else if (data.state == 2) {
                 alert("添加收藏成功")
-                // $(obj).addClass('like');
+                $(obj).addClass('like');
             } else {
                 alert("请刷新网页")
             }
