@@ -18,12 +18,14 @@
                 </a>
                 <div class="pull-left name">
                     <div>
-                        <h2 th:text="${user.name}">name </h2>
+                        <h2 ><span th:text="${user.name}"></span> <span th:if="${album=='album'}" style="color:red;">——音乐人</span></h2>
                     </div>
                     <h4>关注：<span th:text="${followCount}"></span></h4>
                     <h4>粉丝：<span th:text="${userFollowCount}"></span></h4>
                     <h4>邮箱：<span th:text="${user.mailbox}"></span></h4>
-                    <h4>vip到期时间：<span th:text="${#dates.format(user.vipDate, 'yyyy-MM-dd HH:mm:ss')}"></span></h4>
+                    <h4 >vip到期时间：<span th:text="${#dates.format(user.vipDate, 'yyyy-MM-dd HH:mm:ss')}"></span></h4>
+
+
                 </div>
             </div>
         </div>
@@ -52,22 +54,42 @@
                             <li class=" focusa personal_tab"><a th:href="@{/user/showFollowUser(type=2)}">粉丝</a></li>
                             <li class="songLista personal_tab"><a th:href="@{/user/showUserSongList(type=1)}">我的歌单</a>
                             </li>
-                            <li class="albuma personal_tab"><a th:href="@{/user/showUserSongList(type=2)}">我的专辑</a></li>
+                            <li th:if="${album=='album'}"  class="albuma personal_tab"><a th:href="@{/user/showUserSongList(type=2)}">我的专辑</a></li>
                             <li class="personala personal_tab"><a th:href="@{/user/userPage}">个人信息</a></li>
                         </ul>
                     </div>
                     <ul class="nav navbar-nav navbar-right">
                         <!--                        发送信件-->
-                        <li><a th:href="@{/user/sendEmail}"><i class="iconfont icon-youxiang-kong"></i></a></li>
-                        <!--该值不为personal表示访问其他用户的界面-->
-                        <!-- <li th:if="${show!='personal'}">
-                             <span th:if="${focus=='follow'}">
-                                 <button id="focus" th:data-id="${user.id}">关注</button>
-                             </span>
-                             <span th:if="${focus=='focus'}">
-                                 <button id="follow" th:data-id="${user.id}">取消关注</button>
-                             </span>
-                         </li>-->
+                        <li><a th:if="${show=='personal'}" th:href="@{/user/sendEmail}"><i class="iconfont icon-youxiang-kong"></i></a></li>
+                        <li><a th:if="${show!='personal'}" data-toggle="modal" data-target="#edit" data-whatever="@mdo"><i class="iconfont icon-youxiang-kong"></i></a></li>
+                        <!--邮箱信息的模态框-->
+                        <div class="modal fade " id="edit" tabindex="-1" role="dialog"
+                             aria-labelledby="myModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                                aria-hidden="true">&times;</span></button>
+                                        <h4 class="modal-title">发送邮件</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form>
+                                            <div class="form-group">
+                                                <input type="text" class="form-control" id="mailbox" th:value="${user.mailbox}" style="display:none;" placeholder="输入接收人的邮箱">
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="control-label" >信件:</label>
+                                                <textarea class="form-control" id="content"  placeholder="1-300个字符"></textarea>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">返回</button>
+                                        <button type="button" class="btn btn-primary" id="send">发送</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                         <li th:if="${show!='personal'}">
                             <div th:if="${focus=='follow'}" style="margin-top: 10px;">
                                 <i id="focus" class="iconfont icon-laji icon-dianzan" style="font-size: 17px;font-weight: 600" th:data-id="${user.id}">关注</i>
@@ -143,7 +165,7 @@
         <div th:if="${page=='songList'}">
             <div th:replace="userPage/songList::songList"></div>
         </div>
-        <div th:if="${page=='album'}">
+        <div th:if="${page=='album' and album=='album'}">
             <div th:replace="userPage/album::album"></div>
         </div>
         <div th:if="${page=='personal'}">

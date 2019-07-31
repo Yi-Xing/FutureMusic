@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import service.user.administrators.SongListInformationService;
 import service.user.consumer.AboutSongListService;
 import util.exception.DataBaseException;
 
@@ -27,9 +28,11 @@ import java.util.List;
  */
 @Controller
 @RequestMapping(value = "/user")
-public class  AboutSongList {
+public class AboutSongList {
     @Resource(name = "AboutSongListService")
     AboutSongListService aboutSongListService;
+    @Resource(name = "SongListInformationService")
+    SongListInformationService songListInformationService;
     private static final Logger logger = LoggerFactory.getLogger(AboutSongList.class);
 
 
@@ -58,8 +61,8 @@ public class  AboutSongList {
      * @return 歌单或专辑的详细页面
      */
     @RequestMapping(value = "/showMusicSongList")
-    public String showMusicSongList(String id, Model model,HttpSession session) {
-        return aboutSongListService.showMusicList(id, model,session);
+    public String showMusicSongList(String id, Model model, HttpSession session) {
+        return aboutSongListService.showMusicList(id, model, session);
     }
 
 
@@ -67,46 +70,56 @@ public class  AboutSongList {
      * 显示指定歌单或专辑的音乐播放页面
      *
      * @param id      歌单或专辑的iD
-     * @param musicId      即将播放的音乐
+     * @param musicId 即将播放的音乐
      */
     @RequestMapping(value = "/playMusicSongList")
-    public String playMusicSongList(String id,String musicId, Model model,HttpSession session) {
-        return aboutSongListService.playMusicSongList(id,musicId, model,session);
+    public String playMusicSongList(String id, String musicId, Model model, HttpSession session) {
+        return aboutSongListService.playMusicSongList(id, musicId, model, session);
     }
 
 
     /**
      * 创建歌单或专辑
+     * <p>
+     * name           获取歌单或专辑的标题
+     * introduction   获取歌单或专辑的介绍
+     * type           获取类型1是歌单2是专辑
      *
-     *                  name           获取歌单或专辑的标题
-     *                  introduction   获取歌单或专辑的介绍
-     *                  type           获取类型1是歌单2是专辑
-     * @param session   获取当前会话
+     * @param session 获取当前会话
      */
     @RequestMapping(value = "/createMusicSongList")
     @ResponseBody
-    public State createMusicSongList(String name,String  introduction,String type, HttpServletRequest request, HttpSession session) throws DataBaseException {
+    public State createMusicSongList(String name, String introduction, String type, HttpServletRequest request, HttpSession session) throws DataBaseException {
         System.out.println("我只写了");
         logger.trace("createMusicSongList方法开始执行");
-        return aboutSongListService.createMusicSongList(name,introduction,type,  request, session);
+        return aboutSongListService.createMusicSongList(name, introduction, type, request, session);
     }
 
     /**
      * 编辑歌单或专辑
+     * <p>
+     * 获取传来的歌单信息
      *
-     * @param songList  获取传来的歌单信息
-     *                  id           获取歌单或专辑的id
-     *                  name           获取歌单或专辑的标题
-     *                  introduction   获取歌单或专辑的介绍
-     *                  type           获取类型1是歌单2是专辑
+     * @param id           获取歌单或专辑的id
+     * @param name         获取歌单或专辑的标题
+     * @param introduction 获取歌单或专辑的介绍
+     *                     type           获取类型1是歌单2是专辑
      */
     @RequestMapping(value = "/editMusicSongList")
     @ResponseBody
-    public State editMusicSongList(@RequestBody SongList songList, HttpServletRequest request) throws DataBaseException {
+    public State editMusicSongList(Integer id, String name, String introduction, boolean fileCheckbox, HttpServletRequest request) throws DataBaseException {
         logger.trace("editMusicSongList方法开始执行");
-        return aboutSongListService.editMusicSongList(songList, request);
+        return aboutSongListService.editMusicSongList( id,  name,  introduction,  fileCheckbox, request);
     }
 
+    /**
+     * 得到指定歌单/专辑的信息
+     */
+    @RequestMapping(value = "/showIdSongList")
+    @ResponseBody
+    public SongList showIdSongList(Integer id) {
+        return songListInformationService.showIdSongList(id);
+    }
 
     /**
      * 删除歌单或专辑，ajax  还需删除图片
@@ -133,7 +146,6 @@ public class  AboutSongList {
         logger.trace("collectionSongList方法开始执行");
         return aboutSongListService.collectionSongList(id, type, session);
     }
-
 
 
 }

@@ -15,10 +15,10 @@ window.onload = function () {
             dataType: "json",
             success: function (data, status) {
                 // 返回state
-                if(data.state===0){
+                if (data.state === 0) {
                     alert(data.information);
-                }else {
-                    alert("用户名:"+userName+"修改成功");
+                } else {
+                    alert("用户名:" + userName + "修改成功");
                     // 修改成功刷新网页
                     window.location.href = '/user/userPage';
                 }
@@ -35,13 +35,13 @@ window.onload = function () {
             processData: false,// 使数据不做处理
             contentType: false,// 不要设置Content-Type请求头
             url: "/user/setUpHeadPortrait",
-            data:selectFile,
+            data: selectFile,
             dataType: "json",
             success: function (data, status) {
                 // 返回state
-                if(data.state===0){
+                if (data.state === 0) {
                     alert(data.information);
-                }else {
+                } else {
                     alert("用户头像修改成功");
                     // 修改成功刷新网页
                     window.location.href = '/user/userPage';
@@ -66,9 +66,9 @@ window.onload = function () {
             },
             dataType: "json",
             success: function (data, status) {
-                if(data.state===0){
+                if (data.state === 0) {
                     alert("关注失败");
-                }else {
+                } else {
                     alert("关注成功");
                     // 修改成功刷新网页
                     location.reload();
@@ -91,9 +91,9 @@ window.onload = function () {
             dataType: "json",
             success: function (data, status) {
                 //返回state
-                if(data.state===0){
+                if (data.state === 0) {
                     alert("取消关注失败");
-                }else {
+                } else {
                     alert("取消关注成功");
                     // 修改成功刷新网页
                     location.reload();
@@ -115,73 +115,88 @@ window.onload = function () {
         selectFile.append('name', name);
         selectFile.append('introduction', introduction);
         selectFile.append('type', type);
-            $.ajax({
-                // contentType: "multipart/form-data",
-                type: "post",
-                cache: false,
-                processData: false,// 使数据不做处理
-                contentType: false,// 不要设置Content-Type请求头
-                url: "/user/createMusicSongList",
-                data:selectFile,
-                dataType: "json",
-                success: function (data, status) {
-                    // 返回state
-                    if(data.state===0){
-                        $(".promptInformation").text(data.information);
-                    }else {
-                        alert("歌单/专辑创建成功");
-                        // 修改成功刷新网页
-                        location.reload();
-                    }
-                }
-            });
-    });
-
-
-
-    // 编辑歌单或专辑的基本信息
-    $("#registerUser").on("click", function () {
-        // 歌单或专辑的标题
-        var name = $("#registerUserName").val();
-        // 歌单或专辑的介绍
-        var introduction = $("#registerUserName").val();
-        // 分类
-        var classification = $("#registerUserName").val();
-        // 获取类型1是歌单2是专辑
-        var type = $("#registerUserName").val();
         $.ajax({
-            contentType: "application/json;charset=UTF-8",
+            // contentType: "multipart/form-data",
             type: "post",
-            url: "editMusicSongList",
-            data: {
-                "name": name,
-                "introduction": introduction,
-                "classification": classification,
-                "type": type
-            },
+            cache: false,
+            processData: false,// 使数据不做处理
+            contentType: false,// 不要设置Content-Type请求头
+            url: "/user/createMusicSongList",
+            data: selectFile,
             dataType: "json",
             success: function (data, status) {
-                //返回 State
+                // 返回state
+                if (data.state === 0) {
+                    $(".promptInformation").text(data.information);
+                } else {
+                    alert("歌单/专辑创建成功");
+                    // 修改成功刷新网页
+                    location.reload();
+                }
+            }
+        });
+    });
+
+    // 点击编辑按钮触发的事件
+    $(".editSongList").on("click", function () {
+        var id=$(this).data("id");
+        $.ajax({
+            type: "get",
+            dataType: "json",
+            url: "/user/showIdSongList?id=" + id,
+            success: function (data, status) {
+                $("#nameEdit").val(data.name);
+                $("#activityEdit").val(data.introduction);
+                $("#editSongList").data("id",id);
             }
         });
     });
 
     // 编辑歌单或专辑的封面图片
-    $("#registerUser").on("click", function () {
+    $("#editSongList").on("click", function () {
         // 主键 id
-        var id = $("#registerUserName").val();
-        $.ajax({
-            type: "get",
-            url: "editMusicSongListPicture?id=" + id,
+        var id=$(this).data("id");
+        var name = $("#nameEdit").val();
+        var introduction = $("#activityEdit").val();
+        var selectFile = new FormData($('#selectFileEdit')[0]);
+        selectFile.append('id', id);
+        selectFile.append("name",name);
+        selectFile.append("introduction",introduction);
+        selectFile.append("fileCheckbox",$("#musicPicture").is(':checked'));
+            $.ajax({
+            // contentType: "multipart/form-data",
+            type: "post",
+            cache: false,
+            processData: false,// 使数据不做处理
+            contentType: false,// 不要设置Content-Type请求头
+            url: "/user/editMusicSongList",
+            data:selectFile,
             dataType: "json",
             success: function (data, status) {
-                //返回 State
+                // 返回state
+                if(data.state===0){
+                    $(".promptInformation").text(data.information);
+                }else {
+                    alert("歌单/专辑信息修改成功");
+                    // 修改成功刷新网页
+                    location.reload();
+                }
             }
         });
     });
 
-    // 删除指定歌单或专辑
-    $("#registerUser").on("click", function () {
+
+
+
+
+
+    // 点击删除按钮触发的事件
+    $(".deleteSongList").on("click", function () {
+        var id=$(this).data("id");
+        $("#deleteSongList").data("id",id);
+    });
+    // 删除指定歌单
+    $("#deleteSongList").on("click", function () {
         // 主键 id
         var id = $(this).data("id");
         $.ajax({
@@ -190,9 +205,9 @@ window.onload = function () {
             dataType: "json",
             success: function (data, status) {
                 // 返回state
-                if(data.state===0){
+                if (data.state === 0) {
                     $(".promptInformation").text(data.information);
-                }else {
+                } else {
                     alert("歌单删除成功");
                     // 修改成功刷新网页
                     location.reload();
@@ -200,6 +215,33 @@ window.onload = function () {
             }
         });
     });
+
+
+    // 点击发送邮箱按钮触发的事件
+    $("#send").on("click", function () {
+        var mailbox=$("#mailbox").val();
+        var content=$("#content").val();
+        $.ajax({
+            contentType: "application/x-www-form-urlencoded",
+            type: "post",
+            url: "/user/sendMailUser",
+            data: {
+                "mailbox": mailbox,
+                "content": content
+            },
+            dataType: "json",
+            success: function (data, status) {
+                // 返回state
+                if(data.state===0){
+                    alert(data.information);
+                }else {
+                    alert("邮箱发送成功");
+                    location.reload();
+                }
+            }
+        });
+    });
+
 
     // 举报用户
     $("#registerUser").on("click", function () {

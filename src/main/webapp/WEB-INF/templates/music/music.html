@@ -27,12 +27,13 @@
                     <li th:each="list:${pageInfo.list}">
                         <div class="artist">
                             <div class="artist_top">
-                                <a th:href="@{/user/playMusicSongList(id=${list.albumId},musicId=${list.id})}" href="javascript:;" class="artist_left pull-left">
+                                <a th:href="@{/user/playMusicSongList(id=${list.albumId},musicId=${list.id})}"
+                                   href="javascript:;" class="artist_left pull-left">
                                     <img th:src="@{${list.picture}}" src="img/头像_邓紫棋.jpg" alt="">
                                 </a>
                             </div>
                             <div class="artist_bottom">
-                                    <h4 th:text="${list.name}">artistname</h4>
+                                <h4 th:text="${list.name}">artistname</h4>
                             </div>
                         </div>
                     </li>
@@ -51,12 +52,13 @@
                 <span th:if="${!pageInfo.hasPreviousPage}">
                         <button class="btn" disabled="disabled">&lt;上一页</button>
                     </span>
-                <button class="btn btn-default" th:each="list,tmp:${pages}">
-                    <a th:href="@{/musicPage(page=${tmp.count},condition=${condition})}" th:text="${tmp.count}"></a>
-                </button>
+                <a th:each="list,tmp:${pages}" th:href="@{/musicPage(page=${tmp.count},condition=${condition})}">
+                    <button class="btn btn-default" th:text="${tmp.count}">
+                    </button>
+                </a>
                 <span th:if="${pageInfo.hasNextPage}">
                         <button class="btn">
-                            <a th:href="@{/musicPage(page=${pageInfo.pageNum-1},condition=${condition})}">下一页&gt;</a>
+                            <a th:href="@{/musicPage(page=${pageInfo.pageNum+1},condition=${condition})}">下一页&gt;</a>
                         </button>
                     </span>
                 <span th:if="${!pageInfo.hasNextPage}">
@@ -67,25 +69,25 @@
                 </button>
                 一共<span th:text="${pageCount}"></span>页
             </div>
-<!--            <nav aria-label="Page navigation">-->
-<!--                <ul class="pagination pagination-lg pull-right">-->
-<!--                    <li>-->
-<!--                        <a href="#" aria-label="Previous">-->
-<!--                            <span aria-hidden="true">&laquo;</span>-->
-<!--                        </a>-->
-<!--                    </li>-->
-<!--                    <li><a href="#">1</a></li>-->
-<!--                    <li><a href="#">2</a></li>-->
-<!--                    <li><a href="#">3</a></li>-->
-<!--                    <li><a href="#">4</a></li>-->
-<!--                    <li><a href="#">5</a></li>-->
-<!--                    <li>-->
-<!--                        <a href="#" aria-label="Next">-->
-<!--                            <span aria-hidden="true">&raquo;</span>-->
-<!--                        </a>-->
-<!--                    </li>-->
-<!--                </ul>-->
-<!--            </nav>-->
+            <!--            <nav aria-label="Page navigation">-->
+            <!--                <ul class="pagination pagination-lg pull-right">-->
+            <!--                    <li>-->
+            <!--                        <a href="#" aria-label="Previous">-->
+            <!--                            <span aria-hidden="true">&laquo;</span>-->
+            <!--                        </a>-->
+            <!--                    </li>-->
+            <!--                    <li><a href="#">1</a></li>-->
+            <!--                    <li><a href="#">2</a></li>-->
+            <!--                    <li><a href="#">3</a></li>-->
+            <!--                    <li><a href="#">4</a></li>-->
+            <!--                    <li><a href="#">5</a></li>-->
+            <!--                    <li>-->
+            <!--                        <a href="#" aria-label="Next">-->
+            <!--                            <span aria-hidden="true">&raquo;</span>-->
+            <!--                        </a>-->
+            <!--                    </li>-->
+            <!--                </ul>-->
+            <!--            </nav>-->
         </div>
     </div>
 </div>
@@ -96,6 +98,6 @@
 
 </body>
 <div th:replace="on-load-js::html"></div>
-<script src="js/page.js" th:src="@{/static/js/page.js}" ></script>
+<script src="js/page.js" th:src="@{/static/js/page.js}"></script>
 <script src="js/artist.js" th:src="@{/static/js/artist.js}"></script>
 </html>

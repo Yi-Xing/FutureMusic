@@ -71,7 +71,7 @@ public class AboutMusicService {
         getCount(session,model);
         model.addAttribute("page", "likePage");
         // 得到用户的关注粉丝量及用户信息
-        specialFunctions.getUserInformation(user, model);
+        specialFunctions.getUserInformation(user, model,session);
         return "userPage/userPage";
     }
 
