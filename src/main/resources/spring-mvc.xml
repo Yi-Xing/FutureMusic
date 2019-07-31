@@ -61,7 +61,7 @@
         <property name="jdbcUrl" value="${jdbcUrl}"/>
         <property name="user" value="${user}"/>
         <property name="password" value="${password}"/>
-        <property name="maxIdleTime" value="1800"/>
+<!--        <property name="maxIdleTime" value="1800"/>-->
         <!--        &lt;!&ndash;解决MySQL8小时问题&ndash;&gt;-->
 <!--        <property name="testConnectionOnCheckin" value="true"/>-->
 <!--        &lt;!&ndash;设置为true，所有的连接都将检测其有效性，会影响性能，所以将其设置为false；&ndash;&gt;-->
