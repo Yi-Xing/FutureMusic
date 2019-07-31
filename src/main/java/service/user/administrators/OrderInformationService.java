@@ -40,7 +40,7 @@ public class OrderInformationService {
         Order order = new Order();
         if (condition != null) {
             if ((condition[0] != null) && !"".equals(condition[0])) {
-                // 1表示是音乐 2表示是MV 3表示充值 4表示用户 5表示订单
+                // 1表示是音乐 2表示是MV 3表示充值 4表示用户 5表示订单 6 表示vip
                 switch (condition[0]) {
                     case "1":
                     case "2":
@@ -63,6 +63,9 @@ public class OrderInformationService {
                     case "5":
                         condition[3] = condition[1];
                         condition[1] = null;
+                        break;
+                    case "6":
+                        order.setType(4);
                         break;
                     default:
                 }

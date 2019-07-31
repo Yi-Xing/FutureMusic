@@ -56,6 +56,7 @@
                             </li>
                             <li th:if="${album=='album'}"  class="albuma personal_tab"><a th:href="@{/user/showUserSongList(type=2)}">我的专辑</a></li>
                             <li class="personala personal_tab"><a th:href="@{/user/userPage}">个人信息</a></li>
+                            <li class="order personal_tab"><a th:href="@{/user/userOrderPage}">我的订单</a></li>
                         </ul>
                     </div>
                     <ul class="nav navbar-nav navbar-right">
@@ -170,6 +171,9 @@
         </div>
         <div th:if="${page=='personal'}">
             <div th:replace="userPage/personal::personal"></div>
+        </div>
+        <div th:if="${page=='order'}">
+            <div th:replace="userPage/order::order"></div>
         </div>
     </div>
 </div>

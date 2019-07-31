@@ -112,6 +112,7 @@ public class MusicInformationService {
     public String showMusic(String[] condition, Integer pageNum, Model model) {
         Music music = new Music();
         if (condition != null) {
+        System.out.println(Arrays.toString(condition));
             if ((condition[0] != null) && !"".equals(condition[0])) {
                 if (validationInformation.isInt(condition[0])) {
                     music.setLevel(Integer.parseInt(condition[0]));
@@ -127,8 +128,9 @@ public class MusicInformationService {
                 }
             }
             if ((condition[2] != null) && !"".equals(condition[2]) && (condition[3] != null) && !"".equals(condition[3])) {
+                String name=condition[3];
                 // 1-ID，2-名字 3-歌手 4-专辑 5-分类 6-活动
-                if (!validationInformation.isInt(condition[3])) {
+                if (!validationInformation.isInt(condition[3]) ) {
                     condition[3] = "-1";
                 }
 
@@ -137,7 +139,7 @@ public class MusicInformationService {
                         music.setId(Integer.parseInt(condition[3]));
                         break;
                     case "2":
-                        music.setName(condition[3]);
+                        music.setName(name);
                         break;
                     case "3":
                         music.setSingerId(Integer.parseInt(condition[3]));
@@ -167,7 +169,9 @@ public class MusicInformationService {
         //在查询之前传入当前页，然后多少记录
         PageHelper.startPage(pageNum, 7);
         // 根据条件查找音乐信息
+        System.out.println(music);
         List<Music> list = musicMapper.selectListMusic(music);
+        System.out.println(list);
         PageInfo pageInfo = new PageInfo<>(list);
         // 传入页面信息
         logger.debug("查找到的音乐" + list);
@@ -199,7 +203,9 @@ public class MusicInformationService {
     public State modifyEditMusic(String id, String name, String singerId, String albumId, String classificationId, String level, String price, String activity, String available) throws DataBaseException {
         State state = new State();
         // 先判断音乐的id是否合法
+        System.out.println(1);
         if (validationInformation.isInt(id) && idExistence.isMusicId(Integer.valueOf(id)) != null) {
+        System.out.println(2);
             state = isModifyEdit(name, singerId, albumId, classificationId, level, price, activity, available);
             if (state.getState() == 1) {
                 if ("0".equals(available)) {
@@ -208,18 +214,21 @@ public class MusicInformationService {
                 if ("0".equals(activity)) {
                     activity = "-1";
                 }
+        System.out.println(3);
                 Music music = new Music(Integer.valueOf(id), name, Integer.valueOf(level), new BigDecimal(price), Integer.valueOf(singerId), Integer.valueOf(albumId), Integer.valueOf(classificationId), Integer.valueOf(activity), Integer.valueOf(available));
                 if (musicMapper.updateMusic(music) < 1) {
                     // 如果失败是数据库错误
                     logger.error(music + "修改音乐信息，数据库出错");
                     throw new DataBaseException(music + "修改音乐信息，数据库出错");
                 }
+        System.out.println(4);
                 MusicSongList musicSongList = new MusicSongList();
                 musicSongList.setType(2);
                 musicSongList.setMusicId(Integer.valueOf(id));
                 List<MusicSongList> listMusicSongList = musicSongListMapper.selectListMusicSongList(musicSongList);
+        System.out.println(5);
                 if (listMusicSongList.size() > 0) {
-                    musicSongList = listMusicSongList.get(1);
+                    musicSongList = listMusicSongList.get(0);
                     musicSongList.setBelongId(Integer.valueOf(albumId));
                     musicSongList.setSingerId(Integer.valueOf(singerId));
                     if (musicSongListMapper.updateMusicSongList(musicSongList) < 1) {
@@ -232,6 +241,7 @@ public class MusicInformationService {
         } else {
             state.setInformation("音乐的id不存在");
         }
+        System.out.println(6);
         return state;
     }
 

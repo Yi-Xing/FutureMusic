@@ -19,6 +19,10 @@
         <a th:href="@{/administrators/showOrder(condition=3,condition=${conditionOne},condition=${conditionTwo},condition=${conditionThree},pageNum=${pageInfo.pageNum})}">
             充值</a>
     </li>
+    <li class="headli">
+        <a th:href="@{/administrators/showOrder(condition=6,condition=${conditionOne},condition=${conditionTwo},condition=${conditionThree},pageNum=${pageInfo.pageNum})}">
+            vip</a>
+    </li>
 </ul>
 <div class="Allbody peobody" th:fragment="order">
     <!-- 导入 JS -->
@@ -86,12 +90,13 @@
                     <span th:case="1" style="color:#FFFF00">音乐</span>
                     <span th:case="2" style="color:#009966">MV</span>
                     <span th:case="3">充值</span>
+                    <span th:case="4">vip</span>
                 </td>
                 <td th:text="${list.originalPrice}"></td>
                 <td th:text="${list.price}"></td>
-                <td th:switch="${list.mode}">
-                    <span th:case="0">其他</span>
-                    <span th:case="1" style="color:#0018c6">支付宝</span>
+                <td th:text="${list.mode}">
+<!--                    <span th:case="0">余额</span>-->
+<!--                    <span th:case="1" style="color:#0018c6">支付宝</span>-->
                 </td>
                 <td th:text="${#dates.format(list.date, 'yyyy-MM-dd HH:mm:ss')}"></td>
                 <td>

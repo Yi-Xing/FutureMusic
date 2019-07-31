@@ -75,17 +75,13 @@ public class AccountInformation {
     }
 
     /**
-     * 点击开通或关闭个人空间执行此方法，ajax
-     *
-     * @param session 获取当前会话
+     * 显示用户订单页面
      */
-    @RequestMapping(value = "/privacy")
-    @ResponseBody
-    public State privacy(HttpSession session) throws DataBaseException {
-        logger.trace("privacy方法开始执行");
-        // 修改用户空间状态，失败抛异常
-        return accountInformationService.privacy(session);
+    @RequestMapping(value = "/userOrderPage")
+    public String userOrderPage(HttpSession session,Model model){
+        return accountInformationService.userOrderPage(session,model);
     }
+
 
     /**
      *  点击充值余额页面
@@ -111,5 +107,18 @@ public class AccountInformation {
     @RequestMapping(value = "/musicPage")
     public String musicPage(HttpSession session,String id,String type,Model model){
         return accountInformationService.musicPage(session,id,type,model);
+    }
+
+    /**
+     * 点击开通或关闭个人空间执行此方法，ajax
+     *
+     * @param session 获取当前会话
+     */
+    @RequestMapping(value = "/privacy")
+    @ResponseBody
+    public State privacy(HttpSession session) throws DataBaseException {
+        logger.trace("privacy方法开始执行");
+        // 修改用户空间状态，失败抛异常
+        return accountInformationService.privacy(session);
     }
 }
