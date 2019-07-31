@@ -28,22 +28,4 @@ public class CookieUtil {
         return null;
     }
 
-    /**
-     * 判断是否存在指定name的cookie，有则返回cookie，没有则返回null
-     * @param cookies 所有的cookie
-     * @param cookieName 需要得到的cookie的名字
-     * @return Cookie
-     */
-        public static Cookie getCookieByName(Cookie[] cookies,String cookieName) {
-            if(cookies==null) {
-                return null;
-            }else {
-                for(Cookie cookie:cookies) {
-                    if(cookie.getName().equals(cookieName)) {
-                        return cookie;
-                    }
-                }
-                return null;
-            }
-        }
 }
