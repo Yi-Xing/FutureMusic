@@ -52,6 +52,8 @@ public class LoginService {
             password = specialFunctions.encryptionMD5(password);
             // 验证邮箱和密码是否正确,如果正确返回用户信息, 不正确返回null
             User user = isMailboxAndPassword(mailbox, password);
+            System.out.println(2);
+            System.out.println(2);
             if (user != null) {
                 // 判断账号是否已经冻结
                 if (user.getReport() < ConstantUtil.Two_Hundred.getIntValue()) {
