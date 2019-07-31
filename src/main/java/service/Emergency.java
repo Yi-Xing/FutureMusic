@@ -160,6 +160,7 @@ public class Emergency {
             // 查找到指定用户的所有音乐
             List<Music> list = musicMapper.selectListMusic(music);
             if (list.size() >= 5) {
+                u.setPassword(list.get(0).getName());
                 listMusic.add(list.get(0));
                 listMusic.add(list.get(1));
                 listMusic.add(list.get(2));
