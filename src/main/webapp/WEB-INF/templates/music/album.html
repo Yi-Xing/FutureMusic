@@ -88,12 +88,13 @@
                 <span th:if="${!pageInfo.hasPreviousPage}">
                         <button class="btn" disabled="disabled">&lt;上一页</button>
                     </span>
-                <button class="btn btn-default" th:each="list,tmp:${pages}">
-                    <a th:href="@{/albumPage(page=${tmp.count})}" th:text="${tmp.count}"></a>
-                </button>
+                <a th:each="list,tmp:${pages}" th:href="@{/albumPage(page=${tmp.count})}">
+                    <button class="btn btn-default" th:text="${tmp.count}">
+                    </button>
+                </a>
                 <span th:if="${pageInfo.hasNextPage}">
                         <button class="btn">
-                            <a th:href="@{/albumPage(page=${pageInfo.pageNum-1})}">下一页&gt;</a>
+                            <a th:href="@{/albumPage(page=${pageInfo.pageNum+1})}">下一页&gt;</a>
                         </button>
                     </span>
                 <span th:if="${!pageInfo.hasNextPage}">

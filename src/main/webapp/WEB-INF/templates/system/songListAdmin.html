@@ -99,9 +99,16 @@
                             class="btn btnAcc btn-success btn-sm more" data-toggle="modal"
                             data-target="#more">更多
                     </button>
+                    <span th:if="${list.type!=2}">
                     <button type="button" th:data-id="${list.id}" class="btn btnAcc btn-danger btn-sm delete"
                             data-toggle="modal" data-target="#delete">删除
                     </button>
+                    </span>
+                    <span th:if="${list.type==2}">
+                        <button type="button" class="btn btnAcc btn-danger btn-sm delete">删除
+                    </button>
+                    </span>
+
                 </td>
             </tr>
             </tbody>

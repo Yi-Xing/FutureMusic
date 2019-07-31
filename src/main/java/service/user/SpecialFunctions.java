@@ -35,8 +35,10 @@ import java.util.Random;
 @Service(value = "SpecialFunctions")
 public class SpecialFunctions {
     private static final Logger logger = LoggerFactory.getLogger(SpecialFunctions.class);
-
-
+    @Resource(name = "SpecialFunctions")
+    SpecialFunctions specialFunctions;
+    @Resource(name = "IdExistence")
+    IdExistence idExistence;
     @Resource(name = "FocusMapper")
     FocusMapper focusMapper;
     /**
@@ -57,7 +59,7 @@ public class SpecialFunctions {
     /**
      * 将用户信息和用户的关注量粉丝量加入Model中
      */
-    public void getUserInformation(User user,Model model){
+    public void getUserInformation(User user,Model model,HttpSession session){
         // 用于查找用户关注的人数
         Focus userFollow = new Focus();
         userFollow.setUserId(user.getId());
@@ -78,6 +80,11 @@ public class SpecialFunctions {
         model.addAttribute("user", user);
         model.addAttribute("followCount",userFollowCount );
         model.addAttribute("userFollowCount", followUserCount);
+        user = idExistence.isUserId(specialFunctions.getUser(session).getId());
+        // 等级为2的用户显示专辑
+        if(user.getLevel()==2){
+            model.addAttribute("album", "album");
+        }
     }
     /**
      * 给指定邮箱发送验证码，发送验证码

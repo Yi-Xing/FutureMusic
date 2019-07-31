@@ -68,14 +68,16 @@ public class Emergency {
             music.setName(condition);
         }
         //在查询之前传入当前页，然后多少记录
-        PageHelper.startPage(page, 18);
+        PageHelper.startPage(page, 20);
         // 根据条件查找音乐信息
         List<Music> list = musicMapper.selectListMusic(music);
         PageInfo pageInfo = new PageInfo<>(list);
         // 传入页面信息
         logger.debug("查找到的音乐" + list);
-        model.addAttribute("pageInfo", pageInfo);
         model.addAttribute("condition", condition);
+        model.addAttribute("pageInfo", pageInfo);
+        model.addAttribute("pages", pageInfo.getNavigatepageNums());
+        model.addAttribute("pageCount", pageInfo.getNavigatepageNums().length);
         return "music/music";
     }
 
@@ -84,7 +86,7 @@ public class Emergency {
      */
     public String getMusicVideoList(Integer page, Model model) {
         //在查询之前传入当前页，然后多少记录
-        PageHelper.startPage(page, 18);
+        PageHelper.startPage(page, 12);
         // 根据条件查找MV信息
         List<MusicVideo> list = musicVideoMapper.selectListMusicVideo(new MusicVideo());
         PageInfo pageInfo = new PageInfo<>(list);
@@ -101,7 +103,7 @@ public class Emergency {
      */
     public String getSongListList(Integer page, Model model) {
         //在查询之前传入当前页，然后多少记录
-        PageHelper.startPage(page, 18);
+        PageHelper.startPage(page, 12);
         SongList songList = new SongList();
         songList.setType(2);
         // 根据条件查找专辑信息
@@ -110,6 +112,8 @@ public class Emergency {
         // 传入页面信息
         logger.debug("查找到的专辑" + list);
         model.addAttribute("pageInfo", pageInfo);
+        model.addAttribute("pages", pageInfo.getNavigatepageNums());
+        model.addAttribute("pageCount", pageInfo.getNavigatepageNums().length);
         return "music/album";
     }
 

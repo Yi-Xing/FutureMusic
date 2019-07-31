@@ -82,7 +82,7 @@ public class  AboutUserService {
             idList.add(0);
         }
         // 得到用户的关注粉丝量及用户信息
-        specialFunctions.getUserInformation(user, model);
+        specialFunctions.getUserInformation(user, model,session);
         model.addAttribute("users",userMapper.listIdSelectListUser(idList));
         System.out.println(userMapper.listIdSelectListUser(idList));
         return "userPage/userPage";
